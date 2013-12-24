@@ -35,23 +35,6 @@
     </developer>
   </developers>
   <build>
-    <!-- activate pgp signing plugin -->
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-gpg-plugin</artifactId>
-        <version>1.4</version>
-        <executions>
-          <execution>
-            <id>sign-artifacts</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>sign</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
     <!-- Sonatype OSSRH settings -->
     <pluginManagement>
         <plugins>
@@ -69,7 +52,7 @@
     </pluginManagement>
   </build>
   <profiles>
-    <!-- only sign upon release -->
+    <!-- PGP sign upon release -->
     <profile>
       <id>release-sign-artifacts</id>
       <activation>
@@ -83,7 +66,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
-            <version>1.1</version>
+            <version>1.4</version>
             <executions>
               <execution>
                 <id>sign-artifacts</id>
