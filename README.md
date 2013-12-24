@@ -13,3 +13,7 @@ A wide range of generic neighbourhood searches are provided out-of-the-box, incl
 6. replica exchange Monte Carlo search (parallel tempering)
 
 In addition, some specific subset sampling algorithms are available, as well as exhaustive search, which is of course only feasible for problems with a reasonably small search space.
+
+# Status
+
+*James is currently under development.*
