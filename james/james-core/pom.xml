@@ -9,7 +9,6 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
   <!-- james core project info -->
-  <groupId>org.jamesframework</groupId>
   <artifactId>james-core</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
