@@ -12,17 +12,101 @@ body {
   min-height: 100%;
   height: auto;
   /* Negative indent footer by its height */
-  margin: 0 auto -60px;
+  margin: 0 auto -130px;
   /* Pad bottom by footer height */
-  padding: 0 0 60px;
+  padding: 0 0 130px;
 }
 
 /* Set the fixed height of the footer here */
 #footer {
-  height: 60px;
+  height: 130px;
   background-color: #f5f5f5;
 }
 
+#footer p {
+	height: 130px;
+	padding: 0;
+	margin: 0;
+}
+#footer .copyright {
+	line-height: 25px;
+	margin-top: 40px;
+	float: left;
+}
+#footer .logos {
+	float: right;
+	line-height: 40px;
+	text-align: center;
+	margin-top: 5px;
+}
+#footer .logos span{
+	vertical-align: middle;
+}
+#footer .logos .fwo {
+	display: inline-block;
+	margin-left: 15px;
+	width: 128px;
+	height: 50px;
+	background-image: url('../images/fwo.png');
+}
+#footer .logos .ugent {
+	display: inline-block;
+	width: 99px;
+	height: 70px;
+	background-image: url('../images/ugent.png');
+}
+
+/* Footer adjustments for small screen
+-------------------------------------------------- */
+
+@media all and (max-width: 600px) {
+  /* adjust footer height */
+  #wrap {
+	margin: 0 auto -70px;
+  	padding: 0 0 70px;
+  }
+  #footer {
+  	height: 70px;
+  }
+  #footer p {
+  	height: 70px;
+  }
+  #footer .copyright {
+  	line-height: 20px;
+  	margin-top: 15px;
+  }
+  #footer .logos {
+	  line-height: 28px;
+	  margin-top: 2px;
+  }
+  /* adjust logos (smaller) */
+  #footer .logos .fwo {
+  	margin-left: 5px;
+	width: 51px;
+  	height: 20px;
+  	background-image: url('../images/fwo-small.png');
+  }
+  #footer .logos .ugent {
+  	width: 42px;
+  	height: 30px;
+  	background-image: url('../images/ugent-small.png');
+  }
+}
+
+/* Glyphicons */
+
+/* ... */
+
+/* nav bar */
+
+.navbar-brand{
+}
+
+/* UNDER CONSTRUCTION MESSAGE */
+
+#under-construction .view-on-github {
+	margin-top: 30px;
+}
 
 /* Custom page CSS
 -------------------------------------------------- */
@@ -30,9 +114,6 @@ body {
 
 #wrap > .container {
   padding: 0 15px;
-}
-.container .text-muted {
-  margin: 20px 0;
 }
 
 #footer > .container {
