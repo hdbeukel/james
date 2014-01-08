@@ -17,3 +17,11 @@ In addition, some specific subset sampling algorithms are available, as well as 
 # Status
 
 *James is currently under development.*
+
+# Authors
+
+Herman De Beukelaer (Herman.DeBeukelaer@UGent.be)
+
+# License
+
+The James framework is licensed under the Apache License, Version 2.0, see http://www.apache.org/licenses/LICENSE-2.0.

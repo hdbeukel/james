@@ -14,9 +14,11 @@
   <packaging>jar</packaging>
   <name>james-core</name>
   <description>
-      The core module of James contains general concepts to model problems and objectives,
-      as well as generic algorithms to solve the problems, and implementations of some specific
-      components for subset selection
+        The core module of James contains general concepts modeling
+        problems, objectives and constraints, as well as generic
+        algorithms to solve the problems. Several analysis tools
+        are also included. Moreover, the core provides implementations
+        of specific components for subset selection.
   </description>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
