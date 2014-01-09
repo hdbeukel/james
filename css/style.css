@@ -61,7 +61,7 @@ body {
 /* Footer adjustments for small screen
 -------------------------------------------------- */
 
-@media all and (max-width: 600px) {
+@media all and (max-width: 500px) {
   /* adjust footer height */
   #wrap {
 	margin: 0 auto -70px;
