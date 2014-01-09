@@ -21,7 +21,6 @@ body {
 #footer {
 	height: 130px;
 	background-color: #f5f5f5;
-	font-size: 110%;
 }
 
 #footer p {
@@ -40,6 +39,7 @@ body {
 	text-align: center;
 	margin-top: 5px;
 	font-variant: small-caps;
+	font-size: 110%;
 }
 #footer .logos span{
 	vertical-align: middle;
@@ -74,8 +74,9 @@ body {
   	height: 70px;
   }
   #footer .copyright {
-  	line-height: 22px;
-  	margin-top: 14px;
+  	line-height: 20px;
+  	margin-top: 15px;
+	font-size: 90%;
   }
   #footer .logos {
 	  line-height: 28px;
