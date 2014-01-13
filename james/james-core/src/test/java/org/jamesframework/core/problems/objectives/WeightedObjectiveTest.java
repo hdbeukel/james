@@ -64,7 +64,7 @@ public class WeightedObjectiveTest {
         
         // create weighted objective
         WeightedObjective weighted = new WeightedObjective();
-        // create some fake objectives with fixed evaluation
+        // create some fake objective with fixed evaluation
         FakeObjectiveWithFixedEvaluation obj0 = new FakeObjectiveWithFixedEvaluation(0.0);
         
         boolean thrown;
@@ -98,6 +98,37 @@ public class WeightedObjectiveTest {
         weighted2.addObjective(obj0, 1.0);
         
     }
+    
+    /**
+     * Test of removeObjective method, of class WeightedObjective.
+     */
+    @Test
+    public void testRemoveObjective() {
+        
+        System.out.println(" - test removeObjective");
+        
+        // create weighted objective
+        WeightedObjective weighted = new WeightedObjective();
+        // create some fake objectives with fixed evaluation
+        FakeObjectiveWithFixedEvaluation obj0 = new FakeObjectiveWithFixedEvaluation(0.0);
+        FakeObjectiveWithFixedEvaluation obj1 = new FakeObjectiveWithFixedEvaluation(1.0);
+        
+        // add one of both objectives
+        weighted.addObjective(obj0, 1.0);
+        
+        // try to remove objective which is not added
+        boolean expected = false;
+        boolean got = weighted.removeObjective(obj1);
+        
+        assertEquals(expected, got);
+        
+        // try to remove objective which was added
+        expected = true;
+        got = weighted.removeObjective(obj0);
+        
+        assertEquals(expected, got);
+        
+    }
 
     /**
      * Test of isMinimizing method, of class WeightedObjective.
@@ -124,7 +155,7 @@ public class WeightedObjectiveTest {
         System.out.println(" - test evaluate");
         
         // create weighted objective
-        WeightedObjective obj = new WeightedObjective();
+        WeightedObjective weighted = new WeightedObjective();
         // create some fake objectives with fixed evaluation
         FakeObjectiveWithFixedEvaluation obj0 = new FakeObjectiveWithFixedEvaluation(0.0);
         FakeObjectiveWithFixedEvaluation obj1 = new FakeObjectiveWithFixedEvaluation(1.0);
@@ -138,11 +169,11 @@ public class WeightedObjectiveTest {
         double weight2 = 1.0;
         double weight3 = 3.0;
         double weight4 = 2.0;
-        obj.addObjective(obj0, weight0);
-        obj.addObjective(obj1, weight1);
-        obj.addObjective(obj2, weight2);
-        obj.addObjective(obj3, weight3);
-        obj.addObjective(obj4, weight4);
+        weighted.addObjective(obj0, weight0);
+        weighted.addObjective(obj1, weight1);
+        weighted.addObjective(obj2, weight2);
+        weighted.addObjective(obj3, weight3);
+        weighted.addObjective(obj4, weight4);
         
         // create fake empty data
         FakeEmptyData emptyData = new FakeEmptyData();
@@ -150,16 +181,43 @@ public class WeightedObjectiveTest {
         // create fake empty solution and evaluate
         Solution emptySol = new FakeEmptySolution();
         double expectedEval = 21.0;
-        double eval = obj.evaluate(emptySol, emptyData);
+        double eval = weighted.evaluate(emptySol, emptyData);
         
         assertEquals(expectedEval, eval, DOUBLE_PRECISION);
         
         // set objective 3 to minimizing and re-evaluate
         obj3.setMinimizing();
         expectedEval = 3.0;
-        eval = obj.evaluate(emptySol, emptyData);
+        eval = weighted.evaluate(emptySol, emptyData);
         
         assertEquals(expectedEval, eval, DOUBLE_PRECISION);
+        
+        // set objective 4 to minimizing as well and re-evaluate
+        obj4.setMinimizing();
+        expectedEval = -13.0;
+        eval = weighted.evaluate(emptySol, emptyData);
+        
+        assertEquals(expectedEval, eval, DOUBLE_PRECISION);
+        
+        // set objective 0 to minimizing and re-evaluate (should not make a difference)
+        obj0.setMinimizing();
+        eval = weighted.evaluate(emptySol, emptyData);
+
+        assertEquals(expectedEval, eval, DOUBLE_PRECISION);
+        
+        // remove objective 0 and re-evaluate (should not make a difference)
+        weighted.removeObjective(obj0);
+        eval = weighted.evaluate(emptySol, emptyData);
+
+        assertEquals(expectedEval, eval, DOUBLE_PRECISION);
+        
+        // remove objective 3 and re-evaluate
+        weighted.removeObjective(obj3);
+        expectedEval = -4.0;
+        eval = weighted.evaluate(emptySol, emptyData);
+
+        assertEquals(expectedEval, eval, DOUBLE_PRECISION);
+    
     }
 
 }
