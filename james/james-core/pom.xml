@@ -1,34 +1,34 @@
 <?xml version="1.0"?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <!-- inherit from james parent POM -->
-  <parent>
-    <groupId>org.jamesframework</groupId>
-    <artifactId>james</artifactId>
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <!-- inherit from james parent POM -->
+    <parent>
+        <groupId>org.jamesframework</groupId>
+        <artifactId>james</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <!-- james core project info -->
+    <artifactId>james-core</artifactId>
     <version>1.0-SNAPSHOT</version>
-  </parent>
-  <!-- james core project info -->
-  <artifactId>james-core</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <packaging>jar</packaging>
-  <name>james-core</name>
-  <description>
+    <packaging>jar</packaging>
+    <name>james-core</name>
+    <description>
         The core module of James contains general concepts modeling
         problems, objectives and constraints, as well as generic
         algorithms to solve the problems. Several analysis tools
         are also included. Moreover, the core provides implementations
         of specific components for subset selection.
-  </description>
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+    </description>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 </project>
