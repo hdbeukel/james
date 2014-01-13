@@ -59,6 +59,22 @@ public class WeightedObjective<SolutionType extends Solution, DataType> implemen
     }
     
     /**
+     * Remove an objective, if present. Returns true if the objective has been successfully removed, false
+     * if it was not present.
+     * 
+     * @param objective objective to remove, if present
+     * @return true if the objective was successfully removed
+     */
+    public boolean removeObjective(Objective<? super SolutionType, ? super DataType> objective){
+        if(objectives.containsKey(objective)){
+            objectives.remove(objective);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    /**
      * Weighted objective is always maximizing, so this method always returns false. Scores for contained minimizing
      * objectives are inverted.
      * 
