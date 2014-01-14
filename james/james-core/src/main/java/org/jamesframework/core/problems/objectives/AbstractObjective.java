@@ -29,21 +29,21 @@ public abstract class AbstractObjective<SolutionType extends Solution, DataType>
     private boolean minimizing;
 
     @Override
-    public boolean isMinimizing() {
+    public final boolean isMinimizing() {
         return minimizing;
     }
     
     /**
      * Turn this objective into a minimizing objective.
      */
-    public void setMinimizing(){
+    public final void setMinimizing(){
         minimizing = true;
     }
     
     /**
      * Turn this objective into a maximizing objective.
      */
-    public void setMaximizing(){
+    public final void setMaximizing(){
         minimizing = false;
     }
 
