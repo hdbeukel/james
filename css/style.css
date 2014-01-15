@@ -124,7 +124,7 @@ body {
 /* nav bar */
 
 .navbar-brand{
-	background: url('../images/james-small@2x.png') no-repeat 8px 7px;
+	background: url('../images/james-small.png') no-repeat 8px 7px;
 	background-size: 35px 35px;
 	padding-left: 50px;
 }
