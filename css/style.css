@@ -41,6 +41,10 @@ body {
 	display: inline-block;
 	margin-top: 35px;
 }
+#footer .james-logo img{
+	width: 60px;
+	height: 60px;
+}
 #footer .logos {
 	float: right;
 	line-height: 40px;
@@ -57,13 +61,19 @@ body {
 	margin-left: 15px;
 	width: 128px;
 	height: 50px;
-	background-image: url('../images/fwo.png');
+	background-image: url('../images/fwo@2x.png');
+	background-size: 128px 50px;
+	width: 128px;
+	height: 50px;
 }
 #footer .logos .ugent {
 	display: inline-block;
 	width: 99px;
 	height: 70px;
-	background-image: url('../images/ugent.png');
+	background-image: url('../images/ugent@2x.png');
+	background-size: 99px 70px;
+	width: 99px;
+	height: 70px;
 }
 
 /* Footer adjustments for small screen
@@ -96,19 +106,26 @@ body {
   	margin-left: 5px;
 	width: 51px;
   	height: 20px;
-  	background-image: url('../images/fwo-small.png');
+  	background-image: url('../images/fwo-small@2x.png');
+	background-size: 51px 20px;
+	width: 51px;
+	height: 20px;
   }
   #footer .logos .ugent {
   	width: 42px;
   	height: 30px;
-  	background-image: url('../images/ugent-small.png');
+  	background-image: url('../images/ugent-small@2x.png');
+	background-size: 42px 30px;
+	width: 42px;
+	height: 30px;
   }
 }
 
 /* nav bar */
 
 .navbar-brand{
-	background: url('../images/logo.png') no-repeat 8px 7px;
+	background: url('../images/james-small@2x.png') no-repeat 8px 7px;
+	background-size: 35px 35px;
 	padding-left: 50px;
 }
 
