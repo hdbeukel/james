@@ -26,7 +26,7 @@ Authors
 
 The James framework is developed and maintained by
 
-  Herman De Beukelaer (Herman.DeBeukelaer@UGent.be)
+ * Herman De Beukelaer (Herman.DeBeukelaer@UGent.be)
 
 Changes
 =======
