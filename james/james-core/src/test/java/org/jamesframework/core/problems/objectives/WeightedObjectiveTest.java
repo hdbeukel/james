@@ -18,9 +18,7 @@ import org.jamesframework.core.problems.solutions.Solution;
 import org.jamesframework.test.util.FakeEmptyData;
 import org.jamesframework.test.util.FakeEmptySolution;
 import org.jamesframework.test.util.FakeObjectiveWithFixedEvaluation;
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -33,25 +31,20 @@ public class WeightedObjectiveTest {
     
     private static final double DOUBLE_PRECISION = 1e-10;
 
-    public WeightedObjectiveTest() {
-    }
-
+    /**
+     * Print message before running tests.
+     */
     @BeforeClass
     public static void setUpClass() {
         System.out.println("# Testing WeightedObjective ...");
     }
 
+    /**
+     * Print message when tests are complete.
+     */
     @AfterClass
     public static void tearDownClass() {
         System.out.println("# Done testing WeightedObjective!");
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
     }
 
     /**

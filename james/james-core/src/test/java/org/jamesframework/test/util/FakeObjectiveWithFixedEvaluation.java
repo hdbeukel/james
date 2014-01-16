@@ -28,6 +28,11 @@ public class FakeObjectiveWithFixedEvaluation extends AbstractObjective{
     // fixed evaluation of any solution
     private final double fixedEvaluation;
     
+    /**
+     * Create a fake objective with fixed evaluation.
+     * 
+     * @param fixedEvaluation fixed evaluation for any solution
+     */
     public FakeObjectiveWithFixedEvaluation(double fixedEvaluation){
         this.fixedEvaluation = fixedEvaluation;
     }
