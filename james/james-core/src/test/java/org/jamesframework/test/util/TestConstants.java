@@ -21,6 +21,9 @@ package org.jamesframework.test.util;
  */
 public class TestConstants {
 
+    /**
+     * Precision used for double comparisons in tests.
+     */
     public static final double DOUBLE_COMPARISON_PRECISION = 1e-10;
     
 }
