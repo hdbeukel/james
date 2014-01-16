@@ -18,18 +18,18 @@ import org.jamesframework.core.problems.solutions.Solution;
 import org.jamesframework.test.util.FakeEmptyData;
 import org.jamesframework.test.util.FakeEmptySolution;
 import org.jamesframework.test.util.FakeObjectiveWithFixedEvaluation;
+import org.jamesframework.test.util.TestConstants;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Test WeightedObjective.
+ * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
 public class WeightedObjectiveTest {
-    
-    private static final double DOUBLE_PRECISION = 1e-10;
 
     /**
      * Print message before running tests.
@@ -176,40 +176,40 @@ public class WeightedObjectiveTest {
         double expectedEval = 21.0;
         double eval = weighted.evaluate(emptySol, emptyData);
         
-        assertEquals(expectedEval, eval, DOUBLE_PRECISION);
+        assertEquals(expectedEval, eval, TestConstants.DOUBLE_COMPARISON_PRECISION);
         
         // set objective 3 to minimizing and re-evaluate
         obj3.setMinimizing();
         expectedEval = 3.0;
         eval = weighted.evaluate(emptySol, emptyData);
         
-        assertEquals(expectedEval, eval, DOUBLE_PRECISION);
+        assertEquals(expectedEval, eval, TestConstants.DOUBLE_COMPARISON_PRECISION);
         
         // set objective 4 to minimizing as well and re-evaluate
         obj4.setMinimizing();
         expectedEval = -13.0;
         eval = weighted.evaluate(emptySol, emptyData);
         
-        assertEquals(expectedEval, eval, DOUBLE_PRECISION);
+        assertEquals(expectedEval, eval, TestConstants.DOUBLE_COMPARISON_PRECISION);
         
         // set objective 0 to minimizing and re-evaluate (should not make a difference)
         obj0.setMinimizing();
         eval = weighted.evaluate(emptySol, emptyData);
 
-        assertEquals(expectedEval, eval, DOUBLE_PRECISION);
+        assertEquals(expectedEval, eval, TestConstants.DOUBLE_COMPARISON_PRECISION);
         
         // remove objective 0 and re-evaluate (should not make a difference)
         weighted.removeObjective(obj0);
         eval = weighted.evaluate(emptySol, emptyData);
 
-        assertEquals(expectedEval, eval, DOUBLE_PRECISION);
+        assertEquals(expectedEval, eval, TestConstants.DOUBLE_COMPARISON_PRECISION);
         
         // remove objective 3 and re-evaluate
         weighted.removeObjective(obj3);
         expectedEval = -4.0;
         eval = weighted.evaluate(emptySol, emptyData);
 
-        assertEquals(expectedEval, eval, DOUBLE_PRECISION);
+        assertEquals(expectedEval, eval, TestConstants.DOUBLE_COMPARISON_PRECISION);
     
     }
 
