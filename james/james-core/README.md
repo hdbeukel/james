@@ -31,4 +31,4 @@ The James framework is developed and maintained by
 Changes
 =======
 
- ...
+*First version to be released*
