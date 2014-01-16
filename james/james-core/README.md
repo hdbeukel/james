@@ -28,6 +28,11 @@ The James framework is developed and maintained by
 
  * Herman De Beukelaer (Herman.DeBeukelaer@UGent.be)
 
+License
+=======
+
+The James framework is licensed under the Apache License, Version 2.0, see http://www.apache.org/licenses/LICENSE-2.0.
+
 Changes
 =======
 
