@@ -1,6 +1,4 @@
-#####################
-# James core module #
-#####################
+# James core module
 
 This is the core module of the James framework for applying
 metaheuristics to combinatorial optimization problems in java. 
@@ -22,16 +20,12 @@ For more information and documentation, visit
 
     http://www.jamesframework.org
 
-###########
-# Authors #
-###########
+# Authors
 
 The James framework is developed and maintained by
 
     Herman De Beukelaer (Herman.DeBeukelaer@UGent.be)
 
-###########
-# Changes #
-###########
+# Changes
 
  ...
