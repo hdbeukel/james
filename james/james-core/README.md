@@ -19,7 +19,7 @@ http://www.apache.org/licenses/LICENSE-2.0
 
 For more information and documentation, visit
 
-    http://www.jamesframework.org
+    [http://www.jamesframework.org]
 
 Authors
 =======
