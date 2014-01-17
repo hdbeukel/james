@@ -31,16 +31,10 @@ The James framework is licensed under the Apache License, Version 2.0, see LICEN
  - include a copy of the full Apache v2.0 license text in your derivative work distribution
  - state any significant changes made to the software
 
-Third-party acknowledgements
-----------------------------
+Third-party components
+----------------------
 
-The development of this software was made possible using the following components:
-
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+Copyright notices and attributions required by third-party components and libraries used by this project are stated in NOTICE.txt.
 
 Copyright
 =========
