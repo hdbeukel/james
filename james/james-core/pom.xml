@@ -20,6 +20,9 @@
         are also included. Moreover, the core provides implementations
         of specific components for subset selection.
     </description>
+    <scm>
+      <url>https://github.ugent.be/hdbeukel/james/tree/master/james/james-core</url>
+    </scm>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>

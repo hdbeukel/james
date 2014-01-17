@@ -25,7 +25,7 @@
   <scm>
     <connection>scm:git:git@github.ugent.be:hdbeukel/james.git</connection>
     <developerConnection>scm:git:git@github.ugent.be:hdbeukel/james.git</developerConnection>
-    <url>git@github.ugent.be:hdbeukel/james.git</url>
+    <url>https://github.ugent.be/hdbeukel/james</url>
   </scm>
   <developers>
     <developer>
