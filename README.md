@@ -28,7 +28,7 @@ For more information and documentation, see http://www.jamesframework.org.
 License
 =======
 
-The James framework is licensed under the Apache License, Version 2.0, see http://www.apache.org/licenses/LICENSE-2.0. Feel free te reuse the software in source or binary form, with or without modifications, as long as this reuse is in compliance with the license. This basically means that you must:
+The James framework is licensed under the Apache License, Version 2.0, see LICENSE.txt or http://www.apache.org/licenses/LICENSE-2.0. Feel free te reuse the software in source or binary form, with or without modifications, as long as this reuse is in compliance with the license. This basically means that you must:
 
  - retain the original copyright (see below), with proper acknowledgment
  - include a copy of the full Apache v2.0 license text in your derivative work distribution
