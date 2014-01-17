@@ -44,4 +44,4 @@ Copyright 2014 Ghent University, Belgium
 Contact
 =======
 
- - Herman De Beukelaer (Herman.DeBeukelaer@UGent.be)
+Herman De Beukelaer (Herman.DeBeukelaer@UGent.be)
