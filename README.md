@@ -44,4 +44,6 @@ Copyright 2014 Ghent University, Belgium
 Contact
 =======
 
-Herman De Beukelaer (Herman.DeBeukelaer@UGent.be)
+The James framework is developed and maintained by
+
+ - Herman De Beukelaer (Herman.DeBeukelaer@UGent.be)
