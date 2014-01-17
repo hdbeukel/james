@@ -1,21 +1,21 @@
-James core module
+James Core Module
 =================
 
-This is the core module of the James framework for solving
+The James Core Module is part of the James framework for solving
 combinatorial optimization problems using metaheuristics in java. 
 
-The core module of James contains general concepts modeling
+The Core Module contains general concepts modeling
 problems, objectives and constraints, as well as generic
 algorithms to solve the problems. Several analysis tools
 are also included.
 
-Moreover, the core provides implementations of specific
+Moreover, it provides implementations of specific
 components for subset selection.
 
 Status
 ======
 
-*James core module is currently under development.*
+*James Core Module is currently under development.*
   
 Documentation
 =============  
@@ -31,22 +31,24 @@ The James framework is licensed under the Apache License, Version 2.0, see LICEN
  - include a copy of the full Apache v2.0 license text in your derivative work distribution
  - state any significant changes made to the software
 
-Third-party components
-----------------------
-
-Copyright notices and attributions required by third-party components and libraries used by this project are stated in NOTICE.txt.
-
-... (briefly mention here)
-
 Copyright
 =========
 
 James Core Module (c) 2014 - Ghent University, Belgium
 
+Third-party components
+======================
+
+Copyright notices required by third-party components and libraries used in the James Core Module are stated in NOTICE.txt. Corresponding full license texts are included in LICENSE.txt (if required). A brief summary of dependencies is given here:
+
+|         Dependency       |                              Copyright                                 |              License             |
+| ------------------------ | ---------------------------------------------------------------------- | -------------------------------- |
+| JUnit (for testing only) | Kent Beck, Erich Gamma, David Saff, Mike Clark (University of Calgary) | [Eclipse Public License v1.0][1] |
+
 Contact
 =======
 
-The core module of the James framework is developed and maintained by
+The James Core Module is developed and maintained by
 
  - Herman De Beukelaer (Herman.DeBeukelaer@UGent.be)
  
@@ -54,3 +56,6 @@ Changes
 =======
 
 A list of changes is stated in CHANGES.txt.
+
+
+[1]: http://www.eclipse.org/legal/epl-v10.html
