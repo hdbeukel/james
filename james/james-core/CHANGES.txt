@@ -1,0 +1,4 @@
+James core module changes
+=========================
+
+First version to be released.
