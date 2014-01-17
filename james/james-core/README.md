@@ -41,9 +41,9 @@ Third-party components
 
 Copyright notices required by third-party components and libraries used in the James Core Module are stated in NOTICE.txt. Corresponding full license texts are included in LICENSE.txt (if required). A brief summary of dependencies is given here:
 
-|         Dependency       |                              Copyright                                 |              License             |
-| ------------------------ | ---------------------------------------------------------------------- | -------------------------------- |
-| JUnit (for testing only) | Kent Beck, Erich Gamma, David Saff, Mike Clark (University of Calgary) | [Eclipse Public License v1.0][1] |
+|           Dependency          |                              Copyright                                 |              License             |
+| ----------------------------- | ---------------------------------------------------------------------- | -------------------------------- |
+| [JUnit][1] (for testing only) | Kent Beck, Erich Gamma, David Saff, Mike Clark (University of Calgary) | [Eclipse Public License v1.0][2] |
 
 Contact
 =======
@@ -58,4 +58,5 @@ Changes
 A list of changes is stated in CHANGES.txt.
 
 
-[1]: http://www.eclipse.org/legal/epl-v10.html
+[1]: http://junit.org
+[2]: http://www.eclipse.org/legal/epl-v10.html
