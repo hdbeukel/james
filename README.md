@@ -33,13 +33,11 @@ The James framework is licensed under the Apache License, Version 2.0, see LICEN
  - retain the original copyright (see below), with proper acknowledgment
  - include a copy of the full Apache v2.0 license text in your derivative work distribution
  - state any significant changes made to the software
- 
-License information and copyright notices of third-party subcomponents, used in any of the James modules, are contained within the ${MODULE-ROOT}/lic folder, at the root of the respective module.
 
 Copyright
 =========
 
-Copyright 2014 Ghent University, Belgium
+James Framework (c) 2014 - Ghent University, Belgium
 
 Contact
 =======
