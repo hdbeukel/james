@@ -28,21 +28,16 @@ For more information and documentation, see http://www.jamesframework.org.
 License
 =======
 
-The James framework is licensed under the Apache License, Version 2.0, see LICENSE.txt or http://www.apache.org/licenses/LICENSE-2.0. Feel free te reuse the software in source or binary form, with or without modifications, as long as this reuse is in compliance with the license. This basically means that you must:
+The James framework is licensed under the Apache License, Version 2.0, see LICENSE.txt or http://www.apache.org/licenses/LICENSE-2.0. Feel free to redistribute derivatives in source or binary form, with or without modifications, as long as this reuse is in compliance with the license. This basically means that you must:
 
- - retain the original copyright (see below), with proper acknowledgment
+ - retain the original copyright (see below), with proper acknowledgment (copyright notices in source files should also not be removed)
  - include a copy of the full Apache v2.0 license text in your derivative work distribution
- - state any significant changes made to the software
+ - state any significant changes made to the software, if any
 
 Copyright
 =========
 
 James Framework (c) 2014 - Ghent University, Belgium
-
-Third-party components
-======================
-
-Copyright notices and full license texts (if applicable) of third-party components used by any of the James modules are included in ${MODULE-ROOT}/NOTICE.txt and ${MODULE-ROOT}/LICENSE.txt, respectively, where $MODULE-ROOT is the root folder of the respective module (e.g. james/james-core for the core module).
 
 Contact
 =======
