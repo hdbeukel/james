@@ -36,6 +36,8 @@ Third-party components
 
 Copyright notices and attributions required by third-party components and libraries used by this project are stated in NOTICE.txt.
 
+... (briefly mention here)
+
 Copyright
 =========
 

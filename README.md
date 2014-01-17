@@ -39,6 +39,11 @@ Copyright
 
 James Framework (c) 2014 - Ghent University, Belgium
 
+Third-party components
+======================
+
+Copyright notices and full license texts (if applicable) of third-party components used by any of the James modules are included in ${MODULE-ROOT}/NOTICE.txt and ${MODULE-ROOT}/LICENSE.txt, respectively, where $MODULE-ROOT is the root folder of the respective module (e.g. james/james-core for the core module).
+
 Contact
 =======
 
