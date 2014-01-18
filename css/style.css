@@ -37,15 +37,6 @@ body {
 	float: left;
 	text-align: left;
 }
-#footer .james-logo{
-	display: inline-block;
-	margin-top: 50px;
-}
-#footer .james-logo img{
-	width: 30px;
-	height: 30px;
-	opacity: 0.2;
-}
 #footer .logos {
 	float: right;
 	line-height: 40px;
