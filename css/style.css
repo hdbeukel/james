@@ -39,11 +39,12 @@ body {
 }
 #footer .james-logo{
 	display: inline-block;
-	margin-top: 35px;
+	margin-top: 50px;
 }
 #footer .james-logo img{
-	width: 60px;
-	height: 60px;
+	width: 30px;
+	height: 30px;
+	opacity: 0.5;
 }
 #footer .logos {
 	float: right;
@@ -124,7 +125,7 @@ body {
 /* nav bar */
 
 .navbar-brand{
-	background: url('../images/james-small@2x.png') no-repeat 8px 7px;
+	background: url('../images/james-nav@2x.png') no-repeat 10px 7px;
 	background-size: 35px 35px;
 	padding-left: 50px;
 }
