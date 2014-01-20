@@ -61,6 +61,17 @@
         </configuration>
       </plugin>
     </plugins>
+    <resources>
+        <!-- include LICENSE and NOTICE of respective module in generated jars -->
+        <resource>
+            <directory>.</directory>
+            <targetPath>META-INF</targetPath>
+            <includes>
+                <include>LICENSE</include>
+                <include>NOTICE</include>
+            </includes>
+        </resource>
+    </resources>
   </build>
   <profiles>
     <!-- PGP sign upon release -->
