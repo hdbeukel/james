@@ -12,7 +12,7 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-package org.jamesframework.core.problems.solutions;
+package org.jamesframework.core.problems.solutions.subset;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -20,6 +20,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import org.jamesframework.core.exceptions.SolutionModificationException;
+import org.jamesframework.core.problems.solutions.Solution;
 
 /**
  * Implements a generic subset solution based on IDs of selected entities. The subset is sampled from a set of entities
