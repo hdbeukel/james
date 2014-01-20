@@ -33,4 +33,4 @@ The James framework is developed and maintained by
  
  
  
-[1]: https://github.ugent.be/hdbeukel/james/tree/master/james/james-core
+[1]: https://github.com/hdbeukel/james/tree/master/james/james-core
