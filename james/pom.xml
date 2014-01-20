@@ -23,9 +23,9 @@
     </license>
   </licenses>
   <scm>
-    <connection>scm:git:git@github.ugent.be:hdbeukel/james.git</connection>
-    <developerConnection>scm:git:git@github.ugent.be:hdbeukel/james.git</developerConnection>
-    <url>https://github.ugent.be/hdbeukel/james</url>
+    <connection>scm:git:git@github.com:hdbeukel/james.git</connection>
+    <developerConnection>scm:git:git@github.com:hdbeukel/james.git</developerConnection>
+    <url>https://github.com/hdbeukel/james</url>
   </scm>
   <developers>
     <developer>
