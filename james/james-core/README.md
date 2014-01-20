@@ -22,7 +22,7 @@ Status
 Documentation
 =============  
 
-For more information and documentation, visit http://www.jamesframework.org.
+For more information and documentation, visit www.jamesframework.org.
 
 License
 =======
