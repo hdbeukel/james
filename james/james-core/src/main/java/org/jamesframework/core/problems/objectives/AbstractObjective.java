@@ -17,7 +17,7 @@ package org.jamesframework.core.problems.objectives;
 import org.jamesframework.core.problems.solutions.Solution;
 
 /**
- * Abstract objective that handles minimization/maximization settings.
+ * Abstract objective that handles minimization/maximization settings. The default setting is maximization.
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  * @param <SolutionType> solution type to be evaluated, required to extend {@link Solution}
@@ -27,6 +27,13 @@ public abstract class AbstractObjective<SolutionType extends Solution, DataType>
     
     // indicates whether the objective is minimizing
     private boolean minimizing;
+    
+    /**
+     * By default, objectives are maximizing.
+     */
+    public AbstractObjective(){
+        minimizing = false;
+    }
 
     @Override
     public final boolean isMinimizing() {
