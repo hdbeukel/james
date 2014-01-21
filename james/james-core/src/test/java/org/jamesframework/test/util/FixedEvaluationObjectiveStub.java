@@ -23,7 +23,7 @@ import org.jamesframework.core.problems.solutions.Solution;
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
-public class FixedEvaluationObjectiveStub extends AbstractObjective{
+public class FixedEvaluationObjectiveStub extends AbstractObjective<Solution, Object>{
 
     // fixed evaluation of any solution
     private final double fixedEvaluation;
