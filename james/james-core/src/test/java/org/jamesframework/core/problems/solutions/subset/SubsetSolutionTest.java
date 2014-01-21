@@ -14,6 +14,7 @@
 
 package org.jamesframework.core.problems.solutions.subset;
 
+import org.jamesframework.core.problems.solutions.SubsetSolution;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Random;

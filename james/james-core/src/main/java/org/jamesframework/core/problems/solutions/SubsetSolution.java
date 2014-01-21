@@ -12,7 +12,7 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-package org.jamesframework.core.problems.solutions.subset;
+package org.jamesframework.core.problems.solutions;
 
 import java.util.Collection;
 import java.util.Collections;
