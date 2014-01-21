@@ -24,7 +24,7 @@ import org.jamesframework.core.problems.solutions.Solution;
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
 public class NeverSatisfiedPenalizingConstraintStub
-                                extends AlwaysSatisfiedConstraintStub
+                                extends NeverSatisfiedConstraintStub
                                 implements PenalizingConstraint<Solution, Object> {
 
     private final double fixedPenalty;
