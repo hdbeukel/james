@@ -18,22 +18,22 @@ import org.jamesframework.core.problems.objectives.AbstractObjective;
 import org.jamesframework.core.problems.solutions.Solution;
 
 /**
- * Fake objective that evaluates every solution (of any type) to a fixed value.
+ * Objective stub that evaluates every solution (of any type) to a fixed value.
  * Does not use any data. Used only for testing purposes.
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
-public class FakeObjectiveWithFixedEvaluation extends AbstractObjective{
+public class FixedEvaluationObjectiveStub extends AbstractObjective{
 
     // fixed evaluation of any solution
     private final double fixedEvaluation;
     
     /**
-     * Create a fake objective with fixed evaluation.
+     * Create an objective stub with fixed evaluation.
      * 
      * @param fixedEvaluation fixed evaluation for any solution
      */
-    public FakeObjectiveWithFixedEvaluation(double fixedEvaluation){
+    public FixedEvaluationObjectiveStub(double fixedEvaluation){
         this.fixedEvaluation = fixedEvaluation;
     }
     

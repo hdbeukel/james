@@ -15,9 +15,8 @@
 package org.jamesframework.core.problems.objectives;
 
 import org.jamesframework.core.problems.solutions.Solution;
-import org.jamesframework.test.util.FakeEmptyData;
-import org.jamesframework.test.util.FakeEmptySolution;
-import org.jamesframework.test.util.FakeObjectiveWithFixedEvaluation;
+import org.jamesframework.test.util.EmptySolutionStub;
+import org.jamesframework.test.util.FixedEvaluationObjectiveStub;
 import org.jamesframework.test.util.TestConstants;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -58,7 +57,7 @@ public class WeightedObjectiveTest {
         // create weighted objective
         WeightedObjective weighted = new WeightedObjective();
         // create some fake objective with fixed evaluation
-        FakeObjectiveWithFixedEvaluation obj0 = new FakeObjectiveWithFixedEvaluation(0.0);
+        FixedEvaluationObjectiveStub obj0 = new FixedEvaluationObjectiveStub(0.0);
         
         boolean thrown;
         
@@ -83,11 +82,11 @@ public class WeightedObjectiveTest {
         // now try to add objective with positive weights, should work fine
         weighted.addObjective(obj0, 2.5);
         
-        // create new weighted objective specific for empty solution and empty data
-        WeightedObjective<FakeEmptySolution, FakeEmptyData> weighted2 = new WeightedObjective<>();
+        // create new weighted objective specific for empty solution
+        WeightedObjective<EmptySolutionStub, ?> weighted2 = new WeightedObjective<>();
         
-        // try to add a fake objective which is more general than specific types set
-        // for weighted objective -- can evaluate any solution with any data -- should work fine
+        // try to add a fake objective which can evaluate any solution,
+        // should work fine (more general than EmptySolutionStub)
         weighted2.addObjective(obj0, 1.0);
         
     }
@@ -103,8 +102,8 @@ public class WeightedObjectiveTest {
         // create weighted objective
         WeightedObjective weighted = new WeightedObjective();
         // create some fake objectives with fixed evaluation
-        FakeObjectiveWithFixedEvaluation obj0 = new FakeObjectiveWithFixedEvaluation(0.0);
-        FakeObjectiveWithFixedEvaluation obj1 = new FakeObjectiveWithFixedEvaluation(1.0);
+        FixedEvaluationObjectiveStub obj0 = new FixedEvaluationObjectiveStub(0.0);
+        FixedEvaluationObjectiveStub obj1 = new FixedEvaluationObjectiveStub(1.0);
         
         // add one of both objectives
         weighted.addObjective(obj0, 1.0);
@@ -150,11 +149,11 @@ public class WeightedObjectiveTest {
         // create weighted objective
         WeightedObjective weighted = new WeightedObjective();
         // create some fake objectives with fixed evaluation
-        FakeObjectiveWithFixedEvaluation obj0 = new FakeObjectiveWithFixedEvaluation(0.0);
-        FakeObjectiveWithFixedEvaluation obj1 = new FakeObjectiveWithFixedEvaluation(1.0);
-        FakeObjectiveWithFixedEvaluation obj2 = new FakeObjectiveWithFixedEvaluation(2.0);
-        FakeObjectiveWithFixedEvaluation obj3 = new FakeObjectiveWithFixedEvaluation(3.0);
-        FakeObjectiveWithFixedEvaluation obj4 = new FakeObjectiveWithFixedEvaluation(4.0);
+        FixedEvaluationObjectiveStub obj0 = new FixedEvaluationObjectiveStub(0.0);
+        FixedEvaluationObjectiveStub obj1 = new FixedEvaluationObjectiveStub(1.0);
+        FixedEvaluationObjectiveStub obj2 = new FixedEvaluationObjectiveStub(2.0);
+        FixedEvaluationObjectiveStub obj3 = new FixedEvaluationObjectiveStub(3.0);
+        FixedEvaluationObjectiveStub obj4 = new FixedEvaluationObjectiveStub(4.0);
         
         // add objectives with positive weights
         double weight0 = 1.0;
@@ -168,46 +167,43 @@ public class WeightedObjectiveTest {
         weighted.addObjective(obj3, weight3);
         weighted.addObjective(obj4, weight4);
         
-        // create fake empty data
-        FakeEmptyData emptyData = new FakeEmptyData();
-        
         // create fake empty solution and evaluate
-        Solution emptySol = new FakeEmptySolution();
+        Solution emptySol = new EmptySolutionStub();
         double expectedEval = 21.0;
-        double eval = weighted.evaluate(emptySol, emptyData);
+        double eval = weighted.evaluate(emptySol, null);
         
         assertEquals(expectedEval, eval, TestConstants.DOUBLE_COMPARISON_PRECISION);
         
         // set objective 3 to minimizing and re-evaluate
         obj3.setMinimizing();
         expectedEval = 3.0;
-        eval = weighted.evaluate(emptySol, emptyData);
+        eval = weighted.evaluate(emptySol, null);
         
         assertEquals(expectedEval, eval, TestConstants.DOUBLE_COMPARISON_PRECISION);
         
         // set objective 4 to minimizing as well and re-evaluate
         obj4.setMinimizing();
         expectedEval = -13.0;
-        eval = weighted.evaluate(emptySol, emptyData);
+        eval = weighted.evaluate(emptySol, null);
         
         assertEquals(expectedEval, eval, TestConstants.DOUBLE_COMPARISON_PRECISION);
         
         // set objective 0 to minimizing and re-evaluate (should not make a difference)
         obj0.setMinimizing();
-        eval = weighted.evaluate(emptySol, emptyData);
+        eval = weighted.evaluate(emptySol, null);
 
         assertEquals(expectedEval, eval, TestConstants.DOUBLE_COMPARISON_PRECISION);
         
         // remove objective 0 and re-evaluate (should not make a difference)
         weighted.removeObjective(obj0);
-        eval = weighted.evaluate(emptySol, emptyData);
+        eval = weighted.evaluate(emptySol, null);
 
         assertEquals(expectedEval, eval, TestConstants.DOUBLE_COMPARISON_PRECISION);
         
         // remove objective 3 and re-evaluate
         weighted.removeObjective(obj3);
         expectedEval = -4.0;
-        eval = weighted.evaluate(emptySol, emptyData);
+        eval = weighted.evaluate(emptySol, null);
 
         assertEquals(expectedEval, eval, TestConstants.DOUBLE_COMPARISON_PRECISION);
     

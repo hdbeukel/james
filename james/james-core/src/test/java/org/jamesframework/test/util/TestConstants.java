@@ -15,7 +15,7 @@
 package org.jamesframework.test.util;
 
 /**
- * Contains some constants used for testing.
+ * Some constants used for testing.
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */

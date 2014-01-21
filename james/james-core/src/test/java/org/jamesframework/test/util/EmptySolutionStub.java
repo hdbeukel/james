@@ -14,11 +14,28 @@
 
 package org.jamesframework.test.util;
 
+import org.jamesframework.core.problems.solutions.Solution;
+
 /**
- * Fake data object that does not contain anything at all. Used only for testing purposes.
+ * Empty solution stub. Used for testing purposes only.
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
-public class FakeEmptyData {
+public class EmptySolutionStub extends Solution {
+
+    @Override
+    public boolean isSameSolution(Solution sol) {
+        if(sol == null){
+            return false;
+        }
+        // all fake empty solutions are equal
+        return sol.getClass() == getClass();
+    }
+
+    @Override
+    public int computeHashCode() {
+        // return fixed hash code
+        return 5;
+    }
 
 }
