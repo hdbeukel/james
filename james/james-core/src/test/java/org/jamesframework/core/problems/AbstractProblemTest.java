@@ -371,6 +371,11 @@ public class AbstractProblemTest {
      */
     public class AbstractProblemStub extends AbstractProblem<Solution, Object> {
 
+        /**
+         * Create abstract problem stub with given objective, without data.
+         * 
+         * @param obj objective
+         */
         public AbstractProblemStub(Objective<Solution, Object> obj) {
             super(obj, null);
         }
