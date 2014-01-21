@@ -57,7 +57,7 @@ public interface Problem<SolutionType extends Solution> {
     public SolutionType createRandomSolution();
     
     /**
-     * Creates a (deep) copy of the current solution.
+     * Creates a (deep) copy of the given solution.
      * 
      * @param solution solution to copy
      * @return a deep copy of the given solution
