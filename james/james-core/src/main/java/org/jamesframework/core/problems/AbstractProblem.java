@@ -15,7 +15,6 @@
 package org.jamesframework.core.problems;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import org.jamesframework.core.problems.constraints.Constraint;
 import org.jamesframework.core.problems.constraints.PenalizingConstraint;
