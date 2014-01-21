@@ -31,9 +31,10 @@ public interface PenalizingConstraint<SolutionType extends Solution, DataType> e
 
     /**
      * Computes the penalty which is assigned to a solution. The implementation should be consistent with that of
-     * {@link #isSatisfied}, meaning that no penalty (zero) should be assigned if the solution
-     * satisfies the constraint. If the solution does not satisfy the constraint, the computed penalty should be strictly
-     * positive; it will be subtracted from the solution's evaluation in case of maximization, or added in case of minimization.
+     * {@link #isSatisfied}, meaning that no penalty (zero) should be assigned if the solution satisfies the constraint.
+     * If the solution does not satisfy the constraint, the computed penalty should be strictly positive; it will be subtracted
+     * from the solution's evaluation in case of maximization, or added in case of minimization. Usually, the magnitude of the
+     * penalty will reflect the severeness of the violation, to favour solutions which are closer to satisfaction.
      * 
      * @param solution solution for which the penalty is computed
      * @param data underlying data
