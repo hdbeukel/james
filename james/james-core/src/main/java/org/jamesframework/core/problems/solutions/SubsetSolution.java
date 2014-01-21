@@ -20,7 +20,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import org.jamesframework.core.exceptions.SolutionModificationException;
-import org.jamesframework.core.problems.solutions.Solution;
 
 /**
  * Implements a generic subset solution based on IDs of selected entities. The subset is sampled from a set of entities
@@ -41,7 +40,8 @@ public class SubsetSolution extends Solution {
     
     /**
      * Creates a new subset solution given the set of all IDs, each corresponding to an underlying entity,
-     * from which a subset is to be selected. Initially, no IDs are selected.
+     * from which a subset is to be selected. Initially, no IDs are selected. Note: IDs are copied to the
+     * internal data structures of the subset solution; no reference is stored to the set given at construction.
      * 
      * @param allIDs set of all IDs from which a subset is to be selected
      */
