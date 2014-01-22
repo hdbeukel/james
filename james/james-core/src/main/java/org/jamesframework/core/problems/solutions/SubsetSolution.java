@@ -113,7 +113,7 @@ public class SubsetSolution extends Solution {
      * 
      * @param IDs collection of IDs to be selected
      * @throws SolutionModificationException if the given collection contains at least one ID which does not correspond to an entity
-     * @throws NullPointerException if the given collection contains at least one null element
+     * @throws NullPointerException if the given collection contains at least one <code>null</code> element
      * @return true if the subset solution was modified
      */
     public boolean selectAll(Collection<Integer> IDs) throws SolutionModificationException, NullPointerException {
@@ -132,7 +132,7 @@ public class SubsetSolution extends Solution {
      * 
      * @param IDs collection of IDs to be deselected
      * @throws SolutionModificationException if the given collection contains at least one ID which does not correspond to an entity
-     * @throws NullPointerException if the given collection contains at least one null element
+     * @throws NullPointerException if the given collection contains at least one <code>null</code> element
      * @return true if the subset solution was modified
      */
     public boolean deselectAll(Collection<Integer> IDs) throws SolutionModificationException, NullPointerException {

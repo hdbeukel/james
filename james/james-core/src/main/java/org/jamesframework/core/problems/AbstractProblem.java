@@ -69,13 +69,14 @@ public abstract class AbstractProblem<SolutionType extends Solution, DataType> i
     
     /**
      * Creates a new abstract problem with given objective and data. Any objective designed for the solution and
-     * data types of the problem, or more general types, is accepted. The objective can not be null, as it will
-     * be called to evaluate solutions. The data may be null in the (unusual) case where no data is required for
-     * a specific problem, i.e. if the objective and constraints do not require any data to evaluate/check a solution.
+     * data types of the problem, or more general types, is accepted. The objective can not be <code>null</code>,
+     * as it will be called to evaluate solutions. The data may be <code>null</code> in the (unusual) case where no
+     * data is required for a specific problem, i.e. if the objective and constraints do not require any data to
+     * evaluate/check a solution.
      * 
-     * @param objective objective function (null not allowed)
-     * @param data underlying data (may be null)
-     * @throws NullPointerException if objective is null
+     * @param objective objective function (<code>null</code> not allowed)
+     * @param data underlying data (may be <code>null</code>)
+     * @throws NullPointerException if <code>objective</code> is <code>null</code>
      */
     public AbstractProblem(Objective<? super SolutionType, ? super DataType> objective, DataType data) throws NullPointerException {
         // check that objective is not null
