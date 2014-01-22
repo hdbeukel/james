@@ -22,12 +22,10 @@ import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.util.SetUtilities;
 
 /**
- * <p>
  * Represents a subset problem, with solution type {@link SubsetSolution} and data type {@link SubsetData}. The minimum and maximum
- * allowed size of the subset are specified in the subset problem, and it implements methods for creating random solutions and copying
- * solutions from the {@link Problem} interface, as well as an additional method for creating an empty solution in which no entities
- * are initially selected.
- * </p>
+ * allowed subset size are specified in the subset problem. The problem implements methods for creating random solutions and copying
+ * solutions from the {@link Problem} interface, as well as an additional method for creating empty solutions in which no entities
+ * are selected.
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
