@@ -69,6 +69,8 @@ public class FakeSubsetPenalizingConstraint extends FakeSubsetConstraint impleme
                     tooSmallDiff = false;
                 }
             }
+            // add to previous scores
+            prevScores.add(score);
         }
         // return penalty (will be zero if all diffs are large enough)
         return (double) numTooSmall;
