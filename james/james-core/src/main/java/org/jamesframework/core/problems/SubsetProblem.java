@@ -22,14 +22,15 @@ import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.util.SetUtilities;
 
 /**
- * Represents a subset problem, with solution type {@link SubsetSolution} and data type {@link SubsetData}. The minimum and maximum
- * allowed subset size are specified in the subset problem. The problem implements methods for creating random solutions and copying
- * solutions from the {@link Problem} interface, as well as an additional method for creating empty solutions in which no entities
- * are selected.
+ * Represents a subset problem, with solution type {@link SubsetSolution} and a given data type which implements the interface
+ * {@link SubsetData}. The minimum and maximum allowed subset size are specified in the subset problem. The problem implements
+ * methods for creating random subset solutions and copying subset solutions from the {@link Problem} interface, as well as an
+ * additional method for creating empty subset solutions in which no entities are selected.
  * 
+ * @param <DataType> underlying data type, should implement the interface {@link SubsetData}
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
-public class SubsetProblem extends AbstractProblem<SubsetSolution, SubsetData> {
+public class SubsetProblem<DataType extends SubsetData> extends AbstractProblem<SubsetSolution, DataType> {
 
     // minimum and maximum subset size
     private int minSubsetSize, maxSubsetSize;
@@ -49,7 +50,7 @@ public class SubsetProblem extends AbstractProblem<SubsetSolution, SubsetData> {
      * @throws NullPointerException if <code>objective</code> or <code>data</code> is <code>null</code>
      * @throws IllegalArgumentException if an invalid minimum or maximum subset size is specified
      */
-    public SubsetProblem(Objective<? super SubsetSolution, ? super SubsetData> objective, SubsetData data,
+    public SubsetProblem(Objective<? super SubsetSolution, ? super SubsetData> objective, DataType data,
                             int minSubsetSize, int maxSubsetSize) throws NullPointerException, IllegalArgumentException {
         // call constructor of AbstractProblem (already checks that objective is not null)
         super(objective, data);
@@ -85,7 +86,7 @@ public class SubsetProblem extends AbstractProblem<SubsetSolution, SubsetData> {
      * @throws NullPointerException if <code>objective</code> or <code>data</code> is <code>null</code>
      * @throws IllegalArgumentException if an invalid fixed subset size is specified 
      */
-    public SubsetProblem(Objective<? super SubsetSolution, ? super SubsetData> objective, SubsetData data,
+    public SubsetProblem(Objective<? super SubsetSolution, ? super SubsetData> objective, DataType data,
                             int fixedSubsetSize) throws NullPointerException, IllegalArgumentException {
         this(objective, data, fixedSubsetSize, fixedSubsetSize);
     }
@@ -97,7 +98,7 @@ public class SubsetProblem extends AbstractProblem<SubsetSolution, SubsetData> {
      * @throws NullPointerException if <code>data</code> is <code>null</code>
      */
     @Override
-    public void setData(SubsetData data) throws NullPointerException{
+    public void setData(DataType data) throws NullPointerException{
         // check not null
         if(data == null){
             throw new NullPointerException("Error while setting data in subset problem: subset data can not be null.");
