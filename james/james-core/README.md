@@ -1,7 +1,7 @@
 James Core Module
 =================
 
-The James core module contains the core components of the James framework, including general classes modeling problems, objectives, constraints, solutions, search engines, etc. Moreover, the core module contains implementations of specific components for subset selection.
+The James core module contains the core components of the framework. It includes general classes modeling problems, objectives, constraints, solutions, search engines, etc. Moreover, the core module contains implementations of specific components for subset selection.
 
 A wide range of generic neighbourhood searches are provided out-of-the-box, including
 
@@ -10,7 +10,7 @@ A wide range of generic neighbourhood searches are provided out-of-the-box, incl
 3. tabu search
 4. variable neighbourhood search
 5. Metropolis search
-6. replica exchange Monte Carlo search (parallel tempering)
+6. parallel tempering
 
 In addition, some specific subset sampling algorithms are available, as well as exhaustive search, which is of course only feasible for problems with a reasonably small search space.
 
@@ -35,6 +35,7 @@ Contact
 The James core module is developed and maintained by
 
  - Herman De Beukelaer (Herman.DeBeukelaer@UGent.be)
+ - Guy Davenport (guy.davenport@bayer.com)
  
 Changes
 =======
