@@ -48,7 +48,7 @@ public class WeightedObjective<SolutionType extends Solution, DataType> implemen
      * @param weight corresponding weight (strictly positive)
      * @throws IllegalArgumentException if the specified weight is not strictly positive
      */
-    public void addObjective(Objective<? super SolutionType, ? super DataType> objective, double weight) throws IllegalArgumentException{
+    public void addObjective(Objective<? super SolutionType, ? super DataType> objective, double weight) {
         // check weight
         if(weight > 0.0){
             // add objective to map

@@ -35,7 +35,7 @@ public class NeverSatisfiedPenalizingConstraintStub
      * @param fixedPenalty fixed penalty > 0.0
      * @throws IllegalArgumentException in case the given penalty is not strictly positive
      */
-    public NeverSatisfiedPenalizingConstraintStub(double fixedPenalty) throws IllegalArgumentException{
+    public NeverSatisfiedPenalizingConstraintStub(double fixedPenalty) {
         if(fixedPenalty <= 0.0){
             throw new IllegalArgumentException("Fixed penalty should be > 0.0.");
         }

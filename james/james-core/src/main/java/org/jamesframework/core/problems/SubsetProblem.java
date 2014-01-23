@@ -50,8 +50,8 @@ public class SubsetProblem<DataType extends SubsetData> extends AbstractProblem<
      * @throws NullPointerException if <code>objective</code> or <code>data</code> is <code>null</code>
      * @throws IllegalArgumentException if an invalid minimum or maximum subset size is specified
      */
-    public SubsetProblem(Objective<? super SubsetSolution, ? super SubsetData> objective, DataType data,
-                            int minSubsetSize, int maxSubsetSize) throws NullPointerException, IllegalArgumentException {
+    public SubsetProblem(Objective<? super SubsetSolution, ? super SubsetData> objective,
+                                DataType data, int minSubsetSize, int maxSubsetSize) {
         // call constructor of AbstractProblem (already checks that objective is not null)
         super(objective, data);
         // check that data is not null
@@ -86,8 +86,7 @@ public class SubsetProblem<DataType extends SubsetData> extends AbstractProblem<
      * @throws NullPointerException if <code>objective</code> or <code>data</code> is <code>null</code>
      * @throws IllegalArgumentException if an invalid fixed subset size is specified 
      */
-    public SubsetProblem(Objective<? super SubsetSolution, ? super SubsetData> objective, DataType data,
-                            int fixedSubsetSize) throws NullPointerException, IllegalArgumentException {
+    public SubsetProblem(Objective<? super SubsetSolution, ? super SubsetData> objective, DataType data, int fixedSubsetSize) {
         this(objective, data, fixedSubsetSize, fixedSubsetSize);
     }
     
@@ -98,7 +97,7 @@ public class SubsetProblem<DataType extends SubsetData> extends AbstractProblem<
      * @throws NullPointerException if <code>data</code> is <code>null</code>
      */
     @Override
-    public void setData(DataType data) throws NullPointerException{
+    public void setData(DataType data) {
         // check not null
         if(data == null){
             throw new NullPointerException("Error while setting data in subset problem: subset data can not be null.");
@@ -168,7 +167,7 @@ public class SubsetProblem<DataType extends SubsetData> extends AbstractProblem<
      * @param minSubsetSize new minimum subset size
      * @throws IllegalArgumentException if an invalid minimum size is given
      */
-    public void setMinSubsetSize(int minSubsetSize) throws IllegalArgumentException {
+    public void setMinSubsetSize(int minSubsetSize) {
         // check size
         if(minSubsetSize <= 0){
             throw new IllegalArgumentException("Error while setting minimum subset size: should be > 0.");
@@ -195,7 +194,7 @@ public class SubsetProblem<DataType extends SubsetData> extends AbstractProblem<
      * @param maxSubsetSize new maximum subset size
      * @throws IllegalArgumentException if an invalid maximum size is given
      */
-    public void setMaxSubsetSize(int maxSubsetSize) throws IllegalArgumentException {
+    public void setMaxSubsetSize(int maxSubsetSize) {
         // check size
         if(maxSubsetSize < minSubsetSize){
             throw new IllegalArgumentException("Error while setting maximum subset size: should be >= minimum subset size.");

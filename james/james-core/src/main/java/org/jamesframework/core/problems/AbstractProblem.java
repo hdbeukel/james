@@ -78,7 +78,7 @@ public abstract class AbstractProblem<SolutionType extends Solution, DataType> i
      * @param data underlying data (may be <code>null</code>)
      * @throws NullPointerException if <code>objective</code> is <code>null</code>
      */
-    public AbstractProblem(Objective<? super SolutionType, ? super DataType> objective, DataType data) throws NullPointerException {
+    public AbstractProblem(Objective<? super SolutionType, ? super DataType> objective, DataType data) {
         // check that objective is not null
         if(objective == null){
             throw new NullPointerException("Error while creating problem: null not allowed for objective.");
@@ -105,9 +105,9 @@ public abstract class AbstractProblem<SolutionType extends Solution, DataType> i
      * or more general types, is accepted. The objective can not be null, as it will be called to evaluate solutions.
      * 
      * @param objective new objective function
-     * @throws NullPointerException if the objective is null
+     * @throws NullPointerException if <code>objective</code> is <code>null</code>
      */
-    public void setObjective(Objective<? super SolutionType, ? super DataType> objective) throws NullPointerException {
+    public void setObjective(Objective<? super SolutionType, ? super DataType> objective) {
         // check not null
         if(objective == null){
             throw new NullPointerException("Error while setting new objective in problem: null is not allowed.");

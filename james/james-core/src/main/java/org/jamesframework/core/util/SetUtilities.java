@@ -62,7 +62,7 @@ public class SetUtilities {
      * @throws IllegalArgumentException if an invalid subset size outside [0,|set|] is specified
      * @return random subset (uniformly distributed) 
      */
-    public static final <T> Set<T> getRandomSubset(Set<? extends T> set, int size, Random rg) throws IllegalArgumentException{
+    public static final <T> Set<T> getRandomSubset(Set<? extends T> set, int size, Random rg) {
         // check size
         if(size < 0 || size > set.size()){
             throw new IllegalArgumentException("Error in SetUtilities: desired subset size should be a number in [0,|set|].");

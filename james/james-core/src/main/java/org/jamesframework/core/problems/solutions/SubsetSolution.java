@@ -64,7 +64,7 @@ public class SubsetSolution extends Solution {
      * @throws SolutionModificationException if there is no entity with this ID
      * @return true if the ID has been successfully selected, false if it was already selected
      */
-    public boolean select(int ID) throws SolutionModificationException{
+    public boolean select(int ID) {
         // verify that the ID occurs
         if(!all.contains(ID)){
             throw new SolutionModificationException("Error while modifying subset solution: "
@@ -90,7 +90,7 @@ public class SubsetSolution extends Solution {
      * @throws SolutionModificationException if there is no entity with this ID
      * @return true if the ID has been successfully deselected, false if it is currently not selected
      */
-    public boolean deselect(int ID) throws SolutionModificationException{
+    public boolean deselect(int ID) {
         // verify that the ID occurs
         if(!all.contains(ID)){
             throw new SolutionModificationException("Error while modifying subset solution: "
@@ -116,7 +116,7 @@ public class SubsetSolution extends Solution {
      * @throws NullPointerException if <code>null</code> is passed or the given collection contains at least one <code>null</code> element
      * @return true if the subset solution was modified
      */
-    public boolean selectAll(Collection<Integer> IDs) throws SolutionModificationException, NullPointerException {
+    public boolean selectAll(Collection<Integer> IDs) {
         boolean modified = false;
         for(int ID : IDs){
             if(select(ID)){
@@ -135,7 +135,7 @@ public class SubsetSolution extends Solution {
      * @throws NullPointerException if <code>null</code> is passed or the given collection contains at least one <code>null</code> element
      * @return true if the subset solution was modified
      */
-    public boolean deselectAll(Collection<Integer> IDs) throws SolutionModificationException, NullPointerException {
+    public boolean deselectAll(Collection<Integer> IDs) {
         boolean modified = false;
         for(int ID : IDs){
             if(deselect(ID)){
