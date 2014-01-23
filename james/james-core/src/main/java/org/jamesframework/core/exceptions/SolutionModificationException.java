@@ -14,6 +14,8 @@
 
 package org.jamesframework.core.exceptions;
 
+import org.jamesframework.core.problems.solutions.Solution;
+
 /**
  * Exception thrown when trying to apply an invalid modification to a solution.
  * 
@@ -21,35 +23,61 @@ package org.jamesframework.core.exceptions;
  */
 public class SolutionModificationException extends JamesRuntimeException {
 
+    // solution that was being modified
+    private final Solution solution;
+    
     /**
      * Creates a new instance without detail message.
+     * 
+     * @param solution solution that was being modified
      */
-    public SolutionModificationException() {
+    public SolutionModificationException(Solution solution) {
+        this.solution = solution;
     }
 
     /**
      * Constructs an instance with the specified detail message.
+     * 
      * @param msg the detail message
+     * @param solution solution that was being modified
      */
-    public SolutionModificationException(String msg) {
+    public SolutionModificationException(String msg, Solution solution) {
         super(msg);
+        this.solution = solution;
     }
 
     /**
      * Constructs an instance with the specified cause.
+     * 
      * @param cause other exception that caused this exception
+     * @param solution solution that was being modified
      */
-    public SolutionModificationException(Throwable cause) {
+    public SolutionModificationException(Throwable cause, Solution solution) {
         super(cause);
+        this.solution = solution;
     }
 
     /**
      * Constructs an instance with the specified detail message and cause.
+     * 
      * @param msg the detail message
      * @param cause other exception that caused this exception
+     * @param solution solution that was being modified
      */
-    public SolutionModificationException(String msg, Throwable cause) {
+    public SolutionModificationException(String msg, Throwable cause, Solution solution) {
         super(msg, cause);
+        this.solution = solution;
+    }
+    
+    /**
+     * Extend string representation to include solution that was being modified.
+     * 
+     * @return string representation including modified solution
+     */
+    @Override
+    public String toString(){
+        String s = super.toString();
+        return s + " -- modified solution: " + solution;
     }
 
 }
