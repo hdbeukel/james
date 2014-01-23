@@ -24,8 +24,8 @@ Documentation
 
 For more information and documentation, visit www.jamesframework.org.
 
-License & Copyright
-===================
+License and copyright
+=====================
 
 The James framework is licensed under the Apache License, Version 2.0, see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0. Copyright information is stated in the NOTICE file.
 
