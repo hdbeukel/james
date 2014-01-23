@@ -12,7 +12,7 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-package org.jamesframework.core.problems.solutions.subset;
+package org.jamesframework.core.problems.solutions;
 
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import java.util.Collections;
@@ -75,6 +75,23 @@ public class SubsetSolutionTest {
         subsetSolution.deselectAll();
     }
 
+    /**
+     * Test of toString method, of class SubsetSolution.
+     */
+    @Test
+    public void testToString(){
+        
+        System.out.println(" - test toString");
+        
+        // output empty subset solution
+        System.out.println("    " + subsetSolution);
+        
+        // select some IDs and output again
+        subsetSolution.selectAll(SetUtilities.getRandomSubset(subsetSolution.getAllIDs(), 10, RG));
+        System.out.println("    " + subsetSolution);
+        
+    }
+    
     /**
      * Test of select method, of class SubsetSolution.
      */
