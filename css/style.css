@@ -24,93 +24,48 @@ body {
 	height: 130px;
 	background-color: #f5f5f5;
 }
-
-#footer p {
-	height: 130px;
-	padding: 0;
-	margin: 0;
+#footer .logos{
+	font-variant: small-caps;
 	text-align: center;
 }
-#footer .copyright {
+
+/* Footer for small, medium, large screens */
+#footer .hidden-xs .copyright {
 	line-height: 25px;
 	margin-top: 40px;
-	float: left;
-	text-align: left;
 }
-#footer .logos {
-	float: right;
-	line-height: 40px;
-	text-align: center;
-	margin-top: 5px;
-	font-variant: small-caps;
+#footer .hidden-xs .logos {
+	line-height: 35px;
+	margin-top: 8px;
 	font-size: 110%;
 }
-#footer .logos span{
-	vertical-align: middle;
-}
-#footer .logos .fwo {
-	display: inline-block;
+#footer .hidden-xs .logos img.fwo {
 	margin-left: 15px;
 	width: 128px;
 	height: 50px;
-	background-image: url('../images/fwo@2x.png');
-	background-size: 128px 50px;
+}
+#footer .hidden-xs .logos img.ugent {
+	width: 99px;
+	height: 70px;
+}
+#footer .hidden-xs .logos {
+	float: right;
+}
+
+/* Footer for extra small screens */
+#footer .visible-xs .copyright {
+	text-align: center;
+	line-height: 20px;
+	margin: 12px 0 13px 0;
+}
+#footer .visible-xs .logos img.fwo {
+	margin-left: 15px;
 	width: 128px;
 	height: 50px;
 }
-#footer .logos .ugent {
-	display: inline-block;
+#footer .visible-xs .logos img.ugent {
 	width: 99px;
 	height: 70px;
-	background-image: url('../images/ugent@2x.png');
-	background-size: 99px 70px;
-	width: 99px;
-	height: 70px;
-}
-
-/* Footer adjustments for small screen
--------------------------------------------------- */
-
-@media all and (max-width: 550px) {
-  /* adjust footer height */
-  #wrap {
-	margin: 0 auto -70px;
-  	padding: 0 0 70px;
-  }
-  #footer {
-  	height: 70px;
-  }
-  #footer p {
-  	height: 70px;
-  }
-  #footer .copyright {
-  	line-height: 20px;
-  	margin-top: 15px;
-	font-size: 90%;
-  }
-  #footer .logos {
-	  line-height: 28px;
-	  margin-top: 2px;
-	  font-size: 90%;
-  }
-  /* adjust logos (smaller) */
-  #footer .logos .fwo {
-  	margin-left: 5px;
-	width: 51px;
-  	height: 20px;
-  	background-image: url('../images/fwo-small@2x.png');
-	background-size: 51px 20px;
-	width: 51px;
-	height: 20px;
-  }
-  #footer .logos .ugent {
-  	width: 42px;
-  	height: 30px;
-  	background-image: url('../images/ugent-small@2x.png');
-	background-size: 42px 30px;
-	width: 42px;
-	height: 30px;
-  }
 }
 
 /* nav bar */
