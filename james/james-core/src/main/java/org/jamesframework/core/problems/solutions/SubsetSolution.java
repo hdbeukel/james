@@ -68,7 +68,7 @@ public class SubsetSolution extends Solution {
         // verify that the ID occurs
         if(!all.contains(ID)){
             throw new SolutionModificationException("Error while modifying subset solution: "
-                                + "unable to select ID " +  ID + " (no entity with this ID).");
+                                + "unable to select ID " +  ID + " (no entity with this ID).", this);
         }
         // verify that ID is currently not selected
         if(selected.contains(ID)){
@@ -94,7 +94,7 @@ public class SubsetSolution extends Solution {
         // verify that the ID occurs
         if(!all.contains(ID)){
             throw new SolutionModificationException("Error while modifying subset solution: "
-                                + "unable to deselect ID " +  ID + " (no entity with this ID).");
+                                + "unable to deselect ID " +  ID + " (no entity with this ID).", this);
         }
         // verify that ID is currently selected
         if(!selected.contains(ID)){
@@ -113,7 +113,7 @@ public class SubsetSolution extends Solution {
      * 
      * @param IDs collection of IDs to be selected
      * @throws SolutionModificationException if the given collection contains at least one ID which does not correspond to an entity
-     * @throws NullPointerException if the given collection contains at least one <code>null</code> element
+     * @throws NullPointerException if <code>null</code> is passed or the given collection contains at least one <code>null</code> element
      * @return true if the subset solution was modified
      */
     public boolean selectAll(Collection<Integer> IDs) throws SolutionModificationException, NullPointerException {
@@ -132,7 +132,7 @@ public class SubsetSolution extends Solution {
      * 
      * @param IDs collection of IDs to be deselected
      * @throws SolutionModificationException if the given collection contains at least one ID which does not correspond to an entity
-     * @throws NullPointerException if the given collection contains at least one <code>null</code> element
+     * @throws NullPointerException if <code>null</code> is passed or the given collection contains at least one <code>null</code> element
      * @return true if the subset solution was modified
      */
     public boolean deselectAll(Collection<Integer> IDs) throws SolutionModificationException, NullPointerException {
@@ -266,6 +266,24 @@ public class SubsetSolution extends Solution {
         // account for unselected IDs
         hash = 23 * hash + Objects.hashCode(unselected);
         return hash;    
+    }
+    
+    @Override
+    public String toString(){
+        StringBuilder str = new StringBuilder();
+        str.append("SubsetSolution: {");
+        // add selected IDs
+        for(int ID : selected){
+            str.append(ID).append(", ");
+        }
+        // remove final comma and space if nonzero number of selected IDs
+        if(getNumSelectedIDs() > 0){
+            str.delete(str.length()-2, str.length());
+        }
+        // close brackets
+        str.append("}");
+        // return string
+        return str.toString();
     }
 
 }
