@@ -14,7 +14,11 @@
     <packaging>jar</packaging>
     <name>james-extensions</name>
     <description>
-        ...
+        The James extensions module is part of the James framework
+        for solving combinatorial optimization problems using
+        metaheuristics in java. It provides additional components
+        for advanced subset selection as well as other types
+        of problems (e.g. permutation problems).
     </description>
     <scm>
       <url>https://github.com/hdbeukel/james/tree/master/james/james-extensions</url>
