@@ -30,7 +30,7 @@ import org.jamesframework.core.util.SetUtilities;
  * @param <DataType> underlying data type, should implement the interface {@link SubsetData}
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
-public class SubsetProblem<DataType extends SubsetData> extends AbstractProblem<SubsetSolution, DataType> {
+public class SubsetProblem<DataType extends SubsetData> extends ProblemWithData<SubsetSolution, DataType> {
 
     // minimum and maximum subset size
     private int minSubsetSize, maxSubsetSize;
@@ -52,7 +52,7 @@ public class SubsetProblem<DataType extends SubsetData> extends AbstractProblem<
      */
     public SubsetProblem(Objective<? super SubsetSolution, ? super SubsetData> objective,
                                 DataType data, int minSubsetSize, int maxSubsetSize) {
-        // call constructor of AbstractProblem (already checks that objective is not null)
+        // call constructor of ProblemWithData (already checks that objective is not null)
         super(objective, data);
         // check that data is not null
         if(data == null){
