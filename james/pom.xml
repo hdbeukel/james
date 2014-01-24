@@ -51,6 +51,7 @@
         </plugins>
     </pluginManagement>
     <plugins>
+      <!-- set compiler to use java 1.7 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -72,6 +73,17 @@
             </includes>
         </resource>
     </resources>
+    <testResources>
+        <!-- same as above for test jars -->
+        <testResource>
+            <directory>.</directory>
+            <targetPath>META-INF</targetPath>
+            <includes>
+                <include>LICENSE</include>
+                <include>NOTICE</include>
+            </includes>
+        </testResource>
+    </testResources>
   </build>
   <profiles>
     <!-- PGP sign upon release -->
@@ -105,5 +117,6 @@
   </profiles>
   <modules>
     <module>james-core</module>
+    <module>james-extensions</module>
   </modules>
 </project>
