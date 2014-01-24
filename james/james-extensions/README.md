@@ -1,7 +1,7 @@
 James Extensions Module
 =======================
 
-The James extensions module is part of the James framework for solving combinatorial optimization problems using metaheuristics in java. The extensions module provides additional components for advanced subset selection, as well as other types of problems (e.g. permutation problems).
+The James extensions module is part of the James framework for solving combinatorial optimization problems using metaheuristics in java. The extensions module provides additional components for advanced subset selection as well as other types of problems (e.g. permutation problems).
 
 Status
 ======

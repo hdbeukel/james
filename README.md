@@ -14,7 +14,7 @@ The James framework consists of several modules:
    
    Moreover, the core module contains implementations of components for subset selection, as well as some specific subset sampling algorithms.
    
- - [James Extensions Module][2]: this module extends the core with components for advanced subset selection, as well as other types of problems (e.g. permutation problems). 
+ - [James Extensions Module][2]: this module extends the core with components for advanced subset selection as well as other types of problems (e.g. permutation problems). 
 
 Status
 ======
