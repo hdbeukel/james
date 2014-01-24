@@ -367,7 +367,7 @@ public class ProblemWithDataTest {
      * Problem stub used for testing. Only accepts objectives/constraints that can handle any solution type
      * and that do not use any data.
      */
-    public class ProblemStub extends ProblemWithData<Solution, Object> {
+    private class ProblemStub extends ProblemWithData<Solution, Object> {
 
         /**
          * Create problem stub with given objective, without specifying the data.
