@@ -13,11 +13,13 @@ The James framework consists of several modules:
    A number of generic optimization algorithms are provided out-of-the-box, including many metaheuristics such as random descent, steepest descent, tabu search, variable neighbourhood search, parallel tempering, etc. Exhaustive search is also included, which is of course only feasible for problems with a reasonable small search space.
    
    Moreover, the core module contains implementations of components for subset selection, as well as some specific subset sampling algorithms.
+   
+ - [James Extensions Module][2]: this module extends the core with components for advanced subset selection, as well as other types of problems (e.g. permutation problems). 
 
 Status
 ======
 
-*James is currently under development.*
+*James is currently under development*
 
 Documentation
 =============
@@ -35,3 +37,4 @@ The James framework is developed and maintained by
  
  
 [1]: https://github.com/hdbeukel/james/tree/master/james/james-core
+[2]: https://github.com/hdbeukel/james/tree/master/james/james-extensions
