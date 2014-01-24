@@ -31,22 +31,18 @@ public interface Problem<SolutionType extends Solution> {
      * depending on whether scores are maximized (or minimized), higher (respectively lower)
      * scores indicate improvement.
      * 
+     * @see #isMinimizing()
      * @param solution the solution to evaluate
      * @return evaluation of the solution
      */
     public double evaluate(SolutionType solution);
     
     /**
-     * Computes the improvement in evaluation of the current solution as compared to the previous solution,
-     * where improvement is equal to increase (decrease) when scores are being maximized (minimized, respectively).
-     * A positive delta thus indicates that the current solution is better than the previous solution,
-     * while a negative delta indicates that the previous solution was better.
+     * Indicates whether scores are being minimized or maximized.
      * 
-     * @param prevEvaluation evaluation of previous solution
-     * @param curEvaluation evaluation of current solution
-     * @return improvement in evaluation, taking into account whether scores are maximized or minimized
+     * @return true if scores are being minimized
      */
-    public double getDelta(double prevEvaluation, double curEvaluation);
+    public boolean isMinimizing();
     
     /**
      * Creates a random solution. Such random solutions can for example be used as initial solution
