@@ -16,9 +16,8 @@
     <description>
         The core module of James contains general concepts modeling
         problems, objectives and constraints, as well as generic
-        algorithms to solve the problems. Several analysis tools
-        are also included. Moreover, the core provides implementations
-        of specific components for subset selection.
+        algorithms to solve the problems. Moreover, the core provides
+		implementations of specific components for subset selection.
     </description>
     <scm>
       <url>https://github.com/hdbeukel/james/tree/master/james/james-core</url>
