@@ -32,21 +32,22 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 
 /**
- * Test AbstractProblem.
+ * Test general functionalities of ProblemWithData that do not actually rely on the specific data, using
+ * objectives and constraints that ignore the data.
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
-public class AbstractProblemTest {
+public class ProblemWithDataTest {
 
-    // abstract problem stub to work with
-    private AbstractProblem problem;
+    // problem stub to work with
+    private ProblemWithData problem;
     
     /**
      * Print message when starting tests.
      */
     @BeforeClass
     public static void setUpClass() {
-        System.out.println("# Testing AbstractProblem ...");
+        System.out.println("# Testing ProblemWithData ...");
     }
 
     /**
@@ -54,20 +55,20 @@ public class AbstractProblemTest {
      */
     @AfterClass
     public static void tearDownClass() {
-        System.out.println("# Done testing AbstractProblem!");
+        System.out.println("# Done testing ProblemWithData!");
     }
     
     /**
-     * Create abstract problem stub to work with in each test method.
+     * Create problem stub to work with in each test method.
      */
     @Before
     public void setUp(){
         FixedEvaluationObjectiveStub o = new FixedEvaluationObjectiveStub(10.0);
-        problem = new AbstractProblemStub(o);
+        problem = new ProblemStub(o);
     }
 
     /**
-     * Test constructor, of class AbstractProblem.
+     * Test constructor, of class ProblemWithData.
      */
     @Test
     public void testConstructor() {
@@ -77,7 +78,7 @@ public class AbstractProblemTest {
         // try to create problem without objective, should result in error
         boolean thrown = false;
         try {
-            AbstractProblem p = new AbstractProblemStub(null);
+            ProblemWithData p = new ProblemStub(null);
         } catch (NullPointerException ex) {
             thrown = true;
         }
@@ -86,7 +87,7 @@ public class AbstractProblemTest {
     }
     
     /**
-     * Test of getObjective method, of class AbstractProblem.
+     * Test of getObjective method, of class ProblemWithData.
      */
     @Test
     public void testGetObjective() {
@@ -100,7 +101,7 @@ public class AbstractProblemTest {
     }
 
     /**
-     * Test of setObjective method, of class AbstractProblem.
+     * Test of setObjective method, of class ProblemWithData.
      */
     @Test
     public void testSetObjective() {
@@ -119,7 +120,7 @@ public class AbstractProblemTest {
     }
 
     /**
-     * Test of getData method, of class AbstractProblem.
+     * Test of getData method, of class ProblemWithData.
      */
     @Test
     public void testGetData() {
@@ -137,7 +138,7 @@ public class AbstractProblemTest {
     }
 
     /**
-     * Test of setData method, of class AbstractProblem.
+     * Test of setData method, of class ProblemWithData.
      */
     @Test
     public void testSetData() {
@@ -152,7 +153,7 @@ public class AbstractProblemTest {
     }
 
     /**
-     * Test of addDominatingConstraint method, of class AbstractProblem.
+     * Test of addDominatingConstraint method, of class ProblemWithData.
      */
     @Test
     public void testAddDominatingConstraint() {
@@ -169,7 +170,7 @@ public class AbstractProblemTest {
     }
 
     /**
-     * Test of removeDominatingConstraint method, of class AbstractProblem.
+     * Test of removeDominatingConstraint method, of class ProblemWithData.
      */
     @Test
     public void testRemoveDominatingConstraint() {
@@ -197,7 +198,7 @@ public class AbstractProblemTest {
     }
 
     /**
-     * Test of addPenalizingConstraint method, of class AbstractProblem.
+     * Test of addPenalizingConstraint method, of class ProblemWithData.
      */
     @Test
     public void testAddPenalizingConstraint() {
@@ -211,7 +212,7 @@ public class AbstractProblemTest {
     }
 
     /**
-     * Test of removePenalizingConstraint method, of class AbstractProblem.
+     * Test of removePenalizingConstraint method, of class ProblemWithData.
      */
     @Test
     public void testRemovePenalizingConstraint() {
@@ -237,7 +238,7 @@ public class AbstractProblemTest {
     }
 
     /**
-     * Test of areConstraintsSatisfied method, of class AbstractProblem.
+     * Test of areConstraintsSatisfied method, of class ProblemWithData.
      */
     @Test
     public void testAreConstraintsSatisfied() {
@@ -272,7 +273,7 @@ public class AbstractProblemTest {
     }
 
     /**
-     * Test of evaluate method, of class AbstractProblem.
+     * Test of evaluate method, of class ProblemWithData.
      */
     @Test
     public void testEvaluate() {
@@ -344,39 +345,36 @@ public class AbstractProblemTest {
     }
 
     /**
-     * Test of getDelta method, of class AbstractProblem.
+     * Test of isMinimizing method, of class ProblemWithData.
      */
     @Test
     public void testGetDelta() {
         
-        System.out.println(" - test getDelta");
+        System.out.println(" - test isMinimizing");
         
         // by default, objectives are maximizing
-        double prev = 2.0;
-        double cur = 5.0;
-        double inc = cur-prev;
-        assertEquals(inc, problem.getDelta(prev, cur), TestConstants.DOUBLE_COMPARISON_PRECISION);
+        assertFalse(problem.isMinimizing());
         
         // now switch to minimizing
         FixedEvaluationObjectiveStub o = new FixedEvaluationObjectiveStub(123.0);
         o.setMinimizing();
         problem.setObjective(o);
-        assertEquals(-inc, problem.getDelta(prev, cur), TestConstants.DOUBLE_COMPARISON_PRECISION);
+        assertTrue(problem.isMinimizing());
         
     }
 
     /**
-     * Abstract problem stub used for testing. Only accepts objectives/constraints that can handle any solution type
-     * and does not use any data.
+     * Problem stub used for testing. Only accepts objectives/constraints that can handle any solution type
+     * and that do not use any data.
      */
-    public class AbstractProblemStub extends AbstractProblem<Solution, Object> {
+    public class ProblemStub extends ProblemWithData<Solution, Object> {
 
         /**
-         * Create abstract problem stub with given objective, without data.
+         * Create problem stub with given objective, without specifying the data.
          * 
          * @param obj objective
          */
-        public AbstractProblemStub(Objective<Solution, Object> obj) {
+        public ProblemStub(Objective<Solution, Object> obj) {
             super(obj, null);
         }
 
