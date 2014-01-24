@@ -23,9 +23,10 @@ import org.jamesframework.core.problems.solutions.Solution;
 
 /**
  * <p>
- * Represents an abstract problem with generic solution type and data type. The problem manages the underlying data, objective and
- * constraints (if any). When evaluating a solution, the data is used to calculate the objective score and to check the constraints,
- * and the results are combined into an aggregated evaluation. The exact result depends on the type of constraints that were added:
+ * Represents an abstract problem with an underlying generic data type, where solutions are evaluated using a combination
+ * of objectives and constraints that rely on this data to evaluate or validate a given solution. More precisely, when evaluating a
+ * solution, the data is used to calculate the objective score and to check the constraints, and the results are combined into an
+ * aggregated evaluation. The exact result depends on the type of constraints that were added:
  * </p>
  * <ul>
  *  <li>
@@ -42,7 +43,7 @@ import org.jamesframework.core.problems.solutions.Solution;
  *      <b>Penalizing constraints</b> assign a penalty to the objective score, which is usually designed to reflect the severeness
  *      of the violation. Solutions which are closer to satisfaction will then be favoured over solutions which violate the constraints
  *      more severely. In case of a maximizing objective, penalties are subtracted from the objective score, while they are added to it
- *      in case of a minimizing constraint.
+ *      in case of a minimizing objective.
  *  </p>
  *  </li>
  * </ul>
@@ -57,7 +58,7 @@ import org.jamesframework.core.problems.solutions.Solution;
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
-public abstract class AbstractProblem<SolutionType extends Solution, DataType> implements Problem<SolutionType> {
+public abstract class ProblemWithData<SolutionType extends Solution, DataType> implements Problem<SolutionType> {
     
     // objective function (can be more general than solution and data types of problem)
     private Objective<? super SolutionType, ? super DataType> objective;
@@ -78,7 +79,7 @@ public abstract class AbstractProblem<SolutionType extends Solution, DataType> i
      * @param data underlying data (may be <code>null</code>)
      * @throws NullPointerException if <code>objective</code> is <code>null</code>
      */
-    public AbstractProblem(Objective<? super SolutionType, ? super DataType> objective, DataType data) {
+    public ProblemWithData(Objective<? super SolutionType, ? super DataType> objective, DataType data) {
         // check that objective is not null
         if(objective == null){
             throw new NullPointerException("Error while creating problem: null not allowed for objective.");
@@ -261,23 +262,13 @@ public abstract class AbstractProblem<SolutionType extends Solution, DataType> i
     }
 
     /**
-     * Computes delta based on settings of objective: if the objective is maximizing, <code>curEvaluation - prevEvaluation</code>
-     * is returned, else, <code>prevEvaluation - curEvaluation</code> is returned.
+     * Indicates whether the underlying objective is minimizing.
      * 
-     * @param prevEvaluation evaluation of previous solution
-     * @param curEvaluation evaluation of current solution
-     * @return improvement in evaluation, taking into account whether objective is maximizing or minimizing
+     * @return true if the objective is minimizing
      */
     @Override
-    public double getDelta(double prevEvaluation, double curEvaluation) {
-        double increase = curEvaluation - prevEvaluation;
-        if(objective.isMinimizing()){
-            // minimizing: return decrease
-            return -increase;
-        } else {
-            // maximizing: return increase
-            return increase;
-        }
+    public boolean isMinimizing(){
+        return objective.isMinimizing();
     }
 
 }
