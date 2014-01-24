@@ -56,16 +56,16 @@ body {
 #footer .visible-xs .copyright {
 	text-align: center;
 	line-height: 20px;
-	margin: 12px 0 13px 0;
+	margin: 11px 0 11px 0;
 }
 #footer .visible-xs .logos img.fwo {
 	margin-left: 15px;
-	width: 128px;
-	height: 50px;
+	width: 102px;
+	height: 40px;
 }
 #footer .visible-xs .logos img.ugent {
-	width: 99px;
-	height: 70px;
+	width: 80px;
+	height: 56px;
 }
 
 /* nav bar */
