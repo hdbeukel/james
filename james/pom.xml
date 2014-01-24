@@ -13,7 +13,7 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>james</name>
-  <description>James is a metaheuristics search framework for solving combinatorial optimization problems in java</description>
+  <description>James is an extensive java framework for solving combinatorial optimization problems using metaheuristics.</description>
   <url>http://www.jamesframework.org</url>
   <licenses>
     <license>

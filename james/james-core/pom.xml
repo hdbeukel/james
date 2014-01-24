@@ -8,16 +8,18 @@
         <artifactId>james</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <!-- james core project info -->
+    <!-- james core info -->
     <artifactId>james-core</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>james-core</name>
     <description>
-        The core module of James contains general concepts modeling
-        problems, objectives and constraints, as well as generic
+        The James core module is part of the James framework
+        for solving combinatorial optimization problems using
+        metaheuristics in java. The core contains general concepts
+        modeling problems, objectives and constraints, as well as generic
         algorithms to solve the problems. Moreover, the core provides
-		implementations of specific components for subset selection.
+        implementations of specific components for subset selection.
     </description>
     <scm>
       <url>https://github.com/hdbeukel/james/tree/master/james/james-core</url>
