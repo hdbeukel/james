@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <!-- inherit from james parent POM -->
+    <parent>
+        <groupId>org.jamesframework</groupId>
+        <artifactId>james</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <!-- james extensions specifications -->
+    <artifactId>james-extensions</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>james-extensions</name>
+    <description>
+        ...
+    </description>
+    <scm>
+      <url>https://github.com/hdbeukel/james/tree/master/james/james-extensions</url>
+    </scm>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <build>
+        <plugins>
+            <!-- also create test jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- depends on core module -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>james-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!-- tests depend on tests of core module -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>james-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
