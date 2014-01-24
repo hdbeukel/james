@@ -12,37 +12,38 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-package org.jamesframework.core.problems.objectives;
+package org.jamesframework.ext.problems.objectives;
 
 import java.util.HashMap;
 import java.util.Map;
+import org.jamesframework.core.problems.objectives.Objective;
 import org.jamesframework.core.problems.solutions.Solution;
 
 /**
- * Weighted objective that calculates a linear combination of underlying objectives. A weighted objective
- * is always maximizing, scores for contained minimizing objectives are inverted so that maximization of the
- * weighted objective corresponds to minimization of these objectives.
+ * Implements an objective which calculates a weighted sum of other objectives. A weighted multi-objective
+ * is always maximizing, scores for contained minimizing objectives are inverted so that maximization of
+ * the weighted sum still corresponds to minimization of these objectives.
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  * @param <SolutionType> solution type to be evaluated, required to extend {@link Solution}
  * @param <DataType> underlying data type
  */
-public class WeightedObjective<SolutionType extends Solution, DataType> implements Objective<SolutionType, DataType>{
+public class WeightedMultiObjective<SolutionType extends Solution, DataType> implements Objective<SolutionType, DataType>{
 
     // map containing underlying objectives and their weights
     private final Map<Objective<? super SolutionType, ? super DataType>, Double> objectives;
 
     /**
-     * Create an empty weighted objective.
+     * Create an empty weighted multi-objective.
      */
-    public WeightedObjective() {
+    public WeightedMultiObjective() {
         objectives = new HashMap<>();
     }
     
     /**
-     * Add an objective with corresponding weight. Any objective designed for the corresponding SolutionType and DataType
-     * (or for more general solution or data types) can be added. The specified weight should be strictly positive, if not
-     * an exception will be thrown.
+     * Add an objective with corresponding weight. Any objective designed for the solution type and data type of this
+     * multi-objective (or for more general solution or data types) can be added. The specified weight should be strictly
+     * positive, if not, an exception will be thrown.
      * 
      * @param objective objective to be added
      * @param weight corresponding weight (strictly positive)
@@ -54,15 +55,15 @@ public class WeightedObjective<SolutionType extends Solution, DataType> implemen
             // add objective to map
             objectives.put(objective, weight);
         } else {
-            throw new IllegalArgumentException("Objective's weight should be strictly positive.");
+            throw new IllegalArgumentException("Error in weighted multi-objective: each objective's weight should be strictly positive.");
         }
     }
     
     /**
      * Remove an objective, if present. Returns true if the objective has been successfully removed, false
-     * if it was not present.
+     * if it was not contained in this multi-objective.
      * 
-     * @param objective objective to remove, if present
+     * @param objective objective to remove
      * @return true if the objective was successfully removed
      */
     public boolean removeObjective(Objective<? super SolutionType, ? super DataType> objective){
@@ -75,7 +76,7 @@ public class WeightedObjective<SolutionType extends Solution, DataType> implemen
     }
     
     /**
-     * Weighted objective is always maximizing, so this method always returns false. Scores for contained minimizing
+     * Weighted multi-objective is always maximizing, so this method always returns false. Scores for contained minimizing
      * objectives are inverted.
      * 
      * @return false
@@ -86,12 +87,11 @@ public class WeightedObjective<SolutionType extends Solution, DataType> implemen
     }
 
     /**
-     * Computes the linear combination of evaluations obtained by the contained objectives, multiplied by their
-     * respective weights.
+     * Computes the weighted sum of evaluations of all underlying objectives.
      * 
      * @param solution solution to evaluate
-     * @param data underlying data
-     * @return weighted evaluation
+     * @param data data to be used for evaluation
+     * @return weighted sum of evaluations of underlying objectives
      */
     @Override
     public double evaluate(SolutionType solution, DataType data) {
@@ -111,7 +111,7 @@ public class WeightedObjective<SolutionType extends Solution, DataType> implemen
                 eval += partial;
             }
         }
-        // return linear combination
+        // return weighted sum
         return eval;
     }
 

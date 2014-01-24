@@ -12,7 +12,7 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-package org.jamesframework.core.problems.objectives;
+package org.jamesframework.ext.problems.objectives;
 
 import org.jamesframework.core.problems.solutions.Solution;
 import org.jamesframework.test.util.EmptySolutionStub;
@@ -24,18 +24,18 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Test WeightedObjective.
+ * Test WeightedMultiObjective.
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
-public class WeightedObjectiveTest {
+public class WeightedMultiObjectiveTest {
 
     /**
      * Print message before running tests.
      */
     @BeforeClass
     public static void setUpClass() {
-        System.out.println("# Testing WeightedObjective ...");
+        System.out.println("# Testing WeightedMultiObjective ...");
     }
 
     /**
@@ -43,11 +43,11 @@ public class WeightedObjectiveTest {
      */
     @AfterClass
     public static void tearDownClass() {
-        System.out.println("# Done testing WeightedObjective!");
+        System.out.println("# Done testing WeightedMultiObjective!");
     }
 
     /**
-     * Test of addObjective method, of class WeightedObjective.
+     * Test of addObjective method, of class WeightedMultiObjective.
      */
     @Test
     public void testAddObjective() {
@@ -55,7 +55,7 @@ public class WeightedObjectiveTest {
         System.out.println(" - test addObjective");
         
         // create weighted objective
-        WeightedObjective weighted = new WeightedObjective();
+        WeightedMultiObjective weighted = new WeightedMultiObjective();
         // create some fake objective with fixed evaluation
         FixedEvaluationObjectiveStub obj0 = new FixedEvaluationObjectiveStub(0.0);
         
@@ -83,7 +83,7 @@ public class WeightedObjectiveTest {
         weighted.addObjective(obj0, 2.5);
         
         // create new weighted objective specific for empty solution
-        WeightedObjective<EmptySolutionStub, ?> weighted2 = new WeightedObjective<>();
+        WeightedMultiObjective<EmptySolutionStub, ?> weighted2 = new WeightedMultiObjective<>();
         
         // try to add a fake objective which can evaluate any solution,
         // should work fine (more general than EmptySolutionStub)
@@ -92,7 +92,7 @@ public class WeightedObjectiveTest {
     }
     
     /**
-     * Test of removeObjective method, of class WeightedObjective.
+     * Test of removeObjective method, of class WeightedMultiObjective.
      */
     @Test
     public void testRemoveObjective() {
@@ -100,7 +100,7 @@ public class WeightedObjectiveTest {
         System.out.println(" - test removeObjective");
         
         // create weighted objective
-        WeightedObjective weighted = new WeightedObjective();
+        WeightedMultiObjective weighted = new WeightedMultiObjective();
         // create some fake objectives with fixed evaluation
         FixedEvaluationObjectiveStub obj0 = new FixedEvaluationObjectiveStub(0.0);
         FixedEvaluationObjectiveStub obj1 = new FixedEvaluationObjectiveStub(1.0);
@@ -123,7 +123,7 @@ public class WeightedObjectiveTest {
     }
 
     /**
-     * Test of isMinimizing method, of class WeightedObjective.
+     * Test of isMinimizing method, of class WeightedMultiObjective.
      */
     @Test
     public void testIsMinimizing() {
@@ -131,7 +131,7 @@ public class WeightedObjectiveTest {
         System.out.println(" - test isMinimizing");        
         
         // create weighted objective
-        WeightedObjective obj = new WeightedObjective();
+        WeightedMultiObjective obj = new WeightedMultiObjective();
         // weighted objective should never be minimizing
         boolean expResult = false;
         boolean result = obj.isMinimizing();
@@ -139,7 +139,7 @@ public class WeightedObjectiveTest {
     }
 
     /**
-     * Test of evaluate method, of class WeightedObjective.
+     * Test of evaluate method, of class WeightedMultiObjective.
      */
     @Test
     public void testEvaluate() {
@@ -147,7 +147,7 @@ public class WeightedObjectiveTest {
         System.out.println(" - test evaluate");
         
         // create weighted objective
-        WeightedObjective weighted = new WeightedObjective();
+        WeightedMultiObjective weighted = new WeightedMultiObjective();
         // create some fake objectives with fixed evaluation
         FixedEvaluationObjectiveStub obj0 = new FixedEvaluationObjectiveStub(0.0);
         FixedEvaluationObjectiveStub obj1 = new FixedEvaluationObjectiveStub(1.0);
