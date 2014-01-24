@@ -1,7 +1,9 @@
 James Core Module
 =================
 
-The James core module contains the core components of the framework. It includes general classes modeling problems, objectives, constraints, solutions, search engines, etc. Moreover, the core module contains implementations of specific components for subset selection.
+The James core module is part of the James framework for solving combinatorial optimization problems using metaheuristics in java. The framework is mainly focused on subset selection, which has many applications in various areas, though other types of problems can also easily be plugged in.
+
+The core module includes general classes modeling problems, objectives, constraints, solutions, etc. It also contains generic search algorithms to solve the problems, as well as implementations of specific components for subset selection.
 
 A wide range of generic neighbourhood searches are provided out-of-the-box, including
 
@@ -17,7 +19,7 @@ In addition, some specific subset sampling algorithms are available, as well as 
 Status
 ======
 
-*James core module is currently under development.*
+*James core module is currently under development*
   
 Documentation
 =============  
@@ -27,7 +29,7 @@ For more information and documentation, visit www.jamesframework.org.
 License and copyright
 =====================
 
-The James framework is licensed under the Apache License, Version 2.0, see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0. Copyright information is stated in the NOTICE file.
+The James core module is licensed under the Apache License, Version 2.0, see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0. Copyright information is stated in the NOTICE file.
 
 Contact
 =======
