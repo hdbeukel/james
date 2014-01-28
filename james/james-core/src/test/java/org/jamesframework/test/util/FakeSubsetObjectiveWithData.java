@@ -14,7 +14,7 @@
 
 package org.jamesframework.test.util;
 
-import org.jamesframework.core.problems.objectives.AbstractObjective;
+import org.jamesframework.core.problems.objectives.MinMaxObjective;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 
 /**
@@ -23,7 +23,7 @@ import org.jamesframework.core.problems.solutions.SubsetSolution;
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
-public class FakeSubsetObjectiveWithData extends AbstractObjective<SubsetSolution, FakeSubsetData>{
+public class FakeSubsetObjectiveWithData extends MinMaxObjective<SubsetSolution, FakeSubsetData>{
 
     /**
      * Evaluate a subset solution by computing the sum of scores of selected entities.

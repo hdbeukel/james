@@ -14,7 +14,7 @@
 
 package org.jamesframework.test.util;
 
-import org.jamesframework.core.problems.objectives.AbstractObjective;
+import org.jamesframework.core.problems.objectives.MinMaxObjective;
 import org.jamesframework.core.problems.solutions.Solution;
 
 /**
@@ -23,7 +23,7 @@ import org.jamesframework.core.problems.solutions.Solution;
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
-public class FixedEvaluationObjectiveStub extends AbstractObjective<Solution, Object>{
+public class FixedEvaluationObjectiveStub extends MinMaxObjective<Solution, Object>{
 
     // fixed evaluation of any solution
     private final double fixedEvaluation;

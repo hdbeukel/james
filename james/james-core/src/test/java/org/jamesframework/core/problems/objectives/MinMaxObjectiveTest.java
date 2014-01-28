@@ -14,10 +14,7 @@
 
 package org.jamesframework.core.problems.objectives;
 
-import org.jamesframework.core.problems.ProblemWithData;
-import org.jamesframework.core.problems.ProblemWithDataTest;
 import org.jamesframework.core.problems.solutions.Solution;
-import org.jamesframework.test.util.FixedEvaluationObjectiveStub;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -25,21 +22,21 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 
 /**
- * Test AbstractObjective. The only thing being tested here is minimization/maximization settings.
+ * Test MinMaxObjective. The only thing being tested here is minimization/maximization settings.
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
-public class AbstractObjectiveTest {
+public class MinMaxObjectiveTest {
 
     // objective stub to work with
-    private AbstractObjectiveStub obj;
+    private MinMaxObjectiveStub obj;
     
     /**
      * Print message when starting tests.
      */
     @BeforeClass
     public static void setUpClass() {
-        System.out.println("# Testing AbstractObjective ...");
+        System.out.println("# Testing MinMaxObjective ...");
     }
 
     /**
@@ -47,7 +44,7 @@ public class AbstractObjectiveTest {
      */
     @AfterClass
     public static void tearDownClass() {
-        System.out.println("# Done testing AbstractObjective!");
+        System.out.println("# Done testing MinMaxObjective!");
     }
     
     /**
@@ -55,11 +52,11 @@ public class AbstractObjectiveTest {
      */
     @Before
     public void setUp(){
-        obj = new AbstractObjectiveStub();
+        obj = new MinMaxObjectiveStub();
     }
 
     /**
-     * Test of isMinimizing method, of class AbstractObjective.
+     * Test of isMinimizing method, of class MinMaxObjective.
      */
     @Test
     public void testIsMinimizing() {
@@ -80,9 +77,9 @@ public class AbstractObjectiveTest {
     }
 
     /**
-     * AbstractObjective stub to use for testing. 
+     * MinMaxObjective stub to use for testing. 
      */
-    private class AbstractObjectiveStub extends AbstractObjective {
+    private class MinMaxObjectiveStub extends MinMaxObjective {
         
         /**
          * Always returns zero. Not used for testing here.

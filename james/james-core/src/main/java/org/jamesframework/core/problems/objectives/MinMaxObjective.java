@@ -23,7 +23,7 @@ import org.jamesframework.core.problems.solutions.Solution;
  * @param <SolutionType> solution type to be evaluated, required to extend {@link Solution}
  * @param <DataType> underlying data type
  */
-public abstract class AbstractObjective<SolutionType extends Solution, DataType> implements Objective<SolutionType, DataType>{
+public abstract class MinMaxObjective<SolutionType extends Solution, DataType> implements Objective<SolutionType, DataType>{
     
     // indicates whether the objective is minimizing
     private boolean minimizing;
@@ -31,7 +31,7 @@ public abstract class AbstractObjective<SolutionType extends Solution, DataType>
     /**
      * By default, objectives are maximizing.
      */
-    public AbstractObjective(){
+    public MinMaxObjective(){
         minimizing = false;
     }
 
