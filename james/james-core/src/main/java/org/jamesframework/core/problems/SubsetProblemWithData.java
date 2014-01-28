@@ -22,23 +22,23 @@ import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.util.SetUtilities;
 
 /**
- * Represents a subset problem, with solution type {@link SubsetSolution} and a given data type which implements the interface
- * {@link SubsetData}. The minimum and maximum allowed subset size are specified in the subset problem. The problem implements
- * methods for creating random subset solutions and copying subset solutions from the {@link Problem} interface, as well as an
- * additional method for creating empty subset solutions in which no entities are selected.
+ * Represents a subset problem with data of a given data type, implementing the interface {@link SubsetData}, and with solution
+ * type {@link SubsetSolution}. The minimum and maximum allowed subset size are specified in the subset problem. The problem
+ * also implements methods for creating random subset solutions and copying subset solutions (see {@link Problem} interface),
+ * as well as an additional method for creating empty subset solutions in which no entities are selected.
  * 
  * @param <DataType> underlying data type, should implement the interface {@link SubsetData}
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
-public class SubsetProblem<DataType extends SubsetData> extends ProblemWithData<SubsetSolution, DataType> {
+public class SubsetProblemWithData<DataType extends SubsetData> extends ProblemWithData<SubsetSolution, DataType> {
 
     // minimum and maximum subset size
     private int minSubsetSize, maxSubsetSize;
         
     /**
-     * Creates a new SubsetProblem with given objective, data and minimum/maximum subset size. Both <code>objective</code>
+     * Creates a new subset problem with given objective, data and minimum/maximum subset size. Both <code>objective</code>
      * and <code>data</code> are not allowed to be <code>null</code>, an exception will be thrown if they are. Any objective
-     * designed to evaluate subset solutions (or more general solutions) using subset data (or more general data)
+     * designed to evaluate subset solutions (or more general solutions) using the specified data type (or more general data)
      * is accepted. The minimum and maximum subset size should be contained in <code>[1,n]</code> where <code>n</code>
      * is the number of entities in the given subset data from which a subset is to be selected. Also, the minimum size
      * should be smaller than or equal to the maximum size.
@@ -50,7 +50,7 @@ public class SubsetProblem<DataType extends SubsetData> extends ProblemWithData<
      * @throws NullPointerException if <code>objective</code> or <code>data</code> is <code>null</code>
      * @throws IllegalArgumentException if an invalid minimum or maximum subset size is specified
      */
-    public SubsetProblem(Objective<? super SubsetSolution, ? super SubsetData> objective,
+    public SubsetProblemWithData(Objective<? super SubsetSolution, ? super DataType> objective,
                                 DataType data, int minSubsetSize, int maxSubsetSize) {
         // call constructor of ProblemWithData (already checks that objective is not null)
         super(objective, data);
@@ -75,7 +75,7 @@ public class SubsetProblem<DataType extends SubsetData> extends ProblemWithData<
     }
     
     /**
-     * Creates a subset problem with fixed subset size, equivalent to calling<pre>
+     * Creates a subset problem with fixed subset size. Equivalent to calling<pre>
      * SubsetProblem p = new SubsetProblem(objective, data, fixedSubsetSize, fixedSubsetSize);</pre>
      * The fixed subset size should be contained in <code>[1,n]</code> where <code>n</code>
      * is the number of entities in the given subset data from which a subset is to be selected.
@@ -86,7 +86,7 @@ public class SubsetProblem<DataType extends SubsetData> extends ProblemWithData<
      * @throws NullPointerException if <code>objective</code> or <code>data</code> is <code>null</code>
      * @throws IllegalArgumentException if an invalid fixed subset size is specified 
      */
-    public SubsetProblem(Objective<? super SubsetSolution, ? super SubsetData> objective, DataType data, int fixedSubsetSize) {
+    public SubsetProblemWithData(Objective<? super SubsetSolution, ? super DataType> objective, DataType data, int fixedSubsetSize) {
         this(objective, data, fixedSubsetSize, fixedSubsetSize);
     }
     

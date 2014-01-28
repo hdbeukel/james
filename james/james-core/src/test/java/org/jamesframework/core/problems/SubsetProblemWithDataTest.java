@@ -27,11 +27,11 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 
 /**
- * Test SubsetProblem.
+ * Test SubsetProblemWithData.
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
-public class SubsetProblemTest {
+public class SubsetProblemWithDataTest {
 
     // fake subset data
     private FakeSubsetData fakeData;
@@ -43,16 +43,7 @@ public class SubsetProblemTest {
     private FakeSubsetObjectiveWithoutData fakeObjIgnoringData; 
     private FakeSubsetObjectiveWithData fakeObjUsingData;
     
-    // subset problems to work with:
-    //  - problem 1 has
-    //    - fixed subset size
-    //    - fake subset objective ignoring data
-    //    - fake subset data
-    //  - problem 2 has
-    //    - variable subset size
-    //    - fake subset objective using data
-    //    - fake subset data
-    private SubsetProblem<FakeSubsetData> problem1, problem2;
+    private SubsetProblemWithData<FakeSubsetData> problem1, problem2;
     private final int PROBLEM_1_FIXED_SIZE = 5;
     private final int PROBLEM_2_MIN_SIZE = 2;
     private final int PROBLEM_2_MAX_SIZE = 8;
@@ -67,7 +58,7 @@ public class SubsetProblemTest {
      */
     @BeforeClass
     public static void setUpClass() {
-        System.out.println("# Testing SubsetProblem ...");
+        System.out.println("# Testing SubsetProblemWithData ...");
     }
 
     /**
@@ -75,7 +66,7 @@ public class SubsetProblemTest {
      */
     @AfterClass
     public static void tearDownClass() {
-        System.out.println("# Done testing SubsetProblem!");
+        System.out.println("# Done testing SubsetProblemWithData!");
     }
     
     /**
@@ -91,12 +82,12 @@ public class SubsetProblemTest {
         // create fake constraint
         fakeConstraint = new FakeSubsetPenalizingConstraint(MIN_SCORE_DIFF);
         // create subset problems
-        problem1 = new SubsetProblem(fakeObjIgnoringData, fakeData, PROBLEM_1_FIXED_SIZE);
-        problem2 = new SubsetProblem(fakeObjUsingData, fakeData, PROBLEM_2_MIN_SIZE, PROBLEM_2_MAX_SIZE);
+        problem1 = new SubsetProblemWithData<>(fakeObjIgnoringData, fakeData, PROBLEM_1_FIXED_SIZE);
+        problem2 = new SubsetProblemWithData<>(fakeObjUsingData, fakeData, PROBLEM_2_MIN_SIZE, PROBLEM_2_MAX_SIZE);
     }
     
     /**
-     * Test constructors, of class SubsetProblem.
+     * Test constructors, of class SubsetProblemWithData.
      */
     @Test
     public void testConstructors(){
@@ -106,7 +97,7 @@ public class SubsetProblemTest {
         // try to create a subset problem without objective
         boolean thrown = false;
         try {
-            SubsetProblem<?> p = new SubsetProblem<>(null, fakeData, 5);
+            SubsetProblemWithData<?> p = new SubsetProblemWithData<>(null, fakeData, 5);
         } catch (NullPointerException ex) {
             thrown = true;
         }
@@ -115,7 +106,7 @@ public class SubsetProblemTest {
         // try to create a subset problem without data
         thrown = false;
         try {
-            SubsetProblem<?> p = new SubsetProblem<>(fakeObjIgnoringData, null, 5);
+            SubsetProblemWithData<?> p = new SubsetProblemWithData<>(fakeObjIgnoringData, null, 5);
         } catch (NullPointerException ex) {
             thrown = true;
         }
@@ -124,37 +115,37 @@ public class SubsetProblemTest {
         // try to set invalid subset sizes
         thrown = false;
         try {
-            SubsetProblem<?> p = new SubsetProblem<>(fakeObjIgnoringData, fakeData, -1);
+            SubsetProblemWithData<?> p = new SubsetProblemWithData<>(fakeObjIgnoringData, fakeData, -1);
         } catch (IllegalArgumentException ex) {
             thrown = true;
         }
         assertTrue(thrown);
         thrown = false;
         try {
-            SubsetProblem<?> p = new SubsetProblem<>(fakeObjIgnoringData, fakeData, fakeData.getIDs().size()+1);
+            SubsetProblemWithData<?> p = new SubsetProblemWithData<>(fakeObjIgnoringData, fakeData, fakeData.getIDs().size()+1);
         } catch (IllegalArgumentException ex) {
             thrown = true;
         }
         assertTrue(thrown);
         thrown = false;
         try {
-            SubsetProblem<?> p = new SubsetProblem<>(fakeObjIgnoringData, fakeData, 4, 2);
+            SubsetProblemWithData<?> p = new SubsetProblemWithData<>(fakeObjIgnoringData, fakeData, 4, 2);
         } catch (IllegalArgumentException ex) {
             thrown = true;
         }
         assertTrue(thrown);
         
         // verify that no errors are thrown for valid params
-        SubsetProblem<?> p;
-        p = new SubsetProblem<>(fakeObjIgnoringData, fakeData, 2, 4);
-        p = new SubsetProblem<>(fakeObjIgnoringData, fakeData, 1, fakeData.getIDs().size());
-        p = new SubsetProblem<>(fakeObjIgnoringData, fakeData, 1);
-        p = new SubsetProblem<>(fakeObjIgnoringData, fakeData, fakeData.getIDs().size());
+        SubsetProblemWithData<?> p;
+        p = new SubsetProblemWithData<>(fakeObjIgnoringData, fakeData, 2, 4);
+        p = new SubsetProblemWithData<>(fakeObjIgnoringData, fakeData, 1, fakeData.getIDs().size());
+        p = new SubsetProblemWithData<>(fakeObjIgnoringData, fakeData, 1);
+        p = new SubsetProblemWithData<>(fakeObjIgnoringData, fakeData, fakeData.getIDs().size());
         
     }
 
     /**
-     * Test of setData method, of class SubsetProblem.
+     * Test of setData method, of class SubsetProblemWithData.
      */
     @Test
     public void testSetData() {
@@ -176,7 +167,7 @@ public class SubsetProblemTest {
     }
 
     /**
-     * Test of createRandomSolution method, of class SubsetProblem.
+     * Test of createRandomSolution method, of class SubsetProblemWithData.
      */
     @Test
     public void testCreateRandomSolution() {
@@ -201,7 +192,7 @@ public class SubsetProblemTest {
     }
 
     /**
-     * Test of copySolution method, of class SubsetProblem.
+     * Test of copySolution method, of class SubsetProblemWithData.
      */
     @Test
     public void testCopySolution() {
@@ -229,7 +220,7 @@ public class SubsetProblemTest {
     }
 
     /**
-     * Test of createEmptySubsetSolution method, of class SubsetProblem.
+     * Test of createEmptySubsetSolution method, of class SubsetProblemWithData.
      */
     @Test
     public void testCreateEmptySubsetSolution() {
@@ -245,7 +236,7 @@ public class SubsetProblemTest {
     }
 
     /**
-     * Test of getMinSubsetSize method, of class SubsetProblem.
+     * Test of getMinSubsetSize method, of class SubsetProblemWithData.
      */
     @Test
     public void testGetMinSubsetSize() {
@@ -260,16 +251,16 @@ public class SubsetProblemTest {
     }
 
     /**
-     * Test of setMinSubsetSize method, of class SubsetProblem.
+     * Test of setMinSubsetSize method, of class SubsetProblemWithData.
      */
     @Test
     public void testSetMinSubsetSize() {
         
         System.out.println(" - test setMinSubsetSize");
         
-        SubsetProblem<?>[] problems = new SubsetProblem<?>[] {problem1, problem2};
+        SubsetProblemWithData<?>[] problems = new SubsetProblemWithData<?>[] {problem1, problem2};
         
-        for(SubsetProblem<?> p : problems){
+        for(SubsetProblemWithData<?> p : problems){
             // try to set invalid minimum size
             boolean thrown = false;
             try {
@@ -300,7 +291,7 @@ public class SubsetProblemTest {
     }
 
     /**
-     * Test of getMaxSubsetSize method, of class SubsetProblem.
+     * Test of getMaxSubsetSize method, of class SubsetProblemWithData.
      */
     @Test
     public void testGetMaxSubsetSize() {
@@ -315,16 +306,16 @@ public class SubsetProblemTest {
     }
 
     /**
-     * Test of setMaxSubsetSize method, of class SubsetProblem.
+     * Test of setMaxSubsetSize method, of class SubsetProblemWithData.
      */
     @Test
     public void testSetMaxSubsetSize() {
         
         System.out.println(" - test setMaxSubsetSize");
         
-        SubsetProblem<?>[] problems = new SubsetProblem<?>[] {problem1, problem2};
+        SubsetProblemWithData<?>[] problems = new SubsetProblemWithData<?>[] {problem1, problem2};
         
-        for(SubsetProblem<?> p : problems){
+        for(SubsetProblemWithData<?> p : problems){
             // try to set invalid maximum size
             boolean thrown = false;
             try {
@@ -348,7 +339,7 @@ public class SubsetProblemTest {
     }
     
     /**
-     * Test of evaluate method, of class SubsetProblem.
+     * Test of evaluate method, of class SubsetProblemWithData.
      */
     @Test
     public void testEvaluate(){

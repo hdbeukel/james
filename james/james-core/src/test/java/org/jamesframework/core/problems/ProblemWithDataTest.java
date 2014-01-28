@@ -136,22 +136,7 @@ public class ProblemWithDataTest {
         assertEquals(dummyData, problem.getData());
         
     }
-
-    /**
-     * Test of setData method, of class ProblemWithData.
-     */
-    @Test
-    public void testSetData() {
-        
-        System.out.println(" - test setData");
-        
-        // check that null is allowed
-        
-        problem.setData(null);
-        assertNull(problem.getData());
-        
-    }
-
+    
     /**
      * Test of addDominatingConstraint method, of class ProblemWithData.
      */
@@ -348,7 +333,7 @@ public class ProblemWithDataTest {
      * Test of isMinimizing method, of class ProblemWithData.
      */
     @Test
-    public void testGetDelta() {
+    public void testIsMinimizing() {
         
         System.out.println(" - test isMinimizing");
         
