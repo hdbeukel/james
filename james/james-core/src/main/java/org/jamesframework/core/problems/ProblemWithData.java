@@ -43,7 +43,7 @@ import org.jamesframework.core.problems.solutions.Solution;
  *      <b>Penalizing constraints</b> assign a penalty to the objective score, which is usually designed to reflect the severeness
  *      of the violation. Solutions which are closer to satisfaction will then be favoured over solutions which violate the constraints
  *      more severely. In case of a maximizing objective, penalties are subtracted from the objective score, while they are added to it
- *      in case of a minimizing objective.
+ *      in case of a minimizing objective. No penalties are assigned to solutions satisfying the constraints.
  *  </p>
  *  </li>
  * </ul>
