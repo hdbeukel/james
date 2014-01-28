@@ -15,10 +15,6 @@
 package org.jamesframework.core.problems.datatypes;
 
 import java.util.Set;
-import org.jamesframework.core.problems.constraints.Constraint;
-import org.jamesframework.core.problems.constraints.PenalizingConstraint;
-import org.jamesframework.core.problems.objectives.MinMaxObjective;
-import org.jamesframework.core.problems.objectives.Objective;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 
 /**
