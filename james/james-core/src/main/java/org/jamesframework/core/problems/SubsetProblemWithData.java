@@ -30,7 +30,8 @@ import org.jamesframework.core.util.SetUtilities;
  * @param <DataType> underlying data type, should implement the interface {@link SubsetData}
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
-public class SubsetProblemWithData<DataType extends SubsetData> extends ProblemWithData<SubsetSolution, DataType> {
+public class SubsetProblemWithData<DataType extends SubsetData> extends ProblemWithData<SubsetSolution, DataType>
+                                                                implements SubsetProblem {
 
     // minimum and maximum subset size
     private int minSubsetSize, maxSubsetSize;
@@ -144,10 +145,11 @@ public class SubsetProblemWithData<DataType extends SubsetData> extends ProblemW
     }
     
     /**
-     * Creates an empty subset solution, setting the IDs of the underlying data where no IDs are selected.
+     * Creates an empty subset solution containing the IDs of the underlying data, where none of these IDs are selected.
      * 
      * @return empty subset solution with no selected IDs
      */
+    @Override
     public SubsetSolution createEmptySubsetSolution(){
         return new SubsetSolution(getData().getIDs());
     }
@@ -157,6 +159,7 @@ public class SubsetProblemWithData<DataType extends SubsetData> extends ProblemW
      * 
      * @return minimum subset size
      */
+    @Override
     public int getMinSubsetSize() {
         return minSubsetSize;
     }
@@ -183,6 +186,7 @@ public class SubsetProblemWithData<DataType extends SubsetData> extends ProblemW
      * 
      * @return maximum subset size
      */
+    @Override
     public int getMaxSubsetSize() {
         return maxSubsetSize;
     }
