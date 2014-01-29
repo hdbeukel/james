@@ -24,7 +24,7 @@ Status
 Documentation
 =============
 
-For more information and documentation, visit www.jamesframework.org.
+More information and user documentation are provided at www.jamesframework.org. Developer documentation is posted on the [wiki](wiki).
 
 Contact
 =======
