@@ -24,7 +24,7 @@ Status
 Documentation
 =============  
 
-For more information and documentation, visit www.jamesframework.org.
+More information, user documentation and examples of how to use the framework are provided at the James website www.jamesframework.org. In addition, developer documentation is posted on the [wiki](http://github.com/hdbeukel/james/wiki).
 
 License and copyright
 =====================
