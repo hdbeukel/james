@@ -37,7 +37,6 @@ Contact
 The James core module is developed and maintained by
 
  - Herman De Beukelaer (Herman.DeBeukelaer@UGent.be)
- - Guy Davenport (guy.davenport@bayer.com)
  
 Changes
 =======

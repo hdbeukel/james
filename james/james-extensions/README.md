@@ -24,7 +24,6 @@ Contact
 The James extensions module is developed and maintained by
 
  - Herman De Beukelaer (Herman.DeBeukelaer@UGent.be)
- - Guy Davenport (guy.davenport@bayer.com)
  
 Changes
 =======

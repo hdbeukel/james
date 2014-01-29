@@ -32,7 +32,6 @@ Contact
 The James framework is developed and maintained by
 
  - Herman De Beukelaer (Herman.DeBeukelaer@UGent.be)
- - Guy Davenport (guy.davenport@bayer.com)
  
  
  
