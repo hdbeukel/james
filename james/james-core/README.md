@@ -1,7 +1,7 @@
 James Core Module
 =================
 
-The James core module is part of the James framework for solving combinatorial optimization problems using metaheuristics in java. The framework is mainly focused on subset selection, which has many applications in various areas, though other types of problems can also easily be plugged in.
+The James core module is part of the James framework for solving optimization problems using metaheuristics in java. The framework is mainly focused on subset selection, which has many applications in various areas, though other types of problems can also easily be plugged in.
 
 The core module includes general concepts modeling problems, objectives, constraints, solutions, etc. It also contains generic search algorithms to solve the problems, as well as implementations of specific components for subset selection.
 

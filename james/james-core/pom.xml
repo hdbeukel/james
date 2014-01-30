@@ -15,9 +15,9 @@
     <name>james-core</name>
     <description>
         The James core module is part of the James framework
-        for solving combinatorial optimization problems using
-        metaheuristics in java. The core contains general concepts
-        modeling problems, objectives and constraints, as well as generic
+        for solving optimization problems using metaheuristics
+        in java. The core contains general concepts modeling
+        problems, objectives and constraints, as well as generic
         algorithms to solve the problems. Moreover, the core provides
         implementations of specific components for subset selection.
     </description>
