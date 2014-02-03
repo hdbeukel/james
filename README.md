@@ -1,7 +1,7 @@
 James
 =====
 
-James is an extensive java framework for solving optimization problems using metaheuristics. The framework is mainly focused on subset selection, which has many applications in various areas, though other types of problems can also easily be plugged in.
+James is an extensive Java framework for finding good solutions for hard optimization problems using metaheuristics. The framework is mainly focused on subset selection, which has many applications in various areas, though other types of problems can also easily be plugged in.
 
 Modules
 -------
