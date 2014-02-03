@@ -10,7 +10,7 @@ The James framework consists of several modules:
  
  - [James Core Module][1]: as its name suggests, this module contains the core components of the framework. It includes general concepts modeling problems, objectives, constraints and algorithms.
  
-   A number of generic optimization algorithms are provided out-of-the-box, including many metaheuristics such as random descent, steepest descent, tabu search, variable neighbourhood search, parallel tempering, etc. Exhaustive search is also included, which is of course only feasible for problems with a reasonable small search space.
+   A number of generic optimization algorithms are provided out-of-the-box, including many local search based metaheuristics such as random descent, steepest descent, tabu search, variable neighbourhood search, parallel tempering, etc. Exhaustive search is also included, which is of course only applicable to problems with a reasonable small, finite search space.
    
    Moreover, the core module contains implementations of components for subset selection, as well as some specific subset sampling algorithms.
    
