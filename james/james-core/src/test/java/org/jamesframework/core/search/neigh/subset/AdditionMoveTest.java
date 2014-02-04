@@ -83,7 +83,7 @@ public class AdditionMoveTest {
         
         // create random move
         Integer add = RG.nextInt();
-        SubsetMove move = new SwapMove(add, 0);
+        SubsetMove move = new AdditionMove(add);
         
         // verify
         assertEquals(add, move.getAddedIDs().iterator().next());
@@ -101,7 +101,7 @@ public class AdditionMoveTest {
         
         // create random move
         int add = RG.nextInt();
-        SwapMove move = new SwapMove(add, 0);
+        AdditionMove move = new AdditionMove(add);
         
         // verify
         assertEquals(add, move.getAddedID());
@@ -116,13 +116,11 @@ public class AdditionMoveTest {
         
         System.out.println(" - test getDeletedIDs");
         
-        // create random move
-        Integer del = RG.nextInt();
-        SubsetMove move = new SwapMove(0, del);
+        // create arbitrary move
+        SubsetMove move = new AdditionMove(0);
         
         // verify
-        assertEquals(del, move.getDeletedIDs().iterator().next());
-        assertEquals(1, move.getDeletedIDs().size());
+        assertTrue(move.getDeletedIDs().isEmpty());
         
     }
 
