@@ -51,8 +51,8 @@ public class SwapMove implements SubsetMove{
     /**
      * Apply this swap move to a given subset solution. The move can only be applied to a solution
      * for which the added ID is currently <b>not selected</b> and the deleted ID is currently
-     * <b>selected</b>. This guarantees that calling {@link #undo(SubsetSolution)} will effectively
-     * restore the solution state to that before application of the move.
+     * <b>selected</b>. This guarantees that calling {@link #undo(SubsetSolution)} will correctly
+     * undo the move.
      * 
      * @throws SolutionModificationException if the added ID is already selected, the deleted ID is already unselected,
      *                                       or any of both IDs does not correspond to an underlying entity
@@ -74,24 +74,23 @@ public class SwapMove implements SubsetMove{
     }
 
     /**
-     * Undo this swap move after it has been successfully applied to the given subset solution.
-     * It is assumed that the solution has not been modified since application of the move,
-     * else the behaviour of this method is undefined.
+     * Undo this swap move after it has been successfully applied to the given subset solution,
+     * by removing the newly added ID and re-adding the deleted ID.
      * 
-     * @param solution 
+     * @param solution solution to which the move has been applied
      */
     @Override
     public void undo(SubsetSolution solution) {
-        // readd deleted ID
+        // re-add deleted ID
         solution.select(delete);
         // remove newly added ID
         solution.deselect(add);
     }
 
     /**
-     * Returns a singleton containing the only added ID.
+     * Returns an unmodifiable singleton containing the only added ID.
      * 
-     * @return singleton containing added ID
+     * @return unmodifiable singleton containing added ID
      */
     @Override
     public Set<Integer> getAddedIDs() {
@@ -108,9 +107,9 @@ public class SwapMove implements SubsetMove{
     }
 
     /**
-     * Returns a singleton containing the only deleted ID.
+     * Returns an unmodifiable singleton containing the only deleted ID.
      * 
-     * @return singleton containing deleted ID
+     * @return unmodifiable singleton containing deleted ID
      */
     @Override
     public Set<Integer> getDeletedIDs() {
