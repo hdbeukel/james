@@ -70,6 +70,15 @@ public class SolutionModificationException extends JamesRuntimeException {
     }
     
     /**
+     * Returns the solution that was being modified when this exception occurred.
+     * 
+     * @return solution under modification
+     */
+    public Solution getSolution(){
+        return solution;
+    }
+    
+    /**
      * Extend string representation to include solution that was being modified.
      * 
      * @return string representation including modified solution
