@@ -48,7 +48,7 @@ public class SubsetSolutionTest {
     @BeforeClass
     public static void setUpClass() {
         System.out.println("# Testing SubsetSolution ...");
-        // initialize set of all IDs = {0 ... SUBSET_SIZE-1}
+        // initialize set of all IDs = {0 ... NUM_IDS-1}
         Set<Integer> IDs = new HashSet<>();
         for(int i=0; i < NUM_IDS; i++){
             IDs.add(i);
