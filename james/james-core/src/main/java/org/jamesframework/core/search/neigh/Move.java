@@ -14,6 +14,7 @@
 
 package org.jamesframework.core.search.neigh;
 
+import org.jamesframework.core.exceptions.SolutionModificationException;
 import org.jamesframework.core.problems.solutions.Solution;
 
 /**
@@ -28,6 +29,7 @@ public interface Move<SolutionType extends Solution> {
     /**
      * Apply this move to the given solution.
      * 
+     * @throws SolutionModificationException if the solution can not be modified according to the applied move
      * @param solution solution to which the move is applied
      */
     public void apply(SolutionType solution);
