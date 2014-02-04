@@ -268,16 +268,21 @@ public class SubsetSolution extends Solution {
         return hash;    
     }
     
+    /**
+     * Creates a nicely formatted, human readable string containing the selected IDs.
+     * 
+     * @return formatted string
+     */
     @Override
     public String toString(){
         StringBuilder str = new StringBuilder();
         str.append("SubsetSolution: {");
-        // add selected IDs
-        for(int ID : selected){
-            str.append(ID).append(", ");
-        }
-        // remove final comma and space if nonzero number of selected IDs
+        // add selected IDs, if any
         if(getNumSelectedIDs() > 0){
+            for(int ID : selected){
+                str.append(ID).append(", ");
+            }
+            // remove final comma and space
             str.delete(str.length()-2, str.length());
         }
         // close brackets
