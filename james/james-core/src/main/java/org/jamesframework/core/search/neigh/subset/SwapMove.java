@@ -18,7 +18,6 @@ import java.util.Collections;
 import java.util.Set;
 import org.jamesframework.core.exceptions.SolutionModificationException;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
-import org.jamesframework.core.search.neigh.Move;
 
 /**
  * Simple subset move that removes a single ID from the current selection
@@ -26,7 +25,7 @@ import org.jamesframework.core.search.neigh.Move;
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
-public class SwapMove implements Move<SubsetSolution>, SubsetMove{
+public class SwapMove implements SubsetMove{
 
     // added and deleted ID
     private final int add, delete;

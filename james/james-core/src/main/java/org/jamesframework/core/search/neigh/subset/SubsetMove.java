@@ -15,14 +15,17 @@
 package org.jamesframework.core.search.neigh.subset;
 
 import java.util.Set;
+import org.jamesframework.core.problems.solutions.SubsetSolution;
+import org.jamesframework.core.search.neigh.Move;
 
 /**
  * General interface of a subset move that adds a number of IDs to the selection and/or
- * removes a number of IDs.
+ * removes a number of IDs. Extends the global interface {@link Move}, setting the solution
+ * type to {@link SubsetSolution}.
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
-public interface SubsetMove {
+public interface SubsetMove extends Move<SubsetSolution> {
 
     /**
      * Get the set of IDs that are added to the selection by applying this move to a subset solution.
