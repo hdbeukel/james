@@ -34,7 +34,7 @@ public interface Move<SolutionType extends Solution> {
     
     /**
      * Undo this move after it has been applied to the given solution. It is assumed that the
-     * solution was not modified in any way since the move was applied; if so, the behaviour
+     * solution has not been modified in any way since the move was applied; if so, the behaviour
      * of this method is undefined.
      * 
      * @param solution solution to which the move has been applied
