@@ -40,7 +40,7 @@ public class SubsetSolutionTest {
     // number of IDs
     private static final int NUM_IDS = 100;
     
-    // random generator with fixed seed
+    // random generator
     private static final Random RG = new Random();
     
     /**
