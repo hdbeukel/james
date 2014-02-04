@@ -15,7 +15,6 @@
 package org.jamesframework.core.search.neigh.subset;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Set;
 import org.jamesframework.core.exceptions.SolutionModificationException;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
@@ -99,6 +98,15 @@ public class SwapMove implements Move<SubsetSolution>, SubsetMove{
     public Set<Integer> getAddedIDs() {
         return Collections.singleton(add);
     }
+    
+    /**
+     * Returns the added ID.
+     * 
+     * @return added ID
+     */
+    public int getAddedID() {
+        return add;
+    }
 
     /**
      * Returns a singleton containing the only deleted ID.
@@ -108,6 +116,15 @@ public class SwapMove implements Move<SubsetSolution>, SubsetMove{
     @Override
     public Set<Integer> getDeletedIDs() {
         return Collections.singleton(delete);
+    }
+    
+    /**
+     * Returns the deleted ID.
+     * 
+     * @return deleted ID
+     */
+    public int getDeletedID(){
+        return delete;
     }
 
     /**
