@@ -27,19 +27,23 @@ public interface Neighbourhood<SolutionType extends Solution> {
 
     /**
      * Generates a move that transforms the given solution into a random neighbour
-     * contained in this specific neighbourhood.
+     * contained in this specific neighbourhood. If the neighbourhood does not
+     * contain any neighbours for the given solution, <code>null</code> is returned.
      * 
      * @param solution solution to which the move is to be applied
-     * @return random move transforming the given solution into a random neighbour
+     * @return random move transforming the given solution into a random neighbour,
+     *         <code>null</code> if the given solution does not have any neighbours
      */
     public Move<SolutionType> getRandomMove(SolutionType solution);
     
     /**
      * Get a list with all moves that can be applied to the given solution to transform
      * it into each of the neighbouring solutions contained in this specific neighbourhood.
+     * The returned list may be empty, in case the given solution does not have any neighbours.
      * 
      * @param solution solution to which the moves are to be applied
-     * @return list of all moves for this neighbourhood
+     * @return list of all moves for this neighbourhood, may be empty if the
+     *         given solution does not have any neighbours
      */
     public List<Move<SolutionType>> getAllMoves(SolutionType solution);
     
