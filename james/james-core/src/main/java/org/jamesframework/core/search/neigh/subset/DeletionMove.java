@@ -81,7 +81,7 @@ public class DeletionMove implements SubsetMove {
     /**
      * Always returns 1, as a single ID is deleted.
      * 
-     * @return 
+     * @return 1
      */
     @Override
     public int getNumDeleted() {
@@ -95,8 +95,6 @@ public class DeletionMove implements SubsetMove {
      * 
      * @throws SolutionModificationException if the deleted ID is currently not selected or does not correspond to an entity
      * @param solution solution to which to move is applied
-     * 
-     * @param solution 
      */
     @Override
     public void apply(SubsetSolution solution) {
