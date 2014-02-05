@@ -18,8 +18,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-import org.jamesframework.core.problems.SubsetProblem;
-import org.jamesframework.core.problems.SubsetProblemWithData;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.search.neigh.Neighbourhood;
@@ -38,7 +36,7 @@ import org.junit.Before;
 public class SingleSwapNeighbourhoodTest {
 
     // swap neighbourhood
-    private Neighbourhood<SubsetSolution> neigh = new SingleSwapNeighbourhood();
+    private Neighbourhood<SubsetSolution> neigh;
     
     // subset solution to work with
     private SubsetSolution sol;
