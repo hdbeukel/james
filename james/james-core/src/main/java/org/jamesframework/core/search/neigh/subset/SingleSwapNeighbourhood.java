@@ -49,7 +49,7 @@ public class SingleSwapNeighbourhood implements Neighbourhood<SubsetSolution> {
             // impossible to perform a swap
             return null;
         }
-        // use thread local random generator for better performance in concurrent use
+        // use thread local random for better concurrent performance
         Random rg = ThreadLocalRandom.current();
         // select random ID to remove from selection
         int del = SetUtilities.getRandomElement(solution.getSelectedIDs(), rg);
