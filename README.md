@@ -1,16 +1,16 @@
 James
 =====
 
-James is an extensive Java framework for finding good solutions for hard optimization problems using metaheuristics. The framework is mainly focused on subset selection, which has many applications in various areas, though other types of problems can also easily be plugged in.
+James is an extensive Java framework for optimization using local search metaheuristics. The framework is mainly focused on subset selection, which has many applications in various areas, though other types of problems can also easily be plugged in.
 
 Modules
 -------
 
 The James framework consists of several modules:
  
- - [James Core Module][1]: as its name suggests, this module contains the core components of the framework. It includes general concepts modeling problems, objectives, constraints and algorithms.
+ - [James Core Module][1]: as its name suggests, this module contains the core components of the framework. It includes general concepts modeling problems, objectives, constraints, algorithms, neighbourhoods, etc.
  
-   A number of generic optimization algorithms are provided out-of-the-box, including many local search based metaheuristics such as random descent, steepest descent, tabu search, variable neighbourhood search, parallel tempering, etc. Exhaustive search is also included, which is of course only applicable to problems with a reasonable small, finite search space.
+   A number of generic local search algorithms are provided out-of-the-box, including random descent, steepest descent, tabu search, variable neighbourhood search, parallel tempering, etc. Exhaustive search is also available, which is of course only applicable to problems with a reasonable small, finite search space.
    
    Moreover, the core module contains implementations of components for subset selection, as well as some specific subset sampling algorithms.
    

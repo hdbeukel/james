@@ -1,18 +1,18 @@
 James Core Module
 =================
 
-The James core module is part of the James framework for finding good solutions for hard optimization problems using metaheuristics in Java. The framework is mainly focused on subset selection, which has many applications in various areas, though other types of problems can also easily be plugged in.
+The James core module is part of the [James framework][1].
 
-The core module includes general concepts modeling problems, objectives, constraints, solutions, etc. It also contains generic search algorithms to solve the problems, as well as implementations of specific components for subset selection.
+The core module includes general concepts modeling problems, objectives, constraints, solutions, etc. It also contains generic metaheuristics to solve the problems, as well as implementations of specific components for subset selection.
 
-A wide range of generic neighbourhood searches are provided out-of-the-box, including
+A wide range of local search algorithms are provided out-of-the-box, including
 
-1. basic local search (random descent)
-2. steepest descent
-3. tabu search
-4. variable neighbourhood search
+1. Random descent (basic local search)
+2. Steepest descent
+3. Tabu search
+4. Variable neighbourhood search
 5. Metropolis search
-6. parallel tempering
+6. Parallel tempering
 
 In addition, some specific subset sampling algorithms are available, as well as exhaustive search, which is of course only feasible for problems with a reasonably small, finite search space.
 
@@ -42,3 +42,8 @@ Changes
 =======
 
 A list of changes is provided in the CHANGES file.
+
+
+
+
+[1]: https://github.com/hdbeukel/james

@@ -1,7 +1,9 @@
 James Extensions Module
 =======================
 
-The James extensions module is part of the James framework for finding good solutions for hard optimization problems using metaheuristics in Java. The extensions module provides additional components for advanced subset selection as well as other types of problems (e.g. permutation problems).
+The James extensions module is part of the [James framework][1].
+
+This module provides additional utitilies for advanced subset selection, as well as implementations of components for other types of problems (e.g. permutation problems).
 
 Status
 ======
@@ -29,3 +31,10 @@ Changes
 =======
 
 A list of changes is provided in the CHANGES file.
+
+
+
+
+
+
+[1]: https://github.com/hdbeukel/james
