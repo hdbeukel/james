@@ -38,6 +38,16 @@ public interface Problem<SolutionType extends Solution> {
     public double evaluate(SolutionType solution);
     
     /**
+     * Indicates whether the given solution should be rejected during search,
+     * regardless of its evaluation. This method may for example be used to
+     * discard solutions that do not satisfy imposed constraints.
+     * 
+     * @param solution solution to verify
+     * @return true if the given solution should be rejected
+     */
+    public boolean rejectSolution(SolutionType solution);
+    
+    /**
      * Indicates whether scores are being minimized or maximized.
      * 
      * @return true if scores are being minimized

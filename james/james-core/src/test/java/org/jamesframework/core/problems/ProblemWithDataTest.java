@@ -138,29 +138,29 @@ public class ProblemWithDataTest {
     }
     
     /**
-     * Test of addDominatingConstraint method, of class ProblemWithData.
+     * Test of addRejectingConstraint method, of class ProblemWithData.
      */
     @Test
-    public void testAddDominatingConstraint() {
+    public void testAddRejectingConstraintConstraint() {
        
-        System.out.println(" - test addDominatingConstraint");
+        System.out.println(" - test addRejectingConstraint");
         
         // check that both general constraints as well as constraints
-        // with penalty definitions can be added as a dominating constraint
-        problem.addDominatingConstraint(new AlwaysSatisfiedConstraintStub());
-        problem.addDominatingConstraint(new NeverSatisfiedConstraintStub());
-        problem.addDominatingConstraint(new AlwaysSatisfiedPenalizingConstraintStub());
-        problem.addDominatingConstraint(new NeverSatisfiedPenalizingConstraintStub(123.0));
+        // with penalty definitions can be added as a rejecting constraint
+        problem.addRejectingConstraint(new AlwaysSatisfiedConstraintStub());
+        problem.addRejectingConstraint(new NeverSatisfiedConstraintStub());
+        problem.addRejectingConstraint(new AlwaysSatisfiedPenalizingConstraintStub());
+        problem.addRejectingConstraint(new NeverSatisfiedPenalizingConstraintStub(123.0));
         
     }
 
     /**
-     * Test of removeDominatingConstraint method, of class ProblemWithData.
+     * Test of removeRejectingConstraint method, of class ProblemWithData.
      */
     @Test
-    public void testRemoveDominatingConstraint() {
+    public void testRemoveRejectingConstraint() {
         
-        System.out.println(" - test removeDominatingConstraint");
+        System.out.println(" - test removeRejectingConstraint");
         
         // create some constraints
         Constraint<?,?> c0 = new AlwaysSatisfiedConstraintStub();
@@ -168,17 +168,17 @@ public class ProblemWithDataTest {
         Constraint<?,?> c2 = new AlwaysSatisfiedPenalizingConstraintStub();
         
         
-        // add constraint c0 and c1 as dominating constraint
-        problem.addDominatingConstraint(c0);
-        problem.addDominatingConstraint(c1);
+        // add constraint c0 and c1 as rejecting constraint
+        problem.addRejectingConstraint(c0);
+        problem.addRejectingConstraint(c1);
         // try to remove c2 which was never added
-        assertFalse(problem.removeDominatingConstraint(c2));
+        assertFalse(problem.removeRejectingConstraint(c2));
         // remove constraints that were added
-        assertTrue(problem.removeDominatingConstraint(c0));
-        assertTrue(problem.removeDominatingConstraint(c1));
+        assertTrue(problem.removeRejectingConstraint(c0));
+        assertTrue(problem.removeRejectingConstraint(c1));
         // try to remove again
-        assertFalse(problem.removeDominatingConstraint(c0));
-        assertFalse(problem.removeDominatingConstraint(c1));
+        assertFalse(problem.removeRejectingConstraint(c0));
+        assertFalse(problem.removeRejectingConstraint(c1));
         
     }
 
@@ -213,8 +213,8 @@ public class ProblemWithDataTest {
         problem.addPenalizingConstraint(c0);
         // try to remove c1 which was never added
         assertFalse(problem.removePenalizingConstraint(c1));
-        // try to remove c0 as DOMINATING constraint -- NEVER added with this role
-        assertFalse(problem.removeDominatingConstraint(c0));
+        // try to remove c0 as REJECTING constraint -- NEVER added with this role
+        assertFalse(problem.removeRejectingConstraint(c0));
         // remove c0 as PENALIZING constraint
         assertTrue(problem.removePenalizingConstraint(c0));
         // try again
@@ -223,35 +223,72 @@ public class ProblemWithDataTest {
     }
 
     /**
-     * Test of areConstraintsSatisfied method, of class ProblemWithData.
+     * Test of rejectSolution method, of class ProblemWithData.
      */
     @Test
-    public void testAreConstraintsSatisfied() {
-        
-        System.out.println(" - test areConstraintsSatisfied");
+    public void testRejectSolution() {
+    
+        System.out.println(" - test rejectSolution");
         
         Solution sol = new EmptySolutionStub();
         
         // test without constraints
-        assertTrue(problem.areConstraintsSatisfied(sol));
+        assertFalse(problem.rejectSolution(sol));
         
         // add constraints which are always satisfied
-        problem.addDominatingConstraint(new AlwaysSatisfiedConstraintStub());
+        problem.addRejectingConstraint(new AlwaysSatisfiedConstraintStub());
         problem.addPenalizingConstraint(new AlwaysSatisfiedPenalizingConstraintStub());
         // verify
-        assertTrue(problem.areConstraintsSatisfied(sol));
+        assertFalse(problem.rejectSolution(sol));
         
-        // add unsatisfiable dominating constraint
+        // add unsatisfiable rejecting constraint
         Constraint<?,?> unsatisfiable = new NeverSatisfiedConstraintStub();
-        problem.addDominatingConstraint(unsatisfiable);
-        assertFalse(problem.areConstraintsSatisfied(sol));
+        problem.addRejectingConstraint(unsatisfiable);
+        assertTrue(problem.rejectSolution(sol));
         // remove the constraint
-        problem.removeDominatingConstraint(unsatisfiable);
+        problem.removeRejectingConstraint(unsatisfiable);
         
         // same thing with unsatisfiable penalizing constraint
         PenalizingConstraint<?,?> unsatisfiable2 = new NeverSatisfiedPenalizingConstraintStub(123.0);
         problem.addPenalizingConstraint(unsatisfiable2);
-        assertFalse(problem.areConstraintsSatisfied(sol));
+        assertFalse(problem.rejectSolution(sol));
+        // remove the constraint
+        problem.removePenalizingConstraint(unsatisfiable2);
+    
+    }
+    
+    /**
+     * Test of getViolatedConstraints method, of class ProblemWithData.
+     */
+    @Test
+    public void testGetViolatedConstraints() {
+        
+        System.out.println(" - test getViolatedConstraints");
+        
+        Solution sol = new EmptySolutionStub();
+        
+        // test without constraints
+        assertTrue(problem.getViolatedConstraints(sol).isEmpty());
+        
+        // add constraints which are always satisfied
+        problem.addRejectingConstraint(new AlwaysSatisfiedConstraintStub());
+        problem.addPenalizingConstraint(new AlwaysSatisfiedPenalizingConstraintStub());
+        // verify
+        assertTrue(problem.getViolatedConstraints(sol).isEmpty());
+        
+        // add unsatisfiable rejecting constraint
+        Constraint<?,?> unsatisfiable = new NeverSatisfiedConstraintStub();
+        problem.addRejectingConstraint(unsatisfiable);
+        assertEquals(1, problem.getViolatedConstraints(sol).size());
+        assertTrue(problem.getViolatedConstraints(sol).contains(unsatisfiable));
+        // remove the constraint
+        problem.removeRejectingConstraint(unsatisfiable);
+        
+        // same thing with unsatisfiable penalizing constraint
+        PenalizingConstraint<?,?> unsatisfiable2 = new NeverSatisfiedPenalizingConstraintStub(123.0);
+        problem.addPenalizingConstraint(unsatisfiable2);
+        assertEquals(1, problem.getViolatedConstraints(sol).size());
+        assertTrue(problem.getViolatedConstraints(sol).contains(unsatisfiable2));
         // remove the constraint
         problem.removePenalizingConstraint(unsatisfiable2);
         
@@ -273,29 +310,10 @@ public class ProblemWithDataTest {
         problem.setObjective(o);
         assertEquals(fixedEval, problem.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
         
-        // throw in a dominating constraint that is always satisfied
-        Constraint<?,?> c0 = new AlwaysSatisfiedConstraintStub();
-        problem.addDominatingConstraint(c0);
-        assertEquals(fixedEval, problem.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
-        
         // throw in a penalizing constraint that is always satisfied
         PenalizingConstraint<?,?> c1 = new AlwaysSatisfiedPenalizingConstraintStub();
         problem.addPenalizingConstraint(c1);
         assertEquals(fixedEval, problem.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
-        
-        // throw in a dominating constraint that is never satisfied
-        Constraint<?,?> c2 = new NeverSatisfiedConstraintStub();
-        problem.addDominatingConstraint(c2);
-        assertEquals(-Double.MAX_VALUE, problem.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
-        
-        // switch to minimizing and repeat
-        o.setMinimizing();
-        assertEquals(Double.MAX_VALUE, problem.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
-        
-        // switch back to maximizing
-        o.setMaximizing();
-        // remove dominating constraint which is never satisfied
-        problem.removeDominatingConstraint(c2);
         
         // add penalizing constraint which is never satisfied
         double c3penalty = 1234.0;
@@ -319,13 +337,6 @@ public class ProblemWithDataTest {
         // switch to minimizing and repeat
         o.setMinimizing();
         assertEquals(fixedEval+c3penalty+c4penalty, problem.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
-        
-        // switch back to maximizing
-        o.setMaximizing();
-        
-        // again add a dominating constraint which is never satisfied
-        problem.addDominatingConstraint(c2);
-        assertEquals(-Double.MAX_VALUE, problem.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
         
     }
 

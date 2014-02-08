@@ -15,7 +15,9 @@
 package org.jamesframework.core.problems;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.jamesframework.core.problems.constraints.Constraint;
 import org.jamesframework.core.problems.constraints.PenalizingConstraint;
 import org.jamesframework.core.problems.objectives.Objective;
@@ -23,35 +25,26 @@ import org.jamesframework.core.problems.solutions.Solution;
 
 /**
  * <p>
- * Represents an abstract problem with an underlying generic data type, where solutions are evaluated using a combination
- * of objectives and constraints that rely on this data to evaluate or validate a given solution. More precisely, when evaluating a
- * solution, the data is used to calculate the objective score and to check the constraints, and the results are combined into an
- * aggregated evaluation. The exact result depends on the type of constraints that were added:
+ * Represents an abstract problem that separates data from the objective and possible constraints. The problem contains data of some
+ * specific data type (see parameter <code>DataType</code>), and solutions are evaluated -- or possibly rejected -- based on a combination
+ * of an objective and constraints, which rely on this data. Two types of constraints can be specified:
  * </p>
  * <ul>
  *  <li>
  *  <p>
- *      <b>Dominating constraints</b> dominate the entire evaluation, in the sense that for any solution that violates such constraint,
- *      the objective is ignored and the worst possible evaluation is returned. This worst possible evaluation will be equal to
- *      -{@link Double#MAX_VALUE} in case of a maximizing objective, or {@link Double#MAX_VALUE} in case of a minimizing objective.
- *      Any solution that violates a dominating constraint will therefore be considered equally bad, and no solution within the
- *      constraints can ever be worse than a solution outside the constraints.
+ *      <b>Rejecting constraints</b>: any solution violating a rejecting constraint is immediately rejected, regardless of its
+ *      evaluation. More precisely, for such solutions, <code>rejectSolution(...)</code> returns <code>true</code>.
  *  </p>
  *  </li>
  *  <li>
  *  <p>
- *      <b>Penalizing constraints</b> assign a penalty to the objective score, which is usually designed to reflect the severeness
- *      of the violation. Solutions which are closer to satisfaction will then be favoured over solutions which violate the constraints
- *      more severely. In case of a maximizing objective, penalties are subtracted from the objective score, while they are added to it
- *      in case of a minimizing objective. No penalties are assigned to solutions satisfying the constraints.
+ *      <b>Penalizing constraints</b> assign a penalty to the evaluation calculated by the objective, which is usually designed to
+ *      reflect the severeness of the violation. Solutions which are closer to satisfaction will then be favoured over solutions which
+ *      violate the constraints more severely. In case of a maximizing objective, penalties are subtracted from the objective score,
+ *      while they are added to it in case of a minimizing objective. No penalties are assigned to solutions satisfying the constraints.
  *  </p>
  *  </li>
  * </ul>
- * <p>
- * In summary: to evaluate a solution, it is first verified whether any dominating constraint is violated. If so, the worst possible
- * evaluation is returned. Else, the objective score is calculated and any penalties resulting from violated penalizing constraints
- * are added/subtracted to obtain the final aggregated evaluation.
- * </p>
  * 
  * @param <SolutionType> solution type corresponding to this problem
  * @param <DataType> type of underlying data
@@ -64,8 +57,8 @@ public abstract class ProblemWithData<SolutionType extends Solution, DataType> i
     private Objective<? super SolutionType, ? super DataType> objective;
     // underlying data
     private DataType data;
-    // dominating and penalizing constraints (may be more general than solution and data types of problem)
-    private final List<Constraint<? super SolutionType, ? super DataType>> dominatingConstraints;
+    // rejecting and penalizing constraints (may be more general than solution and data types of problem)
+    private final List<Constraint<? super SolutionType, ? super DataType>> rejectingConstraints;
     private final List<PenalizingConstraint<? super SolutionType, ? super DataType>> penalizingConstraints;
     
     /**
@@ -86,7 +79,7 @@ public abstract class ProblemWithData<SolutionType extends Solution, DataType> i
         this.objective = objective;
         this.data = data;
         // initialize constraint lists
-        dominatingConstraints = new ArrayList<>();
+        rejectingConstraints = new ArrayList<>();
         penalizingConstraints = new ArrayList<>();
     }
 
@@ -133,24 +126,24 @@ public abstract class ProblemWithData<SolutionType extends Solution, DataType> i
     }
     
     /**
-     * Add a dominating constraint to the problem. For any solution that violates a dominating constraint, the worst possible
-     * evaluation will be returned. Only constraints designed for the solution and data types of the problem, or more general types,
+     * Add a rejecting constraint to the problem. For any solution that violates such constraint, <code>rejectSolution(...)</code>
+     * will return <code>true</code>. Only constraints designed for the solution and data types of the problem, or more general types,
      * are accepted.
      * 
-     * @param constraint dominating constraint to add
+     * @param constraint rejecting constraint to add
      */
-    public void addDominatingConstraint(Constraint<? super SolutionType, ? super DataType> constraint){
-        dominatingConstraints.add(constraint);
+    public void addRejectingConstraint(Constraint<? super SolutionType, ? super DataType> constraint){
+        rejectingConstraints.add(constraint);
     }
     
     /**
-     * Remove a dominating constraint. True is returned if the constraint has successfully been removed.
+     * Remove a rejecting constraint. Returns <code>true</code> if the constraint has successfully been removed.
      * 
-     * @param constraint dominating constraint to be removed
-     * @return true if the problem contained the specified constraint
+     * @param constraint rejecting constraint to be removed
+     * @return <code>true</code> if the problem contained the specified constraint
      */
-    public boolean removeDominatingConstraint(Constraint<? super SolutionType, ? super DataType> constraint){
-        return dominatingConstraints.remove(constraint);
+    public boolean removeRejectingConstraint(Constraint<? super SolutionType, ? super DataType> constraint){
+        return rejectingConstraints.remove(constraint);
     }
     
     /**
@@ -175,60 +168,69 @@ public abstract class ProblemWithData<SolutionType extends Solution, DataType> i
     }
     
     /**
-     * Verifies whether a given solution satisfies all constraints (both dominating and penalizing constraints).
+     * Checks whether any of the specified rejecting constraints are violated. If so, this method returns
+     * <code>true</code>.
      * 
-     * @param solution solution to verify
-     * @return true if all constraints are satisfied
+     * @param solution solution to check against the rejecting constraints
+     * @return <code>true</code> if any rejecting constraint is violated
      */
-    public boolean areConstraintsSatisfied(SolutionType solution){
-        // check dominating constraints and penalizing constraints
-        return checkConstraints(solution, dominatingConstraints) && checkConstraints(solution, penalizingConstraints);
-    }
-    
-    /**
-     * Check whether a given solution satisfies all constraints from a given list.
-     * 
-     * @param solution solution to be verified against list of constraints
-     * @param constraints list of constraints to check
-     * @return true if solution satisfies all given constraints
-     */
-    private boolean checkConstraints(SolutionType solution, List<? extends Constraint<? super SolutionType, ? super DataType>> constraints){
-        // go through biven list of constraints
-        for(Constraint<? super SolutionType,? super DataType> c : constraints){
+    @Override
+    public boolean rejectSolution(SolutionType solution){
+        // check rejecting constraints
+        for(Constraint<? super SolutionType, ? super DataType> c : rejectingConstraints){
             if(!c.isSatisfied(solution, data)){
-                // not satisfied!
-                return false;
+                return true;
             }
         }
         // all satisfied
-        return true;
+        return false;
+    }
+    
+    /**
+     * Returns a set of all violated constraints (both rejecting and penalizing constraints). If the given solution
+     * satisfies all constraints, the returned set will be empty.
+     * 
+     * @param solution solution for which violated constraints are determined
+     * @return set of all violated constraints (rejecting and penalizing)
+     */
+    public Set<Constraint<? super SolutionType, ? super DataType>> getViolatedConstraints(SolutionType solution){
+        // create set with all violated constraints
+        Set<Constraint<? super SolutionType, ? super DataType>> violated = new HashSet<>();
+        // rejecting constraints
+        for(Constraint<? super SolutionType, ? super DataType> c : rejectingConstraints){
+            if(!c.isSatisfied(solution, data)){
+                violated.add(c);
+            }
+        }
+        // penalizing
+        for(Constraint<? super SolutionType, ? super DataType> c : penalizingConstraints){
+            if(!c.isSatisfied(solution, data)){
+                violated.add(c);
+            }
+        }
+        // return violated constraints
+        return violated;
     }
 
     /**
-     * Evaluates a solution by taking into account both the score calculated by the objective function and the constraints (if any).
-     * If one or more dominating constraints are violated, the worst possible evaluation is returned. Depending on whether the objective
-     * is maximizing or minimizing, this worst evaluation is -{@link Double#MAX_VALUE} or {@link Double#MAX_VALUE}, respectively.
-     * Else, the objective function score is calculated, assigning possible penalties for each violated penalizing
-     * constraint. Penalties are subtracted in case of maximization, and added in case of minimization.
+     * Evaluates a solution by taking into account both the score calculated by the objective function and the
+     * penalizing constraints (if any). First, the objective function is calculated for the given solution.
+     * Then, penalties are assigned for any violated penalizing constraint. Penalties are subtracted in case
+     * of maximization, and added in case of minimization. The resulting score is returned.
      * 
      * @param solution solution to be evaluated
-     * @return aggregated evaluation taking into account both the objective function score and constraints
+     * @return aggregated evaluation taking into account both the objective function and penalizing constraints
      */
     @Override
     public double evaluate(SolutionType solution) {
-        // check dominating constraints
-        if(!checkConstraints(solution, dominatingConstraints)){
-            // at least one dominating constraint violated, return worst evaluation
-            return getWorstEvaluation();
-        }
-        // no violated dominating constraints: evaluate objective function
+        // evaluate objective function
         double eval = objective.evaluate(solution, data);
         // compute penalties
         double penalty = 0.0;
         for(PenalizingConstraint<? super SolutionType, ? super DataType> pc : penalizingConstraints){
             // take into account penalty of penalizing constraint pc -- according to the general contract
             // of a penalizing constraint, no penalty (zero) will be assigned if the constraint is satisfied
-            // so we do not explicitely check this to save computations
+            // so we do not explicitely check this to avoid unnecessary computations
             penalty += pc.computePenalty(solution, data);
         }
         // assign penalty to evaluation
@@ -241,22 +243,6 @@ public abstract class ProblemWithData<SolutionType extends Solution, DataType> i
         }
         // return aggregated evaluation
         return eval;
-    }
-    
-    /**
-     * Get worst evaluation. In case of a maximizing objective, the worst evaluation is -{@link Double#MAX_VALUE}, else,
-     * it is {@link Double#MAX_VALUE}.
-     * 
-     * @return worst possible evaluation
-     */
-    private double getWorstEvaluation(){
-        if(objective.isMinimizing()){
-            // minimizing
-            return Double.MAX_VALUE;
-        } else {
-            // maximizing
-            return -Double.MAX_VALUE;
-        }
     }
 
     /**

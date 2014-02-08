@@ -366,6 +366,8 @@ public class SubsetProblemWithDataTest {
         }
         
         // 2) with fake subset constraint (uses underlying subset data)
+
+        problem1.addPenalizingConstraint(fakeConstraint);
         
         // select a solution within the constraint
         sol = problem1.createEmptySubsetSolution();
@@ -379,25 +381,13 @@ public class SubsetProblemWithDataTest {
         for(int ID : sol.getSelectedIDs()){
             expected += ID;
         }
-        // a) dominating constraint
-        problem1.addDominatingConstraint(fakeConstraint);
-        assertEquals((double) expected, problem1.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
-        // b) same for penalizing constraint
-        problem1.removeDominatingConstraint(fakeConstraint);
-        problem1.addPenalizingConstraint(fakeConstraint);
+        // verify
         assertEquals((double) expected, problem1.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
 
         // modify solution to violate the constraint (selected = 0 1 3 8 9)
         sol.deselect(6);
         sol.select(8);
-        // evaluate and verify
-        // a) dominating constraint
-        problem1.removePenalizingConstraint(fakeConstraint);
-        problem1.addDominatingConstraint(fakeConstraint);
-        assertEquals(-Double.MAX_VALUE, problem1.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
-        // b) same for penalizing constraint
-        problem1.removeDominatingConstraint(fakeConstraint);
-        problem1.addPenalizingConstraint(fakeConstraint);
+        // evaluate and verify with penalizing constraint
         expected = 0;
         for(int ID : sol.getSelectedIDs()){
             expected += ID;
@@ -412,14 +402,7 @@ public class SubsetProblemWithDataTest {
         sol.deselect(0);
         sol.select(2);
         sol.select(7);
-        // evaluate and verify
-        // a) dominating constraint
-        problem1.removePenalizingConstraint(fakeConstraint);
-        problem1.addDominatingConstraint(fakeConstraint);
-        assertEquals(-Double.MAX_VALUE, problem1.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
-        // b) same for penalizing constraint
-        problem1.removeDominatingConstraint(fakeConstraint);
-        problem1.addPenalizingConstraint(fakeConstraint);
+        // evaluate and verify with penalizing constraint
         expected = 0;
         for(int ID : sol.getSelectedIDs()){
             expected += ID;
@@ -446,6 +429,8 @@ public class SubsetProblemWithDataTest {
         }
         
         // 2) with fake subset constraint (uses underlying subset data)
+
+        problem2.addPenalizingConstraint(fakeConstraint);
         
         // select a solution within the constraint
         sol = problem1.createEmptySubsetSolution();
@@ -459,25 +444,13 @@ public class SubsetProblemWithDataTest {
         for(int ID : sol.getSelectedIDs()){
             expected2 += SCORES[ID];
         }
-        // a) dominating constraint
-        problem2.addDominatingConstraint(fakeConstraint);
-        assertEquals(expected2, problem2.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
-        // b) same for penalizing constraint
-        problem2.removeDominatingConstraint(fakeConstraint);
-        problem2.addPenalizingConstraint(fakeConstraint);
+        // verify
         assertEquals(expected2, problem2.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
 
         // modify solution to violate the constraint (selected = 0 1 3 8 9)
         sol.deselect(6);
         sol.select(8);
         // evaluate and verify
-        // a) dominating constraint
-        problem2.removePenalizingConstraint(fakeConstraint);
-        problem2.addDominatingConstraint(fakeConstraint);
-        assertEquals(-Double.MAX_VALUE, problem2.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
-        // b) same for penalizing constraint
-        problem2.removeDominatingConstraint(fakeConstraint);
-        problem2.addPenalizingConstraint(fakeConstraint);
         expected2 = 0.0;
         for(int ID : sol.getSelectedIDs()){
             expected2 += SCORES[ID];
@@ -493,13 +466,6 @@ public class SubsetProblemWithDataTest {
         sol.select(2);
         sol.select(7);
         // evaluate and verify
-        // a) dominating constraint
-        problem2.removePenalizingConstraint(fakeConstraint);
-        problem2.addDominatingConstraint(fakeConstraint);
-        assertEquals(-Double.MAX_VALUE, problem2.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
-        // b) same for penalizing constraint
-        problem2.removeDominatingConstraint(fakeConstraint);
-        problem2.addPenalizingConstraint(fakeConstraint);
         expected2 = 0.0;
         for(int ID : sol.getSelectedIDs()){
             expected2 += SCORES[ID];
