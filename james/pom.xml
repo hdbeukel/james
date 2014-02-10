@@ -71,13 +71,13 @@
                         <goals>
                             <goal>test-jar</goal>
                         </goals>
-                        <configuration>
-                            <skipIfEmpty>
-                                true
-                            </skipIfEmpty>
-                        </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <skipIfEmpty>
+                        true
+                    </skipIfEmpty>
+                </configuration>
             </plugin>
             <!-- create source jars -->
             <plugin>
@@ -106,6 +106,10 @@
                         </goals>
                     </execution>
                 </executions>
+                <!-- omit timestamp comments in javadoc files -->
+                <configuration>
+                    <additionalparam>-notimestamp</additionalparam>
+                </configuration>
             </plugin>
         </plugins>
         <resources>
