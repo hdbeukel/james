@@ -14,10 +14,9 @@
 
 package org.jamesframework.core.search.neigh.subset;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.search.neigh.Move;
@@ -60,31 +59,31 @@ public class SingleSwapNeighbourhood implements Neighbourhood<SubsetSolution> {
     }
 
     /**
-     * Generates a list of all possible swap moves that transform the given subset solution by removing a single ID from
+     * Generates a set of all possible swap moves that transform the given subset solution by removing a single ID from
      * the current selection and replacing it with a new ID which is currently not selected. May return an empty list if
      * no swap moves can be applied, i.e. if currently all or no IDs are selected.
      * 
      * @param solution solution for which all possible swap moves are generated
-     * @return list of all swap moves, may be empty
+     * @return set of all swap moves, may be empty
      */
     @Override
-    public List<Move<SubsetSolution>> getAllMoves(SubsetSolution solution) {
+    public Set<Move<SubsetSolution>> getAllMoves(SubsetSolution solution) {
+        // create empty set
+        Set<Move<SubsetSolution>> moves = new HashSet<>();
         // first check if swaps are possible, for efficiency (avoids unnecessary loops)
         if(solution.getNumSelectedIDs() == 0 || solution.getNumUnselectedIDs() == 0){
-            // no swap moves can be applied
-            return Collections.emptyList();
+            // no swap moves can be applied, return empty set
+            return moves;
         }
-        // create empty list
-        List<Move<SubsetSolution>> moves = new ArrayList<>();
         // go through all possible IDs to delete
         for(int del : solution.getSelectedIDs()){
             // go through all possible IDs to add
             for(int add : solution.getUnselectedIDs()){
-                // add corresponding swap move to list
+                // add corresponding swap move
                 moves.add(new SwapMove(add, del));
             }
         }
-        // return list of moves
+        // return swap moves
         return moves;
     }
 

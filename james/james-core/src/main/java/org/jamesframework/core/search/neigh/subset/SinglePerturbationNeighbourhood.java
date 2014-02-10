@@ -15,8 +15,10 @@
 package org.jamesframework.core.search.neigh.subset;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import org.jamesframework.core.exceptions.JamesRuntimeException;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
@@ -124,16 +126,16 @@ public class SinglePerturbationNeighbourhood implements Neighbourhood<SubsetSolu
 
     /**
      * Generate all valid swap, deletion and addition moves that transform the given subset solution into
-     * a neighbour within the minimum and maximum allowed subset size. The returned list may be empty,
+     * a neighbour within the minimum and maximum allowed subset size. The returned set may be empty,
      * if no valid moves exist.
      * 
-     * @param solution solution for which a list of all valid moves is generated
-     * @return list of all valid swap, deletion and addition moves
+     * @param solution solution for which a set of all valid moves is generated
+     * @return set of all valid swap, deletion and addition moves
      */
     @Override
-    public List<Move<SubsetSolution>> getAllMoves(SubsetSolution solution) {
-        // create empty list
-        List<Move<SubsetSolution>> moves = new ArrayList<>();
+    public Set<Move<SubsetSolution>> getAllMoves(SubsetSolution solution) {
+        // create empty set
+        Set<Move<SubsetSolution>> moves = new HashSet<>();
         // generate all addition moves, if valid
         if(genAdditionMovesForSolution(solution)){
             // go through currently unselected IDs

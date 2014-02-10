@@ -21,7 +21,6 @@ import java.util.Random;
 import java.util.Set;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.search.neigh.Move;
-import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.util.SetUtilities;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -195,7 +194,7 @@ public class SinglePerturbationNeighbourhoodTest {
         
         System.out.println(" - test getAllMoves");
         
-        List<Move<SubsetSolution>> moves;
+        Set<Move<SubsetSolution>> moves;
                 
         // 1) generate moves for empty solution
         

@@ -15,7 +15,6 @@
 package org.jamesframework.core.search.neigh.subset;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
@@ -138,7 +137,7 @@ public class SingleSwapNeighbourhoodTest {
         sol.deselectAll(SetUtilities.getRandomSubset(sol.getSelectedIDs(), (int)(0.5*sol.getNumSelectedIDs()), RG));
         
         // generate all possible moves
-        List<Move<SubsetSolution>> moves = neigh.getAllMoves(sol);
+        Set<Move<SubsetSolution>> moves = neigh.getAllMoves(sol);
         // verify size
         assertEquals(sol.getNumSelectedIDs()*sol.getNumUnselectedIDs(), moves.size());
         
