@@ -4,6 +4,7 @@ org.jamesframework.core.problems.constraints
 org.jamesframework.core.problems.datatypes
 org.jamesframework.core.problems.objectives
 org.jamesframework.core.problems.solutions
+org.jamesframework.core.search
 org.jamesframework.core.search.neigh
 org.jamesframework.core.search.neigh.subset
 org.jamesframework.core.util
