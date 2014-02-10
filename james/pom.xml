@@ -1,122 +1,168 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <!-- inherit from Sonatype OSS parent POM -->
-  <parent>
-    <groupId>org.sonatype.oss</groupId>
-    <artifactId>oss-parent</artifactId>
-    <version>7</version>
-  </parent>
-  <!-- project info -->
-  <groupId>org.jamesframework</groupId>
-  <artifactId>james</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <name>james</name>
-  <description>James is an extensive Java framework for optimization using local search metaheuristics.</description>
-  <url>http://www.jamesframework.org</url>
-  <licenses>
-    <license>
-      <name>The Apache Software License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
-  <scm>
-    <connection>scm:git:git@github.com:hdbeukel/james.git</connection>
-    <developerConnection>scm:git:git@github.com:hdbeukel/james.git</developerConnection>
-    <url>https://github.com/hdbeukel/james</url>
-  </scm>
-  <developers>
-    <developer>
-      <id>hdbeukel</id>
-      <name>Herman De Beukelaer</name>
-      <email>Herman.DeBeukelaer@UGent.be</email>
-    </developer>
-  </developers>
-  <build>
-    <pluginManagement>
+    <modelVersion>4.0.0</modelVersion>
+    <!-- inherit from Sonatype OSS parent POM -->
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+    <!-- project info -->
+    <groupId>org.jamesframework</groupId>
+    <artifactId>james</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>james</name>
+    <description>James is an extensive Java framework for optimization using local search metaheuristics.</description>
+    <url>http://www.jamesframework.org</url>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <connection>scm:git:git@github.com:hdbeukel/james.git</connection>
+        <developerConnection>scm:git:git@github.com:hdbeukel/james.git</developerConnection>
+        <url>https://github.com/hdbeukel/james</url>
+    </scm>
+    <developers>
+        <developer>
+            <id>hdbeukel</id>
+            <name>Herman De Beukelaer</name>
+            <email>Herman.DeBeukelaer@UGent.be</email>
+        </developer>
+    </developers>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!-- Sonatype OSSRH settings -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.1</version>
+                    <configuration>
+                        <mavenExecutorId>forked-path</mavenExecutorId>
+                        <useReleaseProfile>false</useReleaseProfile>
+                        <arguments>${arguments} -Psonatype-oss-release</arguments>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
-            <!-- Sonatype OSSRH settings -->
+            <!-- set compiler to use java 1.7 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-release-plugin</artifactId>
-                <version>2.1</version>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
                 <configuration>
-                    <mavenExecutorId>forked-path</mavenExecutorId>
-                    <useReleaseProfile>false</useReleaseProfile>
-                    <arguments>${arguments} -Psonatype-oss-release</arguments>
+                    <source>1.7</source>
+                    <target>1.7</target>
                 </configuration>
             </plugin>
+            <!-- create test jars -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                        <configuration>
+                            <skipIfEmpty>
+                                true
+                            </skipIfEmpty>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- create source jars -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- create javadoc jars -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
-    </pluginManagement>
-    <plugins>
-      <!-- set compiler to use java 1.7 -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3.2</version>
-        <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
-        </configuration>
-      </plugin>
-    </plugins>
-    <resources>
-        <!-- include LICENSE and NOTICE of respective module in generated jars -->
-        <resource>
-            <directory>.</directory>
-            <targetPath>META-INF</targetPath>
-            <includes>
-                <include>LICENSE</include>
-                <include>NOTICE</include>
-            </includes>
-        </resource>
-    </resources>
-    <testResources>
-        <!-- same as above for test jars -->
-        <testResource>
-            <directory>.</directory>
-            <targetPath>META-INF</targetPath>
-            <includes>
-                <include>LICENSE</include>
-                <include>NOTICE</include>
-            </includes>
-        </testResource>
-    </testResources>
-  </build>
-  <profiles>
-    <!-- PGP sign upon release -->
-    <profile>
-      <id>release-sign-artifacts</id>
-      <activation>
-        <property>
-          <name>performRelease</name>
-          <value>true</value>
-        </property>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <version>1.4</version>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
-  <modules>
-    <module>james-core</module>
-    <module>james-extensions</module>
-  </modules>
+        <resources>
+            <!-- include LICENSE and NOTICE of respective module in generated jars -->
+            <resource>
+                <directory>.</directory>
+                <targetPath>META-INF</targetPath>
+                <includes>
+                    <include>LICENSE</include>
+                    <include>NOTICE</include>
+                </includes>
+            </resource>
+        </resources>
+        <testResources>
+            <!-- same as above for test jars -->
+            <testResource>
+                <directory>.</directory>
+                <targetPath>META-INF</targetPath>
+                <includes>
+                    <include>LICENSE</include>
+                    <include>NOTICE</include>
+                </includes>
+            </testResource>
+        </testResources>
+    </build>
+    <profiles>
+        <!-- PGP sign upon release -->
+        <profile>
+            <id>release-sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.4</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+    <modules>
+        <module>james-core</module>
+        <module>james-extensions</module>
+    </modules>
 </project>
