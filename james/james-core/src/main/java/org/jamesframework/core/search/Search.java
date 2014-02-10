@@ -98,6 +98,7 @@ public interface Search<SolutionType extends Solution> {
     
     /**
      * Instructs the search to check its stop criteria at regular intervals separated by the given period.
+     * A search should provide a default period which is overridden by calling this method.
      * 
      * @param period time between subsequent stop criterion checks
      * @param timeUnit corresponding time unit
