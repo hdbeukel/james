@@ -12,9 +12,10 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-package org.jamesframework.core.search;
+package org.jamesframework.core.search.stopcriteria;
 
 import org.jamesframework.core.exceptions.IncompatibleStopCriterionException;
+import org.jamesframework.core.search.Search;
 
 /**
  * Interface of a stop criterion that may be attached to a search to terminate it when a certain condition is met.
