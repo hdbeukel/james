@@ -18,7 +18,7 @@ import org.jamesframework.core.problems.solutions.Solution;
 
 /**
  * Interface of a listener which may be attached to any search with the specified solution type (or a more specific solution type).
- * It will be informed when the search has started, stopped, found a new best solution, or fired a search messages.
+ * It will be informed when the search has started, stopped, found a new best solution, completed a step or fired a search message.
  * 
  * @param <SolutionType> solution type of the search to which the listener may be attached, required to extend {@link Solution}
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
@@ -55,5 +55,13 @@ public interface SearchListener<SolutionType extends Solution> {
      * @param newBestSolutionEvaluation evaluation of the new best solution
      */
     public void newBestSolution(Search<? extends SolutionType> search, SolutionType newBestSolution, double newBestSolutionEvaluation);
+    
+    /**
+     * Called when the search has completed a step.
+     * 
+     * @param search search which has completed a step
+     * @param numSteps number of steps completed so far
+     */
+    public void stepCompleted(Search<? extends SolutionType> search, long numSteps);
 
 }
