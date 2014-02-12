@@ -60,7 +60,7 @@ public interface SearchListener<SolutionType extends Solution> {
      * Called when the search has completed a step.
      * 
      * @param search search which has completed a step
-     * @param numSteps number of steps completed so far
+     * @param numSteps number of steps completed so far (during the current search run)
      */
     public void stepCompleted(Search<? extends SolutionType> search, long numSteps);
 
