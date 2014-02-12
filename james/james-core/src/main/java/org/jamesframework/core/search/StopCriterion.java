@@ -18,27 +18,18 @@ import org.jamesframework.core.exceptions.IncompatibleStopCriterionException;
 
 /**
  * Interface of a stop criterion that may be attached to a search to terminate it when a certain condition is met.
- * A specific stop criterion might be applicable to a certain search type only, therefore it provides a method to
- * check whether it is compatible with a given search. When trying to use it for an incompatible search, an exception
- * should be thrown.
+ * A specific stop criterion might be applicable to a certain search type only. When trying to use it for an incompatible
+ * search, an {@link IncompatibleStopCriterionException} may be thrown.
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
 public interface StopCriterion {
 
     /**
-     * Checks whether this stop criterion is compatible with the given search.
-     * 
-     * @param search search to check for compatibility
-     * @return <code>true</code> if the search and stop criterion are compatible
-     */
-    public boolean isCompatible(Search<?> search);
-    
-    /**
      * Checks the stop condition for a given search. If the search is not compatible with
-     * this stop criterion, i.e. if <code>isCompatible(search)</code> return <code>false</code>,
-     * an exception is thrown. Else, <code>true</code> is returned if the stop condition
-     * is met for the given search, so that the search should be terminated.
+     * this stop criterion, an {@link IncompatibleStopCriterionException} may be thrown.
+     * Else, <code>true</code> is returned if the stop condition is met for the given
+     * search, so that it should be terminated.
      * 
      * @throws IncompatibleStopCriterionException when the given search is not compatible with the stop criterion
      * @param search search for which the stop criterion should be checked
