@@ -15,7 +15,7 @@
 package org.jamesframework.core.search;
 
 /**
- * Enum indicating the current search status.
+ * Enumeration of possible search statuses.
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
