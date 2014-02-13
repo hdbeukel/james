@@ -14,11 +14,15 @@
 
 package org.jamesframework.core.search;
 
+import org.jamesframework.core.exceptions.IncompatibleSearchListenerException;
 import org.jamesframework.core.problems.solutions.Solution;
 
 /**
- * Interface of a listener which may be attached to any search with the specified solution type (or a more specific solution type).
- * It will be informed when the search has started, stopped, found a new best solution, completed a step or fired a search message.
+ * Interface of a listener which may be attached to a search with the specified solution type (or a more specific solution type).
+ * It will be informed whenever the search has started, stopped, found a new best solution, completed a step or fired a search message.
+ * Every callback receives a reference to the search that called it, which may be cast to a specific search type if required; when
+ * this cast fails because a listener has been attached to an incompatible search, an {@link IncompatibleSearchListenerException}
+ * may be thrown.
  * 
  * @param <SolutionType> solution type of the search to which the listener may be attached, required to extend {@link Solution}
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
