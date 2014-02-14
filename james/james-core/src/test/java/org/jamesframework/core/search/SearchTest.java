@@ -11,6 +11,19 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
+//  Copyright 2014 Herman De Beukelaer
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
 
 package org.jamesframework.core.search;
 
@@ -24,7 +37,7 @@ import org.jamesframework.core.util.JamesConstants;
 import org.jamesframework.test.util.FakeSubsetData;
 import org.jamesframework.test.util.FakeSubsetObjectiveWithData;
 import org.jamesframework.test.util.FakeSubsetPenalizingConstraint;
-import org.jamesframework.test.util.RandomSearch;
+import org.jamesframework.test.util.RandomSearchWithInternalMaxSteps;
 import org.jamesframework.test.util.TestConstants;
 import org.junit.AfterClass;
 import org.junit.Test;
@@ -93,7 +106,7 @@ public class SearchTest {
         obj = new FakeSubsetObjectiveWithData();
         problem = new SubsetProblemWithData(obj, data, SUBSET_SIZE);
         constraint = new FakeSubsetPenalizingConstraint(MIN_SCORE_DIFF);
-        search = new RandomSearch(problem, NUM_STEPS);
+        search = new RandomSearchWithInternalMaxSteps(problem, NUM_STEPS);
     }
 
     /**

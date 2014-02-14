@@ -16,7 +16,6 @@ package org.jamesframework.test.util;
 
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.solutions.Solution;
-import org.jamesframework.core.search.Search;
 
 /**
  * Search stub that samples a random solution in every step for comparison with the best known solution.
@@ -24,18 +23,36 @@ import org.jamesframework.core.search.Search;
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
-public class RandomSearch<SolutionType extends Solution> extends Search<SolutionType> {
+public class RandomSearchWithInternalMaxSteps<SolutionType extends Solution> extends RandomSearch<SolutionType> {
     
-    public RandomSearch(Problem<SolutionType> problem){
+    // search stops internally after this number of steps
+    private int steps;
+    // step counter
+    private int curStep;
+    
+    public RandomSearchWithInternalMaxSteps(Problem<SolutionType> problem, int steps){
         super(problem);
+        this.steps = steps;
+        curStep = 0;
+    }
+    
+    @Override
+    public void searchStarted() {
+        // reset step counter
+        curStep = 0;
     }
     
     @Override
     protected void searchStep() {
-        // sample random solution
-        SolutionType sol = getProblem().createRandomSolution();
-        // check if new best solution found
-        updateBestSolution(sol);
+        if(curStep < steps){
+            // perform step
+            super.searchStep();
+            // increase step counter
+            curStep++;
+        } else {
+            // stop search
+            stop();
+        }
     }
 
 }
