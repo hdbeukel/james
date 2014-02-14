@@ -309,8 +309,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#updateBestSolution(SolutionType)">updateBestSolution</a></strong>(<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&nbsp;newSolution)</code>
 <div class="block">
- Compares a new solution with the currently known best solution, and updates this best solution
- if the new solution is not rejected (see <a href="../../../../org/jamesframework/core/problems/Problem.html#rejectSolution(SolutionType)"><code>Problem.rejectSolution(Solution)</code></a>) and</div>
+ Checks whether a new best solution has been found and updates it accordingly.</div>
 </td>
 </tr>
 </table>
@@ -538,8 +537,9 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <h4>updateBestSolution</h4>
 <pre>protected&nbsp;void&nbsp;updateBestSolution(<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&nbsp;newSolution)</pre>
 <div class="block"><p>
- Compares a new solution with the currently known best solution, and updates this best solution
- if the new solution is not rejected (see <a href="../../../../org/jamesframework/core/problems/Problem.html#rejectSolution(SolutionType)"><code>Problem.rejectSolution(Solution)</code></a>) and
+ Checks whether a new best solution has been found and updates it accordingly.
+ The best solution is updated only if the new solution is <b>not</b> rejected
+ (see <a href="../../../../org/jamesframework/core/problems/Problem.html#rejectSolution(SolutionType)"><code>Problem.rejectSolution(Solution)</code></a>) and
  </p>
  <ul>
   <li>no best solution had been set before, or</li>
