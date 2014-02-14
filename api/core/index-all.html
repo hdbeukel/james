@@ -599,6 +599,14 @@
 </a>
 <h2 class="title">M</h2>
 <dl>
+<dt><a href="./org/jamesframework/core/search/stopcriteria/MaxRuntime.html" title="class in org.jamesframework.core.search.stopcriteria"><span class="strong">MaxRuntime</span></a> - Class in <a href="./org/jamesframework/core/search/stopcriteria/package-summary.html">org.jamesframework.core.search.stopcriteria</a></dt>
+<dd>
+<div class="block">Stop criterion that limits the maximum runtime of a search run.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/stopcriteria/MaxRuntime.html#MaxRuntime(long, java.util.concurrent.TimeUnit)">MaxRuntime(long, TimeUnit)</a></span> - Constructor for class org.jamesframework.core.search.stopcriteria.<a href="./org/jamesframework/core/search/stopcriteria/MaxRuntime.html" title="class in org.jamesframework.core.search.stopcriteria">MaxRuntime</a></dt>
+<dd>
+<div class="block">Create a stop criterion to limit the runtime of a search run.</div>
+</dd>
 <dt><a href="./org/jamesframework/core/problems/objectives/MinMaxObjective.html" title="class in org.jamesframework.core.problems.objectives"><span class="strong">MinMaxObjective</span></a>&lt;<a href="./org/jamesframework/core/problems/objectives/MinMaxObjective.html" title="type parameter in MinMaxObjective">SolutionType</a> extends <a href="./org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>,<a href="./org/jamesframework/core/problems/objectives/MinMaxObjective.html" title="type parameter in MinMaxObjective">DataType</a>&gt; - Class in <a href="./org/jamesframework/core/problems/objectives/package-summary.html">org.jamesframework.core.problems.objectives</a></dt>
 <dd>
 <div class="block">Abstract objective that handles minimization/maximization settings.</div>
@@ -718,10 +726,6 @@
 <dd>
 <div class="block">Removes a stop criterion.</div>
 </dd>
-<dt><span class="strong"><a href="./org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#run()">run()</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="./org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria">StopCriterionChecker</a></dt>
-<dd>
-<div class="block">Performs the actual check when being activated by the underlying timer thread.</div>
-</dd>
 </dl>
 <a name="_S_">
 <!--   -->
@@ -766,6 +770,10 @@
 <dt><span class="strong"><a href="./org/jamesframework/core/search/SearchListener.html#searchMessage(org.jamesframework.core.search.Search, java.lang.String)">searchMessage(Search&lt;? extends SolutionType&gt;, String)</a></span> - Method in interface org.jamesframework.core.search.<a href="./org/jamesframework/core/search/SearchListener.html" title="interface in org.jamesframework.core.search">SearchListener</a></dt>
 <dd>
 <div class="block">Called when the search sends a message to its listeners.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/stopcriteria/MaxRuntime.html#searchShouldStop(org.jamesframework.core.search.Search)">searchShouldStop(Search&lt;?&gt;)</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="./org/jamesframework/core/search/stopcriteria/MaxRuntime.html" title="class in org.jamesframework.core.search.stopcriteria">MaxRuntime</a></dt>
+<dd>
+<div class="block">Checks whether the maximum runtime has been exceeded for the given search.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/stopcriteria/StopCriterion.html#searchShouldStop(org.jamesframework.core.search.Search)">searchShouldStop(Search&lt;?&gt;)</a></span> - Method in interface org.jamesframework.core.search.stopcriteria.<a href="./org/jamesframework/core/search/stopcriteria/StopCriterion.html" title="interface in org.jamesframework.core.search.stopcriteria">StopCriterion</a></dt>
 <dd>
