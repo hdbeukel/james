@@ -26,16 +26,30 @@ import org.jamesframework.core.search.Search;
  */
 public class RandomSearch<SolutionType extends Solution> extends Search<SolutionType> {
     
-    public RandomSearch(Problem<SolutionType> problem){
+    // search stops internally after this number of steps
+    private int steps;
+    // step counter
+    private int curStep;
+    
+    public RandomSearch(Problem<SolutionType> problem, int steps){
         super(problem);
+        this.steps = steps;
+        curStep = 0;
     }
     
     @Override
     protected void searchStep() {
-        // sample random solution
-        SolutionType sol = getProblem().createRandomSolution();
-        // check if new best solution found
-        updateBestSolution(sol);
+        if(curStep < steps){
+            // sample random solution
+            SolutionType sol = getProblem().createRandomSolution();
+            // check if new best solution found
+            updateBestSolution(sol);
+            // increase step counter
+            curStep++;
+        } else {
+            // stop search
+            stop();
+        }
     }
 
 }
