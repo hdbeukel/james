@@ -21,6 +21,7 @@ import org.jamesframework.core.problems.solutions.Solution;
  * as an easy entry point for custom search listener which desired to listen only to a subset of events fired
  * by a search, by overriding the corresponding empty implementation.
  * 
+ * @param <SolutionType> solution type, required to extend {@link Solution}
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
 public class EmptySearchListener<SolutionType extends Solution> implements SearchListener<SolutionType> {
