@@ -36,7 +36,7 @@
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../org/jamesframework/core/search/SearchListener.html" title="interface in org.jamesframework.core.search"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../../org/jamesframework/core/search/StopCriterion.html" title="interface in org.jamesframework.core.search"><span class="strong">Next Class</span></a></li>
+<li>Next Class</li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?org/jamesframework/core/search/SearchStatus.html" target="_top">Frames</a></li>
@@ -106,7 +106,7 @@
 <br>
 <pre>public enum <span class="strong">SearchStatus</span>
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a>&lt;<a href="../../../../org/jamesframework/core/search/SearchStatus.html" title="enum in org.jamesframework.core.search">SearchStatus</a>&gt;</pre>
-<div class="block">Enum indicating the current search status.</div>
+<div class="block">Enumeration of possible search statuses.</div>
 <dl><dt><span class="strong">Author:</span></dt>
   <dd>Herman De Beukelaer <herman.debeukelaer@ugent.be></dd></dl>
 </li>
@@ -127,13 +127,24 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Enum.html?is
 <th class="colOne" scope="col">Enum Constant and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../../org/jamesframework/core/search/SearchStatus.html#IDLE">IDLE</a></strong></code>&nbsp;</td>
+<td class="colOne"><code><strong><a href="../../../../org/jamesframework/core/search/SearchStatus.html#IDLE">IDLE</a></strong></code>
+<div class="block">Search is idle and may be (re)started.</div>
+</td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><strong><a href="../../../../org/jamesframework/core/search/SearchStatus.html#RUNNING">RUNNING</a></strong></code>&nbsp;</td>
+<td class="colOne"><code><strong><a href="../../../../org/jamesframework/core/search/SearchStatus.html#INITIALIZING">INITIALIZING</a></strong></code>
+<div class="block">Search is initializing its current run.</div>
+</td>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../../org/jamesframework/core/search/SearchStatus.html#TERMINATING">TERMINATING</a></strong></code>&nbsp;</td>
+<td class="colOne"><code><strong><a href="../../../../org/jamesframework/core/search/SearchStatus.html#RUNNING">RUNNING</a></strong></code>
+<div class="block">Search is actively running.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><code><strong><a href="../../../../org/jamesframework/core/search/SearchStatus.html#TERMINATING">TERMINATING</a></strong></code>
+<div class="block">Search is terminating its current run.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -199,6 +210,17 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>IDLE</h4>
 <pre>public static final&nbsp;<a href="../../../../org/jamesframework/core/search/SearchStatus.html" title="enum in org.jamesframework.core.search">SearchStatus</a> IDLE</pre>
+<div class="block">Search is idle and may be (re)started.</div>
+</li>
+</ul>
+<a name="INITIALIZING">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>INITIALIZING</h4>
+<pre>public static final&nbsp;<a href="../../../../org/jamesframework/core/search/SearchStatus.html" title="enum in org.jamesframework.core.search">SearchStatus</a> INITIALIZING</pre>
+<div class="block">Search is initializing its current run.</div>
 </li>
 </ul>
 <a name="RUNNING">
@@ -208,6 +230,7 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>RUNNING</h4>
 <pre>public static final&nbsp;<a href="../../../../org/jamesframework/core/search/SearchStatus.html" title="enum in org.jamesframework.core.search">SearchStatus</a> RUNNING</pre>
+<div class="block">Search is actively running.</div>
 </li>
 </ul>
 <a name="TERMINATING">
@@ -217,6 +240,7 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>TERMINATING</h4>
 <pre>public static final&nbsp;<a href="../../../../org/jamesframework/core/search/SearchStatus.html" title="enum in org.jamesframework.core.search">SearchStatus</a> TERMINATING</pre>
+<div class="block">Search is terminating its current run.</div>
 </li>
 </ul>
 </li>
@@ -291,7 +315,7 @@ with the specified name</dd>
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../org/jamesframework/core/search/SearchListener.html" title="interface in org.jamesframework.core.search"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../../org/jamesframework/core/search/StopCriterion.html" title="interface in org.jamesframework.core.search"><span class="strong">Next Class</span></a></li>
+<li>Next Class</li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?org/jamesframework/core/search/SearchStatus.html" target="_top">Frames</a></li>

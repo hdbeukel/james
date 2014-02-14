@@ -61,11 +61,15 @@
 <!--   -->
 </a></div>
 <!-- ========= END OF TOP NAVBAR ========= -->
-<div class="contentContainer"><a href="#_A_">A</a>&nbsp;<a href="#_C_">C</a>&nbsp;<a href="#_D_">D</a>&nbsp;<a href="#_E_">E</a>&nbsp;<a href="#_G_">G</a>&nbsp;<a href="#_H_">H</a>&nbsp;<a href="#_I_">I</a>&nbsp;<a href="#_J_">J</a>&nbsp;<a href="#_M_">M</a>&nbsp;<a href="#_N_">N</a>&nbsp;<a href="#_O_">O</a>&nbsp;<a href="#_P_">P</a>&nbsp;<a href="#_R_">R</a>&nbsp;<a href="#_S_">S</a>&nbsp;<a href="#_T_">T</a>&nbsp;<a href="#_U_">U</a>&nbsp;<a href="#_V_">V</a>&nbsp;<a name="_A_">
+<div class="contentContainer"><a href="#_A_">A</a>&nbsp;<a href="#_C_">C</a>&nbsp;<a href="#_D_">D</a>&nbsp;<a href="#_E_">E</a>&nbsp;<a href="#_F_">F</a>&nbsp;<a href="#_G_">G</a>&nbsp;<a href="#_H_">H</a>&nbsp;<a href="#_I_">I</a>&nbsp;<a href="#_J_">J</a>&nbsp;<a href="#_M_">M</a>&nbsp;<a href="#_N_">N</a>&nbsp;<a href="#_O_">O</a>&nbsp;<a href="#_P_">P</a>&nbsp;<a href="#_R_">R</a>&nbsp;<a href="#_S_">S</a>&nbsp;<a href="#_T_">T</a>&nbsp;<a href="#_U_">U</a>&nbsp;<a href="#_V_">V</a>&nbsp;<a name="_A_">
 <!--   -->
 </a>
 <h2 class="title">A</h2>
 <dl>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#add(org.jamesframework.core.search.stopcriteria.StopCriterion)">add(StopCriterion)</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="./org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria">StopCriterionChecker</a></dt>
+<dd>
+<div class="block">Add a stop criterion to check.</div>
+</dd>
 <dt><a href="./org/jamesframework/core/search/neigh/subset/AdditionMove.html" title="class in org.jamesframework.core.search.neigh.subset"><span class="strong">AdditionMove</span></a> - Class in <a href="./org/jamesframework/core/search/neigh/subset/package-summary.html">org.jamesframework.core.search.neigh.subset</a></dt>
 <dd>
 <div class="block">Simple subset move that adds a single ID to the current selection.</div>
@@ -83,11 +87,11 @@
 <dd>
 <div class="block">Add a rejecting constraint to the problem.</div>
 </dd>
-<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#addSearchListener(org.jamesframework.core.search.SearchListener)">addSearchListener(SearchListener&lt;? super SolutionType&gt;)</a></span> - Method in interface org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="interface in org.jamesframework.core.search">Search</a></dt>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#addSearchListener(org.jamesframework.core.search.SearchListener)">addSearchListener(SearchListener&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
 <div class="block">Add a search listener.</div>
 </dd>
-<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#addStopCriterion(org.jamesframework.core.search.StopCriterion)">addStopCriterion(StopCriterion)</a></span> - Method in interface org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="interface in org.jamesframework.core.search">Search</a></dt>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#addStopCriterion(org.jamesframework.core.search.stopcriteria.StopCriterion)">addStopCriterion(StopCriterion)</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
 <div class="block">Adds a stop criterion used to decide when the search should stop running.</div>
 </dd>
@@ -113,6 +117,11 @@
 </a>
 <h2 class="title">C</h2>
 <dl>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#computeDelta(double, double)">computeDelta(double, double)</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
+<dd>
+<div class="block">Computes the amount of improvement of <code>currentEvaluation</code> over <code>previousEvaluation</code>, taking into
+ account whether a maximization or minimization problem is being solved, where positive deltas indicate improvement.</div>
+</dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/problems/solutions/Solution.html#computeHashCode()">computeHashCode()</a></span> - Method in class org.jamesframework.core.problems.solutions.<a href="./org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a></dt>
 <dd>
 <div class="block">Compute a hash code for this solution.</div>
@@ -187,6 +196,14 @@
 </a>
 <h2 class="title">E</h2>
 <dl>
+<dt><a href="./org/jamesframework/core/search/EmptySearchListener.html" title="class in org.jamesframework.core.search"><span class="strong">EmptySearchListener</span></a>&lt;<a href="./org/jamesframework/core/search/EmptySearchListener.html" title="type parameter in EmptySearchListener">SolutionType</a> extends <a href="./org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Class in <a href="./org/jamesframework/core/search/package-summary.html">org.jamesframework.core.search</a></dt>
+<dd>
+<div class="block">An empty search listener contains empty implementations of all methods in <a href="./org/jamesframework/core/search/SearchListener.html" title="interface in org.jamesframework.core.search"><code>SearchListener</code></a>, acting as
+ as an easy entry point for custom search listener which desired to listen only to a subset of events fired
+ by a search, by overriding the corresponding empty implementation.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/EmptySearchListener.html#EmptySearchListener()">EmptySearchListener()</a></span> - Constructor for class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/EmptySearchListener.html" title="class in org.jamesframework.core.search">EmptySearchListener</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/problems/solutions/Solution.html#equals(java.lang.Object)">equals(Object)</a></span> - Method in class org.jamesframework.core.problems.solutions.<a href="./org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a></dt>
 <dd>
 <div class="block">Overrides default equality check by verifying whether the given object is of type
@@ -205,6 +222,16 @@
 <dd>
 <div class="block">Evaluates a solution by taking into account both the score calculated by the objective function and the
  penalizing constraints (if any).</div>
+</dd>
+</dl>
+<a name="_F_">
+<!--   -->
+</a>
+<h2 class="title">F</h2>
+<dl>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#fireSearchMessage(java.lang.String)">fireSearchMessage(String)</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
+<dd>
+<div class="block">Calls <a href="./org/jamesframework/core/search/SearchListener.html#searchMessage(org.jamesframework.core.search.Search, java.lang.String)"><code>SearchListener.searchMessage(Search, String)</code></a> on every attached search listener.</div>
 </dd>
 </dl>
 <a name="_G_">
@@ -255,17 +282,13 @@
 <div class="block">Generates a set of all possible swap moves that transform the given subset solution by removing a single ID from
  the current selection and replacing it with a new ID which is currently not selected.</div>
 </dd>
-<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#getBestSolution()">getBestSolution()</a></span> - Method in interface org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="interface in org.jamesframework.core.search">Search</a></dt>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#getBestSolution()">getBestSolution()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
 <div class="block">Returns the best solution found so far.</div>
 </dd>
-<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#getBestSolutionEvaluation()">getBestSolutionEvaluation()</a></span> - Method in interface org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="interface in org.jamesframework.core.search">Search</a></dt>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#getBestSolutionEvaluation()">getBestSolutionEvaluation()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
 <div class="block">Get the evaluation of the best solution found so far.</div>
-</dd>
-<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#getCurrentRuntime()">getCurrentRuntime()</a></span> - Method in interface org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="interface in org.jamesframework.core.search">Search</a></dt>
-<dd>
-<div class="block">Get the runtime of the <i>current</i> run, in milliseconds.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/problems/ProblemWithData.html#getData()">getData()</a></span> - Method in class org.jamesframework.core.problems.<a href="./org/jamesframework/core/problems/ProblemWithData.html" title="class in org.jamesframework.core.problems">ProblemWithData</a></dt>
 <dd>
@@ -310,6 +333,11 @@
 <dt><span class="strong"><a href="./org/jamesframework/core/search/neigh/subset/SinglePerturbationNeighbourhood.html#getMaxSubsetSize()">getMaxSubsetSize()</a></span> - Method in class org.jamesframework.core.search.neigh.subset.<a href="./org/jamesframework/core/search/neigh/subset/SinglePerturbationNeighbourhood.html" title="class in org.jamesframework.core.search.neigh.subset">SinglePerturbationNeighbourhood</a></dt>
 <dd>
 <div class="block">Get the maximum subset size specified at construction.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#getMinDelta()">getMinDelta()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
+<dd>
+<div class="block">Get the minimum improvement in evaluation of a newly found best solution over the previously known best solution,
+ during the <i>current</i> run.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/problems/SubsetProblem.html#getMinSubsetSize()">getMinSubsetSize()</a></span> - Method in interface org.jamesframework.core.problems.<a href="./org/jamesframework/core/problems/SubsetProblem.html" title="interface in org.jamesframework.core.problems">SubsetProblem</a></dt>
 <dd>
@@ -367,6 +395,10 @@
 <dd>
 <div class="block">Get the objective function.</div>
 </dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#getProblem()">getProblem()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
+<dd>
+<div class="block">Get the problem being solved, as specified at construction.</div>
+</dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/util/SetUtilities.html#getRandomElement(java.util.Set, java.util.Random)">getRandomElement(Set&lt;? extends T&gt;, Random)</a></span> - Static method in class org.jamesframework.core.util.<a href="./org/jamesframework/core/util/SetUtilities.html" title="class in org.jamesframework.core.util">SetUtilities</a></dt>
 <dd>
 <div class="block">Select a random element from a given set (uniformly distributed).</div>
@@ -390,6 +422,10 @@
 <dd>
 <div class="block">Selects a random subset of a specific size from a given set (uniformly distributed).</div>
 </dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#getRuntime()">getRuntime()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
+<dd>
+<div class="block">Get the runtime of the <i>current</i> run, including initialization, in milliseconds.</div>
+</dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/problems/solutions/SubsetSolution.html#getSelectedIDs()">getSelectedIDs()</a></span> - Method in class org.jamesframework.core.problems.solutions.<a href="./org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a></dt>
 <dd>
 <div class="block">Returns an unmodifiable view of the set of currently selected IDs.</div>
@@ -398,9 +434,21 @@
 <dd>
 <div class="block">Returns the solution that was being modified when this exception occurred.</div>
 </dd>
-<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#getStatus()">getStatus()</a></span> - Method in interface org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="interface in org.jamesframework.core.search">Search</a></dt>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#getStatus()">getStatus()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
 <div class="block">Get the current search status.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#getSteps()">getSteps()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
+<dd>
+<div class="block">Get the number of completed steps in the <i>current</i> run.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#getStepsWithoutImprovement()">getStepsWithoutImprovement()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
+<dd>
+<div class="block">Get the number of consecutive steps completed during the <i>current</i> run without finding any improvement.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#getTimeWithoutImprovement()">getTimeWithoutImprovement()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
+<dd>
+<div class="block">Get the amount of time elapsed during the <i>current</i> run without finding any improvement, in milliseconds.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/problems/solutions/SubsetSolution.html#getTotalNumIDs()">getTotalNumIDs()</a></span> - Method in class org.jamesframework.core.problems.solutions.<a href="./org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a></dt>
 <dd>
@@ -430,6 +478,26 @@
 </a>
 <h2 class="title">I</h2>
 <dl>
+<dt><a href="./org/jamesframework/core/exceptions/IncompatibleSearchListenerException.html" title="class in org.jamesframework.core.exceptions"><span class="strong">IncompatibleSearchListenerException</span></a> - Exception in <a href="./org/jamesframework/core/exceptions/package-summary.html">org.jamesframework.core.exceptions</a></dt>
+<dd>
+<div class="block">Exception thrown when an incompatible search listener is attached to a search.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/exceptions/IncompatibleSearchListenerException.html#IncompatibleSearchListenerException()">IncompatibleSearchListenerException()</a></span> - Constructor for exception org.jamesframework.core.exceptions.<a href="./org/jamesframework/core/exceptions/IncompatibleSearchListenerException.html" title="class in org.jamesframework.core.exceptions">IncompatibleSearchListenerException</a></dt>
+<dd>
+<div class="block">Creates a new instance without detail message.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/exceptions/IncompatibleSearchListenerException.html#IncompatibleSearchListenerException(java.lang.String)">IncompatibleSearchListenerException(String)</a></span> - Constructor for exception org.jamesframework.core.exceptions.<a href="./org/jamesframework/core/exceptions/IncompatibleSearchListenerException.html" title="class in org.jamesframework.core.exceptions">IncompatibleSearchListenerException</a></dt>
+<dd>
+<div class="block">Constructs an instance with the specified detail message.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/exceptions/IncompatibleSearchListenerException.html#IncompatibleSearchListenerException(java.lang.Throwable)">IncompatibleSearchListenerException(Throwable)</a></span> - Constructor for exception org.jamesframework.core.exceptions.<a href="./org/jamesframework/core/exceptions/IncompatibleSearchListenerException.html" title="class in org.jamesframework.core.exceptions">IncompatibleSearchListenerException</a></dt>
+<dd>
+<div class="block">Constructs an instance with the specified cause.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/exceptions/IncompatibleSearchListenerException.html#IncompatibleSearchListenerException(java.lang.String, java.lang.Throwable)">IncompatibleSearchListenerException(String, Throwable)</a></span> - Constructor for exception org.jamesframework.core.exceptions.<a href="./org/jamesframework/core/exceptions/IncompatibleSearchListenerException.html" title="class in org.jamesframework.core.exceptions">IncompatibleSearchListenerException</a></dt>
+<dd>
+<div class="block">Constructs an instance with the specified detail message and cause.</div>
+</dd>
 <dt><a href="./org/jamesframework/core/exceptions/IncompatibleStopCriterionException.html" title="class in org.jamesframework.core.exceptions"><span class="strong">IncompatibleStopCriterionException</span></a> - Exception in <a href="./org/jamesframework/core/exceptions/package-summary.html">org.jamesframework.core.exceptions</a></dt>
 <dd>
 <div class="block">Exception thrown when an incompatible stop criterion is attached to a search.</div>
@@ -450,9 +518,21 @@
 <dd>
 <div class="block">Constructs an instance with the specified detail message and cause.</div>
 </dd>
-<dt><span class="strong"><a href="./org/jamesframework/core/search/StopCriterion.html#isCompatible(org.jamesframework.core.search.Search)">isCompatible(Search&lt;?&gt;)</a></span> - Method in interface org.jamesframework.core.search.<a href="./org/jamesframework/core/search/StopCriterion.html" title="interface in org.jamesframework.core.search">StopCriterion</a></dt>
+<dt><span class="strong"><a href="./org/jamesframework/core/util/JamesConstants.html#INVALID_DELTA">INVALID_DELTA</a></span> - Static variable in class org.jamesframework.core.util.<a href="./org/jamesframework/core/util/JamesConstants.html" title="class in org.jamesframework.core.util">JamesConstants</a></dt>
 <dd>
-<div class="block">Checks whether this stop criterion is compatible with the given search.</div>
+<div class="block">Indicates an invalid delta (amount of improvement).</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/util/JamesConstants.html#INVALID_STEP_COUNT">INVALID_STEP_COUNT</a></span> - Static variable in class org.jamesframework.core.util.<a href="./org/jamesframework/core/util/JamesConstants.html" title="class in org.jamesframework.core.util">JamesConstants</a></dt>
+<dd>
+<div class="block">Indicates an invalid number of steps.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/util/JamesConstants.html#INVALID_TIME_SPAN">INVALID_TIME_SPAN</a></span> - Static variable in class org.jamesframework.core.util.<a href="./org/jamesframework/core/util/JamesConstants.html" title="class in org.jamesframework.core.util">JamesConstants</a></dt>
+<dd>
+<div class="block">Used to indicate an invalid time span.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/util/JamesConstants.html#INVALID_TIMESTAMP">INVALID_TIMESTAMP</a></span> - Static variable in class org.jamesframework.core.util.<a href="./org/jamesframework/core/util/JamesConstants.html" title="class in org.jamesframework.core.util">JamesConstants</a></dt>
+<dd>
+<div class="block">Used to indicate an invalid timestamp, for example belonging to an event which has not yet occurred.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/problems/objectives/MinMaxObjective.html#isMinimizing()">isMinimizing()</a></span> - Method in class org.jamesframework.core.problems.objectives.<a href="./org/jamesframework/core/problems/objectives/MinMaxObjective.html" title="class in org.jamesframework.core.problems.objectives">MinMaxObjective</a></dt>
 <dd>&nbsp;</dd>
@@ -487,6 +567,12 @@
 </a>
 <h2 class="title">J</h2>
 <dl>
+<dt><a href="./org/jamesframework/core/util/JamesConstants.html" title="class in org.jamesframework.core.util"><span class="strong">JamesConstants</span></a> - Class in <a href="./org/jamesframework/core/util/package-summary.html">org.jamesframework.core.util</a></dt>
+<dd>
+<div class="block">Global container defining constants used across the framework.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/util/JamesConstants.html#JamesConstants()">JamesConstants()</a></span> - Constructor for class org.jamesframework.core.util.<a href="./org/jamesframework/core/util/JamesConstants.html" title="class in org.jamesframework.core.util">JamesConstants</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="./org/jamesframework/core/exceptions/JamesRuntimeException.html" title="class in org.jamesframework.core.exceptions"><span class="strong">JamesRuntimeException</span></a> - Exception in <a href="./org/jamesframework/core/exceptions/package-summary.html">org.jamesframework.core.exceptions</a></dt>
 <dd>
 <div class="block">Common super class of all runtime exceptions thrown by the James framework.</div>
@@ -535,6 +621,8 @@
 <dd>
 <div class="block">Interface of a neighbourhood that generates moves to transform a given solution into a neighbouring solution.</div>
 </dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/EmptySearchListener.html#newBestSolution(org.jamesframework.core.search.Search, SolutionType, double)">newBestSolution(Search&lt;? extends SolutionType&gt;, SolutionType, double)</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/EmptySearchListener.html" title="class in org.jamesframework.core.search">EmptySearchListener</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/SearchListener.html#newBestSolution(org.jamesframework.core.search.Search, SolutionType, double)">newBestSolution(Search&lt;? extends SolutionType&gt;, SolutionType, double)</a></span> - Method in interface org.jamesframework.core.search.<a href="./org/jamesframework/core/search/SearchListener.html" title="interface in org.jamesframework.core.search">SearchListener</a></dt>
 <dd>
 <div class="block">Called when the search has found a new best solution.</div>
@@ -566,6 +654,8 @@
 <dt><a href="./org/jamesframework/core/search/neigh/package-summary.html">org.jamesframework.core.search.neigh</a> - package org.jamesframework.core.search.neigh</dt>
 <dd>&nbsp;</dd>
 <dt><a href="./org/jamesframework/core/search/neigh/subset/package-summary.html">org.jamesframework.core.search.neigh.subset</a> - package org.jamesframework.core.search.neigh.subset</dt>
+<dd>&nbsp;</dd>
+<dt><a href="./org/jamesframework/core/search/stopcriteria/package-summary.html">org.jamesframework.core.search.stopcriteria</a> - package org.jamesframework.core.search.stopcriteria</dt>
 <dd>&nbsp;</dd>
 <dt><a href="./org/jamesframework/core/util/package-summary.html">org.jamesframework.core.util</a> - package org.jamesframework.core.util</dt>
 <dd>&nbsp;</dd>
@@ -608,6 +698,10 @@
 <dd>
 <div class="block">Checks whether any of the specified rejecting constraints are violated.</div>
 </dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#remove(org.jamesframework.core.search.stopcriteria.StopCriterion)">remove(StopCriterion)</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="./org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria">StopCriterionChecker</a></dt>
+<dd>
+<div class="block">Remove a stop criterion.</div>
+</dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/problems/ProblemWithData.html#removePenalizingConstraint(org.jamesframework.core.problems.constraints.PenalizingConstraint)">removePenalizingConstraint(PenalizingConstraint&lt;? super SolutionType, ? super DataType&gt;)</a></span> - Method in class org.jamesframework.core.problems.<a href="./org/jamesframework/core/problems/ProblemWithData.html" title="class in org.jamesframework.core.problems">ProblemWithData</a></dt>
 <dd>
 <div class="block">Remove a penalizing constraint.</div>
@@ -616,13 +710,17 @@
 <dd>
 <div class="block">Remove a rejecting constraint.</div>
 </dd>
-<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#removeSearchListener(org.jamesframework.core.search.SearchListener)">removeSearchListener(SearchListener&lt;? super SolutionType&gt;)</a></span> - Method in interface org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="interface in org.jamesframework.core.search">Search</a></dt>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#removeSearchListener(org.jamesframework.core.search.SearchListener)">removeSearchListener(SearchListener&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
 <div class="block">Remove the given search listener.</div>
 </dd>
-<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#removeStopCriterion(org.jamesframework.core.search.StopCriterion)">removeStopCriterion(StopCriterion)</a></span> - Method in interface org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="interface in org.jamesframework.core.search">Search</a></dt>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#removeStopCriterion(org.jamesframework.core.search.stopcriteria.StopCriterion)">removeStopCriterion(StopCriterion)</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
 <div class="block">Removes a stop criterion.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#run()">run()</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="./org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria">StopCriterionChecker</a></dt>
+<dd>
+<div class="block">Performs the actual check when being activated by the underlying timer thread.</div>
 </dd>
 </dl>
 <a name="_S_">
@@ -630,10 +728,14 @@
 </a>
 <h2 class="title">S</h2>
 <dl>
-<dt><a href="./org/jamesframework/core/search/Search.html" title="interface in org.jamesframework.core.search"><span class="strong">Search</span></a>&lt;<a href="./org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a> extends <a href="./org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Interface in <a href="./org/jamesframework/core/search/package-summary.html">org.jamesframework.core.search</a></dt>
+<dt><a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search"><span class="strong">Search</span></a>&lt;<a href="./org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a> extends <a href="./org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Class in <a href="./org/jamesframework/core/search/package-summary.html">org.jamesframework.core.search</a></dt>
 <dd>
 <div class="block">
- Interface of a general search used to solve a problem with the specified solution type.</div>
+ General abstract search used to solve a problem with the specified solution type.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#Search(org.jamesframework.core.problems.Problem)">Search(Problem&lt;SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
+<dd>
+<div class="block">Creates a search to solve the given problem.</div>
 </dd>
 <dt><a href="./org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions"><span class="strong">SearchException</span></a> - Exception in <a href="./org/jamesframework/core/exceptions/package-summary.html">org.jamesframework.core.exceptions</a></dt>
 <dd>
@@ -657,15 +759,24 @@
 </dd>
 <dt><a href="./org/jamesframework/core/search/SearchListener.html" title="interface in org.jamesframework.core.search"><span class="strong">SearchListener</span></a>&lt;<a href="./org/jamesframework/core/search/SearchListener.html" title="type parameter in SearchListener">SolutionType</a> extends <a href="./org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Interface in <a href="./org/jamesframework/core/search/package-summary.html">org.jamesframework.core.search</a></dt>
 <dd>
-<div class="block">Interface of a listener which may be attached to any search with the specified solution type (or a more specific solution type).</div>
+<div class="block">Interface of a listener which may be attached to a search with the specified solution type (or a more specific solution type).</div>
 </dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/EmptySearchListener.html#searchMessage(org.jamesframework.core.search.Search, java.lang.String)">searchMessage(Search&lt;? extends SolutionType&gt;, String)</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/EmptySearchListener.html" title="class in org.jamesframework.core.search">EmptySearchListener</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/SearchListener.html#searchMessage(org.jamesframework.core.search.Search, java.lang.String)">searchMessage(Search&lt;? extends SolutionType&gt;, String)</a></span> - Method in interface org.jamesframework.core.search.<a href="./org/jamesframework/core/search/SearchListener.html" title="interface in org.jamesframework.core.search">SearchListener</a></dt>
 <dd>
 <div class="block">Called when the search sends a message to its listeners.</div>
 </dd>
-<dt><span class="strong"><a href="./org/jamesframework/core/search/StopCriterion.html#searchShouldStop(org.jamesframework.core.search.Search)">searchShouldStop(Search&lt;?&gt;)</a></span> - Method in interface org.jamesframework.core.search.<a href="./org/jamesframework/core/search/StopCriterion.html" title="interface in org.jamesframework.core.search">StopCriterion</a></dt>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/stopcriteria/StopCriterion.html#searchShouldStop(org.jamesframework.core.search.Search)">searchShouldStop(Search&lt;?&gt;)</a></span> - Method in interface org.jamesframework.core.search.stopcriteria.<a href="./org/jamesframework/core/search/stopcriteria/StopCriterion.html" title="interface in org.jamesframework.core.search.stopcriteria">StopCriterion</a></dt>
 <dd>
 <div class="block">Checks the stop condition for a given search.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/EmptySearchListener.html#searchStarted(org.jamesframework.core.search.Search)">searchStarted(Search&lt;? extends SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/EmptySearchListener.html" title="class in org.jamesframework.core.search">EmptySearchListener</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#searchStarted()">searchStarted()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
+<dd>
+<div class="block">This method is called when a search run is started, to perform initialization and/or validation of the search
+ configuration.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/SearchListener.html#searchStarted(org.jamesframework.core.search.Search)">searchStarted(Search&lt;? extends SolutionType&gt;)</a></span> - Method in interface org.jamesframework.core.search.<a href="./org/jamesframework/core/search/SearchListener.html" title="interface in org.jamesframework.core.search">SearchListener</a></dt>
 <dd>
@@ -673,7 +784,18 @@
 </dd>
 <dt><a href="./org/jamesframework/core/search/SearchStatus.html" title="enum in org.jamesframework.core.search"><span class="strong">SearchStatus</span></a> - Enum in <a href="./org/jamesframework/core/search/package-summary.html">org.jamesframework.core.search</a></dt>
 <dd>
-<div class="block">Enum indicating the current search status.</div>
+<div class="block">Enumeration of possible search statuses.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#searchStep()">searchStep()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
+<dd>
+<div class="block">This method is iteratively called while the search is running and should be implemented in every specific
+ search according to the corresponding search strategy.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/EmptySearchListener.html#searchStopped(org.jamesframework.core.search.Search)">searchStopped(Search&lt;? extends SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/EmptySearchListener.html" title="class in org.jamesframework.core.search">EmptySearchListener</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#searchStopped()">searchStopped()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
+<dd>
+<div class="block">This method is called when a search run has completed and may be used to perform some finalization.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/SearchListener.html#searchStopped(org.jamesframework.core.search.Search)">searchStopped(Search&lt;? extends SolutionType&gt;)</a></span> - Method in interface org.jamesframework.core.search.<a href="./org/jamesframework/core/search/SearchListener.html" title="interface in org.jamesframework.core.search">SearchListener</a></dt>
 <dd>
@@ -719,7 +841,11 @@
 <dd>
 <div class="block">Set a new objective function.</div>
 </dd>
-<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#setStopCriterionCheckPeriod(long, java.util.concurrent.TimeUnit)">setStopCriterionCheckPeriod(long, TimeUnit)</a></span> - Method in interface org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="interface in org.jamesframework.core.search">Search</a></dt>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#setPeriod(long, java.util.concurrent.TimeUnit)">setPeriod(long, TimeUnit)</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="./org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria">StopCriterionChecker</a></dt>
+<dd>
+<div class="block">Set the period between consecutive stop criterion checks.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#setStopCriterionCheckPeriod(long, java.util.concurrent.TimeUnit)">setStopCriterionCheckPeriod(long, TimeUnit)</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
 <div class="block">Instructs the search to check its stop criteria at regular intervals separated by the given period.</div>
 </dd>
@@ -771,18 +897,41 @@
 <dd>
 <div class="block">Constructs an instance with the specified detail message and cause.</div>
 </dd>
-<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#start()">start()</a></span> - Method in interface org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="interface in org.jamesframework.core.search">Search</a></dt>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#start()">start()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
 <div class="block">
  Starts a search run and returns when this run has finished.</div>
 </dd>
-<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#stop()">stop()</a></span> - Method in interface org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="interface in org.jamesframework.core.search">Search</a></dt>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#startChecking()">startChecking()</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="./org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria">StopCriterionChecker</a></dt>
 <dd>
-<div class="block">Requests the search to stop.</div>
+<div class="block">Start checking the stop criteria, in a timer thread fired to run in the background.</div>
 </dd>
-<dt><a href="./org/jamesframework/core/search/StopCriterion.html" title="interface in org.jamesframework.core.search"><span class="strong">StopCriterion</span></a> - Interface in <a href="./org/jamesframework/core/search/package-summary.html">org.jamesframework.core.search</a></dt>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/EmptySearchListener.html#stepCompleted(org.jamesframework.core.search.Search, long)">stepCompleted(Search&lt;? extends SolutionType&gt;, long)</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/EmptySearchListener.html" title="class in org.jamesframework.core.search">EmptySearchListener</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/SearchListener.html#stepCompleted(org.jamesframework.core.search.Search, long)">stepCompleted(Search&lt;? extends SolutionType&gt;, long)</a></span> - Method in interface org.jamesframework.core.search.<a href="./org/jamesframework/core/search/SearchListener.html" title="interface in org.jamesframework.core.search">SearchListener</a></dt>
+<dd>
+<div class="block">Called when the search has completed a step.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#stop()">stop()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
+<dd>
+<div class="block">
+ Requests the search to stop.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#stopChecking()">stopChecking()</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="./org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria">StopCriterionChecker</a></dt>
+<dd>
+<div class="block">Instructs the stop criterion checker to stop checking.</div>
+</dd>
+<dt><a href="./org/jamesframework/core/search/stopcriteria/StopCriterion.html" title="interface in org.jamesframework.core.search.stopcriteria"><span class="strong">StopCriterion</span></a> - Interface in <a href="./org/jamesframework/core/search/stopcriteria/package-summary.html">org.jamesframework.core.search.stopcriteria</a></dt>
 <dd>
 <div class="block">Interface of a stop criterion that may be attached to a search to terminate it when a certain condition is met.</div>
+</dd>
+<dt><a href="./org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria"><span class="strong">StopCriterionChecker</span></a> - Class in <a href="./org/jamesframework/core/search/stopcriteria/package-summary.html">org.jamesframework.core.search.stopcriteria</a></dt>
+<dd>
+<div class="block">A stop criterion checker is responsible for checking the stop criteria of a given search, while this search is running.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#StopCriterionChecker(org.jamesframework.core.search.Search)">StopCriterionChecker(Search&lt;?&gt;)</a></span> - Constructor for class org.jamesframework.core.search.stopcriteria.<a href="./org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria">StopCriterionChecker</a></dt>
+<dd>
+<div class="block">Create a stop criterion checker dedicated to checking the stop criteria of the given search.</div>
 </dd>
 <dt><a href="./org/jamesframework/core/problems/datatypes/SubsetData.html" title="interface in org.jamesframework.core.problems.datatypes"><span class="strong">SubsetData</span></a> - Interface in <a href="./org/jamesframework/core/problems/datatypes/package-summary.html">org.jamesframework.core.problems.datatypes</a></dt>
 <dd>
@@ -868,6 +1017,12 @@
 <div class="block">Undo this swap move after it has been successfully applied to the given subset solution,
  by removing the newly added ID and re-adding the deleted ID.</div>
 </dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#updateBestSolution(SolutionType)">updateBestSolution(SolutionType)</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
+<dd>
+<div class="block">
+ Compares a new solution with the currently known best solution, and updates this best solution
+ if the new solution is not rejected (see <a href="./org/jamesframework/core/problems/Problem.html#rejectSolution(SolutionType)"><code>Problem.rejectSolution(Solution)</code></a>) and</div>
+</dd>
 </dl>
 <a name="_V_">
 <!--   -->
@@ -884,7 +1039,7 @@
 the order they are declared.</div>
 </dd>
 </dl>
-<a href="#_A_">A</a>&nbsp;<a href="#_C_">C</a>&nbsp;<a href="#_D_">D</a>&nbsp;<a href="#_E_">E</a>&nbsp;<a href="#_G_">G</a>&nbsp;<a href="#_H_">H</a>&nbsp;<a href="#_I_">I</a>&nbsp;<a href="#_J_">J</a>&nbsp;<a href="#_M_">M</a>&nbsp;<a href="#_N_">N</a>&nbsp;<a href="#_O_">O</a>&nbsp;<a href="#_P_">P</a>&nbsp;<a href="#_R_">R</a>&nbsp;<a href="#_S_">S</a>&nbsp;<a href="#_T_">T</a>&nbsp;<a href="#_U_">U</a>&nbsp;<a href="#_V_">V</a>&nbsp;</div>
+<a href="#_A_">A</a>&nbsp;<a href="#_C_">C</a>&nbsp;<a href="#_D_">D</a>&nbsp;<a href="#_E_">E</a>&nbsp;<a href="#_F_">F</a>&nbsp;<a href="#_G_">G</a>&nbsp;<a href="#_H_">H</a>&nbsp;<a href="#_I_">I</a>&nbsp;<a href="#_J_">J</a>&nbsp;<a href="#_M_">M</a>&nbsp;<a href="#_N_">N</a>&nbsp;<a href="#_O_">O</a>&nbsp;<a href="#_P_">P</a>&nbsp;<a href="#_R_">R</a>&nbsp;<a href="#_S_">S</a>&nbsp;<a href="#_T_">T</a>&nbsp;<a href="#_U_">U</a>&nbsp;<a href="#_V_">V</a>&nbsp;</div>
 <!-- ======= START OF BOTTOM NAVBAR ====== -->
 <div class="bottomNav"><a name="navbar_bottom">
 <!--   -->

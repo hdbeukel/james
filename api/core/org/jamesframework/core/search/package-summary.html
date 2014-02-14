@@ -75,22 +75,35 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../../org/jamesframework/core/search/Search.html" title="interface in org.jamesframework.core.search">Search</a>&lt;SolutionType extends <a href="../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</td>
+<td class="colFirst"><a href="../../../../org/jamesframework/core/search/SearchListener.html" title="interface in org.jamesframework.core.search">SearchListener</a>&lt;SolutionType extends <a href="../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</td>
 <td class="colLast">
-<div class="block">
- Interface of a general search used to solve a problem with the specified solution type.</div>
+<div class="block">Interface of a listener which may be attached to a search with the specified solution type (or a more specific solution type).</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList">
+<table class="packageSummary" border="0" cellpadding="3" cellspacing="0" summary="Class Summary table, listing classes, and an explanation">
+<caption><span>Class Summary</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Class</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><a href="../../../../org/jamesframework/core/search/EmptySearchListener.html" title="class in org.jamesframework.core.search">EmptySearchListener</a>&lt;SolutionType extends <a href="../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</td>
+<td class="colLast">
+<div class="block">An empty search listener contains empty implementations of all methods in <a href="../../../../org/jamesframework/core/search/SearchListener.html" title="interface in org.jamesframework.core.search"><code>SearchListener</code></a>, acting as
+ as an easy entry point for custom search listener which desired to listen only to a subset of events fired
+ by a search, by overriding the corresponding empty implementation.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="../../../../org/jamesframework/core/search/SearchListener.html" title="interface in org.jamesframework.core.search">SearchListener</a>&lt;SolutionType extends <a href="../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</td>
+<td class="colFirst"><a href="../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;SolutionType extends <a href="../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</td>
 <td class="colLast">
-<div class="block">Interface of a listener which may be attached to any search with the specified solution type (or a more specific solution type).</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../../org/jamesframework/core/search/StopCriterion.html" title="interface in org.jamesframework.core.search">StopCriterion</a></td>
-<td class="colLast">
-<div class="block">Interface of a stop criterion that may be attached to a search to terminate it when a certain condition is met.</div>
+<div class="block">
+ General abstract search used to solve a problem with the specified solution type.</div>
 </td>
 </tr>
 </tbody>
@@ -107,7 +120,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="../../../../org/jamesframework/core/search/SearchStatus.html" title="enum in org.jamesframework.core.search">SearchStatus</a></td>
 <td class="colLast">
-<div class="block">Enum indicating the current search status.</div>
+<div class="block">Enumeration of possible search statuses.</div>
 </td>
 </tr>
 </tbody>

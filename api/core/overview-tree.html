@@ -74,6 +74,7 @@
 <li><a href="org/jamesframework/core/search/package-tree.html">org.jamesframework.core.search</a>, </li>
 <li><a href="org/jamesframework/core/search/neigh/package-tree.html">org.jamesframework.core.search.neigh</a>, </li>
 <li><a href="org/jamesframework/core/search/neigh/subset/package-tree.html">org.jamesframework.core.search.neigh.subset</a>, </li>
+<li><a href="org/jamesframework/core/search/stopcriteria/package-tree.html">org.jamesframework.core.search.stopcriteria</a>, </li>
 <li><a href="org/jamesframework/core/util/package-tree.html">org.jamesframework.core.util</a></li>
 </ul>
 </div>
@@ -84,12 +85,15 @@
 <ul>
 <li type="circle">org.jamesframework.core.search.neigh.subset.<a href="org/jamesframework/core/search/neigh/subset/AdditionMove.html" title="class in org.jamesframework.core.search.neigh.subset"><span class="strong">AdditionMove</span></a> (implements org.jamesframework.core.search.neigh.subset.<a href="org/jamesframework/core/search/neigh/subset/SubsetMove.html" title="interface in org.jamesframework.core.search.neigh.subset">SubsetMove</a>)</li>
 <li type="circle">org.jamesframework.core.search.neigh.subset.<a href="org/jamesframework/core/search/neigh/subset/DeletionMove.html" title="class in org.jamesframework.core.search.neigh.subset"><span class="strong">DeletionMove</span></a> (implements org.jamesframework.core.search.neigh.subset.<a href="org/jamesframework/core/search/neigh/subset/SubsetMove.html" title="interface in org.jamesframework.core.search.neigh.subset">SubsetMove</a>)</li>
+<li type="circle">org.jamesframework.core.search.<a href="org/jamesframework/core/search/EmptySearchListener.html" title="class in org.jamesframework.core.search"><span class="strong">EmptySearchListener</span></a>&lt;SolutionType&gt; (implements org.jamesframework.core.search.<a href="org/jamesframework/core/search/SearchListener.html" title="interface in org.jamesframework.core.search">SearchListener</a>&lt;SolutionType&gt;)</li>
+<li type="circle">org.jamesframework.core.util.<a href="org/jamesframework/core/util/JamesConstants.html" title="class in org.jamesframework.core.util"><span class="strong">JamesConstants</span></a></li>
 <li type="circle">org.jamesframework.core.problems.objectives.<a href="org/jamesframework/core/problems/objectives/MinMaxObjective.html" title="class in org.jamesframework.core.problems.objectives"><span class="strong">MinMaxObjective</span></a>&lt;SolutionType,DataType&gt; (implements org.jamesframework.core.problems.objectives.<a href="org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;SolutionType,DataType&gt;)</li>
 <li type="circle">org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/ProblemWithData.html" title="class in org.jamesframework.core.problems"><span class="strong">ProblemWithData</span></a>&lt;SolutionType,DataType&gt; (implements org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;SolutionType&gt;)
 <ul>
 <li type="circle">org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/SubsetProblemWithData.html" title="class in org.jamesframework.core.problems"><span class="strong">SubsetProblemWithData</span></a>&lt;DataType&gt; (implements org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/SubsetProblem.html" title="interface in org.jamesframework.core.problems">SubsetProblem</a>)</li>
 </ul>
 </li>
+<li type="circle">org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search"><span class="strong">Search</span></a>&lt;SolutionType&gt;</li>
 <li type="circle">org.jamesframework.core.util.<a href="org/jamesframework/core/util/SetUtilities.html" title="class in org.jamesframework.core.util"><span class="strong">SetUtilities</span></a></li>
 <li type="circle">org.jamesframework.core.search.neigh.subset.<a href="org/jamesframework/core/search/neigh/subset/SinglePerturbationNeighbourhood.html" title="class in org.jamesframework.core.search.neigh.subset"><span class="strong">SinglePerturbationNeighbourhood</span></a> (implements org.jamesframework.core.search.neigh.<a href="org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;SolutionType&gt;)</li>
 <li type="circle">org.jamesframework.core.search.neigh.subset.<a href="org/jamesframework/core/search/neigh/subset/SingleSwapNeighbourhood.html" title="class in org.jamesframework.core.search.neigh.subset"><span class="strong">SingleSwapNeighbourhood</span></a> (implements org.jamesframework.core.search.neigh.<a href="org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;SolutionType&gt;)</li>
@@ -107,6 +111,7 @@
 <ul>
 <li type="circle">org.jamesframework.core.exceptions.<a href="org/jamesframework/core/exceptions/JamesRuntimeException.html" title="class in org.jamesframework.core.exceptions"><span class="strong">JamesRuntimeException</span></a>
 <ul>
+<li type="circle">org.jamesframework.core.exceptions.<a href="org/jamesframework/core/exceptions/IncompatibleSearchListenerException.html" title="class in org.jamesframework.core.exceptions"><span class="strong">IncompatibleSearchListenerException</span></a></li>
 <li type="circle">org.jamesframework.core.exceptions.<a href="org/jamesframework/core/exceptions/IncompatibleStopCriterionException.html" title="class in org.jamesframework.core.exceptions"><span class="strong">IncompatibleStopCriterionException</span></a></li>
 <li type="circle">org.jamesframework.core.exceptions.<a href="org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions"><span class="strong">SearchException</span></a></li>
 <li type="circle">org.jamesframework.core.exceptions.<a href="org/jamesframework/core/exceptions/SolutionModificationException.html" title="class in org.jamesframework.core.exceptions"><span class="strong">SolutionModificationException</span></a></li>
@@ -116,6 +121,11 @@
 </li>
 </ul>
 </li>
+</ul>
+</li>
+<li type="circle">java.util.<a href="http://docs.oracle.com/javase/7/docs/api/java/util/TimerTask.html?is-external=true" title="class or interface in java.util"><span class="strong">TimerTask</span></a> (implements java.lang.<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</a>)
+<ul>
+<li type="circle">org.jamesframework.core.search.stopcriteria.<a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria"><span class="strong">StopCriterionChecker</span></a></li>
 </ul>
 </li>
 </ul>
@@ -140,9 +150,8 @@
 <li type="circle">org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/SubsetProblem.html" title="interface in org.jamesframework.core.problems"><span class="strong">SubsetProblem</span></a></li>
 </ul>
 </li>
-<li type="circle">org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="interface in org.jamesframework.core.search"><span class="strong">Search</span></a>&lt;SolutionType&gt;</li>
 <li type="circle">org.jamesframework.core.search.<a href="org/jamesframework/core/search/SearchListener.html" title="interface in org.jamesframework.core.search"><span class="strong">SearchListener</span></a>&lt;SolutionType&gt;</li>
-<li type="circle">org.jamesframework.core.search.<a href="org/jamesframework/core/search/StopCriterion.html" title="interface in org.jamesframework.core.search"><span class="strong">StopCriterion</span></a></li>
+<li type="circle">org.jamesframework.core.search.stopcriteria.<a href="org/jamesframework/core/search/stopcriteria/StopCriterion.html" title="interface in org.jamesframework.core.search.stopcriteria"><span class="strong">StopCriterion</span></a></li>
 <li type="circle">org.jamesframework.core.problems.datatypes.<a href="org/jamesframework/core/problems/datatypes/SubsetData.html" title="interface in org.jamesframework.core.problems.datatypes"><span class="strong">SubsetData</span></a></li>
 </ul>
 <h2 title="Enum Hierarchy">Enum Hierarchy</h2>
