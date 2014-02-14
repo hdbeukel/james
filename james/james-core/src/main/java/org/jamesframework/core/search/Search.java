@@ -507,8 +507,9 @@ public abstract class Search<SolutionType extends Solution> {
     
     /**
      * <p>
-     * Compares a new solution with the currently known best solution, and updates this best solution
-     * if the new solution is not rejected (see {@link Problem#rejectSolution(Solution)}) and
+     * Checks whether a new best solution has been found and updates it accordingly.
+     * The best solution is updated only if the new solution is <b>not</b> rejected
+     * (see {@link Problem#rejectSolution(Solution)}) and
      * </p>
      * <ul>
      *  <li>no best solution had been set before, or</li>
