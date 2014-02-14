@@ -118,6 +118,7 @@ public class StopCriterionChecker extends TimerTask {
         int i = 0;
         while(!stopSearch && i < stopCriteria.size()){
             stopSearch = stopCriteria.get(i).searchShouldStop(search);
+            i++;
         }
         // request the search to stop if a stop condition is met
         if(stopSearch){
