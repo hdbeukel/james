@@ -38,6 +38,12 @@ public class RandomSearch<SolutionType extends Solution> extends Search<Solution
     }
     
     @Override
+    public void searchStarted() {
+        // reset step counter
+        curStep = 0;
+    }
+    
+    @Override
     protected void searchStep() {
         if(curStep < steps){
             // sample random solution
