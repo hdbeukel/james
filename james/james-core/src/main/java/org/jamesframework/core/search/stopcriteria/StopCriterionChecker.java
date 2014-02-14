@@ -31,7 +31,7 @@ import org.jamesframework.core.search.Search;
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
-public class StopCriterionChecker extends TimerTask {
+public class StopCriterionChecker {
     
     // period between consecutive checks, and corresponding time unit
     private long period;
@@ -101,31 +101,10 @@ public class StopCriterionChecker extends TimerTask {
     public void startChecking(){
         // check if some stop criteria were added
         if(!stopCriteria.isEmpty()){
-            // create timer
+            // create new timer (any previous one has been cancelled and cannot be reused)
             timer = new Timer();
             // schedule periodical check (starting without any delay)
-            timer.schedule(this, 0, periodTimeUnit.toMillis(period));
-        }
-    }
-
-    /**
-     * Performs the actual check when being activated by the underlying timer thread.
-     */
-    @Override
-    public void run() {
-        // check every stop criterion, until one is found to be satisfied or all have been checked
-        boolean stopSearch = false;
-        int i = 0;
-        while(!stopSearch && i < stopCriteria.size()){
-            stopSearch = stopCriteria.get(i).searchShouldStop(search);
-            i++;
-        }
-        // request the search to stop if a stop condition is met
-        if(stopSearch){
-            // stop the search
-            search.stop();
-            // terminate timer
-            timer.cancel();
+            timer.schedule(new StopCriterionCheckTimerTask(), 0, periodTimeUnit.toMillis(period));
         }
     }
     
@@ -138,6 +117,34 @@ public class StopCriterionChecker extends TimerTask {
             // cancel timer (has no effect if already cancelled before)
             timer.cancel();
         }
+    }
+    
+    /**
+     * Timer task used for checking the stop criteria.
+     */
+    private class StopCriterionCheckTimerTask extends TimerTask {
+
+        /**
+        * Performs the actual check when being scheduled on the timer thread.
+        */
+       @Override
+       public void run() {
+           // check every stop criterion, until one is found to be satisfied or all have been checked
+           boolean stopSearch = false;
+           int i = 0;
+           while(!stopSearch && i < stopCriteria.size()){
+               stopSearch = stopCriteria.get(i).searchShouldStop(search);
+               i++;
+           }
+           // request the search to stop if a stop condition is met
+           if(stopSearch){
+               // stop the search
+               search.stop();
+               // terminate timer
+               timer.cancel();
+           }
+       }
+        
     }
 
 }
