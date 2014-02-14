@@ -505,18 +505,28 @@ public abstract class Search<SolutionType extends Solution> {
     /****************************/
     
     /**
-     * Compares a newly constructed solution with the currently known best solution, and updates this current
-     * best solution if the new solution is better, or if no best solution had yet been set. Else, it has no
-     * effect. Note that the best solution is <b>retained</b> across subsequent runs of the same search.
+     * <p>
+     * Compares a new solution with the currently known best solution, and updates this best solution
+     * if the new solution is not rejected (see {@link Problem#rejectSolution(Solution)}) and
+     * </p>
+     * <ul>
+     *  <li>no best solution had been set before, or</li>
+     *  <li>the new solution has a better evaluation</li>
+     * </ul>
+     * <p>
+     * If the new solution is rejected, or has a worse evaluation than the current best solution, this
+     * method has no effect. Note that the best solution is <b>retained</b> across subsequent runs of
+     * the same search.
+     * </p>
      * 
      * @param newSolution newly constructed solution
-     * @param newSolutionEvaluation evaluation of newly constructed solution
      */
-    protected void updateBestSolution(SolutionType newSolution, double newSolutionEvaluation){
-        // check if new solution improves over currently known
-        // best solution, or if no best solution had yet been set
+    protected void updateBestSolution(SolutionType newSolution){
+        // check that (a) new solution is not rejected and (b) it improves over
+        // the currently known best solution (or no best solution set before)
+        double newSolutionEvaluation = problem.evaluate(newSolution);
         double delta = computeDelta(newSolutionEvaluation, getBestSolutionEvaluation());
-        if(bestSolution == null || delta > 0){
+        if(!problem.rejectSolution(newSolution) && (bestSolution == null || delta > 0)){
             // flag improvement
             improvementDuringCurrentStep = true;
             // store last improvement time
