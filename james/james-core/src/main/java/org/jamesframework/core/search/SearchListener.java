@@ -30,14 +30,14 @@ import org.jamesframework.core.problems.solutions.Solution;
 public interface SearchListener<SolutionType extends Solution> {
     
     /**
-     * Called when the search has started.
+     * Called when the search has started. Should be called only once during a search run.
      * 
      * @param search search which has started
      */
     public void searchStarted(Search<? extends SolutionType> search);
     
     /**
-     * Called when the search has stopped.
+     * Called when the search has stopped. Should be called only once during a search run.
      * 
      * @param search search which has stopped
      */
@@ -52,7 +52,7 @@ public interface SearchListener<SolutionType extends Solution> {
     public void searchMessage(Search<? extends SolutionType> search, String message);
     
     /**
-     * Called when the search has found a new best solution.
+     * Called when the search has found a new best solution. Should be called exactly once for every improvement.
      * 
      * @param search search which has found a new best solution
      * @param newBestSolution new best solution found
@@ -61,7 +61,7 @@ public interface SearchListener<SolutionType extends Solution> {
     public void newBestSolution(Search<? extends SolutionType> search, SolutionType newBestSolution, double newBestSolutionEvaluation);
     
     /**
-     * Called when the search has completed a step.
+     * Called when the search has completed a step. Should be called exactly once for every completed step.
      * 
      * @param search search which has completed a step
      * @param numSteps number of steps completed so far (during the current search run)
