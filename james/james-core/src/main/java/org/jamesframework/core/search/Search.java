@@ -245,9 +245,10 @@ public abstract class Search<SolutionType extends Solution> {
         // fire callback
         fireSearchStopped();
         
-        // search run is complete: update status
+        // search run is complete: update status and set stop time
         synchronized(statusLock){
             status = SearchStatus.IDLE;
+            stopTime = System.currentTimeMillis();
         }
         
     }
@@ -561,7 +562,7 @@ public abstract class Search<SolutionType extends Solution> {
      * 
      * @return runtime of the current (or last) run, in milliseconds
      */
-    public long getCurrentRuntime(){
+    public long getRuntime(){
         // depends on status: synchronize with status updates
         synchronized(statusLock){
             if(status == SearchStatus.IDLE){
@@ -587,7 +588,7 @@ public abstract class Search<SolutionType extends Solution> {
      * 
      * @return number of completed steps in the current (or last) run
      */
-    public long getCurrentSteps(){
+    public long getSteps(){
         // acquire lock to ensure consistency with search status
         synchronized(statusLock){
             return currentSteps;
@@ -609,7 +610,7 @@ public abstract class Search<SolutionType extends Solution> {
         synchronized(statusLock){
             if(lastImprovementTime == JamesConstants.INVALID_TIMESTAMP){
                 // no improvement made during current/last run, or not yet run: equal to total runtime
-                return getCurrentRuntime();
+                return getRuntime();
             } else {
                 // improvement made during current/last run
                 if(status == SearchStatus.IDLE){
@@ -639,7 +640,7 @@ public abstract class Search<SolutionType extends Solution> {
         synchronized(statusLock){
             if(stepsSinceLastImprovement == JamesConstants.INVALID_STEP_COUNT){
                 // no improvement made during current/last run, or not yet run: equal to total step count
-                return getCurrentSteps();
+                return getSteps();
             } else {
                 // running or ran before, with improvement in current/last run
                 return stepsSinceLastImprovement;
