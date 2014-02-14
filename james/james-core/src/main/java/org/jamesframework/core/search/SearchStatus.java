@@ -21,6 +21,24 @@ package org.jamesframework.core.search;
  */
 public enum SearchStatus {
     
-    IDLE, RUNNING, TERMINATING;
+    /**
+     * Search is idle and may be (re)started.
+     */
+    IDLE,
+    
+    /**
+     * Search is initializing its current run.
+     */
+    INITIALIZING,
+    
+    /**
+     * Search is actively running.
+     */
+    RUNNING,
+    
+    /**
+     * Search is terminating its current run.
+     */
+    TERMINATING;
 
 }
