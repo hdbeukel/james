@@ -696,6 +696,15 @@ public abstract class Search<SolutionType extends Solution> {
         }
     }
     
+    /**
+     * Get the problem being solved, as specified at construction.
+     * 
+     * @return problem being solved
+     */
+    protected Problem<SolutionType> getProblem(){
+        return problem;
+    }
+    
     /***********************************************************************/
     /* PROTECTED METHODS FOR INITIALIZATION AND FINILIZATION OF SEARCH RUN */
     /***********************************************************************/
