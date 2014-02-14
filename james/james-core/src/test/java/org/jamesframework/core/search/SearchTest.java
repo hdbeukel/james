@@ -28,11 +28,8 @@
 package org.jamesframework.core.search;
 
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.problems.SubsetProblemWithData;
-import org.jamesframework.core.problems.solutions.Solution;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
-import org.jamesframework.core.search.stopcriteria.StopCriterion;
 import org.jamesframework.core.util.JamesConstants;
 import org.jamesframework.test.util.FakeSubsetData;
 import org.jamesframework.test.util.FakeSubsetObjectiveWithData;
@@ -135,6 +132,27 @@ public class SearchTest {
         
         // assert that status is still idle
         assertEquals(SearchStatus.IDLE, search.getStatus());
+        
+    }
+    
+    /**
+     * Test with rejecting constraint.
+     */
+    @Test
+    public void testWithConstraint() {
+        
+        System.out.println(" - test problem with constraint");
+        
+        // add constraint to problem
+        problem.addRejectingConstraint(constraint);
+        
+        // run search
+        search.start();
+        
+        // check best solution
+        if(search.getBestSolution() != null){
+            assertFalse(problem.rejectSolution(search.getBestSolution()));
+        }
         
     }
 
