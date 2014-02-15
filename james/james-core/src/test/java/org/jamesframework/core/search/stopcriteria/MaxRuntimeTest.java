@@ -121,5 +121,36 @@ public class MaxRuntimeTest extends SearchTestTemplate {
         }
         
     }
+    
+    /**
+     * Test subsequent runs (minimizing).
+     */
+    @Test
+    public void testSubsequentRunsMinimizing() {
+        
+        System.out.println(" - test subsequent runs (minimizing)");
+        
+        // set objective to minimize
+        obj.setMinimizing();
+        
+        // add stop criterion
+        search.addStopCriterion(new MaxRuntime(LOW_MAX_RUNTIME, MAX_RUNTIME_TIME_UNIT));
+        // set check period to same value
+        search.setStopCriterionCheckPeriod(LOW_MAX_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        
+        // perform 5 search runs
+        Double prevBestSolEval = null;
+        for(int i=0; i<5; i++){
+            search.start();
+            // check best solution evaluation
+            double bestSolEval = search.getBestSolutionEvaluation();
+            System.out.println("   >>> best: " + bestSolEval);
+            if(prevBestSolEval != null){
+                assertTrue(bestSolEval <= prevBestSolEval);
+            }
+            prevBestSolEval = bestSolEval;
+        }
+        
+    }
 
 }
