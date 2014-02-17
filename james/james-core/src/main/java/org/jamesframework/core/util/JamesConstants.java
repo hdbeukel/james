@@ -50,8 +50,13 @@ public class JamesConstants {
     public static final long INVALID_STEP_COUNT = -1;
     
     /**
+     * Indicates an invalid number of moves.
+     */
+    public static final long INVALID_MOVE_COUNT = -1;
+    
+    /**
      * Indicates an invalid delta (amount of improvement).
      */
     public static final double INVALID_DELTA = -1.0;
-    
+        
 }
