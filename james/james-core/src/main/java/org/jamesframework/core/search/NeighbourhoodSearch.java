@@ -14,11 +14,15 @@
 
 package org.jamesframework.core.search;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import org.jamesframework.core.exceptions.SearchException;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.search.listeners.NeighbourhoodSearchListener;
+import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.util.JamesConstants;
 
@@ -43,7 +47,12 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
     private SolutionType curSolution;
     private double curSolutionEvaluation;
     
+    /************************/
+    /* PRIVATE FINAL FIELDS */
+    /************************/
     
+    // list containing neighbourhood search listeners attached to this search
+    private final List<NeighbourhoodSearchListener<? super SolutionType>> neighSearchListeners;
     
     /***************/
     /* CONSTRUCTOR */
@@ -64,6 +73,8 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
         // is arbitrary (as defined in getCurrentSolutionEvaluation())
         curSolution = null;
         curSolutionEvaluation = 0.0; // arbitrary value
+        // initialize list for neighbourhood search listeners
+        neighSearchListeners = new ArrayList<>();
     }
     
     /******************/
@@ -83,6 +94,68 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
         // create random initial solution if none is set
         if(curSolution == null){
             setCurrentSolution(getProblem().createRandomSolution());
+        }
+    }
+    
+    /**************************************************/
+    /* OVERRIDDEN METHODS FOR ADDING SEARCH LISTENERS */
+    /**************************************************/
+    
+    /**
+     * Add a search listener. Passes the listener to its parent (general search), but also stores it locally
+     * in case it is a neighbourhood search listener for neighbourhood search specific callbacks. Note that
+     * this method may only be called when the search is idle.
+     * 
+     * @param listener search listener to add to the search
+     * @throws SearchException if the search is not idle
+     */
+    @Override
+    public void addSearchListener(SearchListener<? super SolutionType> listener){
+        // acquire status lock
+        synchronized(getStatusLock()){
+            // pass to super (also checks whether search is idle)
+            super.addSearchListener(listener);
+            // store locally if neighbourhood listener
+            if(listener instanceof NeighbourhoodSearchListener){
+                neighSearchListeners.add((NeighbourhoodSearchListener<? super SolutionType>) listener);
+            }
+        }
+    }
+    
+    /**
+     * Remove the given search listener. If the search listener had not been added, <code>false</code> is returned.
+     * Calls its parent (general search) to remove the listener, and also removes it locally in case it is a
+     * neighbourhood search listener. Note that this method may only be called when the search is idle.
+     * 
+     * @param listener search listener to be removed
+     * @throws SearchException if the search is not idle
+     * @return <code>true</code> if the listener has been successfully removed
+     */
+    @Override
+    public boolean removeSearchListener(SearchListener<? super SolutionType> listener){
+        // acquire status lock
+        synchronized(getStatusLock()){
+            // call super (also verifies status)
+            boolean r = super.removeSearchListener(listener);
+            // also remove locally if neighbourhood search listener
+            if(listener instanceof NeighbourhoodSearchListener){
+                neighSearchListeners.remove((NeighbourhoodSearchListener<? super SolutionType>) listener);
+            }
+            return r;
+        }
+    }
+    
+    /**********************************************************************/
+    /* PRIVATE METHODS FOR FIRING NEIGHBOURHOOD SEARCH LISTENER CALLBACKS */
+    /**********************************************************************/
+    
+    /**
+     * Calls {@link SearchListener#searchStarted(Search)} on every attached search listener.
+     * Should only be executed when search is active (initializing, running or terminating).
+     */
+    private void fireModifiedCurrentSolution(SolutionType newCurrentSolution, double newCurrentSolutionEvaluation){
+        for(NeighbourhoodSearchListener<? super SolutionType> listener : neighSearchListeners){
+            listener.modifiedCurrentSolution(this, newCurrentSolution, newCurrentSolutionEvaluation);
         }
     }
     

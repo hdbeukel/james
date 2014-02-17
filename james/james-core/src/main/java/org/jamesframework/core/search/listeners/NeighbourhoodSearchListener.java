@@ -14,7 +14,9 @@
 
 package org.jamesframework.core.search.listeners;
 
+import org.jamesframework.core.exceptions.IncompatibleSearchListenerException;
 import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.search.NeighbourhoodSearch;
 
 /**
  * Extends the general search listener interface with a neighbourhood search specific callback, fired when the current solution
@@ -36,7 +38,7 @@ public interface NeighbourhoodSearchListener<SolutionType extends Solution> exte
      * @param newCurrentSolutionEvaluation corresponding evaluation
      * @throws IncompatibleSearchListenerException if the listener is not compatible with the search
      */
-    public void modifiedCurrentSolution(NeighbourhoodSearchListener<? extends SolutionType> search,
+    public void modifiedCurrentSolution(NeighbourhoodSearch<? extends SolutionType> search,
                                         SolutionType newCurrentSolution,
                                         double newCurrentSolutionEvaluation);
     
