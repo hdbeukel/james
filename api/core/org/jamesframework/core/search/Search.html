@@ -35,8 +35,8 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../org/jamesframework/core/search/EmptySearchListener.html" title="class in org.jamesframework.core.search"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../../org/jamesframework/core/search/SearchListener.html" title="interface in org.jamesframework.core.search"><span class="strong">Next Class</span></a></li>
+<li>Prev Class</li>
+<li><a href="../../../../org/jamesframework/core/search/SearchStatus.html" title="enum in org.jamesframework.core.search"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?org/jamesframework/core/search/Search.html" target="_top">Frames</a></li>
@@ -173,7 +173,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#addSearchListener(org.jamesframework.core.search.SearchListener)">addSearchListener</a></strong>(<a href="../../../../org/jamesframework/core/search/SearchListener.html" title="interface in org.jamesframework.core.search">SearchListener</a>&lt;? super <a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&nbsp;listener)</code>
+<td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#addSearchListener(org.jamesframework.core.search.listeners.SearchListener)">addSearchListener</a></strong>(<a href="../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;? super <a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&nbsp;listener)</code>
 <div class="block">Add a search listener.</div>
 </td>
 </tr>
@@ -194,7 +194,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#fireSearchMessage(java.lang.String)">fireSearchMessage</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;message)</code>
-<div class="block">Calls <a href="../../../../org/jamesframework/core/search/SearchListener.html#searchMessage(org.jamesframework.core.search.Search, java.lang.String)"><code>SearchListener.searchMessage(Search, String)</code></a> on every attached search listener.</div>
+<div class="block">Calls <a href="../../../../org/jamesframework/core/search/listeners/SearchListener.html#searchMessage(org.jamesframework.core.search.Search, java.lang.String)"><code>SearchListener.searchMessage(Search, String)</code></a> on every attached search listener.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -254,7 +254,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#removeSearchListener(org.jamesframework.core.search.SearchListener)">removeSearchListener</a></strong>(<a href="../../../../org/jamesframework/core/search/SearchListener.html" title="interface in org.jamesframework.core.search">SearchListener</a>&lt;? super <a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&nbsp;listener)</code>
+<td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#removeSearchListener(org.jamesframework.core.search.listeners.SearchListener)">removeSearchListener</a></strong>(<a href="../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;? super <a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&nbsp;listener)</code>
 <div class="block">Remove the given search listener.</div>
 </td>
 </tr>
@@ -449,13 +449,13 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if the given period is not strictly positive</dd></dl>
 </li>
 </ul>
-<a name="addSearchListener(org.jamesframework.core.search.SearchListener)">
+<a name="addSearchListener(org.jamesframework.core.search.listeners.SearchListener)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>addSearchListener</h4>
-<pre>public&nbsp;void&nbsp;addSearchListener(<a href="../../../../org/jamesframework/core/search/SearchListener.html" title="interface in org.jamesframework.core.search">SearchListener</a>&lt;? super <a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&nbsp;listener)</pre>
+<pre>public&nbsp;void&nbsp;addSearchListener(<a href="../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;? super <a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&nbsp;listener)</pre>
 <div class="block">Add a search listener. Any search listener with a matching solution type (or a more general solution type)
  may be added. Note that this method may only be called when the search is idle.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>listener</code> - search listener to add to the search</dd>
@@ -463,13 +463,13 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dd><code><a href="../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions">SearchException</a></code> - if the search is not idle</dd></dl>
 </li>
 </ul>
-<a name="removeSearchListener(org.jamesframework.core.search.SearchListener)">
+<a name="removeSearchListener(org.jamesframework.core.search.listeners.SearchListener)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>removeSearchListener</h4>
-<pre>public&nbsp;boolean&nbsp;removeSearchListener(<a href="../../../../org/jamesframework/core/search/SearchListener.html" title="interface in org.jamesframework.core.search">SearchListener</a>&lt;? super <a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&nbsp;listener)</pre>
+<pre>public&nbsp;boolean&nbsp;removeSearchListener(<a href="../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;? super <a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&nbsp;listener)</pre>
 <div class="block">Remove the given search listener. If the search listener had not been added, <code>false</code> is returned.
  Note that this method may only be called when the search is idle.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>listener</code> - search listener to be removed</dd>
@@ -485,7 +485,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>fireSearchMessage</h4>
 <pre>protected&nbsp;void&nbsp;fireSearchMessage(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;message)</pre>
-<div class="block">Calls <a href="../../../../org/jamesframework/core/search/SearchListener.html#searchMessage(org.jamesframework.core.search.Search, java.lang.String)"><code>SearchListener.searchMessage(Search, String)</code></a> on every attached search listener.
+<div class="block">Calls <a href="../../../../org/jamesframework/core/search/listeners/SearchListener.html#searchMessage(org.jamesframework.core.search.Search, java.lang.String)"><code>SearchListener.searchMessage(Search, String)</code></a> on every attached search listener.
  Should only be executed when search is active (initializing, running or terminating).</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>message</code> - message to be sent to the listener</dd></dl>
 </li>
@@ -733,8 +733,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../org/jamesframework/core/search/EmptySearchListener.html" title="class in org.jamesframework.core.search"><span class="strong">Prev Class</span></a></li>
-<li><a href="../../../../org/jamesframework/core/search/SearchListener.html" title="interface in org.jamesframework.core.search"><span class="strong">Next Class</span></a></li>
+<li>Prev Class</li>
+<li><a href="../../../../org/jamesframework/core/search/SearchStatus.html" title="enum in org.jamesframework.core.search"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?org/jamesframework/core/search/Search.html" target="_top">Frames</a></li>

@@ -76,31 +76,51 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.exceptions">org.jamesframework.core.exceptions</a></td>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Custom James runtime exceptions.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.problems">org.jamesframework.core.problems</a></td>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Problem specification.</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.problems.constraints">org.jamesframework.core.problems.constraints</a></td>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Constraint interfaces, used for problem specification.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.problems.objectives">org.jamesframework.core.problems.objectives</a></td>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Objective interface and utilities, used for problem specification.</div>
+</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.problems.solutions">org.jamesframework.core.problems.solutions</a></td>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Solution modelling.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search">org.jamesframework.core.search</a></td>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Abstract search templates, including both general searches and neighbourhood searches.</div>
+</td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><a href="#org.jamesframework.core.search.listeners">org.jamesframework.core.search.listeners</a></td>
+<td class="colLast">
+<div class="block">Search listeners.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.neigh">org.jamesframework.core.search.neigh</a></td>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">General neighbourhood and move specification.</div>
+</td>
 </tr>
 </tbody>
 </table>
@@ -293,22 +313,36 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><strong><a href="../../../../../../org/jamesframework/core/search/EmptySearchListener.html" title="class in org.jamesframework.core.search">EmptySearchListener</a>&lt;SolutionType extends <a href="../../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</strong></code>
-<div class="block">An empty search listener contains empty implementations of all methods in <a href="../../../../../../org/jamesframework/core/search/SearchListener.html" title="interface in org.jamesframework.core.search"><code>SearchListener</code></a>, acting as
- as an easy entry point for custom search listener which desired to listen only to a subset of events fired
- by a search, by overriding the corresponding empty implementation.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;SolutionType extends <a href="../../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</strong></code>
 <div class="block">
  General abstract search used to solve a problem with the specified solution type.</div>
 </td>
 </tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.search.listeners">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a> in <a href="../../../../../../org/jamesframework/core/search/listeners/package-summary.html">org.jamesframework.core.search.listeners</a></h3>
+<table border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../../../org/jamesframework/core/search/listeners/package-summary.html">org.jamesframework.core.search.listeners</a> with type parameters of type <a href="../../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tbody>
 <tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../org/jamesframework/core/search/listeners/EmptySearchListener.html" title="class in org.jamesframework.core.search.listeners">EmptySearchListener</a>&lt;SolutionType extends <a href="../../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</strong></code>
+<div class="block">An empty search listener contains empty implementations of all methods in <a href="../../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners"><code>SearchListener</code></a>, acting as
+ as an easy entry point for custom search listener which desired to listen only to a subset of events fired
+ by a search, by overriding the corresponding empty implementation.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>interface&nbsp;</code></td>
-<td class="colLast"><code><strong><a href="../../../../../../org/jamesframework/core/search/SearchListener.html" title="interface in org.jamesframework.core.search">SearchListener</a>&lt;SolutionType extends <a href="../../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</strong></code>
+<td class="colLast"><code><strong><a href="../../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;SolutionType extends <a href="../../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</strong></code>
 <div class="block">Interface of a listener which may be attached to a search with the specified solution type (or a more specific solution type).</div>
 </td>
 </tr>
