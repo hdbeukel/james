@@ -14,6 +14,7 @@
 
 package org.jamesframework.core.search;
 
+import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.search.stopcriteria.StopCriterion;
 import java.util.ArrayList;
 import java.util.List;

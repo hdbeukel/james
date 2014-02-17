@@ -12,10 +12,11 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-package org.jamesframework.core.search;
+package org.jamesframework.core.search.listeners;
 
 import org.jamesframework.core.exceptions.IncompatibleSearchListenerException;
 import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.search.Search;
 
 /**
  * Interface of a listener which may be attached to a search with the specified solution type (or a more specific solution type).

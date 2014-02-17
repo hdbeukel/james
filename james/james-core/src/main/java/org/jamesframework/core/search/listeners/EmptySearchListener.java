@@ -12,9 +12,10 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-package org.jamesframework.core.search;
+package org.jamesframework.core.search.listeners;
 
 import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.search.Search;
 
 /**
  * An empty search listener contains empty implementations of all methods in {@link SearchListener}, acting as

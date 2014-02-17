@@ -15,6 +15,7 @@
 
 package org.jamesframework.core.search;
 
+import org.jamesframework.core.search.listeners.EmptySearchListener;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.util.JamesConstants;
 import org.jamesframework.test.util.TestConstants;
