@@ -479,9 +479,10 @@ public abstract class Search<SolutionType extends Solution> {
     /******************************************/
     
     /**
-     * Returns the best solution found so far. The best solution is <b>retained</b> across subsequent runs of the
-     * same search. May return <code>null</code> if no solutions have been evaluated yet, for example when the search
-     * has just been created.
+     * Returns the best solution found so far. It is guaranteed that this solution is valid, in the sense that
+     * {@link Problem#rejectSolution(Solution)} returns <code>false</code>. The best solution is <b>retained</b>
+     * across subsequent runs of the same search. May return <code>null</code> if no solutions have been evaluated
+     * yet, for example when the search has just been created.
      * 
      * @return best solution found so far, if already defined; <code>null</code> otherwise
      */
@@ -521,13 +522,52 @@ public abstract class Search<SolutionType extends Solution> {
      * </p>
      * 
      * @param newSolution newly constructed solution
+     * @return <code>true</code> if the given solution is accepted as the new best solution
      */
-    protected void updateBestSolution(SolutionType newSolution){
-        // check that (a) new solution is not rejected and (b) it improves over
-        // the currently known best solution (or no best solution set before)
-        double newSolutionEvaluation = problem.evaluate(newSolution);
+    protected boolean updateBestSolution(SolutionType newSolution){
+        // check if new solution is not rejected
+        if(!problem.rejectSolution(newSolution)){
+            // evaluate solution
+            double eval = problem.evaluate(newSolution);
+            // update, if better
+            return updateBestSolution(newSolution, eval);
+        }
+        // solution is rejected
+        return false;
+    }
+    
+    /**
+     * <p>
+     * Checks whether a new best solution has been found and updates it accordingly,
+     * assuming that the given solution is <b>not</b> rejected by the problem (see
+     * {@link Problem#rejectSolution(Solution)} and has already been evaluated.
+     * This method should only be called for solutions for which it has already been
+     * verified that they are not rejected, as this will <b>not</b> be checked here.
+     * Else, {@link #updateBestSolution(Solution)} should be used. This alternative
+     * method is specifically introduced to avoid unnecessary re-evaluation and
+     * re-validation of already evaluated, valid solutions.
+     * </p>
+     * <p>
+     * The best solution is updated if and only if
+     * </p>
+     * <ul>
+     *  <li>no best solution had been set before, or</li>
+     *  <li>the new solution has a better evaluation</li>
+     * </ul>
+     * <p>
+     * If the new solution has a worse evaluation than the current best solution, calling this
+     * method has no effect. Note that the best solution is <b>retained</b> across subsequent
+     * runs of the same search.
+     * </p>
+     * 
+     * @param newSolution newly constructed solution, which is known <b>not</b> to be rejected
+     * @param newSolutionEvaluation already computed evaluation of the given solution
+     * @return <code>true</code> if the given solution is accepted as the new best solution
+     */
+    protected boolean updateBestSolution(SolutionType newSolution, double newSolutionEvaluation){
+        // check if new solution has better evaluation, or no best solution set
         double delta = computeDelta(newSolutionEvaluation, getBestSolutionEvaluation());
-        if(!problem.rejectSolution(newSolution) && (bestSolution == null || delta > 0)){
+        if(bestSolution == null || delta > 0){
             // flag improvement
             improvementDuringCurrentStep = true;
             // store last improvement time
@@ -545,7 +585,11 @@ public abstract class Search<SolutionType extends Solution> {
             bestSolutionEvaluation = newSolutionEvaluation;
             // fire callback
             fireNewBestSolution(bestSolution, bestSolutionEvaluation);
+            // found improvement
+            return true;
         }
+        // no improvement
+        return false;
     }
 
     /*****************************************/
