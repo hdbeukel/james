@@ -19,8 +19,8 @@ import org.jamesframework.core.search.Search;
 
 /**
  * An empty search listener contains empty implementations of all methods in {@link SearchListener}, acting as
- * as an easy entry point for custom search listener which desired to listen only to a subset of events fired
- * by a search, by overriding the corresponding empty implementation.
+ * an easy entry point for custom search listeners which desire to listen only to a subset of events fired by
+ * a search, by overriding the corresponding empty implementation.
  * 
  * @param <SolutionType> solution type, required to extend {@link Solution}
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
