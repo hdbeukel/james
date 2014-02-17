@@ -85,7 +85,7 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
      * Resets neighbourhood search specific, per run metadata: number of accepted and rejected moves.
      */
     @Override
-    public void searchStarted(){
+    protected void searchStarted(){
         // call super
         super.searchStarted();
         // reset neighbourhood search specific, per run metadata
