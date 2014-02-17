@@ -119,8 +119,8 @@ public abstract class Search<SolutionType extends Solution> {
     // lock acquired when updating/accessing best solution and its evaluation to ensure consistency
     private final Object bestSolutionLock = new Object();
     
-    // lock acquired when updating the search status, when executing a block of code during which
-    // the status is not allowed to change, and for consistent updates/access of status dependent data
+    // lock acquired when updating the search status and when executing a block of code during which
+    // the status is not allowed to change
     private final Object statusLock = new Object();
     
     /***************/
@@ -192,20 +192,12 @@ public abstract class Search<SolutionType extends Solution> {
             }
             // set status to INITIALIZING
             status = SearchStatus.INITIALIZING;
-            // initialize per-run metadata (before releasing lock to
-            // ensure consistent values after status transition)
-            startTime = System.currentTimeMillis();
-            stopTime = JamesConstants.INVALID_TIMESTAMP;
-            currentSteps = 0;
-            lastImprovementTime = JamesConstants.INVALID_TIMESTAMP;
-            stepsSinceLastImprovement = JamesConstants.INVALID_STEP_COUNT;
-            minDelta = JamesConstants.INVALID_DELTA;
         }
         
         // fire callback
         fireSearchStarted();
         
-        // custom initialization and/or validation
+        // initialization and/or validation
         searchStarted();
         
         // instruct stop criterion checker to start checking
@@ -237,20 +229,19 @@ public abstract class Search<SolutionType extends Solution> {
             fireStepCompleted(currentSteps);
         }
         
-        // search was stopped: custom finalization
-        searchStopped();
-        
         // instruct stop criterion checker to stop checking
         stopCriterionChecker.stopChecking();
         
-        // fire callback
-        fireSearchStopped();
-        
-        // search run is complete: update status and set stop time
+        // finalization
+        searchStopped();
+                
+        // search run is complete: update status and perform finalization
         synchronized(statusLock){
             status = SearchStatus.IDLE;
-            stopTime = System.currentTimeMillis();
         }
+        
+        // fire callback
+        fireSearchStopped();
         
     }
    
@@ -470,6 +461,17 @@ public abstract class Search<SolutionType extends Solution> {
         }
     }
     
+    /**
+     * Returns a lock to be acquired when executing blocks of code that can not be interrupted by a status update.
+     * All status updates are synchronized using this lock. Whenever a fixed status is required during execution of
+     * a code block, this can be obtained by synchronizing the block using this status lock.
+     * 
+     * @return status lock used for synchronization with status updates
+     */
+    protected Object getStatusLock(){
+        return statusLock;
+    }
+    
     /******************************************/
     /* STATE ACCESSORS (RETAINED ACROSS RUNS) */
     /******************************************/
@@ -558,111 +560,222 @@ public abstract class Search<SolutionType extends Solution> {
     /*****************************************/
     
     /**
-     * Get the runtime of the <i>current</i> run, including initialization, in milliseconds. If the search is idle,
-     * but has been run before, the total runtime of the last run is returned. Before the first search run, this method
-     * returns {@link JamesConstants#INVALID_TIME_SPAN}. Else, the returned value is always positive.
+     * <p>
+     * Get the runtime of the <i>current</i> (or last) run, in milliseconds. The precise return value
+     * depends on the status of the search:
+     * </p>
+     * <ul>
+     *  <li>
+     *   If the search is either RUNNING or TERMINATING, this method returns the time elapsed since
+     *   the current run was started.
+     *  </li>
+     *  <li>
+     *   If the search is IDLE, the total runtime of the last run is returned, if any. Before the first run,
+     *   {@link JamesConstants#INVALID_TIME_SPAN} is returned.
+     *  </li>
+     *  <li>
+     *   While INITIALIZING the current run, {@link JamesConstants#INVALID_TIME_SPAN} is returned.
+     *  </li>
+     * </ul>
+     * <p>
+     * The return value is always positive, except in those cases when {@link JamesConstants#INVALID_TIME_SPAN} is returned.
+     * </p>
      * 
      * @return runtime of the current (or last) run, in milliseconds
      */
     public long getRuntime(){
         // depends on status: synchronize with status updates
         synchronized(statusLock){
-            if(status == SearchStatus.IDLE){
-                // search is idle
+            if(status == SearchStatus.INITIALIZING){
+                // initializing
+                return JamesConstants.INVALID_TIME_SPAN;
+            } else if (status == SearchStatus.IDLE){
+                // idle: check if ran before
                 if(stopTime == JamesConstants.INVALID_TIMESTAMP){
-                    // has not run before
+                    // did not run before
                     return JamesConstants.INVALID_TIME_SPAN;
                 } else {
-                    // has run before, return runtime of last run
+                    // return total runtime of last run
                     return stopTime - startTime;
                 }
             } else {
-                // search is active: return runtime of current run
+                // running or terminating
                 return System.currentTimeMillis() - startTime;
             }
         }
     }
     
     /**
-     * Get the number of completed steps in the <i>current</i> run. If the search is idle, but has been run before,
-     * the total number of steps executed during the last run is returned. Before the first search run, this method
-     * returns {@link JamesConstants#INVALID_STEP_COUNT}. Else, the returned value is always positive.
+     * <p>
+     * Get the number of completed steps during the <i>current</i> (or last) run. The precise return value
+     * depends on the status of the search:
+     * </p>
+     * <ul>
+     *  <li>
+     *   If the search is either RUNNING or TERMINATING, this method returns the number of steps completed
+     *   since the current run was started.
+     *  </li>
+     *  <li>
+     *   If the search is IDLE, the total number of steps completed during the last run is returned, if any.
+     *   Before the first run, {@link JamesConstants#INVALID_STEP_COUNT}.
+     *  </li>
+     *  <li>
+     *   While INITIALIZING the current run, {@link JamesConstants#INVALID_STEP_COUNT} is returned.
+     *  </li>
+     * </ul>
+     * <p>
+     * The return value is always positive, except in those cases when {@link JamesConstants#INVALID_STEP_COUNT}
+     * is returned.
+     * </p>
      * 
-     * @return number of completed steps in the current (or last) run
+     * @return number of steps completed during the current (or last) run
      */
     public long getSteps(){
-        // acquire lock to ensure consistency with search status
+        // depends on status: synchronize with status updates
         synchronized(statusLock){
-            return currentSteps;
+            if(status == SearchStatus.INITIALIZING){
+                // initializing
+                return JamesConstants.INVALID_STEP_COUNT;
+            } else {
+                // idle, running or terminating
+                return currentSteps;
+            }
         }
     }
     
     /**
-     * Get the amount of time elapsed during the <i>current</i> run without finding any improvement, in milliseconds.
-     * If the search is active, but no improvements have yet been made during the current run, the returned value
-     * is equal to the current runtime; else, it reflects the time elapsed since the last improvement during the current
-     * run. If the search is idle, but has been run before, the time without improvement observed during the last run,
-     * up to the point when this run completed, is returned. Before the first search run, this method returns
-     * {@link JamesConstants#INVALID_TIME_SPAN}. Else, the returned value is always positive.
+     * <p>
+     * Get the amount of time elapsed during the <i>current</i> (or last) run, without finding any further improvement
+     * (in milliseconds). The precise return value depends on the status of the search:
+     * </p>
+     * <ul>
+     *  <li>
+     *   If the search is either RUNNING or TERMINATING, but no improvements have yet been made during the current
+     *   run, the returned value is equal to the current runtime; else it reflects the time elapsed since the last
+     *   improvement during the current run.
+     *  </li>
+     *  <li>
+     *   If the search is IDLE, but has been run before, the time without improvement observed during the last run,
+     *   up to the point when this run completed, is returned. Before the first run, the return value is
+     *   {@link JamesConstants#INVALID_TIME_SPAN}.
+     *  </li>
+     *  <li>
+     *   While INITIALIZING the current run, {@link JamesConstants#INVALID_TIME_SPAN} is returned.
+     *  </li>
+     * </ul>
+     * <p>
+     * The return value is always positive, except in those cases when {@link JamesConstants#INVALID_TIME_SPAN}
+     * is returned.
+     * </p>
      * 
      * @return time without finding improvements during the current (or last) run, in milliseconds
      */
     public long getTimeWithoutImprovement(){
-        // acquire lock to ensure consistency with search status
+        // depends on status: synchronize with status updates
         synchronized(statusLock){
-            if(lastImprovementTime == JamesConstants.INVALID_TIMESTAMP){
-                // no improvement made during current/last run, or not yet run: equal to total runtime
-                return getRuntime();
+            if(status == SearchStatus.INITIALIZING){
+                // initializing
+                return JamesConstants.INVALID_TIME_SPAN;
             } else {
-                // improvement made during current/last run
-                if(status == SearchStatus.IDLE){
-                    // currently not running
-                    return stopTime - lastImprovementTime;
+                // idle, running or terminating: check last improvement time
+                if(lastImprovementTime == JamesConstants.INVALID_TIMESTAMP){
+                    // no improvement made during current/last run, or not yet run: equal to total runtime
+                    return getRuntime();
                 } else {
-                    // running
-                    return System.currentTimeMillis() - lastImprovementTime;
+                    // running or ran before, and improvement made during current/last run
+                    if(status == SearchStatus.IDLE){
+                        // idle: return last time without improvement of previous run
+                        return stopTime - lastImprovementTime;
+                    } else {
+                        // running or terminating: return time elapsed since last improvement
+                        return System.currentTimeMillis() - lastImprovementTime;
+                    }
                 }
             }
         }
     }
     
     /**
-     * Get the number of consecutive steps completed during the <i>current</i> run without finding any improvement.
-     * If the search is active, but no improvements have yet been made during the current run, the returned value
-     * is equal to the current number of completed steps; else, it reflects the number of steps since the last
-     * improvement was made during the current run. If the search is idle, but has been run before, the number of steps
-     * without improvement observed during the last run, up to the point when this run completed, is returned. Before
-     * the first search run, this method returns {@link JamesConstants#INVALID_STEP_COUNT}. Else, the returned value
-     * is always positive.
+     * <p>
+     * Get the number of consecutive steps completed during the <i>current</i> (or last) run, without finding
+     * any further improvement. The precise return value depends on the status of the search:
+     * </p>
+     * <ul>
+     *  <li>
+     *   If the search is either RUNNING or TERMINATING, but no improvements have yet been made during the current
+     *   run, the returned value is equal to the total number of steps completed so far; else it reflects the number
+     *   of steps completed since the last improvement during the current run.
+     *  </li>
+     *  <li>
+     *   If the search is IDLE, but has been run before, the number of steps without improvement observed during the
+     *   last run, up to the point when this run completed, is returned. Before the first run, the return value is
+     *   {@link JamesConstants#INVALID_STEP_COUNT}.
+     *  </li>
+     *  <li>
+     *   While INITIALIZING the current run, {@link JamesConstants#INVALID_STEP_COUNT} is returned.
+     *  </li>
+     * </ul>
+     * <p>
+     * The return value is always positive, except in those cases when {@link JamesConstants#INVALID_STEP_COUNT}
+     * is returned.
+     * </p>
      * 
      * @return number of consecutive completed steps without finding improvements during the current (or last) run
      */
     public long getStepsWithoutImprovement(){
-        // acquire lock to ensure consistency with search status
+        // depends on status: synchronize with status updates
         synchronized(statusLock){
-            if(stepsSinceLastImprovement == JamesConstants.INVALID_STEP_COUNT){
-                // no improvement made during current/last run, or not yet run: equal to total step count
-                return getSteps();
+            if(status == SearchStatus.INITIALIZING){
+                // initializing
+                return JamesConstants.INVALID_STEP_COUNT;
             } else {
-                // running or ran before, with improvement in current/last run
-                return stepsSinceLastImprovement;
+                if(stepsSinceLastImprovement == JamesConstants.INVALID_STEP_COUNT){
+                    // no improvement made during current/last run, or not yet run: equal to total step count
+                    return getSteps();
+                } else {
+                    // running or ran before, and improvement made during current/last run
+                    return stepsSinceLastImprovement;
+                }
             }
         }
     }
     
     /**
-     * Get the minimum improvement in evaluation of a newly found best solution over the previously known best solution,
-     * during the <i>current</i> run. The minimum delta is always positive, it corresponds to increase when solving a maximization
-     * problem, and decrease in case of a minimization problem. If the search is idle, but has been run before, the minimum delta
-     * observed during the last run is returned. Before the first search run, and before the first improvement during an active run,
-     * this method returns {@link JamesConstants#INVALID_DELTA}. Else, the returned value is always positive.
+     * <p>
+     * Get the minimum improvement in evaluation of a new best known solution over the previous best known solution,
+     * found during the <i>current</i> (or last) run. The precise return value depends on the status of the search:
+     * </p>
+     * <ul>
+     *  <li>
+     *   If the search is either RUNNING or TERMINATING, but no improvements have yet been made during the current
+     *   run, {@link JamesConstants#INVALID_DELTA} is returned. Else, the minimum observed delta over all improvements
+     *   made during the current run is returned.
+     *  </li>
+     *  <li>
+     *   If the search is IDLE, but has been run before, the minimum delta observed during the last run is returned.
+     *   Before the first run, the return value is {@link JamesConstants#INVALID_DELTA}.
+     *  </li>
+     *  <li>
+     *   While INITIALIZING the current run, {@link JamesConstants#INVALID_DELTA} is returned.
+     *  </li>
+     * </ul>
+     * <p>
+     * The return value is always positive, except in those cases when {@link JamesConstants#INVALID_DELTA} is returned.
+     * It corresponds to increase when solving a maximization problem, and decrease in case of a minimization problem.
+     * </p>
      * 
-     * @return minimum improvement of newly found best solution over previously known best solution, during current (or last) run
+     * @return minimum delta of improvements observed during current (or last) run
      */
     public double getMinDelta(){
-        // acquire lock to ensure consistency with search status
+        // depends on status: synchronize with status updates
         synchronized(statusLock){
-            return minDelta;
+            if(status == SearchStatus.INITIALIZING){
+                // initializing
+                return JamesConstants.INVALID_DELTA;
+            } else {
+                // idle, running or terminating
+                return minDelta;
+            }
         }
     }
     
@@ -726,23 +839,35 @@ public abstract class Search<SolutionType extends Solution> {
      * This method is called when a search run is started, to perform initialization and/or validation of the search
      * configuration. It may throw a {@link SearchException} if initialization fails because the search has not been
      * configured validly. Moreover, any {@link JamesRuntimeException} could be thrown when initialization depends on
-     * malfunctioning components. By default, this method has an empty implementation.
+     * malfunctioning components. The default implementation resets all general per run metadata. Therefore, it is of
+     * utmost importance to call <code>super.searchStart()</code> in any overriding implementation.
      * 
      * @throws SearchException if initialization fails, e.g. because the search has not been configured validly
      * @throws JamesRuntimeException in general, any {@link JamesRuntimeException} may be thrown
      *                               in case of a malfunctioning component used during initialization
      */
-    protected void searchStarted() {}
+    protected void searchStarted() {
+        startTime = System.currentTimeMillis();
+        stopTime = JamesConstants.INVALID_TIMESTAMP;
+        currentSteps = 0;
+        lastImprovementTime = JamesConstants.INVALID_TIMESTAMP;
+        stepsSinceLastImprovement = JamesConstants.INVALID_STEP_COUNT;
+        minDelta = JamesConstants.INVALID_DELTA;
+    }
     
     /**
      * This method is called when a search run has completed and may be used to perform some finalization. Any
      * {@link JamesRuntimeException} may be thrown when finalization depends on malfunctioning search components.
-     * By default, this method has an empty implementation.
+     * The default implementation ensures that the total runtime of the last run, if applicable, will be returned
+     * when calling {@link #getRuntime()} on an idle search. Therefore, it is of utmost importance to call
+     * <code>super.searchStopped()</code> in any overriding implementation. 
      * 
      * @throws JamesRuntimeException in general, any {@link JamesRuntimeException} may be thrown
      *                               in case of a malfunctioning component used during finalization
      */
-    protected void searchStopped() {}
+    protected void searchStopped() {
+        stopTime = System.currentTimeMillis();
+    }
     
     /************************************************************************/
     /* ABSTRACT PROTECTED METHOD TO BE IMPLEMENTED IN EVERY SPECIFIC SEARCH */
