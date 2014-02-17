@@ -25,7 +25,7 @@ import org.jamesframework.test.util.RandomSearchWithInternalMaxSteps;
 import org.junit.Before;
 
 /**
- * Template for general searchWithInternalMaxSteps tests, using a random searchWithInternalMaxSteps stub to solve a subset problem. Can be extended to use the contained data.
+ * Template for general search tests, using a random search stub to solve a subset problem. Can be extended to use the contained data.
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
@@ -48,7 +48,7 @@ public class SearchTestTemplate {
     // minimum score diff imposed by fake constraint
     protected final double MIN_SCORE_DIFF = 0.05;
     
-    // searches to work with (random searchWithInternalMaxSteps stubs)
+    // searches to work with (random search stubs)
     protected Search<SubsetSolution> search, searchWithInternalMaxSteps;
     // number of random searchWithInternalMaxSteps steps
     protected final int NUM_STEPS = 500;
@@ -57,7 +57,7 @@ public class SearchTestTemplate {
     protected static final Random RG = new Random();
     
     /**
-     * Create searchWithInternalMaxSteps and components to work with in each test method.
+     * Create search and components to work with in each test method.
      */
     @Before
     public void setUp(){

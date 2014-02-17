@@ -25,7 +25,7 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 
 /**
- * Test general searchWithInternalMaxSteps behaviour using random searchWithInternalMaxSteps dummy.
+ * Test general search behaviour using random search dummy.
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
