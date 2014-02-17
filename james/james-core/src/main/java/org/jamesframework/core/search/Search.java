@@ -116,9 +116,6 @@ public abstract class Search<SolutionType extends Solution> {
     /* LOCKS */
     /*********/
     
-    // lock acquired when updating/accessing best solution and its evaluation to ensure consistency
-    private final Object bestSolutionLock = new Object();
-    
     // lock acquired when updating the search status and when executing a block of code during which
     // the status is not allowed to change
     private final Object statusLock = new Object();
@@ -130,9 +127,14 @@ public abstract class Search<SolutionType extends Solution> {
     /**
      * Creates a search to solve the given problem.
      * 
+     * @throws NullPointerException if <code>problem</code> is <code>null</code>
      * @param problem problem to solve
      */
     public Search(Problem<SolutionType> problem){
+        // check problem
+        if(problem == null){
+            throw new NullPointerException("Error while creating search: problem can not be null.");
+        }
         // store problem reference
         this.problem = problem;
         // initialize search listener list
@@ -484,10 +486,7 @@ public abstract class Search<SolutionType extends Solution> {
      * @return best solution found so far, if already defined; <code>null</code> otherwise
      */
     public SolutionType getBestSolution(){
-        // synchronize with best solution updates
-        synchronized(bestSolutionLock){
-            return bestSolution;
-        }
+        return bestSolution;
     }
     
     /**
@@ -498,10 +497,7 @@ public abstract class Search<SolutionType extends Solution> {
      * @return evaluation of best solution, if already defined; arbitrary value otherwise
      */
     public double getBestSolutionEvaluation(){
-        // synchronize with best solution updates
-        synchronized(bestSolutionLock){
-            return bestSolutionEvaluation;
-        }
+        return bestSolutionEvaluation;
     }
     
     /****************************/
@@ -543,13 +539,10 @@ public abstract class Search<SolutionType extends Solution> {
                     minDelta = delta;
                 }
             }
-            // update best solution:
-            //  - create copy because new solution might be further modified in subsequent search steps
-            //  - acquire lock to ensure consistent return values of getBestSolution() and getBestSolutionEvaluation()
-            synchronized(bestSolutionLock){
-                bestSolution = problem.copySolution(newSolution);
-                bestSolutionEvaluation = newSolutionEvaluation;
-            }
+            // update best solution: create copy because new solution
+            // might be further modified in subsequent search steps
+            bestSolution = problem.copySolution(newSolution);
+            bestSolutionEvaluation = newSolutionEvaluation;
             // fire callback
             fireNewBestSolution(bestSolution, bestSolutionEvaluation);
         }
