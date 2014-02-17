@@ -31,41 +31,46 @@ import org.jamesframework.core.search.Search;
 public interface SearchListener<SolutionType extends Solution> {
     
     /**
-     * Called when the search has started. Should be called only once during a search run.
+     * Fired when the search has started. Called only once during a search run.
      * 
      * @param search search which has started
+     * @throws IncompatibleSearchListenerException if the listener is not compatible with the search
      */
     public void searchStarted(Search<? extends SolutionType> search);
     
     /**
-     * Called when the search has stopped. Should be called only once during a search run.
+     * Fired when the search has stopped. Called only once during a search run.
      * 
      * @param search search which has stopped
+     * @throws IncompatibleSearchListenerException if the listener is not compatible with the search
      */
     public void searchStopped(Search<? extends SolutionType> search);
     
     /**
-     * Called when the search sends a message to its listeners.
+     * Fired when the search sends a message to its listeners.
      * 
      * @param search search which sends a message
      * @param message the message sent
+     * @throws IncompatibleSearchListenerException if the listener is not compatible with the search
      */
     public void searchMessage(Search<? extends SolutionType> search, String message);
     
     /**
-     * Called when the search has found a new best solution. Should be called exactly once for every improvement.
+     * Fired when the search has found a new best solution. Called exactly once for every improvement.
      * 
      * @param search search which has found a new best solution
      * @param newBestSolution new best solution found
      * @param newBestSolutionEvaluation evaluation of the new best solution
+     * @throws IncompatibleSearchListenerException if the listener is not compatible with the search
      */
     public void newBestSolution(Search<? extends SolutionType> search, SolutionType newBestSolution, double newBestSolutionEvaluation);
     
     /**
-     * Called when the search has completed a step. Should be called exactly once for every completed step.
+     * Fired when the search has completed a step. Called exactly once for every completed step.
      * 
      * @param search search which has completed a step
      * @param numSteps number of steps completed so far (during the current search run)
+     * @throws IncompatibleSearchListenerException if the listener is not compatible with the search
      */
     public void stepCompleted(Search<? extends SolutionType> search, long numSteps);
 

@@ -268,8 +268,8 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
                 // compute delta
                 curMoveDelta = computeDelta(getProblem().evaluate(curSolution), curSolutionEvaluation);
                 // compare with current best move
-                if(curMoveDelta > bestMoveDelta                         // higher delta
-                        && (!positiveDeltasOnly || curMoveDelta > 0)){  // positive delta if required
+                if(curMoveDelta > bestMoveDelta                         // check higher delta
+                        && (!positiveDeltasOnly || curMoveDelta > 0)){  // ensure positive delta, if required
                     bestMove = curMove;
                     bestMoveDelta = curMoveDelta;
                 }
