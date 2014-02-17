@@ -366,7 +366,8 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
      * it with the currently known best solution to check whether a new best solution has been found. Note that this method does
      * <b>not</b> verify whether the given move yields a valid solution, but assumes that this has already been checked <i>prior</i>
      * to deciding to accept the move. Therefore, it should <b>never</b> be called with a move that results in a solution for which
-     * {@link Problem#rejectSolution(Solution)} returns <code>false</code>.
+     * {@link Problem#rejectSolution(Solution)} returns <code>false</code>. After updating the current solution, any neighbourhood
+     * search listeners are informed.
      * 
      * @param move accepted move to be applied to the current solution
      */
@@ -379,6 +380,8 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
         updateBestSolution(curSolution, curSolutionEvaluation);
         // increase accepted move counter
         numAcceptedMoves++;
+        // inform listeners
+        fireModifiedCurrentSolution(curSolution, curSolutionEvaluation);
     }
     
     /**
