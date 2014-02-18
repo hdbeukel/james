@@ -27,28 +27,17 @@ public class RandomSearchWithInternalMaxSteps<SolutionType extends Solution> ext
     
     // search stops internally after this number of steps
     private int steps;
-    // step counter
-    private int curStep;
     
     public RandomSearchWithInternalMaxSteps(Problem<SolutionType> problem, int steps){
         super(problem);
         this.steps = steps;
-        curStep = 0;
-    }
-    
-    @Override
-    public void searchStarted() {
-        // reset step counter
-        curStep = 0;
     }
     
     @Override
     protected void searchStep() {
-        if(curStep < steps){
+        if(getSteps() < steps){
             // perform step
             super.searchStep();
-            // increase step counter
-            curStep++;
         } else {
             // stop search
             stop();
