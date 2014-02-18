@@ -333,12 +333,12 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
      * @param positiveDeltasOnly if set to <code>true</code>, only moves with <code>delta > 0</code> are considered
      * @return valid move with largest delta, may be <code>null</code>
      */
-    protected Move<? super SolutionType> getMoveWithLargestDelta(Collection<Move<? super SolutionType>> moves, boolean positiveDeltasOnly){
+    protected Move<? super SolutionType> getMoveWithLargestDelta(Collection<? extends Move<? super SolutionType>> moves, boolean positiveDeltasOnly){
         // track best move and corresponding delta
         Move<? super SolutionType> bestMove = null, curMove;
         double bestMoveDelta = -Double.MAX_VALUE, curMoveDelta;
         // go through all moves
-        Iterator<Move<? super SolutionType>> it = moves.iterator();
+        Iterator<? extends Move<? super SolutionType>> it = moves.iterator();
         while(it.hasNext()){
             curMove = it.next();
             // apply move to current solution
