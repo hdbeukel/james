@@ -75,12 +75,18 @@
 </tr>
 <tbody>
 <tr class="altColor">
+<td class="colFirst"><a href="#org.jamesframework.core.search">org.jamesframework.core.search</a></td>
+<td class="colLast">
+<div class="block">Abstract search templates, including both general searches and neighbourhood searches.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.neigh">org.jamesframework.core.search.neigh</a></td>
 <td class="colLast">
 <div class="block">General neighbourhood and move specification.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.neigh.subset">org.jamesframework.core.search.neigh.subset</a></td>
 <td class="colLast">
 <div class="block">Neighbourhoods and moves for subset selection.</div>
@@ -91,6 +97,74 @@
 </li>
 <li class="blockList">
 <ul class="blockList">
+<li class="blockList"><a name="org.jamesframework.core.search">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a> in <a href="../../../../../../org/jamesframework/core/search/package-summary.html">org.jamesframework.core.search</a></h3>
+<table border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../../org/jamesframework/core/search/package-summary.html">org.jamesframework.core.search</a> that return <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>protected <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;</code></td>
+<td class="colLast"><span class="strong">NeighbourhoodSearch.</span><code><strong><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getMoveWithLargestDelta(java.util.Collection, boolean)">getMoveWithLargestDelta</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&gt;&nbsp;moves,
+                       boolean&nbsp;positiveDeltasOnly)</code>
+<div class="block">Given a collection of possible moves, get the move which yields the largest delta (see <a href="../../../../../../org/jamesframework/core/search/Search.html#computeDelta(double, double)"><code>Search.computeDelta(double, double)</code></a>)
+ when applying it to the current solution, where only those moves leading to a valid neighbouring solution are considered
+ (those moves for which <a href="../../../../../../org/jamesframework/core/problems/Problem.html#rejectSolution(SolutionType)"><code>Problem.rejectSolution(Solution)</code></a> returns <code>false</code>).</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../../org/jamesframework/core/search/package-summary.html">org.jamesframework.core.search</a> with parameters of type <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><span class="strong">NeighbourhoodSearch.</span><code><strong><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#acceptMove(org.jamesframework.core.search.neigh.Move)">acceptMove</a></strong>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</code>
+<div class="block">Accept the given move by applying it to the current solution.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected boolean</code></td>
+<td class="colLast"><span class="strong">NeighbourhoodSearch.</span><code><strong><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#isImprovement(org.jamesframework.core.search.neigh.Move)">isImprovement</a></strong>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</code>
+<div class="block">Checks whether the given move leads to an improvement when being applied to the current solution.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><span class="strong">NeighbourhoodSearch.</span><code><strong><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#rejectMove(org.jamesframework.core.search.neigh.Move)">rejectMove</a></strong>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</code>
+<div class="block">Rejects the given move.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Method parameters in <a href="../../../../../../org/jamesframework/core/search/package-summary.html">org.jamesframework.core.search</a> with type arguments of type <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>protected <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;</code></td>
+<td class="colLast"><span class="strong">NeighbourhoodSearch.</span><code><strong><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getMoveWithLargestDelta(java.util.Collection, boolean)">getMoveWithLargestDelta</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&gt;&nbsp;moves,
+                       boolean&nbsp;positiveDeltasOnly)</code>
+<div class="block">Given a collection of possible moves, get the move which yields the largest delta (see <a href="../../../../../../org/jamesframework/core/search/Search.html#computeDelta(double, double)"><code>Search.computeDelta(double, double)</code></a>)
+ when applying it to the current solution, where only those moves leading to a valid neighbouring solution are considered
+ (those moves for which <a href="../../../../../../org/jamesframework/core/problems/Problem.html#rejectSolution(SolutionType)"><code>Problem.rejectSolution(Solution)</code></a> returns <code>false</code>).</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
 <li class="blockList"><a name="org.jamesframework.core.search.neigh">
 <!--   -->
 </a>

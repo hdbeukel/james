@@ -35,7 +35,7 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../org/jamesframework/core/search/package-summary.html">Prev Package</a></li>
+<li><a href="../../../../../org/jamesframework/core/search/algo/package-summary.html">Prev Package</a></li>
 <li><a href="../../../../../org/jamesframework/core/search/neigh/package-summary.html">Next Package</a></li>
 </ul>
 <ul class="navList">
@@ -79,6 +79,13 @@
 </tr>
 <tbody>
 <tr class="altColor">
+<td class="colFirst"><a href="../../../../../org/jamesframework/core/search/listeners/NeighbourhoodSearchListener.html" title="interface in org.jamesframework.core.search.listeners">NeighbourhoodSearchListener</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</td>
+<td class="colLast">
+<div class="block">Extends the general search listener interface with a neighbourhood search specific callback, fired when the current solution
+ has been modified.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</td>
 <td class="colLast">
 <div class="block">Interface of a listener which may be attached to a search with the specified solution type (or a more specific solution type).</div>
@@ -96,11 +103,19 @@
 </tr>
 <tbody>
 <tr class="altColor">
+<td class="colFirst"><a href="../../../../../org/jamesframework/core/search/listeners/EmptyNeighbourhoodSearchListener.html" title="class in org.jamesframework.core.search.listeners">EmptyNeighbourhoodSearchListener</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</td>
+<td class="colLast">
+<div class="block">An empty neighbourhood search listener contains empty implementations of all methods in <a href="../../../../../org/jamesframework/core/search/listeners/NeighbourhoodSearchListener.html" title="interface in org.jamesframework.core.search.listeners"><code>NeighbourhoodSearchListener</code></a>,
+ acting as an easy entry point for custom search listeners which desire to listen only to a subset of events fired
+ by a search, by overriding the corresponding empty implementation.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><a href="../../../../../org/jamesframework/core/search/listeners/EmptySearchListener.html" title="class in org.jamesframework.core.search.listeners">EmptySearchListener</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</td>
 <td class="colLast">
 <div class="block">An empty search listener contains empty implementations of all methods in <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners"><code>SearchListener</code></a>, acting as
- as an easy entry point for custom search listener which desired to listen only to a subset of events fired
- by a search, by overriding the corresponding empty implementation.</div>
+ an easy entry point for custom search listeners which desire to listen only to a subset of events fired by
+ a search, by overriding the corresponding empty implementation.</div>
 </td>
 </tr>
 </tbody>
@@ -132,7 +147,7 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../org/jamesframework/core/search/package-summary.html">Prev Package</a></li>
+<li><a href="../../../../../org/jamesframework/core/search/algo/package-summary.html">Prev Package</a></li>
 <li><a href="../../../../../org/jamesframework/core/search/neigh/package-summary.html">Next Package</a></li>
 </ul>
 <ul class="navList">

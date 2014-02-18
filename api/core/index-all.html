@@ -66,6 +66,10 @@
 </a>
 <h2 class="title">A</h2>
 <dl>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/NeighbourhoodSearch.html#acceptMove(org.jamesframework.core.search.neigh.Move)">acceptMove(Move&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">Accept the given move by applying it to the current solution.</div>
+</dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#add(org.jamesframework.core.search.stopcriteria.StopCriterion)">add(StopCriterion)</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="./org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria">StopCriterionChecker</a></dt>
 <dd>
 <div class="block">Add a stop criterion to check.</div>
@@ -86,6 +90,10 @@
 <dt><span class="strong"><a href="./org/jamesframework/core/problems/ProblemWithData.html#addRejectingConstraint(org.jamesframework.core.problems.constraints.Constraint)">addRejectingConstraint(Constraint&lt;? super SolutionType, ? super DataType&gt;)</a></span> - Method in class org.jamesframework.core.problems.<a href="./org/jamesframework/core/problems/ProblemWithData.html" title="class in org.jamesframework.core.problems">ProblemWithData</a></dt>
 <dd>
 <div class="block">Add a rejecting constraint to the problem.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/NeighbourhoodSearch.html#addSearchListener(org.jamesframework.core.search.listeners.SearchListener)">addSearchListener(SearchListener&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">Add a search listener.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#addSearchListener(org.jamesframework.core.search.listeners.SearchListener)">addSearchListener(SearchListener&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
@@ -196,11 +204,19 @@
 </a>
 <h2 class="title">E</h2>
 <dl>
+<dt><a href="./org/jamesframework/core/search/listeners/EmptyNeighbourhoodSearchListener.html" title="class in org.jamesframework.core.search.listeners"><span class="strong">EmptyNeighbourhoodSearchListener</span></a>&lt;<a href="./org/jamesframework/core/search/listeners/EmptyNeighbourhoodSearchListener.html" title="type parameter in EmptyNeighbourhoodSearchListener">SolutionType</a> extends <a href="./org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Class in <a href="./org/jamesframework/core/search/listeners/package-summary.html">org.jamesframework.core.search.listeners</a></dt>
+<dd>
+<div class="block">An empty neighbourhood search listener contains empty implementations of all methods in <a href="./org/jamesframework/core/search/listeners/NeighbourhoodSearchListener.html" title="interface in org.jamesframework.core.search.listeners"><code>NeighbourhoodSearchListener</code></a>,
+ acting as an easy entry point for custom search listeners which desire to listen only to a subset of events fired
+ by a search, by overriding the corresponding empty implementation.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/listeners/EmptyNeighbourhoodSearchListener.html#EmptyNeighbourhoodSearchListener()">EmptyNeighbourhoodSearchListener()</a></span> - Constructor for class org.jamesframework.core.search.listeners.<a href="./org/jamesframework/core/search/listeners/EmptyNeighbourhoodSearchListener.html" title="class in org.jamesframework.core.search.listeners">EmptyNeighbourhoodSearchListener</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="./org/jamesframework/core/search/listeners/EmptySearchListener.html" title="class in org.jamesframework.core.search.listeners"><span class="strong">EmptySearchListener</span></a>&lt;<a href="./org/jamesframework/core/search/listeners/EmptySearchListener.html" title="type parameter in EmptySearchListener">SolutionType</a> extends <a href="./org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Class in <a href="./org/jamesframework/core/search/listeners/package-summary.html">org.jamesframework.core.search.listeners</a></dt>
 <dd>
 <div class="block">An empty search listener contains empty implementations of all methods in <a href="./org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners"><code>SearchListener</code></a>, acting as
- as an easy entry point for custom search listener which desired to listen only to a subset of events fired
- by a search, by overriding the corresponding empty implementation.</div>
+ an easy entry point for custom search listeners which desire to listen only to a subset of events fired by
+ a search, by overriding the corresponding empty implementation.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/listeners/EmptySearchListener.html#EmptySearchListener()">EmptySearchListener()</a></span> - Constructor for class org.jamesframework.core.search.listeners.<a href="./org/jamesframework/core/search/listeners/EmptySearchListener.html" title="class in org.jamesframework.core.search.listeners">EmptySearchListener</a></dt>
 <dd>&nbsp;</dd>
@@ -290,6 +306,14 @@
 <dd>
 <div class="block">Get the evaluation of the best solution found so far.</div>
 </dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/NeighbourhoodSearch.html#getCurrentSolution()">getCurrentSolution()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">Returns the current solution.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/NeighbourhoodSearch.html#getCurrentSolutionEvaluation()">getCurrentSolutionEvaluation()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">Get the evaluation of the current solution.</div>
+</dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/problems/ProblemWithData.html#getData()">getData()</a></span> - Method in class org.jamesframework.core.problems.<a href="./org/jamesframework/core/problems/ProblemWithData.html" title="class in org.jamesframework.core.problems">ProblemWithData</a></dt>
 <dd>
 <div class="block">Get the underlying data.</div>
@@ -336,8 +360,9 @@
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#getMinDelta()">getMinDelta()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
-<div class="block">Get the minimum improvement in evaluation of a newly found best solution over the previously known best solution,
- during the <i>current</i> run.</div>
+<div class="block">
+ Get the minimum improvement in evaluation of a new best known solution over the previous best known solution,
+ found during the <i>current</i> (or last) run.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/problems/SubsetProblem.html#getMinSubsetSize()">getMinSubsetSize()</a></span> - Method in interface org.jamesframework.core.problems.<a href="./org/jamesframework/core/problems/SubsetProblem.html" title="interface in org.jamesframework.core.problems">SubsetProblem</a></dt>
 <dd>
@@ -350,6 +375,21 @@
 <dt><span class="strong"><a href="./org/jamesframework/core/search/neigh/subset/SinglePerturbationNeighbourhood.html#getMinSubsetSize()">getMinSubsetSize()</a></span> - Method in class org.jamesframework.core.search.neigh.subset.<a href="./org/jamesframework/core/search/neigh/subset/SinglePerturbationNeighbourhood.html" title="class in org.jamesframework.core.search.neigh.subset">SinglePerturbationNeighbourhood</a></dt>
 <dd>
 <div class="block">Get the minimum subset size specified at construction.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/NeighbourhoodSearch.html#getMoveWithLargestDelta(java.util.Collection, boolean)">getMoveWithLargestDelta(Collection&lt;? extends Move&lt;? super SolutionType&gt;&gt;, boolean)</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">Given a collection of possible moves, get the move which yields the largest delta (see <a href="./org/jamesframework/core/search/Search.html#computeDelta(double, double)"><code>Search.computeDelta(double, double)</code></a>)
+ when applying it to the current solution, where only those moves leading to a valid neighbouring solution are considered
+ (those moves for which <a href="./org/jamesframework/core/problems/Problem.html#rejectSolution(SolutionType)"><code>Problem.rejectSolution(Solution)</code></a> returns <code>false</code>).</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/SingleNeighbourhoodSearch.html#getNeighbourhood()">getNeighbourhood()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/SingleNeighbourhoodSearch.html" title="class in org.jamesframework.core.search">SingleNeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">Get the neighbourhood used to modify the current solution.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/NeighbourhoodSearch.html#getNumAcceptedMoves()">getNumAcceptedMoves()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">
+ Get the number of moves accepted during the <i>current</i> (or last) run.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/neigh/subset/AdditionMove.html#getNumAdded()">getNumAdded()</a></span> - Method in class org.jamesframework.core.search.neigh.subset.<a href="./org/jamesframework/core/search/neigh/subset/AdditionMove.html" title="class in org.jamesframework.core.search.neigh.subset">AdditionMove</a></dt>
 <dd>
@@ -382,6 +422,11 @@
 <dt><span class="strong"><a href="./org/jamesframework/core/search/neigh/subset/SwapMove.html#getNumDeleted()">getNumDeleted()</a></span> - Method in class org.jamesframework.core.search.neigh.subset.<a href="./org/jamesframework/core/search/neigh/subset/SwapMove.html" title="class in org.jamesframework.core.search.neigh.subset">SwapMove</a></dt>
 <dd>
 <div class="block">Always return 1.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/NeighbourhoodSearch.html#getNumRejectedMoves()">getNumRejectedMoves()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">
+ Get the number of moves rejected during the <i>current</i> (or last) run.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/problems/solutions/SubsetSolution.html#getNumSelectedIDs()">getNumSelectedIDs()</a></span> - Method in class org.jamesframework.core.problems.solutions.<a href="./org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a></dt>
 <dd>
@@ -424,7 +469,8 @@
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#getRuntime()">getRuntime()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
-<div class="block">Get the runtime of the <i>current</i> run, including initialization, in milliseconds.</div>
+<div class="block">
+ Get the runtime of the <i>current</i> (or last) run, in milliseconds.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/problems/solutions/SubsetSolution.html#getSelectedIDs()">getSelectedIDs()</a></span> - Method in class org.jamesframework.core.problems.solutions.<a href="./org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a></dt>
 <dd>
@@ -438,17 +484,26 @@
 <dd>
 <div class="block">Get the current search status.</div>
 </dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#getStatusLock()">getStatusLock()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
+<dd>
+<div class="block">Returns a lock to be acquired when executing blocks of code that can not be interrupted by a status update.</div>
+</dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#getSteps()">getSteps()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
-<div class="block">Get the number of completed steps in the <i>current</i> run.</div>
+<div class="block">
+ Get the number of completed steps during the <i>current</i> (or last) run.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#getStepsWithoutImprovement()">getStepsWithoutImprovement()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
-<div class="block">Get the number of consecutive steps completed during the <i>current</i> run without finding any improvement.</div>
+<div class="block">
+ Get the number of consecutive steps completed during the <i>current</i> (or last) run, without finding
+ any further improvement.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#getTimeWithoutImprovement()">getTimeWithoutImprovement()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
-<div class="block">Get the amount of time elapsed during the <i>current</i> run without finding any improvement, in milliseconds.</div>
+<div class="block">
+ Get the amount of time elapsed during the <i>current</i> (or last) run, without finding any further improvement
+ (in milliseconds).</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/problems/solutions/SubsetSolution.html#getTotalNumIDs()">getTotalNumIDs()</a></span> - Method in class org.jamesframework.core.problems.solutions.<a href="./org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a></dt>
 <dd>
@@ -522,6 +577,10 @@
 <dd>
 <div class="block">Indicates an invalid delta (amount of improvement).</div>
 </dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/util/JamesConstants.html#INVALID_MOVE_COUNT">INVALID_MOVE_COUNT</a></span> - Static variable in class org.jamesframework.core.util.<a href="./org/jamesframework/core/util/JamesConstants.html" title="class in org.jamesframework.core.util">JamesConstants</a></dt>
+<dd>
+<div class="block">Indicates an invalid number of moves.</div>
+</dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/util/JamesConstants.html#INVALID_STEP_COUNT">INVALID_STEP_COUNT</a></span> - Static variable in class org.jamesframework.core.util.<a href="./org/jamesframework/core/util/JamesConstants.html" title="class in org.jamesframework.core.util">JamesConstants</a></dt>
 <dd>
 <div class="block">Indicates an invalid number of steps.</div>
@@ -533,6 +592,10 @@
 <dt><span class="strong"><a href="./org/jamesframework/core/util/JamesConstants.html#INVALID_TIMESTAMP">INVALID_TIMESTAMP</a></span> - Static variable in class org.jamesframework.core.util.<a href="./org/jamesframework/core/util/JamesConstants.html" title="class in org.jamesframework.core.util">JamesConstants</a></dt>
 <dd>
 <div class="block">Used to indicate an invalid timestamp, for example belonging to an event which has not yet occurred.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/NeighbourhoodSearch.html#isImprovement(org.jamesframework.core.search.neigh.Move)">isImprovement(Move&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">Checks whether the given move leads to an improvement when being applied to the current solution.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/problems/objectives/MinMaxObjective.html#isMinimizing()">isMinimizing()</a></span> - Method in class org.jamesframework.core.problems.objectives.<a href="./org/jamesframework/core/problems/objectives/MinMaxObjective.html" title="class in org.jamesframework.core.problems.objectives">MinMaxObjective</a></dt>
 <dd>&nbsp;</dd>
@@ -615,6 +678,12 @@
 <dd>
 <div class="block">By default, objectives are maximizing.</div>
 </dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/listeners/EmptyNeighbourhoodSearchListener.html#modifiedCurrentSolution(org.jamesframework.core.search.NeighbourhoodSearch, SolutionType, double)">modifiedCurrentSolution(NeighbourhoodSearch&lt;? extends SolutionType&gt;, SolutionType, double)</a></span> - Method in class org.jamesframework.core.search.listeners.<a href="./org/jamesframework/core/search/listeners/EmptyNeighbourhoodSearchListener.html" title="class in org.jamesframework.core.search.listeners">EmptyNeighbourhoodSearchListener</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/listeners/NeighbourhoodSearchListener.html#modifiedCurrentSolution(org.jamesframework.core.search.NeighbourhoodSearch, SolutionType, double)">modifiedCurrentSolution(NeighbourhoodSearch&lt;? extends SolutionType&gt;, SolutionType, double)</a></span> - Method in interface org.jamesframework.core.search.listeners.<a href="./org/jamesframework/core/search/listeners/NeighbourhoodSearchListener.html" title="interface in org.jamesframework.core.search.listeners">NeighbourhoodSearchListener</a></dt>
+<dd>
+<div class="block">Fired whenever a new current solution has been adopted.</div>
+</dd>
 <dt><a href="./org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh"><span class="strong">Move</span></a>&lt;<a href="./org/jamesframework/core/search/neigh/Move.html" title="type parameter in Move">SolutionType</a> extends <a href="./org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Interface in <a href="./org/jamesframework/core/search/neigh/package-summary.html">org.jamesframework.core.search.neigh</a></dt>
 <dd>
 <div class="block">Interface of a move that can be applied to a generic solution type.</div>
@@ -629,11 +698,25 @@
 <dd>
 <div class="block">Interface of a neighbourhood that generates moves to transform a given solution into a neighbouring solution.</div>
 </dd>
+<dt><a href="./org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search"><span class="strong">NeighbourhoodSearch</span></a>&lt;<a href="./org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a> extends <a href="./org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Class in <a href="./org/jamesframework/core/search/package-summary.html">org.jamesframework.core.search</a></dt>
+<dd>
+<div class="block">A neighbourhood search extends the general abstract search by adding a concept of current solution, which is repeatedly modified
+ by applying moves generated by a neighbourhood.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/NeighbourhoodSearch.html#NeighbourhoodSearch(org.jamesframework.core.problems.Problem)">NeighbourhoodSearch(Problem&lt;SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">Create a new neighbourhood search to solve the given problem.</div>
+</dd>
+<dt><a href="./org/jamesframework/core/search/listeners/NeighbourhoodSearchListener.html" title="interface in org.jamesframework.core.search.listeners"><span class="strong">NeighbourhoodSearchListener</span></a>&lt;<a href="./org/jamesframework/core/search/listeners/NeighbourhoodSearchListener.html" title="type parameter in NeighbourhoodSearchListener">SolutionType</a> extends <a href="./org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Interface in <a href="./org/jamesframework/core/search/listeners/package-summary.html">org.jamesframework.core.search.listeners</a></dt>
+<dd>
+<div class="block">Extends the general search listener interface with a neighbourhood search specific callback, fired when the current solution
+ has been modified.</div>
+</dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/listeners/EmptySearchListener.html#newBestSolution(org.jamesframework.core.search.Search, SolutionType, double)">newBestSolution(Search&lt;? extends SolutionType&gt;, SolutionType, double)</a></span> - Method in class org.jamesframework.core.search.listeners.<a href="./org/jamesframework/core/search/listeners/EmptySearchListener.html" title="class in org.jamesframework.core.search.listeners">EmptySearchListener</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/listeners/SearchListener.html#newBestSolution(org.jamesframework.core.search.Search, SolutionType, double)">newBestSolution(Search&lt;? extends SolutionType&gt;, SolutionType, double)</a></span> - Method in interface org.jamesframework.core.search.listeners.<a href="./org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a></dt>
 <dd>
-<div class="block">Called when the search has found a new best solution.</div>
+<div class="block">Fired when the search has found a new best solution.</div>
 </dd>
 </dl>
 <a name="_O_">
@@ -672,6 +755,10 @@
 <dt><a href="./org/jamesframework/core/search/package-summary.html">org.jamesframework.core.search</a> - package org.jamesframework.core.search</dt>
 <dd>
 <div class="block">Abstract search templates, including both general searches and neighbourhood searches.</div>
+</dd>
+<dt><a href="./org/jamesframework/core/search/algo/package-summary.html">org.jamesframework.core.search.algo</a> - package org.jamesframework.core.search.algo</dt>
+<dd>
+<div class="block">Actual search implementations; advanced searches with custom components are implemented in separate subpackages.</div>
 </dd>
 <dt><a href="./org/jamesframework/core/search/listeners/package-summary.html">org.jamesframework.core.search.listeners</a> - package org.jamesframework.core.search.listeners</dt>
 <dd>
@@ -723,6 +810,19 @@
 </a>
 <h2 class="title">R</h2>
 <dl>
+<dt><a href="./org/jamesframework/core/search/algo/RandomDescent.html" title="class in org.jamesframework.core.search.algo"><span class="strong">RandomDescent</span></a>&lt;<a href="./org/jamesframework/core/search/algo/RandomDescent.html" title="type parameter in RandomDescent">SolutionType</a> extends <a href="./org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Class in <a href="./org/jamesframework/core/search/algo/package-summary.html">org.jamesframework.core.search.algo</a></dt>
+<dd>
+<div class="block">Basic random descent algorithm.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/algo/RandomDescent.html#RandomDescent(org.jamesframework.core.problems.Problem, org.jamesframework.core.search.neigh.Neighbourhood)">RandomDescent(Problem&lt;SolutionType&gt;, Neighbourhood&lt;? super SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.<a href="./org/jamesframework/core/search/algo/RandomDescent.html" title="class in org.jamesframework.core.search.algo">RandomDescent</a></dt>
+<dd>
+<div class="block">Creates a new random descent search, specifying the problem to solve and the neighbourhood used to
+ modify the current solution.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/NeighbourhoodSearch.html#rejectMove(org.jamesframework.core.search.neigh.Move)">rejectMove(Move&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">Rejects the given move.</div>
+</dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/problems/Problem.html#rejectSolution(SolutionType)">rejectSolution(SolutionType)</a></span> - Method in interface org.jamesframework.core.problems.<a href="./org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a></dt>
 <dd>
 <div class="block">Indicates whether the given solution should be rejected during search,
@@ -743,6 +843,10 @@
 <dt><span class="strong"><a href="./org/jamesframework/core/problems/ProblemWithData.html#removeRejectingConstraint(org.jamesframework.core.problems.constraints.Constraint)">removeRejectingConstraint(Constraint&lt;? super SolutionType, ? super DataType&gt;)</a></span> - Method in class org.jamesframework.core.problems.<a href="./org/jamesframework/core/problems/ProblemWithData.html" title="class in org.jamesframework.core.problems">ProblemWithData</a></dt>
 <dd>
 <div class="block">Remove a rejecting constraint.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/NeighbourhoodSearch.html#removeSearchListener(org.jamesframework.core.search.listeners.SearchListener)">removeSearchListener(SearchListener&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">Remove the given search listener.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#removeSearchListener(org.jamesframework.core.search.listeners.SearchListener)">removeSearchListener(SearchListener&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
@@ -795,7 +899,7 @@
 <dd>&nbsp;</dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/listeners/SearchListener.html#searchMessage(org.jamesframework.core.search.Search, java.lang.String)">searchMessage(Search&lt;? extends SolutionType&gt;, String)</a></span> - Method in interface org.jamesframework.core.search.listeners.<a href="./org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a></dt>
 <dd>
-<div class="block">Called when the search sends a message to its listeners.</div>
+<div class="block">Fired when the search sends a message to its listeners.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/stopcriteria/MaxRuntime.html#searchShouldStop(org.jamesframework.core.search.Search)">searchShouldStop(Search&lt;?&gt;)</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="./org/jamesframework/core/search/stopcriteria/MaxRuntime.html" title="class in org.jamesframework.core.search.stopcriteria">MaxRuntime</a></dt>
 <dd>
@@ -809,7 +913,11 @@
 <dd>&nbsp;</dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/listeners/SearchListener.html#searchStarted(org.jamesframework.core.search.Search)">searchStarted(Search&lt;? extends SolutionType&gt;)</a></span> - Method in interface org.jamesframework.core.search.listeners.<a href="./org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a></dt>
 <dd>
-<div class="block">Called when the search has started.</div>
+<div class="block">Fired when the search has started.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/NeighbourhoodSearch.html#searchStarted()">searchStarted()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">Resets neighbourhood search specific, per run metadata: number of accepted and rejected moves.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#searchStarted()">searchStarted()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
@@ -820,6 +928,10 @@
 <dd>
 <div class="block">Enumeration of possible search statuses.</div>
 </dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/algo/RandomDescent.html#searchStep()">searchStep()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="./org/jamesframework/core/search/algo/RandomDescent.html" title="class in org.jamesframework.core.search.algo">RandomDescent</a></dt>
+<dd>
+<div class="block">Creates a random neighbour of the current solution and accepts it if it improves over the current solution.</div>
+</dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#searchStep()">searchStep()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
 <div class="block">This method is iteratively called while the search is running and should be implemented in every specific
@@ -829,7 +941,7 @@
 <dd>&nbsp;</dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/listeners/SearchListener.html#searchStopped(org.jamesframework.core.search.Search)">searchStopped(Search&lt;? extends SolutionType&gt;)</a></span> - Method in interface org.jamesframework.core.search.listeners.<a href="./org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a></dt>
 <dd>
-<div class="block">Called when the search has stopped.</div>
+<div class="block">Fired when the search has stopped.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#searchStopped()">searchStopped()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
@@ -846,6 +958,10 @@
 <dt><span class="strong"><a href="./org/jamesframework/core/problems/solutions/SubsetSolution.html#selectAll()">selectAll()</a></span> - Method in class org.jamesframework.core.problems.solutions.<a href="./org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a></dt>
 <dd>
 <div class="block">Select all IDs.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/NeighbourhoodSearch.html#setCurrentSolution(SolutionType)">setCurrentSolution(SolutionType)</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">Sets the current solution.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/problems/ProblemWithData.html#setData(DataType)">setData(DataType)</a></span> - Method in class org.jamesframework.core.problems.<a href="./org/jamesframework/core/problems/ProblemWithData.html" title="class in org.jamesframework.core.problems">ProblemWithData</a></dt>
 <dd>
@@ -871,6 +987,10 @@
 <dd>
 <div class="block">Set the minimum subset size.</div>
 </dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/SingleNeighbourhoodSearch.html#setNeighbourhood(org.jamesframework.core.search.neigh.Neighbourhood)">setNeighbourhood(Neighbourhood&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/SingleNeighbourhoodSearch.html" title="class in org.jamesframework.core.search">SingleNeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">Sets the neighbourhood used to modify the current solution.</div>
+</dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/problems/ProblemWithData.html#setObjective(org.jamesframework.core.problems.objectives.Objective)">setObjective(Objective&lt;? super SolutionType, ? super DataType&gt;)</a></span> - Method in class org.jamesframework.core.problems.<a href="./org/jamesframework/core/problems/ProblemWithData.html" title="class in org.jamesframework.core.problems">ProblemWithData</a></dt>
 <dd>
 <div class="block">Set a new objective function.</div>
@@ -889,6 +1009,15 @@
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/util/SetUtilities.html#SetUtilities()">SetUtilities()</a></span> - Constructor for class org.jamesframework.core.util.<a href="./org/jamesframework/core/util/SetUtilities.html" title="class in org.jamesframework.core.util">SetUtilities</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="./org/jamesframework/core/search/SingleNeighbourhoodSearch.html" title="class in org.jamesframework.core.search"><span class="strong">SingleNeighbourhoodSearch</span></a>&lt;<a href="./org/jamesframework/core/search/SingleNeighbourhoodSearch.html" title="type parameter in SingleNeighbourhoodSearch">SolutionType</a> extends <a href="./org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Class in <a href="./org/jamesframework/core/search/package-summary.html">org.jamesframework.core.search</a></dt>
+<dd>
+<div class="block">Abstract neighbourhood search that uses a <i>single</i> neighbourhood to modify the current solution.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/SingleNeighbourhoodSearch.html#SingleNeighbourhoodSearch(org.jamesframework.core.problems.Problem, org.jamesframework.core.search.neigh.Neighbourhood)">SingleNeighbourhoodSearch(Problem&lt;SolutionType&gt;, Neighbourhood&lt;? super SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/SingleNeighbourhoodSearch.html" title="class in org.jamesframework.core.search">SingleNeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">Create a new single neighbourhood search, specifying the problem to be solved and the neighbourhood used to
+ modify the current solution.</div>
+</dd>
 <dt><a href="./org/jamesframework/core/search/neigh/subset/SinglePerturbationNeighbourhood.html" title="class in org.jamesframework.core.search.neigh.subset"><span class="strong">SinglePerturbationNeighbourhood</span></a> - Class in <a href="./org/jamesframework/core/search/neigh/subset/package-summary.html">org.jamesframework.core.search.neigh.subset</a></dt>
 <dd>
 <div class="block">
@@ -944,7 +1073,7 @@
 <dd>&nbsp;</dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/listeners/SearchListener.html#stepCompleted(org.jamesframework.core.search.Search, long)">stepCompleted(Search&lt;? extends SolutionType&gt;, long)</a></span> - Method in interface org.jamesframework.core.search.listeners.<a href="./org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a></dt>
 <dd>
-<div class="block">Called when the search has completed a step.</div>
+<div class="block">Fired when the search has completed a step.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#stop()">stop()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
@@ -1055,6 +1184,13 @@
 <dd>
 <div class="block">
  Checks whether a new best solution has been found and updates it accordingly.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#updateBestSolution(SolutionType, double)">updateBestSolution(SolutionType, double)</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
+<dd>
+<div class="block">
+ Checks whether a new best solution has been found and updates it accordingly,
+ assuming that the given solution is <b>not</b> rejected by the problem (see
+ <a href="./org/jamesframework/core/problems/Problem.html#rejectSolution(SolutionType)"><code>Problem.rejectSolution(Solution)</code></a> and has already been evaluated.</div>
 </dd>
 </dl>
 <a name="_V_">

@@ -86,6 +86,12 @@
 <div class="block">Abstract search templates, including both general searches and neighbourhood searches.</div>
 </td>
 </tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#org.jamesframework.core.search.algo">org.jamesframework.core.search.algo</a></td>
+<td class="colLast">
+<div class="block">Actual search implementations; advanced searches with custom components are implemented in separate subpackages.</div>
+</td>
+</tr>
 </tbody>
 </table>
 </li>
@@ -160,8 +166,40 @@
 </tr>
 <tbody>
 <tr class="altColor">
+<td class="colLast"><code><strong><a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#NeighbourhoodSearch(org.jamesframework.core.problems.Problem)">NeighbourhoodSearch</a></strong>(<a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;problem)</code>
+<div class="block">Create a new neighbourhood search to solve the given problem.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colLast"><code><strong><a href="../../../../../org/jamesframework/core/search/Search.html#Search(org.jamesframework.core.problems.Problem)">Search</a></strong>(<a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&nbsp;problem)</code>
 <div class="block">Creates a search to solve the given problem.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colLast"><code><strong><a href="../../../../../org/jamesframework/core/search/SingleNeighbourhoodSearch.html#SingleNeighbourhoodSearch(org.jamesframework.core.problems.Problem, org.jamesframework.core.search.neigh.Neighbourhood)">SingleNeighbourhoodSearch</a></strong>(<a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/SingleNeighbourhoodSearch.html" title="type parameter in SingleNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;problem,
+                         <a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../org/jamesframework/core/search/SingleNeighbourhoodSearch.html" title="type parameter in SingleNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;neighbourhood)</code>
+<div class="block">Create a new single neighbourhood search, specifying the problem to be solved and the neighbourhood used to
+ modify the current solution.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.search.algo">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a> in <a href="../../../../../org/jamesframework/core/search/algo/package-summary.html">org.jamesframework.core.search.algo</a></h3>
+<table border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
+<caption><span>Constructors in <a href="../../../../../org/jamesframework/core/search/algo/package-summary.html">org.jamesframework.core.search.algo</a> with parameters of type <a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Constructor and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colLast"><code><strong><a href="../../../../../org/jamesframework/core/search/algo/RandomDescent.html#RandomDescent(org.jamesframework.core.problems.Problem, org.jamesframework.core.search.neigh.Neighbourhood)">RandomDescent</a></strong>(<a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/RandomDescent.html" title="type parameter in RandomDescent">SolutionType</a>&gt;&nbsp;problem,
+             <a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../org/jamesframework/core/search/algo/RandomDescent.html" title="type parameter in RandomDescent">SolutionType</a>&gt;&nbsp;neighbourhood)</code>
+<div class="block">Creates a new random descent search, specifying the problem to solve and the neighbourhood used to
+ modify the current solution.</div>
 </td>
 </tr>
 </tbody>

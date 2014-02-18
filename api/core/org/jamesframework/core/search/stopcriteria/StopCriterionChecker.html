@@ -248,7 +248,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <pre>public&nbsp;void&nbsp;setPeriod(long&nbsp;period,
              <a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/TimeUnit.html?is-external=true" title="class or interface in java.util.concurrent">TimeUnit</a>&nbsp;timeUnit)</pre>
 <div class="block">Set the period between consecutive stop criterion checks. By default, this period is set to 1 second.
- The new settings will apply as from the next call of <a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#startChecking()"><code>startChecking()</code></a>.</div>
+ The new settings will apply as from the next call of <a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#startChecking()"><code>startChecking()</code></a>. The period should be
+ at least 1 millisecond, else an exception will be thrown when trying to start the timer.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>period</code> - period between two checks</dd><dd><code>timeUnit</code> - time unit of this period</dd></dl>
 </li>
 </ul>

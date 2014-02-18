@@ -35,7 +35,7 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li>Prev Class</li>
+<li><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search"><span class="strong">Prev Class</span></a></li>
 <li><a href="../../../../org/jamesframework/core/search/SearchStatus.html" title="enum in org.jamesframework.core.search"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -94,6 +94,10 @@
 <ul class="blockList">
 <li class="blockList">
 <dl><dt><span class="strong">Type Parameters:</span></dt><dd><code>SolutionType</code> - solution type of the problems that may be solved using this search, required to extend <a href="../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions"><code>Solution</code></a></dd></dl>
+<dl>
+<dt>Direct Known Subclasses:</dt>
+<dd><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dd>
+</dl>
 <hr>
 <br>
 <pre>public abstract class <span class="strong">Search&lt;SolutionType extends <a href="../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span>
@@ -212,8 +216,9 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <tr class="altColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#getMinDelta()">getMinDelta</a></strong>()</code>
-<div class="block">Get the minimum improvement in evaluation of a newly found best solution over the previously known best solution,
- during the <i>current</i> run.</div>
+<div class="block">
+ Get the minimum improvement in evaluation of a new best known solution over the previous best known solution,
+ found during the <i>current</i> (or last) run.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -225,7 +230,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <tr class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#getRuntime()">getRuntime</a></strong>()</code>
-<div class="block">Get the runtime of the <i>current</i> run, including initialization, in milliseconds.</div>
+<div class="block">
+ Get the runtime of the <i>current</i> (or last) run, in milliseconds.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -235,81 +241,102 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>long</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#getSteps()">getSteps</a></strong>()</code>
-<div class="block">Get the number of completed steps in the <i>current</i> run.</div>
+<td class="colFirst"><code>protected <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#getStatusLock()">getStatusLock</a></strong>()</code>
+<div class="block">Returns a lock to be acquired when executing blocks of code that can not be interrupted by a status update.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>long</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#getStepsWithoutImprovement()">getStepsWithoutImprovement</a></strong>()</code>
-<div class="block">Get the number of consecutive steps completed during the <i>current</i> run without finding any improvement.</div>
+<td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#getSteps()">getSteps</a></strong>()</code>
+<div class="block">
+ Get the number of completed steps during the <i>current</i> (or last) run.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>long</code></td>
-<td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#getTimeWithoutImprovement()">getTimeWithoutImprovement</a></strong>()</code>
-<div class="block">Get the amount of time elapsed during the <i>current</i> run without finding any improvement, in milliseconds.</div>
+<td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#getStepsWithoutImprovement()">getStepsWithoutImprovement</a></strong>()</code>
+<div class="block">
+ Get the number of consecutive steps completed during the <i>current</i> (or last) run, without finding
+ any further improvement.</div>
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>long</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#getTimeWithoutImprovement()">getTimeWithoutImprovement</a></strong>()</code>
+<div class="block">
+ Get the amount of time elapsed during the <i>current</i> (or last) run, without finding any further improvement
+ (in milliseconds).</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#removeSearchListener(org.jamesframework.core.search.listeners.SearchListener)">removeSearchListener</a></strong>(<a href="../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;? super <a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&nbsp;listener)</code>
 <div class="block">Remove the given search listener.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#removeStopCriterion(org.jamesframework.core.search.stopcriteria.StopCriterion)">removeStopCriterion</a></strong>(<a href="../../../../org/jamesframework/core/search/stopcriteria/StopCriterion.html" title="interface in org.jamesframework.core.search.stopcriteria">StopCriterion</a>&nbsp;stopCriterion)</code>
 <div class="block">Removes a stop criterion.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#searchStarted()">searchStarted</a></strong>()</code>
 <div class="block">This method is called when a search run is started, to perform initialization and/or validation of the search
  configuration.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected abstract void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#searchStep()">searchStep</a></strong>()</code>
 <div class="block">This method is iteratively called while the search is running and should be implemented in every specific
  search according to the corresponding search strategy.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#searchStopped()">searchStopped</a></strong>()</code>
 <div class="block">This method is called when a search run has completed and may be used to perform some finalization.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#setStopCriterionCheckPeriod(long, java.util.concurrent.TimeUnit)">setStopCriterionCheckPeriod</a></strong>(long&nbsp;period,
                            <a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/TimeUnit.html?is-external=true" title="class or interface in java.util.concurrent">TimeUnit</a>&nbsp;timeUnit)</code>
 <div class="block">Instructs the search to check its stop criteria at regular intervals separated by the given period.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#start()">start</a></strong>()</code>
 <div class="block">
  Starts a search run and returns when this run has finished.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#stop()">stop</a></strong>()</code>
 <div class="block">
  Requests the search to stop.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><code>protected void</code></td>
+<tr class="altColor">
+<td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#updateBestSolution(SolutionType)">updateBestSolution</a></strong>(<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&nbsp;newSolution)</code>
 <div class="block">
  Checks whether a new best solution has been found and updates it accordingly.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>protected boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#updateBestSolution(SolutionType, double)">updateBestSolution</a></strong>(<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&nbsp;newSolution,
+                  double&nbsp;newSolutionEvaluation)</code>
+<div class="block">
+ Checks whether a new best solution has been found and updates it accordingly,
+ assuming that the given solution is <b>not</b> rejected by the problem (see
+ <a href="../../../../org/jamesframework/core/problems/Problem.html#rejectSolution(SolutionType)"><code>Problem.rejectSolution(Solution)</code></a> and has already been evaluated.</div>
 </td>
 </tr>
 </table>
@@ -342,7 +369,9 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <h4>Search</h4>
 <pre>public&nbsp;Search(<a href="../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&nbsp;problem)</pre>
 <div class="block">Creates a search to solve the given problem.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>problem</code> - problem to solve</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>problem</code> - problem to solve</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> is <code>null</code></dd></dl>
 </li>
 </ul>
 </li>
@@ -442,7 +471,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
                                <a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/TimeUnit.html?is-external=true" title="class or interface in java.util.concurrent">TimeUnit</a>&nbsp;timeUnit)</pre>
 <div class="block">Instructs the search to check its stop criteria at regular intervals separated by the given period.
  For the default period, see <a href="../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria"><code>StopCriterionChecker</code></a>, which is used internally for this purpose.
- Note that this method may only be called when the search is idle.</div>
+ The period should be at least 1 millisecond, else the stop criterion checker may thrown an exception
+ when the search is started. Note that this method may only be called when the search is idle.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>period</code> - time between subsequent stop criterion checks (> 0)</dd><dd><code>timeUnit</code> - corresponding time unit</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions">SearchException</a></code> - if the search is not idle</dd>
@@ -501,6 +531,19 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dl><dt><span class="strong">Returns:</span></dt><dd>current search status</dd></dl>
 </li>
 </ul>
+<a name="getStatusLock()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getStatusLock</h4>
+<pre>protected&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;getStatusLock()</pre>
+<div class="block">Returns a lock to be acquired when executing blocks of code that can not be interrupted by a status update.
+ All status updates are synchronized using this lock. Whenever a fixed status is required during execution of
+ a code block, this can be obtained by synchronizing the block using this status lock.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>status lock used for synchronization with status updates</dd></dl>
+</li>
+</ul>
 <a name="getBestSolution()">
 <!--   -->
 </a>
@@ -508,9 +551,10 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>getBestSolution</h4>
 <pre>public&nbsp;<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&nbsp;getBestSolution()</pre>
-<div class="block">Returns the best solution found so far. The best solution is <b>retained</b> across subsequent runs of the
- same search. May return <code>null</code> if no solutions have been evaluated yet, for example when the search
- has just been created.</div>
+<div class="block">Returns the best solution found so far. It is guaranteed that this solution is valid, in the sense that
+ <a href="../../../../org/jamesframework/core/problems/Problem.html#rejectSolution(SolutionType)"><code>Problem.rejectSolution(Solution)</code></a> returns <code>false</code>. The best solution is <b>retained</b>
+ across subsequent runs of the same search. May return <code>null</code> if no solutions have been evaluated
+ yet, for example when the search has just been created.</div>
 <dl><dt><span class="strong">Returns:</span></dt><dd>best solution found so far, if already defined; <code>null</code> otherwise</dd></dl>
 </li>
 </ul>
@@ -535,7 +579,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>updateBestSolution</h4>
-<pre>protected&nbsp;void&nbsp;updateBestSolution(<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&nbsp;newSolution)</pre>
+<pre>protected&nbsp;boolean&nbsp;updateBestSolution(<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&nbsp;newSolution)</pre>
 <div class="block"><p>
  Checks whether a new best solution has been found and updates it accordingly.
  The best solution is updated only if the new solution is <b>not</b> rejected
@@ -550,7 +594,44 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
  method has no effect. Note that the best solution is <b>retained</b> across subsequent runs of
  the same search.
  </p></div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>newSolution</code> - newly constructed solution</dd></dl>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>newSolution</code> - newly constructed solution</dd>
+<dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the given solution is accepted as the new best solution</dd></dl>
+</li>
+</ul>
+<a name="updateBestSolution(org.jamesframework.core.problems.solutions.Solution,double)">
+<!--   -->
+</a><a name="updateBestSolution(SolutionType, double)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>updateBestSolution</h4>
+<pre>protected&nbsp;boolean&nbsp;updateBestSolution(<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&nbsp;newSolution,
+                         double&nbsp;newSolutionEvaluation)</pre>
+<div class="block"><p>
+ Checks whether a new best solution has been found and updates it accordingly,
+ assuming that the given solution is <b>not</b> rejected by the problem (see
+ <a href="../../../../org/jamesframework/core/problems/Problem.html#rejectSolution(SolutionType)"><code>Problem.rejectSolution(Solution)</code></a> and has already been evaluated.
+ This method should only be called for solutions for which it has already been
+ verified that they are not rejected, as this will <b>not</b> be checked here.
+ Else, <a href="../../../../org/jamesframework/core/search/Search.html#updateBestSolution(SolutionType)"><code>updateBestSolution(Solution)</code></a> should be used. This alternative
+ method is specifically introduced to avoid unnecessary re-evaluation and
+ re-validation of already evaluated, valid solutions.
+ </p>
+ <p>
+ The best solution is updated if and only if
+ </p>
+ <ul>
+  <li>no best solution had been set before, or</li>
+  <li>the new solution has a better evaluation</li>
+ </ul>
+ <p>
+ If the new solution has a worse evaluation than the current best solution, calling this
+ method has no effect. Note that the best solution is <b>retained</b> across subsequent
+ runs of the same search.
+ </p></div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>newSolution</code> - newly constructed solution, which is known <b>not</b> to be rejected</dd><dd><code>newSolutionEvaluation</code> - already computed evaluation of the given solution</dd>
+<dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the given solution is accepted as the new best solution</dd></dl>
 </li>
 </ul>
 <a name="getRuntime()">
@@ -560,9 +641,26 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>getRuntime</h4>
 <pre>public&nbsp;long&nbsp;getRuntime()</pre>
-<div class="block">Get the runtime of the <i>current</i> run, including initialization, in milliseconds. If the search is idle,
- but has been run before, the total runtime of the last run is returned. Before the first search run, this method
- returns <a href="../../../../org/jamesframework/core/util/JamesConstants.html#INVALID_TIME_SPAN"><code>JamesConstants.INVALID_TIME_SPAN</code></a>. Else, the returned value is always positive.</div>
+<div class="block"><p>
+ Get the runtime of the <i>current</i> (or last) run, in milliseconds. The precise return value
+ depends on the status of the search:
+ </p>
+ <ul>
+  <li>
+   If the search is either RUNNING or TERMINATING, this method returns the time elapsed since
+   the current run was started.
+  </li>
+  <li>
+   If the search is IDLE, the total runtime of the last run is returned, if any. Before the first run,
+   <a href="../../../../org/jamesframework/core/util/JamesConstants.html#INVALID_TIME_SPAN"><code>JamesConstants.INVALID_TIME_SPAN</code></a> is returned.
+  </li>
+  <li>
+   While INITIALIZING the current run, <a href="../../../../org/jamesframework/core/util/JamesConstants.html#INVALID_TIME_SPAN"><code>JamesConstants.INVALID_TIME_SPAN</code></a> is returned.
+  </li>
+ </ul>
+ <p>
+ The return value is always positive, except in those cases when <a href="../../../../org/jamesframework/core/util/JamesConstants.html#INVALID_TIME_SPAN"><code>JamesConstants.INVALID_TIME_SPAN</code></a> is returned.
+ </p></div>
 <dl><dt><span class="strong">Returns:</span></dt><dd>runtime of the current (or last) run, in milliseconds</dd></dl>
 </li>
 </ul>
@@ -573,10 +671,28 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>getSteps</h4>
 <pre>public&nbsp;long&nbsp;getSteps()</pre>
-<div class="block">Get the number of completed steps in the <i>current</i> run. If the search is idle, but has been run before,
- the total number of steps executed during the last run is returned. Before the first search run, this method
- returns <a href="../../../../org/jamesframework/core/util/JamesConstants.html#INVALID_STEP_COUNT"><code>JamesConstants.INVALID_STEP_COUNT</code></a>. Else, the returned value is always positive.</div>
-<dl><dt><span class="strong">Returns:</span></dt><dd>number of completed steps in the current (or last) run</dd></dl>
+<div class="block"><p>
+ Get the number of completed steps during the <i>current</i> (or last) run. The precise return value
+ depends on the status of the search:
+ </p>
+ <ul>
+  <li>
+   If the search is either RUNNING or TERMINATING, this method returns the number of steps completed
+   since the current run was started.
+  </li>
+  <li>
+   If the search is IDLE, the total number of steps completed during the last run is returned, if any.
+   Before the first run, <a href="../../../../org/jamesframework/core/util/JamesConstants.html#INVALID_STEP_COUNT"><code>JamesConstants.INVALID_STEP_COUNT</code></a>.
+  </li>
+  <li>
+   While INITIALIZING the current run, <a href="../../../../org/jamesframework/core/util/JamesConstants.html#INVALID_STEP_COUNT"><code>JamesConstants.INVALID_STEP_COUNT</code></a> is returned.
+  </li>
+ </ul>
+ <p>
+ The return value is always positive, except in those cases when <a href="../../../../org/jamesframework/core/util/JamesConstants.html#INVALID_STEP_COUNT"><code>JamesConstants.INVALID_STEP_COUNT</code></a>
+ is returned.
+ </p></div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>number of steps completed during the current (or last) run</dd></dl>
 </li>
 </ul>
 <a name="getTimeWithoutImprovement()">
@@ -586,12 +702,29 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>getTimeWithoutImprovement</h4>
 <pre>public&nbsp;long&nbsp;getTimeWithoutImprovement()</pre>
-<div class="block">Get the amount of time elapsed during the <i>current</i> run without finding any improvement, in milliseconds.
- If the search is active, but no improvements have yet been made during the current run, the returned value
- is equal to the current runtime; else, it reflects the time elapsed since the last improvement during the current
- run. If the search is idle, but has been run before, the time without improvement observed during the last run,
- up to the point when this run completed, is returned. Before the first search run, this method returns
- <a href="../../../../org/jamesframework/core/util/JamesConstants.html#INVALID_TIME_SPAN"><code>JamesConstants.INVALID_TIME_SPAN</code></a>. Else, the returned value is always positive.</div>
+<div class="block"><p>
+ Get the amount of time elapsed during the <i>current</i> (or last) run, without finding any further improvement
+ (in milliseconds). The precise return value depends on the status of the search:
+ </p>
+ <ul>
+  <li>
+   If the search is either RUNNING or TERMINATING, but no improvements have yet been made during the current
+   run, the returned value is equal to the current runtime; else it reflects the time elapsed since the last
+   improvement during the current run.
+  </li>
+  <li>
+   If the search is IDLE, but has been run before, the time without improvement observed during the last run,
+   up to the point when this run completed, is returned. Before the first run, the return value is
+   <a href="../../../../org/jamesframework/core/util/JamesConstants.html#INVALID_TIME_SPAN"><code>JamesConstants.INVALID_TIME_SPAN</code></a>.
+  </li>
+  <li>
+   While INITIALIZING the current run, <a href="../../../../org/jamesframework/core/util/JamesConstants.html#INVALID_TIME_SPAN"><code>JamesConstants.INVALID_TIME_SPAN</code></a> is returned.
+  </li>
+ </ul>
+ <p>
+ The return value is always positive, except in those cases when <a href="../../../../org/jamesframework/core/util/JamesConstants.html#INVALID_TIME_SPAN"><code>JamesConstants.INVALID_TIME_SPAN</code></a>
+ is returned.
+ </p></div>
 <dl><dt><span class="strong">Returns:</span></dt><dd>time without finding improvements during the current (or last) run, in milliseconds</dd></dl>
 </li>
 </ul>
@@ -602,13 +735,29 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>getStepsWithoutImprovement</h4>
 <pre>public&nbsp;long&nbsp;getStepsWithoutImprovement()</pre>
-<div class="block">Get the number of consecutive steps completed during the <i>current</i> run without finding any improvement.
- If the search is active, but no improvements have yet been made during the current run, the returned value
- is equal to the current number of completed steps; else, it reflects the number of steps since the last
- improvement was made during the current run. If the search is idle, but has been run before, the number of steps
- without improvement observed during the last run, up to the point when this run completed, is returned. Before
- the first search run, this method returns <a href="../../../../org/jamesframework/core/util/JamesConstants.html#INVALID_STEP_COUNT"><code>JamesConstants.INVALID_STEP_COUNT</code></a>. Else, the returned value
- is always positive.</div>
+<div class="block"><p>
+ Get the number of consecutive steps completed during the <i>current</i> (or last) run, without finding
+ any further improvement. The precise return value depends on the status of the search:
+ </p>
+ <ul>
+  <li>
+   If the search is either RUNNING or TERMINATING, but no improvements have yet been made during the current
+   run, the returned value is equal to the total number of steps completed so far; else it reflects the number
+   of steps completed since the last improvement during the current run.
+  </li>
+  <li>
+   If the search is IDLE, but has been run before, the number of steps without improvement observed during the
+   last run, up to the point when this run completed, is returned. Before the first run, the return value is
+   <a href="../../../../org/jamesframework/core/util/JamesConstants.html#INVALID_STEP_COUNT"><code>JamesConstants.INVALID_STEP_COUNT</code></a>.
+  </li>
+  <li>
+   While INITIALIZING the current run, <a href="../../../../org/jamesframework/core/util/JamesConstants.html#INVALID_STEP_COUNT"><code>JamesConstants.INVALID_STEP_COUNT</code></a> is returned.
+  </li>
+ </ul>
+ <p>
+ The return value is always positive, except in those cases when <a href="../../../../org/jamesframework/core/util/JamesConstants.html#INVALID_STEP_COUNT"><code>JamesConstants.INVALID_STEP_COUNT</code></a>
+ is returned.
+ </p></div>
 <dl><dt><span class="strong">Returns:</span></dt><dd>number of consecutive completed steps without finding improvements during the current (or last) run</dd></dl>
 </li>
 </ul>
@@ -619,12 +768,29 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>getMinDelta</h4>
 <pre>public&nbsp;double&nbsp;getMinDelta()</pre>
-<div class="block">Get the minimum improvement in evaluation of a newly found best solution over the previously known best solution,
- during the <i>current</i> run. The minimum delta is always positive, it corresponds to increase when solving a maximization
- problem, and decrease in case of a minimization problem. If the search is idle, but has been run before, the minimum delta
- observed during the last run is returned. Before the first search run, and before the first improvement during an active run,
- this method returns <a href="../../../../org/jamesframework/core/util/JamesConstants.html#INVALID_DELTA"><code>JamesConstants.INVALID_DELTA</code></a>. Else, the returned value is always positive.</div>
-<dl><dt><span class="strong">Returns:</span></dt><dd>minimum improvement of newly found best solution over previously known best solution, during current (or last) run</dd></dl>
+<div class="block"><p>
+ Get the minimum improvement in evaluation of a new best known solution over the previous best known solution,
+ found during the <i>current</i> (or last) run. The precise return value depends on the status of the search:
+ </p>
+ <ul>
+  <li>
+   If the search is either RUNNING or TERMINATING, but no improvements have yet been made during the current
+   run, <a href="../../../../org/jamesframework/core/util/JamesConstants.html#INVALID_DELTA"><code>JamesConstants.INVALID_DELTA</code></a> is returned. Else, the minimum observed delta over all improvements
+   made during the current run is returned.
+  </li>
+  <li>
+   If the search is IDLE, but has been run before, the minimum delta observed during the last run is returned.
+   Before the first run, the return value is <a href="../../../../org/jamesframework/core/util/JamesConstants.html#INVALID_DELTA"><code>JamesConstants.INVALID_DELTA</code></a>.
+  </li>
+  <li>
+   While INITIALIZING the current run, <a href="../../../../org/jamesframework/core/util/JamesConstants.html#INVALID_DELTA"><code>JamesConstants.INVALID_DELTA</code></a> is returned.
+  </li>
+ </ul>
+ <p>
+ The return value is always positive, except in those cases when <a href="../../../../org/jamesframework/core/util/JamesConstants.html#INVALID_DELTA"><code>JamesConstants.INVALID_DELTA</code></a> is returned.
+ It corresponds to increase when solving a maximization problem, and decrease in case of a minimization problem.
+ </p></div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>minimum delta of improvements observed during current (or last) run</dd></dl>
 </li>
 </ul>
 <a name="computeDelta(double, double)">
@@ -667,7 +833,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <div class="block">This method is called when a search run is started, to perform initialization and/or validation of the search
  configuration. It may throw a <a href="../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions"><code>SearchException</code></a> if initialization fails because the search has not been
  configured validly. Moreover, any <a href="../../../../org/jamesframework/core/exceptions/JamesRuntimeException.html" title="class in org.jamesframework.core.exceptions"><code>JamesRuntimeException</code></a> could be thrown when initialization depends on
- malfunctioning components. By default, this method has an empty implementation.</div>
+ malfunctioning components. The default implementation resets all general per run metadata. Therefore, it is of
+ <b>utmost</b> importance to call <code>super.searchStart()</code> in any overriding implementation.</div>
 <dl><dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions">SearchException</a></code> - if initialization fails, e.g. because the search has not been configured validly</dd>
 <dd><code><a href="../../../../org/jamesframework/core/exceptions/JamesRuntimeException.html" title="class in org.jamesframework.core.exceptions">JamesRuntimeException</a></code> - in general, any <a href="../../../../org/jamesframework/core/exceptions/JamesRuntimeException.html" title="class in org.jamesframework.core.exceptions"><code>JamesRuntimeException</code></a> may be thrown
@@ -683,7 +850,9 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <pre>protected&nbsp;void&nbsp;searchStopped()</pre>
 <div class="block">This method is called when a search run has completed and may be used to perform some finalization. Any
  <a href="../../../../org/jamesframework/core/exceptions/JamesRuntimeException.html" title="class in org.jamesframework.core.exceptions"><code>JamesRuntimeException</code></a> may be thrown when finalization depends on malfunctioning search components.
- By default, this method has an empty implementation.</div>
+ The default implementation ensures that the total runtime of the last run, if applicable, will be returned
+ when calling <a href="../../../../org/jamesframework/core/search/Search.html#getRuntime()"><code>getRuntime()</code></a> on an idle search. Therefore, it is of <b>utmost</b> importance to call
+ <code>super.searchStopped()</code> in any overriding implementation.</div>
 <dl><dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="../../../../org/jamesframework/core/exceptions/JamesRuntimeException.html" title="class in org.jamesframework.core.exceptions">JamesRuntimeException</a></code> - in general, any <a href="../../../../org/jamesframework/core/exceptions/JamesRuntimeException.html" title="class in org.jamesframework.core.exceptions"><code>JamesRuntimeException</code></a> may be thrown
                                in case of a malfunctioning component used during finalization</dd></dl>
@@ -733,7 +902,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </div>
 <div class="subNav">
 <ul class="navList">
-<li>Prev Class</li>
+<li><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search"><span class="strong">Prev Class</span></a></li>
 <li><a href="../../../../org/jamesframework/core/search/SearchStatus.html" title="enum in org.jamesframework.core.search"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
