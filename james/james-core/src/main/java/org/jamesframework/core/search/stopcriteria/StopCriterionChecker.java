@@ -84,7 +84,8 @@ public class StopCriterionChecker {
     
     /**
      * Set the period between consecutive stop criterion checks. By default, this period is set to 1 second.
-     * The new settings will apply as from the next call of {@link #startChecking()}.
+     * The new settings will apply as from the next call of {@link #startChecking()}. The period should be
+     * at least 1 millisecond, else an exception will be thrown when trying to start the timer.
      * 
      * @param period period between two checks
      * @param timeUnit time unit of this period

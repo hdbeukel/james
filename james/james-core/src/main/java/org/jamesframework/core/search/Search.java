@@ -324,7 +324,8 @@ public abstract class Search<SolutionType extends Solution> {
     /**
      * Instructs the search to check its stop criteria at regular intervals separated by the given period.
      * For the default period, see {@link StopCriterionChecker}, which is used internally for this purpose.
-     * Note that this method may only be called when the search is idle.
+     * The period should be at least 1 millisecond, else the stop criterion checker may thrown an exception
+     * when the search is started. Note that this method may only be called when the search is idle.
      * 
      * @param period time between subsequent stop criterion checks (> 0)
      * @param timeUnit corresponding time unit
