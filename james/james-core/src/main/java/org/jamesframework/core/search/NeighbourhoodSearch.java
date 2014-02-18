@@ -303,13 +303,18 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
     
     /**
      * Checks whether the given move leads to an improvement when being applied to the current solution.
-     * An improvement is mad if and only if the modified solution is <b>not</b> rejected (see
-     * {@link Problem#rejectSolution(Solution)}) and has a better evaluation than the current solution.
+     * An improvement is made if and only if the given move is <b>not</b> <code>null</code>, the modified
+     * solution obtained by applying the move is <b>not</b> rejected (see {@link Problem#rejectSolution(Solution)})
+     * and this solution has a better evaluation than the current solution.
      * 
      * @param move move to be applied to the current solution
      * @return <code>true</code> if applying this move yields an improvement
      */
     protected boolean isImprovement(Move<? super SolutionType> move){
+        // no improvement if move is null
+        if(move == null){
+            return false;
+        }
         // apply move to current solution
         move.apply(curSolution);
         // is improvement ?
