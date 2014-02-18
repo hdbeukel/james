@@ -390,7 +390,8 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
     }
     
     /**
-     * Rejects the given move. The default implementation of this method only adjust the rejected move counter.
+     * Rejects the given move. The default implementation of this method only adjust the rejected move counter. The number of
+     * rejected moves is only correctly monitored if this method is called for every rejected move.
      * 
      * @param move rejected move
      */
