@@ -36,6 +36,7 @@ public class RandomDescent<SolutionType extends Solution> extends SingleNeighbou
      * Creates a new random descent search, specifying the problem to solve and the neighbourhood used to
      * modify the current solution. Neither arguments can be <code>null</code>.
      * 
+     * @throws NullPointerException if <code>problem</code> or <code>neighbourhood</code> are <code>null</code>
      * @param problem problem to solve
      * @param neighbourhood neighbourhood used to create neighbouring solutions
      */
