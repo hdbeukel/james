@@ -16,7 +16,6 @@ package org.jamesframework.core.search;
 
 import java.util.Random;
 import org.jamesframework.core.problems.SubsetProblemWithData;
-import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.test.util.FakeSubsetData;
 import org.jamesframework.test.util.FakeSubsetObjectiveWithData;
 import org.jamesframework.test.util.FakeSubsetPenalizingConstraint;
@@ -48,11 +47,6 @@ public class SearchTestTemplate {
     // minimum score diff imposed by fake constraint
     protected final double MIN_SCORE_DIFF = 0.05;
     
-    // searches to work with (random search stubs)
-    protected Search<SubsetSolution> search, searchWithInternalMaxSteps;
-    // number of random searchWithInternalMaxSteps steps
-    protected final int NUM_STEPS = 500;
-    
     // random generator
     protected static final Random RG = new Random();
     
@@ -69,9 +63,6 @@ public class SearchTestTemplate {
         obj = new FakeSubsetObjectiveWithData();
         problem = new SubsetProblemWithData(obj, data, SUBSET_SIZE);
         constraint = new FakeSubsetPenalizingConstraint(MIN_SCORE_DIFF);
-        // create two searches
-        searchWithInternalMaxSteps = new RandomSearchWithInternalMaxSteps<>(problem, NUM_STEPS);
-        search = new RandomSearch<>(problem);
     }
     
 }

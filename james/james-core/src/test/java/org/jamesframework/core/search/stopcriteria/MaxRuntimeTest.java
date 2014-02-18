@@ -15,9 +15,13 @@
 package org.jamesframework.core.search.stopcriteria;
 
 import java.util.concurrent.TimeUnit;
+import org.jamesframework.core.problems.solutions.SubsetSolution;
+import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.SearchTestTemplate;
+import org.jamesframework.test.util.RandomSearch;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -27,6 +31,9 @@ import org.junit.Test;
  */
 public class MaxRuntimeTest extends SearchTestTemplate {
 
+    // search to work with (random search stub)
+    private Search<SubsetSolution> search;
+    
     // maximum runtime
     private final long MAX_RUNTIME = 2345;
     private final long LOW_MAX_RUNTIME = 20;
@@ -50,6 +57,15 @@ public class MaxRuntimeTest extends SearchTestTemplate {
     @AfterClass
     public static void tearDownClass() {
         System.out.println("# Done testing MaxRuntime!");
+    }
+    
+    @Override
+    @Before
+    public void setUp(){
+        // call super
+        super.setUp();
+        // create random search
+        search = new RandomSearch<>(problem);
     }
 
     /**

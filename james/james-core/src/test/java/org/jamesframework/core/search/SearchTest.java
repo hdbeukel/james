@@ -18,10 +18,12 @@ package org.jamesframework.core.search;
 import org.jamesframework.core.search.listeners.EmptySearchListener;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.util.JamesConstants;
+import org.jamesframework.test.util.RandomSearchWithInternalMaxSteps;
 import org.jamesframework.test.util.TestConstants;
 import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
 import org.junit.BeforeClass;
 
 /**
@@ -31,6 +33,11 @@ import org.junit.BeforeClass;
  */
 public class SearchTest extends SearchTestTemplate {
 
+    // search to work with (random search stub, with internal max steps)
+    private Search<SubsetSolution> search;
+    // number of random search steps
+    private final int NUM_STEPS = 500;
+    
     /**
      * Print message when starting tests.
      */
@@ -46,6 +53,15 @@ public class SearchTest extends SearchTestTemplate {
     public static void tearDownClass() {
         System.out.println("# Done testing Search!");
     }
+    
+    @Override
+    @Before
+    public void setUp(){
+        // call super
+        super.setUp();
+        // create random search with internal max steps
+        search = new RandomSearchWithInternalMaxSteps<>(problem, NUM_STEPS);
+    }
 
     /**
      * Test of start method, of class Search.
@@ -55,8 +71,8 @@ public class SearchTest extends SearchTestTemplate {
         
         System.out.println(" - test start");
         
-        // start searchWithInternalMaxSteps to check if it stops
-        searchWithInternalMaxSteps.start();
+        // start search to check if it stops
+        search.start();
         
     }
 
@@ -68,11 +84,11 @@ public class SearchTest extends SearchTestTemplate {
         
         System.out.println(" - test stop");
         
-        // call stop (should have no effect on idle searchWithInternalMaxSteps)
-        searchWithInternalMaxSteps.stop();
+        // call stop (should have no effect on idle search)
+        search.stop();
         
         // assert that status is still idle
-        assertEquals(SearchStatus.IDLE, searchWithInternalMaxSteps.getStatus());
+        assertEquals(SearchStatus.IDLE, search.getStatus());
         
     }
     
@@ -87,12 +103,12 @@ public class SearchTest extends SearchTestTemplate {
         // add constraint to problem
         problem.addRejectingConstraint(constraint);
         
-        // run searchWithInternalMaxSteps
-        searchWithInternalMaxSteps.start();
+        // run search
+        search.start();
         
         // check best solution
-        if(searchWithInternalMaxSteps.getBestSolution() != null){
-            assertFalse(problem.rejectSolution(searchWithInternalMaxSteps.getBestSolution()));
+        if(search.getBestSolution() != null){
+            assertFalse(problem.rejectSolution(search.getBestSolution()));
         }
         
     }
@@ -105,24 +121,24 @@ public class SearchTest extends SearchTestTemplate {
         
         System.out.println(" - test search with listener ");
         
-        // add searchWithInternalMaxSteps listener stub
+        // add search listener stub
         SearchListenerStub l = new SearchListenerStub();
-        searchWithInternalMaxSteps.addSearchListener(l);
+        search.addSearchListener(l);
         
         // create second listener
         SearchListenerStub l2 = new SearchListenerStub();
         
         // try to remove l2
-        assertFalse(searchWithInternalMaxSteps.removeSearchListener(l2));
+        assertFalse(search.removeSearchListener(l2));
         
         // remove l
-        assertTrue(searchWithInternalMaxSteps.removeSearchListener(l));
+        assertTrue(search.removeSearchListener(l));
         
         // readd l
-        searchWithInternalMaxSteps.addSearchListener(l);
+        search.addSearchListener(l);
         
-        // run searchWithInternalMaxSteps (checks asserts inside listener)
-        searchWithInternalMaxSteps.start();
+        // run search (checks asserts inside listener)
+        search.start();
         
     }
 
@@ -134,14 +150,14 @@ public class SearchTest extends SearchTestTemplate {
         
         System.out.println(" - test getStatus");
         
-        // check that searchWithInternalMaxSteps is initialy idle
-        assertEquals(SearchStatus.IDLE, searchWithInternalMaxSteps.getStatus());
+        // check that search is initialy idle
+        assertEquals(SearchStatus.IDLE, search.getStatus());
         
-        // start searchWithInternalMaxSteps
-        searchWithInternalMaxSteps.start();
+        // start search
+        search.start();
         
         // complete, check that status is back to idle
-        assertEquals(SearchStatus.IDLE, searchWithInternalMaxSteps.getStatus());
+        assertEquals(SearchStatus.IDLE, search.getStatus());
         
     }
 
@@ -154,7 +170,7 @@ public class SearchTest extends SearchTestTemplate {
         System.out.println(" - test getBestSolution");
         
         // check null before first run
-        assertNull(searchWithInternalMaxSteps.getBestSolution());
+        assertNull(search.getBestSolution());
         
     }
 
@@ -166,12 +182,12 @@ public class SearchTest extends SearchTestTemplate {
         
         System.out.println(" - test getBestSolutionEvaluation");
         
-        // run searchWithInternalMaxSteps
-        searchWithInternalMaxSteps.start();
+        // run search
+        search.start();
         
         // verify best solution evaluation
-        if(searchWithInternalMaxSteps.getBestSolution() != null){
-            assertEquals(problem.evaluate(searchWithInternalMaxSteps.getBestSolution()), searchWithInternalMaxSteps.getBestSolutionEvaluation(), TestConstants.DOUBLE_COMPARISON_PRECISION);
+        if(search.getBestSolution() != null){
+            assertEquals(problem.evaluate(search.getBestSolution()), search.getBestSolutionEvaluation(), TestConstants.DOUBLE_COMPARISON_PRECISION);
         }
         
     }
@@ -185,13 +201,13 @@ public class SearchTest extends SearchTestTemplate {
         System.out.println(" - test getRuntime");
         
         // check value before first run
-        assertEquals(JamesConstants.INVALID_TIME_SPAN, searchWithInternalMaxSteps.getRuntime());
+        assertEquals(JamesConstants.INVALID_TIME_SPAN, search.getRuntime());
         
-        // run searchWithInternalMaxSteps
-        searchWithInternalMaxSteps.start();
+        // run search
+        search.start();
         
         // assert positive runtime
-        assertTrue(searchWithInternalMaxSteps.getRuntime() >= 0);
+        assertTrue(search.getRuntime() >= 0);
         
     }
 
@@ -204,31 +220,31 @@ public class SearchTest extends SearchTestTemplate {
         System.out.println(" - test getSteps (2 runs)");
         
         // check value before first run
-        assertEquals(JamesConstants.INVALID_STEP_COUNT, searchWithInternalMaxSteps.getSteps());
+        assertEquals(JamesConstants.INVALID_STEP_COUNT, search.getSteps());
         
         // attach listener
         SearchListenerStub2 l = new SearchListenerStub2();
-        searchWithInternalMaxSteps.addSearchListener(l);
+        search.addSearchListener(l);
         
-        // run searchWithInternalMaxSteps
+        // run search
         System.out.println("   >>> RUN 1 <<<");
-        searchWithInternalMaxSteps.start();
+        search.start();
         
-        // validate number of steps (1 additional step in which searchWithInternalMaxSteps stopped itself)
-        assertEquals(NUM_STEPS+1, searchWithInternalMaxSteps.getSteps());
+        // validate number of steps (1 additional step in which search stopped itself)
+        assertEquals(NUM_STEPS+1, search.getSteps());
         // store best solution evaluation
-        double bestSolEval = searchWithInternalMaxSteps.getBestSolutionEvaluation();
+        double bestSolEval = search.getBestSolutionEvaluation();
         
         // run again
         System.out.println("   >>> RUN 2 <<<");
-        searchWithInternalMaxSteps.start();
+        search.start();
         
-        // validate number of steps (1 additional step in which searchWithInternalMaxSteps stopped itself, per run)
-        assertEquals(NUM_STEPS+1, searchWithInternalMaxSteps.getSteps());       // same number in second run
+        // validate number of steps (1 additional step in which search stopped itself, per run)
+        assertEquals(NUM_STEPS+1, search.getSteps());       // same number in second run
         assertEquals(2*(NUM_STEPS+1), l.getTotalSteps());   // twice that many steps in total (over both runs)
         
         // valide new best solution evaluation
-        assertTrue(searchWithInternalMaxSteps.getBestSolutionEvaluation() >= bestSolEval);
+        assertTrue(search.getBestSolutionEvaluation() >= bestSolEval);
         
     }
 
@@ -241,15 +257,15 @@ public class SearchTest extends SearchTestTemplate {
         System.out.println(" - test getTimeWithoutImprovement");
         
         // check value before first run
-        assertEquals(JamesConstants.INVALID_TIME_SPAN, searchWithInternalMaxSteps.getTimeWithoutImprovement());
+        assertEquals(JamesConstants.INVALID_TIME_SPAN, search.getTimeWithoutImprovement());
         
-        // run searchWithInternalMaxSteps
-        searchWithInternalMaxSteps.start();
+        // run search
+        search.start();
         
         // check: should return positive value
-        assertTrue(searchWithInternalMaxSteps.getTimeWithoutImprovement() >= 0);
+        assertTrue(search.getTimeWithoutImprovement() >= 0);
         // check: can not be larger than total runtime
-        assertTrue(searchWithInternalMaxSteps.getTimeWithoutImprovement() <= searchWithInternalMaxSteps.getRuntime());
+        assertTrue(search.getTimeWithoutImprovement() <= search.getRuntime());
         
     }
 
@@ -262,15 +278,15 @@ public class SearchTest extends SearchTestTemplate {
         System.out.println(" - test getStepsWithoutImprovement");
         
         // check value before first run
-        assertEquals(JamesConstants.INVALID_STEP_COUNT, searchWithInternalMaxSteps.getStepsWithoutImprovement());
+        assertEquals(JamesConstants.INVALID_STEP_COUNT, search.getStepsWithoutImprovement());
         
-        // run searchWithInternalMaxSteps
-        searchWithInternalMaxSteps.start();
+        // run search
+        search.start();
         
         // check: should return positive value
-        assertTrue(searchWithInternalMaxSteps.getStepsWithoutImprovement() >= 0);
+        assertTrue(search.getStepsWithoutImprovement() >= 0);
         // check: cannot be larger than total steps
-        assertTrue(searchWithInternalMaxSteps.getStepsWithoutImprovement() <= searchWithInternalMaxSteps.getSteps());
+        assertTrue(search.getStepsWithoutImprovement() <= search.getSteps());
         
     }
 
