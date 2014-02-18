@@ -93,7 +93,26 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
         numRejectedMoves = 0;
         // create random initial solution if none is set
         if(curSolution == null){
-            setCurrentSolution(getProblem().createRandomSolution());
+            adjustCurrentSolution(getProblem().createRandomSolution());
+        }
+    }
+    
+    /**
+     * Private method to adjust the current solution, which does not verify the search status and may
+     * therefore be called when the search is not idle. Called when creating a random initial solution
+     * during initialization, and from within the public {@link #setCurrentSolution(Solution)} after
+     * verifying the search status.
+     * 
+     * @param solution 
+     */
+    private void adjustCurrentSolution(SolutionType solution){
+        // set current solution
+        curSolution = solution;
+        // evaluate
+        curSolutionEvaluation = getProblem().evaluate(solution);
+        // check if new best solution
+        if(!getProblem().rejectSolution(solution)){
+            updateBestSolution(curSolution, curSolutionEvaluation);
         }
     }
     
@@ -246,7 +265,8 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
     /**
      * Returns the current solution. The current solution might be worse than the best solution found so far.
      * Note that it is <b>retained</b> across subsequent runs of the same search. May return <code>null</code>
-     * if no current solution has been set yet, for example when the search has just been created.
+     * if no current solution has been set yet, for example when the search has just been created or is still
+     * initializing the current run.
      * 
      * @return current solution, if set; <code>null</code> otherwise
      */
@@ -286,14 +306,8 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
             if(getStatus() != SearchStatus.IDLE){
                 throw new SearchException("Cannot set current solution: search not idle.");
             }
-            // set current solution
-            curSolution = solution;
-            // evaluate
-            curSolutionEvaluation = getProblem().evaluate(solution);
-            // check if new best solution
-            if(!getProblem().rejectSolution(solution)){
-                updateBestSolution(curSolution, curSolutionEvaluation);
-            }
+            // go ahead and adjust current solution
+            adjustCurrentSolution(solution);
         }
     }
     
