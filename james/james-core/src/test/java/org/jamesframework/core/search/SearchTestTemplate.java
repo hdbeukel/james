@@ -19,8 +19,6 @@ import org.jamesframework.core.problems.SubsetProblemWithData;
 import org.jamesframework.test.util.FakeSubsetData;
 import org.jamesframework.test.util.FakeSubsetObjectiveWithData;
 import org.jamesframework.test.util.FakeSubsetPenalizingConstraint;
-import org.jamesframework.test.util.RandomSearch;
-import org.jamesframework.test.util.RandomSearchWithInternalMaxSteps;
 import org.junit.Before;
 
 /**
