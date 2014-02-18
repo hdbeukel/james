@@ -26,7 +26,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- *
+ * Test maximum runtime stop criterion.
+ * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
 public class MaxRuntimeTest extends SearchTestTemplate {
