@@ -52,6 +52,7 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
      */
     @BeforeClass
     public static void setUpClass() {
+        SearchTestTemplate.setUpClass();
         System.out.println("# Testing NeighbourhoodSearch ...");
     }
 
@@ -305,14 +306,14 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
         SubsetSolution copy = problem.copySolution(neighSearch.getCurrentSolution());
         double copyEval;
         Move<SubsetSolution> m;
-        for(int i=0; i<100; i++){
+        for(int i=0; i<1000; i++){
             // generate random move
             m = neigh.getRandomMove(neighSearch.getCurrentSolution());
             // accept it
             neighSearch.acceptMove(m);
             // apply to copy
             m.apply(copy);
-            // evaluate
+            // evaluate copy
             copyEval = problem.evaluate(copy);
             // verify
             assertEquals(copy, neighSearch.getCurrentSolution());
