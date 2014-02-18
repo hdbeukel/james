@@ -877,7 +877,7 @@ public abstract class Search<SolutionType extends Solution> {
      * configuration. It may throw a {@link SearchException} if initialization fails because the search has not been
      * configured validly. Moreover, any {@link JamesRuntimeException} could be thrown when initialization depends on
      * malfunctioning components. The default implementation resets all general per run metadata. Therefore, it is of
-     * utmost importance to call <code>super.searchStart()</code> in any overriding implementation.
+     * <b>utmost</b> importance to call <code>super.searchStart()</code> in any overriding implementation.
      * 
      * @throws SearchException if initialization fails, e.g. because the search has not been configured validly
      * @throws JamesRuntimeException in general, any {@link JamesRuntimeException} may be thrown
@@ -896,7 +896,7 @@ public abstract class Search<SolutionType extends Solution> {
      * This method is called when a search run has completed and may be used to perform some finalization. Any
      * {@link JamesRuntimeException} may be thrown when finalization depends on malfunctioning search components.
      * The default implementation ensures that the total runtime of the last run, if applicable, will be returned
-     * when calling {@link #getRuntime()} on an idle search. Therefore, it is of utmost importance to call
+     * when calling {@link #getRuntime()} on an idle search. Therefore, it is of <b>utmost</b> importance to call
      * <code>super.searchStopped()</code> in any overriding implementation. 
      * 
      * @throws JamesRuntimeException in general, any {@link JamesRuntimeException} may be thrown
