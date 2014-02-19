@@ -19,6 +19,8 @@ import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.SearchTestTemplate;
 import org.jamesframework.core.search.algo.RandomSearch;
+import org.jamesframework.test.util.DoubleComparatorWithPrecision;
+import org.jamesframework.test.util.TestConstants;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -133,7 +135,8 @@ public class MaxRuntimeTest extends SearchTestTemplate {
             double bestSolEval = search.getBestSolutionEvaluation();
             System.out.println("   >>> best: " + bestSolEval);
             if(prevBestSolEval != null){
-                assertTrue(bestSolEval >= prevBestSolEval);
+                assertTrue(DoubleComparatorWithPrecision.greaterThanOrEqual(
+                                bestSolEval, prevBestSolEval, TestConstants.DOUBLE_COMPARISON_PRECISION));
             }
             prevBestSolEval = bestSolEval;
         }
@@ -164,7 +167,8 @@ public class MaxRuntimeTest extends SearchTestTemplate {
             double bestSolEval = search.getBestSolutionEvaluation();
             System.out.println("   >>> best: " + bestSolEval);
             if(prevBestSolEval != null){
-                assertTrue(bestSolEval <= prevBestSolEval);
+                assertTrue(DoubleComparatorWithPrecision.smallerThanOrEqual(
+                                bestSolEval, prevBestSolEval, TestConstants.DOUBLE_COMPARISON_PRECISION));
             }
             prevBestSolEval = bestSolEval;
         }

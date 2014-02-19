@@ -18,6 +18,7 @@ package org.jamesframework.core.search;
 import org.jamesframework.core.search.listeners.EmptySearchListener;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.util.JamesConstants;
+import org.jamesframework.test.util.DoubleComparatorWithPrecision;
 import org.jamesframework.test.util.RandomSearchWithInternalMaxSteps;
 import org.jamesframework.test.util.TestConstants;
 import org.junit.AfterClass;
@@ -244,8 +245,9 @@ public class SearchTest extends SearchTestTemplate {
         assertEquals(NUM_STEPS+1, search.getSteps());       // same number in second run
         assertEquals(2*(NUM_STEPS+1), l.getTotalSteps());   // twice that many steps in total (over both runs)
         
-        // valide new best solution evaluation
-        assertTrue(search.getBestSolutionEvaluation() >= bestSolEval);
+        // validate new best solution evaluation
+        assertTrue(DoubleComparatorWithPrecision.greaterThanOrEqual(
+                search.getBestSolutionEvaluation(), bestSolEval, TestConstants.DOUBLE_COMPARISON_PRECISION));
         
     }
 

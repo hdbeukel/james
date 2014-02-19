@@ -26,6 +26,7 @@ import org.jamesframework.core.search.neigh.subset.DeletionMove;
 import org.jamesframework.core.search.neigh.subset.SingleSwapNeighbourhood;
 import org.jamesframework.core.search.neigh.subset.SwapMove;
 import org.jamesframework.core.util.SetUtilities;
+import org.jamesframework.test.util.DoubleComparatorWithPrecision;
 import org.jamesframework.test.util.NeverSatisfiedConstraintStub;
 import org.jamesframework.test.util.TestConstants;
 import org.junit.AfterClass;
@@ -318,7 +319,8 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
             // verify
             assertEquals(copy, neighSearch.getCurrentSolution());
             assertEquals(copyEval, neighSearch.getCurrentSolutionEvaluation(), TestConstants.DOUBLE_COMPARISON_PRECISION);
-            assertTrue(neighSearch.getBestSolutionEvaluation() >= copyEval);
+            assertTrue(DoubleComparatorWithPrecision.greaterThanOrEqual(
+                    neighSearch.getBestSolutionEvaluation(), copyEval, TestConstants.DOUBLE_COMPARISON_PRECISION));
         }
         
     }
@@ -353,7 +355,8 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
             // verify
             assertEquals(copy, neighSearch.getCurrentSolution());
             assertEquals(copyEval, neighSearch.getCurrentSolutionEvaluation(), TestConstants.DOUBLE_COMPARISON_PRECISION);
-            assertTrue(neighSearch.getBestSolutionEvaluation() <= copyEval);
+            assertTrue(DoubleComparatorWithPrecision.smallerThanOrEqual(
+                    neighSearch.getBestSolutionEvaluation(), copyEval, TestConstants.DOUBLE_COMPARISON_PRECISION));
         }
         
     }

@@ -19,9 +19,11 @@ import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.problems.SubsetProblemWithData;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.search.stopcriteria.MaxRuntime;
+import org.jamesframework.test.util.DoubleComparatorWithPrecision;
 import org.jamesframework.test.util.FakeSubsetData;
 import org.jamesframework.test.util.FakeSubsetObjectiveWithData;
 import org.jamesframework.test.util.FakeSubsetPenalizingConstraint;
+import org.jamesframework.test.util.TestConstants;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
@@ -122,9 +124,11 @@ public class SearchTestTemplate {
                 // compare with previous best solution, if any
                 if(prevBestSolEval != null){
                     if(maximizing){
-                        assertTrue(bestSolEval >= prevBestSolEval);
+                        assertTrue(DoubleComparatorWithPrecision.greaterThanOrEqual(
+                                bestSolEval, prevBestSolEval, TestConstants.DOUBLE_COMPARISON_PRECISION));
                     } else {
-                        assertTrue(bestSolEval <= prevBestSolEval);
+                        assertTrue(DoubleComparatorWithPrecision.smallerThanOrEqual(
+                                bestSolEval, prevBestSolEval, TestConstants.DOUBLE_COMPARISON_PRECISION));
                     }
                 }
             } else if (printEvaluations) {
