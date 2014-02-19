@@ -12,24 +12,34 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-package org.jamesframework.test.util;
+package org.jamesframework.core.search.algo;
 
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.solutions.Solution;
 import org.jamesframework.core.search.Search;
 
 /**
- * Search stub that samples a random solution in every step for comparison with the best known solution.
- * Used for testing only.
+ * The random search algorithm iteratively samples a random solution and checks
+ * whether a new best solution has been found, in every search step.
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
 public class RandomSearch<SolutionType extends Solution> extends Search<SolutionType> {
     
+    /**
+     * Create a random search, given the problem to solve.
+     * The problem can not be <code>null</code>
+     * 
+     * @throws NullPointerException if <code>problem</code> is <code>null</code>
+     * @param problem problem to solve
+     */
     public RandomSearch(Problem<SolutionType> problem){
         super(problem);
     }
     
+    /**
+     * In every search step, a random solution is created and the best solution might be updated accordingly.
+     */
     @Override
     protected void searchStep() {
         // sample random solution

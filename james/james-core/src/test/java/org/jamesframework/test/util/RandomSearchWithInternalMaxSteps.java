@@ -14,6 +14,7 @@
 
 package org.jamesframework.test.util;
 
+import org.jamesframework.core.search.algo.RandomSearch;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.solutions.Solution;
 

@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.SearchTestTemplate;
-import org.jamesframework.test.util.RandomSearch;
+import org.jamesframework.core.search.algo.RandomSearch;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;
 import org.junit.Before;
