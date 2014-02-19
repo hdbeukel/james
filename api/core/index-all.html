@@ -819,6 +819,15 @@
 <div class="block">Creates a new random descent search, specifying the problem to solve and the neighbourhood used to
  modify the current solution.</div>
 </dd>
+<dt><a href="./org/jamesframework/core/search/algo/RandomSearch.html" title="class in org.jamesframework.core.search.algo"><span class="strong">RandomSearch</span></a>&lt;<a href="./org/jamesframework/core/search/algo/RandomSearch.html" title="type parameter in RandomSearch">SolutionType</a> extends <a href="./org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Class in <a href="./org/jamesframework/core/search/algo/package-summary.html">org.jamesframework.core.search.algo</a></dt>
+<dd>
+<div class="block">The random search algorithm iteratively samples a random solution and checks
+ whether a new best solution has been found, in every search step.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/algo/RandomSearch.html#RandomSearch(org.jamesframework.core.problems.Problem)">RandomSearch(Problem&lt;SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.<a href="./org/jamesframework/core/search/algo/RandomSearch.html" title="class in org.jamesframework.core.search.algo">RandomSearch</a></dt>
+<dd>
+<div class="block">Create a random search, given the problem to solve.</div>
+</dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/NeighbourhoodSearch.html#rejectMove(org.jamesframework.core.search.neigh.Move)">rejectMove(Move&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
 <dd>
 <div class="block">Rejects the given move.</div>
@@ -931,6 +940,10 @@
 <dt><span class="strong"><a href="./org/jamesframework/core/search/algo/RandomDescent.html#searchStep()">searchStep()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="./org/jamesframework/core/search/algo/RandomDescent.html" title="class in org.jamesframework.core.search.algo">RandomDescent</a></dt>
 <dd>
 <div class="block">Creates a random neighbour of the current solution and accepts it if it improves over the current solution.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/algo/RandomSearch.html#searchStep()">searchStep()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="./org/jamesframework/core/search/algo/RandomSearch.html" title="class in org.jamesframework.core.search.algo">RandomSearch</a></dt>
+<dd>
+<div class="block">In every search step, a random solution is created and the best solution might be updated accordingly.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#searchStep()">searchStep()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
