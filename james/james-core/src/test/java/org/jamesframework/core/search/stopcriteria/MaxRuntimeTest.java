@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.SearchTestTemplate;
-import org.jamesframework.core.search.algo.RandomSearch;
+import org.jamesframework.core.search.algo.RandomDescent;
 import org.jamesframework.test.util.DoubleComparatorWithPrecision;
 import org.jamesframework.test.util.TestConstants;
 import org.junit.AfterClass;
@@ -34,7 +34,7 @@ import org.junit.Test;
  */
 public class MaxRuntimeTest extends SearchTestTemplate {
 
-    // search to work with (random search stub)
+    // search to work with (random descent)
     private Search<SubsetSolution> search;
     
     // maximum runtime
@@ -68,8 +68,8 @@ public class MaxRuntimeTest extends SearchTestTemplate {
     public void setUp(){
         // call super
         super.setUp();
-        // create random search
-        search = new RandomSearch<>(problem);
+        // create random descent search
+        search = new RandomDescent<>(problem, neigh);
     }
 
     /**
@@ -88,6 +88,7 @@ public class MaxRuntimeTest extends SearchTestTemplate {
         search.start();
         
         System.out.println("   >>> run: " + search.getRuntime() + " ms");
+        System.out.println("   >>> best: " + search.getBestSolutionEvaluation());
         
     }
     
@@ -111,6 +112,7 @@ public class MaxRuntimeTest extends SearchTestTemplate {
         search.start();
         
         System.out.println("   >>> run: " + search.getRuntime() + " ms");
+        System.out.println("   >>> best: " + search.getBestSolutionEvaluation());
         
     }
     
