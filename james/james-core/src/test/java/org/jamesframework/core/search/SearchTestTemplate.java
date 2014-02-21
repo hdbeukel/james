@@ -18,6 +18,8 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.problems.SubsetProblemWithData;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
+import org.jamesframework.core.search.neigh.Neighbourhood;
+import org.jamesframework.core.search.neigh.subset.SingleSwapNeighbourhood;
 import org.jamesframework.core.search.stopcriteria.MaxRuntime;
 import org.jamesframework.test.util.DoubleComparatorWithPrecision;
 import org.jamesframework.test.util.FakeSubsetData;
@@ -55,6 +57,9 @@ public class SearchTestTemplate {
     // minimum score diff imposed by fake constraint
     protected final double MIN_SCORE_DIFF = 0.02;
     
+    // neighbourhood
+    protected Neighbourhood<SubsetSolution> neigh;
+    
     // random generator
     protected static final Random RG = new Random();
     
@@ -78,6 +83,7 @@ public class SearchTestTemplate {
         obj = new FakeSubsetObjectiveWithData();
         problem = new SubsetProblemWithData(obj, data, SUBSET_SIZE);
         constraint = new FakeSubsetPenalizingConstraint(MIN_SCORE_DIFF);
+        neigh = new SingleSwapNeighbourhood();
     }
     
     /**
