@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.search.Search;
 
 /**
- * Stop criterion that limits the maximum runtime of a search run.
+ * Stop criterion that limits runtime of a search run.
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
