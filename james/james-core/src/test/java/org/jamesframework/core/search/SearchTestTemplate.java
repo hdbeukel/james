@@ -14,6 +14,10 @@
 
 package org.jamesframework.core.search;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.problems.SubsetProblemWithData;
@@ -40,7 +44,7 @@ import org.junit.BeforeClass;
 public class SearchTestTemplate {
 
     // fake subset data (scored entities)
-    protected FakeSubsetData data;
+    protected static FakeSubsetData data;
     // dataset size
     protected static final int DATASET_SIZE = 500;
     // entity scores
@@ -51,7 +55,7 @@ public class SearchTestTemplate {
 
     // subset problem to solve (select SUBSET_SIZE out of DATASET_SIZE)
     protected SubsetProblemWithData<FakeSubsetData> problem;
-    protected final int SUBSET_SIZE = 20;
+    protected static final int SUBSET_SIZE = 20;
     
     // fake constraint (not assigned by default)
     protected FakeSubsetPenalizingConstraint constraint;
@@ -69,10 +73,23 @@ public class SearchTestTemplate {
      */
     @BeforeClass
     public static void setUpClass() {
+        // create data
         scores = new double[DATASET_SIZE];
         for(int i=0; i<DATASET_SIZE; i++){
             scores[i] = RG.nextDouble();
         }
+        // find best solution ignoring possible constraints (by sorting),
+        // both for maximizing and minimizing setting
+        double[] sorted = Arrays.copyOf(scores, scores.length);
+        Arrays.sort(sorted);
+        // compute maximum and minimum sum
+        double max = 0.0, min = 0.0;
+        for(int i=0; i<SUBSET_SIZE; i++){
+            min += sorted[i];
+            max += sorted[sorted.length-i-1];
+        }
+        System.out.println("# Maximum subset evaluation: " + max);
+        System.out.println("# Minimum subset evaluation: " + min);
     }
     
     /**

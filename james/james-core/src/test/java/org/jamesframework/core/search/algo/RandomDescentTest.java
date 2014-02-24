@@ -17,8 +17,6 @@ package org.jamesframework.core.search.algo;
 import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.search.SearchTestTemplate;
-import org.jamesframework.core.search.neigh.Neighbourhood;
-import org.jamesframework.core.search.neigh.subset.SingleSwapNeighbourhood;
 import org.jamesframework.test.util.NeverSatisfiedConstraintStub;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -35,12 +33,10 @@ public class RandomDescentTest extends SearchTestTemplate {
 
     // random descent algorithm
     private RandomDescent<SubsetSolution> search;
-    // neighbourhood
-    private Neighbourhood<SubsetSolution> neigh;
     
     // maximum runtime
     private final long SINGLE_RUN_RUNTIME = 500;
-    private final long MULTI_RUN_RUNTIME = 1;
+    private final long MULTI_RUN_RUNTIME = 20;
     private final TimeUnit MAX_RUNTIME_TIME_UNIT = TimeUnit.MILLISECONDS;
     
     // number of runs in multi run tests
@@ -51,8 +47,8 @@ public class RandomDescentTest extends SearchTestTemplate {
      */
     @BeforeClass
     public static void setUpClass() {
-        SearchTestTemplate.setUpClass();
         System.out.println("# Testing RandomDescent ...");
+        SearchTestTemplate.setUpClass();
     }
 
     /**
@@ -68,8 +64,6 @@ public class RandomDescentTest extends SearchTestTemplate {
     public void setUp(){
         // call super
         super.setUp();
-        // create neighbourhood
-        neigh = new SingleSwapNeighbourhood();
         // create random search
         search = new RandomDescent<>(problem, neigh);
     }
