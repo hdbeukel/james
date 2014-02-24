@@ -29,12 +29,19 @@ public class MaxTimeWithoutImprovement implements StopCriterion {
     
     /**
      * Create a stop criterion to limit the time without finding any improvement during a search run.
+     * The given time should be at least 1 millisecond.
      * 
      * @param maxTimeWithoutImprovement maximum time without improvement
      * @param timeUnit corresponding time unit
+     * @throws IllegalArgumentException if given time is smaller than 1 millisecond
      */
     public MaxTimeWithoutImprovement(long maxTimeWithoutImprovement, TimeUnit timeUnit){
         this.maxTimeWithoutImprovement = timeUnit.toMillis(maxTimeWithoutImprovement);
+        // check at least 1 ms
+        if(this.maxTimeWithoutImprovement <= 0){
+            throw new IllegalArgumentException("Error while creating stop criterion: maximum time without improvement "
+                                                + "should be at least 1 millisecond.");
+        }
     }
     
     /**

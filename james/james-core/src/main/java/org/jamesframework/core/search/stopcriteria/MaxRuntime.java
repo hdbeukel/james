@@ -29,12 +29,18 @@ public class MaxRuntime implements StopCriterion {
     
     /**
      * Create a stop criterion to limit the runtime of a search run.
+     * The maximum runtime should be at least 1 millisecond.
      * 
      * @param maxRuntime maximum runtime
      * @param timeUnit corresponding time unit
+     * @throws IllegalArgumentException if a runtime lower than 1 millisecond is given
      */
     public MaxRuntime(long maxRuntime, TimeUnit timeUnit){
         this.maxRuntime = timeUnit.toMillis(maxRuntime);
+        // check runtime
+        if(this.maxRuntime <= 0){
+            throw new IllegalArgumentException("Error while creating stop criterion: maximum runtime should be at least 1 millisecond.");
+        }
     }
     
     /**

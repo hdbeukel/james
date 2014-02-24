@@ -28,10 +28,17 @@ public class MaxStepsWithoutImprovement implements StopCriterion {
     
     /**
      * Create a stop criterion to limit the number of steps without finding any improvement during a search run.
+     * The given number of steps should be strictly positive.
      * 
      * @param maxStepsWithoutImprovement maximum number of steps without improvement
+     * @throws IllegalArgumentException if <code>maxStepsWithoutImprovement</code> is <= 0
      */
     public MaxStepsWithoutImprovement(long maxStepsWithoutImprovement){
+        // check given step count
+        if(maxStepsWithoutImprovement <= 0){
+            throw new IllegalArgumentException("Error while creating stop criterion: maximum number of "
+                                                + "steps without improvement should be > 0.");
+        } 
         this.maxStepsWithoutImprovement = maxStepsWithoutImprovement;
     }
     

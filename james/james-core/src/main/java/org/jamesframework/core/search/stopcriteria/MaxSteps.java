@@ -28,10 +28,16 @@ public class MaxSteps implements StopCriterion {
     
     /**
      * Create a stop criterion to limit the number of steps of a search run.
+     * The maximum number of steps should be strictly positive.
      * 
      * @param maxSteps maximum number of steps
+     * @throws IllegalArgumentException if <code>maxSteps</code> is <= 0
      */
     public MaxSteps(long maxSteps){
+        // check max steps
+        if(maxSteps <= 0){
+            throw new IllegalArgumentException("Error while creating stop criterion: maximum number of steps should be > 0.");
+        }
         this.maxSteps = maxSteps;
     }
     
