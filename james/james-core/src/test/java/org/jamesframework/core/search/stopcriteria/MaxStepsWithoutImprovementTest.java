@@ -28,18 +28,18 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- * Test maximum steps stop criterion.
+ * Test maximum steps without improvement stop criterion.
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
-public class MaxStepsTest extends SearchTestTemplate {
+public class MaxStepsWithoutImprovementTest extends SearchTestTemplate {
 
     // search to work with (random descent search)
     private Search<SubsetSolution> search;
     
-    // maximum number of steps
-    private final long MAX_STEPS = 1000;
-    private final long LOW_MAX_STEPS = 200;
+    // maximum number of steps without improvement
+    private final long MAX_STEPS_WITHOUT_IMPR = 100000;
+    private final long LOW_MAX_STEPS_WITHOUT_IMPR = 200;
     
     // short check period
     private final long SHORT_CHECK_PERIOD = 1;
@@ -51,7 +51,7 @@ public class MaxStepsTest extends SearchTestTemplate {
     @BeforeClass
     public static void setUpClass() {
         SearchTestTemplate.setUpClass();
-        System.out.println("# Testing MaxSteps ...");
+        System.out.println("# Testing MaxStepsWithoutImprovement ...");
     }
 
     /**
@@ -59,7 +59,7 @@ public class MaxStepsTest extends SearchTestTemplate {
      */
     @AfterClass
     public static void tearDownClass() {
-        System.out.println("# Done testing MaxSteps!");
+        System.out.println("# Done testing MaxStepsWithoutImprovement!");
     }
     
     @Override
@@ -72,43 +72,43 @@ public class MaxStepsTest extends SearchTestTemplate {
     }
 
     /**
-     * Test maximum steps stop criterion.
+     * Test maximum steps without improvement stop criterion.
      */
     @Test
-    public void testMaxSteps() {
+    public void testMaxStepsWithoutImprovement() {
         
         System.out.println(" - test single run (default check period)");
-        System.out.println("   >>> max: " + MAX_STEPS + " steps");
+        System.out.println("   >>> max: " + MAX_STEPS_WITHOUT_IMPR + " steps without improvement");
         
         // add stop criterion to search
-        search.addStopCriterion(new MaxSteps(MAX_STEPS));
+        search.addStopCriterion(new MaxStepsWithoutImprovement(MAX_STEPS_WITHOUT_IMPR));
         
         // run search (should stop)
         search.start();
         
-        System.out.println("   >>> run: " + search.getSteps()+ " steps");
+        System.out.println("   >>> run: " + search.getStepsWithoutImprovement()+ " steps without improvement");
         System.out.println("   >>> best: " + search.getBestSolutionEvaluation());
         
     }
 
     /**
-     * Test maximum steps stop criterion with short check period.
+     * Test maximum steps without improvement stop criterion with short check period.
      */
     @Test
-    public void testMaxStepsWithShortPeriod() {
+    public void testMaxStepsWithoutImprovementWithShortPeriod() {
         
         System.out.format(" - test single run (check period = %d ms)\n", CHECK_PERIOD_TIME_UNIT.toMillis(SHORT_CHECK_PERIOD));
-        System.out.println("   >>> max: " + MAX_STEPS + " steps");
+        System.out.println("   >>> max: " + MAX_STEPS_WITHOUT_IMPR + " steps without improvement");
         
         // add stop criterion to search
-        search.addStopCriterion(new MaxSteps(MAX_STEPS));
+        search.addStopCriterion(new MaxStepsWithoutImprovement(MAX_STEPS_WITHOUT_IMPR));
         // set short check period
         search.setStopCriterionCheckPeriod(SHORT_CHECK_PERIOD, CHECK_PERIOD_TIME_UNIT);
         
         // run search (should stop)
         search.start();
         
-        System.out.println("   >>> run: " + search.getSteps()+ " steps");
+        System.out.println("   >>> run: " + search.getStepsWithoutImprovement()+ " steps without improvement");
         System.out.println("   >>> best: " + search.getBestSolutionEvaluation());
 
     }
@@ -121,8 +121,8 @@ public class MaxStepsTest extends SearchTestTemplate {
         
         System.out.println(" - test subsequent runs");
         
-        // add stop criterion (low max steps per run)
-        search.addStopCriterion(new MaxSteps(LOW_MAX_STEPS));
+        // add stop criterion (low max steps without improvement per run)
+        search.addStopCriterion(new MaxStepsWithoutImprovement(LOW_MAX_STEPS_WITHOUT_IMPR));
         // set short check period
         search.setStopCriterionCheckPeriod(SHORT_CHECK_PERIOD, CHECK_PERIOD_TIME_UNIT);
         
@@ -153,8 +153,8 @@ public class MaxStepsTest extends SearchTestTemplate {
         // set objective to minimize
         obj.setMinimizing();
         
-        // add stop criterion (low max steps per run)
-        search.addStopCriterion(new MaxSteps(LOW_MAX_STEPS));
+        // add stop criterion (low max steps without improvement per run)
+        search.addStopCriterion(new MaxStepsWithoutImprovement(LOW_MAX_STEPS_WITHOUT_IMPR));
         // set short check period
         search.setStopCriterionCheckPeriod(SHORT_CHECK_PERIOD, CHECK_PERIOD_TIME_UNIT);
         
