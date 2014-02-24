@@ -32,7 +32,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 
 /**
- * Template for general search tests, using a random search stub to solve a subset problem. Can be extended to use the contained data.
+ * Template for search tests solving a basic subset problem, where every item is assigned a real value with the
+ * objective of selecting a subset with maximum/minimum summed value. Can be extended to use the contained components. 
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */

@@ -44,8 +44,8 @@ public class SearchTest extends SearchTestTemplate {
      */
     @BeforeClass
     public static void setUpClass() {
-        SearchTestTemplate.setUpClass();
         System.out.println("# Testing Search ...");
+        SearchTestTemplate.setUpClass();
     }
 
     /**

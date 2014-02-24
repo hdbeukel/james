@@ -45,16 +45,13 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
     // neighbourhood search stub to work with
     private NeighbourhoodSearch<SubsetSolution> neighSearch;
     
-    // neighbourhood
-    private Neighbourhood<SubsetSolution> neigh;
-    
     /**
      * Print message when starting tests.
      */
     @BeforeClass
     public static void setUpClass() {
-        SearchTestTemplate.setUpClass();
         System.out.println("# Testing NeighbourhoodSearch ...");
+        SearchTestTemplate.setUpClass();
     }
 
     /**
@@ -73,7 +70,6 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
     public void setUp(){
         super.setUp();
         neighSearch = new NeighbourhoodSearchStub<>(problem);
-        neigh = new SingleSwapNeighbourhood();
     }
 
     /**

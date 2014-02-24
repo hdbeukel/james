@@ -50,8 +50,8 @@ public class MaxStepsTest extends SearchTestTemplate {
      */
     @BeforeClass
     public static void setUpClass() {
-        SearchTestTemplate.setUpClass();
         System.out.println("# Testing MaxSteps ...");
+        SearchTestTemplate.setUpClass();
     }
 
     /**
