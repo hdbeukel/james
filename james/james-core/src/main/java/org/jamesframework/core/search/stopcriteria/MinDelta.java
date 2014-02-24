@@ -18,7 +18,11 @@ import org.jamesframework.core.search.Search;
 
 /**
  * Stop criterion that imposes a minimum delta (amount of improvement in evaluation)
- * when finding a new best solution during a search run.
+ * when finding a new best solution during a search run, compared to the previous
+ * best known solution. Note that it is <i>not</i> absolutely guaranteed that a search
+ * will ever stop when using only this stop criterion, as it may happen that the last
+ * improvement is still above the required minimum and no more improvements are found
+ * from that point in time.
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
@@ -52,7 +56,7 @@ public class MinDelta implements StopCriterion {
      */
     @Override
     public boolean searchShouldStop(Search<?> search) {
-        return search.getMinDelta() < minDelta;
+        return search.getMinDelta() > 0.0 && search.getMinDelta() < minDelta;
     }
 
 }
