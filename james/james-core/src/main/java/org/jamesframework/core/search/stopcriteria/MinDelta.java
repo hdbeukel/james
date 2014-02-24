@@ -17,33 +17,36 @@ package org.jamesframework.core.search.stopcriteria;
 import org.jamesframework.core.search.Search;
 
 /**
- * Stop criterion that limits the number of steps of a search run.
+ * Stop criterion that imposes a minimum amount of improvement in evaluation
+ * when finding a new best solution during a search run.
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
-public class MaxSteps implements StopCriterion {
+public class MinDelta implements StopCriterion {
 
-    // maximum number of steps
-    private final long maxSteps;
+    // minimum delta
+    private final double minDelta;
     
     /**
-     * Create a stop criterion to limit the number of steps of a search run.
+     * Create a stop criterion that imposes a minimum delta in evaluation when
+     * finding a new best solution during a search run.
      * 
-     * @param maxSteps maximum number of steps
+     * @param minDelta minimum evaluation delta
      */
-    public MaxSteps(long maxSteps){
-        this.maxSteps = maxSteps;
+    public MinDelta(double minDelta){
+        this.minDelta = minDelta;
     }
     
     /**
-     * Checks whether the maximum number of steps has been exceeded for the given search.
+     * Checks whether the minimum delta observed during the current run of the given
+     * search is still above the required minimum.
      * 
-     * @param search search for which the number of performed steps has to be checked
-     * @return <code>true</code> if the given search has exceeded the maximum number of steps
+     * @param search search for which the minimum delta has to be checked
+     * @return <code>true</code> in case of a minimum delta below the required minimum
      */
     @Override
     public boolean searchShouldStop(Search<?> search) {
-        return search.getSteps() > maxSteps;
+        return search.getMinDelta() < minDelta;
     }
 
 }
