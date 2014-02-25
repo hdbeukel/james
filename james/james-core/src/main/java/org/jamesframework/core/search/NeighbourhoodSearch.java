@@ -21,6 +21,8 @@ import java.util.List;
 import org.jamesframework.core.exceptions.SearchException;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.search.cache.EvaluatedMoveCache;
+import org.jamesframework.core.search.cache.SingleEvaluatedMoveCache;
 import org.jamesframework.core.search.listeners.NeighbourhoodSearchListener;
 import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.search.neigh.Move;
@@ -46,6 +48,9 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
     // current solution and its corresponding evaluation
     private SolutionType curSolution;
     private double curSolutionEvaluation;
+    
+    // evaluated move cache
+    private EvaluatedMoveCache cache;
     
     /************************/
     /* PRIVATE FINAL FIELDS */
@@ -75,6 +80,32 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
         curSolutionEvaluation = 0.0; // arbitrary value
         // initialize list for neighbourhood search listeners
         neighSearchListeners = new ArrayList<>();
+        // set default (single) evaluated move cache
+        cache = new SingleEvaluatedMoveCache();
+    }
+    
+    /*********/
+    /* CACHE */
+    /*********/
+    
+    /**
+     * Sets a custom evaluated move cache. By default, a {@link SingleEvaluatedMoveCache} is used.
+     * Note that this method may only be called when the search is idle.
+     * 
+     * @param cache custom evaluated move cache
+     * @throws SearchException if the search is not idle
+     */
+    public void setEvaluatedMoveCache(EvaluatedMoveCache cache){
+        // acquire status lock
+        synchronized(getStatusLock()){
+            // check status
+            if(getStatus() != SearchStatus.IDLE){
+                throw new SearchException("Error while setting custom evaluated move cache in neighbourhood search: "
+                                            + "search is currently not idle.");
+            }
+            // set cache
+            this.cache = cache;
+        }
     }
     
     /******************/
@@ -102,10 +133,14 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
      * therefore be called when the search is not idle. Called when creating a random initial solution
      * during initialization, and from within the public {@link #setCurrentSolution(Solution)} after
      * verifying the search status.
+     * <p>
+     * Clears the evaluated move cache, as this cache is no longer valid for the new current solution.
      * 
      * @param solution 
      */
     private void adjustCurrentSolution(SolutionType solution){
+        // clear evaluated move cache
+        cache.clear();
         // set current solution
         curSolution = solution;
         // evaluate
@@ -295,6 +330,8 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
      * currently known best solution, to check if it improves on this solution. This method may for
      * example be used to specify a custom initial solution before starting the search. Note that it
      * may only be called when the search is idle.
+     * <p>
+     * Clears the evaluated move cache, as this cache is no longer valid for the new current solution.
      * 
      * @throws SearchException if the search is not idle
      * @param solution current solution to be adopted
@@ -316,37 +353,83 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
     /***********************/
     
     /**
+     * Evaluates the neighbour obtained by applying the given move to the current solution. If this
+     * move has been evaluated before and the computed value is still available in the cache, the
+     * cached value will be returned. Else, the evaluation will be computed and offered to the cache.
+     * 
+     * @param move move applied to the current solution
+     * @return evaluation of obtained neighbour, possibly retrieved from the evaluated move cache
+     */
+    protected double evaluateMove(Move<? super SolutionType> move){
+        // check cache
+        Double eval = cache.getCachedMoveEvaluation(move);
+        if(eval != null){
+            // cache hit: return cached value
+            return eval;
+        } else {
+            // cache miss: evaluate and cache
+            move.apply(curSolution);                        // apply move
+            eval = getProblem().evaluate(curSolution);      // evaluate neighbour
+            cache.cacheMoveEvaluation(move, eval);          // cache evaluation
+            move.undo(curSolution);                         // undo move
+            return eval;                                    // return evaluation
+        }
+    }
+    
+    /**
+     * Validates the neighbour obtained by applying the given move to the current solution. If this
+     * move has been validated before and the result is still available in the cache, the cached result
+     * will be returned. Else, the neighbour will be validated and the result is offered to the cache.
+     * 
+     * @param move move applied to the current solution
+     * @return <code>true</code> if the obtained neighbour is <b>not</b> rejected,
+     *         possibly retrieved from the evaluated move cache
+     */
+    protected boolean validateMove(Move<? super SolutionType> move){
+        // check cache
+        Boolean reject = cache.getCachedMoveRejection(move);
+        if(reject != null){
+            // cache hit: return cached value
+            return !reject;
+        } else {
+            // cache miss: validate and cache
+            move.apply(curSolution);                                // apply move
+            reject = getProblem().rejectSolution(curSolution);      // validate neighbour
+            cache.cacheMoveRejection(move, reject);                 // cache validity
+            move.undo(curSolution);                                 // undo move
+            return !reject;                                         // return validity
+        }
+    }
+    
+    /**
      * Checks whether the given move leads to an improvement when being applied to the current solution.
-     * An improvement is made if and only if the given move is <b>not</b> <code>null</code>, the modified
-     * solution obtained by applying the move is <b>not</b> rejected (see {@link Problem#rejectSolution(Solution)})
-     * and this solution has a better evaluation than the current solution.
+     * An improvement is made if and only if the given move is <b>not</b> <code>null</code>, the neighbour
+     * obtained by applying the move is <b>not</b> rejected (see {@link Problem#rejectSolution(Solution)})
+     * and this neighbour has a better evaluation than the current solution (i.e. a positive delta is
+     * observed, see {@link #computeDelta(double, double)}).
+     * <p>
+     * Note that computed values are cached to prevent multiple evaluations or validations of the same move.
      * 
      * @param move move to be applied to the current solution
      * @return <code>true</code> if applying this move yields an improvement
      */
     protected boolean isImprovement(Move<? super SolutionType> move){
-        // no improvement if move is null
-        if(move == null){
-            return false;
-        }
-        // apply move to current solution
-        move.apply(curSolution);
-        // is improvement ?
-        boolean improvement = (!getProblem().rejectSolution(curSolution)                                            // not rejected ?
-                                && computeDelta(getProblem().evaluate(curSolution), curSolutionEvaluation) > 0);    // better eval ?
-        // undo move
-        move.undo(curSolution);
-        // return result
-        return improvement;
+        return move != null
+                && validateMove(move)
+                && computeDelta(evaluateMove(move), curSolutionEvaluation) > 0;
     }
     
     /**
      * Given a collection of possible moves, get the move which yields the largest delta (see {@link #computeDelta(double, double)})
-     * when applying it to the current solution, where only those moves leading to a valid neighbouring solution are considered
-     * (those moves for which {@link Problem#rejectSolution(Solution)} returns <code>false</code>). If <code>positiveDeltasOnly</code>
-     * is set to <code>true</code>, only moves yielding a (strictly) positive delta, i.e. an improvement, are considered. May return
+     * when applying it to the current solution, where only those moves leading to a valid neighbour are considered (those moves for
+     * which {@link Problem#rejectSolution(Solution)} returns <code>false</code>). If <code>positiveDeltasOnly</code> is set to
+     * <code>true</code>, only moves yielding a (strictly) positive delta, i.e. an improvement, are considered. May return
      * <code>null</code> if all moves lead to invalid solutions, or if no valid move with positive delta is found, in case
      * <code>positiveDeltasOnly</code> is set to <code>true</code>.
+     * <p>
+     * Note that all computed values are cached to prevent multiple evaluations or validations of the same move. Before returning
+     * the selected "best" move, if any, its evaluation and validity are cached again to maximize the probability that these values
+     * will remain available in the cache.
      * 
      * @param moves collection of possible moves
      * @param positiveDeltasOnly if set to <code>true</code>, only moves with <code>delta > 0</code> are considered
@@ -355,26 +438,31 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
     protected Move<? super SolutionType> getMoveWithLargestDelta(Collection<? extends Move<? super SolutionType>> moves, boolean positiveDeltasOnly){
         // track best move and corresponding delta
         Move<? super SolutionType> bestMove = null, curMove;
-        double bestMoveDelta = -Double.MAX_VALUE, curMoveDelta;
+        double bestMoveDelta = -Double.MAX_VALUE, curMoveDelta, curMoveEval;
+        Double bestMoveEval = null;
         // go through all moves
         Iterator<? extends Move<? super SolutionType>> it = moves.iterator();
         while(it.hasNext()){
             curMove = it.next();
-            // apply move to current solution
-            curMove.apply(curSolution);
-            // check that new solution is not rejected
-            if(!getProblem().rejectSolution(curSolution)){
+            // validate move
+            if(validateMove(curMove)){
+                // evaluate move
+                curMoveEval = evaluateMove(curMove);
                 // compute delta
-                curMoveDelta = computeDelta(getProblem().evaluate(curSolution), curSolutionEvaluation);
+                curMoveDelta = computeDelta(curMoveEval, curSolutionEvaluation);
                 // compare with current best move
-                if(curMoveDelta > bestMoveDelta                         // check higher delta
-                        && (!positiveDeltasOnly || curMoveDelta > 0)){  // ensure positive delta, if required
+                if(curMoveDelta > bestMoveDelta                             // higher delta
+                        && (!positiveDeltasOnly || curMoveDelta > 0)){      // ensure positive delta, if required
                     bestMove = curMove;
                     bestMoveDelta = curMoveDelta;
+                    bestMoveEval = curMoveEval;
                 }
             }
-            // undo move
-            curMove.undo(curSolution);
+        }
+        // recache best move, if any
+        if(bestMove != null){
+            cache.cacheMoveRejection(bestMove, false);              // best move is surely not rejected
+            cache.cacheMoveEvaluation(bestMove, bestMoveEval);      // cache best move evaluation 
         }
         // return best move
         return bestMove;
@@ -383,18 +471,22 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
     /**
      * Accept the given move by applying it to the current solution. Updates the evaluation of the current solution and compares
      * it with the currently known best solution to check whether a new best solution has been found. Note that this method does
-     * <b>not</b> verify whether the given move yields a valid solution, but assumes that this has already been checked <i>prior</i>
+     * <b>not</b> verify whether the given move yields a valid neighbour, but assumes that this has already been checked <i>prior</i>
      * to deciding to accept the move. Therefore, it should <b>never</b> be called with a move that results in a solution for which
-     * {@link Problem#rejectSolution(Solution)} returns <code>false</code>. After updating the current solution, any neighbourhood
-     * search listeners are informed.
+     * {@link Problem#rejectSolution(Solution)} returns <code>true</code>.
+     * <p>
+     * After updating the current solution, the evaluated move cache is cleared as this cache is no longer valid for the new current
+     * solution. Furthermore, any neighbourhood search listeners are informed and the number of accepted moves is updated.
      * 
      * @param move accepted move to be applied to the current solution
      */
     protected void acceptMove(Move<? super SolutionType> move){
+        // update evaluation (likely present in cache)
+        curSolutionEvaluation = evaluateMove(move); 
         // apply move to current solution
         move.apply(curSolution);
-        // update evaluation
-        curSolutionEvaluation = getProblem().evaluate(curSolution);
+        // clear evaluated move cache
+        cache.clear();
         // update best solution
         updateBestSolution(curSolution, curSolutionEvaluation);
         // increase accepted move counter
@@ -404,8 +496,8 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
     }
     
     /**
-     * Rejects the given move. The default implementation of this method only adjust the rejected move counter. The number of
-     * rejected moves is only correctly monitored if this method is called for every rejected move.
+     * Rejects the given move. This method only updates the rejected move counter. If this method
+     * is called for every rejected move, the number of rejected moves will be correctly reported.
      * 
      * @param move rejected move
      */
