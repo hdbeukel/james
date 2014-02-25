@@ -28,14 +28,14 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 
 /**
- * Test single move cache.
+ * Test single evaluated move cache.
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
-public class SingleMoveCacheTest {
+public class SingleEvaluatedMoveCacheTest {
 
     // cache to work with in each test method
-    private MoveCache cache;
+    private EvaluatedMoveCache cache;
     
     // random generator
     private static final Random RG = new Random();
@@ -45,7 +45,7 @@ public class SingleMoveCacheTest {
      */
     @BeforeClass
     public static void setUpClass() {
-        System.out.println("# Testing SingleMoveCache ...");
+        System.out.println("# Testing SingleEvaluatedMoveCache ...");
     }
 
     /**
@@ -53,17 +53,17 @@ public class SingleMoveCacheTest {
      */
     @AfterClass
     public static void tearDownClass() {
-        System.out.println("# Done testing SingleMoveCache!");
+        System.out.println("# Done testing SingleEvaluatedMoveCache!");
     }
     
     @Before
     public void setUp(){
-        // create empty single move cache
-        cache = new SingleMoveCache();
+        // create empty single evaluated move cache
+        cache = new SingleEvaluatedMoveCache();
     }
 
     /**
-     * Test of cacheMoveEvaluation method, of class SingleMoveCache.
+     * Test of cacheMoveEvaluation method, of class SingleEvaluatedMoveCache.
      */
     @Test
     public void testCacheMoveEvaluation() {
@@ -95,7 +95,7 @@ public class SingleMoveCacheTest {
     }
 
     /**
-     * Test of cacheMoveRejection method, of class SingleMoveCache.
+     * Test of cacheMoveRejection method, of class SingleEvaluatedMoveCache.
      */
     @Test
     public void testCacheMoveRejection() {
@@ -127,7 +127,7 @@ public class SingleMoveCacheTest {
     }
 
     /**
-     * Test of clear method, of class SingleMoveCache.
+     * Test of clear method, of class SingleEvaluatedMoveCache.
      */
     @Test
     public void testClear() {

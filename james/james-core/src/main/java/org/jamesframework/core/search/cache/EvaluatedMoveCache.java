@@ -39,7 +39,7 @@ import org.jamesframework.core.search.neigh.Move;
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
-public interface MoveCache {
+public interface EvaluatedMoveCache {
 
     /**
      * Request to cache the evaluation (see {@link Problem#evaluate(Solution)}) of the neighbouring

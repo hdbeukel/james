@@ -26,7 +26,7 @@ import org.jamesframework.core.search.neigh.Move;
  * 
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
-public class SingleMoveCache implements MoveCache {
+public class SingleEvaluatedMoveCache implements EvaluatedMoveCache {
     
     // single cached move evaluation
     private Move<?> evaluatedMove;
@@ -37,9 +37,9 @@ public class SingleMoveCache implements MoveCache {
     private Boolean rejected;
     
     /**
-     * Create an empty single move cache.
+     * Create an empty single evaluated move cache.
      */
-    public SingleMoveCache(){
+    public SingleEvaluatedMoveCache(){
         clear();
     }
 
