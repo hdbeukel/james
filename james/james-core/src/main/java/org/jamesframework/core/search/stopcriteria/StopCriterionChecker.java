@@ -103,9 +103,9 @@ public class StopCriterionChecker {
      * Start checking the stop criteria, in a timer thread fired to run in the background. If no stop criteria have been added, calling this
      * method does not have any effect.
      */
-    public void startChecking() {
+    public synchronized void startChecking() {
         // check if some stop criteria were added
-        if (!stopCriteria.isEmpty()) {
+        if (timer == null && !stopCriteria.isEmpty()) {
             // create new timer (any previous one has been cancelled and cannot be reused)
             timer = new Timer();
             // schedule periodical check (starting without any delay)
@@ -119,7 +119,7 @@ public class StopCriterionChecker {
      * Instructs the stop criterion checker to stop checking. In case the checker is active, this will terminate the timer thread which is
      * running in the background, else, calling this method does not have any effect.
      */
-    public void stopChecking() {
+    public synchronized void stopChecking() {
         if (timer != null) {
             // cancel timer
             timer.cancel();
@@ -161,10 +161,10 @@ public class StopCriterionChecker {
             }
             // request the search to stop if a stop condition is met
             if (stopSearch) {
-                // stop the search
-                search.stop();
                 // stop checking
                 stopChecking();
+                // stop the search
+                search.stop();
             }
         }
 
