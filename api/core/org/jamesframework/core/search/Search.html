@@ -157,7 +157,13 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#Search(org.jamesframework.core.problems.Problem)">Search</a></strong>(<a href="../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&nbsp;problem)</code>
-<div class="block">Creates a search to solve the given problem.</div>
+<div class="block">Creates a search to solve the given problem, with default search name "Search".</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#Search(java.lang.String, org.jamesframework.core.problems.Problem)">Search</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+      <a href="../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&nbsp;problem)</code>
+<div class="block">Creates a search to solve the given problem, with a custom search name.</div>
 </td>
 </tr>
 </table>
@@ -214,11 +220,23 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#getID()">getID</a></strong>()</code>
+<div class="block">Get the unique ID that has been assigned to this search.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#getMinDelta()">getMinDelta</a></strong>()</code>
 <div class="block">
  Get the minimum improvement in evaluation of a new best known solution over the previous best known solution,
  found during the <i>current</i> (or last) run.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#getName()">getName</a></strong>()</code>
+<div class="block">Get the name that has been assigned to this search.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -323,13 +341,19 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#toString()">toString</a></strong>()</code>
+<div class="block">Returns a string representation of the search, formatted as "%name:%id".</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#updateBestSolution(SolutionType)">updateBestSolution</a></strong>(<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&nbsp;newSolution)</code>
 <div class="block">
  Checks whether a new best solution has been found and updates it accordingly.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/search/Search.html#updateBestSolution(SolutionType, double)">updateBestSolution</a></strong>(<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&nbsp;newSolution,
                   double&nbsp;newSolutionEvaluation)</code>
@@ -345,7 +369,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
-<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang">toString</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait(long, int)" title="class or interface in java.lang">wait</a></code></li>
+<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait(long, int)" title="class or interface in java.lang">wait</a></code></li>
 </ul>
 </li>
 </ul>
@@ -364,12 +388,28 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <a name="Search(org.jamesframework.core.problems.Problem)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>Search</h4>
 <pre>public&nbsp;Search(<a href="../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&nbsp;problem)</pre>
-<div class="block">Creates a search to solve the given problem.</div>
+<div class="block">Creates a search to solve the given problem, with default search name "Search".</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>problem</code> - problem to solve</dd>
+<dt><span class="strong">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> is <code>null</code></dd></dl>
+</li>
+</ul>
+<a name="Search(java.lang.String, org.jamesframework.core.problems.Problem)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>Search</h4>
+<pre>public&nbsp;Search(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+      <a href="../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&nbsp;problem)</pre>
+<div class="block">Creates a search to solve the given problem, with a custom search name. If
+ <code>name</code> is <code>null</code>, a default search name "Search" will
+ be assigned.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>problem</code> - problem to solve</dd><dd><code>name</code> - custom search name</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> is <code>null</code></dd></dl>
 </li>
@@ -382,6 +422,42 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="getName()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getName</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;getName()</pre>
+<div class="block">Get the name that has been assigned to this search.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>search name</dd></dl>
+</li>
+</ul>
+<a name="getID()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getID</h4>
+<pre>public&nbsp;int&nbsp;getID()</pre>
+<div class="block">Get the unique ID that has been assigned to this search.</div>
+<dl><dt><span class="strong">Returns:</span></dt><dd>unique search ID</dd></dl>
+</li>
+</ul>
+<a name="toString()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>toString</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;toString()</pre>
+<div class="block">Returns a string representation of the search, formatted as "%name:%id".</div>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
+<dt><span class="strong">Returns:</span></dt><dd>string representation containing name and id</dd></dl>
+</li>
+</ul>
 <a name="start()">
 <!--   -->
 </a>

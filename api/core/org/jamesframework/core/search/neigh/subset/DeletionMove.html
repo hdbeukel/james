@@ -150,33 +150,45 @@ implements <a href="../../../../../../org/jamesframework/core/search/neigh/subse
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../org/jamesframework/core/search/neigh/subset/DeletionMove.html#equals(java.lang.Object)">equals</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;obj)</code>
+<div class="block">Two deletion moves are considered equal if they remove the same ID.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../org/jamesframework/core/search/neigh/subset/DeletionMove.html#getAddedIDs()">getAddedIDs</a></strong>()</code>
 <div class="block">Returns an unmodifiable empty set, as no IDs are added.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../org/jamesframework/core/search/neigh/subset/DeletionMove.html#getDeletedID()">getDeletedID</a></strong>()</code>
 <div class="block">Returns the deleted ID.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../org/jamesframework/core/search/neigh/subset/DeletionMove.html#getDeletedIDs()">getDeletedIDs</a></strong>()</code>
 <div class="block">Returns an unmodifiable singleton, containing the only deleted ID.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../org/jamesframework/core/search/neigh/subset/DeletionMove.html#getNumAdded()">getNumAdded</a></strong>()</code>
 <div class="block">Always returns 0, as no IDs are added.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../org/jamesframework/core/search/neigh/subset/DeletionMove.html#getNumDeleted()">getNumDeleted</a></strong>()</code>
 <div class="block">Always returns 1, as a single ID is deleted.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><strong><a href="../../../../../../org/jamesframework/core/search/neigh/subset/DeletionMove.html#hashCode()">hashCode</a></strong>()</code>
+<div class="block">Hash code corresponding to implementation of <a href="../../../../../../org/jamesframework/core/search/neigh/subset/DeletionMove.html#equals(java.lang.Object)"><code>equals(Object)</code></a>.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -192,7 +204,7 @@ implements <a href="../../../../../../org/jamesframework/core/search/neigh/subse
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
-<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang">toString</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait(long, int)" title="class or interface in java.lang">wait</a></code></li>
+<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#clone()" title="class or interface in java.lang">clone</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#finalize()" title="class or interface in java.lang">finalize</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#getClass()" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notify()" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notifyAll()" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#toString()" title="class or interface in java.lang">toString</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait()" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait(long)" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait(long, int)" title="class or interface in java.lang">wait</a></code></li>
 </ul>
 </li>
 </ul>
@@ -316,7 +328,7 @@ implements <a href="../../../../../../org/jamesframework/core/search/neigh/subse
 <a name="undo(org.jamesframework.core.problems.solutions.SubsetSolution)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>undo</h4>
 <pre>public&nbsp;void&nbsp;undo(<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;solution)</pre>
@@ -326,6 +338,35 @@ implements <a href="../../../../../../org/jamesframework/core/search/neigh/subse
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../../../../org/jamesframework/core/search/neigh/Move.html#undo(SolutionType)">undo</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&gt;</code></dd>
 <dt><span class="strong">Parameters:</span></dt><dd><code>solution</code> - solution to which the move has been applied</dd></dl>
+</li>
+</ul>
+<a name="hashCode()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>hashCode</h4>
+<pre>public&nbsp;int&nbsp;hashCode()</pre>
+<div class="block">Hash code corresponding to implementation of <a href="../../../../../../org/jamesframework/core/search/neigh/subset/DeletionMove.html#equals(java.lang.Object)"><code>equals(Object)</code></a>.</div>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode()" title="class or interface in java.lang">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
+<dt><span class="strong">Returns:</span></dt><dd>hash code of this deletion move</dd></dl>
+</li>
+</ul>
+<a name="equals(java.lang.Object)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>equals</h4>
+<pre>public&nbsp;boolean&nbsp;equals(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;obj)</pre>
+<div class="block">Two deletion moves are considered equal if they remove the same ID.</div>
+<dl>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals(java.lang.Object)" title="class or interface in java.lang">equals</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>obj</code> - object to compare with this deletion move for equality</dd>
+<dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the given object is also a deletion move and removes the same ID</dd></dl>
 </li>
 </ul>
 </li>

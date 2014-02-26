@@ -81,12 +81,18 @@
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><a href="#org.jamesframework.core.search.cache">org.jamesframework.core.search.cache</a></td>
+<td class="colLast">
+<div class="block">Caches used by searches for efficient solution evaluation and validation.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.neigh">org.jamesframework.core.search.neigh</a></td>
 <td class="colLast">
 <div class="block">General neighbourhood and move specification.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.neigh.subset">org.jamesframework.core.search.neigh.subset</a></td>
 <td class="colLast">
 <div class="block">Neighbourhoods and moves for subset selection.</div>
@@ -113,8 +119,8 @@
 <td class="colLast"><span class="strong">NeighbourhoodSearch.</span><code><strong><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getMoveWithLargestDelta(java.util.Collection, boolean)">getMoveWithLargestDelta</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&gt;&nbsp;moves,
                        boolean&nbsp;positiveDeltasOnly)</code>
 <div class="block">Given a collection of possible moves, get the move which yields the largest delta (see <a href="../../../../../../org/jamesframework/core/search/Search.html#computeDelta(double, double)"><code>Search.computeDelta(double, double)</code></a>)
- when applying it to the current solution, where only those moves leading to a valid neighbouring solution are considered
- (those moves for which <a href="../../../../../../org/jamesframework/core/problems/Problem.html#rejectSolution(SolutionType)"><code>Problem.rejectSolution(Solution)</code></a> returns <code>false</code>).</div>
+ when applying it to the current solution, where only those moves leading to a valid neighbour are considered (those moves for
+ which <a href="../../../../../../org/jamesframework/core/problems/Problem.html#rejectSolution(SolutionType)"><code>Problem.rejectSolution(Solution)</code></a> returns <code>false</code>).</div>
 </td>
 </tr>
 </tbody>
@@ -133,15 +139,27 @@
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>protected double</code></td>
+<td class="colLast"><span class="strong">NeighbourhoodSearch.</span><code><strong><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#evaluateMove(org.jamesframework.core.search.neigh.Move)">evaluateMove</a></strong>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</code>
+<div class="block">Evaluates the neighbour obtained by applying the given move to the current solution.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><span class="strong">NeighbourhoodSearch.</span><code><strong><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#isImprovement(org.jamesframework.core.search.neigh.Move)">isImprovement</a></strong>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</code>
 <div class="block">Checks whether the given move leads to an improvement when being applied to the current solution.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="strong">NeighbourhoodSearch.</span><code><strong><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#rejectMove(org.jamesframework.core.search.neigh.Move)">rejectMove</a></strong>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</code>
 <div class="block">Rejects the given move.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected boolean</code></td>
+<td class="colLast"><span class="strong">NeighbourhoodSearch.</span><code><strong><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#validateMove(org.jamesframework.core.search.neigh.Move)">validateMove</a></strong>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</code>
+<div class="block">Validates the neighbour obtained by applying the given move to the current solution.</div>
 </td>
 </tr>
 </tbody>
@@ -158,8 +176,78 @@
 <td class="colLast"><span class="strong">NeighbourhoodSearch.</span><code><strong><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getMoveWithLargestDelta(java.util.Collection, boolean)">getMoveWithLargestDelta</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&gt;&nbsp;moves,
                        boolean&nbsp;positiveDeltasOnly)</code>
 <div class="block">Given a collection of possible moves, get the move which yields the largest delta (see <a href="../../../../../../org/jamesframework/core/search/Search.html#computeDelta(double, double)"><code>Search.computeDelta(double, double)</code></a>)
- when applying it to the current solution, where only those moves leading to a valid neighbouring solution are considered
- (those moves for which <a href="../../../../../../org/jamesframework/core/problems/Problem.html#rejectSolution(SolutionType)"><code>Problem.rejectSolution(Solution)</code></a> returns <code>false</code>).</div>
+ when applying it to the current solution, where only those moves leading to a valid neighbour are considered (those moves for
+ which <a href="../../../../../../org/jamesframework/core/problems/Problem.html#rejectSolution(SolutionType)"><code>Problem.rejectSolution(Solution)</code></a> returns <code>false</code>).</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.search.cache">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a> in <a href="../../../../../../org/jamesframework/core/search/cache/package-summary.html">org.jamesframework.core.search.cache</a></h3>
+<table border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../../org/jamesframework/core/search/cache/package-summary.html">org.jamesframework.core.search.cache</a> with parameters of type <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="strong">SingleEvaluatedMoveCache.</span><code><strong><a href="../../../../../../org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#cacheMoveEvaluation(org.jamesframework.core.search.neigh.Move, double)">cacheMoveEvaluation</a></strong>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move,
+                   double&nbsp;evaluation)</code>
+<div class="block">Cache the given evaluation, discarding any previously cached evaluations.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="strong">EvaluatedMoveCache.</span><code><strong><a href="../../../../../../org/jamesframework/core/search/cache/EvaluatedMoveCache.html#cacheMoveEvaluation(org.jamesframework.core.search.neigh.Move, double)">cacheMoveEvaluation</a></strong>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move,
+                   double&nbsp;evaluation)</code>
+<div class="block">Request to cache the evaluation (see <a href="../../../../../../org/jamesframework/core/problems/Problem.html#evaluate(SolutionType)"><code>Problem.evaluate(Solution)</code></a>) of the neighbouring
+ solution which is obtained by applying the given move to the current solution.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="strong">SingleEvaluatedMoveCache.</span><code><strong><a href="../../../../../../org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#cacheMoveRejection(org.jamesframework.core.search.neigh.Move, boolean)">cacheMoveRejection</a></strong>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move,
+                  boolean&nbsp;isRejected)</code>
+<div class="block">Cache rejection of the given move, discarding any previously cached value.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="strong">EvaluatedMoveCache.</span><code><strong><a href="../../../../../../org/jamesframework/core/search/cache/EvaluatedMoveCache.html#cacheMoveRejection(org.jamesframework.core.search.neigh.Move, boolean)">cacheMoveRejection</a></strong>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move,
+                  boolean&nbsp;isRejected)</code>
+<div class="block">Request to cache rejection (see <a href="../../../../../../org/jamesframework/core/problems/Problem.html#rejectSolution(SolutionType)"><code>Problem.rejectSolution(Solution)</code></a>) of the neighbouring
+ solution which is obtained by applying the given move to the current solution.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Double.html?is-external=true" title="class or interface in java.lang">Double</a></code></td>
+<td class="colLast"><span class="strong">SingleEvaluatedMoveCache.</span><code><strong><a href="../../../../../../org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#getCachedMoveEvaluation(org.jamesframework.core.search.neigh.Move)">getCachedMoveEvaluation</a></strong>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move)</code>
+<div class="block">Retrieve a cached evaluation, if still available.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Double.html?is-external=true" title="class or interface in java.lang">Double</a></code></td>
+<td class="colLast"><span class="strong">EvaluatedMoveCache.</span><code><strong><a href="../../../../../../org/jamesframework/core/search/cache/EvaluatedMoveCache.html#getCachedMoveEvaluation(org.jamesframework.core.search.neigh.Move)">getCachedMoveEvaluation</a></strong>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move)</code>
+<div class="block">Retrieve the cached evaluation (see <a href="../../../../../../org/jamesframework/core/problems/Problem.html#evaluate(SolutionType)"><code>Problem.evaluate(Solution)</code></a>) of the neighbouring
+ solution which is obtained by applying the given move to the current solution, if available.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a></code></td>
+<td class="colLast"><span class="strong">SingleEvaluatedMoveCache.</span><code><strong><a href="../../../../../../org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#getCachedMoveRejection(org.jamesframework.core.search.neigh.Move)">getCachedMoveRejection</a></strong>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move)</code>
+<div class="block">Retrieve cached rejection, if still available.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a></code></td>
+<td class="colLast"><span class="strong">EvaluatedMoveCache.</span><code><strong><a href="../../../../../../org/jamesframework/core/search/cache/EvaluatedMoveCache.html#getCachedMoveRejection(org.jamesframework.core.search.neigh.Move)">getCachedMoveRejection</a></strong>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move)</code>
+<div class="block">Retrieve cached rejection (see <a href="../../../../../../org/jamesframework/core/problems/Problem.html#evaluate(SolutionType)"><code>Problem.evaluate(Solution)</code></a>) of the neighbouring
+ solution which is obtained by applying the given move to the current solution, if available.</div>
 </td>
 </tr>
 </tbody>

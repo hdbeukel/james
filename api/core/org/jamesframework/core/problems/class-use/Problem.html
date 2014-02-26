@@ -167,12 +167,26 @@
 <tbody>
 <tr class="altColor">
 <td class="colLast"><code><strong><a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#NeighbourhoodSearch(org.jamesframework.core.problems.Problem)">NeighbourhoodSearch</a></strong>(<a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;problem)</code>
-<div class="block">Create a new neighbourhood search to solve the given problem.</div>
+<div class="block">Create a new neighbourhood search to solve the given problem,
+ with default name "NeighbourhoodSearch".</div>
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colLast"><code><strong><a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#NeighbourhoodSearch(java.lang.String, org.jamesframework.core.problems.Problem)">NeighbourhoodSearch</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+                   <a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;problem)</code>
+<div class="block">Create a new neighbourhood search to solve the given problem,
+ with a custom name.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colLast"><code><strong><a href="../../../../../org/jamesframework/core/search/Search.html#Search(org.jamesframework.core.problems.Problem)">Search</a></strong>(<a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&nbsp;problem)</code>
-<div class="block">Creates a search to solve the given problem.</div>
+<div class="block">Creates a search to solve the given problem, with default search name "Search".</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colLast"><code><strong><a href="../../../../../org/jamesframework/core/search/Search.html#Search(java.lang.String, org.jamesframework.core.problems.Problem)">Search</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+      <a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&nbsp;problem)</code>
+<div class="block">Creates a search to solve the given problem, with a custom search name.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -180,6 +194,14 @@
                          <a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../org/jamesframework/core/search/SingleNeighbourhoodSearch.html" title="type parameter in SingleNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;neighbourhood)</code>
 <div class="block">Create a new single neighbourhood search, specifying the problem to be solved and the neighbourhood used to
  modify the current solution.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colLast"><code><strong><a href="../../../../../org/jamesframework/core/search/SingleNeighbourhoodSearch.html#SingleNeighbourhoodSearch(java.lang.String, org.jamesframework.core.problems.Problem, org.jamesframework.core.search.neigh.Neighbourhood)">SingleNeighbourhoodSearch</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+                         <a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/SingleNeighbourhoodSearch.html" title="type parameter in SingleNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;problem,
+                         <a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../org/jamesframework/core/search/SingleNeighbourhoodSearch.html" title="type parameter in SingleNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;neighbourhood)</code>
+<div class="block">Create a new single neighbourhood search, specifying the problem to be solved, the neighbourhood used to
+ modify the current solution, and a custom search name.</div>
 </td>
 </tr>
 </tbody>
@@ -203,8 +225,22 @@
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colLast"><code><strong><a href="../../../../../org/jamesframework/core/search/algo/RandomDescent.html#RandomDescent(java.lang.String, org.jamesframework.core.problems.Problem, org.jamesframework.core.search.neigh.Neighbourhood)">RandomDescent</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+             <a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/RandomDescent.html" title="type parameter in RandomDescent">SolutionType</a>&gt;&nbsp;problem,
+             <a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../org/jamesframework/core/search/algo/RandomDescent.html" title="type parameter in RandomDescent">SolutionType</a>&gt;&nbsp;neighbourhood)</code>
+<div class="block">Creates a new random descent search, specifying the problem to solve, the neighbourhood used to
+ modify the current solution, and a custom search name.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colLast"><code><strong><a href="../../../../../org/jamesframework/core/search/algo/RandomSearch.html#RandomSearch(org.jamesframework.core.problems.Problem)">RandomSearch</a></strong>(<a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/RandomSearch.html" title="type parameter in RandomSearch">SolutionType</a>&gt;&nbsp;problem)</code>
 <div class="block">Create a random search, given the problem to solve.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colLast"><code><strong><a href="../../../../../org/jamesframework/core/search/algo/RandomSearch.html#RandomSearch(java.lang.String, org.jamesframework.core.problems.Problem)">RandomSearch</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+            <a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/RandomSearch.html" title="type parameter in RandomSearch">SolutionType</a>&gt;&nbsp;problem)</code>
+<div class="block">Create a random search, given the problem to solve and a custom search name.</div>
 </td>
 </tr>
 </tbody>

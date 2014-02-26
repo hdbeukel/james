@@ -6,6 +6,7 @@ org.jamesframework.core.problems.objectives
 org.jamesframework.core.problems.solutions
 org.jamesframework.core.search
 org.jamesframework.core.search.algo
+org.jamesframework.core.search.cache
 org.jamesframework.core.search.listeners
 org.jamesframework.core.search.neigh
 org.jamesframework.core.search.neigh.subset

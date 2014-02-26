@@ -202,9 +202,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>StopCriterionChecker</h4>
 <pre>public&nbsp;StopCriterionChecker(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;?&gt;&nbsp;search)</pre>
-<div class="block">Create a stop criterion checker dedicated to checking the stop criteria of the given search.
- By default, consecutive checks will be separated with a period of 1 second. This can be customized
- using <a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#setPeriod(long, java.util.concurrent.TimeUnit)"><code>setPeriod(long, TimeUnit)</code></a>.</div>
+<div class="block">Create a stop criterion checker dedicated to checking the stop criteria of the given search. By default, consecutive checks will be
+ separated with a period of 1 second. This can be customized using <a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#setPeriod(long, java.util.concurrent.TimeUnit)"><code>setPeriod(long, TimeUnit)</code></a>.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>search</code> - search for which the stop criteria should be checked while running</dd></dl>
 </li>
 </ul>
@@ -247,9 +246,9 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <h4>setPeriod</h4>
 <pre>public&nbsp;void&nbsp;setPeriod(long&nbsp;period,
              <a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/TimeUnit.html?is-external=true" title="class or interface in java.util.concurrent">TimeUnit</a>&nbsp;timeUnit)</pre>
-<div class="block">Set the period between consecutive stop criterion checks. By default, this period is set to 1 second.
- The new settings will apply as from the next call of <a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#startChecking()"><code>startChecking()</code></a>. The period should be
- at least 1 millisecond, else an exception will be thrown when trying to start the timer.</div>
+<div class="block">Set the period between consecutive stop criterion checks. By default, this period is set to 1 second. The new settings will apply as
+ from the next call of <a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#startChecking()"><code>startChecking()</code></a>. The period should be at least 1 millisecond, else an exception will be thrown when
+ trying to start the timer.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>period</code> - period between two checks</dd><dd><code>timeUnit</code> - time unit of this period</dd></dl>
 </li>
 </ul>
@@ -260,8 +259,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>startChecking</h4>
 <pre>public&nbsp;void&nbsp;startChecking()</pre>
-<div class="block">Start checking the stop criteria, in a timer thread fired to run in the background. If no stop criteria
- have been added, calling this method does not have any effect.</div>
+<div class="block">Start checking the stop criteria, in a timer thread fired to run in the background. If no stop criteria have been added, calling this
+ method does not have any effect.</div>
 </li>
 </ul>
 <a name="stopChecking()">
@@ -271,8 +270,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>stopChecking</h4>
 <pre>public&nbsp;void&nbsp;stopChecking()</pre>
-<div class="block">Instructs the stop criterion checker to stop checking. In case the checker is active, this will terminate
- the timer thread which is running in the background, else, calling this method does not have any effect.</div>
+<div class="block">Instructs the stop criterion checker to stop checking. In case the checker is active, this will terminate the timer thread which is
+ running in the background, else, calling this method does not have any effect.</div>
 </li>
 </ul>
 </li>

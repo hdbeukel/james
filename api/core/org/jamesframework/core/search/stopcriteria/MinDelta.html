@@ -3,13 +3,13 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
-<title>MaxRuntime (james-core 0.1-SNAPSHOT API)</title>
+<title>MinDelta (james-core 0.1-SNAPSHOT API)</title>
 <link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
 </head>
 <body>
 <script type="text/javascript"><!--
     if (location.href.indexOf('is-external=true') == -1) {
-        parent.document.title="MaxRuntime (james-core 0.1-SNAPSHOT API)";
+        parent.document.title="MinDelta (james-core 0.1-SNAPSHOT API)";
     }
 //-->
 </script>
@@ -26,7 +26,7 @@
 <li><a href="../../../../../overview-summary.html">Overview</a></li>
 <li><a href="package-summary.html">Package</a></li>
 <li class="navBarCell1Rev">Class</li>
-<li><a href="class-use/MaxRuntime.html">Use</a></li>
+<li><a href="class-use/MinDelta.html">Use</a></li>
 <li><a href="package-tree.html">Tree</a></li>
 <li><a href="../../../../../deprecated-list.html">Deprecated</a></li>
 <li><a href="../../../../../index-all.html">Index</a></li>
@@ -35,12 +35,12 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li>Prev Class</li>
-<li><a href="../../../../../org/jamesframework/core/search/stopcriteria/MaxSteps.html" title="class in org.jamesframework.core.search.stopcriteria"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../../org/jamesframework/core/search/stopcriteria/MaxTimeWithoutImprovement.html" title="class in org.jamesframework.core.search.stopcriteria"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterion.html" title="interface in org.jamesframework.core.search.stopcriteria"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
-<li><a href="../../../../../index.html?org/jamesframework/core/search/stopcriteria/MaxRuntime.html" target="_top">Frames</a></li>
-<li><a href="MaxRuntime.html" target="_top">No Frames</a></li>
+<li><a href="../../../../../index.html?org/jamesframework/core/search/stopcriteria/MinDelta.html" target="_top">Frames</a></li>
+<li><a href="MinDelta.html" target="_top">No Frames</a></li>
 </ul>
 <ul class="navList" id="allclasses_navbar_top">
 <li><a href="../../../../../allclasses-noframe.html">All Classes</a></li>
@@ -79,14 +79,14 @@
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">org.jamesframework.core.search.stopcriteria</div>
-<h2 title="Class MaxRuntime" class="title">Class MaxRuntime</h2>
+<h2 title="Class MinDelta" class="title">Class MinDelta</h2>
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
 <li><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li>org.jamesframework.core.search.stopcriteria.MaxRuntime</li>
+<li>org.jamesframework.core.search.stopcriteria.MinDelta</li>
 </ul>
 </li>
 </ul>
@@ -99,10 +99,15 @@
 </dl>
 <hr>
 <br>
-<pre>public class <span class="strong">MaxRuntime</span>
+<pre>public class <span class="strong">MinDelta</span>
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterion.html" title="interface in org.jamesframework.core.search.stopcriteria">StopCriterion</a></pre>
-<div class="block">Stop criterion that limits runtime of a search run.</div>
+<div class="block">Stop criterion that imposes a minimum delta (amount of improvement in evaluation)
+ when finding a new best solution during a search run, compared to the previous
+ best known solution. Note that it is <i>not</i> absolutely guaranteed that a search
+ will ever stop when using only this stop criterion, as it may happen that the last
+ improvement is still above the required minimum and no more improvements are found
+ from that point in time.</div>
 <dl><dt><span class="strong">Author:</span></dt>
   <dd>Herman De Beukelaer <herman.debeukelaer@ugent.be></dd></dl>
 </li>
@@ -123,9 +128,9 @@ implements <a href="../../../../../org/jamesframework/core/search/stopcriteria/S
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../../../org/jamesframework/core/search/stopcriteria/MaxRuntime.html#MaxRuntime(long, java.util.concurrent.TimeUnit)">MaxRuntime</a></strong>(long&nbsp;maxRuntime,
-          <a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/TimeUnit.html?is-external=true" title="class or interface in java.util.concurrent">TimeUnit</a>&nbsp;timeUnit)</code>
-<div class="block">Create a stop criterion to limit the runtime of a search run.</div>
+<td class="colOne"><code><strong><a href="../../../../../org/jamesframework/core/search/stopcriteria/MinDelta.html#MinDelta(double)">MinDelta</a></strong>(double&nbsp;minDelta)</code>
+<div class="block">Create a stop criterion that imposes a minimum evaluation delta when
+ finding a new best solution during a search run.</div>
 </td>
 </tr>
 </table>
@@ -145,8 +150,9 @@ implements <a href="../../../../../org/jamesframework/core/search/stopcriteria/S
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../../org/jamesframework/core/search/stopcriteria/MaxRuntime.html#searchShouldStop(org.jamesframework.core.search.Search)">searchShouldStop</a></strong>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;?&gt;&nbsp;search)</code>
-<div class="block">Checks whether the maximum runtime has been exceeded for the given search.</div>
+<td class="colLast"><code><strong><a href="../../../../../org/jamesframework/core/search/stopcriteria/MinDelta.html#searchShouldStop(org.jamesframework.core.search.Search)">searchShouldStop</a></strong>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;?&gt;&nbsp;search)</code>
+<div class="block">Checks whether the minimum delta observed during the current run of the given
+ search is still above the required minimum.</div>
 </td>
 </tr>
 </table>
@@ -171,19 +177,19 @@ implements <a href="../../../../../org/jamesframework/core/search/stopcriteria/S
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="MaxRuntime(long, java.util.concurrent.TimeUnit)">
+<a name="MinDelta(double)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>MaxRuntime</h4>
-<pre>public&nbsp;MaxRuntime(long&nbsp;maxRuntime,
-          <a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/TimeUnit.html?is-external=true" title="class or interface in java.util.concurrent">TimeUnit</a>&nbsp;timeUnit)</pre>
-<div class="block">Create a stop criterion to limit the runtime of a search run.
- The maximum runtime should be at least 1 millisecond.</div>
-<dl><dt><span class="strong">Parameters:</span></dt><dd><code>maxRuntime</code> - maximum runtime</dd><dd><code>timeUnit</code> - corresponding time unit</dd>
+<h4>MinDelta</h4>
+<pre>public&nbsp;MinDelta(double&nbsp;minDelta)</pre>
+<div class="block">Create a stop criterion that imposes a minimum evaluation delta when
+ finding a new best solution during a search run. The given minimum
+ delta should be strictly positive.</div>
+<dl><dt><span class="strong">Parameters:</span></dt><dd><code>minDelta</code> - minimum evaluation delta (> 0.0)</dd>
 <dt><span class="strong">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if a runtime lower than 1 millisecond is given</dd></dl>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>minDelta</code> is not > 0.0</dd></dl>
 </li>
 </ul>
 </li>
@@ -201,12 +207,13 @@ implements <a href="../../../../../org/jamesframework/core/search/stopcriteria/S
 <li class="blockList">
 <h4>searchShouldStop</h4>
 <pre>public&nbsp;boolean&nbsp;searchShouldStop(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;?&gt;&nbsp;search)</pre>
-<div class="block">Checks whether the maximum runtime has been exceeded for the given search.</div>
+<div class="block">Checks whether the minimum delta observed during the current run of the given
+ search is still above the required minimum.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterion.html#searchShouldStop(org.jamesframework.core.search.Search)">searchShouldStop</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterion.html" title="interface in org.jamesframework.core.search.stopcriteria">StopCriterion</a></code></dd>
-<dt><span class="strong">Parameters:</span></dt><dd><code>search</code> - search for which the runtime has to be checked</dd>
-<dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the given search has exceeded the maximum runtime</dd></dl>
+<dt><span class="strong">Parameters:</span></dt><dd><code>search</code> - search for which the minimum delta has to be checked</dd>
+<dt><span class="strong">Returns:</span></dt><dd><code>true</code> in case of a minimum delta below the required minimum</dd></dl>
 </li>
 </ul>
 </li>
@@ -226,7 +233,7 @@ implements <a href="../../../../../org/jamesframework/core/search/stopcriteria/S
 <li><a href="../../../../../overview-summary.html">Overview</a></li>
 <li><a href="package-summary.html">Package</a></li>
 <li class="navBarCell1Rev">Class</li>
-<li><a href="class-use/MaxRuntime.html">Use</a></li>
+<li><a href="class-use/MinDelta.html">Use</a></li>
 <li><a href="package-tree.html">Tree</a></li>
 <li><a href="../../../../../deprecated-list.html">Deprecated</a></li>
 <li><a href="../../../../../index-all.html">Index</a></li>
@@ -235,12 +242,12 @@ implements <a href="../../../../../org/jamesframework/core/search/stopcriteria/S
 </div>
 <div class="subNav">
 <ul class="navList">
-<li>Prev Class</li>
-<li><a href="../../../../../org/jamesframework/core/search/stopcriteria/MaxSteps.html" title="class in org.jamesframework.core.search.stopcriteria"><span class="strong">Next Class</span></a></li>
+<li><a href="../../../../../org/jamesframework/core/search/stopcriteria/MaxTimeWithoutImprovement.html" title="class in org.jamesframework.core.search.stopcriteria"><span class="strong">Prev Class</span></a></li>
+<li><a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterion.html" title="interface in org.jamesframework.core.search.stopcriteria"><span class="strong">Next Class</span></a></li>
 </ul>
 <ul class="navList">
-<li><a href="../../../../../index.html?org/jamesframework/core/search/stopcriteria/MaxRuntime.html" target="_top">Frames</a></li>
-<li><a href="MaxRuntime.html" target="_top">No Frames</a></li>
+<li><a href="../../../../../index.html?org/jamesframework/core/search/stopcriteria/MinDelta.html" target="_top">Frames</a></li>
+<li><a href="MinDelta.html" target="_top">No Frames</a></li>
 </ul>
 <ul class="navList" id="allclasses_navbar_bottom">
 <li><a href="../../../../../allclasses-noframe.html">All Classes</a></li>
