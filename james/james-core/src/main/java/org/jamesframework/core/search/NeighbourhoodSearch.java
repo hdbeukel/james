@@ -64,13 +64,27 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
     /***************/
     
     /**
-     * Create a new neighbourhood search to solve the given problem.
+     * Create a new neighbourhood search to solve the given problem,
+     * with default name "NeighbourhoodSearch".
      * 
      * @throws NullPointerException if <code>problem</code> is <code>null</code>
      * @param problem problem to solve
      */
     public NeighbourhoodSearch(Problem<SolutionType> problem){
-        super(problem);
+        this(null, problem);
+    }
+    
+    /**
+     * Create a new neighbourhood search to solve the given problem,
+     * with a custom name. If <code>name</code> is <code>null</code>,
+     * the default name "NeighbourhoodSearch" will be assigned.
+     * 
+     * @throws NullPointerException if <code>problem</code> is <code>null</code>
+     * @param problem problem to solve
+     * @param name custom search name
+     */
+    public NeighbourhoodSearch(String name, Problem<SolutionType> problem){
+        super(name != null ? name : "NeighbourhoodSearch", problem);
         // initialize per run metadata
         numAcceptedMoves = JamesConstants.INVALID_MOVE_COUNT;
         numRejectedMoves = JamesConstants.INVALID_MOVE_COUNT;

@@ -27,14 +27,27 @@ import org.jamesframework.core.search.Search;
 public class RandomSearch<SolutionType extends Solution> extends Search<SolutionType> {
     
     /**
-     * Create a random search, given the problem to solve.
-     * The problem can not be <code>null</code>
+     * Create a random search, given the problem to solve. Note that problem can not be <code>null</code>.
+     * The search name is set to the default name "RandomSearch".
      * 
      * @throws NullPointerException if <code>problem</code> is <code>null</code>
      * @param problem problem to solve
      */
     public RandomSearch(Problem<SolutionType> problem){
-        super(problem);
+        this(null, problem);
+    }
+    
+    /**
+     * Create a random search, given the problem to solve and a custom search name.
+     * Note that problem can not be <code>null</code>. The search name can be <code>null</code>
+     * in which case it is set to the default name "RandomSearch".
+     * 
+     * @throws NullPointerException if <code>problem</code> is <code>null</code>
+     * @param problem problem to solve
+     * @param name custom search name
+     */
+    public RandomSearch(String name, Problem<SolutionType> problem){
+        super(name != null ? name : "RandomSearch", problem);
     }
     
     /**

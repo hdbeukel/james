@@ -34,14 +34,30 @@ public class RandomDescent<SolutionType extends Solution> extends SingleNeighbou
 
     /**
      * Creates a new random descent search, specifying the problem to solve and the neighbourhood used to
-     * modify the current solution. Neither arguments can be <code>null</code>.
+     * modify the current solution. Neither arguments can be <code>null</code>. The search name defaults
+     * to "RandomDescent".
      * 
      * @throws NullPointerException if <code>problem</code> or <code>neighbourhood</code> are <code>null</code>
      * @param problem problem to solve
      * @param neighbourhood neighbourhood used to create neighbouring solutions
      */
     public RandomDescent(Problem<SolutionType> problem, Neighbourhood<? super SolutionType> neighbourhood){
-        super(problem, neighbourhood);
+        this(null, problem, neighbourhood);
+    }
+    
+    /**
+     * Creates a new random descent search, specifying the problem to solve, the neighbourhood used to
+     * modify the current solution, and a custom search name. The problem and neighbourhood can not be
+     * <code>null</code>. The search name can be <code>null</code> in which case the default name
+     * "RandomDescent" is assigned.
+     * 
+     * @throws NullPointerException if <code>problem</code> or <code>neighbourhood</code> are <code>null</code>
+     * @param problem problem to solve
+     * @param neighbourhood neighbourhood used to create neighbouring solutions
+     * @param name custom search name
+     */
+    public RandomDescent(String name, Problem<SolutionType> problem, Neighbourhood<? super SolutionType> neighbourhood){
+        super(name != null ? name : "RandomDescent", problem, neighbourhood);
     }
 
     /**

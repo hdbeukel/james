@@ -149,7 +149,7 @@ public abstract class Search<SolutionType extends Solution> {
      * @param problem problem to solve
      */
     public Search(Problem<SolutionType> problem){
-        this(problem, null);
+        this(null, problem);
     }
     
     /**
@@ -161,7 +161,8 @@ public abstract class Search<SolutionType extends Solution> {
      * @param problem problem to solve
      * @param name custom search name
      */
-    public Search(Problem<SolutionType> problem, String name){
+    @SuppressWarnings("LeakingThisInConstructor")
+    public Search(String name, Problem<SolutionType> problem){
         // check problem
         if(problem == null){
             throw new NullPointerException("Error while creating search: problem can not be null.");
@@ -196,6 +197,8 @@ public abstract class Search<SolutionType extends Solution> {
         minDelta = JamesConstants.INVALID_DELTA;
         // initialize utility variables
         improvementDuringCurrentStep = false;
+        // log search creation
+        logger.debug("Created search {}", this);
     }
     
     /**
@@ -268,7 +271,7 @@ public abstract class Search<SolutionType extends Solution> {
      */
     public void start(){
         
-        logger.debug("Search {} started", this);
+        logger.info("Search {} started", this);
         
         // acquire status lock
         synchronized(statusLock) {
@@ -329,7 +332,7 @@ public abstract class Search<SolutionType extends Solution> {
         // fire callback
         fireSearchStopped();
 
-        logger.debug("Search {} stopped (runtime: {} ms)", this, getRuntime());
+        logger.info("Search {} stopped (runtime: {} ms)", this, getRuntime());
         
     }
    

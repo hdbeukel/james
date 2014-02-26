@@ -35,14 +35,30 @@ public abstract class SingleNeighbourhoodSearch<SolutionType extends Solution> e
     /**
      * Create a new single neighbourhood search, specifying the problem to be solved and the neighbourhood used to
      * modify the current solution. None of both arguments may be <code>null</code>, else, an exception is thrown.
+     * The search name is set to the default name "SingleNeighbourhoodSearch".
      * 
      * @throws NullPointerException if <code>problem</code> or <code>neighbourhood</code> are <code>null</code>
      * @param problem problem to be solved
      * @param neighbourhood neighbourhood used to modify the current solution
      */
     public SingleNeighbourhoodSearch(Problem<SolutionType> problem, Neighbourhood<? super SolutionType> neighbourhood){
+        this(null, problem, neighbourhood);
+    }
+    
+    /**
+     * Create a new single neighbourhood search, specifying the problem to be solved, the neighbourhood used to
+     * modify the current solution, and a custom search name. The problem and neighbourhood may be <code>null</code>,
+     * else, an exception is thrown. The search name may be <code>null</code> in which case it is set to the default
+     * name "SingleNeighbourhoodSearch".
+     * 
+     * @throws NullPointerException if <code>problem</code> or <code>neighbourhood</code> are <code>null</code>
+     * @param name custom search name
+     * @param problem problem to be solved
+     * @param neighbourhood neighbourhood used to modify the current solution
+     */
+    public SingleNeighbourhoodSearch(String name, Problem<SolutionType> problem, Neighbourhood<? super SolutionType> neighbourhood){
         // pass problem to super
-        super(problem);
+        super(name != null ? name : "SingleNeighbourhoodSearch", problem);
         // check neighbourhood not null
         if(neighbourhood == null){
             throw new NullPointerException("Error while creating single neighbourhood search: neighbourhood can not be null.");
