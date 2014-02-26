@@ -117,4 +117,34 @@ public class DeletionMove implements SubsetMove {
         solution.select(delete);
     }
 
+    /**
+     * Hash code corresponding to implementation of {@link #equals(Object)}.
+     * 
+     * @return hash code of this deletion move
+     */
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 79 * hash + delete;
+        return hash;
+    }
+
+    /**
+     * Two deletion moves are considered equal if they remove the same ID.
+     * 
+     * @param obj object to compare with this deletion move for equality
+     * @return <code>true</code> if the given object is also a deletion move and removes the same ID
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final DeletionMove other = (DeletionMove) obj;
+        return this.delete == other.delete;
+    }
+    
 }

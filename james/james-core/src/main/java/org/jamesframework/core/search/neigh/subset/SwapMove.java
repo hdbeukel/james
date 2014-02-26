@@ -145,4 +145,38 @@ public class SwapMove implements SubsetMove{
         return 1;
     }
 
+    /**
+     * Hash code corresponding to implementation of {@link #equals(Object)}.
+     * 
+     * @return hash code of this swap move
+     */
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 23 * hash + add;
+        hash = 23 * hash + delete;
+        return hash;
+    }
+
+    /**
+     * Two swap moves are considered equal if they swap the same IDs.
+     * 
+     * @param obj object to compare with this swap move for equality
+     * @return <code>true</code> if the given object is also a swap move and swaps the same IDs
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final SwapMove other = (SwapMove) obj;
+        if (this.add != other.add) {
+            return false;
+        }
+        return this.delete == other.delete;
+    }
+
 }

@@ -116,4 +116,34 @@ public class AdditionMove implements SubsetMove{
         solution.deselect(add);
     }
 
+    /**
+     * Hash code corresponding to implementation of {@link #equals(Object)}.
+     * 
+     * @return hash code of this addition move
+     */
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + add;
+        return hash;
+    }
+
+    /**
+     * Two addition moves are considered equal if they add the same ID.
+     * 
+     * @param obj object to compare with this addition move for equality
+     * @return <code>true</code> if the given object is also an addition move and adds the same ID
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final AdditionMove other = (AdditionMove) obj;
+        return this.add == other.add;
+    }
+    
 }
