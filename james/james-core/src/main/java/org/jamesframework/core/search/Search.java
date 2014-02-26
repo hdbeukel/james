@@ -26,6 +26,8 @@ import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.solutions.Solution;
 import org.jamesframework.core.search.stopcriteria.StopCriterionChecker;
 import org.jamesframework.core.util.JamesConstants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * <p>
@@ -67,6 +69,18 @@ import org.jamesframework.core.util.JamesConstants;
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
 public abstract class Search<SolutionType extends Solution> {
+    
+    /*********************/
+    /* UNIQUE ID COUNTER */
+    /*********************/
+
+    private static int nextID = 0;
+    
+    /**********/
+    /* LOGGER */
+    /**********/
+    
+    private static final Logger logger = LoggerFactory.getLogger(Search.class);
 
     /******************/
     /* PRIVATE FIELDS */
@@ -103,6 +117,10 @@ public abstract class Search<SolutionType extends Solution> {
     /* PRIVATE FINAL FIELDS */
     /************************/
     
+    // search name & ID
+    private final String name;
+    private final int id;
+    
     // problem being solved
     private final Problem<SolutionType> problem;
     
@@ -120,23 +138,45 @@ public abstract class Search<SolutionType extends Solution> {
     // the status is not allowed to change
     private final Object statusLock = new Object();
     
-    /***************/
-    /* CONSTRUCTOR */
-    /***************/
+    /****************/
+    /* CONSTRUCTORS */
+    /****************/
     
     /**
-     * Creates a search to solve the given problem.
+     * Creates a search to solve the given problem, with default search name "Search".
      * 
      * @throws NullPointerException if <code>problem</code> is <code>null</code>
      * @param problem problem to solve
      */
     public Search(Problem<SolutionType> problem){
+        this(problem, null);
+    }
+    
+    /**
+     * Creates a search to solve the given problem, with a custom search name. If
+     * <code>name</code> is <code>null</code>, a default search name "Search" will
+     * be assigned.
+     * 
+     * @throws NullPointerException if <code>problem</code> is <code>null</code>
+     * @param problem problem to solve
+     * @param name custom search name
+     */
+    public Search(Problem<SolutionType> problem, String name){
         // check problem
         if(problem == null){
             throw new NullPointerException("Error while creating search: problem can not be null.");
         }
         // store problem reference
         this.problem = problem;
+        // store name
+        if(name != null){
+            this.name = name;
+        } else {
+            // no name given: default to "Search"
+            this.name = "Search";
+        }
+        // assign next unique id
+        id = getNextUniqueID();
         // initialize search listener list
         searchListeners = new ArrayList<>();
         // create dedicated stop criterion checker
@@ -156,6 +196,48 @@ public abstract class Search<SolutionType extends Solution> {
         minDelta = JamesConstants.INVALID_DELTA;
         // initialize utility variables
         improvementDuringCurrentStep = false;
+    }
+    
+    /**
+     * Get the next unique ID to be assigned to this search. Synchronized to ensure
+     * uniqueness of IDs in multi threaded environments.
+     * 
+     * @return next unique ID
+     */
+    private synchronized int getNextUniqueID(){
+        return nextID++;
+    }
+    
+    /***************************/
+    /* NAME, ID & STRING VALUE */
+    /***************************/
+    
+    /**
+     * Get the name that has been assigned to this search.
+     * 
+     * @return search name
+     */
+    public String getName(){
+        return name;
+    }
+    
+    /**
+     * Get the unique ID that has been assigned to this search.
+     * 
+     * @return unique search ID
+     */
+    public int getID(){
+        return id;
+    }
+    
+    /**
+     * Returns a string representation of the search, formatted as "%name:%id".
+     * 
+     * @return string representation containing name and id
+     */
+    @Override
+    public String toString(){
+        return name + ":" + id;
     }
     
     /***********************/
@@ -185,6 +267,8 @@ public abstract class Search<SolutionType extends Solution> {
      *                               execution or finalization
      */
     public void start(){
+        
+        logger.debug("Search {} started", this);
         
         // acquire status lock
         synchronized(statusLock) {
@@ -244,6 +328,8 @@ public abstract class Search<SolutionType extends Solution> {
         
         // fire callback
         fireSearchStopped();
+
+        logger.debug("Search {} stopped (runtime: {} ms)", this, getRuntime());
         
     }
    
