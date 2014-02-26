@@ -121,10 +121,12 @@ public class StopCriterionChecker {
      */
     public void stopChecking() {
         if (timer != null) {
-            // cancel timer (has no effect if already cancelled before)
+            // cancel timer
             timer.cancel();
             // log
             logger.debug("Stop criterion checker for search {} deactivated", search);
+            // discard timer
+            timer = null;
         }
     }
 
