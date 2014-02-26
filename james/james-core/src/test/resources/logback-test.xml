@@ -1,0 +1,26 @@
+
+<!-- logging configuration used for testing (logback framework) -->
+<configuration>
+
+    <!-- console appender -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+      <encoder>
+        <pattern>%date{HH:mm:ss.SSS} [%thread] %-5level %logger{30} - %msg%n</pattern>
+      </encoder>
+    </appender>
+    
+    <!-- file appender -->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+      <file>james-test.log</file>
+      <encoder>
+        <pattern>%date{HH:mm:ss.SSS} [%thread] %-5level %logger{30} - %msg%n</pattern>
+      </encoder>
+    </appender>
+
+    <!-- root logger -->
+    <root level="debug">
+      <appender-ref ref="FILE" />
+      <!--<appender-ref ref="STDOUT" />-->
+    </root>
+  
+</configuration>
