@@ -284,5 +284,34 @@ public class SwapMoveTest {
         assertEquals(1, move.getNumDeleted());
         
     }
+    
+    /**
+     * Test of equals and hashCode methods, of class SwapMove.
+     */
+    @Test
+    public void testEqualsAndHashCode() {
+        
+        System.out.println(" - test equals and hashCode");
+        
+        // create swap moves
+        SubsetMove move1 = new SwapMove(1,2);   // equal
+        SubsetMove move2 = new SwapMove(1,2);   // equal
+        SubsetMove move3 = new SwapMove(3,4);   // different
+        SubsetMove move4 = new SwapMove(1,4);   // different
+        SubsetMove move5 = new SwapMove(3,2);   // different
+        
+        // verify
+        assertEquals(move1, move2);
+        assertEquals(move1.hashCode(), move2.hashCode());
+        assertFalse(move1 == move2);
+        
+        assertNotEquals(move1, move3);
+        assertNotEquals(move1, move4);
+        assertNotEquals(move1, move5);
+        assertNotEquals(move2, move3);
+        assertNotEquals(move2, move4);
+        assertNotEquals(move2, move5);
+        
+    }
 
 }

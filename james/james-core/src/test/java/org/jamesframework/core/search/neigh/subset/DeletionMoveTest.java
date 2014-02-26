@@ -238,5 +238,28 @@ public class DeletionMoveTest {
         }
         
     }
+    
+    /**
+     * Test of equals and hashCode methods, of class DeletionMove.
+     */
+    @Test
+    public void testEqualsAndHashCode() {
+        
+        System.out.println(" - test equals and hashCode");
+        
+        // create deletion moves
+        SubsetMove move1 = new DeletionMove(123);   // equal
+        SubsetMove move2 = new DeletionMove(123);   // equal
+        SubsetMove move3 = new DeletionMove(456);   // different
+        
+        // verify
+        assertEquals(move1, move2);
+        assertEquals(move1.hashCode(), move2.hashCode());
+        assertFalse(move1 == move2);
+        
+        assertNotEquals(move2, move3);
+        assertNotEquals(move1, move3);
+        
+    }
 
 }

@@ -92,6 +92,12 @@ public class SingleEvaluatedMoveCacheTest {
         assertNotNull(cache.getCachedMoveEvaluation(m2));
         assertEquals(m2eval, cache.getCachedMoveEvaluation(m2), TestConstants.DOUBLE_COMPARISON_PRECISION);
         
+        // test cache hit for equal swap move (other object)
+        SwapMove copy = new SwapMove(m2.getAddedID(), m2.getDeletedID());
+        // verify
+        assertNotNull(cache.getCachedMoveEvaluation(copy));
+        assertEquals(m2eval, cache.getCachedMoveEvaluation(copy), TestConstants.DOUBLE_COMPARISON_PRECISION);
+        
     }
 
     /**
@@ -123,6 +129,12 @@ public class SingleEvaluatedMoveCacheTest {
         // verify new value
         assertNotNull(cache.getCachedMoveRejection(m2));
         assertEquals(m2rejected, cache.getCachedMoveRejection(m2));
+        
+        // test cache hit for equal swap move (other object)
+        SwapMove copy = new SwapMove(m2.getAddedID(), m2.getDeletedID());
+        // verify
+        assertNotNull(cache.getCachedMoveRejection(copy));
+        assertEquals(m2rejected, cache.getCachedMoveRejection(copy));
         
     }
 
