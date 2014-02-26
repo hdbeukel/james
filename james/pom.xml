@@ -169,4 +169,28 @@
         <module>james-core</module>
         <module>james-extensions</module>
     </modules>
+    <dependencies>
+        <!-- All modules use junit for testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- All modules use slf4j logging facade -->
+        <!-- Specific binding can be set by end-user,
+             else it will default to NOP with warning  -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.6</version>
+        </dependency>
+        <!-- All modules use this specific slf4j binding for testing -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.6</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 </project>
