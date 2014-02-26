@@ -122,9 +122,13 @@
                     <include>NOTICE</include>
                 </includes>
             </resource>
+            <!-- still include all resources in default location too -->
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
         </resources>
         <testResources>
-            <!-- same as above for test jars -->
+            <!-- include LICENSE and NOTICE of respective module in generated test jars -->
             <testResource>
                 <directory>.</directory>
                 <targetPath>META-INF</targetPath>
@@ -132,6 +136,10 @@
                     <include>LICENSE</include>
                     <include>NOTICE</include>
                 </includes>
+            </testResource>
+            <!-- still include all test resources in default location too -->
+            <testResource>
+                <directory>src/test/resources</directory>
             </testResource>
         </testResources>
     </build>
