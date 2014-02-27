@@ -99,10 +99,14 @@
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
 <div class="block">A stop criterion checker is responsible for checking the stop criteria of a given search, while this search is running. At construction,
  a reference to the search is given. Stop criteria can be added using <a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#add(org.jamesframework.core.search.stopcriteria.StopCriterion)"><code>add(StopCriterion)</code></a>, which usually only happens from within
- the search, which passes all its stop criteria to its dedicated checker. When <a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#startChecking()"><code>startChecking()</code></a> is called, a timer thread will be
- initiated to periodically check the stop criteria in the background, by default with a period of 1 second, while the search is running.
- As soon as some stop criterion is satisfied, the checker will request the search to stop and will also terminate itself, deactivating the
- timer thread.</div>
+ the search, which passes all its stop criteria to its dedicated checker after verifying compatibility.
+ <p>
+ When <a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#startChecking()"><code>startChecking()</code></a> is called, a task will be scheduled to periodically check the stop criteria in the background, by default
+ with a period of 1 second, while the search is running. These tasks are executed by a dedicated thread which is shared among all stop
+ criterion checker instances, as checking stop criteria is not an intensive task.
+ <p>
+ As soon as some stop criterion is satisfied, the checker will request the search to stop and will also cancel the scheduled task
+ for further execution.</div>
 <dl><dt><span class="strong">Author:</span></dt>
   <dd>Herman De Beukelaer <herman.debeukelaer@ugent.be></dd></dl>
 </li>
@@ -164,7 +168,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#startChecking()">startChecking</a></strong>()</code>
-<div class="block">Start checking the stop criteria, in a timer thread fired to run in the background.</div>
+<div class="block">Start checking the stop criteria, in a separate background thread.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -247,8 +251,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <pre>public&nbsp;void&nbsp;setPeriod(long&nbsp;period,
              <a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/TimeUnit.html?is-external=true" title="class or interface in java.util.concurrent">TimeUnit</a>&nbsp;timeUnit)</pre>
 <div class="block">Set the period between consecutive stop criterion checks. By default, this period is set to 1 second. The new settings will apply as
- from the next call of <a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#startChecking()"><code>startChecking()</code></a>. The period should be at least 1 millisecond, else an exception will be thrown when
- trying to start the timer.</div>
+ from the next call of <a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#startChecking()"><code>startChecking()</code></a>.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>period</code> - period between two checks</dd><dd><code>timeUnit</code> - time unit of this period</dd></dl>
 </li>
 </ul>
@@ -259,8 +262,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>startChecking</h4>
 <pre>public&nbsp;void&nbsp;startChecking()</pre>
-<div class="block">Start checking the stop criteria, in a timer thread fired to run in the background. If no stop criteria have been added, calling this
- method does not have any effect.</div>
+<div class="block">Start checking the stop criteria, in a separate background thread. If the stop criterion checker is already active,
+ or if no stop criteria have been added, calling this method does not have any effect.</div>
 </li>
 </ul>
 <a name="stopChecking()">
@@ -270,8 +273,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>stopChecking</h4>
 <pre>public&nbsp;void&nbsp;stopChecking()</pre>
-<div class="block">Instructs the stop criterion checker to stop checking. In case the checker is active, this will terminate the timer thread which is
- running in the background, else, calling this method does not have any effect.</div>
+<div class="block">Instructs the stop criterion checker to stop checking. In case the checker is not active,
+ calling this method does not have any effect.</div>
 </li>
 </ul>
 </li>

@@ -1106,6 +1106,11 @@
 <dd>
 <div class="block">In every search step, a random solution is created and the best solution might be updated accordingly.</div>
 </dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/algo/SteepestDescent.html#searchStep()">searchStep()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="./org/jamesframework/core/search/algo/SteepestDescent.html" title="class in org.jamesframework.core.search.algo">SteepestDescent</a></dt>
+<dd>
+<div class="block">Investigates all neighbours of the current solution and adopts the best one as the new current solution,
+ if it is an improvement.</div>
+</dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#searchStep()">searchStep()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
 <div class="block">This method is iteratively called while the search is running and should be implemented in every specific
@@ -1258,7 +1263,21 @@
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#startChecking()">startChecking()</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="./org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria">StopCriterionChecker</a></dt>
 <dd>
-<div class="block">Start checking the stop criteria, in a timer thread fired to run in the background.</div>
+<div class="block">Start checking the stop criteria, in a separate background thread.</div>
+</dd>
+<dt><a href="./org/jamesframework/core/search/algo/SteepestDescent.html" title="class in org.jamesframework.core.search.algo"><span class="strong">SteepestDescent</span></a>&lt;<a href="./org/jamesframework/core/search/algo/SteepestDescent.html" title="type parameter in SteepestDescent">SolutionType</a> extends <a href="./org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Class in <a href="./org/jamesframework/core/search/algo/package-summary.html">org.jamesframework.core.search.algo</a></dt>
+<dd>
+<div class="block">Steepest descent algorithm, also referred to as hill climbing.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/algo/SteepestDescent.html#SteepestDescent(org.jamesframework.core.problems.Problem, org.jamesframework.core.search.neigh.Neighbourhood)">SteepestDescent(Problem&lt;SolutionType&gt;, Neighbourhood&lt;? super SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.<a href="./org/jamesframework/core/search/algo/SteepestDescent.html" title="class in org.jamesframework.core.search.algo">SteepestDescent</a></dt>
+<dd>
+<div class="block">Creates a new steepest descent search, specifying the problem to solve and the neighbourhood used to
+ modify the current solution.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/core/search/algo/SteepestDescent.html#SteepestDescent(java.lang.String, org.jamesframework.core.problems.Problem, org.jamesframework.core.search.neigh.Neighbourhood)">SteepestDescent(String, Problem&lt;SolutionType&gt;, Neighbourhood&lt;? super SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.<a href="./org/jamesframework/core/search/algo/SteepestDescent.html" title="class in org.jamesframework.core.search.algo">SteepestDescent</a></dt>
+<dd>
+<div class="block">Creates a new steepest descent search, specifying the problem to solve, the neighbourhood used to
+ modify the current solution, and a custom search name.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/listeners/EmptySearchListener.html#stepCompleted(org.jamesframework.core.search.Search, long)">stepCompleted(Search&lt;? extends SolutionType&gt;, long)</a></span> - Method in class org.jamesframework.core.search.listeners.<a href="./org/jamesframework/core/search/listeners/EmptySearchListener.html" title="class in org.jamesframework.core.search.listeners">EmptySearchListener</a></dt>
 <dd>&nbsp;</dd>
