@@ -14,7 +14,6 @@
 
 package org.jamesframework.core.search.algo;
 
-import java.util.Set;
 import org.jamesframework.core.exceptions.JamesRuntimeException;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.solutions.Solution;
@@ -23,9 +22,9 @@ import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 
 /**
- * Steepest descent algorithm. In every search step, all neighbours of the current solution are evaluated and the best one is
- * adopted as the new current solution, given that it is an improvement over the current solution. If the best neighbour is no
- * improvement over the current solution, the search stops.
+ * Steepest descent algorithm, also referred to as hill climbing. In every search step, all neighbours of the current solution
+ * are evaluated and the best one is adopted as the new current solution, given that it is an improvement over the current solution.
+ * If the best neighbour is no improvement over the current solution, the search stops.
  * 
  * @param <SolutionType> solution type of the problems that may be solved using this search, required to extend {@link Solution}
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
