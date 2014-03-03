@@ -38,6 +38,19 @@ public class ExhaustiveSearch<SolutionType extends Solution> extends Search<Solu
     
     /**
      * Create an exhaustive search algorithm to solve the given problem, using the given solution iterator to generate
+     * possible solutions, with default search name "ExhaustiveSearch". Note that the problem and solution iterator can
+     * not be null, else, an exception will be thrown.
+     * 
+     * @param problem problem to solve
+     * @param solutionIterator solution iterator used to generate solutions
+     * @throws NullPointerException if <code>problem</code> or <code>solutionIterator</code> are <code>null</code>
+     */
+    public ExhaustiveSearch(Problem<SolutionType> problem, SolutionIterator<? extends SolutionType> solutionIterator){
+        this(null, problem, solutionIterator);
+    }
+    
+    /**
+     * Create an exhaustive search algorithm to solve the given problem, using the given solution iterator to generate
      * possible solutions, with a custom search name. If the given name is <code>null</code>, the default name "ExhaustiveSearch"
      * will be assigned. Note that the problem and solution iterator can not be null, else, an exception will be thrown.
      * 
