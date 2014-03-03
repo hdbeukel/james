@@ -109,9 +109,10 @@
 extends <a href="../../../../org/jamesframework/core/problems/ProblemWithData.html" title="class in org.jamesframework.core.problems">ProblemWithData</a>&lt;<a href="../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>,DataType&gt;
 implements <a href="../../../../org/jamesframework/core/problems/SubsetProblem.html" title="interface in org.jamesframework.core.problems">SubsetProblem</a></pre>
 <div class="block">Represents a subset problem with data of a given data type, implementing the interface <a href="../../../../org/jamesframework/core/problems/datatypes/SubsetData.html" title="interface in org.jamesframework.core.problems.datatypes"><code>SubsetData</code></a>, and with solution
- type <a href="../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions"><code>SubsetSolution</code></a>. The minimum and maximum allowed subset size are specified in the subset problem. The problem
- also implements methods for creating random subset solutions and copying subset solutions (see <a href="../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems"><code>Problem</code></a> interface),
- as well as an additional method for creating empty subset solutions in which no entities are selected.</div>
+ type <a href="../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions"><code>SubsetSolution</code></a>. The minimum and maximum allowed subset size are specified in the subset problem, and subset solutions
+ with a size outside these bounds are rejected. The problem also provides methods for creating random subset solutions and copying
+ subset solutions (see <a href="../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems"><code>Problem</code></a> interface), as well as an additional method for creating empty subset solutions in which no
+ entities are selected.</div>
 <dl><dt><span class="strong">Author:</span></dt>
   <dd>Herman De Beukelaer <herman.debeukelaer@ugent.be></dd></dl>
 </li>
@@ -192,18 +193,24 @@ implements <a href="../../../../org/jamesframework/core/problems/SubsetProblem.h
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/problems/SubsetProblemWithData.html#rejectSolution(org.jamesframework.core.problems.solutions.SubsetSolution)">rejectSolution</a></strong>(<a href="../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;solution)</code>
+<div class="block">Checks whether the given subset solution is rejected.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/problems/SubsetProblemWithData.html#setData(DataType)">setData</a></strong>(<a href="../../../../org/jamesframework/core/problems/SubsetProblemWithData.html" title="type parameter in SubsetProblemWithData">DataType</a>&nbsp;data)</code>
 <div class="block">Set new subset data, verifying that the data is not <code>null</code>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/problems/SubsetProblemWithData.html#setMaxSubsetSize(int)">setMaxSubsetSize</a></strong>(int&nbsp;maxSubsetSize)</code>
 <div class="block">Set the maximum subset size.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../org/jamesframework/core/problems/SubsetProblemWithData.html#setMinSubsetSize(int)">setMinSubsetSize</a></strong>(int&nbsp;minSubsetSize)</code>
 <div class="block">Set the minimum subset size.</div>
@@ -215,7 +222,7 @@ implements <a href="../../../../org/jamesframework/core/problems/SubsetProblem.h
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.jamesframework.core.problems.<a href="../../../../org/jamesframework/core/problems/ProblemWithData.html" title="class in org.jamesframework.core.problems">ProblemWithData</a></h3>
-<code><a href="../../../../org/jamesframework/core/problems/ProblemWithData.html#addPenalizingConstraint(org.jamesframework.core.problems.constraints.PenalizingConstraint)">addPenalizingConstraint</a>, <a href="../../../../org/jamesframework/core/problems/ProblemWithData.html#addRejectingConstraint(org.jamesframework.core.problems.constraints.Constraint)">addRejectingConstraint</a>, <a href="../../../../org/jamesframework/core/problems/ProblemWithData.html#evaluate(SolutionType)">evaluate</a>, <a href="../../../../org/jamesframework/core/problems/ProblemWithData.html#getData()">getData</a>, <a href="../../../../org/jamesframework/core/problems/ProblemWithData.html#getObjective()">getObjective</a>, <a href="../../../../org/jamesframework/core/problems/ProblemWithData.html#getViolatedConstraints(SolutionType)">getViolatedConstraints</a>, <a href="../../../../org/jamesframework/core/problems/ProblemWithData.html#isMinimizing()">isMinimizing</a>, <a href="../../../../org/jamesframework/core/problems/ProblemWithData.html#rejectSolution(SolutionType)">rejectSolution</a>, <a href="../../../../org/jamesframework/core/problems/ProblemWithData.html#removePenalizingConstraint(org.jamesframework.core.problems.constraints.PenalizingConstraint)">removePenalizingConstraint</a>, <a href="../../../../org/jamesframework/core/problems/ProblemWithData.html#removeRejectingConstraint(org.jamesframework.core.problems.constraints.Constraint)">removeRejectingConstraint</a>, <a href="../../../../org/jamesframework/core/problems/ProblemWithData.html#setObjective(org.jamesframework.core.problems.objectives.Objective)">setObjective</a></code></li>
+<code><a href="../../../../org/jamesframework/core/problems/ProblemWithData.html#addPenalizingConstraint(org.jamesframework.core.problems.constraints.PenalizingConstraint)">addPenalizingConstraint</a>, <a href="../../../../org/jamesframework/core/problems/ProblemWithData.html#addRejectingConstraint(org.jamesframework.core.problems.constraints.Constraint)">addRejectingConstraint</a>, <a href="../../../../org/jamesframework/core/problems/ProblemWithData.html#evaluate(SolutionType)">evaluate</a>, <a href="../../../../org/jamesframework/core/problems/ProblemWithData.html#getData()">getData</a>, <a href="../../../../org/jamesframework/core/problems/ProblemWithData.html#getObjective()">getObjective</a>, <a href="../../../../org/jamesframework/core/problems/ProblemWithData.html#getViolatedConstraints(SolutionType)">getViolatedConstraints</a>, <a href="../../../../org/jamesframework/core/problems/ProblemWithData.html#isMinimizing()">isMinimizing</a>, <a href="../../../../org/jamesframework/core/problems/ProblemWithData.html#removePenalizingConstraint(org.jamesframework.core.problems.constraints.PenalizingConstraint)">removePenalizingConstraint</a>, <a href="../../../../org/jamesframework/core/problems/ProblemWithData.html#removeRejectingConstraint(org.jamesframework.core.problems.constraints.Constraint)">removeRejectingConstraint</a>, <a href="../../../../org/jamesframework/core/problems/ProblemWithData.html#setObjective(org.jamesframework.core.problems.objectives.Objective)">setObjective</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
@@ -229,7 +236,7 @@ implements <a href="../../../../org/jamesframework/core/problems/SubsetProblem.h
 <!--   -->
 </a>
 <h3>Methods inherited from interface&nbsp;org.jamesframework.core.problems.<a href="../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a></h3>
-<code><a href="../../../../org/jamesframework/core/problems/Problem.html#evaluate(SolutionType)">evaluate</a>, <a href="../../../../org/jamesframework/core/problems/Problem.html#isMinimizing()">isMinimizing</a>, <a href="../../../../org/jamesframework/core/problems/Problem.html#rejectSolution(SolutionType)">rejectSolution</a></code></li>
+<code><a href="../../../../org/jamesframework/core/problems/Problem.html#evaluate(SolutionType)">evaluate</a>, <a href="../../../../org/jamesframework/core/problems/Problem.html#isMinimizing()">isMinimizing</a></code></li>
 </ul>
 </li>
 </ul>
@@ -359,6 +366,24 @@ implements <a href="../../../../org/jamesframework/core/problems/SubsetProblem.h
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../../org/jamesframework/core/problems/SubsetProblem.html#createEmptySubsetSolution()">createEmptySubsetSolution</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../org/jamesframework/core/problems/SubsetProblem.html" title="interface in org.jamesframework.core.problems">SubsetProblem</a></code></dd>
 <dt><span class="strong">Returns:</span></dt><dd>empty subset solution with no selected IDs</dd></dl>
+</li>
+</ul>
+<a name="rejectSolution(org.jamesframework.core.problems.solutions.SubsetSolution)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>rejectSolution</h4>
+<pre>public&nbsp;boolean&nbsp;rejectSolution(<a href="../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;solution)</pre>
+<div class="block">Checks whether the given subset solution is rejected. A subset solution is rejected if any of the rejecting constraints is
+ violated (see <a href="../../../../org/jamesframework/core/problems/ProblemWithData.html#addRejectingConstraint(org.jamesframework.core.problems.constraints.Constraint)"><code>ProblemWithData.addRejectingConstraint(Constraint)</code></a>) or if it has an invalid size (number of selected IDs).</div>
+<dl>
+<dt><strong>Specified by:</strong></dt>
+<dd><code><a href="../../../../org/jamesframework/core/problems/Problem.html#rejectSolution(SolutionType)">rejectSolution</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&gt;</code></dd>
+<dt><strong>Overrides:</strong></dt>
+<dd><code><a href="../../../../org/jamesframework/core/problems/ProblemWithData.html#rejectSolution(SolutionType)">rejectSolution</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/jamesframework/core/problems/ProblemWithData.html" title="class in org.jamesframework.core.problems">ProblemWithData</a>&lt;<a href="../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>,<a href="../../../../org/jamesframework/core/problems/SubsetProblemWithData.html" title="type parameter in SubsetProblemWithData">DataType</a> extends <a href="../../../../org/jamesframework/core/problems/datatypes/SubsetData.html" title="interface in org.jamesframework.core.problems.datatypes">SubsetData</a>&gt;</code></dd>
+<dt><span class="strong">Parameters:</span></dt><dd><code>solution</code> - subset solution to verify</dd>
+<dt><span class="strong">Returns:</span></dt><dd><code>true</code> if the solution is rejected</dd></dl>
 </li>
 </ul>
 <a name="getMinSubsetSize()">
