@@ -64,7 +64,7 @@ public class SteepestDescentTest extends SearchTestTemplate {
     public void setUp(){
         // call super
         super.setUp();
-        // create random search
+        // create steepest descent search
         search = new SteepestDescent<>(problem, neigh);
     }
 
