@@ -22,7 +22,7 @@ Status
 *James core module is currently under development*
   
 Documentation
-=============  
+=============
 
 More information, user documentation and examples of how to use the framework are provided at the James website www.jamesframework.org. In addition, developer documentation is posted on the [wiki](http://github.com/hdbeukel/james/wiki).
 
