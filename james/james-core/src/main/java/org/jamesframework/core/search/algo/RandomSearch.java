@@ -21,7 +21,8 @@ import org.jamesframework.core.search.Search;
 /**
  * The random search algorithm iteratively samples a random solution and checks
  * whether a new best solution has been found, in every search step.
- * 
+
+* @param <SolutionType> solution type of the problems that may be solved using this search, required to extend {@link Solution}
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
 public class RandomSearch<SolutionType extends Solution> extends Search<SolutionType> {
