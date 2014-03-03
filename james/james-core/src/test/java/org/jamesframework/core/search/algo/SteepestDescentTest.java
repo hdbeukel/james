@@ -75,7 +75,7 @@ public class SteepestDescentTest extends SearchTestTemplate {
     public void testSingleRun() {
         System.out.println(" - test single run");
         // single run
-        singleRunWithMaxRuntime(search, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        singleRunWithMaxRuntime(search, problem, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
     }
     
     /**
@@ -87,7 +87,7 @@ public class SteepestDescentTest extends SearchTestTemplate {
         // add constraint
         problem.addRejectingConstraint(new NeverSatisfiedConstraintStub());
         // single run
-        singleRunWithMaxRuntime(search, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        singleRunWithMaxRuntime(search, problem, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
         // verify
         assertNull(search.getBestSolution());
     }

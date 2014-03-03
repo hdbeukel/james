@@ -14,12 +14,10 @@
 
 package org.jamesframework.core.search;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.SubsetProblemWithData;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.search.neigh.Neighbourhood;
@@ -107,7 +105,7 @@ public class SearchTestTemplate {
     /**
      * Perform a single run of a search, with maximum runtime. It is verified that the best solution is not rejected, if any.
      */
-    protected void singleRunWithMaxRuntime(Search<SubsetSolution> search, long maxRuntime, TimeUnit maxRuntimeTimeUnit){
+    protected void singleRunWithMaxRuntime(Search<SubsetSolution> search, Problem<SubsetSolution> problem, long maxRuntime, TimeUnit maxRuntimeTimeUnit){
         // set maximum runtime
         search.addStopCriterion(new MaxRuntime(maxRuntime, maxRuntimeTimeUnit));
         System.out.println("   >>> max time: " + maxRuntimeTimeUnit.toMillis(maxRuntime) + " ms");
