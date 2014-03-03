@@ -16,6 +16,7 @@ package org.jamesframework.core.search;
 
 import java.util.Set;
 import org.jamesframework.core.problems.Problem;
+import org.jamesframework.core.problems.SubsetProblemWithData;
 import org.jamesframework.core.problems.solutions.Solution;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.search.listeners.EmptyNeighbourhoodSearchListener;
@@ -41,7 +42,7 @@ import org.junit.Before;
 public class NeighbourhoodSearchTest extends SearchTestTemplate {
 
     // neighbourhood search stub to work with
-    private NeighbourhoodSearch<SubsetSolution> neighSearch;
+    private NeighbourhoodSearch<SubsetSolution> neighSearch;    
     
     /**
      * Print message when starting tests.
@@ -67,6 +68,8 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
     @Override
     public void setUp(){
         super.setUp();
+        // for this test, a variable size subset problem is used (+/- 1 allowed)
+        problem = new SubsetProblemWithData<>(obj, data, SUBSET_SIZE-1, SUBSET_SIZE+1);
         neighSearch = new NeighbourhoodSearchStub<>(problem);
     }
 
@@ -210,8 +213,10 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
         
         System.out.println(" - test isImprovement");
         
-        // set empty initial solution
-        neighSearch.setCurrentSolution(problem.createEmptySubsetSolution());
+        // set random initial solution of size SUBSET_SIZE
+        SubsetSolution initial = new SubsetSolution(data.getIDs());
+        initial.selectAll(SetUtilities.getRandomSubset(initial.getUnselectedIDs(), SUBSET_SIZE, RG));
+        neighSearch.setCurrentSolution(initial);
         // pick any addition move
         AdditionMove m = new AdditionMove(SetUtilities.getRandomElement(neighSearch.getCurrentSolution().getUnselectedIDs(), RG));
         // verify: addition should increase score
@@ -226,7 +231,9 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
         
         // repeat with minimizing objective
         obj.setMinimizing();
-        neighSearch.setCurrentSolution(problem.createEmptySubsetSolution());
+        initial = new SubsetSolution(data.getIDs());
+        initial.selectAll(SetUtilities.getRandomSubset(initial.getUnselectedIDs(), SUBSET_SIZE, RG));
+        neighSearch.setCurrentSolution(initial);
         // verify: addition is no improvement
         assertFalse(neighSearch.isImprovement(m));
         // apply addition

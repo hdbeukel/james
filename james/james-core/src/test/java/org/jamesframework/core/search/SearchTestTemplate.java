@@ -97,7 +97,7 @@ public class SearchTestTemplate {
     public void setUp(){
         data = new FakeSubsetData(scores);
         obj = new FakeSubsetObjectiveWithData();
-        problem = new SubsetProblemWithData(obj, data, SUBSET_SIZE);
+        problem = new SubsetProblemWithData<>(obj, data, SUBSET_SIZE);
         constraint = new FakeSubsetPenalizingConstraint(MIN_SCORE_DIFF);
         neigh = new SingleSwapNeighbourhood();
     }
