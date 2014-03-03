@@ -23,9 +23,10 @@ import org.jamesframework.core.util.SetUtilities;
 
 /**
  * Represents a subset problem with data of a given data type, implementing the interface {@link SubsetData}, and with solution
- * type {@link SubsetSolution}. The minimum and maximum allowed subset size are specified in the subset problem. The problem
- * also implements methods for creating random subset solutions and copying subset solutions (see {@link Problem} interface),
- * as well as an additional method for creating empty subset solutions in which no entities are selected.
+ * type {@link SubsetSolution}. The minimum and maximum allowed subset size are specified in the subset problem, and subset solutions
+ * with a size outside these bounds are rejected. The problem also provides methods for creating random subset solutions and copying
+ * subset solutions (see {@link Problem} interface), as well as an additional method for creating empty subset solutions in which no
+ * entities are selected.
  * 
  * @param <DataType> underlying data type, should implement the interface {@link SubsetData}
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
@@ -152,6 +153,20 @@ public class SubsetProblemWithData<DataType extends SubsetData> extends ProblemW
     @Override
     public SubsetSolution createEmptySubsetSolution(){
         return new SubsetSolution(getData().getIDs());
+    }
+    
+    /**
+     * Checks whether the given subset solution is rejected. A subset solution is rejected if any of the rejecting constraints is
+     * violated (see {@link #addRejectingConstraint(Constraint)}) or if it has an invalid size (number of selected IDs).
+     * 
+     * @param solution subset solution to verify
+     * @return <code>true</code> if the solution is rejected
+     */
+    @Override
+    public boolean rejectSolution(SubsetSolution solution){
+        return solution.getNumSelectedIDs() < getMinSubsetSize()        // too small
+                || solution.getNumSelectedIDs() > getMaxSubsetSize()    // too large
+                || super.rejectSolution(solution);                      // violates rejecting constraint
     }
 
     /**

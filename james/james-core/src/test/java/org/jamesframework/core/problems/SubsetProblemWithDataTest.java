@@ -14,7 +14,9 @@
 
 package org.jamesframework.core.problems;
 
+import java.util.Random;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
+import org.jamesframework.core.util.SetUtilities;
 import org.jamesframework.test.util.FakeSubsetData;
 import org.jamesframework.test.util.FakeSubsetObjectiveWithData;
 import org.jamesframework.test.util.FakeSubsetObjectiveWithoutData;
@@ -52,6 +54,9 @@ public class SubsetProblemWithDataTest {
     private FakeSubsetPenalizingConstraint fakeConstraint;
     // minimum score diff imposed by fake constraint
     private final double MIN_SCORE_DIFF = 0.05;
+    
+    // random generator
+    private static final Random RG = new Random();
     
     /**
      * Print message when starting tests.
@@ -474,6 +479,36 @@ public class SubsetProblemWithDataTest {
         expected2 -= 5.0;
         // verify
         assertEquals(expected2, problem2.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
+        
+    }
+    
+    /**
+     * Test of rejectSolution method, of class SubsetProblemWithData.
+     */
+    @Test
+    public void testRejectSolution(){
+        
+        System.out.println(" - test rejectSolution");
+        
+        // check whether solutions of invalid size are rejected
+        
+        // too small
+        SubsetSolution tooSmall = problem2.createEmptySubsetSolution();
+        tooSmall.selectAll(SetUtilities.getRandomSubset(tooSmall.getUnselectedIDs(), PROBLEM_2_MIN_SIZE-1, RG));
+        // verify
+        assertTrue(problem2.rejectSolution(tooSmall));
+        
+        // too large
+        SubsetSolution tooLarge = problem2.createEmptySubsetSolution();
+        tooLarge.selectAll(SetUtilities.getRandomSubset(tooLarge.getUnselectedIDs(), PROBLEM_2_MAX_SIZE+1, RG));
+        // verify
+        assertTrue(problem2.rejectSolution(tooLarge));
+        
+        // valid size
+        SubsetSolution valid = problem2.createEmptySubsetSolution();
+        valid.selectAll(SetUtilities.getRandomSubset(valid.getUnselectedIDs(), (PROBLEM_2_MIN_SIZE+PROBLEM_2_MAX_SIZE)/2, RG));
+        // verify
+        assertFalse(problem2.rejectSolution(valid));
         
     }
 
