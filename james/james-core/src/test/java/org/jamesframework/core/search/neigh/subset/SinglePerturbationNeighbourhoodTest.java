@@ -279,5 +279,51 @@ public class SinglePerturbationNeighbourhoodTest {
         assertEquals(NUM_IDS, neighUnboundedSize.getMaxSubsetSize());
         
     }
+    
+    /**
+     * Test with fixed IDs.
+     */
+    @Test
+    public void testWithFixedIDs() {
+        
+        System.out.println(" - test with fixed IDs");
+        
+        // randomly fix 50% of all IDs
+        Set<Integer> fixedIDs = SetUtilities.getRandomSubset(sol.getAllIDs(), (int) (0.5*NUM_IDS), RG);
+        // create new neighbourhood with fixed IDs
+        neighVarSize = new SinglePerturbationNeighbourhood(10, 20, fixedIDs);
+        
+        // randomly select 50% of IDs
+        sol.selectAll(SetUtilities.getRandomSubset(sol.getAllIDs(), (int) (0.5*NUM_IDS), RG));
+        
+        // generate random moves and check that fixed IDs are never swapped
+        for(int i=0; i<100; i++){
+            SubsetMove move = (SubsetMove) neighVarSize.getRandomMove(sol);
+            if(move != null){
+                // verify
+                for(int ID : fixedIDs){
+                    assertFalse(move.getAddedIDs().contains(ID));
+                    assertFalse(move.getDeletedIDs().contains(ID));
+                }
+            }
+        }
+        
+        // generate all moves and verify that no fixed IDs are swapped
+        for(Move move : neighVarSize.getAllMoves(sol)){
+            SubsetMove sm = (SubsetMove) move;
+            // verify
+            for(int ID : fixedIDs){
+                assertFalse(sm.getAddedIDs().contains(ID));
+                assertFalse(sm.getDeletedIDs().contains(ID));
+            }
+        }
+        
+        // now fix ALL IDs
+        neighVarSize = new SinglePerturbationNeighbourhood(10, 20, sol.getAllIDs());
+        // check that no move can be generated
+        assertNull(neighVarSize.getRandomMove(sol));
+        assertTrue(neighVarSize.getAllMoves(sol).isEmpty());
+        
+    }
 
 }
