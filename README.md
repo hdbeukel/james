@@ -16,17 +16,21 @@ The James framework consists of several modules:
    
  - [James Extensions Module][2]: this module extends the core with components for advanced subset selection as well as other types of problems (e.g. permutation problems). 
 
-Status
-======
+Download and install
+====================
 
-*James is currently under development*
+James is currently under development and no stable releases have yet been published.
 
-Releases
-========
+However, development snapshots are frequently deployed at [Sonatype OSSRH][3] (OSS Repository Hosting Service).
+Artifacts can be automatically retrieved using Maven, or you can manually put the necessary jar files on your
+classpath (see below).
 
-Currently, there are no stable releases.
+Remember that snapshots are no stable releases and should therefore be used with care. For example, their API might
+change without notice, and they might contain incomplete or insufficiently tested components.
 
-However, development snapshots are frequently deployed at [Sonatype OSSRH][3] (OSS Repository Hosting Service) using Maven. Jar packages can be manually retrieved by [searching for "jamesframework"](https://oss.sonatype.org/index.html#nexus-search;quick~jamesframework) on the Sonatype OSSRH repository. Alternatively, when using Maven, artifacts can be automatically retrieved by adding the Sonatype snapshots repository
+### Maven
+
+If you are using Maven, snapshots can be automatically retrieved by adding the Sonatype snapshots repository
 
 ```
 <repositories>
@@ -57,10 +61,32 @@ for the core module or
 </dependency>
 ```
 
-for the extensions. This will automatically retrieve the latest snapshot of the specified module version (here 0.1). Remember that snapshots are not stable releases and should therefore be used with care. For example, their API might change without notice, and they might contain insufficiently tested components.
+for the extensions. This will automatically retrieve the latest snapshot of the specified module version (here 0.1) and any dependencies. Upcoming stable releases will be published at the Maven Central Repository, so that they can easily
+be added as dependencies to a Maven project without having to specify a custom repository.
 
-Upcoming stable releases will be published on the Maven Central Repository, so that they can easily be added as dependencies to a Maven project without having to specify a custom repository.
+### Plain-old JARs
 
+Alternatively, you can manually grab the necessary jar files and put them on your classpath:
+
+ - [james-core.jar](https://oss.sonatype.org/index.html#nexus-search;quick~james-core)
+ - [slf4j-api.jar](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.slf4j%22%20slf4j-api)
+ - [optional] [james-extensions.jar](https://oss.sonatype.org/index.html#nexus-search;quick~james-extensions)
+
+The extensions are optional and should only be included if you are using any of its components.
+
+### Dependencies
+
+James requires Java 7 or later. To perform logging, James depends on the [Simple Logging Facade for Java (SLF4J)][5],
+which is a general logging API that provides bindings for several popular logging frameworks including log4j, JDK 1.4 logging and logback. To use such logging framework, include the appropriate binding on your classpath as described in
+the [SLF4J user manual][6]. If no binding is found, a warning message
+
+```
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+```
+
+is printed to the console and all log messages are silently discarded.
 
 Building from source code
 =========================
@@ -80,7 +106,7 @@ from inside the `james` root directory
   |-- pom.xml
 ```
 
-assuming that Maven has been installed on your computer. This will compile the code, create jar packages and install them in your local Maven repository, so that they can be added as dependencies in any other Maven project.
+assuming that Maven has been installed on your computer. This will compile the code, create jar packages and install them in your local Maven repository, so that they can be added as dependencies in any other Maven project. After building James, you can also grab the created jar packages from the `target` directory inside each module.
 
 
 Documentation
@@ -101,6 +127,7 @@ The James framework is developed and maintained by
 [2]: https://github.com/hdbeukel/james/tree/master/james/james-extensions
 [3]: https://oss.sonatype.org/index.html#welcome
 [4]: http://maven.apache.org/download.cgi
-
+[5]: http://www.slf4j.org
+[6]: http://www.slf4j.org/manual.html
 
 
