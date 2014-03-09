@@ -16,6 +16,21 @@ The James framework consists of several modules:
    
  - [James Extensions Module][2]: this module extends the core with components for advanced subset selection as well as other types of problems (e.g. permutation problems). 
 
+Dependencies
+============
+
+James requires Java 7 or later. To perform logging, James depends on the [Simple Logging Facade for Java (SLF4J)][5],
+which is a general logging API that provides bindings for several popular logging frameworks including log4j, JDK 1.4 logging and logback. To use such logging framework, include the appropriate binding on your classpath as described in
+the [SLF4J user manual][6]. If no binding is found, a warning message
+
+```
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+```
+
+is printed to the console and all log messages are silently discarded.
+
 Download and install
 ====================
 
@@ -73,20 +88,6 @@ Alternatively, you can manually grab the necessary jar files and put them on you
  - [optional] [james-extensions.jar](https://oss.sonatype.org/index.html#nexus-search;quick~james-extensions)
 
 The extensions are optional and should only be included if you are using any of its components.
-
-### Dependencies
-
-James requires Java 7 or later. To perform logging, James depends on the [Simple Logging Facade for Java (SLF4J)][5],
-which is a general logging API that provides bindings for several popular logging frameworks including log4j, JDK 1.4 logging and logback. To use such logging framework, include the appropriate binding on your classpath as described in
-the [SLF4J user manual][6]. If no binding is found, a warning message
-
-```
-SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
-SLF4J: Defaulting to no-operation (NOP) logger implementation
-SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
-```
-
-is printed to the console and all log messages are silently discarded.
 
 Building from source code
 =========================
