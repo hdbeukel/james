@@ -83,7 +83,7 @@ public class SinglePerturbationNeighbourhood implements Neighbourhood<SubsetSolu
      * @throws IllegalArgumentException if minimum and maximum size are not both positive, or minimum > maximum
      * @param minSubsetSize minimum subset size
      * @param maxSubsetSize maximum subset size
-     * @param fixedIds set of fixed IDs
+     * @param fixedIDs set of fixed IDs
      */
     public SinglePerturbationNeighbourhood(int minSubsetSize, int maxSubsetSize, Set<Integer> fixedIDs){
         // validate sizes
