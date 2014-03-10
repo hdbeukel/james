@@ -106,9 +106,11 @@
                         </goals>
                     </execution>
                 </executions>
-                <!-- omit timestamp comments in javadoc files -->
                 <configuration>
+                    <!-- omit timestamp comments in javadoc files -->
                     <additionalparam>-notimestamp</additionalparam>
+                    <!-- include MathJax javascript for LaTeX style Math -->
+                    <additionalparam>-header &apos;&lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;MathJax.Hub.Config({displayAlign:&quot;left&quot;});MathJax.Hub.Config({displayIndent:&quot;2em&quot;});&lt;/script&gt;&apos;</additionalparam>
                 </configuration>
             </plugin>
         </plugins>
