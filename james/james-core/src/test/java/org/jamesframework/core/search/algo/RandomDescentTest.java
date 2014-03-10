@@ -64,7 +64,7 @@ public class RandomDescentTest extends SearchTestTemplate {
     public void setUp(){
         // call super
         super.setUp();
-        // create random search
+        // create random descent
         search = new RandomDescent<>(problem, neigh);
     }
 
