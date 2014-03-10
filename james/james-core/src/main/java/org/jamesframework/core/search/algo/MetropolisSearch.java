@@ -34,10 +34,11 @@ import org.jamesframework.core.search.neigh.Neighbourhood;
  * where \(R(0,1)\) is a random number in the interval \([0,1]\) and \(k\) is a constant temperature scale factor (by default, \(k = 1\)).
  * The probability of acceptance increases when the temperature \(T\) is higher or when (the negative) \(\Delta E\) is closer to zero.
  * <p>
- * Note that it is important to carefully choose the temperature, depending on the scale of the evaluations and the (expected)
- * shape of the objective function. Setting a high temperature decreases the probability of ending in a local optimum, but also
- * impedes convergence and generally slows down the search process. Vice versa, a low temperature aids convergence but yields a
- * system that is more sensitive to local optima.
+ * Note that it is important to carefully choose the temperature, depending on the scale of the evaluations and expected deltas,
+ * as well as the landscape of the objective function. Setting a high temperature decreases the probability of ending in a local
+ * optimum, but also impedes convergence and generally slows down the search process. Vice versa, a low temperature aids convergence
+ * but yields a system that is more sensitive to local optima. It is therefore strongly advised to experiment with different temperatures
+ * for each specific problem so that an appropriate temperature can be selected.
  * 
  * @param <SolutionType> solution type of the problems that may be solved using this search, required to extend {@link Solution}
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
@@ -173,6 +174,9 @@ public class MetropolisSearch<SolutionType extends Solution> extends SingleNeigh
                     if(Math.exp(delta/(scale*temperature)) > r){
                         // accept non-improving move
                         acceptMove(move);
+                    } else {
+                        // reject non-improving move
+                        rejectMove(move);
                     }
                 }
             } else {
