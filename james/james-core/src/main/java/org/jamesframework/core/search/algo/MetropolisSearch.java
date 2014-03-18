@@ -142,7 +142,7 @@ public class MetropolisSearch<SolutionType extends Solution> extends SingleNeigh
             if(scale <= 0.0){
                 throw new IllegalArgumentException("Temperature scale factor of Metropolis search should be strictly positive.");
             }
-            // update temperature
+            // update temperature scale factor
             this.scale = scale;
         }
     }
