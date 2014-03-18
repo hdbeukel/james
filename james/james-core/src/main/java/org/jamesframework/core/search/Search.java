@@ -521,22 +521,6 @@ public abstract class Search<SolutionType extends Solution> {
         }
     }
     
-    /***********************************************/
-    /* PROTECTED METHOD FOR FIRING SEARCH MESSAGES */
-    /***********************************************/
-    
-    /**
-     * Calls {@link SearchListener#searchMessage(Search, String)} on every attached search listener.
-     * Should only be executed when search is active (initializing, running or terminating).
-     * 
-     * @param message message to be sent to the listener
-     */
-    protected void fireSearchMessage(String message){
-        for(SearchListener<? super SolutionType> listener : searchListeners){
-            listener.searchMessage(this, message);
-        }
-    }
-    
     /*****************/
     /* SEARCH STATUS */
     /*****************/

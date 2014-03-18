@@ -20,7 +20,7 @@ import org.jamesframework.core.search.Search;
 
 /**
  * Interface of a listener which may be attached to a search with the specified solution type (or a more specific solution type).
- * It will be informed whenever the search has started, stopped, found a new best solution, completed a step or fired a search message.
+ * It will be informed whenever the search has started, stopped, found a new best solution or completed a step.
  * Every callback receives a reference to the search that called it, which may be cast to a specific search type if required; when
  * this cast fails because a listener has been attached to an incompatible search, an {@link IncompatibleSearchListenerException}
  * may be thrown.
@@ -45,15 +45,6 @@ public interface SearchListener<SolutionType extends Solution> {
      * @throws IncompatibleSearchListenerException if the listener is not compatible with the search
      */
     public void searchStopped(Search<? extends SolutionType> search);
-    
-    /**
-     * Fired when the search sends a message to its listeners.
-     * 
-     * @param search search which sends a message
-     * @param message the message sent
-     * @throws IncompatibleSearchListenerException if the listener is not compatible with the search
-     */
-    public void searchMessage(Search<? extends SolutionType> search, String message);
     
     /**
      * Fired when the search has found a new best solution. Called exactly once for every improvement.

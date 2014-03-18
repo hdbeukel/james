@@ -34,9 +34,6 @@ public class EmptySearchListener<SolutionType extends Solution> implements Searc
     public void searchStopped(Search<? extends SolutionType> search) {}
 
     @Override
-    public void searchMessage(Search<? extends SolutionType> search, String message) {}
-
-    @Override
     public void newBestSolution(Search<? extends SolutionType> search, SolutionType newBestSolution, double newBestSolutionEvaluation) {}
 
     @Override
