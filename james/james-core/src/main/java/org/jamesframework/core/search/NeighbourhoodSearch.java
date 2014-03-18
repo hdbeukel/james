@@ -150,7 +150,7 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
      * <p>
      * Clears the evaluated move cache, as this cache is no longer valid for the new current solution.
      * 
-     * @param solution 
+     * @param solution new current solution
      */
     private void adjustCurrentSolution(SolutionType solution){
         // clear evaluated move cache
@@ -348,6 +348,7 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
      * Clears the evaluated move cache, as this cache is no longer valid for the new current solution.
      * 
      * @throws SearchException if the search is not idle
+     * @throws NullPointerException if <code>solution</code> is <code>null</code>
      * @param solution current solution to be adopted
      */
     public void setCurrentSolution(SolutionType solution){
@@ -355,7 +356,11 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
         synchronized(getStatusLock()){
             // check if idle
             if(getStatus() != SearchStatus.IDLE){
-                throw new SearchException("Cannot set current solution: search not idle.");
+                throw new SearchException("Can not set current solution: search not idle.");
+            }
+            // check not null
+            if(solution == null){
+                throw new NullPointerException("Can not set current solution: received null.");
             }
             // go ahead and adjust current solution
             adjustCurrentSolution(solution);
