@@ -27,12 +27,13 @@ import org.jamesframework.core.search.neigh.Neighbourhood;
 /**
  * Metropolis search with fixed temperature. Iteratively samples a random neighbour and accepts it based on a criterion that
  * depends on the difference in evaluation (\(\Delta E\)) and the temperature of the system (\(T\)). When \(\Delta E > 0\),
- * which indicates improvement, the neighbour is always accepted as the new current solution. Else, it is accepted if
+ * which indicates improvement, the neighbour is always accepted as the new current solution. Else, it is accepted with
+ * probability
  * \[
- *      e^{\frac{\Delta E}{kT}} > R(0,1)
+ *      e^{\frac{\Delta E}{kT}}
  * \]
- * where \(R(0,1)\) is a random number in the interval \([0,1]\) and \(k\) is a constant temperature scale factor (by default, \(k = 1\)).
- * The probability of acceptance increases when the temperature \(T\) is higher or when (the negative) \(\Delta E\) is closer to zero.
+ * where \(k\) is a constant temperature scale factor (by default, \(k = 1\)). The probability of acceptance increases when the
+ * temperature \(T\) is higher or when (the negative) \(\Delta E\) is closer to zero.
  * <p>
  * Note that it is important to carefully choose the temperature, depending on the scale of the evaluations and expected deltas,
  * as well as the landscape of the objective function. Setting a high temperature decreases the probability of ending in a local
