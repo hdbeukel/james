@@ -80,6 +80,10 @@ public class MetropolisSearch<SolutionType extends Solution> extends SingleNeigh
      */
     public MetropolisSearch(String name, Problem<SolutionType> problem, Neighbourhood<? super SolutionType> neighbourhood, double temperature){
         super(name != null ? name : "MetropolisSearch", problem, neighbourhood);
+        // check temperature
+        if(temperature <= 0.0){
+            throw new IllegalArgumentException("Temperature of Metropolis search should be strictly positive.");
+        }
         // set temperature
         this.temperature = temperature;
         // set default temperature scale factor (= 1.0)
@@ -99,6 +103,10 @@ public class MetropolisSearch<SolutionType extends Solution> extends SingleNeigh
             // check if idle
             if(!getStatus().equals(SearchStatus.IDLE)){
                 throw new SearchException("Error while setting temperature of Metropolis search: search is not idle.");
+            }
+            // check temperature
+            if(temperature <= 0.0){
+                throw new IllegalArgumentException("Temperature of Metropolis search should be strictly positive.");
             }
             // update temperature
             this.temperature = temperature;
@@ -128,6 +136,10 @@ public class MetropolisSearch<SolutionType extends Solution> extends SingleNeigh
             // check if idle
             if(!getStatus().equals(SearchStatus.IDLE)){
                 throw new SearchException("Error while setting temperature scale factor of Metropolis search: search is not idle.");
+            }
+            // check scale
+            if(scale <= 0.0){
+                throw new IllegalArgumentException("Temperature scale factor of Metropolis search should be strictly positive.");
             }
             // update temperature
             this.scale = scale;
