@@ -68,7 +68,7 @@ import org.slf4j.LoggerFactory;
  * @param <SolutionType> solution type of the problems that may be solved using this search, required to extend {@link Solution}
  * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
  */
-public abstract class Search<SolutionType extends Solution> {
+public abstract class Search<SolutionType extends Solution> implements Runnable {
     
     /*********************/
     /* UNIQUE ID COUNTER */
@@ -356,6 +356,19 @@ public abstract class Search<SolutionType extends Solution> {
                 status = SearchStatus.TERMINATING;
             }
         }
+    }
+    
+    /***************************/
+    /* RUNNABLE IMPLEMENTATION */
+    /***************************/
+    
+    /**
+     * Equivalent to calling {@link #start()}. Through this method searches implement the {@link Runnable} interface
+     * so that they can easily be executed in a separate thread.
+     */
+    @Override
+    public void run(){
+        start();
     }
     
     /*********************************************************/
