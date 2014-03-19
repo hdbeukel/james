@@ -181,7 +181,7 @@ public class MetropolisSearch<SolutionType extends Solution> extends SingleNeigh
                     // improvement: always accept
                     acceptMove(move);
                 } else {
-                    // no improvement: accept with probability based on temperature and delta
+                    // no improvement: accept with probability based on temperature and (negative) delta
                     double delta = computeDelta(evaluateMove(move), getCurrentSolutionEvaluation());
                     double r = ThreadLocalRandom.current().nextDouble();
                     if(Math.exp(delta/(scale*temperature)) > r){
