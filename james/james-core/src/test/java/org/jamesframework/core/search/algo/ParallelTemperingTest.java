@@ -16,10 +16,7 @@ package org.jamesframework.core.search.algo;
 
 import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
-import org.jamesframework.core.search.NeighbourhoodSearch;
-import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.SearchTestTemplate;
-import org.jamesframework.core.search.listeners.EmptyNeighbourhoodSearchListener;
 import org.jamesframework.test.util.NeverSatisfiedConstraintStub;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -48,11 +45,11 @@ public class ParallelTemperingTest extends SearchTestTemplate {
     
     // maximum runtime
     private final long SINGLE_RUN_RUNTIME = 1000;
-    private final long MULTI_RUN_RUNTIME = 100;
+    private final long MULTI_RUN_RUNTIME = 50;
     private final TimeUnit MAX_RUNTIME_TIME_UNIT = TimeUnit.MILLISECONDS;
     
     // number of runs in multi run tests
-    private final int NUM_RUNS = 10;
+    private final int NUM_RUNS = 5;
     
     /**
      * Print message when starting tests.
@@ -91,5 +88,73 @@ public class ParallelTemperingTest extends SearchTestTemplate {
         // single run
         singleRunWithMaxRuntime(search, problem, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
     }
+    
+    /**
+     * Test single run with unsatisfiable constraint.
+     */
+    @Test
+    public void testSingleRunWithUnsatisfiableConstraint() {
+        System.out.println(" - test single run with unsatisfiable constraint");
+        // add constraint
+        problem.addRejectingConstraint(new NeverSatisfiedConstraintStub());
+        // single run
+        singleRunWithMaxRuntime(search, problem, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        // verify
+        assertNull(search.getBestSolution());
+    }
+    
+    /**
+     * Test subsequent runs (maximizing).
+     */
+    @Test
+    public void testSubsequentRuns() {
+        System.out.println(" - test subsequent runs (maximizing)");
+        // perform multiple runs (maximizing objective)
+        multiRunWithMaximumRuntime(search, MULTI_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT, NUM_RUNS, true, true);
+    }
+    
+    /**
+     * Test subsequent runs (minimizing).
+     */
+    @Test
+    public void testSubsequentRunsMinimizing() {
+        System.out.println(" - test subsequent runs (minimizing)");
+        // set minimizing
+        obj.setMinimizing();
+        // perform multiple runs
+        multiRunWithMaximumRuntime(search, MULTI_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT, NUM_RUNS, false, true);
+    }
 
+    /**
+     * Test subsequent runs with unsatisfiable constraint.
+     */
+    @Test
+    public void testSubsequentRunsWithUnsatisfiableConstraint() {
+        System.out.println(" - test subsequent runs with unsatisfiable constraint");
+        // set constraint
+        problem.addRejectingConstraint(new NeverSatisfiedConstraintStub());
+        // perform multiple runs (maximizing objective)
+        multiRunWithMaximumRuntime(search, MULTI_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT, NUM_RUNS, true, true);
+        // verify
+        assertNull(search.getBestSolution());
+    }
+    
+    /**
+     * Test subsequent runs with penalizing constraint.
+     */
+    @Test
+    public void testSubsequentRunsWithPenalizingConstraint() {
+        System.out.println(" - test subsequent runs with penalizing constraint");
+        // set constraint
+        problem.addPenalizingConstraint(constraint);
+        // perform 3 times as many runs as usual for this harder problem (maximizing objective)
+        multiRunWithMaximumRuntime(search, MULTI_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT, 3*NUM_RUNS, true, true);
+        // constraint satisfied ?
+        if(problem.getViolatedConstraints(search.getBestSolution()).isEmpty()){
+            System.out.println("   >>> constraint satisfied!");
+        } else {
+            System.out.println("   >>> constraint not satisfied, penalty " + constraint.computePenalty(search.getBestSolution(), data));
+        }
+    }
+    
 }
