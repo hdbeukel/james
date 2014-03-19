@@ -410,7 +410,7 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
             // pass stop criterion to checker
             stopCriterionChecker.add(stopCriterion);
             // log
-            logger.info("Added stop criterion {} to search {}", stopCriterion, this);
+            logger.info("{}: added stop criterion {}", this, stopCriterion);
         }
     }
     
@@ -430,7 +430,13 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
                 throw new SearchException("Cannot remove stop criterion: search not idle.");
             }
             // remove from checker
-            return stopCriterionChecker.remove(stopCriterion);
+            if (stopCriterionChecker.remove(stopCriterion)){
+                // log
+                logger.info("{}: removed stop criterion {}", this, stopCriterion);
+                return true;
+            } else {
+                return false;
+            }
         }
     }
     
@@ -454,6 +460,8 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
             }
             // pass new settings to checker
             stopCriterionChecker.setPeriod(period, timeUnit);
+            // log
+            logger.info("{}: set stop criterion check period to {} ms", this, timeUnit.toMillis(period));
         }
     }
     
@@ -473,6 +481,8 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
             }
             // add listener
             searchListeners.add(listener);
+            // log
+            logger.info("{}: added search listener {}", this, listener);
         }
     }
     
@@ -492,7 +502,13 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
                 throw new SearchException("Cannot remove search listener: search not idle.");
             }
             // remove listener
-            return searchListeners.remove(listener);
+            if (searchListeners.remove(listener)){
+                // log
+                logger.info("{}: removed search listener {}", this, listener);
+                return true;
+            } else {
+                return false;
+            }
         }
     }
     
