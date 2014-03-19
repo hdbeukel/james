@@ -32,6 +32,8 @@ import org.jamesframework.core.search.SearchStatus;
 import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.search.stopcriteria.MaxSteps;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * <p>
@@ -71,6 +73,9 @@ import org.jamesframework.core.search.stopcriteria.MaxSteps;
  */
 public class ParallelTempering<SolutionType extends Solution> extends Search<SolutionType> implements SearchListener<SolutionType>{
 
+    // logger
+    private static final Logger logger = LoggerFactory.getLogger(ParallelTempering.class);
+    
     // Metropolis replicas
     private List<MetropolisSearch<SolutionType>> replicas;
     
@@ -119,6 +124,7 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
      * @param minTemperature minimum temperature of Metropolis replica
      * @param maxTemperature maximum temperature of Metropolis replica
      */
+    @SuppressWarnings("LeakingThisInConstructor")
     public ParallelTempering(String name, Problem<SolutionType> problem, Neighbourhood<? super SolutionType> neighbourhood,
                                 int numReplicas, double minTemperature, double maxTemperature){
         super(name != null ? name : "ParallelTempering", problem);
@@ -149,6 +155,10 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
         futures = new LinkedList<>();
         // set initial swap base
         swapBase = 0;
+        // parallel tempering algorithm listens to replicas
+        for(MetropolisSearch<SolutionType> r : replicas){
+            r.addSearchListener(this);
+        }
     }
     
     /**
@@ -275,16 +285,20 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
         for(MetropolisSearch<SolutionType> r : replicas){
             futures.add(pool.submit(r));
         }
+        //logger.debug("{}: started {} Metropolis replicas", this, futures.size());
         // wait for completion of all replicas and remove corresponding future
+        //logger.debug("{}: waiting for replicas to finish", this);
         while(!futures.isEmpty()){
             // remove next future from queue and wait until it has completed
             try{
                 futures.poll().get();
+                //logger.debug("{}: {}/{} replicas finished", this, replicas.size()-futures.size(), replicas.size());
             } catch (InterruptedException | ExecutionException ex){
                 throw new SearchException("An error occured during concurrent execution of Metropolis replicas "
                                             + "in the parallel tempering algorithm.", ex);
             }
         }
+        //logger.debug("{}: swapping solutions", this);
         // consider swapping solutions of adjacent replicas
         for(int i=swapBase; i<replicas.size()-1; i+=2){
             MetropolisSearch<SolutionType> r1 = replicas.get(i);
