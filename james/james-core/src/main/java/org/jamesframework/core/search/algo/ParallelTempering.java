@@ -43,7 +43,7 @@ import org.slf4j.LoggerFactory;
  * </p>
  * <ol>
  *  <li>
- *      Every replica performs a fixed number of steps (defaults to 50) in an attempt to improve its own solution.
+ *      Every replica performs a fixed number of steps (defaults to 500) in an attempt to improve its own solution.
  *  </li>
  *  <li>
  *      Solutions of adjacent replica (ordered by temperature) are considered to be swapped. Solutions of replicas
@@ -62,7 +62,9 @@ import org.slf4j.LoggerFactory;
  * </p>
  * <p>
  * When creating the parallel tempering algorithm, the number of replicas and a minimum and maximum temperature have to be
- * specified. Temperatures assigned to the replicas are unique and equally spaced in the desired interval.
+ * specified. Temperatures assigned to the replicas are unique and equally spaced in the desired interval. The number of replica
+ * steps defaults to 500 but it is strongly advised to tune this parameter for every specific problem, e.g. in case of a computationally
+ * intensive objective function a lower number of steps may be more appropriate.
  * </p>
  * <p>
  * Note that every replica runs in a separate thread so that they will be executed in parallel on multi core machines.
@@ -149,6 +151,8 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
             double temperature = minTemperature + i*(maxTemperature - minTemperature)/(numReplicas - 1);
             replicas.add(new MetropolisSearch<>(problem, neighbourhood, temperature));
         }
+        // set default replica steps
+        replicaSteps = 500;
         // create thread pool
         pool = Executors.newFixedThreadPool(numReplicas);
         // initialize (empty) futures queue
@@ -163,7 +167,7 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
     
     /**
      * Sets the number of steps performed by each replica in every iteration of the global parallel tempering
-     * algorithm, before considering solution swaps. Defaults to 50. The specified number of steps should
+     * algorithm, before considering solution swaps. Defaults to 500. The specified number of steps should
      * be strictly positive. Note that this method may only be called while the search is idle.
      * 
      * @throws SearchException if the search is not idle
@@ -188,7 +192,7 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
     
     /**
      * Get the number of steps performed by each replica in every iteration of the global parallel tempering
-     * algorithm, before considering solution swaps. Defaults to 50 and can be changed using {@link #setReplicaSteps(int)}.
+     * algorithm, before considering solution swaps. Defaults to 500 and can be changed using {@link #setReplicaSteps(int)}.
      * 
      * @return number of steps performed by replicas in each iteration
      */
