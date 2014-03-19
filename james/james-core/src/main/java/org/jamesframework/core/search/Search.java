@@ -198,7 +198,7 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
         // initialize utility variables
         improvementDuringCurrentStep = false;
         // log search creation
-        logger.debug("Created search {}", this);
+        logger.info("Created search {}", this);
     }
     
     /**
@@ -271,7 +271,7 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
      */
     public void start(){
         
-        logger.info("Search {} started", this);
+        logger.debug("Search {} started", this);
         
         // acquire status lock
         synchronized(statusLock) {
@@ -281,6 +281,8 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
             }
             // set status to INITIALIZING
             status = SearchStatus.INITIALIZING;
+            // log
+            logger.debug("Search {} changed status: {} --> {}", this, SearchStatus.IDLE, SearchStatus.INITIALIZING);
         }
         
         // fire callback
@@ -295,6 +297,8 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
         // initialization finished: update status
         synchronized(statusLock){
             status = SearchStatus.RUNNING;
+            // log
+            logger.debug("Search {} changed status: {} --> {}", this, SearchStatus.INITIALIZING, SearchStatus.RUNNING);
         }
         
         // enter search loop
@@ -324,15 +328,17 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
         // finalization
         searchStopped();
                 
-        // search run is complete: update status and perform finalization
-        synchronized(statusLock){
-            status = SearchStatus.IDLE;
-        }
-        
         // fire callback
         fireSearchStopped();
 
-        logger.info("Search {} stopped (runtime: {} ms)", this, getRuntime());
+        logger.debug("Search {} stopped (runtime: {} ms)", this, getRuntime());
+        
+        // search run is complete: update status
+        synchronized(statusLock){
+            status = SearchStatus.IDLE;
+            // log
+            logger.debug("Search {} changed status: {} --> {}", this, SearchStatus.RUNNING, SearchStatus.IDLE);
+        }
         
     }
    
@@ -353,6 +359,9 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
         synchronized(statusLock){
             // check current status
             if(status == SearchStatus.INITIALIZING || status == SearchStatus.RUNNING){
+                // log
+                logger.debug("Search {} changed status: {} --> {}", this, status, SearchStatus.TERMINATING);
+                // update status
                 status = SearchStatus.TERMINATING;
             }
         }
@@ -400,6 +409,8 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
             }
             // pass stop criterion to checker
             stopCriterionChecker.add(stopCriterion);
+            // log
+            logger.info("Added stop criterion {} to search {}", stopCriterion, this);
         }
     }
     
