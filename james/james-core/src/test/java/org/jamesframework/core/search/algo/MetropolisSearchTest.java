@@ -20,7 +20,6 @@ import org.jamesframework.core.search.NeighbourhoodSearch;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.SearchTestTemplate;
 import org.jamesframework.core.search.listeners.EmptyNeighbourhoodSearchListener;
-import org.jamesframework.core.search.listeners.NeighbourhoodSearchListener;
 import org.jamesframework.test.util.NeverSatisfiedConstraintStub;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
