@@ -234,13 +234,13 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
     }
     
     /**
-     * Returns a string representation of the search, formatted as "%name:%id".
+     * Returns a string representation of the search, formatted as "%name(%id)".
      * 
      * @return string representation containing name and id
      */
     @Override
     public String toString(){
-        return name + ":" + id;
+        return name + "(" + id + ")";
     }
     
     /***********************/
