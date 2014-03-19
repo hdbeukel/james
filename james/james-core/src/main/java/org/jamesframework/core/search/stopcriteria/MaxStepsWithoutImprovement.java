@@ -52,5 +52,10 @@ public class MaxStepsWithoutImprovement implements StopCriterion {
     public boolean searchShouldStop(Search<?> search) {
         return search.getStepsWithoutImprovement()> maxStepsWithoutImprovement;
     }
+    
+    @Override
+    public String toString(){
+        return "{max steps without improvement: " + maxStepsWithoutImprovement + "}";
+    }
 
 }

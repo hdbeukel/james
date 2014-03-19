@@ -54,5 +54,10 @@ public class MaxTimeWithoutImprovement implements StopCriterion {
     public boolean searchShouldStop(Search<?> search) {
         return search.getTimeWithoutImprovement()> maxTimeWithoutImprovement;
     }
+    
+    @Override
+    public String toString(){
+        return "{max time without improvement: " + maxTimeWithoutImprovement + " ms}";
+    }
 
 }

@@ -58,5 +58,10 @@ public class MinDelta implements StopCriterion {
     public boolean searchShouldStop(Search<?> search) {
         return search.getMinDelta() > 0.0 && search.getMinDelta() < minDelta;
     }
+    
+    @Override
+    public String toString(){
+        return "{min delta: " + minDelta + "}";
+    }
 
 }

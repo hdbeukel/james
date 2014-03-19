@@ -53,5 +53,10 @@ public class MaxRuntime implements StopCriterion {
     public boolean searchShouldStop(Search<?> search) {
         return search.getRuntime() > maxRuntime;
     }
+    
+    @Override
+    public String toString(){
+        return "{max runtime: " + maxRuntime + " ms}";
+    }
 
 }
