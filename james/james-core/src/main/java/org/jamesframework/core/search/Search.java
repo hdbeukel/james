@@ -282,7 +282,7 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
             // set status to INITIALIZING
             status = SearchStatus.INITIALIZING;
             // log
-            logger.debug("Search {} changed status: {} --> {}", this, SearchStatus.IDLE, SearchStatus.INITIALIZING);
+            logger.trace("Search {} changed status: {} --> {}", this, SearchStatus.IDLE, SearchStatus.INITIALIZING);
         }
         
         // fire callback
@@ -298,7 +298,7 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
         synchronized(statusLock){
             status = SearchStatus.RUNNING;
             // log
-            logger.debug("Search {} changed status: {} --> {}", this, SearchStatus.INITIALIZING, SearchStatus.RUNNING);
+            logger.trace("Search {} changed status: {} --> {}", this, SearchStatus.INITIALIZING, SearchStatus.RUNNING);
         }
         
         // enter search loop
@@ -337,7 +337,7 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
         synchronized(statusLock){
             status = SearchStatus.IDLE;
             // log
-            logger.debug("Search {} changed status: {} --> {}", this, SearchStatus.RUNNING, SearchStatus.IDLE);
+            logger.trace("Search {} changed status: {} --> {}", this, SearchStatus.RUNNING, SearchStatus.IDLE);
         }
         
     }
@@ -360,7 +360,7 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
             // check current status
             if(status == SearchStatus.INITIALIZING || status == SearchStatus.RUNNING){
                 // log
-                logger.debug("Search {} changed status: {} --> {}", this, status, SearchStatus.TERMINATING);
+                logger.trace("Search {} changed status: {} --> {}", this, status, SearchStatus.TERMINATING);
                 // update status
                 status = SearchStatus.TERMINATING;
             }
@@ -697,6 +697,8 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
             // might be further modified in subsequent search steps
             bestSolution = problem.copySolution(newSolution);
             bestSolutionEvaluation = newSolutionEvaluation;
+            // log
+            logger.trace("{}: new best solution: ", this, bestSolutionEvaluation);
             // fire callback
             fireNewBestSolution(bestSolution, bestSolutionEvaluation);
             // found improvement

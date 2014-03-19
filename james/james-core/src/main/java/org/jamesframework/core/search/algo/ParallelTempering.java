@@ -285,20 +285,20 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
         for(MetropolisSearch<SolutionType> r : replicas){
             futures.add(pool.submit(r));
         }
-        //logger.debug("{}: started {} Metropolis replicas", this, futures.size());
+        logger.trace("{}: started {} Metropolis replicas", this, futures.size());
         // wait for completion of all replicas and remove corresponding future
-        //logger.debug("{}: waiting for replicas to finish", this);
+        logger.trace("{}: waiting for replicas to finish", this);
         while(!futures.isEmpty()){
             // remove next future from queue and wait until it has completed
             try{
                 futures.poll().get();
-                //logger.debug("{}: {}/{} replicas finished", this, replicas.size()-futures.size(), replicas.size());
+                logger.trace("{}: {}/{} replicas finished", this, replicas.size()-futures.size(), replicas.size());
             } catch (InterruptedException | ExecutionException ex){
                 throw new SearchException("An error occured during concurrent execution of Metropolis replicas "
                                             + "in the parallel tempering algorithm.", ex);
             }
         }
-        //logger.debug("{}: swapping solutions", this);
+        logger.trace("{}: swapping solutions", this);
         // consider swapping solutions of adjacent replicas
         for(int i=swapBase; i<replicas.size()-1; i+=2){
             MetropolisSearch<SolutionType> r1 = replicas.get(i);
