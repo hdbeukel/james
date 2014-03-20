@@ -126,6 +126,9 @@ public class StopCriterionChecker {
             runningTask = scheduler.scheduleWithFixedDelay(new StopCriterionCheckTask(), 0, period, periodTimeUnit);
             // log
             logger.info("Stop criterion checker for search {} activated", search);
+        } else {
+            // issue a warning
+            logger.warn("Attempted to activate already active stop criterion checker for search {}", search);
         }
     }
 
@@ -175,12 +178,15 @@ public class StopCriterionChecker {
             }
             // request the search to stop if a stop condition is met
             if (stopSearch) {
+                // stop checking
+                // IMPORTANT: called BEFORE requesting the search to stop, to ensure that the search does
+                //            not restart before stopChecking() is executed here, else the checker for the next
+                //            run might be prematurely terminated
+                stopChecking();
                 // stop the search
                 search.stop();
                 // log
                 logger.info("Stop criterion checker requested search {} to stop", search);
-                // stop checking
-                stopChecking();
             }
         }
 

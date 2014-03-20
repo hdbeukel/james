@@ -309,7 +309,7 @@ public class ExhaustiveSearchTest extends SearchTestTemplate {
         // set constraint
         problemSmall.addPenalizingConstraint(constraint);
         // perform 3 times as many runs as usual for this harder problem (maximizing objective)
-        multiRunWithMaximumRuntime(searchSmall, MULTI_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT, 3*NUM_RUNS, true, false);
+        multiRunWithMaximumRuntime(searchSmall, MULTI_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT, 3*NUM_RUNS, true, true);
         System.out.println("   >>> best: " + searchSmall.getBestSolutionEvaluation());
         // constraint satisfied ?
         if(problemSmall.getViolatedConstraints(searchSmall.getBestSolution()).isEmpty()){
@@ -334,7 +334,7 @@ public class ExhaustiveSearchTest extends SearchTestTemplate {
         // set constraint
         problem.addPenalizingConstraint(constraint);
         // perform 3 times as many runs as usual for this harder problem (maximizing objective)
-        multiRunWithMaximumRuntime(search, MULTI_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT, 3*NUM_RUNS, true, false);
+        multiRunWithMaximumRuntime(search, MULTI_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT, 3*NUM_RUNS, true, true);
         System.out.println("   >>> best: " + search.getBestSolutionEvaluation());
         // constraint satisfied ?
         if(problem.getViolatedConstraints(search.getBestSolution()).isEmpty()){
