@@ -46,7 +46,9 @@ public class StopCriterionChecker {
     private static final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor(new ThreadFactory() {
         @Override
         public Thread newThread(Runnable r) {
-            return new Thread(r, "stop-crit-checker");
+            Thread t = new Thread(r, "stop-crit-checker");
+            t.setDaemon(true);
+            return t;
         }
     });
     
