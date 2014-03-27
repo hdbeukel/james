@@ -29,7 +29,7 @@ import org.jamesframework.core.search.Search;
  * given that its solution iterator has not been modified externally in between both runs.
  * 
  * @param <SolutionType> solution type of the problems that may be solved using this search, required to extend {@link Solution}
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class ExhaustiveSearch<SolutionType extends Solution> extends Search<SolutionType> {
 

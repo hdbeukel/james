@@ -21,7 +21,7 @@ import org.jamesframework.core.problems.solutions.Solution;
  * Penalizing constraint stub that is never satisfied for any solution. A fixed penalty is returned for any solution.
  * Data is ignored. Only used for testing.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class NeverSatisfiedPenalizingConstraintStub
                                 extends NeverSatisfiedConstraintStub

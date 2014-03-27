@@ -66,7 +66,7 @@ import org.slf4j.LoggerFactory;
  * </p>
  * 
  * @param <SolutionType> solution type of the problems that may be solved using this search, required to extend {@link Solution}
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public abstract class Search<SolutionType extends Solution> implements Runnable {
     
@@ -446,7 +446,7 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
      * The period should be at least 1 millisecond, else the stop criterion checker may thrown an exception
      * when the search is started. Note that this method may only be called when the search is idle.
      * 
-     * @param period time between subsequent stop criterion checks (> 0)
+     * @param period time between subsequent stop criterion checks (&gt; 0)
      * @param timeUnit corresponding time unit
      * @throws SearchException if the search is not idle
      * @throws IllegalArgumentException if the given period is not strictly positive

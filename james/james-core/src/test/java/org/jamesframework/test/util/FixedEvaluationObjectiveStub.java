@@ -21,7 +21,7 @@ import org.jamesframework.core.problems.solutions.Solution;
  * Objective stub that evaluates every solution (of any type) to a fixed value.
  * Does not use any data. Used only for testing purposes.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class FixedEvaluationObjectiveStub extends MinMaxObjective<Solution, Object>{
 

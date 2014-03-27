@@ -20,7 +20,7 @@ import org.jamesframework.core.search.Search;
 /**
  * Stop criterion that limits runtime of a search run.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class MaxRuntime implements StopCriterion {
 

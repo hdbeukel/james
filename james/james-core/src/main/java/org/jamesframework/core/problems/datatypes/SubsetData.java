@@ -23,7 +23,7 @@ import org.jamesframework.core.problems.solutions.SubsetSolution;
  * requirement, so that the data can be connected with abstract subset solutions, which are fully defined in terms of IDs only
  * (see {@link SubsetSolution}).
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public interface SubsetData {
 

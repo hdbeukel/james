@@ -22,7 +22,7 @@ package org.jamesframework.core.problems.solutions;
  *  are deemed equal should produce the same hash code, while unequal solutions
  *  may (and preferably should) produce different hash codes.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public abstract class Solution {
     

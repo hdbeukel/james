@@ -21,7 +21,7 @@ import org.jamesframework.core.problems.solutions.Solution;
  * An objective can be either maximizing or minimizing; in the former case increasing scores
  * indicate improvement, while in the latter case decreasing scores indicate improvement.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  * @param <SolutionType> solution type to be evaluated, required to extend {@link Solution}
  * @param <DataType> underlying data type
  */

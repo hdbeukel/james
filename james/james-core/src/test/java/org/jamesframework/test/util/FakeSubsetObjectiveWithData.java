@@ -21,7 +21,7 @@ import org.jamesframework.core.problems.solutions.SubsetSolution;
  * A fake subset objective that evaluates a subset solution to the sum of scores corresponding to the selected IDs,
  * where scores are provided by an instance of {@link FakeSubsetData}. Used for testing only.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class FakeSubsetObjectiveWithData extends MinMaxObjective<SubsetSolution, FakeSubsetData>{
 

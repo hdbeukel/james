@@ -23,7 +23,7 @@ import org.jamesframework.core.search.Search;
  * a search, by overriding the corresponding empty implementation.
  * 
  * @param <SolutionType> solution type, required to extend {@link Solution}
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class EmptySearchListener<SolutionType extends Solution> implements SearchListener<SolutionType> {
 

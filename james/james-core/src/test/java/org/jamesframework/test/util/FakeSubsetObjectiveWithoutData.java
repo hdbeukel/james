@@ -21,7 +21,7 @@ import org.jamesframework.core.problems.solutions.SubsetSolution;
  * A fake subset objective without data, which evaluates any subset solution to the sum of the selected IDs.
  * Used for testing purposes only.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class FakeSubsetObjectiveWithoutData extends MinMaxObjective<SubsetSolution, Object> {
 

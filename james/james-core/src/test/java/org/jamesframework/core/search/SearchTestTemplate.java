@@ -37,7 +37,7 @@ import org.junit.BeforeClass;
  * Template for search tests solving a basic subset problem, where every item is assigned a real value with the
  * objective of selecting a subset with maximum/minimum summed value. Can be extended to use the contained components. 
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class SearchTestTemplate {
 

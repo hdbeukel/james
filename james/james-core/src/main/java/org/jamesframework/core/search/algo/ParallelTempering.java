@@ -71,7 +71,7 @@ import org.slf4j.LoggerFactory;
  * </p>
  * 
  * @param <SolutionType> solution type of the problems that may be solved using this search, required to extend {@link Solution}
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class ParallelTempering<SolutionType extends Solution> extends Search<SolutionType> implements SearchListener<SolutionType>{
 
@@ -98,7 +98,7 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
      * 
      * @throws NullPointerException if <code>problem</code> or <code>neighbourhood</code> are <code>null</code>
      * @throws IllegalArgumentException if <code>numReplicas</code>, <code>minTemperature</code> or <code>maxTemperature</code>
-     *                                  are not strictly positive, or if <code>minTemperature >= maxTemperature</code>
+     *                                  are not strictly positive, or if <code>minTemperature &ge; maxTemperature</code>
      * @param problem problem to solve
      * @param neighbourhood neighbourhood used inside Metropolis search replicas
      * @param numReplicas number of Metropolis replicas
@@ -118,7 +118,7 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
      * 
      * @throws NullPointerException if <code>problem</code> or <code>neighbourhood</code> are <code>null</code>
      * @throws IllegalArgumentException if <code>numReplicas</code>, <code>minTemperature</code> or <code>maxTemperature</code>
-     *                                  are not strictly positive, or if <code>minTemperature >= maxTemperature</code>
+     *                                  are not strictly positive, or if <code>minTemperature &ge; maxTemperature</code>
      * @param name custom search name
      * @param problem problem to solve
      * @param neighbourhood neighbourhood used inside Metropolis search replicas
@@ -210,7 +210,7 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
     }
     
     /**
-     * Set the same temperature scale factor \(k > 0\) for each replica. Temperatures are multiplied with this factor
+     * Set the same temperature scale factor \(k &gt; 0\) for each replica. Temperatures are multiplied with this factor
      * in all computations. By default, the scale factor is set to 1 for every replica, see {@link MetropolisSearch}.
      * Note that this method may only be called when the search is idle.
      * 

@@ -24,7 +24,7 @@ import org.jamesframework.core.problems.solutions.Solution;
  * solution space corresponding to this problem.
  * 
  * @param <SolutionType> solution type of generated solutions, required to extends {@link Solution}
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public interface SolutionIterator<SolutionType extends Solution> {
     

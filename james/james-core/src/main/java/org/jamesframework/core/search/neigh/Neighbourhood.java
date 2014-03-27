@@ -21,7 +21,7 @@ import org.jamesframework.core.problems.solutions.Solution;
  * Interface of a neighbourhood that generates moves to transform a given solution into a neighbouring solution.
  * 
  * @param <SolutionType> solution type for which this neighbourhood can be applied, required to extend {@link Solution}
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public interface Neighbourhood<SolutionType extends Solution> {
 

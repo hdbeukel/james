@@ -24,7 +24,7 @@ import org.jamesframework.core.problems.solutions.Solution;
  * is always maximizing, scores for contained minimizing objectives are inverted so that maximization of
  * the weighted sum still corresponds to minimization of these objectives.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  * @param <SolutionType> solution type to be evaluated, required to extend {@link Solution}
  * @param <DataType> underlying data type
  */

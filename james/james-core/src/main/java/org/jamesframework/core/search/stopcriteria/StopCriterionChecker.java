@@ -37,7 +37,7 @@ import org.slf4j.LoggerFactory;
  * As soon as some stop criterion is satisfied, the checker will request the search to stop and will also cancel the scheduled task
  * for further execution.
  *
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class StopCriterionChecker {
 

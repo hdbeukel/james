@@ -19,7 +19,7 @@ import org.jamesframework.core.problems.solutions.Solution;
 /**
  * Interface of a constraint that can be imposed on the solutions, based on underlying data.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  * @param <SolutionType> solution type to which the constraint is applied, required to extend {@link Solution}
  * @param <DataType> underlying data type
  */

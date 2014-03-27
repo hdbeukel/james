@@ -28,7 +28,7 @@ import org.jamesframework.core.search.neigh.Neighbourhood;
  * in the unusual case when the current solution does not have any neighbours.
  * 
  * @param <SolutionType> solution type of the problems that may be solved using this search, required to extend {@link Solution}
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class RandomDescent<SolutionType extends Solution> extends SingleNeighbourhoodSearch<SolutionType> {
 

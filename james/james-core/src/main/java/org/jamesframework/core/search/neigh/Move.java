@@ -21,7 +21,7 @@ import org.jamesframework.core.problems.solutions.Solution;
  * Interface of a move that can be applied to a generic solution type. Contains methods
  * to apply the move to a given solution and to undo the move after it has been applied.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  * @param <SolutionType> the solution type to which move can be applied, required to extend {@link Solution}
  */
 public interface Move<SolutionType extends Solution> {

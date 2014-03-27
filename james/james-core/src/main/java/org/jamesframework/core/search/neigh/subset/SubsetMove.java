@@ -23,7 +23,7 @@ import org.jamesframework.core.search.neigh.Move;
  * removes a number of IDs. Extends the global interface {@link Move}, setting the solution
  * type to {@link SubsetSolution}.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public interface SubsetMove extends Move<SubsetSolution> {
 

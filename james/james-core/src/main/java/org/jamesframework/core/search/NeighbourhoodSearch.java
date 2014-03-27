@@ -34,7 +34,7 @@ import org.jamesframework.core.util.JamesConstants;
  * before running the search, else, a random initial solution will be constructed.
  * 
  * @param <SolutionType> solution type of the problems that may be solved using this search, required to extend {@link Solution}
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends Search<SolutionType> {
 
@@ -451,7 +451,7 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
      * will remain available in the cache.
      * 
      * @param moves collection of possible moves
-     * @param positiveDeltasOnly if set to <code>true</code>, only moves with <code>delta > 0</code> are considered
+     * @param positiveDeltasOnly if set to <code>true</code>, only moves with <code>delta &gt; 0</code> are considered
      * @return valid move with largest delta, may be <code>null</code>
      */
     protected Move<? super SolutionType> getMoveWithLargestDelta(Collection<? extends Move<? super SolutionType>> moves, boolean positiveDeltasOnly){

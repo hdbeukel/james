@@ -29,7 +29,7 @@ import org.jamesframework.core.util.SetUtilities;
  * entities are selected.
  * 
  * @param <DataType> underlying data type, should implement the interface {@link SubsetData}
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class SubsetProblemWithData<DataType extends SubsetData> extends ProblemWithData<SubsetSolution, DataType>
                                                                 implements SubsetProblem {
@@ -47,8 +47,8 @@ public class SubsetProblemWithData<DataType extends SubsetData> extends ProblemW
      * 
      * @param objective objective function, can not be <code>null</code>
      * @param data underlying subset data, can not be <code>null</code>
-     * @param minSubsetSize minimum subset size (should be > 0 and <= maximum subset size)
-     * @param maxSubsetSize maximum subset size (should be >= minimum subset size and <= number of entities in underlying data)
+     * @param minSubsetSize minimum subset size (should be &gt; 0 and &le; maximum subset size)
+     * @param maxSubsetSize maximum subset size (should be &ge; minimum subset size and &le; number of entities in underlying data)
      * @throws NullPointerException if <code>objective</code> or <code>data</code> is <code>null</code>
      * @throws IllegalArgumentException if an invalid minimum or maximum subset size is specified
      */
@@ -180,7 +180,7 @@ public class SubsetProblemWithData<DataType extends SubsetData> extends ProblemW
     }
 
     /**
-     * Set the minimum subset size. Specified size should be >= 1 and <= the current maximum subset size.
+     * Set the minimum subset size. Specified size should be &ge; 1 and &le; the current maximum subset size.
      * 
      * @param minSubsetSize new minimum subset size
      * @throws IllegalArgumentException if an invalid minimum size is given
@@ -207,8 +207,8 @@ public class SubsetProblemWithData<DataType extends SubsetData> extends ProblemW
     }
 
     /**
-     * Set the maximum subset size. Specified size should be >= the current minimum subset size
-     * and <= the number of entities in the underlying subset data.
+     * Set the maximum subset size. Specified size should be &ge; the current minimum subset size
+     * and &le; the number of entities in the underlying subset data.
      * 
      * @param maxSubsetSize new maximum subset size
      * @throws IllegalArgumentException if an invalid maximum size is given

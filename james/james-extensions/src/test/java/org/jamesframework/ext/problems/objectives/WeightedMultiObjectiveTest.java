@@ -26,7 +26,7 @@ import static org.junit.Assert.*;
 /**
  * Test WeightedMultiObjective.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class WeightedMultiObjectiveTest {
 
@@ -55,7 +55,7 @@ public class WeightedMultiObjectiveTest {
         System.out.println(" - test addObjective");
         
         // create weighted objective
-        WeightedMultiObjective weighted = new WeightedMultiObjective();
+        WeightedMultiObjective<Solution, Object> weighted = new WeightedMultiObjective<>();
         // create some fake objective with fixed evaluation
         FixedEvaluationObjectiveStub obj0 = new FixedEvaluationObjectiveStub(0.0);
         
@@ -100,7 +100,7 @@ public class WeightedMultiObjectiveTest {
         System.out.println(" - test removeObjective");
         
         // create weighted objective
-        WeightedMultiObjective weighted = new WeightedMultiObjective();
+        WeightedMultiObjective<Solution, Object> weighted = new WeightedMultiObjective<>();
         // create some fake objectives with fixed evaluation
         FixedEvaluationObjectiveStub obj0 = new FixedEvaluationObjectiveStub(0.0);
         FixedEvaluationObjectiveStub obj1 = new FixedEvaluationObjectiveStub(1.0);
@@ -147,7 +147,7 @@ public class WeightedMultiObjectiveTest {
         System.out.println(" - test evaluate");
         
         // create weighted objective
-        WeightedMultiObjective weighted = new WeightedMultiObjective();
+        WeightedMultiObjective<Solution, Object> weighted = new WeightedMultiObjective<>();
         // create some fake objectives with fixed evaluation
         FixedEvaluationObjectiveStub obj0 = new FixedEvaluationObjectiveStub(0.0);
         FixedEvaluationObjectiveStub obj1 = new FixedEvaluationObjectiveStub(1.0);

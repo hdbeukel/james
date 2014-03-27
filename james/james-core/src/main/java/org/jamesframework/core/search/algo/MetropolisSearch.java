@@ -26,7 +26,7 @@ import org.jamesframework.core.search.neigh.Neighbourhood;
 
 /**
  * Metropolis search with fixed temperature. Iteratively samples a random neighbour and accepts it based on a criterion that
- * depends on the difference in evaluation (\(\Delta E\)) and the temperature of the system (\(T\)). When \(\Delta E > 0\),
+ * depends on the difference in evaluation (\(\Delta E\)) and the temperature of the system (\(T\)). When \(\Delta E &gt; 0\),
  * which indicates improvement, the neighbour is always accepted as the new current solution. Else, it is accepted with
  * probability
  * \[
@@ -42,7 +42,7 @@ import org.jamesframework.core.search.neigh.Neighbourhood;
  * for each specific problem so that an appropriate temperature can be selected.
  * 
  * @param <SolutionType> solution type of the problems that may be solved using this search, required to extend {@link Solution}
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class MetropolisSearch<SolutionType extends Solution> extends SingleNeighbourhoodSearch<SolutionType> {
 
@@ -92,7 +92,7 @@ public class MetropolisSearch<SolutionType extends Solution> extends SingleNeigh
     }
     
     /**
-     * Set the temperature (\(T > 0\)). Note that this method may only be called when the search is idle.
+     * Set the temperature (\(T &gt; 0\)). Note that this method may only be called when the search is idle.
      * 
      * @param temperature new temperature
      * @throws IllegalArgumentException if <code>temperature</code> is not strictly positive
@@ -124,7 +124,7 @@ public class MetropolisSearch<SolutionType extends Solution> extends SingleNeigh
     }
     
     /**
-     * Set the temperature scale factor \(k > 0\). All temperatures are multiplied with this factor. By default,
+     * Set the temperature scale factor \(k &gt; 0\). All temperatures are multiplied with this factor. By default,
      * the scale factor is set to 1. Note that this method may only be called when the search is idle.
      * 
      * @param scale temperature scale factor
@@ -160,7 +160,7 @@ public class MetropolisSearch<SolutionType extends Solution> extends SingleNeigh
      * Creates a random neighbour of the current solution and accepts it if it improves over the current solution,
      * or if
      * \[
-     *      e^{\frac{\Delta E}{kT}} > R(0,1)
+     *      e^{\frac{\Delta E}{kT}} &gt; R(0,1)
      * \]
      * where \(\Delta E\) is the difference between the evaluation of the neighbour and that of the current solution,
      * \(T\) is the temperature of the system, \(k\) is a constant scale factor, and \(R(0,1)\) is a random number

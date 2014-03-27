@@ -19,7 +19,7 @@ import org.jamesframework.core.problems.solutions.Solution;
 /**
  * Empty solution stub. Used for testing purposes only.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class EmptySolutionStub extends Solution {
 

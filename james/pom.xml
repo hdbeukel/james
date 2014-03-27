@@ -51,7 +51,7 @@
             </plugins>
         </pluginManagement>
         <plugins>
-            <!-- set compiler to use java 1.7 -->
+            <!-- set compiler to use java 1.7 and to compile with -Xlint:unchecked -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -59,6 +59,7 @@
                 <configuration>
                     <source>1.7</source>
                     <target>1.7</target>
+                    <compilerArgument>-Xlint:unchecked</compilerArgument>
                 </configuration>
             </plugin>
             <!-- create test jars -->

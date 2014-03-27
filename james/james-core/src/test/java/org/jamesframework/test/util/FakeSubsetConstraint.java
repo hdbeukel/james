@@ -22,7 +22,7 @@ import org.jamesframework.core.problems.solutions.SubsetSolution;
  * Fake subset constraint based on fake subset data. Only accepts solutions where the minimum difference
  * in score of selected entities is larger than a given value. Used for testing only.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class FakeSubsetConstraint implements Constraint<SubsetSolution, FakeSubsetData>{
 

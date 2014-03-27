@@ -30,7 +30,7 @@ import org.junit.BeforeClass;
 /**
  * Test general search behaviour using random search dummy.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class SearchTest extends SearchTestTemplate {
 

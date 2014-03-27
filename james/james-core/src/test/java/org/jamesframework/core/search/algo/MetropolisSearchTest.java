@@ -30,7 +30,7 @@ import org.junit.Before;
 /**
  * Test Metropolis search algorithm.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class MetropolisSearchTest extends SearchTestTemplate {
 
@@ -250,7 +250,7 @@ public class MetropolisSearchTest extends SearchTestTemplate {
         
         @Override
         public void searchStopped(Search<? extends SubsetSolution> search){
-            NeighbourhoodSearch<SubsetSolution> neighSearch = (NeighbourhoodSearch<SubsetSolution>) search;
+            NeighbourhoodSearch<? extends SubsetSolution> neighSearch = (NeighbourhoodSearch<? extends SubsetSolution>) search;
             accepted += neighSearch.getNumAcceptedMoves();
             rejected += neighSearch.getNumRejectedMoves();
         }

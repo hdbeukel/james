@@ -49,7 +49,7 @@ import org.jamesframework.core.problems.solutions.Solution;
  * @param <SolutionType> solution type corresponding to this problem
  * @param <DataType> type of underlying data
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public abstract class ProblemWithData<SolutionType extends Solution, DataType> implements Problem<SolutionType> {
     

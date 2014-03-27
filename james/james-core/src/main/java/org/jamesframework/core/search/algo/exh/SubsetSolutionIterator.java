@@ -28,12 +28,12 @@ import org.jamesframework.core.problems.solutions.SubsetSolution;
  * and Douglas Stinson, CRC Press, 1999 (chapter 2, p. 43-52). This algorithm generates
  * k-subsets in a specific minimal change ordering called the revolving door ordering.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class SubsetSolutionIterator implements SolutionIterator<SubsetSolution> {
 
-    // minimum and maximum subset size
-    private final int minSubsetSize, maxSubsetSize;
+    // maximum subset size
+    private final int maxSubsetSize;
     
     // collection of IDs to select from
     private final Set<Integer> IDs;
@@ -53,9 +53,9 @@ public class SubsetSolutionIterator implements SolutionIterator<SubsetSolution> 
      * @param maxSubsetSize maximum subset size
      * @throws NullPointerException if <code>IDs</code> is <code>null</code>
      * @throws IllegalArgumentException if <code>IDs</code> is empty,
-     *                                     <code>minSubsetSize <= 0</code>,
-     *                                     <code>minSubsetSize > |IDs|</code>,
-     *                                     or <code>minSubsetSize > maxSubsetSize</code>
+     *                                     <code>minSubsetSize &le; 0</code>,
+     *                                     <code>minSubsetSize &gt; |IDs|</code>,
+     *                                     or <code>minSubsetSize &gt; maxSubsetSize</code>
      */
     public SubsetSolutionIterator(Set<Integer> IDs, int minSubsetSize, int maxSubsetSize){
         // check collection of IDs
@@ -80,9 +80,6 @@ public class SubsetSolutionIterator implements SolutionIterator<SubsetSolution> 
             throw new IllegalArgumentException("Error while creating subset solution iterator: minimum subset size can not be "
                                                 + "larger than maximum subset size.");
         }
-        // store minimum/maximum size
-        this.minSubsetSize = minSubsetSize;
-        this.maxSubsetSize = maxSubsetSize;
         // set indices of selected IDs in first generated solution (t = {0,1,...,k-1}, with k = minimum subset size)
         t = new int[minSubsetSize+1];
         for(int i=0; i<minSubsetSize; i++){
@@ -90,6 +87,8 @@ public class SubsetSolutionIterator implements SolutionIterator<SubsetSolution> 
         }
         // set dummy element
         t[minSubsetSize] = IDs.size();
+        // store maximum size
+        this.maxSubsetSize = maxSubsetSize;
     }
     
     /**
@@ -100,8 +99,8 @@ public class SubsetSolutionIterator implements SolutionIterator<SubsetSolution> 
      * @param fixedSubsetSize  fixed subset size
      * @throws NullPointerException if <code>IDs</code> is <code>null</code>
      * @throws IllegalArgumentException if <code>IDs</code> is empty,
-     *                                     <code>fixedSubsetSize <= 0</code>,
-     *                                     or <code>fixedSubsetSize > |IDs|</code>
+     *                                     <code>fixedSubsetSize &le; 0</code>,
+     *                                     or <code>fixedSubsetSize &gt; |IDs|</code>
      */
     public SubsetSolutionIterator(Set<Integer> IDs, int fixedSubsetSize){
         this(IDs, fixedSubsetSize, fixedSubsetSize);

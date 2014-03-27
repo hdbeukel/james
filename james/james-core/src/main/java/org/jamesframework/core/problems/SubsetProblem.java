@@ -21,7 +21,7 @@ import org.jamesframework.core.problems.solutions.SubsetSolution;
  * A subset problem contains specific methods to create empty subset solutions in which no IDs are selected, and indicates
  * the desired minimum and maximum subset size.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public interface SubsetProblem extends Problem<SubsetSolution>{
     

@@ -25,7 +25,7 @@ import org.jamesframework.core.search.neigh.Neighbourhood;
  * parallel tempering, etc.
  *
  * @param <SolutionType> solution type of the problems that may be solved using this search, required to extend {@link Solution}
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public abstract class SingleNeighbourhoodSearch<SolutionType extends Solution> extends NeighbourhoodSearch<SolutionType> {
 

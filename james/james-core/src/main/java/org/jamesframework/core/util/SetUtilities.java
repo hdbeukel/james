@@ -22,7 +22,7 @@ import java.util.Set;
 /**
  * Contains some utility functions for manipulating sets.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class SetUtilities {
     

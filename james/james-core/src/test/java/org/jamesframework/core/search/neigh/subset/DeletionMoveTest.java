@@ -18,6 +18,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 import org.jamesframework.core.exceptions.SolutionModificationException;
+import org.jamesframework.core.problems.solutions.Solution;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.util.SetUtilities;
@@ -30,7 +31,7 @@ import org.junit.Before;
 /**
  * Test DeletionMove (subset move).
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class DeletionMoveTest {
 
@@ -164,7 +165,7 @@ public class DeletionMoveTest {
         
         System.out.println(" - test apply");
         
-        Move move;
+        Move<SubsetSolution> move;
         boolean thrown;
         
         // try to delete non existing ID
@@ -221,7 +222,7 @@ public class DeletionMoveTest {
         sol.selectAll(SetUtilities.getRandomSubset(sol.getUnselectedIDs(), (int) (0.5*sol.getNumUnselectedIDs()), RG));
         
         // randomly apply moves and undo them
-        Move move;
+        Move<SubsetSolution> move;
         SubsetSolution copy;
         for(int i=0; i<100; i++){
             // random move

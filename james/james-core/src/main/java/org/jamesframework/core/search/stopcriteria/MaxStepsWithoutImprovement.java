@@ -19,7 +19,7 @@ import org.jamesframework.core.search.Search;
 /**
  * Stop criterion that limits the number of steps without finding any improvement during a search run.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class MaxStepsWithoutImprovement implements StopCriterion {
 
@@ -31,7 +31,7 @@ public class MaxStepsWithoutImprovement implements StopCriterion {
      * The given number of steps should be strictly positive.
      * 
      * @param maxStepsWithoutImprovement maximum number of steps without improvement
-     * @throws IllegalArgumentException if <code>maxStepsWithoutImprovement</code> is <= 0
+     * @throws IllegalArgumentException if <code>maxStepsWithoutImprovement</code> is &le; 0
      */
     public MaxStepsWithoutImprovement(long maxStepsWithoutImprovement){
         // check given step count

@@ -24,7 +24,7 @@ import org.junit.Before;
 /**
  * Test MinMaxObjective. The only thing being tested here is minimization/maximization settings.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class MinMaxObjectiveTest {
 

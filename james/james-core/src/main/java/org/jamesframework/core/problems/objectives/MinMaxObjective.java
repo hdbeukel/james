@@ -19,7 +19,7 @@ import org.jamesframework.core.problems.solutions.Solution;
 /**
  * Abstract objective that handles minimization/maximization settings. The default setting is maximization.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  * @param <SolutionType> solution type to be evaluated, required to extend {@link Solution}
  * @param <DataType> underlying data type
  */

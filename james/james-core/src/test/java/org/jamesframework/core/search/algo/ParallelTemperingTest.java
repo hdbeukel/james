@@ -27,7 +27,7 @@ import org.junit.Before;
 /**
  * Test parallel tempering algorithm.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class ParallelTemperingTest extends SearchTestTemplate {
 

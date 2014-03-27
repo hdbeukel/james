@@ -23,7 +23,7 @@ import org.jamesframework.core.problems.solutions.Solution;
  * minimization the penalty is added to the evaluation. When a solution satisfies the constraint, no
  * penalty (zero) should be assigned.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  * @param <SolutionType> solution type to which the constraint is applied, required to extend {@link Solution}
  * @param <DataType> underlying data type
  */
@@ -38,7 +38,7 @@ public interface PenalizingConstraint<SolutionType extends Solution, DataType> e
      * 
      * @param solution solution for which the penalty is computed
      * @param data underlying data
-     * @return penalty assigned to the solution (0.0 in case the solution satisfies the constraint, > 0.0 if not)
+     * @return penalty assigned to the solution (0.0 in case the solution satisfies the constraint, &gt; 0.0 if not)
      */
     public double computePenalty(SolutionType solution, DataType data);
     

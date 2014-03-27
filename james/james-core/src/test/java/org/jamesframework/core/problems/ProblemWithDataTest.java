@@ -35,12 +35,12 @@ import org.junit.Before;
  * Test general functionalities of ProblemWithData that do not actually rely on the specific data, using
  * objectives and constraints that ignore the data.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class ProblemWithDataTest {
 
     // problem stub to work with
-    private ProblemWithData problem;
+    private ProblemWithData<Solution, Object> problem;
     
     /**
      * Print message when starting tests.
@@ -163,9 +163,9 @@ public class ProblemWithDataTest {
         System.out.println(" - test removeRejectingConstraint");
         
         // create some constraints
-        Constraint<?,?> c0 = new AlwaysSatisfiedConstraintStub();
-        Constraint<?,?> c1 = new NeverSatisfiedConstraintStub();
-        Constraint<?,?> c2 = new AlwaysSatisfiedPenalizingConstraintStub();
+        Constraint<Solution,Object> c0 = new AlwaysSatisfiedConstraintStub();
+        Constraint<Solution,Object>c1 = new NeverSatisfiedConstraintStub();
+        Constraint<Solution,Object> c2 = new AlwaysSatisfiedPenalizingConstraintStub();
         
         
         // add constraint c0 and c1 as rejecting constraint
@@ -205,8 +205,8 @@ public class ProblemWithDataTest {
         System.out.println(" - test removePenalizingConstraint");
         
         // create some constraints
-        PenalizingConstraint<?,?> c0 = new AlwaysSatisfiedPenalizingConstraintStub();
-        PenalizingConstraint<?,?> c1 = new NeverSatisfiedPenalizingConstraintStub(123.0);
+        PenalizingConstraint<Solution,Object> c0 = new AlwaysSatisfiedPenalizingConstraintStub();
+        PenalizingConstraint<Solution,Object> c1 = new NeverSatisfiedPenalizingConstraintStub(123.0);
         
         
         // add constraint c0 as penalizing constraint
@@ -242,14 +242,14 @@ public class ProblemWithDataTest {
         assertFalse(problem.rejectSolution(sol));
         
         // add unsatisfiable rejecting constraint
-        Constraint<?,?> unsatisfiable = new NeverSatisfiedConstraintStub();
+        Constraint<Solution,Object> unsatisfiable = new NeverSatisfiedConstraintStub();
         problem.addRejectingConstraint(unsatisfiable);
         assertTrue(problem.rejectSolution(sol));
         // remove the constraint
         problem.removeRejectingConstraint(unsatisfiable);
         
         // same thing with unsatisfiable penalizing constraint
-        PenalizingConstraint<?,?> unsatisfiable2 = new NeverSatisfiedPenalizingConstraintStub(123.0);
+        PenalizingConstraint<Solution,Object> unsatisfiable2 = new NeverSatisfiedPenalizingConstraintStub(123.0);
         problem.addPenalizingConstraint(unsatisfiable2);
         assertFalse(problem.rejectSolution(sol));
         // remove the constraint
@@ -277,7 +277,7 @@ public class ProblemWithDataTest {
         assertTrue(problem.getViolatedConstraints(sol).isEmpty());
         
         // add unsatisfiable rejecting constraint
-        Constraint<?,?> unsatisfiable = new NeverSatisfiedConstraintStub();
+        Constraint<Solution,Object> unsatisfiable = new NeverSatisfiedConstraintStub();
         problem.addRejectingConstraint(unsatisfiable);
         assertEquals(1, problem.getViolatedConstraints(sol).size());
         assertTrue(problem.getViolatedConstraints(sol).contains(unsatisfiable));
@@ -285,7 +285,7 @@ public class ProblemWithDataTest {
         problem.removeRejectingConstraint(unsatisfiable);
         
         // same thing with unsatisfiable penalizing constraint
-        PenalizingConstraint<?,?> unsatisfiable2 = new NeverSatisfiedPenalizingConstraintStub(123.0);
+        PenalizingConstraint<Solution,Object> unsatisfiable2 = new NeverSatisfiedPenalizingConstraintStub(123.0);
         problem.addPenalizingConstraint(unsatisfiable2);
         assertEquals(1, problem.getViolatedConstraints(sol).size());
         assertTrue(problem.getViolatedConstraints(sol).contains(unsatisfiable2));
@@ -311,13 +311,13 @@ public class ProblemWithDataTest {
         assertEquals(fixedEval, problem.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
         
         // throw in a penalizing constraint that is always satisfied
-        PenalizingConstraint<?,?> c1 = new AlwaysSatisfiedPenalizingConstraintStub();
+        PenalizingConstraint<Solution,Object> c1 = new AlwaysSatisfiedPenalizingConstraintStub();
         problem.addPenalizingConstraint(c1);
         assertEquals(fixedEval, problem.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
         
         // add penalizing constraint which is never satisfied
         double c3penalty = 1234.0;
-        PenalizingConstraint<?,?> c3 = new NeverSatisfiedPenalizingConstraintStub(c3penalty);
+        PenalizingConstraint<Solution,Object> c3 = new NeverSatisfiedPenalizingConstraintStub(c3penalty);
         problem.addPenalizingConstraint(c3);
         assertEquals(fixedEval-c3penalty, problem.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
         
@@ -330,7 +330,7 @@ public class ProblemWithDataTest {
         
         // add another unsatisfiable penalizing constraint
         double c4penalty = 12345.0;
-        PenalizingConstraint<?,?> c4 = new NeverSatisfiedPenalizingConstraintStub(c4penalty);
+        PenalizingConstraint<Solution,Object> c4 = new NeverSatisfiedPenalizingConstraintStub(c4penalty);
         problem.addPenalizingConstraint(c4);
         assertEquals(fixedEval-c3penalty-c4penalty, problem.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
         

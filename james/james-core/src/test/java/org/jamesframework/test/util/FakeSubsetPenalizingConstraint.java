@@ -26,7 +26,7 @@ import org.jamesframework.core.problems.solutions.SubsetSolution;
  * the constraint corresponds to the number of score differences smaller than the desired minimum.
  * Used for testing only.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class FakeSubsetPenalizingConstraint extends FakeSubsetConstraint implements PenalizingConstraint<SubsetSolution, FakeSubsetData> {
 

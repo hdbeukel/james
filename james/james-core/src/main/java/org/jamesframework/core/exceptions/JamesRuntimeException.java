@@ -17,7 +17,7 @@ package org.jamesframework.core.exceptions;
 /**
  * Common super class of all runtime exceptions thrown by the James framework.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class JamesRuntimeException extends RuntimeException {
 

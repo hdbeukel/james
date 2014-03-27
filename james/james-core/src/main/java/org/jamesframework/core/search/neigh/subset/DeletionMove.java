@@ -22,7 +22,7 @@ import org.jamesframework.core.problems.solutions.SubsetSolution;
 /**
  * Simple subset move that removes a single ID from the current selection.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class DeletionMove implements SubsetMove {
     
@@ -33,7 +33,7 @@ public class DeletionMove implements SubsetMove {
      * Create a new deletion move, specifying the ID that will be removed from the selection
      * when this moves is applied to a given subset solution.
      * 
-     * @param delete 
+     * @param delete ID to be removed from the selection
      */
     public DeletionMove(int delete){
         this.delete = delete;

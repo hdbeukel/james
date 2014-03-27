@@ -24,7 +24,7 @@ import org.jamesframework.core.search.Search;
  * improvement is still above the required minimum and no more improvements are found
  * from that point in time.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class MinDelta implements StopCriterion {
 
@@ -36,8 +36,8 @@ public class MinDelta implements StopCriterion {
      * finding a new best solution during a search run. The given minimum
      * delta should be strictly positive.
      * 
-     * @param minDelta minimum evaluation delta (> 0.0)
-     * @throws IllegalArgumentException if <code>minDelta</code> is not > 0.0
+     * @param minDelta minimum evaluation delta (&gt; 0.0)
+     * @throws IllegalArgumentException if <code>minDelta</code> is not &gt; 0.0
      */
     public MinDelta(double minDelta){
         // check value

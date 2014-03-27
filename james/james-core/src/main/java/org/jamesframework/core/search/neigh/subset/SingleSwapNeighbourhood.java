@@ -29,7 +29,7 @@ import org.jamesframework.core.util.SetUtilities;
  * suited for fixed size subset selection problems. If desired, a set of fixed IDs can be provided which are not allowed to be
  * swapped.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class SingleSwapNeighbourhood implements Neighbourhood<SubsetSolution> {
 

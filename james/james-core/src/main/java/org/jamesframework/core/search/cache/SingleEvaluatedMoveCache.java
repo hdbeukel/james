@@ -24,7 +24,7 @@ import org.jamesframework.core.search.neigh.Move;
  * single move cache can be used to appropriately cache the validity and evaluation of this candidate move,
  * with minor memory overhead.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class SingleEvaluatedMoveCache implements EvaluatedMoveCache {
     

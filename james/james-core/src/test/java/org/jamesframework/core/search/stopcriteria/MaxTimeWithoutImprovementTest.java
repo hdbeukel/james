@@ -30,7 +30,7 @@ import org.junit.Test;
 /**
  * Test maximum time without improvement stop criterion.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class MaxTimeWithoutImprovementTest extends SearchTestTemplate {
 

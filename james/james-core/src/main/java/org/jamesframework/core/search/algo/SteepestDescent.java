@@ -27,7 +27,7 @@ import org.jamesframework.core.search.neigh.Neighbourhood;
  * If the best neighbour is no improvement over the current solution, the search stops.
  * 
  * @param <SolutionType> solution type of the problems that may be solved using this search, required to extend {@link Solution}
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class SteepestDescent<SolutionType extends Solution> extends SingleNeighbourhoodSearch<SolutionType> {
 

@@ -37,7 +37,7 @@ import org.jamesframework.core.search.neigh.Move;
  * to override {@link Object#equals(Object)} and {@link Object#hashCode()} in the moves generated
  * by the applied neighbourhood, to increase the number of cache hits.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public interface EvaluatedMoveCache {
 

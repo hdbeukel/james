@@ -30,7 +30,7 @@ package org.jamesframework.core.util;
 /**
  * Global container defining constants used across the framework.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class JamesConstants {
 

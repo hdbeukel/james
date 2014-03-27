@@ -19,7 +19,7 @@ import org.jamesframework.core.search.Search;
 /**
  * Stop criterion that limits the number of steps of a search run.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class MaxSteps implements StopCriterion {
 
@@ -31,7 +31,7 @@ public class MaxSteps implements StopCriterion {
      * The maximum number of steps should be strictly positive.
      * 
      * @param maxSteps maximum number of steps
-     * @throws IllegalArgumentException if <code>maxSteps</code> is <= 0
+     * @throws IllegalArgumentException if <code>maxSteps</code> is &le; 0
      */
     public MaxSteps(long maxSteps){
         // check max steps

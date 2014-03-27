@@ -23,7 +23,7 @@ import org.jamesframework.core.problems.solutions.SubsetSolution;
  * Simple subset move that removes a single ID from the current selection
  * and replaces it with a new ID which was previously not selected.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class SwapMove implements SubsetMove{
 

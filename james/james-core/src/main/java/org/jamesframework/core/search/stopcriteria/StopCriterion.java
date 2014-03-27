@@ -22,7 +22,7 @@ import org.jamesframework.core.search.Search;
  * A specific stop criterion might be applicable to a certain search type only. When trying to use it for an incompatible
  * search, an {@link IncompatibleStopCriterionException} may be thrown.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public interface StopCriterion {
 

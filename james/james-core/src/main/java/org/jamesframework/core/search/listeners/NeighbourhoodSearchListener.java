@@ -25,7 +25,7 @@ import org.jamesframework.core.search.NeighbourhoodSearch;
  * adopted, in addition to the general callbacks from {@link SearchListener}.
  * 
  * @param <SolutionType> solution type of the search to which the listener may be attached, required to extend {@link Solution} 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public interface NeighbourhoodSearchListener<SolutionType extends Solution> extends SearchListener<SolutionType> {
 

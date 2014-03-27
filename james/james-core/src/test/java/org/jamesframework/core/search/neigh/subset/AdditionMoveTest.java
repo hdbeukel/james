@@ -30,7 +30,7 @@ import org.junit.Before;
 /**
  * Test AdditionMove (subset move).
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class AdditionMoveTest {
 
@@ -164,7 +164,7 @@ public class AdditionMoveTest {
         
         System.out.println(" - test apply");
         
-        Move move;
+        Move<SubsetSolution> move;
         boolean thrown;
         
         // try to add non existing ID
@@ -215,7 +215,7 @@ public class AdditionMoveTest {
         sol.selectAll(SetUtilities.getRandomSubset(sol.getUnselectedIDs(), (int) (0.5*sol.getNumUnselectedIDs()), RG));
         
         // randomly apply moves and undo them
-        Move move;
+        Move<SubsetSolution> move;
         SubsetSolution copy;
         for(int i=0; i<100; i++){
             // random move

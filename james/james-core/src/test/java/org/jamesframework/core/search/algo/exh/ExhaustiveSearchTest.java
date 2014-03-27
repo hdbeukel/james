@@ -31,7 +31,7 @@ import org.junit.Before;
 /**
  * Test exhaustive search algorithm.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class ExhaustiveSearchTest extends SearchTestTemplate {
 
@@ -107,7 +107,7 @@ public class ExhaustiveSearchTest extends SearchTestTemplate {
         // create small problem components
         dataSmall = new FakeSubsetData(scoresSmall);
         objSmall = new FakeSubsetObjectiveWithData();
-        problemSmall = new SubsetProblemWithData(objSmall, dataSmall, SUBSET_SIZE_SMALL);
+        problemSmall = new SubsetProblemWithData<>(objSmall, dataSmall, SUBSET_SIZE_SMALL);
         // create solution iterators
         solutionIterator = new SubsetSolutionIterator(data.getIDs(), SUBSET_SIZE);
         solutionIteratorSmall = new SubsetSolutionIterator(dataSmall.getIDs(), SUBSET_SIZE_SMALL);

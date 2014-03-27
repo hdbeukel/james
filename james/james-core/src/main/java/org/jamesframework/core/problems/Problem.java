@@ -21,7 +21,7 @@ import org.jamesframework.core.problems.solutions.Solution;
  *  to evaluate a solution, to compare solutions based on their evaluation,
  *  and to create random solutions or to copy a solution.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  * @param <SolutionType> the solution type that corresponds to this problem, required to extend {@link Solution}
  */
 public interface Problem<SolutionType extends Solution> {

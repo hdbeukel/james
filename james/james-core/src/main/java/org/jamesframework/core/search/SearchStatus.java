@@ -17,7 +17,7 @@ package org.jamesframework.core.search;
 /**
  * Enumeration of possible search statuses.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public enum SearchStatus {
     

@@ -26,7 +26,7 @@ import org.jamesframework.core.search.Search;
  * may be thrown.
  * 
  * @param <SolutionType> solution type of the search to which the listener may be attached, required to extend {@link Solution}
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public interface SearchListener<SolutionType extends Solution> {
     

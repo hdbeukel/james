@@ -22,7 +22,7 @@ import org.jamesframework.core.problems.solutions.Solution;
  * Search stub that samples a random solution in every step for comparison with the best known solution.
  * Used for testing only.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class RandomSearchWithInternalMaxSteps<SolutionType extends Solution> extends RandomSearch<SolutionType> {
     

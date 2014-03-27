@@ -20,7 +20,7 @@ import org.jamesframework.core.problems.solutions.Solution;
 /**
  * Constraint stub which is satisfied for any solution. Data is ignored. Only used for testing.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class AlwaysSatisfiedConstraintStub implements Constraint<Solution, Object>{
 

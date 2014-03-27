@@ -26,7 +26,7 @@ import org.jamesframework.core.exceptions.SolutionModificationException;
  * which are each assumed to be uniquely identified using an integer ID, so that a generic subset solution can be modeled
  * using these IDs only, independently of the actual corresponding entities.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class SubsetSolution extends Solution {
     

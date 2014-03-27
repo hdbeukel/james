@@ -21,7 +21,7 @@ import org.jamesframework.core.problems.datatypes.SubsetData;
 /**
  * Fake subset data that assigns a score to every ID. Used for testing only.
  * 
- * @author Herman De Beukelaer <herman.debeukelaer@ugent.be>
+ * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class FakeSubsetData implements SubsetData {
 
