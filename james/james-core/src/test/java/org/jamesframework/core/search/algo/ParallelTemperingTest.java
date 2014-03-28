@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.search.SearchTestTemplate;
 import org.jamesframework.test.util.NeverSatisfiedConstraintStub;
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -77,6 +78,12 @@ public class ParallelTemperingTest extends SearchTestTemplate {
         search = new ParallelTempering<>(problem, neigh, numReplicas, MIN_TEMP, MAX_TEMP);
         // set temperature scale
         search.setTemperatureScaleFactor(scale);
+    }
+    
+    @After
+    public void tearDown(){
+        // dispose search
+        search.dispose();
     }
 
     /**

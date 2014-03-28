@@ -21,6 +21,7 @@ import org.jamesframework.core.util.JamesConstants;
 import org.jamesframework.test.util.DoubleComparatorWithPrecision;
 import org.jamesframework.test.util.RandomSearchWithInternalMaxSteps;
 import org.jamesframework.test.util.TestConstants;
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -63,6 +64,12 @@ public class SearchTest extends SearchTestTemplate {
         super.setUp();
         // create random search with internal max steps
         search = new RandomSearchWithInternalMaxSteps<>(problem, NUM_STEPS);
+    }
+    
+    @After
+    public void tearDown(){
+        // dispose search
+        search.dispose();
     }
 
     /**

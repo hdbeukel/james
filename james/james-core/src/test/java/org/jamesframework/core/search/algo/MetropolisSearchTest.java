@@ -21,6 +21,7 @@ import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.SearchTestTemplate;
 import org.jamesframework.core.search.listeners.EmptyNeighbourhoodSearchListener;
 import org.jamesframework.test.util.NeverSatisfiedConstraintStub;
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -78,6 +79,14 @@ public class MetropolisSearchTest extends SearchTestTemplate {
         searchLowTemp = new MetropolisSearch<>(problem, neigh, LOW_TEMP);
         searchMedTemp = new MetropolisSearch<>(problem, neigh, MED_TEMP);
         searchHighTemp = new MetropolisSearch<>(problem, neigh, HIGH_TEMP);
+    }
+    
+    @After
+    public void tearDown(){
+        // dispose searches
+        searchLowTemp.dispose();
+        searchMedTemp.dispose();
+        searchHighTemp.dispose();
     }
 
     /**

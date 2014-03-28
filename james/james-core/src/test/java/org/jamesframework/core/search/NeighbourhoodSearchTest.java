@@ -28,6 +28,7 @@ import org.jamesframework.core.util.SetUtilities;
 import org.jamesframework.test.util.DoubleComparatorWithPrecision;
 import org.jamesframework.test.util.NeverSatisfiedConstraintStub;
 import org.jamesframework.test.util.TestConstants;
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -71,6 +72,12 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
         // for this test, a variable size subset problem is used (+/- 1 allowed)
         problem = new SubsetProblemWithData<>(obj, data, SUBSET_SIZE-1, SUBSET_SIZE+1);
         neighSearch = new NeighbourhoodSearchStub<>(problem);
+    }
+    
+    @After
+    public void tearDown(){
+        // dispose search
+        neighSearch.dispose();
     }
 
     /**

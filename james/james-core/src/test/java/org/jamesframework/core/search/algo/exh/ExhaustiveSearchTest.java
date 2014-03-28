@@ -22,6 +22,7 @@ import org.jamesframework.core.search.SearchTestTemplate;
 import org.jamesframework.test.util.FakeSubsetData;
 import org.jamesframework.test.util.FakeSubsetObjectiveWithData;
 import org.jamesframework.test.util.NeverSatisfiedConstraintStub;
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -114,6 +115,13 @@ public class ExhaustiveSearchTest extends SearchTestTemplate {
         // create exhaustive searches
         search = new ExhaustiveSearch<>(problem, solutionIterator);
         searchSmall = new ExhaustiveSearch<>(problemSmall, solutionIteratorSmall);
+    }
+    
+    @After
+    public void tearDown(){
+        // dispose searches
+        search.dispose();
+        searchSmall.dispose();
     }
 
     /**

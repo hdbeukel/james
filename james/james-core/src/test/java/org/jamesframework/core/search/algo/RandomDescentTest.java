@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.search.SearchTestTemplate;
 import org.jamesframework.test.util.NeverSatisfiedConstraintStub;
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -66,6 +67,12 @@ public class RandomDescentTest extends SearchTestTemplate {
         super.setUp();
         // create random descent
         search = new RandomDescent<>(problem, neigh);
+    }
+    
+    @After
+    public void tearDown(){
+        // dispose search
+        search.dispose();
     }
 
     /**
