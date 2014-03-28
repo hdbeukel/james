@@ -52,8 +52,12 @@ public class StopCriterionChecker {
         }
     });
     
-    // future of running scheduled task, null if not running
-    private ScheduledFuture runningTask;
+    // currently scheduled check task, null if not running
+    private StopCriterionCheckTask runningTask;
+    // future of running check task, null if not running
+    private ScheduledFuture<?> runningTaskFuture;
+    // lock used for synchronization with running task updates
+    private final Object runningTaskLock = new Object();
     
     // logger
     private static final Logger logger = LoggerFactory.getLogger(StopCriterionChecker.class);
@@ -121,16 +125,20 @@ public class StopCriterionChecker {
      * Start checking the stop criteria, in a separate background thread. If the stop criterion checker is already active,
      * or if no stop criteria have been added, calling this method does not have any effect.
      */
-    public synchronized void startChecking() {
-        // check if not active and some stop criteria were added
-        if (runningTask == null && !stopCriteria.isEmpty()) {
-            // schedule periodical check (starting without any delay)
-            runningTask = scheduler.scheduleWithFixedDelay(new StopCriterionCheckTask(), 0, period, periodTimeUnit);
-            // log
-            logger.info("Stop criterion checker for search {} activated", search);
-        } else {
-            // issue a warning
-            logger.warn("Attempted to activate already active stop criterion checker for search {}", search);
+    public void startChecking() {
+        // synchronize with other attempts to update the running task
+        synchronized(runningTaskLock){
+            // check if not active and some stop criteria were added
+            if (runningTask == null && !stopCriteria.isEmpty()) {
+                // schedule periodical check (starting without any delay)
+                runningTask = new StopCriterionCheckTask();
+                runningTaskFuture = scheduler.scheduleWithFixedDelay(runningTask, 0, period, periodTimeUnit);
+                // log
+                logger.info("Stop criterion checker for search {} activated", search);
+            } else {
+                // issue a warning
+                logger.warn("Attempted to activate already active stop criterion checker for search {}", search);
+            }
         }
     }
 
@@ -138,14 +146,18 @@ public class StopCriterionChecker {
      * Instructs the stop criterion checker to stop checking. In case the checker is not active,
      * calling this method does not have any effect.
      */
-    public synchronized void stopChecking() {
-        if (runningTask != null) {
-            // cancel task (let it complete its current run if running)
-            runningTask.cancel(false);
-            // log
-            logger.info("Stop criterion checker for search {} deactivated", search);
-            // discard task
-            runningTask = null;
+    public void stopChecking() {
+        // synchronize with other attempts to update the running task
+        synchronized(runningTaskLock){
+            if (runningTask != null) {
+                // cancel task (let it complete its current run if running)
+                runningTaskFuture.cancel(false);
+                // log
+                logger.info("Stop criterion checker for search {} deactivated", search);
+                // discard task
+                runningTask = null;
+                runningTaskFuture = null;
+            }
         }
     }
 
@@ -162,6 +174,10 @@ public class StopCriterionChecker {
          */
         @Override
         public void run() {
+            
+            // log
+            logger.debug("Checking stop criteria for search {}", search);
+            
             boolean stopSearch = false;
             int i = 0;
             // check every stop criterion, until one is found to be satisfied or all have been checked
@@ -177,18 +193,37 @@ public class StopCriterionChecker {
                     }
                 }
                 i++;
-            }
-            // request the search to stop if a stop condition is met
-            if (stopSearch) {
-                // stop checking
-                // IMPORTANT: called BEFORE requesting the search to stop, to ensure that the search does
-                //            not restart before stopChecking() is executed here, else the checker for the next
-                //            run might be prematurely terminated
-                stopChecking();
-                // stop the search
-                search.stop();
-                // log
-                logger.info("Stop criterion checker requested search {} to stop", search);
+            }            
+            
+            // if a stop criterion is satisfied, the search is requested to stop, but ONLY IF this task
+            // is still running: it might have been cancelled during its current run, in which case no
+            // actions should be taken anymore (stopping the search could be dangerous because a next
+            // search run might have been initiated in the meantime)
+            
+            // synchronize on running task updates to ensure that this task
+            // is not cancelled while executing the following code block
+            synchronized(runningTaskLock){
+                if (runningTask == this) {
+                    if(stopSearch){
+                        // stop checking
+                        stopChecking();
+                        // log
+                        logger.info("Requesting search {} to stop", search);
+                        // stop the search
+                        search.stop();
+                    } else {
+                        // log
+                        logger.debug("Search {} may continue", search);
+                    }
+                } else {
+                    if(logger.isDebugEnabled()){
+                        // log
+                        logger.debug("Aborting cancelled stop criterion check task @{} for search {} (currently scheduled task: @{})",
+                                            Integer.toHexString(this.hashCode()),
+                                            search,
+                                            Integer.toHexString(runningTask.hashCode()));
+                    }
+                }
             }
         }
 
