@@ -28,7 +28,6 @@ import org.jamesframework.core.exceptions.SearchException;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.solutions.Solution;
 import org.jamesframework.core.search.Search;
-import org.jamesframework.core.search.SearchStatus;
 import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.search.stopcriteria.MaxSteps;
@@ -333,6 +332,20 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
         }
         // flip swap base
         swapBase = 1 - swapBase;
+    }
+    
+    /**
+     * When disposing a parallel tempering search, it will dispose each contained Metropolis replica and will
+     * shut down the thread pool used for concurrent execution of replicas during search.
+     */
+    @Override
+    protected void searchDisposed(){
+        // dispose replicas
+        for(MetropolisSearch<SolutionType> r : replicas){
+            r.dispose();
+        }
+        // shut down thread pool
+        pool.shutdown();
     }
 
     /*******************************/
