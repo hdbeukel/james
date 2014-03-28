@@ -39,6 +39,13 @@ public enum SearchStatus {
     /**
      * Search is terminating its current run.
      */
-    TERMINATING;
+    TERMINATING,
+    
+    /**
+     * Search has been disposed and may not be (re)started.
+     * All resources have been released.
+     */
+    DISPOSED;
+    ;
 
 }

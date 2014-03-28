@@ -177,10 +177,8 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
     public void setReplicaSteps(int steps){
         // synchronize with status updates
         synchronized(getStatusLock()){
-            // check status
-            if(!getStatus().equals(SearchStatus.IDLE)){
-                throw new SearchException("Unable to change number of replica steps in parallel tempering: search is not idle.");
-            }
+            // assert idle
+            assertIdle("Cannot change number of replica steps in parallel tempering.");
             // check number of steps
             if(steps <= 0){
                 throw new IllegalArgumentException("Number of replica steps in parallel tempering should be strictly positive.");
@@ -221,10 +219,8 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
     public void setTemperatureScaleFactor(double scale){
         // synchronize with status updates
         synchronized(getStatusLock()){
-            // check if idle
-            if(!getStatus().equals(SearchStatus.IDLE)){
-                throw new SearchException("Error while setting temperature scale factor in parallel tempering algorithm: search is not idle.");
-            }
+            // assert idle
+            assertIdle("Cannot set temperature scale factor in parallel tempering.");
             // update scale factor in every replica
             for(MetropolisSearch<SolutionType> r : replicas){
                 r.setTemperatureScaleFactor(scale);
@@ -243,10 +239,8 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
     public void setNeighbourhood(Neighbourhood<? super SolutionType> neighbourhood){
         // synchronize with status updates
         synchronized(getStatusLock()){
-            // check if idle
-            if(!getStatus().equals(SearchStatus.IDLE)){
-                throw new SearchException("Error while setting neighbourhood in parallel tempering algorithm: search is not idle.");
-            }
+            // assert idle
+            assertIdle("Cannot set neighbourhood in parallel tempering.");
             // set neighbourhood in every replica
             for(MetropolisSearch<SolutionType> r : replicas){
                 r.setNeighbourhood(neighbourhood);
@@ -265,10 +259,8 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
     public void setCurrentSolution(SolutionType solution){
         // synchronize with status updates
         synchronized(getStatusLock()){
-            // check if idle
-            if(!getStatus().equals(SearchStatus.IDLE)){
-                throw new SearchException("Error while setting current solution in parallel tempering algorithm: search is not idle.");
-            }
+            // assert idle
+            assertIdle("Cannot set current solution in parallel tempering.");
             // set current solution in every replica
             for(MetropolisSearch<SolutionType> r : replicas){
                 r.setCurrentSolution(solution);

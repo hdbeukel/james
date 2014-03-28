@@ -87,13 +87,11 @@ public abstract class SingleNeighbourhoodSearch<SolutionType extends Solution> e
     public void setNeighbourhood(Neighbourhood<? super SolutionType> neighbourhood){
         // synchronize with status updates
         synchronized(getStatusLock()){
-            // check: search idle
-            if(getStatus() != SearchStatus.IDLE){
-                throw new SearchException("Can not set neighbourhood: search not idle.");
-            }
+            // assert idle
+            assertIdle("Cannot set neighbourhood.");
             // check not null
             if(neighbourhood == null){
-                throw new NullPointerException("Can not set neighbourhood: received null.");
+                throw new NullPointerException("Cannot set neighbourhood: received null.");
             }
             // go ahead
             this.neighbourhood = neighbourhood;

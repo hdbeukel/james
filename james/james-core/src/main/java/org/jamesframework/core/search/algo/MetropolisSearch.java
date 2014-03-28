@@ -101,10 +101,8 @@ public class MetropolisSearch<SolutionType extends Solution> extends SingleNeigh
     public void setTemperature(double temperature){
         // synchronize with status updates
         synchronized(getStatusLock()){
-            // check if idle
-            if(!getStatus().equals(SearchStatus.IDLE)){
-                throw new SearchException("Error while setting temperature of Metropolis search: search is not idle.");
-            }
+            // assert
+            assertIdle("Cannot set temperature of Metropolis search.");
             // check temperature
             if(temperature <= 0.0){
                 throw new IllegalArgumentException("Temperature of Metropolis search should be strictly positive.");
@@ -134,10 +132,8 @@ public class MetropolisSearch<SolutionType extends Solution> extends SingleNeigh
     public void setTemperatureScaleFactor(double scale){
         // synchronize with status updates
         synchronized(getStatusLock()){
-            // check if idle
-            if(!getStatus().equals(SearchStatus.IDLE)){
-                throw new SearchException("Error while setting temperature scale factor of Metropolis search: search is not idle.");
-            }
+            // assert idle
+            assertIdle("Cannot set temperature scale factor of Metropolis search.");
             // check scale
             if(scale <= 0.0){
                 throw new IllegalArgumentException("Temperature scale factor of Metropolis search should be strictly positive.");

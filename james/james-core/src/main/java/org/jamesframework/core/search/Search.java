@@ -36,17 +36,17 @@ import org.slf4j.LoggerFactory;
  * runtime of the current run. It also provides methods to add and remove search listeners and stop criteria.
  * </p>
  * <p>
- * A search can have four possible statuses: IDLE, INITIALIZING, RUNNING or TERMINATING (see {@link SearchStatus}). When
- * a search is created, it is IDLE. Upon calling {@link #start()} it first goes to INITIALIZING and then RUNNING, after
- * successful initialization. While the search is running, it iteratively calls {@link #searchStep()} as defined in each
- * specific search implementation.
+ * A search can have five possible statuses: IDLE, INITIALIZING, RUNNING, TERMINATING or DISPOSED (see {@link SearchStatus}).
+ * When a search is created, it is IDLE. Upon calling {@link #start()} it first goes to INITIALIZING and then RUNNING, after
+ * successful initialization. While the search is running, it iteratively calls {@link #searchStep()} to perform a search step
+ * as defined in each specific search implementation.
  * </p>
  * <p>
  * Whenever a search is requested to stop, by calling {@link #stop()}, it goes to status TERMINATING. A terminating
- * search will stop after it has completed its current step, and then its status goes back to IDLE. A search may also
- * terminate itself by calling {@link #stop()} internally, when it has come to its natural end. In particular, a
- * single step algorithm can be implemented by calling {@link #stop()} immediately at the end of this first and
- * only step.
+ * search will stop after it has completed its current step, and then its status goes back to status IDLE. A search
+ * may also terminate itself by calling {@link #stop()} internally, when it has come to its natural end. In particular,
+ * a single step algorithm can be implemented by calling {@link #stop()} immediately at the end of this first and
+ * only step, which guarantees that only one single step will be executed.
  * </p>
  * <p>
  * An idle search may be restarted at any time. The search state is retained across subsequent runs, including the best
@@ -63,6 +63,11 @@ import org.slf4j.LoggerFactory;
  * <p>
  * This might also be the case for additional metadata in specific searches, which should be clearly indicated in their
  * documentation. Note that stop criteria relying on such metadata will operate on a per-run basis.
+ * </p>
+ * <p>
+ * An idle search can also be disposed (see {@link #dispose()}), upon which it will release all of its resources. A disposed
+ * search can never be restarted. Note that it is important to always dispose a search after its last run so that it does not
+ * hold on to any of its resources. Not disposing a search may prevent termination of the application.
  * </p>
  * 
  * @param <SolutionType> solution type of the problems that may be solved using this search, required to extend {@link Solution}
@@ -276,9 +281,7 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
         // acquire status lock
         synchronized(statusLock) {
             // verify that search is idle
-            if(status != SearchStatus.IDLE){
-                throw new SearchException("Error when trying to start search: search is not idle.");
-            }
+            assertIdle("Cannot start search.");
             // log
             logger.trace("Search {} changed status: {} --> {}", this, status, SearchStatus.INITIALIZING);
             // set status to INITIALIZING
@@ -369,6 +372,27 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
         }
     }
     
+    /**
+     * Dispose this search, upon which all of its resources are released. Note that only idle
+     * searches may be disposed and that a disposed search can never be restarted. Sets the search
+     * status to DISPOSED.
+     * 
+     * @throws SearchException if the search is currently not idle
+     */
+    public void dispose(){
+        // acquire status lock
+        synchronized(statusLock){
+            // assert idle
+            assertIdle("Cannot dispose search.");
+            // all good, handle disposed
+            searchDisposed();
+            // log
+            logger.trace("Search {} changed status: {} --> {}", this, status, SearchStatus.DISPOSED);
+            // update status
+            status = SearchStatus.DISPOSED;
+        }
+    }
+    
     /***************************/
     /* RUNNABLE IMPLEMENTATION */
     /***************************/
@@ -398,10 +422,8 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
     public void addStopCriterion(StopCriterion stopCriterion){
         // acquire status lock
         synchronized(statusLock){
-            // check status
-            if(status != SearchStatus.IDLE){
-                throw new SearchException("Cannot add stop criterion: search not idle.");
-            }
+            // assert idle
+            assertIdle("Cannot add stop criterion.");
             // check compatibility by performing a dummy call
             try {
                 stopCriterion.searchShouldStop(this);
@@ -427,10 +449,8 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
     public boolean removeStopCriterion(StopCriterion stopCriterion){
         // acquire status lock
         synchronized(statusLock){
-            // check status
-            if(status != SearchStatus.IDLE){
-                throw new SearchException("Cannot remove stop criterion: search not idle.");
-            }
+            // assert idle
+            assertIdle("Cannot remove stop criterion.");
             // remove from checker
             if (stopCriterionChecker.remove(stopCriterion)){
                 // log
@@ -456,10 +476,8 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
     public void setStopCriterionCheckPeriod(long period, TimeUnit timeUnit){
         // acquire status lock
         synchronized(statusLock){
-            // check status
-            if(status != SearchStatus.IDLE){
-                throw new SearchException("Cannot change stop criterion check period: search not idle.");
-            }
+            // assert idle
+            assertIdle("Cannot modify stop criterion check period.");
             // pass new settings to checker
             stopCriterionChecker.setPeriod(period, timeUnit);
             // log
@@ -477,10 +495,8 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
     public void addSearchListener(SearchListener<? super SolutionType> listener){
         // acquire status lock
         synchronized(statusLock){
-            // check status
-            if(status != SearchStatus.IDLE){
-                throw new SearchException("Cannot add search listener: search not idle.");
-            }
+            // assert idle
+            assertIdle("Cannot add search listener.");
             // add listener
             searchListeners.add(listener);
             // log
@@ -499,10 +515,8 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
     public boolean removeSearchListener(SearchListener<? super SolutionType> listener){
         // acquire status lock
         synchronized(statusLock){
-            // check status
-            if(status != SearchStatus.IDLE){
-                throw new SearchException("Cannot remove search listener: search not idle.");
-            }
+            // assert idle
+            assertIdle("Cannot remove search listener.");
             // remove listener
             if (searchListeners.remove(listener)){
                 // log
@@ -568,12 +582,12 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
     /*****************/
 
     /**
-     * Get the current search status. The status may either be IDLE, RUNNING or TERMINATING.
+     * Get the current search status. The status may be IDLE, INITIALIZING, RUNNING, TERMINATING or DISPOSED.
      * 
      * @return current search status
      */
     public SearchStatus getStatus(){
-        // acquire status lock
+        // synchronize with status updates
         synchronized(statusLock){
             return status;
         }
@@ -588,6 +602,24 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
      */
     protected Object getStatusLock(){
         return statusLock;
+    }
+    
+    /**
+     * Asserts that the search is currently idle, more precisely that its status is equal to {@link SearchStatus#IDLE}.
+     * If not, a {@link SearchException} is thrown, which includes the given <code>errorMessage</code> and the current
+     * search status (different from IDLE).
+     * 
+     * @throws SearchException if the search is not idle
+     * @param errorMessage message to be included in the {@link SearchException} thrown if the search is not idle
+     */
+    protected void assertIdle(String errorMessage){
+        // synchronize with status updates
+        synchronized(statusLock){
+            if(status != SearchStatus.IDLE){
+                // not idle, throw exception
+                throw new SearchException(errorMessage + " (current status: " + status  + "; required: IDLE)");
+            }
+        }
     }
     
     /******************************************/
@@ -725,8 +757,8 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
      *   the current run was started.
      *  </li>
      *  <li>
-     *   If the search is IDLE, the total runtime of the last run is returned, if any. Before the first run,
-     *   {@link JamesConstants#INVALID_TIME_SPAN} is returned.
+     *   If the search is IDLE or DISPOSED, the total runtime of the last run is returned, if any. Before
+     *   the first run, {@link JamesConstants#INVALID_TIME_SPAN} is returned.
      *  </li>
      *  <li>
      *   While INITIALIZING the current run, {@link JamesConstants#INVALID_TIME_SPAN} is returned.
@@ -744,8 +776,8 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
             if(status == SearchStatus.INITIALIZING){
                 // initializing
                 return JamesConstants.INVALID_TIME_SPAN;
-            } else if (status == SearchStatus.IDLE){
-                // idle: check if ran before
+            } else if (status == SearchStatus.IDLE || status == SearchStatus.DISPOSED){
+                // idle or disposed: check if ran before
                 if(stopTime == JamesConstants.INVALID_TIMESTAMP){
                     // did not run before
                     return JamesConstants.INVALID_TIME_SPAN;
@@ -771,8 +803,8 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
      *   since the current run was started.
      *  </li>
      *  <li>
-     *   If the search is IDLE, the total number of steps completed during the last run is returned, if any.
-     *   Before the first run, {@link JamesConstants#INVALID_STEP_COUNT}.
+     *   If the search is IDLE or DISPOSED, the total number of steps completed during the last run is returned,
+     *   if any. Before the first run, {@link JamesConstants#INVALID_STEP_COUNT}.
      *  </li>
      *  <li>
      *   While INITIALIZING the current run, {@link JamesConstants#INVALID_STEP_COUNT} is returned.
@@ -792,7 +824,7 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
                 // initializing
                 return JamesConstants.INVALID_STEP_COUNT;
             } else {
-                // idle, running or terminating
+                // idle, running, terminating or disposed
                 return currentSteps;
             }
         }
@@ -810,8 +842,8 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
      *   improvement during the current run.
      *  </li>
      *  <li>
-     *   If the search is IDLE, but has been run before, the time without improvement observed during the last run,
-     *   up to the point when this run completed, is returned. Before the first run, the return value is
+     *   If the search is IDLE or DISPOSED, but has been run before, the time without improvement observed during the
+     *   last run, up to the point when this run completed, is returned. Before the first run, the return value is
      *   {@link JamesConstants#INVALID_TIME_SPAN}.
      *  </li>
      *  <li>
@@ -832,14 +864,14 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
                 // initializing
                 return JamesConstants.INVALID_TIME_SPAN;
             } else {
-                // idle, running or terminating: check last improvement time
+                // idle, running, terminating or disposed: check last improvement time
                 if(lastImprovementTime == JamesConstants.INVALID_TIMESTAMP){
-                    // no improvement made during current/last run, or not yet run: equal to total runtime
+                    // no improvement made during current/last run, or did not yet run: equal to total runtime
                     return getRuntime();
                 } else {
                     // running or ran before, and improvement made during current/last run
-                    if(status == SearchStatus.IDLE){
-                        // idle: return last time without improvement of previous run
+                    if(status == SearchStatus.IDLE || status == SearchStatus.DISPOSED){
+                        // idle or disposed: return last time without improvement of previous run
                         return stopTime - lastImprovementTime;
                     } else {
                         // running or terminating: return time elapsed since last improvement
@@ -862,9 +894,9 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
      *   of steps completed since the last improvement during the current run.
      *  </li>
      *  <li>
-     *   If the search is IDLE, but has been run before, the number of steps without improvement observed during the
-     *   last run, up to the point when this run completed, is returned. Before the first run, the return value is
-     *   {@link JamesConstants#INVALID_STEP_COUNT}.
+     *   If the search is IDLE or DISPOSED, but has been run before, the number of steps without improvement observed
+     *   during the last run, up to the point when this run completed, is returned. Before the first run, the return
+     *   value is {@link JamesConstants#INVALID_STEP_COUNT}.
      *  </li>
      *  <li>
      *   While INITIALIZING the current run, {@link JamesConstants#INVALID_STEP_COUNT} is returned.
@@ -907,7 +939,7 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
      *   made during the current run is returned.
      *  </li>
      *  <li>
-     *   If the search is IDLE, but has been run before, the minimum delta observed during the last run is returned.
+     *   If the search is IDLE or DISPOSED, but has been run before, the minimum delta observed during the last run is returned.
      *   Before the first run, the return value is {@link JamesConstants#INVALID_DELTA}.
      *  </li>
      *  <li>
@@ -985,10 +1017,10 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
     protected Problem<SolutionType> getProblem(){
         return problem;
     }
-    
-    /***********************************************************************/
-    /* PROTECTED METHODS FOR INITIALIZATION AND FINILIZATION OF SEARCH RUN */
-    /***********************************************************************/
+        
+    /*********************************************************************/
+    /* PROTECTED METHODS TO INITIALIZE, FINALIZE AND DISPOSE THE SEARCH  */
+    /*********************************************************************/
     
     /**
      * This method is called when a search run is started, to perform initialization and/or validation of the search
@@ -1023,6 +1055,17 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
     protected void searchStopped() {
         stopTime = System.currentTimeMillis();
     }
+    
+    /**
+     * This method is called when a search is disposed, immediately before the search status is updated to DISPOSED.
+     * The default implementation is empty but should be overridden when a specific search uses resources that have to
+     * be released (e.g. an active thread pool) when the search is no longer used. Any {@link JamesRuntimeException} may
+     * be thrown when trying to release malfunctioning resources.
+     * 
+     * @throws JamesRuntimeException in general, any {@link JamesRuntimeException} may be thrown
+     *                               when trying to release malfunctioning resources
+     */
+    protected void searchDisposed(){}
     
     /************************************************************************/
     /* ABSTRACT PROTECTED METHOD TO BE IMPLEMENTED IN EVERY SPECIFIC SEARCH */
