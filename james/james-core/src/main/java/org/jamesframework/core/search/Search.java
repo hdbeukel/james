@@ -271,7 +271,7 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
      */
     public void start(){
         
-        logger.debug("Search {} started", this);
+        logger.trace("Search {} started", this);
         
         // acquire status lock
         synchronized(statusLock) {
@@ -279,10 +279,10 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
             if(status != SearchStatus.IDLE){
                 throw new SearchException("Error when trying to start search: search is not idle.");
             }
+            // log
+            logger.trace("Search {} changed status: {} --> {}", this, status, SearchStatus.INITIALIZING);
             // set status to INITIALIZING
             status = SearchStatus.INITIALIZING;
-            // log
-            logger.trace("Search {} changed status: {} --> {}", this, SearchStatus.IDLE, SearchStatus.INITIALIZING);
         }
         
         // fire callback
@@ -296,9 +296,10 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
         
         // initialization finished: update status
         synchronized(statusLock){
-            status = SearchStatus.RUNNING;
             // log
-            logger.trace("Search {} changed status: {} --> {}", this, SearchStatus.INITIALIZING, SearchStatus.RUNNING);
+            logger.trace("Search {} changed status: {} --> {}", this, status, SearchStatus.RUNNING);
+            // update
+            status = SearchStatus.RUNNING;
         }
         
         // enter search loop
@@ -331,13 +332,14 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
         // fire callback
         fireSearchStopped();
 
-        logger.debug("Search {} stopped (runtime: {} ms)", this, getRuntime());
+        logger.trace("Search {} stopped (runtime: {} ms)", this, getRuntime());
         
         // search run is complete: update status
         synchronized(statusLock){
-            status = SearchStatus.IDLE;
             // log
-            logger.trace("Search {} changed status: {} --> {}", this, SearchStatus.RUNNING, SearchStatus.IDLE);
+            logger.trace("Search {} changed status: {} --> {}", this, status, SearchStatus.IDLE);
+            // update
+            status = SearchStatus.IDLE;
         }
         
     }
@@ -698,7 +700,7 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
             bestSolution = problem.copySolution(newSolution);
             bestSolutionEvaluation = newSolutionEvaluation;
             // log
-            logger.trace("{}: new best solution: ", this, bestSolutionEvaluation);
+            logger.debug("{}: new best solution: {}", this, bestSolutionEvaluation);
             // fire callback
             fireNewBestSolution(bestSolution, bestSolutionEvaluation);
             // found improvement
