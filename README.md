@@ -40,7 +40,7 @@ Download and install
 James is currently under development and no stable releases have yet been published.
 
 However, development snapshots are frequently deployed at [Sonatype OSSRH][3] (OSS Repository Hosting Service).
-Artifacts can be automatically retrieved using Maven, or you can manually put the necessary jar files on your
+Artifacts can be automatically retrieved using [Maven][4], or you can manually put the necessary jar files on your
 classpath (see below).
 
 Remember that snapshots are no stable releases and should therefore be used with care. For example, their API might
@@ -48,7 +48,7 @@ change without notice, and they might contain incomplete or insufficiently teste
 
 ### Maven
 
-If you are using Maven, snapshots can be automatically retrieved by adding the Sonatype snapshots repository
+If you are using [Maven][4], snapshots can be automatically retrieved by adding the Sonatype snapshots repository
 
 ```
 <repositories>
@@ -110,7 +110,7 @@ from inside the `james` root directory
   |-- pom.xml
 ```
 
-assuming that Maven has been installed on your computer. This will compile the code, create jar packages and install them in your local Maven repository, so that they can be added as dependencies in any other Maven project. After building James, you can also grab the created jar packages from the `target` directory inside each module.
+assuming that [Maven][4] has been installed on your computer. This will compile the code, create jar packages and install them in your local Maven repository, so that they can be added as dependencies in any other Maven project. After building James, you can also grab the created jar packages from the `target` directory inside each module.
 
 
 Documentation
