@@ -110,7 +110,7 @@ from inside the `james` root directory
   |-- pom.xml
 ```
 
-assuming that [Maven][4] has been installed on your computer. This will compile the code, create jar packages and install them in your local Maven repository, so that they can be added as dependencies in any other Maven project. After building James, you can also grab the created jar packages from the `target` directory inside each module.
+assuming that [Maven][4] has been installed on your computer. This will compile the code, create jar packages and install them in your local Maven repository, so that they can be added as dependencies in any other Maven project. After building James, you can also grab the created jar packages from the `target` directory of each module.
 
 
 Documentation
