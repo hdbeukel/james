@@ -78,14 +78,14 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
     private static final Logger logger = LoggerFactory.getLogger(ParallelTempering.class);
     
     // Metropolis replicas
-    private List<MetropolisSearch<SolutionType>> replicas;
+    private final List<MetropolisSearch<SolutionType>> replicas;
     
     // number of steps performed by each replica
     private int replicaSteps;
     
     // thread pool for replica execution and corresponding queue of futures of submitted tasks
-    private ExecutorService pool;
-    private Queue<Future<?>> futures;
+    private final ExecutorService pool;
+    private final Queue<Future<?>> futures;
     
     // swap base: flipped (0/1) after every step for fair solution swaps
     private int swapBase;
@@ -384,11 +384,13 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
     
     /**
      * Empty callback: no action taken here when a replica has started.
+     * @param replica ignored
      */
     @Override
     public void searchStarted(Search<? extends SolutionType> replica) {}
     /**
      * Empty callback: no action taken here when a replica has stopped.
+     * @param replica ignored
      */
     @Override
     public void searchStopped(Search<? extends SolutionType> replica) {}
