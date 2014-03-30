@@ -17,7 +17,8 @@ package org.jamesframework.core.search;
 import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.search.stopcriteria.StopCriterion;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.exceptions.IncompatibleStopCriterionException;
 import org.jamesframework.core.exceptions.JamesRuntimeException;
@@ -129,8 +130,8 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
     // problem being solved
     private final Problem<SolutionType> problem;
     
-    // list containing search listeners attached to this search
-    private final List<SearchListener<? super SolutionType>> searchListeners;
+    // set of search listeners attached to this search
+    private final Set<SearchListener<? super SolutionType>> searchListeners;
     
     // stop criterion checker dedicated to checking the stop criteria attached to this search
     private final StopCriterionChecker stopCriterionChecker;
@@ -183,8 +184,8 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
         }
         // assign next unique id
         id = getNextUniqueID();
-        // initialize search listener list
-        searchListeners = new ArrayList<>();
+        // initialize search listener set
+        searchListeners = new HashSet<>();
         // create dedicated stop criterion checker
         stopCriterionChecker = new StopCriterionChecker(this);
         // set initial status to idle
@@ -486,21 +487,27 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
     }
     
     /**
-     * Add a search listener. Any search listener with a matching solution type (or a more general solution type)
-     * may be added. Note that this method may only be called when the search is idle.
+     * Add a search listener, if it has not been added before. Any search listener
+     * with a matching solution type (or a more general solution type) may be added.
+     * Note that this method can only be called when the search is idle.
      * 
      * @param listener search listener to add to the search
      * @throws SearchException if the search is not idle
+     * @return <code>true</code> if the search listener had not been added before
      */
-    public void addSearchListener(SearchListener<? super SolutionType> listener){
+    public boolean addSearchListener(SearchListener<? super SolutionType> listener){
         // acquire status lock
         synchronized(statusLock){
             // assert idle
             assertIdle("Cannot add search listener.");
             // add listener
-            searchListeners.add(listener);
-            // log
-            logger.info("{}: added search listener {}", this, listener);
+            if(searchListeners.add(listener)){
+                // log
+                logger.info("{}: added search listener {}", this, listener);
+                return true;
+            } else {
+                return false;
+            }
         }
     }
     

@@ -170,23 +170,26 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
     /**************************************************/
     
     /**
-     * Add a search listener. Passes the listener to its parent (general search), but also stores it locally
-     * in case it is a neighbourhood search listener for neighbourhood search specific callbacks. Note that
-     * this method may only be called when the search is idle.
+     * Add a search listener, if not already added before. Passes the listener to
+     * its parent (general search), but also stores it locally in case it is a
+     * neighbourhood search listener for neighbourhood search specific callbacks.
+     * Note that this method may only be called when the search is idle.
      * 
      * @param listener search listener to add to the search
      * @throws SearchException if the search is not idle
+     * @return <code>true</code> if the search listener had not been added before
      */
     @Override
-    public void addSearchListener(SearchListener<? super SolutionType> listener){
+    public boolean addSearchListener(SearchListener<? super SolutionType> listener){
         // acquire status lock
         synchronized(getStatusLock()){
             // pass to super (also checks whether search is idle)
-            super.addSearchListener(listener);
+            boolean a = super.addSearchListener(listener);
             // store locally if neighbourhood listener
             if(listener instanceof NeighbourhoodSearchListener){
                 neighSearchListeners.add((NeighbourhoodSearchListener<? super SolutionType>) listener);
             }
+            return a;
         }
     }
     
