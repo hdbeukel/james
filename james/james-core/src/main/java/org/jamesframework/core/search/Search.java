@@ -16,7 +16,6 @@ package org.jamesframework.core.search;
 
 import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.search.stopcriteria.StopCriterion;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -217,6 +216,15 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
         return nextID++;
     }
     
+    /**
+     * Get the problem being solved, as specified at construction.
+     * 
+     * @return problem being solved
+     */
+    public Problem<SolutionType> getProblem(){
+        return problem;
+    }
+    
     /***************************/
     /* NAME, ID & STRING VALUE */
     /***************************/
@@ -295,40 +303,46 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
         // initialization and/or validation
         searchStarted();
         
-        // instruct stop criterion checker to start checking
-        stopCriterionChecker.startChecking();
-        
-        // initialization finished: update status
-        synchronized(statusLock){
-            // log
-            logger.trace("Search {} changed status: {} --> {}", this, status, SearchStatus.RUNNING);
-            // update
-            status = SearchStatus.RUNNING;
-        }
-        
-        // enter search loop
-        while(continueSearch()){
-            // reset improvement flag (automatically flipped by
-            // updateBestSolution if improvement found during step)
-            improvementDuringCurrentStep = false;
-            // perform search step
-            searchStep();
-            // update step count
-            currentSteps++;
-            // update steps since last improvement
-            if(improvementDuringCurrentStep){
-                // improvement made
-                stepsSinceLastImprovement = 0;
-            } else if (stepsSinceLastImprovement != JamesConstants.INVALID_STEP_COUNT) {
-                // no improvement made now, but found improvement before in current run
-                stepsSinceLastImprovement++;
+        // check if search should be continued (may already
+        // have been stopped during initialization)
+        if(continueSearch()){
+
+            // instruct stop criterion checker to start checking
+            stopCriterionChecker.startChecking();
+
+            // initialization finished: update status
+            synchronized(statusLock){
+                // log
+                logger.trace("Search {} changed status: {} --> {}", this, status, SearchStatus.RUNNING);
+                // update
+                status = SearchStatus.RUNNING;
             }
-            // fire callback
-            fireStepCompleted(currentSteps);
-        }
+
+            // enter search loop
+            while(continueSearch()){
+                // reset improvement flag (automatically flipped by
+                // updateBestSolution if improvement found during step)
+                improvementDuringCurrentStep = false;
+                // perform search step
+                searchStep();
+                // update step count
+                currentSteps++;
+                // update steps since last improvement
+                if(improvementDuringCurrentStep){
+                    // improvement made
+                    stepsSinceLastImprovement = 0;
+                } else if (stepsSinceLastImprovement != JamesConstants.INVALID_STEP_COUNT) {
+                    // no improvement made now, but found improvement before in current run
+                    stepsSinceLastImprovement++;
+                }
+                // fire callback
+                fireStepCompleted(currentSteps);
+            }
         
-        // instruct stop criterion checker to stop checking
-        stopCriterionChecker.stopChecking();
+            // instruct stop criterion checker to stop checking
+            stopCriterionChecker.stopChecking();
+            
+        }
         
         // finalization
         searchStopped();
@@ -978,15 +992,15 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
     /*********************/
     
     /**
-     * Indicates whether the search should continue, by verifying whether its status is still set to {@link SearchStatus#RUNNING}.
+     * Indicates whether the search should continue, by verifying whether its status is not set to {@link SearchStatus#TERMINATING}.
      * Once the search has been started, this method will return <code>true</code> as long as {@link #stop()} has not been called.
      * During that time, {@link #searchStep()} will be repeatedly called from a loop that uses {@link #continueSearch()} as its
      * stop condition.
      * 
-     * @return <code>true</code> if the search status is {@link SearchStatus#RUNNING}
+     * @return <code>true</code> if the search status is not {@link SearchStatus#TERMINATING}
      */
     private boolean continueSearch(){
-        return status == SearchStatus.RUNNING;
+        return status != SearchStatus.TERMINATING;
     }
     
     /***********************/
@@ -1014,15 +1028,6 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
             // maximization problem: return increase
             return currentEvaluation - previousEvaluation;
         }
-    }
-    
-    /**
-     * Get the problem being solved, as specified at construction.
-     * 
-     * @return problem being solved
-     */
-    protected Problem<SolutionType> getProblem(){
-        return problem;
     }
         
     /*********************************************************************/
