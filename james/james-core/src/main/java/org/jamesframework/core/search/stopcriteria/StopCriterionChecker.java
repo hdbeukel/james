@@ -128,13 +128,16 @@ public class StopCriterionChecker {
     public void startChecking() {
         // synchronize with other attempts to update the running task
         synchronized(runningTaskLock){
-            // check if not active and some stop criteria were added
-            if (runningTask == null && !stopCriteria.isEmpty()) {
-                // schedule periodical check (starting without any delay)
-                runningTask = new StopCriterionCheckTask();
-                runningTaskFuture = scheduler.scheduleWithFixedDelay(runningTask, 0, period, periodTimeUnit);
-                // log
-                logger.info("Stop criterion checker for search {} activated", search);
+            // check if not already active
+            if (runningTask == null) {
+                // only activate if at least one stop criterion has been set
+                if(!stopCriteria.isEmpty()){
+                    // schedule periodical check (starting without any delay)
+                    runningTask = new StopCriterionCheckTask();
+                    runningTaskFuture = scheduler.scheduleWithFixedDelay(runningTask, 0, period, periodTimeUnit);
+                    // log
+                    logger.info("Stop criterion checker for search {} activated", search);
+                }
             } else {
                 // issue a warning
                 logger.warn("Attempted to activate already active stop criterion checker for search {}", search);
