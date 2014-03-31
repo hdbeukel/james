@@ -340,6 +340,7 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
      */
     @Override
     protected void searchDisposed(){
+        super.searchDisposed();
         // dispose replicas
         for(MetropolisSearch<SolutionType> r : replicas){
             r.dispose();
