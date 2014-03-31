@@ -95,12 +95,16 @@ public class BasicParallelSearch<SolutionType extends Solution>
 
     /**
      * Add the given search to the parallel algorithm, to be executed in
-     * parallel with the other searches. The parallel search is attached
-     * as a listener to the given search, to keep track of any new best
-     * solution found by this search. Note that this method may only be
-     * called when the search is idle.
+     * parallel with the other searches. Only searches that solve the
+     * same problem as the one specified when creating the parallel
+     * search can be added. An exception will be thrown when attempting
+     * to add a search that solves a different problem. The parallel
+     * search is attached as a listener to the given search, to keep
+     * track of any new best solution found by this search. Note that
+     * this method may only be called when the search is idle.
      *
-     * @throws SearchException if the search is not idle
+     * @throws SearchException if the parallel search is not idle, or if the given search
+     *                         does not solve the same problem as the parallel search
      * @param search search to add for parallel execution
      */
     public void addSearch(Search<SolutionType> search) {
@@ -108,10 +112,15 @@ public class BasicParallelSearch<SolutionType extends Solution>
         synchronized (getStatusLock()) {
             // assert idle
             assertIdle("Cannot add search to basic parallel search algorithm.");
-            // attach main search as listener
-            search.addSearchListener(this);
-            // add search
-            searches.add(search);
+            if(search.getProblem() == getProblem()){
+                // attach main search as listener
+                search.addSearchListener(this);
+                // add search
+                searches.add(search);
+            } else {
+                throw new SearchException("Cannot add search " + search + " to basic parallel search algorithm " + this
+                                            + " (does not solve the same problem).");
+            }
         }
     }
 
@@ -154,7 +163,9 @@ public class BasicParallelSearch<SolutionType extends Solution>
      * @throws SearchException if no searches have been added
      */
     @Override
-    public void searchStarted() {
+    protected void searchStarted() {
+        super.searchStarted();
+        // check: at least one search added
         if (searches.isEmpty()) {
             throw new SearchException("Cannot start basic parallel search: "
                     + "no subsearches added for concurrent execution.");
@@ -187,7 +198,8 @@ public class BasicParallelSearch<SolutionType extends Solution>
      * used for concurrent search execution is released.
      */
     @Override
-    public void searchDisposed() {
+    protected void searchDisposed() {
+        super.searchDisposed();
         // release thread pool
         pool.shutdown();
         // dispose contained searches
@@ -242,11 +254,21 @@ public class BasicParallelSearch<SolutionType extends Solution>
     }
     
     /**
-     * No actions are taken when a subsearch has started.
-     * @param search ignored
+     * When a subsearch has started, the main parallel search verifies that it has not yet been
+     * requested to stop in the meantime. Else, the subsearch is stopped before executing any
+     * search steps.
+     * 
+     * @param search subsearch which is starting
      */
     @Override
-    public void searchStarted(Search<? extends SolutionType> search) {}
+    public void searchStarted(Search<? extends SolutionType> search) {
+        // synchronize with status updates
+        synchronized(getStatusLock()){
+            if(getStatus() == SearchStatus.TERMINATING){
+                search.stop();
+            }
+        }
+    }
 
     /**
      * No actions are taken when a subsearch has stopped.
