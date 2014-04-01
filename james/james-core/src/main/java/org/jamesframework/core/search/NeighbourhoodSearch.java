@@ -107,7 +107,8 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
     
     /**
      * Sets a custom evaluated move cache. By default, a {@link SingleEvaluatedMoveCache} is used.
-     * Note that this method may only be called when the search is idle.
+     * Note that this method may only be called when the search is idle. If the cache is set to
+     * <code>null</code>, no caching will be applied.
      * 
      * @param cache custom evaluated move cache
      * @throws SearchException if the search is not idle
@@ -154,7 +155,9 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
      */
     private void adjustCurrentSolution(SolutionType solution){
         // clear evaluated move cache
-        cache.clear();
+        if(cache != null){
+            cache.clear();
+        }
         // set current solution
         curSolution = solution;
         // evaluate
@@ -381,8 +384,11 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
      * @return evaluation of obtained neighbour, possibly retrieved from the evaluated move cache
      */
     protected double evaluateMove(Move<? super SolutionType> move){
+        Double eval = null;
         // check cache
-        Double eval = cache.getCachedMoveEvaluation(move);
+        if(cache != null){
+            eval = cache.getCachedMoveEvaluation(move);
+        }
         if(eval != null){
             // cache hit: return cached value
             return eval;
@@ -390,7 +396,9 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
             // cache miss: evaluate and cache
             move.apply(curSolution);                        // apply move
             eval = getProblem().evaluate(curSolution);      // evaluate neighbour
-            cache.cacheMoveEvaluation(move, eval);          // cache evaluation
+            if(cache != null){
+                cache.cacheMoveEvaluation(move, eval);      // cache evaluation
+            }
             move.undo(curSolution);                         // undo move
             return eval;                                    // return evaluation
         }
@@ -406,8 +414,11 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
      *         possibly retrieved from the evaluated move cache
      */
     protected boolean validateMove(Move<? super SolutionType> move){
+        Boolean reject = null;
         // check cache
-        Boolean reject = cache.getCachedMoveRejection(move);
+        if(cache != null){
+            reject = cache.getCachedMoveRejection(move);
+        }
         if(reject != null){
             // cache hit: return cached value
             return !reject;
@@ -415,7 +426,9 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
             // cache miss: validate and cache
             move.apply(curSolution);                                // apply move
             reject = getProblem().rejectSolution(curSolution);      // validate neighbour
-            cache.cacheMoveRejection(move, reject);                 // cache validity
+            if(cache != null){
+                cache.cacheMoveRejection(move, reject);             // cache validity
+            }
             move.undo(curSolution);                                 // undo move
             return !reject;                                         // return validity
         }
@@ -480,7 +493,7 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
             }
         }
         // recache best move, if any
-        if(bestMove != null){
+        if(bestMove != null && cache != null){
             cache.cacheMoveRejection(bestMove, false);              // best move is surely not rejected
             cache.cacheMoveEvaluation(bestMove, bestMoveEval);      // cache best move evaluation 
         }
@@ -506,7 +519,9 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
         // apply move to current solution
         move.apply(curSolution);
         // clear evaluated move cache
-        cache.clear();
+        if(cache != null){
+            cache.clear();
+        }
         // update best solution
         updateBestSolution(curSolution, curSolutionEvaluation);
         // increase accepted move counter
