@@ -19,6 +19,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.TreeSet;
 import org.jamesframework.core.exceptions.SolutionModificationException;
 
 /**
@@ -37,22 +38,53 @@ public class SubsetSolution extends Solution {
     // set of all IDs (stored for efficiency, will always
     // be equal to the union of selected and unselected)
     private final Set<Integer> all;
+    // indicates whether IDs are stored in sorted sets
+    private boolean sorted;
     
     /**
      * Creates a new subset solution given the set of all IDs, each corresponding to an underlying entity,
      * from which a subset is to be selected. Initially, no IDs are selected. Note: IDs are copied to the
      * internal data structures of the subset solution; no reference is stored to the set given at construction.
+     * IDs are stored in sets that do not guarantee any order. See {@link #SubsetSolution(Set, boolean)} to
+     * create a subset solution that stores IDs in sorted sets.
      * 
      * @param allIDs set of all IDs from which a subset is to be selected
      */
     public SubsetSolution(Set<Integer> allIDs){
-        // store set with all IDs
-        all = new HashSet<>(allIDs);
-        // create empty selected/unselected sets
-        selected = new HashSet<>();
-        unselected = new HashSet<>();
-        // set all IDs as unselected
-        unselected.addAll(all);
+        this(allIDs, false);
+    }
+    
+    /**
+     * Creates a new subset solution given the set of all IDs, each corresponding to an underlying entity,
+     * from which a subset is to be selected. Initially, no IDs are selected. Note: IDs are copied to the
+     * internal data structures of the subset solution; no reference is stored to the set given at construction.
+     * If <code>sorted</code> is true, IDs will be stored in sorted sets, else they are stored in general sets
+     * that do not guarantee any order.
+     * 
+     * @param allIDs set of all IDs from which a subset is to be selected
+     * @param sorted if <code>sorted</code> is <code>true</code>, IDs will be stored in sorted sets,
+     *               else they are stored in general sets that do not guarantee any order
+     */
+    public SubsetSolution(Set<Integer> allIDs, boolean sorted){
+        this.sorted = sorted;
+        if(!sorted){
+            this.all = new HashSet<>(allIDs);           // set with all IDs (copy)
+            this.selected = new HashSet<>();            // set with selected IDs (empty)
+            this.unselected = new HashSet<>(allIDs);    // set with unselected IDs (all)
+        } else {
+            this.all = new TreeSet<>(allIDs);           // sorted set with all IDs (copy)
+            this.selected = new TreeSet<>();            // sorted set with selected IDs (empty)
+            this.unselected = new TreeSet<>(allIDs);    // sorted set with unselected IDs (all)
+        }
+    }
+    
+    /**
+     * Indicates whether IDs are stored in sorted sets.
+     * 
+     * @return <code>true</code> if IDs are stored in sorted sets
+     */
+    public boolean isSorted(){
+        return sorted;
     }
     
     /**

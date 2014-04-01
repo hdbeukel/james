@@ -511,5 +511,105 @@ public class SubsetProblemWithDataTest {
         assertFalse(problem2.rejectSolution(valid));
         
     }
+    
+    /**
+     * Test sorted IDs.
+     */
+    @Test
+    public void testSortedIDs(){
+        System.out.println(" - test sorted IDs");
+        problem1 = new SubsetProblemWithData<>(fakeObjIgnoringData, fakeData, PROBLEM_1_FIXED_SIZE, PROBLEM_1_FIXED_SIZE, true);
+        SubsetSolution sol = problem1.createRandomSolution();
+        Integer prevID = null;
+        for(int ID : sol.getAllIDs()){
+            if(prevID != null){
+                assertTrue(ID > prevID);
+            }
+            prevID = ID;
+        }
+        prevID = null;
+        for(int ID : sol.getSelectedIDs()){
+            if(prevID != null){
+                assertTrue(ID > prevID);
+            }
+            prevID = ID;
+        }
+        prevID = null;
+        for(int ID : sol.getUnselectedIDs()){
+            if(prevID != null){
+                assertTrue(ID > prevID);
+            }
+            prevID = ID;
+        }
+        // repeat with copy
+        sol = problem1.copySolution(sol);
+        prevID = null;
+        for(int ID : sol.getAllIDs()){
+            if(prevID != null){
+                assertTrue(ID > prevID);
+            }
+            prevID = ID;
+        }
+        prevID = null;
+        for(int ID : sol.getSelectedIDs()){
+            if(prevID != null){
+                assertTrue(ID > prevID);
+            }
+            prevID = ID;
+        }
+        prevID = null;
+        for(int ID : sol.getUnselectedIDs()){
+            if(prevID != null){
+                assertTrue(ID > prevID);
+            }
+            prevID = ID;
+        }
+        // repeat with empty solution
+        sol = problem1.createEmptySubsetSolution();
+        prevID = null;
+        for(int ID : sol.getAllIDs()){
+            if(prevID != null){
+                assertTrue(ID > prevID);
+            }
+            prevID = ID;
+        }
+        prevID = null;
+        for(int ID : sol.getSelectedIDs()){
+            if(prevID != null){
+                assertTrue(ID > prevID);
+            }
+            prevID = ID;
+        }
+        prevID = null;
+        for(int ID : sol.getUnselectedIDs()){
+            if(prevID != null){
+                assertTrue(ID > prevID);
+            }
+            prevID = ID;
+        }
+        // select all and repeat
+        sol.selectAll();
+        prevID = null;
+        for(int ID : sol.getAllIDs()){
+            if(prevID != null){
+                assertTrue(ID > prevID);
+            }
+            prevID = ID;
+        }
+        prevID = null;
+        for(int ID : sol.getSelectedIDs()){
+            if(prevID != null){
+                assertTrue(ID > prevID);
+            }
+            prevID = ID;
+        }
+        prevID = null;
+        for(int ID : sol.getUnselectedIDs()){
+            if(prevID != null){
+                assertTrue(ID > prevID);
+            }
+            prevID = ID;
+        }
+    }
 
 }
