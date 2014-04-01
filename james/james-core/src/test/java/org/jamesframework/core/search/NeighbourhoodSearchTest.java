@@ -220,46 +220,57 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
         
         System.out.println(" - test isImprovement");
         
-        // set random initial solution of size SUBSET_SIZE
-        SubsetSolution initial = new SubsetSolution(data.getIDs());
-        initial.selectAll(SetUtilities.getRandomSubset(initial.getUnselectedIDs(), SUBSET_SIZE, RG));
-        neighSearch.setCurrentSolution(initial);
-        // pick any addition move
-        AdditionMove m = new AdditionMove(SetUtilities.getRandomElement(neighSearch.getCurrentSolution().getUnselectedIDs(), RG));
-        // verify: addition should increase score
-        assertTrue(neighSearch.isImprovement(m));
-        // apply move
-        neighSearch.acceptMove(m);
+        for(int a=0; a<1000; a++){
         
-        // create corresponding deletion move
-        DeletionMove m2 = new DeletionMove(m.getAddedID());
-        // verify: deletion yields worse solution
-        assertFalse(neighSearch.isImprovement(m2));
+            // set random initial solution of size SUBSET_SIZE
+            SubsetSolution initial = new SubsetSolution(data.getIDs());
+            initial.selectAll(SetUtilities.getRandomSubset(initial.getUnselectedIDs(), SUBSET_SIZE, RG));
+            neighSearch.setCurrentSolution(initial);
+            // pick any addition move
+            AdditionMove m = new AdditionMove(SetUtilities.getRandomElement(neighSearch.getCurrentSolution().getUnselectedIDs(), RG));
+            // verify: addition should increase score
+            assertTrue(neighSearch.isImprovement(m));
+            // apply move
+            neighSearch.acceptMove(m);
+
+            // create corresponding deletion move
+            DeletionMove m2 = new DeletionMove(m.getAddedID());
+            // verify: deletion yields worse solution
+            assertFalse(neighSearch.isImprovement(m2));
+
+            // repeat with minimizing objective
+            obj.setMinimizing();
+            initial = new SubsetSolution(data.getIDs());
+            initial.selectAll(SetUtilities.getRandomSubset(initial.getUnselectedIDs(), SUBSET_SIZE, RG));
+            neighSearch.setCurrentSolution(initial);
+            // verify: addition is no improvement
+            m = new AdditionMove(SetUtilities.getRandomElement(neighSearch.getCurrentSolution().getUnselectedIDs(), RG));
+            assertFalse(neighSearch.isImprovement(m));
+            // apply addition
+            neighSearch.acceptMove(m);
+            // verify: deletion now is improvement
+            m2 = new DeletionMove(m.getAddedID());
+            assertTrue(neighSearch.isImprovement(m2));
+            // switch back to maximizing
+            obj.setMaximizing();
+
+            // repeat with always rejecting constraint and random initial solution
+            NeverSatisfiedConstraintStub c = new NeverSatisfiedConstraintStub();
+            problem.addRejectingConstraint(c);
+            neighSearch.setCurrentSolution(problem.createRandomSolution());
+            // create random addition, deletion and swap move
+            m = new AdditionMove(SetUtilities.getRandomElement(neighSearch.getCurrentSolution().getUnselectedIDs(), RG));
+            m2 = new DeletionMove(SetUtilities.getRandomElement(neighSearch.getCurrentSolution().getSelectedIDs(), RG));
+            SwapMove m3 = new SwapMove(SetUtilities.getRandomElement(neighSearch.getCurrentSolution().getUnselectedIDs(), RG),
+                                       SetUtilities.getRandomElement(neighSearch.getCurrentSolution().getSelectedIDs(), RG));
+            // verify (no moves are considered improvements because of rejecting constraint)
+            assertFalse(neighSearch.isImprovement(m));
+            assertFalse(neighSearch.isImprovement(m2));
+            assertFalse(neighSearch.isImprovement(m3));
+            // remove constraint
+            problem.removeRejectingConstraint(c);
         
-        // repeat with minimizing objective
-        obj.setMinimizing();
-        initial = new SubsetSolution(data.getIDs());
-        initial.selectAll(SetUtilities.getRandomSubset(initial.getUnselectedIDs(), SUBSET_SIZE, RG));
-        neighSearch.setCurrentSolution(initial);
-        // verify: addition is no improvement
-        assertFalse(neighSearch.isImprovement(m));
-        // apply addition
-        neighSearch.acceptMove(m);
-        // verify: deletion now is improvement
-        assertTrue(neighSearch.isImprovement(m2));
-        
-        // repeat with always rejecting constraint and random initial solution
-        problem.addRejectingConstraint(new NeverSatisfiedConstraintStub());
-        neighSearch.setCurrentSolution(problem.createRandomSolution());
-        // create random addition, deletion and swap move
-        m = new AdditionMove(SetUtilities.getRandomElement(neighSearch.getCurrentSolution().getUnselectedIDs(), RG));
-        m2 = new DeletionMove(SetUtilities.getRandomElement(neighSearch.getCurrentSolution().getSelectedIDs(), RG));
-        SwapMove m3 = new SwapMove(SetUtilities.getRandomElement(neighSearch.getCurrentSolution().getUnselectedIDs(), RG),
-                                   SetUtilities.getRandomElement(neighSearch.getCurrentSolution().getSelectedIDs(), RG));
-        // verify (no moves are considered improvements because of rejecting constraint)
-        assertFalse(neighSearch.isImprovement(m));
-        assertFalse(neighSearch.isImprovement(m2));
-        assertFalse(neighSearch.isImprovement(m3));
+        }
         
     }
 
