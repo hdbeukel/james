@@ -242,14 +242,15 @@ public class BasicParallelSearch<SolutionType extends Solution>
     /**
      * When a new best solution is found in any concurrently executed subsearch,
      * it is picked up by the main search which updates the global best solution
-     * accordingly.
+     * accordingly. This method is synchronized to avoid concurrent updates of
+     * the global best solution, as searches are running in separate threads.
      * 
      * @param search subsearch that found a new best solution
      * @param newBestSolution new best solution in subsearch
      * @param newBestSolutionEvaluation new best solution evaluation
      */
     @Override
-    public void newBestSolution(Search<? extends SolutionType> search, SolutionType newBestSolution, double newBestSolutionEvaluation) {
+    public synchronized  void newBestSolution(Search<? extends SolutionType> search, SolutionType newBestSolution, double newBestSolutionEvaluation) {
         updateBestSolution(newBestSolution, newBestSolutionEvaluation);
     }
     

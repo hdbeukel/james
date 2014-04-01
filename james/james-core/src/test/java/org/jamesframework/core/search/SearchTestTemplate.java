@@ -20,6 +20,7 @@ import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.SubsetProblemWithData;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
+import org.jamesframework.core.search.listeners.EmptySearchListener;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.search.neigh.subset.SingleSwapNeighbourhood;
 import org.jamesframework.core.search.stopcriteria.MaxRuntime;
@@ -109,6 +110,10 @@ public class SearchTestTemplate {
         // set maximum runtime
         search.addStopCriterion(new MaxRuntime(maxRuntime, maxRuntimeTimeUnit));
         System.out.println("   >>> max time: " + maxRuntimeTimeUnit.toMillis(maxRuntime) + " ms");
+        
+        // add best solution listener
+        BestSolutionListener bsl = new BestSolutionListener();
+        search.addSearchListener(bsl);
 
         // run search (should stop)
         search.start();
@@ -122,6 +127,8 @@ public class SearchTestTemplate {
                 assertFalse(problem.rejectSolution(search.getBestSolution()));
             }
         }
+        // check best solution listener
+        assertTrue(bsl.isOK());
     }
     
     /**
@@ -132,8 +139,12 @@ public class SearchTestTemplate {
                                                                 int numRuns, boolean maximizing, boolean printEvaluations){
         // add stop criterion
         search.addStopCriterion(new MaxRuntime(maxRuntime, maxRuntimeTimeUnit));
+        System.out.println("   >>> max time: " + maxRuntimeTimeUnit.toMillis(maxRuntime) + " ms");
         // set check period to same value for frequent enough checks
         search.setStopCriterionCheckPeriod(maxRuntime, maxRuntimeTimeUnit);
+        // add best solution listener
+        BestSolutionListener bsl = new BestSolutionListener();
+        search.addSearchListener(bsl);
         // perform subsequent runs
         Double prevBestSolEval = null, bestSolEval = null;
         for(int i=0; i<numRuns; i++){
@@ -157,6 +168,29 @@ public class SearchTestTemplate {
                 System.out.println("   >>> no valid solution found yet ...");
             }
             prevBestSolEval = bestSolEval;
+        }
+        // check best solution listener
+        assertTrue(bsl.isOK());
+    }
+    
+    // listener that verifies whether every new best solution is indeed an improvement over the previous best solution
+    private class BestSolutionListener extends EmptySearchListener<SubsetSolution>{
+        private Double prevBestEval = null;
+        private double delta = 1e-10;
+        private boolean ok = true;
+        @Override
+        public void newBestSolution(Search<? extends SubsetSolution> search, SubsetSolution newBestSolution, double newBestSolutionEvaluation) {
+            if(prevBestEval != null){
+                if(search.getProblem().isMinimizing()){
+                    ok = ok && DoubleComparatorWithPrecision.smallerThan(newBestSolutionEvaluation, prevBestEval, delta);
+                } else {
+                    ok = ok && DoubleComparatorWithPrecision.greaterThan(newBestSolutionEvaluation, prevBestEval, delta);
+                }
+            }
+            prevBestEval = newBestSolutionEvaluation;
+        }
+        public boolean isOK(){
+            return ok;
         }
     }
     

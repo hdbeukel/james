@@ -91,9 +91,10 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
     private int swapBase;
     
     /**
-     * Creates a new parallel tempering algorithm, specifying the problem to solve, the applied neighbourhood, the number of replicas,
-     * and the minimum and maximum temperature. The problem and neighbourhood can not be <code>null</code>, the number of replicas and
-     * both temperature bounds should be strictly positive, and the minimum temperature should be smaller than the maximum temperature.
+     * Creates a new parallel tempering algorithm, specifying the problem to solve, the neighbourhood used in each replica, the number
+     * of replicas, and the minimum and maximum temperature. The problem and neighbourhood can not be <code>null</code>, the number of
+     * replicas and both temperature bounds should be strictly positive, and the minimum temperature should be smaller than the maximum
+     * temperature.
      * 
      * @throws NullPointerException if <code>problem</code> or <code>neighbourhood</code> are <code>null</code>
      * @throws IllegalArgumentException if <code>numReplicas</code>, <code>minTemperature</code> or <code>maxTemperature</code>
@@ -110,9 +111,9 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
     }
     
     /**
-     * Creates a new parallel tempering algorithm, specifying the problem to solve, the applied neighbourhood, the number of replicas,
-     * the minimum and maximum temperature, and a custom search name. The problem and neighbourhood can not be <code>null</code>, the
-     * number of replicas and both temperature bounds should be strictly positive, and the minimum temperature should be smaller than the
+     * Creates a new parallel tempering algorithm, specifying the problem to solve, the neighbourhood used in each replica, the number
+     * of replicas, the minimum and maximum temperature, and a custom search name. The problem and neighbourhood can not be <code>null</code>,
+     * the number of replicas and both temperature bounds should be strictly positive, and the minimum temperature should be smaller than the
      * maximum temperature. The search name can be <code>null</code> in which case the default name "ParallelTempering" is assigned.
      * 
      * @throws NullPointerException if <code>problem</code> or <code>neighbourhood</code> are <code>null</code>
@@ -352,18 +353,18 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
     /*******************************/
     /* CALLBACKS FIRED BY REPLICAS */
     /*******************************/
-
+    
     /**
      * Parallel tempering algorithm listens to its Metropolis replicas: whenever a new best solution is reported inside a replica, it is
-     * verified whether this is also a global improvement. If so, the global best solution is updated.
+     * verified whether this is also a global improvement. If so, the global best solution is updated. This method is synchronized to avoid
+     * concurrent updates of the global best solution, as the replicas run in separate threads.
      * 
      * @param replica Metropolis replica
      * @param newBestSolution new best solution found in replica
      * @param newBestSolutionEvaluation evaluation of new best solution
      */
     @Override
-    public void newBestSolution(Search<? extends SolutionType> replica, SolutionType newBestSolution, double newBestSolutionEvaluation) {
-        // update global best solution (checks if the new solution is an improvement)
+    public synchronized void newBestSolution(Search<? extends SolutionType> replica, final SolutionType newBestSolution, final double newBestSolutionEvaluation) {
         updateBestSolution(newBestSolution, newBestSolutionEvaluation);
     }
 
