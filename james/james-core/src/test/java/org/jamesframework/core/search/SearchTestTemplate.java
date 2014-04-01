@@ -74,8 +74,10 @@ public class SearchTestTemplate {
     public static void setUpClass() {
         // create data
         scores = new double[DATASET_SIZE];
+        double minScore = 1e-10;
+        double maxScore = 1.0;
         for(int i=0; i<DATASET_SIZE; i++){
-            scores[i] = RG.nextDouble();
+            scores[i] = minScore + (maxScore-minScore)*RG.nextDouble();
         }
         // find best solution ignoring possible constraints (by sorting),
         // both for maximizing and minimizing setting
@@ -176,10 +178,11 @@ public class SearchTestTemplate {
     // listener that verifies whether every new best solution is indeed an improvement over the previous best solution
     private class BestSolutionListener extends EmptySearchListener<SubsetSolution>{
         private Double prevBestEval = null;
-        private double delta = 1e-10;
+        private double delta = 1e-15;
         private boolean ok = true;
         @Override
         public void newBestSolution(Search<? extends SubsetSolution> search, SubsetSolution newBestSolution, double newBestSolutionEvaluation) {
+            //System.out.println("New: " + newBestSolutionEvaluation + "; prev: " + prevBestEval);
             if(prevBestEval != null){
                 if(search.getProblem().isMinimizing()){
                     ok = ok && DoubleComparatorWithPrecision.smallerThan(newBestSolutionEvaluation, prevBestEval, delta);
