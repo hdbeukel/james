@@ -178,16 +178,16 @@ public class SearchTestTemplate {
     // listener that verifies whether every new best solution is indeed an improvement over the previous best solution
     private class BestSolutionListener extends EmptySearchListener<SubsetSolution>{
         private Double prevBestEval = null;
-        private double delta = 1e-15;
+        private double delta = 1e-12;
         private boolean ok = true;
         @Override
         public void newBestSolution(Search<? extends SubsetSolution> search, SubsetSolution newBestSolution, double newBestSolutionEvaluation) {
             //System.out.println("New: " + newBestSolutionEvaluation + "; prev: " + prevBestEval);
             if(prevBestEval != null){
                 if(search.getProblem().isMinimizing()){
-                    ok = ok && DoubleComparatorWithPrecision.smallerThan(newBestSolutionEvaluation, prevBestEval, delta);
+                    ok = ok && DoubleComparatorWithPrecision.smallerThanOrEqual(newBestSolutionEvaluation, prevBestEval, delta);
                 } else {
-                    ok = ok && DoubleComparatorWithPrecision.greaterThan(newBestSolutionEvaluation, prevBestEval, delta);
+                    ok = ok && DoubleComparatorWithPrecision.greaterThanOrEqual(newBestSolutionEvaluation, prevBestEval, delta);
                 }
             }
             prevBestEval = newBestSolutionEvaluation;
