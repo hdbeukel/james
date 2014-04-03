@@ -66,7 +66,9 @@ import org.slf4j.LoggerFactory;
  * intensive objective function a lower number of steps may be more appropriate.
  * </p>
  * <p>
- * Note that every replica runs in a separate thread so that they will be executed in parallel on multi core machines.
+ * Note that every replica runs in a separate thread so that they will be executed in parallel on multi core machines. Therefore, it
+ * is important that the problem (including all of its components such as the objective, constraints, etc.) and neighbourhood specified
+ * at construction are thread-safe.
  * </p>
  * 
  * @param <SolutionType> solution type of the problems that may be solved using this search, required to extend {@link Solution}
@@ -91,10 +93,17 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
     private int swapBase;
     
     /**
+     * <p>
      * Creates a new parallel tempering algorithm, specifying the problem to solve, the neighbourhood used in each replica, the number
      * of replicas, and the minimum and maximum temperature. The problem and neighbourhood can not be <code>null</code>, the number of
      * replicas and both temperature bounds should be strictly positive, and the minimum temperature should be smaller than the maximum
-     * temperature.
+     * temperature. The default name "ParallelTempering" is assigned to the search.
+     * </p>
+     * <p>
+     * Note that it is important that the given problem (including all of its components such as the objective, constraints, etc.) and
+     * neighbourhood are thread-safe, because they will be accessed concurrently from several Metropolis searches running in separate
+     * threads.
+     * </p>
      * 
      * @throws NullPointerException if <code>problem</code> or <code>neighbourhood</code> are <code>null</code>
      * @throws IllegalArgumentException if <code>numReplicas</code>, <code>minTemperature</code> or <code>maxTemperature</code>
@@ -111,10 +120,17 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
     }
     
     /**
+     * <p>
      * Creates a new parallel tempering algorithm, specifying the problem to solve, the neighbourhood used in each replica, the number
      * of replicas, the minimum and maximum temperature, and a custom search name. The problem and neighbourhood can not be <code>null</code>,
      * the number of replicas and both temperature bounds should be strictly positive, and the minimum temperature should be smaller than the
      * maximum temperature. The search name can be <code>null</code> in which case the default name "ParallelTempering" is assigned.
+     * </p>
+     * <p>
+     * Note that it is important that the given problem (including all of its components such as the objective, constraints, etc.) and
+     * neighbourhood are thread-safe, because they will be accessed concurrently from several Metropolis searches running in separate
+     * threads.
+     * </p>
      * 
      * @throws NullPointerException if <code>problem</code> or <code>neighbourhood</code> are <code>null</code>
      * @throws IllegalArgumentException if <code>numReplicas</code>, <code>minTemperature</code> or <code>maxTemperature</code>
