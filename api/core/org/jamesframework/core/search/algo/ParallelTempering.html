@@ -140,7 +140,9 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
  intensive objective function a lower number of steps may be more appropriate.
  </p>
  <p>
- Note that every replica runs in a separate thread so that they will be executed in parallel on multi core machines.
+ Note that every replica runs in a separate thread so that they will be executed in parallel on multi core machines. Therefore, it
+ is important that the problem (including all of its components such as the objective, constraints, etc.) and neighbourhood specified
+ at construction are thread-safe.
  </p></div>
 <dl><dt><span class="strong">Author:</span></dt>
   <dd><a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a></dd></dl>
@@ -167,7 +169,8 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
                  int&nbsp;numReplicas,
                  double&nbsp;minTemperature,
                  double&nbsp;maxTemperature)</code>
-<div class="block">Creates a new parallel tempering algorithm, specifying the problem to solve, the neighbourhood used in each replica, the number
+<div class="block">
+ Creates a new parallel tempering algorithm, specifying the problem to solve, the neighbourhood used in each replica, the number
  of replicas, and the minimum and maximum temperature.</div>
 </td>
 </tr>
@@ -178,7 +181,8 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
                  int&nbsp;numReplicas,
                  double&nbsp;minTemperature,
                  double&nbsp;maxTemperature)</code>
-<div class="block">Creates a new parallel tempering algorithm, specifying the problem to solve, the neighbourhood used in each replica, the number
+<div class="block">
+ Creates a new parallel tempering algorithm, specifying the problem to solve, the neighbourhood used in each replica, the number
  of replicas, the minimum and maximum temperature, and a custom search name.</div>
 </td>
 </tr>
@@ -317,10 +321,17 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
                  int&nbsp;numReplicas,
                  double&nbsp;minTemperature,
                  double&nbsp;maxTemperature)</pre>
-<div class="block">Creates a new parallel tempering algorithm, specifying the problem to solve, the neighbourhood used in each replica, the number
+<div class="block"><p>
+ Creates a new parallel tempering algorithm, specifying the problem to solve, the neighbourhood used in each replica, the number
  of replicas, and the minimum and maximum temperature. The problem and neighbourhood can not be <code>null</code>, the number of
  replicas and both temperature bounds should be strictly positive, and the minimum temperature should be smaller than the maximum
- temperature.</div>
+ temperature. The default name "ParallelTempering" is assigned to the search.
+ </p>
+ <p>
+ Note that it is important that the given problem (including all of its components such as the objective, constraints, etc.) and
+ neighbourhood are thread-safe, because they will be accessed concurrently from several Metropolis searches running in separate
+ threads.
+ </p></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>problem</code> - problem to solve</dd><dd><code>neighbourhood</code> - neighbourhood used inside Metropolis search replicas</dd><dd><code>numReplicas</code> - number of Metropolis replicas</dd><dd><code>minTemperature</code> - minimum temperature of Metropolis replica</dd><dd><code>maxTemperature</code> - maximum temperature of Metropolis replica</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> or <code>neighbourhood</code> are <code>null</code></dd>
@@ -340,10 +351,17 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
                  int&nbsp;numReplicas,
                  double&nbsp;minTemperature,
                  double&nbsp;maxTemperature)</pre>
-<div class="block">Creates a new parallel tempering algorithm, specifying the problem to solve, the neighbourhood used in each replica, the number
+<div class="block"><p>
+ Creates a new parallel tempering algorithm, specifying the problem to solve, the neighbourhood used in each replica, the number
  of replicas, the minimum and maximum temperature, and a custom search name. The problem and neighbourhood can not be <code>null</code>,
  the number of replicas and both temperature bounds should be strictly positive, and the minimum temperature should be smaller than the
- maximum temperature. The search name can be <code>null</code> in which case the default name "ParallelTempering" is assigned.</div>
+ maximum temperature. The search name can be <code>null</code> in which case the default name "ParallelTempering" is assigned.
+ </p>
+ <p>
+ Note that it is important that the given problem (including all of its components such as the objective, constraints, etc.) and
+ neighbourhood are thread-safe, because they will be accessed concurrently from several Metropolis searches running in separate
+ threads.
+ </p></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>name</code> - custom search name</dd><dd><code>problem</code> - problem to solve</dd><dd><code>neighbourhood</code> - neighbourhood used inside Metropolis search replicas</dd><dd><code>numReplicas</code> - number of Metropolis replicas</dd><dd><code>minTemperature</code> - minimum temperature of Metropolis replica</dd><dd><code>maxTemperature</code> - maximum temperature of Metropolis replica</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> or <code>neighbourhood</code> are <code>null</code></dd>

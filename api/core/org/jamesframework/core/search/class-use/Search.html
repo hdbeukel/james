@@ -152,8 +152,8 @@
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</strong></code>
 <div class="block">
- A basic parallel search runs several (heterogeneous) searches in parallel and
- keeps track of the best solution found by any of these searches.</div>
+ A basic parallel search runs several (heterogeneous) searches in parallel and keeps track of the best solution found
+ by any of these searches.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -202,8 +202,7 @@
 <tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&gt;&gt;</code></td>
 <td class="colLast"><span class="strong">BasicParallelSearch.</span><code><strong><a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html#getSearches()">getSearches</a></strong>()</code>
-<div class="block">Get a list of all searches that have been added to this parallel search
- for concurrent execution.</div>
+<div class="block">Get a list of all searches that have been added to this parallel search for concurrent execution.</div>
 </td>
 </tr>
 </tbody>
@@ -218,8 +217,8 @@
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="strong">BasicParallelSearch.</span><code><strong><a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html#addSearch(org.jamesframework.core.search.Search)">addSearch</a></strong>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&gt;&nbsp;search)</code>
-<div class="block">Add the given search to the parallel algorithm, to be executed in
- parallel with the other searches.</div>
+<div class="block">
+ Add the given search to the parallel algorithm, to be executed in parallel with the other searches.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -236,16 +235,14 @@
 <td class="colLast"><span class="strong">BasicParallelSearch.</span><code><strong><a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html#newBestSolution(org.jamesframework.core.search.Search, SolutionType, double)">newBestSolution</a></strong>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&gt;&nbsp;search,
                <a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&nbsp;newBestSolution,
                double&nbsp;newBestSolutionEvaluation)</code>
-<div class="block">When a new best solution is found in any concurrently executed subsearch,
- it is picked up by the main search which updates the global best solution
- accordingly.</div>
+<div class="block">When a new best solution is found in any concurrently executed subsearch, it is picked up by the main search
+ which updates the global best solution accordingly.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><span class="strong">BasicParallelSearch.</span><code><strong><a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html#removeSearch(org.jamesframework.core.search.Search)">removeSearch</a></strong>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&gt;&nbsp;search)</code>
-<div class="block">Remove the given search from the parallel algorithm, if it had been added
- before.</div>
+<div class="block">Remove the given search from the parallel algorithm, if it had been added before.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -257,8 +254,8 @@
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="strong">BasicParallelSearch.</span><code><strong><a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html#searchStarted(org.jamesframework.core.search.Search)">searchStarted</a></strong>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&gt;&nbsp;search)</code>
-<div class="block">When a subsearch has started, the main parallel search verifies that it has not yet been
- requested to stop in the meantime.</div>
+<div class="block">When a subsearch has started, the main parallel search verifies that it has not yet been requested
+ to stop in the meantime.</div>
 </td>
 </tr>
 <tr class="altColor">

@@ -99,8 +99,8 @@
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
-<dl><dt><span class="strong">Type Parameters:</span></dt><dd><code>SolutionType</code> - solution type of the problems that may be solved using
- this search, required to extend <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions"><code>Solution</code></a></dd></dl>
+<dl><dt><span class="strong">Type Parameters:</span></dt><dd><code>SolutionType</code> - solution type of the problems that may be solved using this search, required to extend
+ <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions"><code>Solution</code></a></dd></dl>
 <dl>
 <dt>All Implemented Interfaces:</dt>
 <dd><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</a>, <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;SolutionType&gt;</dd>
@@ -111,17 +111,19 @@
 extends <a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;SolutionType&gt;
 implements <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;SolutionType&gt;</pre>
 <div class="block"><p>
- A basic parallel search runs several (heterogeneous) searches in parallel and
- keeps track of the best solution found by any of these searches. The parallel
- search consists of a single step in which (1) all subsearches are executed
- concurrently using a cached thread pool, (2) the main search waits until
- termination of all subsearches and (3) the main search itself terminates.
+ A basic parallel search runs several (heterogeneous) searches in parallel and keeps track of the best solution found
+ by any of these searches. The parallel search consists of a single step in which (1) all subsearches are executed
+ concurrently using a cached thread pool, (2) the main search waits until termination of all subsearches and (3) the
+ main search itself terminates.
  </p>
  <p>
- When the parallel search is requested to stop (see <a href="../../../../../org/jamesframework/core/search/Search.html#stop()"><code>Search.stop()</code></a>) it
- will propagate this request to its subsearches and will wait for their
- termination. Similarly, when the parallel search is disposed (see
+ When the parallel search is requested to stop (see <a href="../../../../../org/jamesframework/core/search/Search.html#stop()"><code>Search.stop()</code></a>) it will propagate this request to its
+ subsearches and will wait for their termination. Similarly, when the parallel search is disposed (see
  <a href="../../../../../org/jamesframework/core/search/Search.html#dispose()"><code>Search.dispose()</code></a>), all subsearches will also be disposed.
+ </p>
+ <p>
+ Because searches are executed in separate threads, it is important to ensure that any shared objects (problem,
+ objective, constraints, neighbourhood, ...) are thread-safe.
  </p></div>
 <dl><dt><span class="strong">Author:</span></dt>
   <dd><a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a></dd></dl>
@@ -150,8 +152,7 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
 <tr class="rowColor">
 <td class="colOne"><code><strong><a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html#BasicParallelSearch(java.lang.String, org.jamesframework.core.problems.Problem)">BasicParallelSearch</a></strong>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
                    <a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&gt;&nbsp;problem)</code>
-<div class="block">Creates a new basic parallel search, specifying the problem to solve and
- a custom search name.</div>
+<div class="block">Creates a new basic parallel search, specifying the problem to solve and a custom search name.</div>
 </td>
 </tr>
 </table>
@@ -172,15 +173,14 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html#addSearch(org.jamesframework.core.search.Search)">addSearch</a></strong>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&gt;&nbsp;search)</code>
-<div class="block">Add the given search to the parallel algorithm, to be executed in
- parallel with the other searches.</div>
+<div class="block">
+ Add the given search to the parallel algorithm, to be executed in parallel with the other searches.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&gt;&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html#getSearches()">getSearches</a></strong>()</code>
-<div class="block">Get a list of all searches that have been added to this parallel search
- for concurrent execution.</div>
+<div class="block">Get a list of all searches that have been added to this parallel search for concurrent execution.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -188,46 +188,41 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
 <td class="colLast"><code><strong><a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html#newBestSolution(org.jamesframework.core.search.Search, SolutionType, double)">newBestSolution</a></strong>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&gt;&nbsp;search,
                <a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&nbsp;newBestSolution,
                double&nbsp;newBestSolutionEvaluation)</code>
-<div class="block">When a new best solution is found in any concurrently executed subsearch,
- it is picked up by the main search which updates the global best solution
- accordingly.</div>
+<div class="block">When a new best solution is found in any concurrently executed subsearch, it is picked up by the main search
+ which updates the global best solution accordingly.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html#removeSearch(org.jamesframework.core.search.Search)">removeSearch</a></strong>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&gt;&nbsp;search)</code>
-<div class="block">Remove the given search from the parallel algorithm, if it had been added
- before.</div>
+<div class="block">Remove the given search from the parallel algorithm, if it had been added before.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html#searchDisposed()">searchDisposed</a></strong>()</code>
-<div class="block">When disposing a basic parallel search, each of the searches that have
- been added to the parallel algorithm are disposed and the thread pool
- used for concurrent search execution is released.</div>
+<div class="block">When disposing a basic parallel search, each of the searches that have been added to the parallel
+ algorithm are disposed and the thread pool used for concurrent search execution is released.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html#searchStarted()">searchStarted</a></strong>()</code>
-<div class="block">When the search is started, it is verified whether at least one subsearch
- has been added.</div>
+<div class="block">When the search is started, it is verified whether at least one subsearch has been added.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html#searchStarted(org.jamesframework.core.search.Search)">searchStarted</a></strong>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&gt;&nbsp;search)</code>
-<div class="block">When a subsearch has started, the main parallel search verifies that it has not yet been
- requested to stop in the meantime.</div>
+<div class="block">When a subsearch has started, the main parallel search verifies that it has not yet been requested
+ to stop in the meantime.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html#searchStep()">searchStep</a></strong>()</code>
-<div class="block">This algorithm consists of a single search step only, in which (1) the
- contained subsearches are executed in parallel, (2) the main search waits
- until they terminate and (3) the main search stops.</div>
+<div class="block">This algorithm consists of a single search step only, in which (1) the contained subsearches are executed in
+ parallel, (2) the main search waits until they terminate and (3) the main search stops.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -246,9 +241,8 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><strong><a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html#stop()">stop</a></strong>()</code>
-<div class="block">When requesting to stop a basic parallel search, the search status
- changes to TERMINATING and this request is propagated to each search that
- has been added to the parallel algorithm.</div>
+<div class="block">When requesting to stop a basic parallel search, the search status changes to TERMINATING
+ and this request is propagated to each search that has been added to the parallel algorithm.</div>
 </td>
 </tr>
 </table>
@@ -287,9 +281,8 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
 <li class="blockList">
 <h4>BasicParallelSearch</h4>
 <pre>public&nbsp;BasicParallelSearch(<a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&gt;&nbsp;problem)</pre>
-<div class="block">Creates a new basic parallel search, specifying the problem to solve. The
- problem can not be <code>null</code>. The default search name
- "BasicParallelSearch" is assigned to this search.</div>
+<div class="block">Creates a new basic parallel search, specifying the problem to solve. The problem can not be <code>null</code>.
+ The default search name "BasicParallelSearch" is assigned to this search.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>problem</code> - problem to solve</dd>
 <dt><span class="strong">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> is <code>null</code></dd></dl>
@@ -303,9 +296,8 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
 <h4>BasicParallelSearch</h4>
 <pre>public&nbsp;BasicParallelSearch(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
                    <a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&gt;&nbsp;problem)</pre>
-<div class="block">Creates a new basic parallel search, specifying the problem to solve and
- a custom search name. The problem can not be <code>null</code>. The
- search name can be <code>null</code> in which case the default name
+<div class="block">Creates a new basic parallel search, specifying the problem to solve and a custom search name. The problem can
+ not be <code>null</code>. The search name can be <code>null</code> in which case the default name
  "BasicParallelSearch" is assigned.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>problem</code> - problem to solve</dd><dd><code>name</code> - custom search name</dd>
 <dt><span class="strong">Throws:</span></dt>
@@ -327,18 +319,21 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
 <li class="blockList">
 <h4>addSearch</h4>
 <pre>public&nbsp;void&nbsp;addSearch(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&gt;&nbsp;search)</pre>
-<div class="block">Add the given search to the parallel algorithm, to be executed in
- parallel with the other searches. Only searches that solve the
- same problem as the one specified when creating the parallel
- search can be added. An exception will be thrown when attempting
- to add a search that solves a different problem. The parallel
- search is attached as a listener to the given search, to keep
- track of any new best solution found by this search. Note that
- this method may only be called when the search is idle.</div>
+<div class="block"><p>
+ Add the given search to the parallel algorithm, to be executed in parallel with the other searches. Only searches
+ that solve the same problem as the one specified when creating the parallel search can be added. An exception
+ will be thrown when attempting to add a search that solves a different problem. The parallel search is attached
+ as a listener to the given search, to keep track of all new best solutions found by this search. Note that this
+ method may only be called when the search is idle.
+ </p>
+ <p>
+ Because searches are executed in separate threads, it is important to ensure that any shared objects (problem,
+ objective, constraints, neighbourhood, ...) are thread-safe.
+ </p></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>search</code> - search to add for parallel execution</dd>
 <dt><span class="strong">Throws:</span></dt>
-<dd><code><a href="../../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions">SearchException</a></code> - if the parallel search is not idle, or if the given search
-                         does not solve the same problem as the parallel search</dd></dl>
+<dd><code><a href="../../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions">SearchException</a></code> - if the parallel search is not idle, or if the given search does not solve the same
+ problem as the parallel search</dd></dl>
 </li>
 </ul>
 <a name="removeSearch(org.jamesframework.core.search.Search)">
@@ -348,9 +343,8 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
 <li class="blockList">
 <h4>removeSearch</h4>
 <pre>public&nbsp;boolean&nbsp;removeSearch(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&gt;&nbsp;search)</pre>
-<div class="block">Remove the given search from the parallel algorithm, if it had been added
- before. If not, <code>false</code> is returned. The parallel search stops
- listening to the given search when it is removed. Note that this method may
+<div class="block">Remove the given search from the parallel algorithm, if it had been added before. If not, <code>false</code> is
+ returned. The parallel search stops listening to the given search when it is removed. Note that this method may
  only be called when the search is idle.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>search</code> - search to be removed from parallel algorithm</dd>
 <dt><span class="strong">Returns:</span></dt><dd><code>true</code> if search was successfully removed</dd>
@@ -365,8 +359,7 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
 <li class="blockList">
 <h4>getSearches</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&gt;&gt;&nbsp;getSearches()</pre>
-<div class="block">Get a list of all searches that have been added to this parallel search
- for concurrent execution.</div>
+<div class="block">Get a list of all searches that have been added to this parallel search for concurrent execution.</div>
 <dl><dt><span class="strong">Returns:</span></dt><dd>list of all contained searches</dd></dl>
 </li>
 </ul>
@@ -377,8 +370,8 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
 <li class="blockList">
 <h4>searchStarted</h4>
 <pre>protected&nbsp;void&nbsp;searchStarted()</pre>
-<div class="block">When the search is started, it is verified whether at least one subsearch
- has been added. If not, an exception is thrown.</div>
+<div class="block">When the search is started, it is verified whether at least one subsearch has been added.
+ If not, an exception is thrown.</div>
 <dl>
 <dt><strong>Overrides:</strong></dt>
 <dd><code><a href="../../../../../org/jamesframework/core/search/Search.html#searchStarted()">searchStarted</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</code></dd>
@@ -393,9 +386,8 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
 <li class="blockList">
 <h4>stop</h4>
 <pre>public&nbsp;void&nbsp;stop()</pre>
-<div class="block">When requesting to stop a basic parallel search, the search status
- changes to TERMINATING and this request is propagated to each search that
- has been added to the parallel algorithm.</div>
+<div class="block">When requesting to stop a basic parallel search, the search status changes to TERMINATING
+ and this request is propagated to each search that has been added to the parallel algorithm.</div>
 <dl>
 <dt><strong>Overrides:</strong></dt>
 <dd><code><a href="../../../../../org/jamesframework/core/search/Search.html#stop()">stop</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</code></dd>
@@ -409,9 +401,8 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
 <li class="blockList">
 <h4>searchDisposed</h4>
 <pre>protected&nbsp;void&nbsp;searchDisposed()</pre>
-<div class="block">When disposing a basic parallel search, each of the searches that have
- been added to the parallel algorithm are disposed and the thread pool
- used for concurrent search execution is released.</div>
+<div class="block">When disposing a basic parallel search, each of the searches that have been added to the parallel
+ algorithm are disposed and the thread pool used for concurrent search execution is released.</div>
 <dl>
 <dt><strong>Overrides:</strong></dt>
 <dd><code><a href="../../../../../org/jamesframework/core/search/Search.html#searchDisposed()">searchDisposed</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</code></dd>
@@ -425,12 +416,10 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
 <li class="blockList">
 <h4>searchStep</h4>
 <pre>protected&nbsp;void&nbsp;searchStep()</pre>
-<div class="block">This algorithm consists of a single search step only, in which (1) the
- contained subsearches are executed in parallel, (2) the main search waits
- until they terminate and (3) the main search stops. A subsearch may
- terminate because it has come to its natural end, because it has active
- stop criteria or because the main search was requested to stop and
- propagated this request to the subsearches.</div>
+<div class="block">This algorithm consists of a single search step only, in which (1) the contained subsearches are executed in
+ parallel, (2) the main search waits until they terminate and (3) the main search stops. A subsearch may terminate
+ because it has come to its natural end, because it has active stop criteria or because the main search was
+ requested to stop and propagated this request to the subsearches.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../../../org/jamesframework/core/search/Search.html#searchStep()">searchStep</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</code></dd>
@@ -448,9 +437,8 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
 <pre>public&nbsp;void&nbsp;newBestSolution(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&gt;&nbsp;search,
                    <a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&nbsp;newBestSolution,
                    double&nbsp;newBestSolutionEvaluation)</pre>
-<div class="block">When a new best solution is found in any concurrently executed subsearch,
- it is picked up by the main search which updates the global best solution
- accordingly. This method is synchronized to avoid concurrent updates of
+<div class="block">When a new best solution is found in any concurrently executed subsearch, it is picked up by the main search
+ which updates the global best solution accordingly. This method is synchronized to avoid concurrent updates of
  the global best solution, as searches are running in separate threads.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
@@ -465,9 +453,8 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
 <li class="blockList">
 <h4>searchStarted</h4>
 <pre>public&nbsp;void&nbsp;searchStarted(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&gt;&nbsp;search)</pre>
-<div class="block">When a subsearch has started, the main parallel search verifies that it has not yet been
- requested to stop in the meantime. Else, the subsearch is stopped before executing any
- search steps.</div>
+<div class="block">When a subsearch has started, the main parallel search verifies that it has not yet been requested
+ to stop in the meantime. Else, the subsearch is stopped before executing any search steps.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#searchStarted(org.jamesframework.core.search.Search)">searchStarted</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</code></dd>

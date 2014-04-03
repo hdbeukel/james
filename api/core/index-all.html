@@ -94,8 +94,8 @@
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/algo/BasicParallelSearch.html#addSearch(org.jamesframework.core.search.Search)">addSearch(Search&lt;SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="./org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a></dt>
 <dd>
-<div class="block">Add the given search to the parallel algorithm, to be executed in
- parallel with the other searches.</div>
+<div class="block">
+ Add the given search to the parallel algorithm, to be executed in parallel with the other searches.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/NeighbourhoodSearch.html#addSearchListener(org.jamesframework.core.search.listeners.SearchListener)">addSearchListener(SearchListener&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
 <dd>
@@ -138,8 +138,8 @@
 <dt><a href="./org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo"><span class="strong">BasicParallelSearch</span></a>&lt;<a href="./org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a> extends <a href="./org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Class in <a href="./org/jamesframework/core/search/algo/package-summary.html">org.jamesframework.core.search.algo</a></dt>
 <dd>
 <div class="block">
- A basic parallel search runs several (heterogeneous) searches in parallel and
- keeps track of the best solution found by any of these searches.</div>
+ A basic parallel search runs several (heterogeneous) searches in parallel and keeps track of the best solution found
+ by any of these searches.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/algo/BasicParallelSearch.html#BasicParallelSearch(org.jamesframework.core.problems.Problem)">BasicParallelSearch(Problem&lt;SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.<a href="./org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a></dt>
 <dd>
@@ -147,8 +147,7 @@
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/algo/BasicParallelSearch.html#BasicParallelSearch(java.lang.String, org.jamesframework.core.problems.Problem)">BasicParallelSearch(String, Problem&lt;SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.<a href="./org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a></dt>
 <dd>
-<div class="block">Creates a new basic parallel search, specifying the problem to solve and
- a custom search name.</div>
+<div class="block">Creates a new basic parallel search, specifying the problem to solve and a custom search name.</div>
 </dd>
 </dl>
 <a name="_C_">
@@ -596,8 +595,7 @@
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/algo/BasicParallelSearch.html#getSearches()">getSearches()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="./org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a></dt>
 <dd>
-<div class="block">Get a list of all searches that have been added to this parallel search
- for concurrent execution.</div>
+<div class="block">Get a list of all searches that have been added to this parallel search for concurrent execution.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/problems/solutions/SubsetSolution.html#getSelectedIDs()">getSelectedIDs()</a></span> - Method in class org.jamesframework.core.problems.solutions.<a href="./org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a></dt>
 <dd>
@@ -927,9 +925,8 @@
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/algo/BasicParallelSearch.html#newBestSolution(org.jamesframework.core.search.Search, SolutionType, double)">newBestSolution(Search&lt;? extends SolutionType&gt;, SolutionType, double)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="./org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a></dt>
 <dd>
-<div class="block">When a new best solution is found in any concurrently executed subsearch,
- it is picked up by the main search which updates the global best solution
- accordingly.</div>
+<div class="block">When a new best solution is found in any concurrently executed subsearch, it is picked up by the main search
+ which updates the global best solution accordingly.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/algo/ParallelTempering.html#newBestSolution(org.jamesframework.core.search.Search, SolutionType, double)">newBestSolution(Search&lt;? extends SolutionType&gt;, SolutionType, double)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="./org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
@@ -1035,12 +1032,14 @@
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/algo/ParallelTempering.html#ParallelTempering(org.jamesframework.core.problems.Problem, org.jamesframework.core.search.neigh.Neighbourhood, int, double, double)">ParallelTempering(Problem&lt;SolutionType&gt;, Neighbourhood&lt;? super SolutionType&gt;, int, double, double)</a></span> - Constructor for class org.jamesframework.core.search.algo.<a href="./org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
-<div class="block">Creates a new parallel tempering algorithm, specifying the problem to solve, the neighbourhood used in each replica, the number
+<div class="block">
+ Creates a new parallel tempering algorithm, specifying the problem to solve, the neighbourhood used in each replica, the number
  of replicas, and the minimum and maximum temperature.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/algo/ParallelTempering.html#ParallelTempering(java.lang.String, org.jamesframework.core.problems.Problem, org.jamesframework.core.search.neigh.Neighbourhood, int, double, double)">ParallelTempering(String, Problem&lt;SolutionType&gt;, Neighbourhood&lt;? super SolutionType&gt;, int, double, double)</a></span> - Constructor for class org.jamesframework.core.search.algo.<a href="./org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
-<div class="block">Creates a new parallel tempering algorithm, specifying the problem to solve, the neighbourhood used in each replica, the number
+<div class="block">
+ Creates a new parallel tempering algorithm, specifying the problem to solve, the neighbourhood used in each replica, the number
  of replicas, the minimum and maximum temperature, and a custom search name.</div>
 </dd>
 <dt><a href="./org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="interface in org.jamesframework.core.problems.constraints"><span class="strong">PenalizingConstraint</span></a>&lt;<a href="./org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="type parameter in PenalizingConstraint">SolutionType</a> extends <a href="./org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>,<a href="./org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="type parameter in PenalizingConstraint">DataType</a>&gt; - Interface in <a href="./org/jamesframework/core/problems/constraints/package-summary.html">org.jamesframework.core.problems.constraints</a></dt>
@@ -1125,8 +1124,7 @@
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/algo/BasicParallelSearch.html#removeSearch(org.jamesframework.core.search.Search)">removeSearch(Search&lt;SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="./org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a></dt>
 <dd>
-<div class="block">Remove the given search from the parallel algorithm, if it had been added
- before.</div>
+<div class="block">Remove the given search from the parallel algorithm, if it had been added before.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/NeighbourhoodSearch.html#removeSearchListener(org.jamesframework.core.search.listeners.SearchListener)">removeSearchListener(SearchListener&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
 <dd>
@@ -1165,9 +1163,8 @@
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/algo/BasicParallelSearch.html#searchDisposed()">searchDisposed()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="./org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a></dt>
 <dd>
-<div class="block">When disposing a basic parallel search, each of the searches that have
- been added to the parallel algorithm are disposed and the thread pool
- used for concurrent search execution is released.</div>
+<div class="block">When disposing a basic parallel search, each of the searches that have been added to the parallel
+ algorithm are disposed and the thread pool used for concurrent search execution is released.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/algo/ParallelTempering.html#searchDisposed()">searchDisposed()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="./org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
@@ -1229,13 +1226,12 @@
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/algo/BasicParallelSearch.html#searchStarted()">searchStarted()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="./org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a></dt>
 <dd>
-<div class="block">When the search is started, it is verified whether at least one subsearch
- has been added.</div>
+<div class="block">When the search is started, it is verified whether at least one subsearch has been added.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/algo/BasicParallelSearch.html#searchStarted(org.jamesframework.core.search.Search)">searchStarted(Search&lt;? extends SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="./org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a></dt>
 <dd>
-<div class="block">When a subsearch has started, the main parallel search verifies that it has not yet been
- requested to stop in the meantime.</div>
+<div class="block">When a subsearch has started, the main parallel search verifies that it has not yet been requested
+ to stop in the meantime.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/algo/ParallelTempering.html#searchStarted(org.jamesframework.core.search.Search)">searchStarted(Search&lt;? extends SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="./org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
@@ -1262,9 +1258,8 @@
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/algo/BasicParallelSearch.html#searchStep()">searchStep()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="./org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a></dt>
 <dd>
-<div class="block">This algorithm consists of a single search step only, in which (1) the
- contained subsearches are executed in parallel, (2) the main search waits
- until they terminate and (3) the main search stops.</div>
+<div class="block">This algorithm consists of a single search step only, in which (1) the contained subsearches are executed in
+ parallel, (2) the main search waits until they terminate and (3) the main search stops.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/algo/exh/ExhaustiveSearch.html#searchStep()">searchStep()</a></span> - Method in class org.jamesframework.core.search.algo.exh.<a href="./org/jamesframework/core/search/algo/exh/ExhaustiveSearch.html" title="class in org.jamesframework.core.search.algo.exh">ExhaustiveSearch</a></dt>
 <dd>
@@ -1451,7 +1446,8 @@
 </dd>
 <dt><a href="./org/jamesframework/core/search/neigh/subset/SingleSwapNeighbourhood.html" title="class in org.jamesframework.core.search.neigh.subset"><span class="strong">SingleSwapNeighbourhood</span></a> - Class in <a href="./org/jamesframework/core/search/neigh/subset/package-summary.html">org.jamesframework.core.search.neigh.subset</a></dt>
 <dd>
-<div class="block">A subset neighbourhood that generates swap moves only (see <a href="./org/jamesframework/core/search/neigh/subset/SwapMove.html" title="class in org.jamesframework.core.search.neigh.subset"><code>SwapMove</code></a>).</div>
+<div class="block">
+ A subset neighbourhood that generates swap moves only (see <a href="./org/jamesframework/core/search/neigh/subset/SwapMove.html" title="class in org.jamesframework.core.search.neigh.subset"><code>SwapMove</code></a>).</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/neigh/subset/SingleSwapNeighbourhood.html#SingleSwapNeighbourhood()">SingleSwapNeighbourhood()</a></span> - Constructor for class org.jamesframework.core.search.neigh.subset.<a href="./org/jamesframework/core/search/neigh/subset/SingleSwapNeighbourhood.html" title="class in org.jamesframework.core.search.neigh.subset">SingleSwapNeighbourhood</a></dt>
 <dd>
@@ -1531,9 +1527,8 @@
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/algo/BasicParallelSearch.html#stop()">stop()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="./org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a></dt>
 <dd>
-<div class="block">When requesting to stop a basic parallel search, the search status
- changes to TERMINATING and this request is propagated to each search that
- has been added to the parallel algorithm.</div>
+<div class="block">When requesting to stop a basic parallel search, the search status changes to TERMINATING
+ and this request is propagated to each search that has been added to the parallel algorithm.</div>
 </dd>
 <dt><span class="strong"><a href="./org/jamesframework/core/search/Search.html#stop()">stop()</a></span> - Method in class org.jamesframework.core.search.<a href="./org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
