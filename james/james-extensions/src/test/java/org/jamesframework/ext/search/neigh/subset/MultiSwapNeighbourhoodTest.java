@@ -137,7 +137,6 @@ public class MultiSwapNeighbourhoodTest {
             for(int j=1; j<=s; j++){
                 num += numSubsets(sol.getSelectedIDs().size(), j)*numSubsets(sol.getUnselectedIDs().size(), j);
             }
-            System.out.println("num = " + num);
             // generate all moves
             moves1 = neigh.getAllMoves(sol);
             // verify
