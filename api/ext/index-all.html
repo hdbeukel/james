@@ -23,10 +23,11 @@
 <!--   -->
 </a>
 <ul class="navList" title="Navigation">
-<li><a href="./org/jamesframework/ext/problems/objectives/package-summary.html">Package</a></li>
+<li><a href="./overview-summary.html">Overview</a></li>
+<li>Package</li>
 <li>Class</li>
 <li>Use</li>
-<li><a href="./org/jamesframework/ext/problems/objectives/package-tree.html">Tree</a></li>
+<li><a href="./overview-tree.html">Tree</a></li>
 <li><a href="./deprecated-list.html">Deprecated</a></li>
 <li class="navBarCell1Rev">Index</li>
 <li><a href="./help-doc.html">Help</a></li>
@@ -61,7 +62,7 @@
 <!--   -->
 </a></div>
 <!-- ========= END OF TOP NAVBAR ========= -->
-<div class="contentContainer"><a href="#_A_">A</a>&nbsp;<a href="#_E_">E</a>&nbsp;<a href="#_I_">I</a>&nbsp;<a href="#_O_">O</a>&nbsp;<a href="#_R_">R</a>&nbsp;<a href="#_W_">W</a>&nbsp;<a name="_A_">
+<div class="contentContainer"><a href="#_A_">A</a>&nbsp;<a href="#_D_">D</a>&nbsp;<a href="#_E_">E</a>&nbsp;<a href="#_G_">G</a>&nbsp;<a href="#_I_">I</a>&nbsp;<a href="#_M_">M</a>&nbsp;<a href="#_O_">O</a>&nbsp;<a href="#_R_">R</a>&nbsp;<a href="#_U_">U</a>&nbsp;<a href="#_W_">W</a>&nbsp;<a name="_A_">
 <!--   -->
 </a>
 <h2 class="title">A</h2>
@@ -69,6 +70,31 @@
 <dt><span class="strong"><a href="./org/jamesframework/ext/problems/objectives/WeightedMultiObjective.html#addObjective(org.jamesframework.core.problems.objectives.Objective, double)">addObjective(Objective&lt;? super SolutionType, ? super DataType&gt;, double)</a></span> - Method in class org.jamesframework.ext.problems.objectives.<a href="./org/jamesframework/ext/problems/objectives/WeightedMultiObjective.html" title="class in org.jamesframework.ext.problems.objectives">WeightedMultiObjective</a></dt>
 <dd>
 <div class="block">Add an objective with corresponding weight.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/ext/search/neigh/subset/GeneralSubsetMove.html#apply(org.jamesframework.core.problems.solutions.SubsetSolution)">apply(SubsetSolution)</a></span> - Method in class org.jamesframework.ext.search.neigh.subset.<a href="./org/jamesframework/ext/search/neigh/subset/GeneralSubsetMove.html" title="class in org.jamesframework.ext.search.neigh.subset">GeneralSubsetMove</a></dt>
+<dd>
+<div class="block">Apply this move to a given subset solution.</div>
+</dd>
+</dl>
+<a name="_D_">
+<!--   -->
+</a>
+<h2 class="title">D</h2>
+<dl>
+<dt><a href="./org/jamesframework/ext/search/neigh/subset/DisjointMultiSwapNeighbourhood.html" title="class in org.jamesframework.ext.search.neigh.subset"><span class="strong">DisjointMultiSwapNeighbourhood</span></a> - Class in <a href="./org/jamesframework/ext/search/neigh/subset/package-summary.html">org.jamesframework.ext.search.neigh.subset</a></dt>
+<dd>
+<div class="block">
+ A subset neighbourhood that generates moves performing a fixed number of simultaneous swaps of selected and unselected
+ IDs.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/ext/search/neigh/subset/DisjointMultiSwapNeighbourhood.html#DisjointMultiSwapNeighbourhood(int)">DisjointMultiSwapNeighbourhood(int)</a></span> - Constructor for class org.jamesframework.ext.search.neigh.subset.<a href="./org/jamesframework/ext/search/neigh/subset/DisjointMultiSwapNeighbourhood.html" title="class in org.jamesframework.ext.search.neigh.subset">DisjointMultiSwapNeighbourhood</a></dt>
+<dd>
+<div class="block">Creates a multi swap neighbourhood without fixed IDs, indicating the number of (simultaneous)
+ swaps performed by any generated move.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/ext/search/neigh/subset/DisjointMultiSwapNeighbourhood.html#DisjointMultiSwapNeighbourhood(int, java.util.Set)">DisjointMultiSwapNeighbourhood(int, Set&lt;Integer&gt;)</a></span> - Constructor for class org.jamesframework.ext.search.neigh.subset.<a href="./org/jamesframework/ext/search/neigh/subset/DisjointMultiSwapNeighbourhood.html" title="class in org.jamesframework.ext.search.neigh.subset">DisjointMultiSwapNeighbourhood</a></dt>
+<dd>
+<div class="block">Creates a multi swap neighbourhood with a given set of fixed IDs which are not allowed to be swapped.</div>
 </dd>
 </dl>
 <a name="_E_">
@@ -81,6 +107,64 @@
 <div class="block">Computes the weighted sum of evaluations of all underlying objectives.</div>
 </dd>
 </dl>
+<a name="_G_">
+<!--   -->
+</a>
+<h2 class="title">G</h2>
+<dl>
+<dt><a href="./org/jamesframework/ext/search/neigh/subset/GeneralSubsetMove.html" title="class in org.jamesframework.ext.search.neigh.subset"><span class="strong">GeneralSubsetMove</span></a> - Class in <a href="./org/jamesframework/ext/search/neigh/subset/package-summary.html">org.jamesframework.ext.search.neigh.subset</a></dt>
+<dd>
+<div class="block">A general subset move adds and/or removes several IDs at once to/from the current selection
+ of a subset solution.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/ext/search/neigh/subset/GeneralSubsetMove.html#GeneralSubsetMove(java.util.Set, java.util.Set)">GeneralSubsetMove(Set&lt;Integer&gt;, Set&lt;Integer&gt;)</a></span> - Constructor for class org.jamesframework.ext.search.neigh.subset.<a href="./org/jamesframework/ext/search/neigh/subset/GeneralSubsetMove.html" title="class in org.jamesframework.ext.search.neigh.subset">GeneralSubsetMove</a></dt>
+<dd>
+<div class="block">Creates a general subset move, indicating which IDs are to be added to and removed from
+ the current selection when being applied to a given subset solution.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/ext/search/neigh/subset/GeneralSubsetMove.html#getAddedIDs()">getAddedIDs()</a></span> - Method in class org.jamesframework.ext.search.neigh.subset.<a href="./org/jamesframework/ext/search/neigh/subset/GeneralSubsetMove.html" title="class in org.jamesframework.ext.search.neigh.subset">GeneralSubsetMove</a></dt>
+<dd>
+<div class="block">Returns an unmodifiable view of the set of IDs added to the selection when applying
+ this move to a subset solution.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/ext/search/neigh/subset/DisjointMultiSwapNeighbourhood.html#getAllMoves(org.jamesframework.core.problems.solutions.SubsetSolution)">getAllMoves(SubsetSolution)</a></span> - Method in class org.jamesframework.ext.search.neigh.subset.<a href="./org/jamesframework/ext/search/neigh/subset/DisjointMultiSwapNeighbourhood.html" title="class in org.jamesframework.ext.search.neigh.subset">DisjointMultiSwapNeighbourhood</a></dt>
+<dd>
+<div class="block">
+ Generates the set of all possible moves that perform exactly \(k\) swaps, where \(k\) is the desired number
+ of swaps specified at construction.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/ext/search/neigh/subset/MultiSwapNeighbourhood.html#getAllMoves(org.jamesframework.core.problems.solutions.SubsetSolution)">getAllMoves(SubsetSolution)</a></span> - Method in class org.jamesframework.ext.search.neigh.subset.<a href="./org/jamesframework/ext/search/neigh/subset/MultiSwapNeighbourhood.html" title="class in org.jamesframework.ext.search.neigh.subset">MultiSwapNeighbourhood</a></dt>
+<dd>
+<div class="block">
+ Generates the set of all possible moves that perform 1 up to \(k\) swaps, where \(k\) is the maximum number
+ of swaps specified at construction.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/ext/search/neigh/subset/GeneralSubsetMove.html#getDeletedIDs()">getDeletedIDs()</a></span> - Method in class org.jamesframework.ext.search.neigh.subset.<a href="./org/jamesframework/ext/search/neigh/subset/GeneralSubsetMove.html" title="class in org.jamesframework.ext.search.neigh.subset">GeneralSubsetMove</a></dt>
+<dd>
+<div class="block">Returns an unmodifiable view of the set of IDs removed from the selection when applying
+ this move to a subset solution.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/ext/search/neigh/subset/GeneralSubsetMove.html#getNumAdded()">getNumAdded()</a></span> - Method in class org.jamesframework.ext.search.neigh.subset.<a href="./org/jamesframework/ext/search/neigh/subset/GeneralSubsetMove.html" title="class in org.jamesframework.ext.search.neigh.subset">GeneralSubsetMove</a></dt>
+<dd>
+<div class="block">Returns the number of added IDs.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/ext/search/neigh/subset/GeneralSubsetMove.html#getNumDeleted()">getNumDeleted()</a></span> - Method in class org.jamesframework.ext.search.neigh.subset.<a href="./org/jamesframework/ext/search/neigh/subset/GeneralSubsetMove.html" title="class in org.jamesframework.ext.search.neigh.subset">GeneralSubsetMove</a></dt>
+<dd>
+<div class="block">Returns the number of removed IDs.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/ext/search/neigh/subset/DisjointMultiSwapNeighbourhood.html#getRandomMove(org.jamesframework.core.problems.solutions.SubsetSolution)">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.ext.search.neigh.subset.<a href="./org/jamesframework/ext/search/neigh/subset/DisjointMultiSwapNeighbourhood.html" title="class in org.jamesframework.ext.search.neigh.subset">DisjointMultiSwapNeighbourhood</a></dt>
+<dd>
+<div class="block">Generates a move for the given subset solution that removes a random subset of \(k\) IDs from the current
+ selection and replaces them with an equally large random subset of the currently unselected IDs, where
+ \(k\) is the number of swaps specified at construction.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/ext/search/neigh/subset/MultiSwapNeighbourhood.html#getRandomMove(org.jamesframework.core.problems.solutions.SubsetSolution)">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.ext.search.neigh.subset.<a href="./org/jamesframework/ext/search/neigh/subset/MultiSwapNeighbourhood.html" title="class in org.jamesframework.ext.search.neigh.subset">MultiSwapNeighbourhood</a></dt>
+<dd>
+<div class="block">
+ Generates a move for the given subset solution that removes a random subset of IDs from the current selection
+ and replaces them with an equally large random subset of the currently unselected IDs.</div>
+</dd>
+</dl>
 <a name="_I_">
 <!--   -->
 </a>
@@ -91,13 +175,40 @@
 <div class="block">Weighted multi-objective is always maximizing, so this method always returns false.</div>
 </dd>
 </dl>
+<a name="_M_">
+<!--   -->
+</a>
+<h2 class="title">M</h2>
+<dl>
+<dt><a href="./org/jamesframework/ext/search/neigh/subset/MultiSwapNeighbourhood.html" title="class in org.jamesframework.ext.search.neigh.subset"><span class="strong">MultiSwapNeighbourhood</span></a> - Class in <a href="./org/jamesframework/ext/search/neigh/subset/package-summary.html">org.jamesframework.ext.search.neigh.subset</a></dt>
+<dd>
+<div class="block">
+ A subset neighbourhood that generates moves performing up to \(k\) multiple simultaneous swaps of selected and
+ unselected IDs, where \(k\) is specified when creating the neighbourhood.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/ext/search/neigh/subset/MultiSwapNeighbourhood.html#MultiSwapNeighbourhood(int)">MultiSwapNeighbourhood(int)</a></span> - Constructor for class org.jamesframework.ext.search.neigh.subset.<a href="./org/jamesframework/ext/search/neigh/subset/MultiSwapNeighbourhood.html" title="class in org.jamesframework.ext.search.neigh.subset">MultiSwapNeighbourhood</a></dt>
+<dd>
+<div class="block">Creates a multi swap neighbourhood without fixed IDs, indicating the desired maximum number
+ of (simultaneous) swaps performed by any generated move.</div>
+</dd>
+<dt><span class="strong"><a href="./org/jamesframework/ext/search/neigh/subset/MultiSwapNeighbourhood.html#MultiSwapNeighbourhood(int, java.util.Set)">MultiSwapNeighbourhood(int, Set&lt;Integer&gt;)</a></span> - Constructor for class org.jamesframework.ext.search.neigh.subset.<a href="./org/jamesframework/ext/search/neigh/subset/MultiSwapNeighbourhood.html" title="class in org.jamesframework.ext.search.neigh.subset">MultiSwapNeighbourhood</a></dt>
+<dd>
+<div class="block">Creates a multi swap neighbourhood with a given set of fixed IDs which are not allowed to be swapped.</div>
+</dd>
+</dl>
 <a name="_O_">
 <!--   -->
 </a>
 <h2 class="title">O</h2>
 <dl>
 <dt><a href="./org/jamesframework/ext/problems/objectives/package-summary.html">org.jamesframework.ext.problems.objectives</a> - package org.jamesframework.ext.problems.objectives</dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Advanced objective functions.</div>
+</dd>
+<dt><a href="./org/jamesframework/ext/search/neigh/subset/package-summary.html">org.jamesframework.ext.search.neigh.subset</a> - package org.jamesframework.ext.search.neigh.subset</dt>
+<dd>
+<div class="block">Advanced neighbourhoods for subset selection.</div>
+</dd>
 </dl>
 <a name="_R_">
 <!--   -->
@@ -107,6 +218,17 @@
 <dt><span class="strong"><a href="./org/jamesframework/ext/problems/objectives/WeightedMultiObjective.html#removeObjective(org.jamesframework.core.problems.objectives.Objective)">removeObjective(Objective&lt;? super SolutionType, ? super DataType&gt;)</a></span> - Method in class org.jamesframework.ext.problems.objectives.<a href="./org/jamesframework/ext/problems/objectives/WeightedMultiObjective.html" title="class in org.jamesframework.ext.problems.objectives">WeightedMultiObjective</a></dt>
 <dd>
 <div class="block">Remove an objective, if present.</div>
+</dd>
+</dl>
+<a name="_U_">
+<!--   -->
+</a>
+<h2 class="title">U</h2>
+<dl>
+<dt><span class="strong"><a href="./org/jamesframework/ext/search/neigh/subset/GeneralSubsetMove.html#undo(org.jamesframework.core.problems.solutions.SubsetSolution)">undo(SubsetSolution)</a></span> - Method in class org.jamesframework.ext.search.neigh.subset.<a href="./org/jamesframework/ext/search/neigh/subset/GeneralSubsetMove.html" title="class in org.jamesframework.ext.search.neigh.subset">GeneralSubsetMove</a></dt>
+<dd>
+<div class="block">Undo this move after it has been successfully applied to the given subset solution,
+ by removing all added IDs and adding all removed IDs.</div>
 </dd>
 </dl>
 <a name="_W_">
@@ -123,7 +245,7 @@
 <div class="block">Create an empty weighted multi-objective.</div>
 </dd>
 </dl>
-<a href="#_A_">A</a>&nbsp;<a href="#_E_">E</a>&nbsp;<a href="#_I_">I</a>&nbsp;<a href="#_O_">O</a>&nbsp;<a href="#_R_">R</a>&nbsp;<a href="#_W_">W</a>&nbsp;</div>
+<a href="#_A_">A</a>&nbsp;<a href="#_D_">D</a>&nbsp;<a href="#_E_">E</a>&nbsp;<a href="#_G_">G</a>&nbsp;<a href="#_I_">I</a>&nbsp;<a href="#_M_">M</a>&nbsp;<a href="#_O_">O</a>&nbsp;<a href="#_R_">R</a>&nbsp;<a href="#_U_">U</a>&nbsp;<a href="#_W_">W</a>&nbsp;</div>
 <!-- ======= START OF BOTTOM NAVBAR ====== -->
 <div class="bottomNav"><a name="navbar_bottom">
 <!--   -->
@@ -131,10 +253,11 @@
 <!--   -->
 </a>
 <ul class="navList" title="Navigation">
-<li><a href="./org/jamesframework/ext/problems/objectives/package-summary.html">Package</a></li>
+<li><a href="./overview-summary.html">Overview</a></li>
+<li>Package</li>
 <li>Class</li>
 <li>Use</li>
-<li><a href="./org/jamesframework/ext/problems/objectives/package-tree.html">Tree</a></li>
+<li><a href="./overview-tree.html">Tree</a></li>
 <li><a href="./deprecated-list.html">Deprecated</a></li>
 <li class="navBarCell1Rev">Index</li>
 <li><a href="./help-doc.html">Help</a></li>

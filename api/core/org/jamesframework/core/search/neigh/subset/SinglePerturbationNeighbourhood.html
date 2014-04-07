@@ -192,7 +192,8 @@ implements <a href="../../../../../../org/jamesframework/core/search/neigh/Neigh
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&gt;</code></td>
 <td class="colLast"><code><strong><a href="../../../../../../org/jamesframework/core/search/neigh/subset/SinglePerturbationNeighbourhood.html#getRandomMove(org.jamesframework.core.problems.solutions.SubsetSolution)">getRandomMove</a></strong>(<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;solution)</code>
-<div class="block">Generates a random swap, deletion or addition move that transforms the given subset solution into
+<div class="block">
+ Generates a random swap, deletion or addition move that transforms the given subset solution into
  a neighbour within the minimum and maximum allowed subset size.</div>
 </td>
 </tr>
@@ -269,10 +270,16 @@ implements <a href="../../../../../../org/jamesframework/core/search/neigh/Neigh
 <li class="blockList">
 <h4>getRandomMove</h4>
 <pre>public&nbsp;<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&gt;&nbsp;getRandomMove(<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;solution)</pre>
-<div class="block">Generates a random swap, deletion or addition move that transforms the given subset solution into
+<div class="block"><p>
+ Generates a random swap, deletion or addition move that transforms the given subset solution into
  a neighbour within the minimum and maximum allowed subset size. If no valid move can be generated,
  <code>null</code> is returned. If any fixed IDs have been specified, these will not be considered
- for deletion nor addition.</div>
+ for deletion nor addition.
+ </p>
+ <p>
+ Note that every move is generated with equal probability, i.e. moves are sampled from a uniform
+ distribution.
+ </p></div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
 <dd><code><a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html#getRandomMove(SolutionType)">getRandomMove</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&gt;</code></dd>
