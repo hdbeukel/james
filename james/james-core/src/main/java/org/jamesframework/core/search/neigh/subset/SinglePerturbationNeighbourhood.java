@@ -107,10 +107,16 @@ public class SinglePerturbationNeighbourhood implements Neighbourhood<SubsetSolu
     }
     
     /**
+     * <p>
      * Generates a random swap, deletion or addition move that transforms the given subset solution into
      * a neighbour within the minimum and maximum allowed subset size. If no valid move can be generated,
      * <code>null</code> is returned. If any fixed IDs have been specified, these will not be considered
      * for deletion nor addition.
+     * </p>
+     * <p>
+     * Note that every move is generated with equal probability, i.e. moves are sampled from a uniform
+     * distribution.
+     * </p>
      * 
      * @param solution solution for which a random move is generated
      * @return random move, <code>null</code> if no valid move can be generated
@@ -127,37 +133,69 @@ public class SinglePerturbationNeighbourhood implements Neighbourhood<SubsetSolu
             deleteCandidates.removeAll(fixedIDs);
             addCandidates.removeAll(fixedIDs);
         }
-        // check which moves can be generated
+        // check which moves can be generated (and how many)
         List<MoveType> validMoveTypes = new ArrayList<>();
+        List<Integer> numMovesPerType = new ArrayList<>();
+        int numValidMoves = 0;
         if(genAdditionMovesForSolution(solution, addCandidates)){
             // addition is valid
             validMoveTypes.add(MoveType.ADDITION);
+            // account for num possible additions
+            int numAdds = addCandidates.size();
+            numMovesPerType.add(numAdds);
+            numValidMoves += numAdds;
         }
         if(genDeletionMovesForSolution(solution, deleteCandidates)){
             // deletion is valid
             validMoveTypes.add(MoveType.DELETION);
+            // account for num possible deletions
+            int numDels = deleteCandidates.size();
+            numMovesPerType.add(numDels);
+            numValidMoves += numDels;
         }
         if(genSwapMovesForSolution(solution, addCandidates, deleteCandidates)){
             // swap is valid
             validMoveTypes.add(MoveType.SWAP);
+            // account for number of possible swaps
+            int numSwaps = addCandidates.size()*deleteCandidates.size();
+            numMovesPerType.add(numSwaps);
+            numValidMoves += numSwaps;
         }
         // in case of no valid moves: return null
-        if(validMoveTypes.isEmpty()){
+        if(numValidMoves == 0){
             return null;
         }
-        // randomly pick move type (using thread local random for concurrent performance)
+        // use thread local random for concurrent performance
         Random rg = ThreadLocalRandom.current();
-        MoveType type = validMoveTypes.get(rg.nextInt(validMoveTypes.size()));
-        // generate random move of chosen type
-        switch(type){
-            case ADDITION : return new AdditionMove(SetUtilities.getRandomElement(addCandidates, rg));
-            case DELETION : return new DeletionMove(SetUtilities.getRandomElement(deleteCandidates, rg));
-            case SWAP     : return new SwapMove(
-                                                SetUtilities.getRandomElement(addCandidates, rg),
-                                                SetUtilities.getRandomElement(deleteCandidates, rg)
-                                            );
-            default : throw new JamesRuntimeException("This should never happen. If this exception is thrown, "
-                                                + "there is a serious bug in SinglePerturbationNeighbourhood.");
+        // randomly pick move type (uniformly distributed, taking
+        // into account the number of possible moves per type)
+        int r = rg.nextInt(numValidMoves);
+        MoveType selectedType = null;
+        int t=0;
+        long sumNumMoves = 0;
+        while(t < validMoveTypes.size() && selectedType == null){
+            sumNumMoves += numMovesPerType.get(t);
+            if(r < sumNumMoves){ // always holds for the last move type,
+                                 // because then sumNumMoves == numValidMoves
+                selectedType = validMoveTypes.get(t);
+            }
+            t++;
+        }
+        if(selectedType == null){
+            // this should not be possible, as the last move type will always be selected if no previous type is picked
+            throw new Error("This should never happen; if it does, there is a serious bug in SinglePerturbationNeighbourhood.");
+        } else {
+            // generate random move of chosen type
+            switch(selectedType){
+                case ADDITION : return new AdditionMove(SetUtilities.getRandomElement(addCandidates, rg));
+                case DELETION : return new DeletionMove(SetUtilities.getRandomElement(deleteCandidates, rg));
+                case SWAP     : return new SwapMove(
+                                                    SetUtilities.getRandomElement(addCandidates, rg),
+                                                    SetUtilities.getRandomElement(deleteCandidates, rg)
+                                                );
+                default : throw new Error("This should never happen. If this exception is thrown, "
+                                            + "there is a serious bug in SinglePerturbationNeighbourhood.");
+            }
         }
     }
 
