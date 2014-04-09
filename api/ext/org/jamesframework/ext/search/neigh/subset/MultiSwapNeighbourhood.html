@@ -128,7 +128,7 @@ implements <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesfr
  Note that the number of possible moves quickly becomes very large when the size of the full set and/or selected
  subset increase. For example, generating all combinations of 1 or 2 simultaneous swaps already yields
  \[
-  s*(n-s) + \frac{s(s-1)}{2} \times \frac{(n-s)(n-s-1)}{2}
+  s(n-s) + \frac{s(s-1)}{2} \times \frac{(n-s)(n-s-1)}{2}
  \]
  possibilities, where \(n\) is the size of the full set and \(s\) is the desired subset size. When selecting e.g.
  30 out of 100 items, this value already exceeds one million. Because of the large number of possible moves,
