@@ -30,7 +30,7 @@ import org.jamesframework.core.search.neigh.Neighbourhood;
 public abstract class MultiNeighbourhoodSearch<SolutionType extends Solution> extends NeighbourhoodSearch<SolutionType> {
 
     // neighbourhoods
-    private List<? extends Neighbourhood<? super SolutionType>> neighs;
+    private List<Neighbourhood<? super SolutionType>> neighs;
     
     /**
      * Create a new multi neighbourhood search, specifying the problem to be solved and the neighbourhoods used to
@@ -42,7 +42,7 @@ public abstract class MultiNeighbourhoodSearch<SolutionType extends Solution> ex
      * @param problem problem to be solved
      * @param neighs neighbourhoods used to modify the current solution
      */
-    public MultiNeighbourhoodSearch(Problem<SolutionType> problem, List<? extends Neighbourhood<? super SolutionType>> neighs){
+    public MultiNeighbourhoodSearch(Problem<SolutionType> problem, List<Neighbourhood<? super SolutionType>> neighs){
         this(null, problem, neighs);
     }
     
@@ -58,8 +58,7 @@ public abstract class MultiNeighbourhoodSearch<SolutionType extends Solution> ex
      * @param problem problem to be solved
      * @param neighs neighbourhoods used to modify the current solution
      */
-    public MultiNeighbourhoodSearch(String name, Problem<SolutionType> problem,
-                                        List<? extends Neighbourhood<? super SolutionType>> neighs){
+    public MultiNeighbourhoodSearch(String name, Problem<SolutionType> problem, List<Neighbourhood<? super SolutionType>> neighs){
         // pass problem to super
         super(name != null ? name : "MultiNeighbourhoodSearch", problem);
         // check neighs not null
@@ -95,7 +94,7 @@ public abstract class MultiNeighbourhoodSearch<SolutionType extends Solution> ex
      * @throws SearchException if the search is currently not idle
      * @param neighs list of neighbourhoods used to modify the current solution
      */
-    public void setNeighbourhoods(List<? extends Neighbourhood<? super SolutionType>> neighs){
+    public void setNeighbourhoods(List<Neighbourhood<? super SolutionType>> neighs){
         // synchronize with status updates
         synchronized(getStatusLock()){
             // assert idle

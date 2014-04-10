@@ -45,7 +45,7 @@ public class SearchTestTemplate {
     // fake subset data (scored entities)
     protected static FakeSubsetData data;
     // dataset size
-    protected static final int DATASET_SIZE = 500;
+    protected static int DATASET_SIZE = 500;
     // entity scores
     protected static double[] scores;
     
@@ -54,7 +54,7 @@ public class SearchTestTemplate {
 
     // subset problem to solve (select SUBSET_SIZE out of DATASET_SIZE)
     protected SubsetProblemWithData<FakeSubsetData> problem;
-    protected static final int SUBSET_SIZE = 20;
+    protected static int SUBSET_SIZE = 20;
     
     // fake constraint (not assigned by default)
     protected FakeSubsetPenalizingConstraint constraint;
