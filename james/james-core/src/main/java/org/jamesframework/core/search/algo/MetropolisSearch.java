@@ -184,12 +184,12 @@ public class MetropolisSearch<SolutionType extends Solution> extends SingleNeigh
                         acceptMove(move);
                     } else {
                         // reject non-improving move
-                        rejectMove(move);
+                        rejectMove();
                     }
                 }
             } else {
                 // invalid move: reject
-                rejectMove(move);
+                rejectMove();
             }
         } else {
             // no move/neighbour found

@@ -77,7 +77,7 @@ public class RandomDescent<SolutionType extends Solution> extends SingleNeighbou
                 acceptMove(move);
             } else {
                 // no improvement
-                rejectMove(move);
+                rejectMove();
             }
         } else {
             // no move/neighbour reported by neighbourhood

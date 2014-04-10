@@ -531,12 +531,10 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
     }
     
     /**
-     * Rejects the given move. This method only updates the rejected move counter. If this method
+     * Indicate that a move was rejected. This method only updates the rejected move counter. If this method
      * is called for every rejected move, the number of rejected moves will be correctly reported.
-     * 
-     * @param move rejected move
      */
-    protected void rejectMove(Move<? super SolutionType> move){
+    protected void rejectMove(){
         numRejectedMoves++;
     }
     

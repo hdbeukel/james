@@ -157,7 +157,7 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
         for(int i=0; i<30; i++){
             m = neigh.getRandomMove(neighSearch.getCurrentSolution());
             if(i%3 == 0){
-                neighSearch.rejectMove(m);
+                neighSearch.rejectMove();
             } else {
                 neighSearch.acceptMove(m);
             }
@@ -184,7 +184,7 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
         for(int i=0; i<30; i++){
             m = neigh.getRandomMove(neighSearch.getCurrentSolution());
             if(i%3 == 0){
-                neighSearch.rejectMove(m);
+                neighSearch.rejectMove();
             } else {
                 neighSearch.acceptMove(m);
             }
