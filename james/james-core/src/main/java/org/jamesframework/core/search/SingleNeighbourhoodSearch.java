@@ -47,7 +47,7 @@ public abstract class SingleNeighbourhoodSearch<SolutionType extends Solution> e
     
     /**
      * Create a new single neighbourhood search, specifying the problem to be solved, the neighbourhood used to
-     * modify the current solution, and a custom search name. The problem and neighbourhood may be <code>null</code>,
+     * modify the current solution, and a custom search name. The problem and neighbourhood may not be <code>null</code>,
      * else, an exception is thrown. The search name may be <code>null</code> in which case it is set to the default
      * name "SingleNeighbourhoodSearch".
      * 
