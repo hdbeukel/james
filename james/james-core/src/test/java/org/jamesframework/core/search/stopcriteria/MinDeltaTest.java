@@ -35,7 +35,10 @@ public class MinDeltaTest extends SearchTestTemplate {
     private Search<SubsetSolution> search;
     
     // minimum delta
-    private final double MIN_DELTA = 0.05;
+    private final double MIN_DELTA = 0.01;
+    // max runtime
+    private final long MAX_RUNTIME = 10;
+    private final TimeUnit MAX_RUNTIME_TIME_UNIT = TimeUnit.SECONDS;
     
     // short check period
     private final long SHORT_CHECK_PERIOD = 1;
@@ -78,6 +81,8 @@ public class MinDeltaTest extends SearchTestTemplate {
         
         // add stop criterion to search
         search.addStopCriterion(new MinDelta(MIN_DELTA));
+        // also add maximum runtime stop criterion as min delta might not be obtainable
+        search.addStopCriterion(new MaxRuntime(MAX_RUNTIME, MAX_RUNTIME_TIME_UNIT));
         
         // run search (should stop)
         search.start();
@@ -100,6 +105,8 @@ public class MinDeltaTest extends SearchTestTemplate {
         search.addStopCriterion(new MinDelta(MIN_DELTA));
         // set short check period
         search.setStopCriterionCheckPeriod(SHORT_CHECK_PERIOD, CHECK_PERIOD_TIME_UNIT);
+        // also add maximum runtime stop criterion as min delta might not be obtainable
+        search.addStopCriterion(new MaxRuntime(MAX_RUNTIME, MAX_RUNTIME_TIME_UNIT));
         
         // run search (should stop)
         search.start();
@@ -122,6 +129,8 @@ public class MinDeltaTest extends SearchTestTemplate {
         obj.setMinimizing();
         // add stop criterion to search
         search.addStopCriterion(new MinDelta(MIN_DELTA));
+        // also add maximum runtime stop criterion as min delta might not be obtainable
+        search.addStopCriterion(new MaxRuntime(MAX_RUNTIME, MAX_RUNTIME_TIME_UNIT));
         
         // run search (should stop)
         search.start();
@@ -146,6 +155,8 @@ public class MinDeltaTest extends SearchTestTemplate {
         search.addStopCriterion(new MinDelta(MIN_DELTA));
         // set short check period
         search.setStopCriterionCheckPeriod(SHORT_CHECK_PERIOD, CHECK_PERIOD_TIME_UNIT);
+        // also add maximum runtime stop criterion as min delta might not be obtainable
+        search.addStopCriterion(new MaxRuntime(MAX_RUNTIME, MAX_RUNTIME_TIME_UNIT));
         
         // run search (should stop)
         search.start();

@@ -105,11 +105,11 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
         
         System.out.println(" - test addSearchListener");
         
-        // add search listener
+        // add search listener that counts number of current solution updates
         NeighbourhoodSearchListenerStub<SubsetSolution> l = new NeighbourhoodSearchListenerStub<>();
         neighSearch.addSearchListener(l);
         
-        // initialize
+        // initialize (sets random initial solution)
         neighSearch.searchStarted();
         int n = 10;
         for(int i = 0; i < n; i++){
@@ -118,7 +118,7 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
         }
         
         // verify
-        assertEquals(n, l.getNumCalls());
+        assertEquals(n+1, l.getNumCalls());
         
     }
 
