@@ -3,7 +3,7 @@ James Extensions Module
 
 The James extensions module is part of the [James framework][1].
 
-This module provides additional utitilies for advanced subset selection, as well as implementations of components for other types of problems (e.g. permutation problems).
+This module provides components to model and solve other types of problems, besides subset selection (e.g. permutation problems). Also, general utilities for advanced problem specification, such as weighted objectives, are provided.
 
 Status
 ======
