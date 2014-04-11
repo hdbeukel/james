@@ -12,7 +12,7 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-package org.jamesframework.ext.search.neigh.subset;
+package org.jamesframework.core.search.neigh.subset.adv;
 
 import java.util.Collections;
 import java.util.Set;

@@ -23,7 +23,7 @@ import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.SearchTestTemplate;
 import org.jamesframework.core.search.listeners.EmptyNeighbourhoodSearchListener;
 import org.jamesframework.core.search.neigh.Neighbourhood;
-import org.jamesframework.ext.search.neigh.subset.DisjointMultiSwapNeighbourhood;
+import org.jamesframework.core.search.neigh.subset.adv.DisjointMultiSwapNeighbourhood;
 import org.jamesframework.test.util.NeverSatisfiedConstraintStub;
 import org.junit.After;
 import org.junit.AfterClass;

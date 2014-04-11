@@ -13,6 +13,6 @@
 //  limitations under the License.
 
 /**
- * Advanced neighbourhoods for subset selection.
+ * Advanced subset selection neighbourhoods.
  */
-package org.jamesframework.ext.search.neigh.subset;
+package org.jamesframework.core.search.neigh.subset.adv;

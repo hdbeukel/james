@@ -26,13 +26,4 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <dependencies>
-        <!-- use extensions module in core module tests -->
-        <dependency>
-            <groupId>org.jamesframework</groupId>
-            <artifactId>james-extensions</artifactId>
-            <version>0.1-SNAPSHOT</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
 </project>
