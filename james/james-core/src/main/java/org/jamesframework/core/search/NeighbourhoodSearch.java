@@ -547,11 +547,29 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
     }
     
     /**
+     * Increase the number of accepted moves with the given value.
+     * 
+     * @param inc value with which the number of accepted moves is increased
+     */
+    protected void incNumAcceptedMoves(long inc){
+        numAcceptedMoves += inc;
+    }
+    
+    /**
      * Indicate that a move was rejected. This method only updates the rejected move counter. If this method
      * is called for every rejected move, the number of rejected moves will be correctly reported.
      */
     protected void rejectMove(){
-        numRejectedMoves++;
+        incNumRejectedMoves(1);
+    }
+    
+    /**
+     * Increase the number of rejected moves with the given value.
+     * 
+     * @param inc value with which the number of rejected moves is increased
+     */
+    protected void incNumRejectedMoves(long inc){
+        numRejectedMoves += inc;
     }
     
 }
