@@ -11,5 +11,6 @@ org.jamesframework.core.search.cache
 org.jamesframework.core.search.listeners
 org.jamesframework.core.search.neigh
 org.jamesframework.core.search.neigh.subset
+org.jamesframework.core.search.neigh.subset.adv
 org.jamesframework.core.search.stopcriteria
 org.jamesframework.core.util

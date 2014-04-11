@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li>Prev&nbsp;Class</li>
+<li><a href="../../../../org/jamesframework/core/search/MultiNeighbourhoodSearch.html" title="class in org.jamesframework.core.search"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -123,7 +123,7 @@ var activeTableTab = "activeTableTab";
 </dl>
 <dl>
 <dt>Direct Known Subclasses:</dt>
-<dd><a href="../../../../org/jamesframework/core/search/SingleNeighbourhoodSearch.html" title="class in org.jamesframework.core.search">SingleNeighbourhoodSearch</a></dd>
+<dd><a href="../../../../org/jamesframework/core/search/MultiNeighbourhoodSearch.html" title="class in org.jamesframework.core.search">MultiNeighbourhoodSearch</a>, <a href="../../../../org/jamesframework/core/search/SingleNeighbourhoodSearch.html" title="class in org.jamesframework.core.search">SingleNeighbourhoodSearch</a></dd>
 </dl>
 <hr>
 <br>
@@ -245,8 +245,8 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#rejectMove-org.jamesframework.core.search.neigh.Move-">rejectMove</a></span>(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</code>
-<div class="block">Rejects the given move.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#rejectMove--">rejectMove</a></span>()</code>
+<div class="block">Indicate that a move was rejected.</div>
 </td>
 </tr>
 <tr id="i10" class="altColor">
@@ -274,6 +274,13 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 </td>
 </tr>
 <tr id="i14" class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#updateCurrentSolution-SolutionType-double-">updateCurrentSolution</a></span>(<a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&nbsp;solution,
+                     double&nbsp;evaluation)</code>
+<div class="block">Update the current solution, given that it has already been evaluated.</div>
+</td>
+</tr>
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#validateMove-org.jamesframework.core.search.neigh.Move-">validateMove</a></span>(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</code>
 <div class="block">Validates the neighbour obtained by applying the given move to the current solution.</div>
@@ -556,6 +563,26 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 </dl>
 </li>
 </ul>
+<a name="updateCurrentSolution-org.jamesframework.core.problems.solutions.Solution-double-">
+<!--   -->
+</a><a name="updateCurrentSolution-SolutionType-double-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>updateCurrentSolution</h4>
+<pre>protected&nbsp;void&nbsp;updateCurrentSolution(<a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&nbsp;solution,
+                                     double&nbsp;evaluation)</pre>
+<div class="block">Update the current solution, given that it has already been evaluated. This method stores
+ the new current solution and its evaluation, and informs listeners about this update. Also,
+ the evaluated move cache is cleared because it is no longer valid for the new current solution.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>solution</code> - new current solution</dd>
+<dd><code>evaluation</code> - evaluation of new current solution</dd>
+</dl>
+</li>
+</ul>
 <a name="evaluateMove-org.jamesframework.core.search.neigh.Move-">
 <!--   -->
 </a>
@@ -663,19 +690,15 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 </dl>
 </li>
 </ul>
-<a name="rejectMove-org.jamesframework.core.search.neigh.Move-">
+<a name="rejectMove--">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>rejectMove</h4>
-<pre>protected&nbsp;void&nbsp;rejectMove(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</pre>
-<div class="block">Rejects the given move. This method only updates the rejected move counter. If this method
+<pre>protected&nbsp;void&nbsp;rejectMove()</pre>
+<div class="block">Indicate that a move was rejected. This method only updates the rejected move counter. If this method
  is called for every rejected move, the number of rejected moves will be correctly reported.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>move</code> - rejected move</dd>
-</dl>
 </li>
 </ul>
 </li>
@@ -707,7 +730,7 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 </div>
 <div class="subNav">
 <ul class="navList">
-<li>Prev&nbsp;Class</li>
+<li><a href="../../../../org/jamesframework/core/search/MultiNeighbourhoodSearch.html" title="class in org.jamesframework.core.search"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">

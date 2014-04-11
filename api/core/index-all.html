@@ -125,6 +125,10 @@
 <dd>
 <div class="block">Apply this addition move to the given subset solution.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/adv/GeneralSubsetMove.html#apply-org.jamesframework.core.problems.solutions.SubsetSolution-">apply(SubsetSolution)</a></span> - Method in class org.jamesframework.core.search.neigh.subset.adv.<a href="org/jamesframework/core/search/neigh/subset/adv/GeneralSubsetMove.html" title="class in org.jamesframework.core.search.neigh.subset.adv">GeneralSubsetMove</a></dt>
+<dd>
+<div class="block">Apply this move to a given subset solution.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/DeletionMove.html#apply-org.jamesframework.core.problems.solutions.SubsetSolution-">apply(SubsetSolution)</a></span> - Method in class org.jamesframework.core.search.neigh.subset.<a href="org/jamesframework/core/search/neigh/subset/DeletionMove.html" title="class in org.jamesframework.core.search.neigh.subset">DeletionMove</a></dt>
 <dd>
 <div class="block">Apply this deletion move to the given subset solution.</div>
@@ -262,6 +266,21 @@
 <dd>
 <div class="block">Deselect all IDs.</div>
 </dd>
+<dt><a href="org/jamesframework/core/search/neigh/subset/adv/DisjointMultiSwapNeighbourhood.html" title="class in org.jamesframework.core.search.neigh.subset.adv"><span class="typeNameLink">DisjointMultiSwapNeighbourhood</span></a> - Class in <a href="org/jamesframework/core/search/neigh/subset/adv/package-summary.html">org.jamesframework.core.search.neigh.subset.adv</a></dt>
+<dd>
+<div class="block">
+ A subset neighbourhood that generates moves performing a fixed number of simultaneous swaps of selected and unselected
+ IDs.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/adv/DisjointMultiSwapNeighbourhood.html#DisjointMultiSwapNeighbourhood-int-">DisjointMultiSwapNeighbourhood(int)</a></span> - Constructor for class org.jamesframework.core.search.neigh.subset.adv.<a href="org/jamesframework/core/search/neigh/subset/adv/DisjointMultiSwapNeighbourhood.html" title="class in org.jamesframework.core.search.neigh.subset.adv">DisjointMultiSwapNeighbourhood</a></dt>
+<dd>
+<div class="block">Creates a multi swap neighbourhood without fixed IDs, indicating the number of (simultaneous)
+ swaps performed by any generated move.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/adv/DisjointMultiSwapNeighbourhood.html#DisjointMultiSwapNeighbourhood-int-java.util.Set-">DisjointMultiSwapNeighbourhood(int, Set&lt;Integer&gt;)</a></span> - Constructor for class org.jamesframework.core.search.neigh.subset.adv.<a href="org/jamesframework/core/search/neigh/subset/adv/DisjointMultiSwapNeighbourhood.html" title="class in org.jamesframework.core.search.neigh.subset.adv">DisjointMultiSwapNeighbourhood</a></dt>
+<dd>
+<div class="block">Creates a multi swap neighbourhood with a given set of fixed IDs which are not allowed to be swapped.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#dispose--">dispose()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
 <div class="block">Dispose this search, upon which all of its resources are released.</div>
@@ -349,6 +368,16 @@
 </a>
 <h2 class="title">G</h2>
 <dl>
+<dt><a href="org/jamesframework/core/search/neigh/subset/adv/GeneralSubsetMove.html" title="class in org.jamesframework.core.search.neigh.subset.adv"><span class="typeNameLink">GeneralSubsetMove</span></a> - Class in <a href="org/jamesframework/core/search/neigh/subset/adv/package-summary.html">org.jamesframework.core.search.neigh.subset.adv</a></dt>
+<dd>
+<div class="block">A general subset move adds and/or removes several IDs at once to/from the current selection
+ of a subset solution.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/adv/GeneralSubsetMove.html#GeneralSubsetMove-java.util.Set-java.util.Set-">GeneralSubsetMove(Set&lt;Integer&gt;, Set&lt;Integer&gt;)</a></span> - Constructor for class org.jamesframework.core.search.neigh.subset.adv.<a href="org/jamesframework/core/search/neigh/subset/adv/GeneralSubsetMove.html" title="class in org.jamesframework.core.search.neigh.subset.adv">GeneralSubsetMove</a></dt>
+<dd>
+<div class="block">Creates a general subset move, indicating which IDs are to be added to and removed from
+ the current selection when being applied to a given subset solution.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/AdditionMove.html#getAddedID--">getAddedID()</a></span> - Method in class org.jamesframework.core.search.neigh.subset.<a href="org/jamesframework/core/search/neigh/subset/AdditionMove.html" title="class in org.jamesframework.core.search.neigh.subset">AdditionMove</a></dt>
 <dd>
 <div class="block">Returns the added ID.</div>
@@ -360,6 +389,11 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/AdditionMove.html#getAddedIDs--">getAddedIDs()</a></span> - Method in class org.jamesframework.core.search.neigh.subset.<a href="org/jamesframework/core/search/neigh/subset/AdditionMove.html" title="class in org.jamesframework.core.search.neigh.subset">AdditionMove</a></dt>
 <dd>
 <div class="block">Returns an unmodifiable singleton containing the only added ID.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/adv/GeneralSubsetMove.html#getAddedIDs--">getAddedIDs()</a></span> - Method in class org.jamesframework.core.search.neigh.subset.adv.<a href="org/jamesframework/core/search/neigh/subset/adv/GeneralSubsetMove.html" title="class in org.jamesframework.core.search.neigh.subset.adv">GeneralSubsetMove</a></dt>
+<dd>
+<div class="block">Returns an unmodifiable view of the set of IDs added to the selection when applying
+ this move to a subset solution.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/DeletionMove.html#getAddedIDs--">getAddedIDs()</a></span> - Method in class org.jamesframework.core.search.neigh.subset.<a href="org/jamesframework/core/search/neigh/subset/DeletionMove.html" title="class in org.jamesframework.core.search.neigh.subset">DeletionMove</a></dt>
 <dd>
@@ -381,6 +415,18 @@
 <dd>
 <div class="block">Get a set of all moves that can be applied to the given solution to transform
  it into each of the neighbouring solutions contained in this specific neighbourhood.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/adv/DisjointMultiSwapNeighbourhood.html#getAllMoves-org.jamesframework.core.problems.solutions.SubsetSolution-">getAllMoves(SubsetSolution)</a></span> - Method in class org.jamesframework.core.search.neigh.subset.adv.<a href="org/jamesframework/core/search/neigh/subset/adv/DisjointMultiSwapNeighbourhood.html" title="class in org.jamesframework.core.search.neigh.subset.adv">DisjointMultiSwapNeighbourhood</a></dt>
+<dd>
+<div class="block">
+ Generates the set of all possible moves that perform exactly \(k\) swaps, where \(k\) is the desired number
+ of swaps specified at construction.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/adv/MultiSwapNeighbourhood.html#getAllMoves-org.jamesframework.core.problems.solutions.SubsetSolution-">getAllMoves(SubsetSolution)</a></span> - Method in class org.jamesframework.core.search.neigh.subset.adv.<a href="org/jamesframework/core/search/neigh/subset/adv/MultiSwapNeighbourhood.html" title="class in org.jamesframework.core.search.neigh.subset.adv">MultiSwapNeighbourhood</a></dt>
+<dd>
+<div class="block">
+ Generates the set of all possible moves that perform 1 up to \(k\) swaps, where \(k\) is the maximum number
+ of swaps specified at construction.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/SinglePerturbationNeighbourhood.html#getAllMoves-org.jamesframework.core.problems.solutions.SubsetSolution-">getAllMoves(SubsetSolution)</a></span> - Method in class org.jamesframework.core.search.neigh.subset.<a href="org/jamesframework/core/search/neigh/subset/SinglePerturbationNeighbourhood.html" title="class in org.jamesframework.core.search.neigh.subset">SinglePerturbationNeighbourhood</a></dt>
 <dd>
@@ -441,6 +487,11 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/AdditionMove.html#getDeletedIDs--">getDeletedIDs()</a></span> - Method in class org.jamesframework.core.search.neigh.subset.<a href="org/jamesframework/core/search/neigh/subset/AdditionMove.html" title="class in org.jamesframework.core.search.neigh.subset">AdditionMove</a></dt>
 <dd>
 <div class="block">Returns an unmodifiable empty set, as no IDs are deleted by this move.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/adv/GeneralSubsetMove.html#getDeletedIDs--">getDeletedIDs()</a></span> - Method in class org.jamesframework.core.search.neigh.subset.adv.<a href="org/jamesframework/core/search/neigh/subset/adv/GeneralSubsetMove.html" title="class in org.jamesframework.core.search.neigh.subset.adv">GeneralSubsetMove</a></dt>
+<dd>
+<div class="block">Returns an unmodifiable view of the set of IDs removed from the selection when applying
+ this move to a subset solution.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/DeletionMove.html#getDeletedIDs--">getDeletedIDs()</a></span> - Method in class org.jamesframework.core.search.neigh.subset.<a href="org/jamesframework/core/search/neigh/subset/DeletionMove.html" title="class in org.jamesframework.core.search.neigh.subset">DeletionMove</a></dt>
 <dd>
@@ -506,6 +557,10 @@
 <dd>
 <div class="block">Get the neighbourhood used to modify the current solution.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/MultiNeighbourhoodSearch.html#getNeighbourhoods--">getNeighbourhoods()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/MultiNeighbourhoodSearch.html" title="class in org.jamesframework.core.search">MultiNeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">Get the list of neighbourhoods used to modify the current solution.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#getNumAcceptedMoves--">getNumAcceptedMoves()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
 <dd>
 <div class="block">
@@ -514,6 +569,10 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/AdditionMove.html#getNumAdded--">getNumAdded()</a></span> - Method in class org.jamesframework.core.search.neigh.subset.<a href="org/jamesframework/core/search/neigh/subset/AdditionMove.html" title="class in org.jamesframework.core.search.neigh.subset">AdditionMove</a></dt>
 <dd>
 <div class="block">Always return 1, as a single ID is added.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/adv/GeneralSubsetMove.html#getNumAdded--">getNumAdded()</a></span> - Method in class org.jamesframework.core.search.neigh.subset.adv.<a href="org/jamesframework/core/search/neigh/subset/adv/GeneralSubsetMove.html" title="class in org.jamesframework.core.search.neigh.subset.adv">GeneralSubsetMove</a></dt>
+<dd>
+<div class="block">Returns the number of added IDs.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/DeletionMove.html#getNumAdded--">getNumAdded()</a></span> - Method in class org.jamesframework.core.search.neigh.subset.<a href="org/jamesframework/core/search/neigh/subset/DeletionMove.html" title="class in org.jamesframework.core.search.neigh.subset">DeletionMove</a></dt>
 <dd>
@@ -530,6 +589,10 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/AdditionMove.html#getNumDeleted--">getNumDeleted()</a></span> - Method in class org.jamesframework.core.search.neigh.subset.<a href="org/jamesframework/core/search/neigh/subset/AdditionMove.html" title="class in org.jamesframework.core.search.neigh.subset">AdditionMove</a></dt>
 <dd>
 <div class="block">Always returns 0, as no IDs are deleted.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/adv/GeneralSubsetMove.html#getNumDeleted--">getNumDeleted()</a></span> - Method in class org.jamesframework.core.search.neigh.subset.adv.<a href="org/jamesframework/core/search/neigh/subset/adv/GeneralSubsetMove.html" title="class in org.jamesframework.core.search.neigh.subset.adv">GeneralSubsetMove</a></dt>
+<dd>
+<div class="block">Returns the number of removed IDs.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/DeletionMove.html#getNumDeleted--">getNumDeleted()</a></span> - Method in class org.jamesframework.core.search.neigh.subset.<a href="org/jamesframework/core/search/neigh/subset/DeletionMove.html" title="class in org.jamesframework.core.search.neigh.subset">DeletionMove</a></dt>
 <dd>
@@ -572,6 +635,18 @@
 <dd>
 <div class="block">Generates a move that transforms the given solution into a random neighbour
  contained in this specific neighbourhood.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/adv/DisjointMultiSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.problems.solutions.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.search.neigh.subset.adv.<a href="org/jamesframework/core/search/neigh/subset/adv/DisjointMultiSwapNeighbourhood.html" title="class in org.jamesframework.core.search.neigh.subset.adv">DisjointMultiSwapNeighbourhood</a></dt>
+<dd>
+<div class="block">Generates a move for the given subset solution that removes a random subset of \(k\) IDs from the current
+ selection and replaces them with an equally large random subset of the currently unselected IDs, where
+ \(k\) is the number of swaps specified at construction.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/adv/MultiSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.problems.solutions.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.search.neigh.subset.adv.<a href="org/jamesframework/core/search/neigh/subset/adv/MultiSwapNeighbourhood.html" title="class in org.jamesframework.core.search.neigh.subset.adv">MultiSwapNeighbourhood</a></dt>
+<dd>
+<div class="block">
+ Generates a move for the given subset solution that removes a random subset of IDs from the current selection
+ and replaces them with an equally large random subset of the currently unselected IDs.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/SinglePerturbationNeighbourhood.html#getRandomMove-org.jamesframework.core.problems.solutions.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.search.neigh.subset.<a href="org/jamesframework/core/search/neigh/subset/SinglePerturbationNeighbourhood.html" title="class in org.jamesframework.core.search.neigh.subset">SinglePerturbationNeighbourhood</a></dt>
 <dd>
@@ -902,6 +977,35 @@
 <dd>
 <div class="block">Interface of a move that can be applied to a generic solution type.</div>
 </dd>
+<dt><a href="org/jamesframework/core/search/MultiNeighbourhoodSearch.html" title="class in org.jamesframework.core.search"><span class="typeNameLink">MultiNeighbourhoodSearch</span></a>&lt;<a href="org/jamesframework/core/search/MultiNeighbourhoodSearch.html" title="type parameter in MultiNeighbourhoodSearch">SolutionType</a> extends <a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/package-summary.html">org.jamesframework.core.search</a></dt>
+<dd>
+<div class="block">Abstract neighbourhood search that uses a <i>multiple</i> neighbourhoods to modify the current solution.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/MultiNeighbourhoodSearch.html#MultiNeighbourhoodSearch-org.jamesframework.core.problems.Problem-java.util.List-">MultiNeighbourhoodSearch(Problem&lt;SolutionType&gt;, List&lt;Neighbourhood&lt;? super SolutionType&gt;&gt;)</a></span> - Constructor for class org.jamesframework.core.search.<a href="org/jamesframework/core/search/MultiNeighbourhoodSearch.html" title="class in org.jamesframework.core.search">MultiNeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">Create a new multi neighbourhood search, specifying the problem to be solved and the neighbourhoods used to
+ modify the current solution.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/MultiNeighbourhoodSearch.html#MultiNeighbourhoodSearch-java.lang.String-org.jamesframework.core.problems.Problem-java.util.List-">MultiNeighbourhoodSearch(String, Problem&lt;SolutionType&gt;, List&lt;Neighbourhood&lt;? super SolutionType&gt;&gt;)</a></span> - Constructor for class org.jamesframework.core.search.<a href="org/jamesframework/core/search/MultiNeighbourhoodSearch.html" title="class in org.jamesframework.core.search">MultiNeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">Create a new multi neighbourhood search, specifying the problem to be solved, the neighbourhoods used to
+ modify the current solution, and a custom search name.</div>
+</dd>
+<dt><a href="org/jamesframework/core/search/neigh/subset/adv/MultiSwapNeighbourhood.html" title="class in org.jamesframework.core.search.neigh.subset.adv"><span class="typeNameLink">MultiSwapNeighbourhood</span></a> - Class in <a href="org/jamesframework/core/search/neigh/subset/adv/package-summary.html">org.jamesframework.core.search.neigh.subset.adv</a></dt>
+<dd>
+<div class="block">
+ A subset neighbourhood that generates moves performing up to \(k\) multiple simultaneous swaps of selected and
+ unselected IDs, where \(k\) is specified when creating the neighbourhood.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/adv/MultiSwapNeighbourhood.html#MultiSwapNeighbourhood-int-">MultiSwapNeighbourhood(int)</a></span> - Constructor for class org.jamesframework.core.search.neigh.subset.adv.<a href="org/jamesframework/core/search/neigh/subset/adv/MultiSwapNeighbourhood.html" title="class in org.jamesframework.core.search.neigh.subset.adv">MultiSwapNeighbourhood</a></dt>
+<dd>
+<div class="block">Creates a multi swap neighbourhood without fixed IDs, indicating the desired maximum number
+ of (simultaneous) swaps performed by any generated move.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/adv/MultiSwapNeighbourhood.html#MultiSwapNeighbourhood-int-java.util.Set-">MultiSwapNeighbourhood(int, Set&lt;Integer&gt;)</a></span> - Constructor for class org.jamesframework.core.search.neigh.subset.adv.<a href="org/jamesframework/core/search/neigh/subset/adv/MultiSwapNeighbourhood.html" title="class in org.jamesframework.core.search.neigh.subset.adv">MultiSwapNeighbourhood</a></dt>
+<dd>
+<div class="block">Creates a multi swap neighbourhood with a given set of fixed IDs which are not allowed to be swapped.</div>
+</dd>
 </dl>
 <a name="I:N">
 <!--   -->
@@ -1018,6 +1122,10 @@
 <dd>
 <div class="block">Neighbourhoods and moves for subset selection.</div>
 </dd>
+<dt><a href="org/jamesframework/core/search/neigh/subset/adv/package-summary.html">org.jamesframework.core.search.neigh.subset.adv</a> - package org.jamesframework.core.search.neigh.subset.adv</dt>
+<dd>
+<div class="block">Advanced subset selection neighbourhoods.</div>
+</dd>
 <dt><a href="org/jamesframework/core/search/stopcriteria/package-summary.html">org.jamesframework.core.search.stopcriteria</a> - package org.jamesframework.core.search.stopcriteria</dt>
 <dd>
 <div class="block">Stop criteria used by searches.</div>
@@ -1102,9 +1210,24 @@
 <dd>
 <div class="block">Create a random search, given the problem to solve and a custom search name.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#rejectMove-org.jamesframework.core.search.neigh.Move-">rejectMove(Move&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dt><a href="org/jamesframework/core/search/algo/ReducedVariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo"><span class="typeNameLink">ReducedVariableNeighbourhoodSearch</span></a>&lt;<a href="org/jamesframework/core/search/algo/ReducedVariableNeighbourhoodSearch.html" title="type parameter in ReducedVariableNeighbourhoodSearch">SolutionType</a> extends <a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/algo/package-summary.html">org.jamesframework.core.search.algo</a></dt>
 <dd>
-<div class="block">Rejects the given move.</div>
+<div class="block">
+ Reduced variable neighbourhood search (RVNS) algorithm.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ReducedVariableNeighbourhoodSearch.html#ReducedVariableNeighbourhoodSearch-org.jamesframework.core.problems.Problem-java.util.List-">ReducedVariableNeighbourhoodSearch(Problem&lt;SolutionType&gt;, List&lt;Neighbourhood&lt;? super SolutionType&gt;&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ReducedVariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo">ReducedVariableNeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">Creates a new reduced variable neighbourhood search, specifying the problem to solve and the neighbourhoods
+ used to modify the current solution.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ReducedVariableNeighbourhoodSearch.html#ReducedVariableNeighbourhoodSearch-java.lang.String-org.jamesframework.core.problems.Problem-java.util.List-">ReducedVariableNeighbourhoodSearch(String, Problem&lt;SolutionType&gt;, List&lt;Neighbourhood&lt;? super SolutionType&gt;&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ReducedVariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo">ReducedVariableNeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">Creates a new reduced variable neighbourhood search, specifying the problem to solve, the neighbourhoods used
+ to modify the current solution, and a custom search name.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#rejectMove--">rejectMove()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">Indicate that a move was rejected.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/Problem.html#rejectSolution-SolutionType-">rejectSolution(SolutionType)</a></span> - Method in interface org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a></dt>
 <dd>
@@ -1297,10 +1420,20 @@
 <dd>
 <div class="block">In every search step, a random solution is created and the best solution might be updated accordingly.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ReducedVariableNeighbourhoodSearch.html#searchStep--">searchStep()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ReducedVariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo">ReducedVariableNeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">Samples a random neighbour of the current solution, using the k-th neighbourhood, and accepts it as the new
+ current solution if it is an improvement.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/SteepestDescent.html#searchStep--">searchStep()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/SteepestDescent.html" title="class in org.jamesframework.core.search.algo">SteepestDescent</a></dt>
 <dd>
 <div class="block">Investigates all neighbours of the current solution and adopts the best one as the new current solution,
  if it is an improvement.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/VariableNeighbourhoodDescent.html#searchStep--">searchStep()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/VariableNeighbourhoodDescent.html" title="class in org.jamesframework.core.search.algo">VariableNeighbourhoodDescent</a></dt>
+<dd>
+<div class="block">Investigates all neighbours of the current solution, using the k-th neighbourhood, and adopts the best one
+ as the new current solution, if it is an improvement.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#searchStep--">searchStep()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
@@ -1380,6 +1513,10 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/SingleNeighbourhoodSearch.html#setNeighbourhood-org.jamesframework.core.search.neigh.Neighbourhood-">setNeighbourhood(Neighbourhood&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/SingleNeighbourhoodSearch.html" title="class in org.jamesframework.core.search">SingleNeighbourhoodSearch</a></dt>
 <dd>
 <div class="block">Sets the neighbourhood used to modify the current solution.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/MultiNeighbourhoodSearch.html#setNeighbourhoods-java.util.List-">setNeighbourhoods(List&lt;Neighbourhood&lt;? super SolutionType&gt;&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/MultiNeighbourhoodSearch.html" title="class in org.jamesframework.core.search">MultiNeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">Sets the list of neighbourhoods used to modify the current solution.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/ProblemWithData.html#setObjective-org.jamesframework.core.problems.objectives.Objective-">setObjective(Objective&lt;? super SolutionType, ? super DataType&gt;)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/ProblemWithData.html" title="class in org.jamesframework.core.problems">ProblemWithData</a></dt>
 <dd>
@@ -1672,6 +1809,11 @@
 <div class="block">Undo this addition move after it has been successfully applied to the given subset solution, by removing the newly added ID
  from the selection.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/adv/GeneralSubsetMove.html#undo-org.jamesframework.core.problems.solutions.SubsetSolution-">undo(SubsetSolution)</a></span> - Method in class org.jamesframework.core.search.neigh.subset.adv.<a href="org/jamesframework/core/search/neigh/subset/adv/GeneralSubsetMove.html" title="class in org.jamesframework.core.search.neigh.subset.adv">GeneralSubsetMove</a></dt>
+<dd>
+<div class="block">Undo this move after it has been successfully applied to the given subset solution,
+ by removing all added IDs and adding all removed IDs.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/DeletionMove.html#undo-org.jamesframework.core.problems.solutions.SubsetSolution-">undo(SubsetSolution)</a></span> - Method in class org.jamesframework.core.search.neigh.subset.<a href="org/jamesframework/core/search/neigh/subset/DeletionMove.html" title="class in org.jamesframework.core.search.neigh.subset">DeletionMove</a></dt>
 <dd>
 <div class="block">Undo this deletion move after it has been successfully applied to the given subset solution, by re-adding the
@@ -1694,6 +1836,10 @@
  assuming that the given solution is <b>not</b> rejected by the problem (see
  <a href="org/jamesframework/core/problems/Problem.html#rejectSolution-SolutionType-"><code>Problem.rejectSolution(Solution)</code></a> and has already been evaluated.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#updateCurrentSolution-SolutionType-double-">updateCurrentSolution(SolutionType, double)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">Update the current solution, given that it has already been evaluated.</div>
+</dd>
 </dl>
 <a name="I:V">
 <!--   -->
@@ -1712,6 +1858,21 @@
 <dd>
 <div class="block">Returns an array containing the constants of this enum type, in
 the order they are declared.</div>
+</dd>
+<dt><a href="org/jamesframework/core/search/algo/VariableNeighbourhoodDescent.html" title="class in org.jamesframework.core.search.algo"><span class="typeNameLink">VariableNeighbourhoodDescent</span></a>&lt;<a href="org/jamesframework/core/search/algo/VariableNeighbourhoodDescent.html" title="type parameter in VariableNeighbourhoodDescent">SolutionType</a> extends <a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/algo/package-summary.html">org.jamesframework.core.search.algo</a></dt>
+<dd>
+<div class="block">
+ Variable neighbourhood descent algorithm.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/VariableNeighbourhoodDescent.html#VariableNeighbourhoodDescent-org.jamesframework.core.problems.Problem-java.util.List-">VariableNeighbourhoodDescent(Problem&lt;SolutionType&gt;, List&lt;Neighbourhood&lt;? super SolutionType&gt;&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/VariableNeighbourhoodDescent.html" title="class in org.jamesframework.core.search.algo">VariableNeighbourhoodDescent</a></dt>
+<dd>
+<div class="block">Creates a new variable neighbourhood descent search, specifying the problem to solve and the neighbourhoods
+ used to modify the current solution.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/VariableNeighbourhoodDescent.html#VariableNeighbourhoodDescent-java.lang.String-org.jamesframework.core.problems.Problem-java.util.List-">VariableNeighbourhoodDescent(String, Problem&lt;SolutionType&gt;, List&lt;Neighbourhood&lt;? super SolutionType&gt;&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/VariableNeighbourhoodDescent.html" title="class in org.jamesframework.core.search.algo">VariableNeighbourhoodDescent</a></dt>
+<dd>
+<div class="block">Creates a new variable neighbourhood descent search, specifying the problem to solve, the neighbourhoods used
+ to modify the current solution, and a custom search name.</div>
 </dd>
 </dl>
 <a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:J">J</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;</div>

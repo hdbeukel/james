@@ -107,6 +107,12 @@
 <div class="block">Neighbourhoods and moves for subset selection.</div>
 </td>
 </tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#org.jamesframework.core.search.neigh.subset.adv">org.jamesframework.core.search.neigh.subset.adv</a></td>
+<td class="colLast">
+<div class="block">Advanced subset selection neighbourhoods.</div>
+</td>
+</tr>
 </tbody>
 </table>
 </li>
@@ -160,12 +166,6 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><span class="typeNameLabel">NeighbourhoodSearch.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#rejectMove-org.jamesframework.core.search.neigh.Move-">rejectMove</a></span>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</code>
-<div class="block">Rejects the given move.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><span class="typeNameLabel">NeighbourhoodSearch.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#validateMove-org.jamesframework.core.search.neigh.Move-">validateMove</a></span>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</code>
 <div class="block">Validates the neighbour obtained by applying the given move to the current solution.</div>
@@ -390,6 +390,77 @@
 <td class="colLast"><span class="typeNameLabel">SinglePerturbationNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/neigh/subset/SinglePerturbationNeighbourhood.html#getAllMoves-org.jamesframework.core.problems.solutions.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;solution)</code>
 <div class="block">Generate all valid swap, deletion and addition moves that transform the given subset solution into
  a neighbour within the minimum and maximum allowed subset size.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.search.neigh.subset.adv">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a> in <a href="../../../../../../org/jamesframework/core/search/neigh/subset/adv/package-summary.html">org.jamesframework.core.search.neigh.subset.adv</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../../../org/jamesframework/core/search/neigh/subset/adv/package-summary.html">org.jamesframework.core.search.neigh.subset.adv</a> that implement <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/neigh/subset/adv/GeneralSubsetMove.html" title="class in org.jamesframework.core.search.neigh.subset.adv">GeneralSubsetMove</a></span></code>
+<div class="block">A general subset move adds and/or removes several IDs at once to/from the current selection
+ of a subset solution.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../../org/jamesframework/core/search/neigh/subset/adv/package-summary.html">org.jamesframework.core.search.neigh.subset.adv</a> that return <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">MultiSwapNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/neigh/subset/adv/MultiSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.problems.solutions.SubsetSolution-">getRandomMove</a></span>(<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;solution)</code>
+<div class="block">
+ Generates a move for the given subset solution that removes a random subset of IDs from the current selection
+ and replaces them with an equally large random subset of the currently unselected IDs.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">DisjointMultiSwapNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/neigh/subset/adv/DisjointMultiSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.problems.solutions.SubsetSolution-">getRandomMove</a></span>(<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;solution)</code>
+<div class="block">Generates a move for the given subset solution that removes a random subset of \(k\) IDs from the current
+ selection and replaces them with an equally large random subset of the currently unselected IDs, where
+ \(k\) is the number of swaps specified at construction.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../../org/jamesframework/core/search/neigh/subset/adv/package-summary.html">org.jamesframework.core.search.neigh.subset.adv</a> that return types with arguments of type <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">MultiSwapNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/neigh/subset/adv/MultiSwapNeighbourhood.html#getAllMoves-org.jamesframework.core.problems.solutions.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;solution)</code>
+<div class="block">
+ Generates the set of all possible moves that perform 1 up to \(k\) swaps, where \(k\) is the maximum number
+ of swaps specified at construction.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">DisjointMultiSwapNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/neigh/subset/adv/DisjointMultiSwapNeighbourhood.html#getAllMoves-org.jamesframework.core.problems.solutions.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;solution)</code>
+<div class="block">
+ Generates the set of all possible moves that perform exactly \(k\) swaps, where \(k\) is the desired number
+ of swaps specified at construction.</div>
 </td>
 </tr>
 </tbody>
