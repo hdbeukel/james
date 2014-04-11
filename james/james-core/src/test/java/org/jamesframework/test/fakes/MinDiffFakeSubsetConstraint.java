@@ -12,7 +12,7 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-package org.jamesframework.test.util;
+package org.jamesframework.test.fakes;
 
 import java.util.TreeSet;
 import org.jamesframework.core.problems.constraints.Constraint;
@@ -24,7 +24,7 @@ import org.jamesframework.core.problems.solutions.SubsetSolution;
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class FakeSubsetConstraint implements Constraint<SubsetSolution, FakeSubsetData>{
+public class MinDiffFakeSubsetConstraint implements Constraint<SubsetSolution, ScoredFakeSubsetData>{
 
     // minimum required difference in score of selected entities
     private final double minDiff;
@@ -34,7 +34,7 @@ public class FakeSubsetConstraint implements Constraint<SubsetSolution, FakeSubs
      * 
      * @param minDiff minimum difference in scores of selected entities.
      */
-    public FakeSubsetConstraint(double minDiff){
+    public MinDiffFakeSubsetConstraint(double minDiff){
         this.minDiff = minDiff;
     }
 
@@ -50,7 +50,7 @@ public class FakeSubsetConstraint implements Constraint<SubsetSolution, FakeSubs
      * @return true if minimum difference is satisfied
      */
     @Override
-    public boolean isSatisfied(SubsetSolution solution, FakeSubsetData data) {
+    public boolean isSatisfied(SubsetSolution solution, ScoredFakeSubsetData data) {
         // store score in sorted set
         TreeSet<Double> scores  = new TreeSet<>();
         for(int ID : solution.getSelectedIDs()){

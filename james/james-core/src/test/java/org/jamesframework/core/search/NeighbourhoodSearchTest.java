@@ -26,7 +26,7 @@ import org.jamesframework.core.search.neigh.subset.DeletionMove;
 import org.jamesframework.core.search.neigh.subset.SwapMove;
 import org.jamesframework.core.util.SetUtilities;
 import org.jamesframework.test.util.DoubleComparatorWithPrecision;
-import org.jamesframework.test.util.NeverSatisfiedConstraintStub;
+import org.jamesframework.test.stubs.NeverSatisfiedConstraintStub;
 import org.jamesframework.test.util.TestConstants;
 import org.junit.After;
 import org.junit.AfterClass;

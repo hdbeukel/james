@@ -17,10 +17,10 @@ package org.jamesframework.core.problems;
 import java.util.Random;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.util.SetUtilities;
-import org.jamesframework.test.util.FakeSubsetData;
-import org.jamesframework.test.util.FakeSubsetObjectiveWithData;
-import org.jamesframework.test.util.FakeSubsetObjectiveWithoutData;
-import org.jamesframework.test.util.FakeSubsetPenalizingConstraint;
+import org.jamesframework.test.fakes.ScoredFakeSubsetData;
+import org.jamesframework.test.fakes.SumOfScoresFakeSubsetObjective;
+import org.jamesframework.test.fakes.SumOfIDsFakeSubsetObjective;
+import org.jamesframework.test.fakes.MinDiffFakeSubsetPenalizingConstraint;
 import org.jamesframework.test.util.TestConstants;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -36,22 +36,22 @@ import org.junit.Before;
 public class SubsetProblemWithDataTest {
 
     // fake subset data
-    private FakeSubsetData fakeData;
+    private ScoredFakeSubsetData fakeData;
     // scores set in fake subset data (10 entities)
     private final double[] SCORES = new double[] {0.76722, 0.1752, 0.134006, 0.680481, 0.0911487,
                                                   0.0185549, 0.270955, 0.126619, 0.18375, 0.850669};
     
     // fake objectives
-    private FakeSubsetObjectiveWithoutData fakeObjIgnoringData; 
-    private FakeSubsetObjectiveWithData fakeObjUsingData;
+    private SumOfIDsFakeSubsetObjective fakeObjIgnoringData; 
+    private SumOfScoresFakeSubsetObjective fakeObjUsingData;
     
-    private SubsetProblemWithData<FakeSubsetData> problem1, problem2;
+    private SubsetProblemWithData<ScoredFakeSubsetData> problem1, problem2;
     private final int PROBLEM_1_FIXED_SIZE = 5;
     private final int PROBLEM_2_MIN_SIZE = 2;
     private final int PROBLEM_2_MAX_SIZE = 8;
     
     // fake constraint
-    private FakeSubsetPenalizingConstraint fakeConstraint;
+    private MinDiffFakeSubsetPenalizingConstraint fakeConstraint;
     // minimum score diff imposed by fake constraint
     private final double MIN_SCORE_DIFF = 0.05;
     
@@ -80,12 +80,12 @@ public class SubsetProblemWithDataTest {
     @Before
     public void setUp(){
         // create fake subset data
-        fakeData = new FakeSubsetData(SCORES);
+        fakeData = new ScoredFakeSubsetData(SCORES);
         // create fake objectives
-        fakeObjIgnoringData = new FakeSubsetObjectiveWithoutData();  // ignores the data
-        fakeObjUsingData = new FakeSubsetObjectiveWithData();        // actually uses the data
+        fakeObjIgnoringData = new SumOfIDsFakeSubsetObjective();  // ignores the data
+        fakeObjUsingData = new SumOfScoresFakeSubsetObjective();        // actually uses the data
         // create fake constraint
-        fakeConstraint = new FakeSubsetPenalizingConstraint(MIN_SCORE_DIFF);
+        fakeConstraint = new MinDiffFakeSubsetPenalizingConstraint(MIN_SCORE_DIFF);
         // create subset problems
         problem1 = new SubsetProblemWithData<>(fakeObjIgnoringData, fakeData, PROBLEM_1_FIXED_SIZE);
         problem2 = new SubsetProblemWithData<>(fakeObjUsingData, fakeData, PROBLEM_2_MIN_SIZE, PROBLEM_2_MAX_SIZE);

@@ -34,6 +34,10 @@
             <email>Herman.DeBeukelaer@UGent.be</email>
         </developer>
     </developers>
+    <modules>
+        <module>james-core</module>
+        <module>james-extensions</module>
+    </modules>
     <build>
         <pluginManagement>
             <plugins>
@@ -177,10 +181,6 @@
             </build>
         </profile>
     </profiles>
-    <modules>
-        <module>james-core</module>
-        <module>james-extensions</module>
-    </modules>
     <dependencies>
         <!-- All modules use junit for testing -->
         <dependency>

@@ -24,7 +24,7 @@ import org.jamesframework.core.search.SearchTestTemplate;
 import org.jamesframework.core.search.listeners.EmptyNeighbourhoodSearchListener;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.search.neigh.subset.adv.DisjointMultiSwapNeighbourhood;
-import org.jamesframework.test.util.NeverSatisfiedConstraintStub;
+import org.jamesframework.test.stubs.NeverSatisfiedConstraintStub;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;

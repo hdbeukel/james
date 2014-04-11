@@ -12,7 +12,7 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-package org.jamesframework.test.util;
+package org.jamesframework.test.stubs;
 
 import org.jamesframework.core.problems.constraints.Constraint;
 import org.jamesframework.core.problems.solutions.Solution;

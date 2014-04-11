@@ -27,8 +27,8 @@ import org.jamesframework.core.search.SearchTestTemplate;
 import org.jamesframework.core.search.algo.exh.ExhaustiveSearch;
 import org.jamesframework.core.search.algo.exh.SubsetSolutionIterator;
 import org.jamesframework.test.util.DoubleComparatorWithPrecision;
-import org.jamesframework.test.util.FakeSubsetData;
-import org.jamesframework.test.util.NeverSatisfiedConstraintStub;
+import org.jamesframework.test.fakes.ScoredFakeSubsetData;
+import org.jamesframework.test.stubs.NeverSatisfiedConstraintStub;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -111,7 +111,7 @@ public class BasicParallelSearchTest extends SearchTestTemplate {
     public void testAddSearch() {
         System.out.println(" - test addSearch");
         // try to add a search that solves a different problem
-        Problem<SubsetSolution> p = new ProblemWithData<SubsetSolution, FakeSubsetData>(obj, data) {
+        Problem<SubsetSolution> p = new ProblemWithData<SubsetSolution, ScoredFakeSubsetData>(obj, data) {
             @Override
             public SubsetSolution createRandomSolution() {return null;}
             @Override

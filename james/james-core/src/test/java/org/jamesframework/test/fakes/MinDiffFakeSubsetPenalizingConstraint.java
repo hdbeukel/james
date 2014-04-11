@@ -12,7 +12,7 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-package org.jamesframework.test.util;
+package org.jamesframework.test.fakes;
 
 import java.util.Collections;
 import java.util.Iterator;
@@ -28,9 +28,9 @@ import org.jamesframework.core.problems.solutions.SubsetSolution;
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class FakeSubsetPenalizingConstraint extends FakeSubsetConstraint implements PenalizingConstraint<SubsetSolution, FakeSubsetData> {
+public class MinDiffFakeSubsetPenalizingConstraint extends MinDiffFakeSubsetConstraint implements PenalizingConstraint<SubsetSolution, ScoredFakeSubsetData> {
 
-    public FakeSubsetPenalizingConstraint(double minDiff) {
+    public MinDiffFakeSubsetPenalizingConstraint(double minDiff) {
         super(minDiff);
     }
 
@@ -43,7 +43,7 @@ public class FakeSubsetPenalizingConstraint extends FakeSubsetConstraint impleme
      * @return penalty of solution
      */
     @Override
-    public double computePenalty(SubsetSolution solution, FakeSubsetData data) {
+    public double computePenalty(SubsetSolution solution, ScoredFakeSubsetData data) {
         // store scores in sorted set
         TreeSet<Double> scores  = new TreeSet<>();
         for(int ID : solution.getSelectedIDs()){

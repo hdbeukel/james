@@ -15,8 +15,8 @@
 package org.jamesframework.ext.problems.objectives;
 
 import org.jamesframework.core.problems.solutions.Solution;
-import org.jamesframework.test.util.EmptySolutionStub;
-import org.jamesframework.test.util.FixedEvaluationObjectiveStub;
+import org.jamesframework.test.stubs.EmptySolutionStub;
+import org.jamesframework.test.stubs.FixedEvaluationObjectiveStub;
 import org.jamesframework.test.util.TestConstants;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;

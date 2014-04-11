@@ -25,9 +25,9 @@ import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.search.neigh.subset.SingleSwapNeighbourhood;
 import org.jamesframework.core.search.stopcriteria.MaxRuntime;
 import org.jamesframework.test.util.DoubleComparatorWithPrecision;
-import org.jamesframework.test.util.FakeSubsetData;
-import org.jamesframework.test.util.FakeSubsetObjectiveWithData;
-import org.jamesframework.test.util.FakeSubsetPenalizingConstraint;
+import org.jamesframework.test.fakes.ScoredFakeSubsetData;
+import org.jamesframework.test.fakes.SumOfScoresFakeSubsetObjective;
+import org.jamesframework.test.fakes.MinDiffFakeSubsetPenalizingConstraint;
 import org.jamesframework.test.util.TestConstants;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -43,21 +43,21 @@ import org.junit.BeforeClass;
 public class SearchTestTemplate {
 
     // fake subset data (scored entities)
-    protected static FakeSubsetData data;
+    protected static ScoredFakeSubsetData data;
     // dataset size
     protected static int DATASET_SIZE = 500;
     // entity scores
     protected static double[] scores;
     
     // fake objective (sum of scores)
-    protected FakeSubsetObjectiveWithData obj;
+    protected SumOfScoresFakeSubsetObjective obj;
 
     // subset problem to solve (select SUBSET_SIZE out of DATASET_SIZE)
-    protected SubsetProblemWithData<FakeSubsetData> problem;
+    protected SubsetProblemWithData<ScoredFakeSubsetData> problem;
     protected static int SUBSET_SIZE = 20;
     
     // fake constraint (not assigned by default)
-    protected FakeSubsetPenalizingConstraint constraint;
+    protected MinDiffFakeSubsetPenalizingConstraint constraint;
     // minimum score diff imposed by fake constraint
     protected final double MIN_SCORE_DIFF = 0.02;
     
@@ -98,10 +98,10 @@ public class SearchTestTemplate {
      */
     @Before
     public void setUp(){
-        data = new FakeSubsetData(scores);
-        obj = new FakeSubsetObjectiveWithData();
+        data = new ScoredFakeSubsetData(scores);
+        obj = new SumOfScoresFakeSubsetObjective();
         problem = new SubsetProblemWithData<>(obj, data, SUBSET_SIZE);
-        constraint = new FakeSubsetPenalizingConstraint(MIN_SCORE_DIFF);
+        constraint = new MinDiffFakeSubsetPenalizingConstraint(MIN_SCORE_DIFF);
         neigh = new SingleSwapNeighbourhood();
     }
     

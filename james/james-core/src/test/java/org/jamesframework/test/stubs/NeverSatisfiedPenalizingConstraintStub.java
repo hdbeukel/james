@@ -12,30 +12,46 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-package org.jamesframework.test.util;
+package org.jamesframework.test.stubs;
 
 import org.jamesframework.core.problems.constraints.PenalizingConstraint;
 import org.jamesframework.core.problems.solutions.Solution;
 
 /**
- * Penalizing constraint stub that is satisfied for any solution. Data is ignored. Only used for testing.
+ * Penalizing constraint stub that is never satisfied for any solution. A fixed penalty is returned for any solution.
+ * Data is ignored. Only used for testing.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class AlwaysSatisfiedPenalizingConstraintStub
-                                extends AlwaysSatisfiedConstraintStub
+public class NeverSatisfiedPenalizingConstraintStub
+                                extends NeverSatisfiedConstraintStub
                                 implements PenalizingConstraint<Solution, Object> {
 
+    private final double fixedPenalty;
+    
     /**
-     * Always return 0, regardless of the solution or data.
+     * Create a penalizing constraint stub that is never satisfied and always returns the given fixed penalty.
+     * 
+     * @param fixedPenalty fixed penalty (strictly positive)
+     * @throws IllegalArgumentException in case the given penalty is not strictly positive
+     */
+    public NeverSatisfiedPenalizingConstraintStub(double fixedPenalty) {
+        if(fixedPenalty <= 0.0){
+            throw new IllegalArgumentException("Fixed penalty should be > 0.0.");
+        }
+        this.fixedPenalty = fixedPenalty;
+    }
+    
+    /**
+     * Always return a fixed positive penalty, regardless of the solution or data.
      * 
      * @param solution ignored
      * @param data ignored
-     * @return 0.0
+     * @return fixed penalty (strictly positive)
      */
     @Override
     public double computePenalty(Solution solution, Object data) {
-        return 0.0;
+        return fixedPenalty;
     }
 
 }

@@ -19,9 +19,9 @@ import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.problems.SubsetProblemWithData;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.search.SearchTestTemplate;
-import org.jamesframework.test.util.FakeSubsetData;
-import org.jamesframework.test.util.FakeSubsetObjectiveWithData;
-import org.jamesframework.test.util.NeverSatisfiedConstraintStub;
+import org.jamesframework.test.fakes.ScoredFakeSubsetData;
+import org.jamesframework.test.fakes.SumOfScoresFakeSubsetObjective;
+import org.jamesframework.test.stubs.NeverSatisfiedConstraintStub;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -53,17 +53,17 @@ public class ExhaustiveSearchTest extends SearchTestTemplate {
     private static final int NUM_RUNS = 10;
     
     // fake subset data (scored entities)
-    protected static FakeSubsetData dataSmall;
+    protected static ScoredFakeSubsetData dataSmall;
     // dataset size
     protected static final int DATASET_SIZE_SMALL = 20;
     // entity scores
     protected static double[] scoresSmall;
     
     // fake objective (sum of scores)
-    protected FakeSubsetObjectiveWithData objSmall;
+    protected SumOfScoresFakeSubsetObjective objSmall;
 
     // subset problem to solve (select SUBSET_SIZE_SMALL out of DATASET_SIZE_SMALL)
-    protected SubsetProblemWithData<FakeSubsetData> problemSmall;
+    protected SubsetProblemWithData<ScoredFakeSubsetData> problemSmall;
     protected static final int SUBSET_SIZE_SMALL = 10;
     
     /**
@@ -106,8 +106,8 @@ public class ExhaustiveSearchTest extends SearchTestTemplate {
         // call super
         super.setUp();
         // create small problem components
-        dataSmall = new FakeSubsetData(scoresSmall);
-        objSmall = new FakeSubsetObjectiveWithData();
+        dataSmall = new ScoredFakeSubsetData(scoresSmall);
+        objSmall = new SumOfScoresFakeSubsetObjective();
         problemSmall = new SubsetProblemWithData<>(objSmall, dataSmall, SUBSET_SIZE_SMALL);
         // create solution iterators
         solutionIterator = new SubsetSolutionIterator(data.getIDs(), SUBSET_SIZE);

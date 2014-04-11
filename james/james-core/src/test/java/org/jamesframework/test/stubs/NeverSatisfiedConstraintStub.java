@@ -12,30 +12,28 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-package org.jamesframework.test.util;
+package org.jamesframework.test.stubs;
 
+import org.jamesframework.core.problems.constraints.Constraint;
 import org.jamesframework.core.problems.solutions.Solution;
 
 /**
- * Empty solution stub. Used for testing purposes only.
+ * Constraint stub which is never satisfied for any solution. Data is ignored. Only used for testing.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class EmptySolutionStub extends Solution {
+public class NeverSatisfiedConstraintStub implements Constraint<Solution, Object>{
 
+    /**
+     * Always returns false, regardless of the solution and data.
+     * 
+     * @param solution ignored
+     * @param data ignored
+     * @return false
+     */
     @Override
-    public boolean isSameSolution(Solution sol) {
-        if(sol == null){
-            return false;
-        }
-        // all fake empty solutions are equal
-        return sol.getClass() == getClass();
-    }
-
-    @Override
-    public int computeHashCode() {
-        // return fixed hash code
-        return 5;
+    public boolean isSatisfied(Solution solution, Object data) {
+        return false;
     }
 
 }

@@ -12,7 +12,7 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-package org.jamesframework.test.util;
+package org.jamesframework.test.fakes;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -23,7 +23,7 @@ import org.jamesframework.core.problems.datatypes.SubsetData;
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class FakeSubsetData implements SubsetData {
+public class ScoredFakeSubsetData implements SubsetData {
 
     // array of scores
     private final double[] scores;
@@ -34,14 +34,14 @@ public class FakeSubsetData implements SubsetData {
      * 
      * @param scores array with score per entity
      */
-    public FakeSubsetData(double[] scores){
+    public ScoredFakeSubsetData(double[] scores){
         this.scores = scores;
     }
     
     /**
      * Create and return set with IDs corresponding to indices in scores array.
      * 
-     * @return 
+     * @return set of IDs
      */
     @Override
     public Set<Integer> getIDs() {

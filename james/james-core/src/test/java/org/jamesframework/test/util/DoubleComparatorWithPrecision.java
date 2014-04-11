@@ -22,52 +22,52 @@ package org.jamesframework.test.util;
 public class DoubleComparatorWithPrecision {
     
     /**
-     * Check whether <code>a <= b</code> with the given precision. Returns <code>true</code> if <code>Math.abs(a - b)</code>
-     * is smaller than or equal to <code>delta</code>, or if <code>a < b</code>.
+     * Check whether <code>a &le; b</code> with the given precision. Returns <code>true</code> if <code>Math.abs(a - b)</code>
+     * is smaller than or equal to <code>delta</code>, or if <code>a &lt; b</code>.
      * 
      * @param a first double value
      * @param b second double value
      * @param delta precision used for comparison
-     * @return <code>true</code> if <code>a <= b</code> with the given precision
+     * @return <code>true</code> if <code>a &le; b</code> with the given precision
      */
     public static boolean smallerThanOrEqual(double a, double b, double delta){
         return Math.abs(a-b) <= delta || a < b;
     }
     
     /**
-     * Check whether <code>a >= b</code> with the given precision. Returns <code>true</code> if <code>Math.abs(a - b)</code>
-     * is smaller than or equal to <code>delta</code>, or if <code>a > b</code>.
+     * Check whether <code>a &ge; b</code> with the given precision. Returns <code>true</code> if <code>Math.abs(a - b)</code>
+     * is smaller than or equal to <code>delta</code>, or if <code>a &gt; b</code>.
      * 
      * @param a first double value
      * @param b second double value
      * @param delta precision used for comparison
-     * @return <code>true</code> if <code>a >= b</code> with the given precision
+     * @return <code>true</code> if <code>a &ge; b</code> with the given precision
      */
     public static boolean greaterThanOrEqual(double a, double b, double delta){
         return Math.abs(a-b) <= delta || a > b;
     }
     
     /**
-     * Check whether <code>a < b</code> with the given precision. Returns <code>true</code> if <code>Math.abs(a - b)</code>
-     * is greater than <code>delta</code> and <code>a < b</code>.
+     * Check whether <code>a &lt; b</code> with the given precision. Returns <code>true</code> if <code>Math.abs(a - b)</code>
+     * is greater than <code>delta</code> and <code>a &lt; b</code>.
      * 
      * @param a first double value
      * @param b second double value
      * @param delta precision used for comparison
-     * @return <code>true</code> if <code>a < b</code> with the given precision
+     * @return <code>true</code> if <code>a &lt; b</code> with the given precision
      */
     public static boolean smallerThan(double a, double b, double delta){
         return Math.abs(a-b) > delta && a < b;
     }
     
     /**
-     * Check whether <code>a > b</code> with the given precision. Returns <code>true</code> if <code>Math.abs(a - b)</code>
-     * is greater than <code>delta</code> and <code>a > b</code>.
+     * Check whether <code>a &gt; b</code> with the given precision. Returns <code>true</code> if <code>Math.abs(a - b)</code>
+     * is greater than <code>delta</code> and <code>a &gt; b</code>.
      * 
      * @param a first double value
      * @param b second double value
      * @param delta precision used for comparison
-     * @return <code>true</code> if <code>a > b</code> with the given precision
+     * @return <code>true</code> if <code>a &gt; b</code> with the given precision
      */
     public static boolean greaterThan(double a, double b, double delta){
         return Math.abs(a-b) > delta && a > b;

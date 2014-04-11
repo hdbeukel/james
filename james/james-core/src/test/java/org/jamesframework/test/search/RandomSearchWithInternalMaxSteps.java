@@ -12,15 +12,15 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-package org.jamesframework.test.util;
+package org.jamesframework.test.search;
 
 import org.jamesframework.core.search.algo.RandomSearch;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.solutions.Solution;
 
 /**
- * Search stub that samples a random solution in every step for comparison with the best known solution.
- * Used for testing only.
+ * Extension of random search with an internally limit on the number of performed steps,
+ * so that the search functionality can be tested without having to rely on stop criteria.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
@@ -29,6 +29,13 @@ public class RandomSearchWithInternalMaxSteps<SolutionType extends Solution> ext
     // search stops internally after this number of steps
     private int steps;
     
+    /**
+     * Create a new instance, specifying the problem to solve and the number of steps after which
+     * the search internally terminates.
+     * 
+     * @param problem problem to solve
+     * @param steps number of steps to perform
+     */
     public RandomSearchWithInternalMaxSteps(Problem<SolutionType> problem, int steps){
         super(problem);
         this.steps = steps;

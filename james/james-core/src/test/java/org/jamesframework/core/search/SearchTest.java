@@ -19,7 +19,7 @@ import org.jamesframework.core.search.listeners.EmptySearchListener;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.util.JamesConstants;
 import org.jamesframework.test.util.DoubleComparatorWithPrecision;
-import org.jamesframework.test.util.RandomSearchWithInternalMaxSteps;
+import org.jamesframework.test.search.RandomSearchWithInternalMaxSteps;
 import org.jamesframework.test.util.TestConstants;
 import org.junit.After;
 import org.junit.AfterClass;

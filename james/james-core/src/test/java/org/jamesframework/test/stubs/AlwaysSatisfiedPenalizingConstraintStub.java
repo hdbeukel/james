@@ -12,46 +12,30 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-package org.jamesframework.test.util;
+package org.jamesframework.test.stubs;
 
 import org.jamesframework.core.problems.constraints.PenalizingConstraint;
 import org.jamesframework.core.problems.solutions.Solution;
 
 /**
- * Penalizing constraint stub that is never satisfied for any solution. A fixed penalty is returned for any solution.
- * Data is ignored. Only used for testing.
+ * Penalizing constraint stub that is satisfied for any solution. Data is ignored. Only used for testing.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class NeverSatisfiedPenalizingConstraintStub
-                                extends NeverSatisfiedConstraintStub
+public class AlwaysSatisfiedPenalizingConstraintStub
+                                extends AlwaysSatisfiedConstraintStub
                                 implements PenalizingConstraint<Solution, Object> {
 
-    private final double fixedPenalty;
-    
     /**
-     * Create a penalizing constraint stub that is never satisfied and always returns the given fixed penalty.
-     * 
-     * @param fixedPenalty fixed penalty > 0.0
-     * @throws IllegalArgumentException in case the given penalty is not strictly positive
-     */
-    public NeverSatisfiedPenalizingConstraintStub(double fixedPenalty) {
-        if(fixedPenalty <= 0.0){
-            throw new IllegalArgumentException("Fixed penalty should be > 0.0.");
-        }
-        this.fixedPenalty = fixedPenalty;
-    }
-    
-    /**
-     * Always return a fixed positive penalty, regardless of the solution or data.
+     * Always return 0, regardless of the solution or data.
      * 
      * @param solution ignored
      * @param data ignored
-     * @return fixed penalty > 0.0
+     * @return 0.0
      */
     @Override
     public double computePenalty(Solution solution, Object data) {
-        return fixedPenalty;
+        return 0.0;
     }
 
 }

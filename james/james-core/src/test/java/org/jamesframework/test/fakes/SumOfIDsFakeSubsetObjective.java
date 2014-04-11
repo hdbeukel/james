@@ -12,18 +12,18 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-package org.jamesframework.test.util;
+package org.jamesframework.test.fakes;
 
 import org.jamesframework.core.problems.objectives.MinMaxObjective;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 
 /**
- * A fake subset objective without data, which evaluates any subset solution to the sum of the selected IDs.
- * Used for testing purposes only.
+ * A fake subset objective that ignores any given data, as it evaluates a subset solution by
+ * calculating the sum of the selected IDs. Used for testing purposes only.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class FakeSubsetObjectiveWithoutData extends MinMaxObjective<SubsetSolution, Object> {
+public class SumOfIDsFakeSubsetObjective extends MinMaxObjective<SubsetSolution, Object> {
 
     /**
      * Evaluate subset solution to sum of selected IDs. Data is ignored.
