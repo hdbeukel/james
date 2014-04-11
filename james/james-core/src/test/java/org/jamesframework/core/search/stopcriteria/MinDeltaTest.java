@@ -35,7 +35,7 @@ public class MinDeltaTest extends SearchTestTemplate {
     private Search<SubsetSolution> search;
     
     // minimum delta
-    private final double MIN_DELTA = 1e-2;
+    private final double MIN_DELTA = 0.05;
     
     // short check period
     private final long SHORT_CHECK_PERIOD = 1;
