@@ -139,7 +139,7 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
         numRejectedMoves = 0;
         // create random initial solution if none is set
         if(curSolution == null){
-            adjustCurrentSolution(getProblem().createRandomSolution());
+            setCurrentSolutionAndUpdateBestSolution(getProblem().createRandomSolution());
         }
     }
     
@@ -147,22 +147,17 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
      * Private method to adjust the current solution, which does not verify the search status and may
      * therefore be called when the search is not idle. Called when creating a random initial solution
      * during initialization, and from within the public {@link #setCurrentSolution(Solution)} after
-     * verifying the search status.
+     * verifying the search status. Automatically evaluates and validates the new current solution,
+     * and updates the best solution if applicable.
      * <p>
      * Clears the evaluated move cache, as this cache is no longer valid for the new current solution.
      * 
      * @param solution new current solution
      */
-    private void adjustCurrentSolution(SolutionType solution){
-        // clear evaluated move cache
-        if(cache != null){
-            cache.clear();
-        }
-        // set current solution
-        curSolution = solution;
-        // evaluate
-        curSolutionEvaluation = getProblem().evaluate(solution);
-        // check if new best solution
+    private void setCurrentSolutionAndUpdateBestSolution(SolutionType solution){
+        // update current solution
+        updateCurrentSolution(solution, getProblem().evaluate(solution));
+        // update new best solution, if current solution is not rejected
         if(!getProblem().rejectSolution(solution)){
             updateBestSolution(curSolution, curSolutionEvaluation);
         }
@@ -367,13 +362,34 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
                 throw new NullPointerException("Cannot set current solution: received null.");
             }
             // go ahead and adjust current solution
-            adjustCurrentSolution(solution);
+            setCurrentSolutionAndUpdateBestSolution(solution);
         }
     }
     
     /***********************/
     /* PROTECTED UTILITIES */
     /***********************/
+    
+    /**
+     * Update the current solution, given that it has already been evaluated. This method stores
+     * the new current solution and its evaluation, and informs listeners about this update. Also,
+     * the evaluated move cache is cleared because it is no longer valid for the new current solution.
+     * 
+     * @param solution new current solution
+     * @param evaluation evaluation of new current solution
+     */
+    protected void updateCurrentSolution(SolutionType solution, double evaluation){
+        // clear evaluated move cache
+        if(cache != null){
+            cache.clear();
+        }
+        // store new current solution
+        curSolution = solution;
+        // store evaluation
+        curSolutionEvaluation = evaluation;
+        // inform listeners
+        fireModifiedCurrentSolution(curSolution, curSolutionEvaluation);
+    }
     
     /**
      * Evaluates the neighbour obtained by applying the given move to the current solution. If this
@@ -514,7 +530,7 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
      * @param move accepted move to be applied to the current solution
      */
     protected void acceptMove(Move<? super SolutionType> move){
-        // update evaluation (likely present in cache)
+        // update evaluation (likely to be present in cache)
         curSolutionEvaluation = evaluateMove(move); 
         // apply move to current solution
         move.apply(curSolution);
