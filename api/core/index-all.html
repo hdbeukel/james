@@ -204,8 +204,8 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/solutions/SubsetSolution.html#computeHashCode--">computeHashCode()</a></span> - Method in class org.jamesframework.core.problems.solutions.<a href="org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a></dt>
 <dd>
-<div class="block">Computes a hash code in compliance with the implementation of <a href="org/jamesframework/core/problems/solutions/SubsetSolution.html#isSameSolution-org.jamesframework.core.problems.solutions.Solution-"><code>SubsetSolution.isSameSolution(Solution)</code></a>, meaning that the same hash code
- is returned for equal subset solutions.</div>
+<div class="block">Computes a hash code in compliance with the implementation of <a href="org/jamesframework/core/problems/solutions/SubsetSolution.html#isSameSolution-org.jamesframework.core.problems.solutions.Solution-"><code>SubsetSolution.isSameSolution(Solution)</code></a>, meaning that
+ the same hash code is returned for equal subset solutions.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/PenalizingConstraint.html#computePenalty-SolutionType-DataType-">computePenalty(SolutionType, DataType)</a></span> - Method in interface org.jamesframework.core.problems.constraints.<a href="org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="interface in org.jamesframework.core.problems.constraints">PenalizingConstraint</a></dt>
 <dd>
@@ -1108,7 +1108,8 @@
 </dd>
 <dt><a href="org/jamesframework/core/search/algo/package-summary.html">org.jamesframework.core.search.algo</a> - package org.jamesframework.core.search.algo</dt>
 <dd>
-<div class="block">Actual search implementations; advanced searches with custom components are implemented in separate subpackages.</div>
+<div class="block">Actual search implementations (non self-contained searches and their related components
+ are implemented in separate subpackages).</div>
 </dd>
 <dt><a href="org/jamesframework/core/search/algo/exh/package-summary.html">org.jamesframework.core.search.algo.exh</a> - package org.jamesframework.core.search.algo.exh</dt>
 <dd>
@@ -1746,10 +1747,18 @@
 <div class="block">Creates a new subset solution given the set of all IDs, each corresponding to an underlying entity,
  from which a subset is to be selected.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/solutions/SubsetSolution.html#SubsetSolution-java.util.Set-java.util.Set-">SubsetSolution(Set&lt;Integer&gt;, Set&lt;Integer&gt;)</a></span> - Constructor for class org.jamesframework.core.problems.solutions.<a href="org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a></dt>
+<dd>
+<div class="block">Creates a new subset solution given the set of all IDs, and the set of currently selected IDs.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/solutions/SubsetSolution.html#SubsetSolution-java.util.Set-boolean-">SubsetSolution(Set&lt;Integer&gt;, boolean)</a></span> - Constructor for class org.jamesframework.core.problems.solutions.<a href="org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a></dt>
 <dd>
 <div class="block">Creates a new subset solution given the set of all IDs, each corresponding to an underlying entity,
  from which a subset is to be selected.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/solutions/SubsetSolution.html#SubsetSolution-java.util.Set-java.util.Set-boolean-">SubsetSolution(Set&lt;Integer&gt;, Set&lt;Integer&gt;, boolean)</a></span> - Constructor for class org.jamesframework.core.problems.solutions.<a href="org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a></dt>
+<dd>
+<div class="block">Creates a new subset solution given the set of all IDs, and the set of currently selected IDs.</div>
 </dd>
 <dt><a href="org/jamesframework/core/search/algo/exh/SubsetSolutionIterator.html" title="class in org.jamesframework.core.search.algo.exh"><span class="typeNameLink">SubsetSolutionIterator</span></a> - Class in <a href="org/jamesframework/core/search/algo/exh/package-summary.html">org.jamesframework.core.search.algo.exh</a></dt>
 <dd>
