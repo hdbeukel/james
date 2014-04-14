@@ -666,5 +666,79 @@ public class SubsetSolutionTest {
         assertTrue(solutions.isEmpty());
         
     }
+    
+    /**
+     * Test constructors of SubsetSolution with selected IDs.
+     */
+    @Test
+    public void testConstructorsWithSelectedIDs(){
+        
+        System.out.println(" - test constructors with selected IDs");
+        
+        // take random subset of all IDs
+        Set<Integer> random = SetUtilities.getRandomSubset(subsetSolution.getAllIDs(), NUM_IDS/2, RG);
+        
+        // select these IDs
+        subsetSolution.deselectAll();
+        subsetSolution.selectAll(random);
+        
+        // create new subset solution with this selection
+        SubsetSolution sol = new SubsetSolution(subsetSolution.getAllIDs(), random);
+        
+        // verify
+        assertEquals(subsetSolution, sol);
+        
+        // repeat with sorted sets
+        SubsetSolution sol2 = new SubsetSolution(subsetSolution.getAllIDs(), random, true);
+        
+        // verify
+        assertEquals(subsetSolution, sol);
+        assertEquals(subsetSolution, sol2);
+        assertEquals(sol, sol2);
+        
+    }
+    
+    /**
+     * Test sorted subset solution.
+     */
+    @Test
+    public void testSorted(){
+        
+        System.out.println(" - test sorted subset solution");
+        
+        // overwrite subset solution with sorted subset solution
+        subsetSolution = new SubsetSolution(subsetSolution.getAllIDs(), true);
+        
+        // repeat
+        for(int i=0; i<100; i++){
+            // take random subset of all IDs
+            Set<Integer> random = SetUtilities.getRandomSubset(subsetSolution.getAllIDs(), NUM_IDS/2, RG);
+            // select them
+            subsetSolution.selectAll(random);
+            // verify
+            Integer prevID = null;
+            for(int ID : subsetSolution.getAllIDs()){
+                if(prevID != null){
+                    assertTrue(ID > prevID);
+                }
+                prevID = ID;
+            }
+            prevID = null;
+            for(int ID : subsetSolution.getSelectedIDs()){
+                if(prevID != null){
+                    assertTrue(ID > prevID);
+                }
+                prevID = ID;
+            }
+            prevID = null;
+            for(int ID : subsetSolution.getUnselectedIDs()){
+                if(prevID != null){
+                    assertTrue(ID > prevID);
+                }
+                prevID = ID;
+            }
+        }
+        
+    }
 
 }

@@ -49,9 +49,26 @@ public class SubsetSolution extends Solution {
      * create a subset solution that stores IDs in sorted sets.
      * 
      * @param allIDs set of all IDs from which a subset is to be selected
+     * @throws NullPointerException if <code>allIDs</code> is <code>null</code>
      */
     public SubsetSolution(Set<Integer> allIDs){
         this(allIDs, false);
+    }
+    
+    /**
+     * Creates a new subset solution given the set of all IDs, and the set of currently selected IDs. Note: IDs
+     * are copied to the internal data structures of the subset solution; no reference is stored to the sets given
+     * at construction. IDs are stored in sets that do not guarantee any order. See {@link #SubsetSolution(Set, boolean)}
+     * and {@link #SubsetSolution(Set, Set, boolean)} to create subset solutions that store IDs in sorted sets.
+     * 
+     * @param allIDs set of all IDs from which a subset is to be selected
+     * @param selectedIDs set of currently selected IDs (subset of all IDs)
+     * @throws NullPointerException if <code>allIDs</code> or <code>selectedIDs</code> are <code>null</code>,
+     *                              of <code>selectedIDs</code> contains any <code>null</code> elements
+     * @throws SolutionModificationException if <code>selectedIDs</code> is not a subset of <code>allIDs</code>
+     */
+    public SubsetSolution(Set<Integer> allIDs, Set<Integer> selectedIDs){
+        this(allIDs, selectedIDs, false);
     }
     
     /**
@@ -64,6 +81,7 @@ public class SubsetSolution extends Solution {
      * @param allIDs set of all IDs from which a subset is to be selected
      * @param sorted if <code>sorted</code> is <code>true</code>, IDs will be stored in sorted sets,
      *               else they are stored in general sets that do not guarantee any order
+     * @throws NullPointerException if <code>allIDs</code> is <code>null</code>
      */
     public SubsetSolution(Set<Integer> allIDs, boolean sorted){
         this.sorted = sorted;
@@ -75,6 +93,33 @@ public class SubsetSolution extends Solution {
             this.all = new TreeSet<>(allIDs);           // sorted set with all IDs (copy)
             this.selected = new TreeSet<>();            // sorted set with selected IDs (empty)
             this.unselected = new TreeSet<>(allIDs);    // sorted set with unselected IDs (all)
+        }
+    }
+    
+    /**
+     * Creates a new subset solution given the set of all IDs, and the set of currently selected IDs. Note: IDs
+     * are copied to the internal data structures of the subset solution; no reference is stored to the sets given
+     * at construction. If <code>sorted</code> is true, IDs will be stored in sorted sets, else they are stored in
+     * general sets that do not guarantee any order.
+     * 
+     * @param allIDs set of all IDs from which a subset is to be selected
+     * @param selectedIDs set of currently selected IDs (subset of all IDs)
+     * @param sorted if <code>sorted</code> is <code>true</code>, IDs will be stored in sorted sets,
+     *               else they are stored in general sets that do not guarantee any order
+     * @throws NullPointerException if <code>allIDs</code> or <code>selectedIDs</code> are <code>null</code>,
+     *                              of <code>selectedIDs</code> contains any <code>null</code> elements
+     * @throws SolutionModificationException if <code>selectedIDs</code> is not a subset of <code>allIDs</code>
+     */
+    public SubsetSolution(Set<Integer> allIDs, Set<Integer> selectedIDs, boolean sorted){
+        this(allIDs, sorted);
+        for(int ID : selectedIDs){
+            if(!allIDs.contains(ID)){
+                throw new SolutionModificationException("Error while creating subset solution: "
+                                + "set of selected IDs should be a subset of set of all IDs. Got: allIDs = "
+                                + allIDs + ", selectedIDs = " + selectedIDs, this);
+            }
+            selected.add(ID);
+            unselected.remove(ID);
         }
     }
     
@@ -257,7 +302,8 @@ public class SubsetSolution extends Solution {
      * Subset solutions are considered equal if and only if they contain exactly the same selected and unselected IDs.
      * 
      * @param sol other solution to check for equality
-     * @return true if the other solution is also a subset solution and contains exactly the same selected and unselected IDs as this solution
+     * @return <code>true</code> if the other solution is also a subset solution and contains exactly the same
+     *         selected and unselected IDs as this solution
      */
     @Override
     public boolean isSameSolution(Solution sol) {
@@ -284,9 +330,9 @@ public class SubsetSolution extends Solution {
     }
 
     /**
-     * Computes a hash code in compliance with the implementation of {@link #isSameSolution(Solution)}, meaning that the same hash code
-     * is returned for equal subset solutions. The computed hash code is a linear combination of the hash codes of the underlying
-     * sets of selected and unselected IDs, added to a constant term.
+     * Computes a hash code in compliance with the implementation of {@link #isSameSolution(Solution)}, meaning that
+     * the same hash code is returned for equal subset solutions. The computed hash code is a linear combination of
+     * the hash codes of the underlying sets of selected and unselected IDs, added to a constant term.
      * 
      * @return hash code of this subset solution
      */
