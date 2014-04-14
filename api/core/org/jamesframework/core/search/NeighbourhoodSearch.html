@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -238,49 +238,61 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 </td>
 </tr>
 <tr id="i8" class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#incNumAcceptedMoves-long-">incNumAcceptedMoves</a></span>(long&nbsp;inc)</code>
+<div class="block">Increase the number of accepted moves with the given value.</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#incNumRejectedMoves-long-">incNumRejectedMoves</a></span>(long&nbsp;inc)</code>
+<div class="block">Increase the number of rejected moves with the given value.</div>
+</td>
+</tr>
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#isImprovement-org.jamesframework.core.search.neigh.Move-">isImprovement</a></span>(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</code>
 <div class="block">Checks whether the given move leads to an improvement when being applied to the current solution.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#rejectMove--">rejectMove</a></span>()</code>
 <div class="block">Indicate that a move was rejected.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener</a></span>(<a href="../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;listener)</code>
 <div class="block">Remove the given search listener.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#searchStarted--">searchStarted</a></span>()</code>
 <div class="block">Resets neighbourhood search specific, per run metadata: number of accepted and rejected moves.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#setCurrentSolution-SolutionType-">setCurrentSolution</a></span>(<a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&nbsp;solution)</code>
 <div class="block">Sets the current solution.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#setEvaluatedMoveCache-org.jamesframework.core.search.cache.EvaluatedMoveCache-">setEvaluatedMoveCache</a></span>(<a href="../../../../org/jamesframework/core/search/cache/EvaluatedMoveCache.html" title="interface in org.jamesframework.core.search.cache">EvaluatedMoveCache</a>&nbsp;cache)</code>
 <div class="block">Sets a custom evaluated move cache.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#updateCurrentSolution-SolutionType-double-">updateCurrentSolution</a></span>(<a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&nbsp;solution,
                      double&nbsp;evaluation)</code>
 <div class="block">Update the current solution, given that it has already been evaluated.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#validateMove-org.jamesframework.core.search.neigh.Move-">validateMove</a></span>(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</code>
 <div class="block">Validates the neighbour obtained by applying the given move to the current solution.</div>
@@ -690,15 +702,43 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 </dl>
 </li>
 </ul>
+<a name="incNumAcceptedMoves-long-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>incNumAcceptedMoves</h4>
+<pre>protected&nbsp;void&nbsp;incNumAcceptedMoves(long&nbsp;inc)</pre>
+<div class="block">Increase the number of accepted moves with the given value.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>inc</code> - value with which the number of accepted moves is increased</dd>
+</dl>
+</li>
+</ul>
 <a name="rejectMove--">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>rejectMove</h4>
 <pre>protected&nbsp;void&nbsp;rejectMove()</pre>
 <div class="block">Indicate that a move was rejected. This method only updates the rejected move counter. If this method
  is called for every rejected move, the number of rejected moves will be correctly reported.</div>
+</li>
+</ul>
+<a name="incNumRejectedMoves-long-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>incNumRejectedMoves</h4>
+<pre>protected&nbsp;void&nbsp;incNumRejectedMoves(long&nbsp;inc)</pre>
+<div class="block">Increase the number of rejected moves with the given value.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>inc</code> - value with which the number of rejected moves is increased</dd>
+</dl>
 </li>
 </ul>
 </li>

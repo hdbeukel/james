@@ -289,7 +289,8 @@
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">ParallelTempering.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#searchStopped-org.jamesframework.core.search.Search-">searchStopped</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&nbsp;replica)</code>
-<div class="block">Empty callback: no action taken here when a replica has stopped.</div>
+<div class="block">Parallel tempering algorithm listens to its Metropolis replicas: whenever a replica has finished its current run,
+ the number of accepted and rejected moves during this run are accounted for by increase the global counters.</div>
 </td>
 </tr>
 <tr class="rowColor">

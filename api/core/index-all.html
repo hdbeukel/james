@@ -770,6 +770,14 @@
 </a>
 <h2 class="title">I</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#incNumAcceptedMoves-long-">incNumAcceptedMoves(long)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">Increase the number of accepted moves with the given value.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#incNumRejectedMoves-long-">incNumRejectedMoves(long)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">Increase the number of rejected moves with the given value.</div>
+</dd>
 <dt><a href="org/jamesframework/core/exceptions/IncompatibleSearchListenerException.html" title="class in org.jamesframework.core.exceptions"><span class="typeNameLink">IncompatibleSearchListenerException</span></a> - Exception in <a href="org/jamesframework/core/exceptions/package-summary.html">org.jamesframework.core.exceptions</a></dt>
 <dd>
 <div class="block">Exception thrown when an incompatible search listener is attached to a search.</div>
@@ -1301,7 +1309,7 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#searchDisposed--">searchDisposed()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
 <div class="block">When disposing a parallel tempering search, it will dispose each contained Metropolis replica and will
- shut down the thread pool used for concurrent execution of replicas during search.</div>
+ shut down the thread pool used for concurrent execution of replicas.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#searchDisposed--">searchDisposed()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
@@ -1410,7 +1418,8 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#searchStep--">searchStep()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
-<div class="block">Perform a search step, in which every replica performs several steps and solutions of adjacent replica may be swapped.</div>
+<div class="block">Perform a search step, in which every replica performs several steps and solutions of adjacent
+ replicas may be swapped.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/RandomDescent.html#searchStep--">searchStep()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/RandomDescent.html" title="class in org.jamesframework.core.search.algo">RandomDescent</a></dt>
 <dd>
@@ -1446,7 +1455,8 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#searchStopped-org.jamesframework.core.search.Search-">searchStopped(Search&lt;? extends SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
-<div class="block">Empty callback: no action taken here when a replica has stopped.</div>
+<div class="block">Parallel tempering algorithm listens to its Metropolis replicas: whenever a replica has finished its current run,
+ the number of accepted and rejected moves during this run are accounted for by increase the global counters.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/EmptySearchListener.html#searchStopped-org.jamesframework.core.search.Search-">searchStopped(Search&lt;? extends SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/EmptySearchListener.html" title="class in org.jamesframework.core.search.listeners">EmptySearchListener</a></dt>
 <dd>&nbsp;</dd>
@@ -1472,7 +1482,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#setCurrentSolution-SolutionType-">setCurrentSolution(SolutionType)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
-<div class="block">Set the same current solution for each replica.</div>
+<div class="block">Set a custom current solution, which is passed to each replica.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#setCurrentSolution-SolutionType-">setCurrentSolution(SolutionType)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
 <dd>
