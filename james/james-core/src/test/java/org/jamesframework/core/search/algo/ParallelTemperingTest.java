@@ -82,6 +82,9 @@ public class ParallelTemperingTest extends SearchTestTemplate {
     
     @After
     public void tearDown(){
+        // print number of accepted/rejected moves of last run
+        System.out.println("   >>> num accepted/rejected moves during last run: "
+                            + search.getNumAcceptedMoves() + "/" + search.getNumRejectedMoves());
         // dispose search
         search.dispose();
     }

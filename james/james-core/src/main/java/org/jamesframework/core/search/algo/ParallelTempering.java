@@ -27,7 +27,9 @@ import org.jamesframework.core.exceptions.JamesRuntimeException;
 import org.jamesframework.core.exceptions.SearchException;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.search.NeighbourhoodSearch;
 import org.jamesframework.core.search.Search;
+import org.jamesframework.core.search.SingleNeighbourhoodSearch;
 import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.search.stopcriteria.MaxSteps;
@@ -58,23 +60,35 @@ import org.slf4j.LoggerFactory;
  * </ol>
  * <p>
  * The overall best solution found by all replicas is tracked and eventually returned by the parallel tempering algorithm.
+ * The main algorithm does not actively generate nor apply any moves to its current solution, but simply updates it when a
+ * replica found a new global improvement, in which case the main algorithm's best solution is also updated. Only after
+ * explicitely setting a current solution using {@link #setCurrentSolution(Solution)}, the main algorithm's current
+ * solution may differ from its best solution, until a new global best solution is found and both are again updated.
+ * Note that {@link #setCurrentSolution(Solution)} also passes this current solution to each Metropolis replica, and
+ * may for example be used to set the same custom initial solution for every replica.
+ * </p>
+ * <p>
+ * The reported number of accepted and rejected moves (see {@link #getNumAcceptedMoves()} and {@link #getNumRejectedMoves()})
+ * corresponds to the sum of the number of accepted and rejected moves across all replicas, during the current run of the
+ * parallel tempering search. The corresponding values are updated with some delay, whenever a Metropolis replica has
+ * completed its current run.
  * </p>
  * <p>
  * When creating the parallel tempering algorithm, the number of replicas and a minimum and maximum temperature have to be
- * specified. Temperatures assigned to the replicas are unique and equally spaced in the desired interval. The number of replica
- * steps defaults to 500 but it is strongly advised to tune this parameter for every specific problem, e.g. in case of a computationally
- * intensive objective function a lower number of steps may be more appropriate.
+ * specified. Temperatures assigned to the replicas are unique and equally spaced in the desired interval. The number of
+ * replica steps defaults to 500 but it is strongly advised to tune this parameter for every specific problem, e.g. in case
+ * of a computationally intensive objective function, a lower number of steps may be more appropriate.
  * </p>
  * <p>
- * Note that every replica runs in a separate thread so that they will be executed in parallel on multi core machines. Therefore, it
- * is important that the problem (including all of its components such as the objective, constraints, etc.) and neighbourhood specified
- * at construction are thread-safe.
+ * Note that every replica runs in a separate thread so that they will be executed in parallel on multi core machines.
+ * Therefore, it is important that the problem (including all of its components such as the objective, constraints, etc.)
+ * and neighbourhood specified at construction are thread-safe.
  * </p>
  * 
  * @param <SolutionType> solution type of the problems that may be solved using this search, required to extend {@link Solution}
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class ParallelTempering<SolutionType extends Solution> extends Search<SolutionType> implements SearchListener<SolutionType>{
+public class ParallelTempering<SolutionType extends Solution> extends SingleNeighbourhoodSearch<SolutionType> implements SearchListener<SolutionType>{
 
     // logger
     private static final Logger logger = LoggerFactory.getLogger(ParallelTempering.class);
@@ -145,7 +159,7 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
     @SuppressWarnings("LeakingThisInConstructor")
     public ParallelTempering(String name, Problem<SolutionType> problem, Neighbourhood<? super SolutionType> neighbourhood,
                                 int numReplicas, double minTemperature, double maxTemperature){
-        super(name != null ? name : "ParallelTempering", problem);
+        super(name != null ? name : "ParallelTempering", problem, neighbourhood);
         // check number of replicas
         if(numReplicas <= 0){
             throw new IllegalArgumentException("Error while creating parallel tempering algorithm: number of replicas should be > 0.");
@@ -245,18 +259,19 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
     }
     
     /**
-     * Set the same neighbourhood for each replica. Note that <code>neighbourhood</code> can not be <code>null</code>
-     * and that this method may only be called when the search is idle.
+     * Set the same neighbourhood for each replica. Note that <code>neighbourhood</code> can not
+     * be <code>null</code> and that this method may only be called when the search is idle.
      * 
      * @param neighbourhood neighbourhood to be set for each replica
      * @throws NullPointerException if <code>neighbourhood</code> is <code>null</code>
      * @throws SearchException if the search is not idle
      */
+    @Override
     public void setNeighbourhood(Neighbourhood<? super SolutionType> neighbourhood){
         // synchronize with status updates
         synchronized(getStatusLock()){
-            // assert idle
-            assertIdle("Cannot set neighbourhood in parallel tempering.");
+            // call super
+            super.setNeighbourhood(neighbourhood);
             // set neighbourhood in every replica
             for(MetropolisSearch<SolutionType> r : replicas){
                 r.setNeighbourhood(neighbourhood);
@@ -265,19 +280,20 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
     }
     
     /**
-     * Set the same current solution for each replica. Note that <code>solution</code> can not be <code>null</code>
-     * and that this method may only be called when the search is idle.
+     * Set a custom current solution, which is passed to each replica. Note that <code>solution</code>
+     * can not be <code>null</code> and that this method may only be called when the search is idle.
      * 
      * @param solution current solution to be set for each replica
      * @throws NullPointerException if <code>solution</code> is <code>null</code>
      * @throws SearchException if the search is not idle
      */
+    @Override
     public void setCurrentSolution(SolutionType solution){
         // synchronize with status updates
         synchronized(getStatusLock()){
-            // assert idle
-            assertIdle("Cannot set current solution in parallel tempering.");
-            // set current solution in every replica
+            // call super
+            super.setCurrentSolution(solution);
+            // pass current solution to every replica
             for(MetropolisSearch<SolutionType> r : replicas){
                 r.setCurrentSolution(solution);
             }
@@ -285,7 +301,8 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
     }
     
     /**
-     * Perform a search step, in which every replica performs several steps and solutions of adjacent replica may be swapped.
+     * Perform a search step, in which every replica performs several steps and solutions of adjacent
+     * replicas may be swapped.
      * 
      * @throws SearchException if an error occurs during concurrent execution of the Metropolis replicas, or if
      *                          it is detected that replicas are not correctly ordered by temperature (ascending)
@@ -353,7 +370,7 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
     
     /**
      * When disposing a parallel tempering search, it will dispose each contained Metropolis replica and will
-     * shut down the thread pool used for concurrent execution of replicas during search.
+     * shut down the thread pool used for concurrent execution of replicas.
      */
     @Override
     protected void searchDisposed(){
@@ -375,7 +392,7 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
      * verified whether this is also a global improvement. If so, the global best solution is updated. This method is synchronized to avoid
      * concurrent updates of the global best solution, as the replicas run in separate threads.
      * 
-     * @param replica Metropolis replica
+     * @param replica Metropolis replica that has found a (local) best solution
      * @param newBestSolution new best solution found in replica
      * @param newBestSolutionEvaluation evaluation of new best solution
      */
@@ -390,7 +407,7 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
      * a generic maximum steps stop criterion (see {@link MaxSteps}) to each replica because of its finer granularity, i.e. because it is
      * checked after every single step.
      * 
-     * @param replica Metropolis replica
+     * @param replica Metropolis replica that completed a search step
      * @param numSteps number of steps completed so far
      */
     @Override
@@ -401,16 +418,28 @@ public class ParallelTempering<SolutionType extends Solution> extends Search<Sol
     }
     
     /**
+     * Parallel tempering algorithm listens to its Metropolis replicas: whenever a replica has finished its current run,
+     * the number of accepted and rejected moves during this run are accounted for by increase the global counters. This
+     * method is synchronized to avoid concurrent updates of the global number of accepted and rejected moves, as the
+     * replicas run in separate threads.
+     * 
+     * @param replica Metropolis replica that has finished its current run
+     */
+    @Override
+    public synchronized void searchStopped(Search<? extends SolutionType> replica) {
+        // cast to neighbourhood search (should never fail, as this callback is only fired by Metropolis searches)
+        NeighbourhoodSearch<?> nreplica = (NeighbourhoodSearch<?>) replica;
+        // update number of accepted moves
+        incNumAcceptedMoves(nreplica.getNumAcceptedMoves());
+        // update number of rejected moves
+        incNumRejectedMoves(nreplica.getNumRejectedMoves());
+    }
+    
+    /**
      * Empty callback: no action taken here when a replica has started.
      * @param replica ignored
      */
     @Override
     public void searchStarted(Search<? extends SolutionType> replica) {}
-    /**
-     * Empty callback: no action taken here when a replica has stopped.
-     * @param replica ignored
-     */
-    @Override
-    public void searchStopped(Search<? extends SolutionType> replica) {}
 
 }
