@@ -13,6 +13,7 @@
 //  limitations under the License.
 
 /**
- * Actual search implementations; advanced searches with custom components are implemented in separate subpackages.
+ * Actual search implementations (non self-contained searches and their related components
+ * are implemented in separate subpackages).
  */
 package org.jamesframework.core.search.algo;
