@@ -14,6 +14,7 @@
 
 package org.jamesframework.core.search.algo;
 
+import org.jamesframework.core.search.algo.vns.ReducedVariableNeighbourhoodSearch;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
