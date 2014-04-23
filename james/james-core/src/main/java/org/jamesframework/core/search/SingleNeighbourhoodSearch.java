@@ -77,8 +77,8 @@ public abstract class SingleNeighbourhoodSearch<SolutionType extends Solution> e
     }
     
     /**
-     * Sets the neighbourhood used to modify the current solution. Note that <code>neighbourhood</code> can not be <code>null</code>
-     * and that this method may only be called when the search is idle.
+     * Sets the neighbourhood used to modify the current solution. Note that <code>neighbourhood</code> can not be
+     * <code>null</code> and that this method may only be called when the search is idle.
      * 
      * @throws NullPointerException if <code>neighbourhood</code> is <code>null</code>
      * @throws SearchException if the search is currently not idle
