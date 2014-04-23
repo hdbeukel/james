@@ -15,9 +15,7 @@
 package org.jamesframework.core.search.algo.vns;
 
 import java.util.List;
-import javafx.scene.paint.Stop;
 import org.jamesframework.core.exceptions.JamesRuntimeException;
-import org.jamesframework.core.exceptions.SolutionModificationException;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.solutions.Solution;
 import org.jamesframework.core.search.MultiNeighbourhoodSearch;
@@ -153,25 +151,18 @@ public class VariableNeighbourhoodSearch<SolutionType extends Solution> extends 
     
     /**
      * Set a custom factory to create instances of the modification algorithm to be applied to modify solutions
-     * obtained by shaking. The given factory can not be <code>null</code>. Note that this method may only be
-     * called when the search is idle.
+     * obtained by shaking. The given factory can not be <code>null</code>.
      * 
      * @param modificationAlgorithmFactory custom modification algorithm factory
-     * @throws SolutionModificationException if the search is not idle
      * @throws NullPointerException if <code>modificationAlgorithmFactory</code> is <code>null</code>
      */
     public void setModificationAlgorithmFactory(NeighbourhoodSearchFactory<SolutionType> modificationAlgorithmFactory){
-        // synchronize with status updates
-        synchronized(getStatusLock()){
-            // assert idle
-            assertIdle("Cannot set modification algorithm factory in VNS.");
-            // check not null
-            if(modificationAlgorithmFactory == null){
-                throw new NullPointerException("Cannot set modification algorithm factory in VNS: received null.");
-            }
-            // go ahead
-            this.modificationAlgorithmFactory = modificationAlgorithmFactory;
+        // check not null
+        if(modificationAlgorithmFactory == null){
+            throw new NullPointerException("Cannot set modification algorithm factory in VNS: received null.");
         }
+        // go ahead
+        this.modificationAlgorithmFactory = modificationAlgorithmFactory;
     }
     
     /**
