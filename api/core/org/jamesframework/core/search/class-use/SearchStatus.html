@@ -89,6 +89,19 @@
 <div class="block">Abstract search templates, including both general searches and neighbourhood searches.</div>
 </td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="#org.jamesframework.core.search.algo">org.jamesframework.core.search.algo</a></td>
+<td class="colLast">
+<div class="block">Actual search implementations (non self-contained searches and their related components
+ are implemented in separate subpackages).</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#org.jamesframework.core.search.listeners">org.jamesframework.core.search.listeners</a></td>
+<td class="colLast">
+<div class="block">Search listeners.</div>
+</td>
+</tr>
 </tbody>
 </table>
 </li>
@@ -123,6 +136,60 @@
 <div class="block">Returns an array containing the constants of this enum type, in
 the order they are declared.</div>
 </td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.search.algo">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../org/jamesframework/core/search/SearchStatus.html" title="enum in org.jamesframework.core.search">SearchStatus</a> in <a href="../../../../../org/jamesframework/core/search/algo/package-summary.html">org.jamesframework.core.search.algo</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../org/jamesframework/core/search/algo/package-summary.html">org.jamesframework.core.search.algo</a> with parameters of type <a href="../../../../../org/jamesframework/core/search/SearchStatus.html" title="enum in org.jamesframework.core.search">SearchStatus</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">ParallelTempering.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#statusChanged-org.jamesframework.core.search.Search-org.jamesframework.core.search.SearchStatus-">statusChanged</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&nbsp;search,
+             <a href="../../../../../org/jamesframework/core/search/SearchStatus.html" title="enum in org.jamesframework.core.search">SearchStatus</a>&nbsp;newStatus)</code>
+<div class="block">Empty callback: no action taken here when a replica enters a new status.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">BasicParallelSearch.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html#statusChanged-org.jamesframework.core.search.Search-org.jamesframework.core.search.SearchStatus-">statusChanged</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&gt;&nbsp;search,
+             <a href="../../../../../org/jamesframework/core/search/SearchStatus.html" title="enum in org.jamesframework.core.search">SearchStatus</a>&nbsp;newStatus)</code>
+<div class="block">No actions are taken when a subsearch has changed status.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.search.listeners">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../org/jamesframework/core/search/SearchStatus.html" title="enum in org.jamesframework.core.search">SearchStatus</a> in <a href="../../../../../org/jamesframework/core/search/listeners/package-summary.html">org.jamesframework.core.search.listeners</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../org/jamesframework/core/search/listeners/package-summary.html">org.jamesframework.core.search.listeners</a> with parameters of type <a href="../../../../../org/jamesframework/core/search/SearchStatus.html" title="enum in org.jamesframework.core.search">SearchStatus</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">SearchListener.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#statusChanged-org.jamesframework.core.search.Search-org.jamesframework.core.search.SearchStatus-">statusChanged</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="type parameter in SearchListener">SolutionType</a>&gt;&nbsp;search,
+             <a href="../../../../../org/jamesframework/core/search/SearchStatus.html" title="enum in org.jamesframework.core.search">SearchStatus</a>&nbsp;newStatus)</code>
+<div class="block">Fired when the search enters a new status.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">EmptySearchListener.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/listeners/EmptySearchListener.html#statusChanged-org.jamesframework.core.search.Search-org.jamesframework.core.search.SearchStatus-">statusChanged</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/EmptySearchListener.html" title="type parameter in EmptySearchListener">SolutionType</a>&gt;&nbsp;search,
+             <a href="../../../../../org/jamesframework/core/search/SearchStatus.html" title="enum in org.jamesframework.core.search">SearchStatus</a>&nbsp;newStatus)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>

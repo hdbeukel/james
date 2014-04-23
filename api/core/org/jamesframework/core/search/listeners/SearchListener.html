@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":6};
+var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -164,6 +164,13 @@ var activeTableTab = "activeTableTab";
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#statusChanged-org.jamesframework.core.search.Search-org.jamesframework.core.search.SearchStatus-">statusChanged</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="type parameter in SearchListener">SolutionType</a>&gt;&nbsp;search,
+             <a href="../../../../../org/jamesframework/core/search/SearchStatus.html" title="enum in org.jamesframework.core.search">SearchStatus</a>&nbsp;newStatus)</code>
+<div class="block">Fired when the search enters a new status.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#stepCompleted-org.jamesframework.core.search.Search-long-">stepCompleted</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="type parameter in SearchListener">SolutionType</a>&gt;&nbsp;search,
              long&nbsp;numSteps)</code>
 <div class="block">Fired when the search has completed a step.</div>
@@ -241,7 +248,7 @@ var activeTableTab = "activeTableTab";
 <a name="stepCompleted-org.jamesframework.core.search.Search-long-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>stepCompleted</h4>
 <pre>void&nbsp;stepCompleted(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="type parameter in SearchListener">SolutionType</a>&gt;&nbsp;search,
@@ -253,6 +260,22 @@ var activeTableTab = "activeTableTab";
 <dd><code>numSteps</code> - number of steps completed so far (during the current search run)</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../../../org/jamesframework/core/exceptions/IncompatibleSearchListenerException.html" title="class in org.jamesframework.core.exceptions">IncompatibleSearchListenerException</a></code> - if the listener is not compatible with the search</dd>
+</dl>
+</li>
+</ul>
+<a name="statusChanged-org.jamesframework.core.search.Search-org.jamesframework.core.search.SearchStatus-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>statusChanged</h4>
+<pre>void&nbsp;statusChanged(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="type parameter in SearchListener">SolutionType</a>&gt;&nbsp;search,
+                   <a href="../../../../../org/jamesframework/core/search/SearchStatus.html" title="enum in org.jamesframework.core.search">SearchStatus</a>&nbsp;newStatus)</pre>
+<div class="block">Fired when the search enters a new status. Called exactly once for every status update.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>search</code> - search which has changed status</dd>
+<dd><code>newStatus</code> - new status of the search</dd>
 </dl>
 </li>
 </ul>
