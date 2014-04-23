@@ -17,13 +17,18 @@ package org.jamesframework.core.search.algo.vns;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.search.NeighbourhoodSearch;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.SearchTestTemplate;
+import org.jamesframework.core.search.algo.RandomDescent;
 import org.jamesframework.core.search.listeners.EmptyNeighbourhoodSearchListener;
 import org.jamesframework.core.search.neigh.Neighbourhood;
+import org.jamesframework.core.search.neigh.subset.SingleSwapNeighbourhood;
 import org.jamesframework.core.search.neigh.subset.adv.DisjointMultiSwapNeighbourhood;
+import org.jamesframework.core.search.stopcriteria.MaxRuntime;
+import org.jamesframework.core.util.NeighbourhoodSearchFactory;
 import org.jamesframework.test.stubs.NeverSatisfiedConstraintStub;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -31,37 +36,76 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 /**
- * Test reduced variable neighbourhood search algorithm.
+ * Test variable neighbourhood search algorithm.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
+@RunWith(Parameterized.class)
 public class VariableNeighbourhoodSearchTest extends SearchTestTemplate {
 
-    // reduced variable neighbourhood search algorithm
-    private ReducedVariableNeighbourhoodSearch<SubsetSolution> search;
+    // repeat all tests with both default VND modification algorithm and a custom Random Descent modifier
+    @Parameterized.Parameters
+    public static List<Object[]> data(){
+        List<Object[]> params = new ArrayList<>();
+        // first run: default VND modification algorithm
+        Object[] run1 = new Object[2];
+        run1[0] = "VND (default)";
+        run1[1] = null;
+        params.add(run1);
+        // second run: custom random descent modification algorithm
+        Object[] run2 = new Object[2];
+        run2[0] = "Random Descent (custom)";
+        run2[1] = new NeighbourhoodSearchFactory<SubsetSolution>() {
+            @Override
+            public NeighbourhoodSearch<SubsetSolution> create(Problem<SubsetSolution> problem) {
+                NeighbourhoodSearch<SubsetSolution> search = new RandomDescent<>(problem, new SingleSwapNeighbourhood());
+                // max runtime of 50 ms
+                search.addStopCriterion(new MaxRuntime(50, TimeUnit.MILLISECONDS));
+                search.setStopCriterionCheckPeriod(50, TimeUnit.MILLISECONDS);
+                return search;
+            }
+        };
+        params.add(run2);
+        // return params
+        return params;
+    }
+    
+    public VariableNeighbourhoodSearchTest(String modAlgoString, NeighbourhoodSearchFactory<SubsetSolution> modAlgoFactory){
+        this.modAlgoString = modAlgoString;
+        this.modAlgoFactory = modAlgoFactory;
+    }
+    
+    // parameters
+    private final String modAlgoString;
+    private final NeighbourhoodSearchFactory<SubsetSolution> modAlgoFactory;
+    
+    // variable neighbourhood search algorithm
+    private VariableNeighbourhoodSearch<SubsetSolution> search;
     
     // maximum runtime
-    private final long SINGLE_RUN_RUNTIME = 1000;
-    private final long MULTI_RUN_RUNTIME = 50;
+    private final long SINGLE_RUN_RUNTIME = 3000;
+    private final long MULTI_RUN_RUNTIME = 500;
     private final TimeUnit MAX_RUNTIME_TIME_UNIT = TimeUnit.MILLISECONDS;
     
     // number of runs in multi run tests
     private final int NUM_RUNS = 5;
     
-    // multi swap neighbourhood
-    private Neighbourhood<SubsetSolution> multiSwapNeigh;
-    
     // rejected moves listener
-    private RejectedMovesListener listener;
+    private Listener listener;
     
     /**
      * Print message when starting tests.
      */
     @BeforeClass
     public static void setUpClass() {
-        System.out.println("# Testing ReducedVariableNeighbourhoodSearch ...");
+        System.out.println("# Testing VariableNeighbourhoodSearch ...");
+        // reduce dataset size and subset size (to test large neighbourhoods)
+        DATASET_SIZE = 50;
+        SUBSET_SIZE = 10;
         // call super
         SearchTestTemplate.setUpClass();
     }
@@ -71,7 +115,7 @@ public class VariableNeighbourhoodSearchTest extends SearchTestTemplate {
      */
     @AfterClass
     public static void tearDownClass() {
-        System.out.println("# Done testing ReducedVariableNeighbourhoodSearch!");
+        System.out.println("# Done testing VariableNeighbourhoodSearch!");
     }
     
     @Override
@@ -79,23 +123,33 @@ public class VariableNeighbourhoodSearchTest extends SearchTestTemplate {
     public void setUp(){
         // call super
         super.setUp();
-        // create multi swap neighbourhood with 2 swaps
-        multiSwapNeigh = new DisjointMultiSwapNeighbourhood(2);
-        // create list of neighbourhoods: (1) single swap, (2) dual swap
+        // create list of neighbourhoods with 1 up to 5 swaps
         List<Neighbourhood<? super SubsetSolution>> neighs = new ArrayList<>();
         neighs.add(neigh);
-        neighs.add(multiSwapNeigh);
-        // create reduced variable neighbourhood search
-        search = new ReducedVariableNeighbourhoodSearch<>(problem, neighs);
-        // create and add rejected moves listener
-        listener = new RejectedMovesListener();
+        for(int s=2; s<=5; s++){
+            neighs.add(new DisjointMultiSwapNeighbourhood(s));
+        }
+        // create variable neighbourhood search
+        if(modAlgoFactory == null){
+            // default VND modifier using only the first 2 neighbourhoods
+            search = new VariableNeighbourhoodSearch<>(problem, neighs, neighs.subList(0, 2));
+        } else {
+            // custom modifier
+            search = new VariableNeighbourhoodSearch<>(problem, neighs, modAlgoFactory);
+        }
+        // create and add listener
+        listener = new Listener();
         search.addSearchListener(listener);
+        // print information about which modification algorithm is used
+        System.out.println(" - MODIFICATION ALGORITHM: " + modAlgoString);
     }
     
     @After
     public void tearDown(){
-        // print number of rejected moves during last run
+        // print number of accepted and rejected moves during last run
+        System.out.println("   >>> Total accepted moves: " + listener.getTotalAcceptedMoves());
         System.out.println("   >>> Total rejected moves: " + listener.getTotalRejectedMoves());
+        System.out.println("   >>> Total runtime: " + listener.getTotalRuntime() + " ms");
         // dispose search
         search.dispose();
     }
@@ -168,8 +222,8 @@ public class VariableNeighbourhoodSearchTest extends SearchTestTemplate {
         System.out.println(" - test subsequent runs with penalizing constraint");
         // set constraint
         problem.addPenalizingConstraint(constraint);
-        // perform 3 times as many runs as usual for this harder problem (maximizing objective)
-        multiRunWithMaximumRuntime(search, MULTI_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT, 3*NUM_RUNS, true, false);
+        // perform multiple runs (maximizing objective)
+        multiRunWithMaximumRuntime(search, MULTI_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT, NUM_RUNS, true, true);
         System.out.println("   >>> best: " + search.getBestSolutionEvaluation());
         // constraint satisfied ?
         if(problem.getViolatedConstraints(search.getBestSolution()).isEmpty()){
@@ -180,21 +234,32 @@ public class VariableNeighbourhoodSearchTest extends SearchTestTemplate {
     }
     
     /**
-     * Rejected moves listener (private).
+     * Listener (private).
      */
     
-    private class RejectedMovesListener extends EmptyNeighbourhoodSearchListener<SubsetSolution>{
+    private class Listener extends EmptyNeighbourhoodSearchListener<SubsetSolution>{
+        // accepted moves counter
+        private int acceptedMoves = 0;
         // rejected moves counter
         private int rejectedMoves = 0;
+        // total runtime counter
+        private long totalRuntime = 0;
         
         @Override
         public void searchStopped(Search<? extends SubsetSolution> search) {
-            // increase counter with number of rejected moves during this run
+            // increase counters
+            acceptedMoves += ((NeighbourhoodSearch<?>) search).getNumAcceptedMoves();
             rejectedMoves += ((NeighbourhoodSearch<?>) search).getNumRejectedMoves();
+            totalRuntime += search.getRuntime();
         }
-        
+        public int getTotalAcceptedMoves(){
+            return acceptedMoves;
+        }
         public int getTotalRejectedMoves(){
             return rejectedMoves;
+        }
+        public long getTotalRuntime(){
+            return totalRuntime;
         }
     }
 

@@ -17,6 +17,7 @@ package org.jamesframework.core.search.algo.vns;
 import java.util.List;
 import javafx.scene.paint.Stop;
 import org.jamesframework.core.exceptions.JamesRuntimeException;
+import org.jamesframework.core.exceptions.SolutionModificationException;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.solutions.Solution;
 import org.jamesframework.core.search.MultiNeighbourhoodSearch;
@@ -35,6 +36,7 @@ import org.jamesframework.core.util.NeighbourhoodSearchFactory;
  * modify the solution obtained after shaking, in an attempt to find a global improvement. More precisely, given
  * a series of \(n_s\) shaking neighbourhoods \(N_i, i=0, ..., n_s-1\) and an arbitrary other neighbourhood search
  * algorithm \(A\), each step of VNS consists of:
+ * </p>
  * <ol>
  *  <li>
  *   <b>Shaking</b>: sample a random neighbour \(x'\) of the current solution \(x\), using shaking
@@ -52,6 +54,7 @@ import org.jamesframework.core.util.NeighbourhoodSearchFactory;
  *   cyclically reset to 0. Therefore, VNS never terminates internally but continues until a stop criterion is met.
  *  </li>
  * </ol>
+ * <p>
  * By default, VNS applies variable neighbourhood descent (VND) as the neighbourhood search algorithm used to modify
  * \(x'\). The list of neighbourhoods of VND is not required to be related to the shaking neighbourhoods of VNS. As VND
  * is computationally intensive (it generates all neighbours in the current neighbourhood in every step), smaller
@@ -146,6 +149,40 @@ public class VariableNeighbourhoodSearch<SolutionType extends Solution> extends 
         this.modificationAlgorithmFactory = modificationAlgorithmFactory;
         // start with 0th shaking neighbourhood
         s = 0;
+    }
+    
+    /**
+     * Set a custom factory to create instances of the modification algorithm to be applied to modify solutions
+     * obtained by shaking. The given factory can not be <code>null</code>. Note that this method may only be
+     * called when the search is idle.
+     * 
+     * @param modificationAlgorithmFactory custom modification algorithm factory
+     * @throws SolutionModificationException if the search is not idle
+     * @throws NullPointerException if <code>modificationAlgorithmFactory</code> is <code>null</code>
+     */
+    public void setModificationAlgorithmFactory(NeighbourhoodSearchFactory<SolutionType> modificationAlgorithmFactory){
+        // synchronize with status updates
+        synchronized(getStatusLock()){
+            // assert idle
+            assertIdle("Cannot set modification algorithm factory in VNS.");
+            // check not null
+            if(modificationAlgorithmFactory == null){
+                throw new NullPointerException("Cannot set modification algorithm factory in VNS: received null.");
+            }
+            // go ahead
+            this.modificationAlgorithmFactory = modificationAlgorithmFactory;
+        }
+    }
+    
+    /**
+     * Get the factory used to create instances of the modification algorithm which is applied to modify
+     * solutions obtained by shaking. By default, this factory creates variable neighbourhood descent (VND)
+     * searches, but a custom factory may have been set.
+     * 
+     * @return modification algorithm factory
+     */
+    public NeighbourhoodSearchFactory<SolutionType> getModificationAlgorithmFactory(){
+        return modificationAlgorithmFactory;
     }
 
     /**
