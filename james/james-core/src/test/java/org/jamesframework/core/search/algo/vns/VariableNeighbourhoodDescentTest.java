@@ -12,9 +12,8 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-package org.jamesframework.core.search.algo;
+package org.jamesframework.core.search.algo.vns;
 
-import org.jamesframework.core.search.algo.vns.VariableNeighbourhoodDescent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;

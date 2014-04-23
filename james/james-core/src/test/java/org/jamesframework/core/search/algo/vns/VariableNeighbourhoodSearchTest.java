@@ -12,9 +12,8 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-package org.jamesframework.core.search.algo;
+package org.jamesframework.core.search.algo.vns;
 
-import org.jamesframework.core.search.algo.vns.ReducedVariableNeighbourhoodSearch;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -38,7 +37,7 @@ import org.junit.Before;
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class ReducedVariableNeighbourhoodSearchTest extends SearchTestTemplate {
+public class VariableNeighbourhoodSearchTest extends SearchTestTemplate {
 
     // reduced variable neighbourhood search algorithm
     private ReducedVariableNeighbourhoodSearch<SubsetSolution> search;
