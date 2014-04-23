@@ -29,6 +29,7 @@ import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.solutions.Solution;
 import org.jamesframework.core.search.NeighbourhoodSearch;
 import org.jamesframework.core.search.Search;
+import org.jamesframework.core.search.SearchStatus;
 import org.jamesframework.core.search.SingleNeighbourhoodSearch;
 import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.search.neigh.Neighbourhood;
@@ -437,9 +438,19 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
     
     /**
      * Empty callback: no action taken here when a replica has started.
+     * 
      * @param replica ignored
      */
     @Override
     public void searchStarted(Search<? extends SolutionType> replica) {}
+    
+    /**
+     * Empty callback: no action taken here when a replica enters a new status.
+     * 
+     * @param search ignored
+     * @param newStatus ignored
+     */
+    @Override
+    public void statusChanged(Search<? extends SolutionType> search, SearchStatus newStatus) {}
 
 }

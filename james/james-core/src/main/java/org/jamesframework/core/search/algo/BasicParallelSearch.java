@@ -272,8 +272,7 @@ public class BasicParallelSearch<SolutionType extends Solution>
      * @param search ignored
      */
     @Override
-    public void searchStopped(Search<? extends SolutionType> search) {
-    }
+    public void searchStopped(Search<? extends SolutionType> search) {}
 
     /**
      * No actions are taken when a subsearch has completed a step.
@@ -282,7 +281,15 @@ public class BasicParallelSearch<SolutionType extends Solution>
      * @param numSteps ignored
      */
     @Override
-    public void stepCompleted(Search<? extends SolutionType> search, long numSteps) {
-    }
+    public void stepCompleted(Search<? extends SolutionType> search, long numSteps) {}
+    
+    /**
+     * No actions are taken when a subsearch has changed status.
+     * 
+     * @param search ignored
+     * @param newStatus ignored
+     */
+    @Override
+    public void statusChanged(Search<? extends SolutionType> search, SearchStatus newStatus) {}
 
 }

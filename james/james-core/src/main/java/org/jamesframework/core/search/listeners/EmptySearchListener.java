@@ -16,6 +16,7 @@ package org.jamesframework.core.search.listeners;
 
 import org.jamesframework.core.problems.solutions.Solution;
 import org.jamesframework.core.search.Search;
+import org.jamesframework.core.search.SearchStatus;
 
 /**
  * An empty search listener contains empty implementations of all methods in {@link SearchListener}, acting as
@@ -38,5 +39,8 @@ public class EmptySearchListener<SolutionType extends Solution> implements Searc
 
     @Override
     public void stepCompleted(Search<? extends SolutionType> search, long numSteps) {}
+    
+    @Override
+    public void statusChanged(Search<? extends SolutionType> search, SearchStatus newStatus) {}
 
 }

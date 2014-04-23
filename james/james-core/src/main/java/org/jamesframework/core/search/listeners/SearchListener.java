@@ -17,6 +17,7 @@ package org.jamesframework.core.search.listeners;
 import org.jamesframework.core.exceptions.IncompatibleSearchListenerException;
 import org.jamesframework.core.problems.solutions.Solution;
 import org.jamesframework.core.search.Search;
+import org.jamesframework.core.search.SearchStatus;
 
 /**
  * Interface of a listener which may be attached to a search with the specified solution type (or a more specific solution type).
@@ -64,5 +65,13 @@ public interface SearchListener<SolutionType extends Solution> {
      * @throws IncompatibleSearchListenerException if the listener is not compatible with the search
      */
     public void stepCompleted(Search<? extends SolutionType> search, long numSteps);
+    
+    /**
+     * Fired when the search enters a new status. Called exactly once for every status update.
+     * 
+     * @param search search which has changed status
+     * @param newStatus new status of the search
+     */
+    public void statusChanged(Search<? extends SolutionType> search, SearchStatus newStatus);
 
 }

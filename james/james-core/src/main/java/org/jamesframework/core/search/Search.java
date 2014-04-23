@@ -295,6 +295,8 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
             logger.trace("Search {} changed status: {} --> {}", this, status, SearchStatus.INITIALIZING);
             // set status to INITIALIZING
             status = SearchStatus.INITIALIZING;
+            // fire status update
+            fireStatusChanged(status);
         }
         
         // fire callback
@@ -316,6 +318,8 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
                 logger.trace("Search {} changed status: {} --> {}", this, status, SearchStatus.RUNNING);
                 // update
                 status = SearchStatus.RUNNING;
+                // fire status update
+                fireStatusChanged(status);
             }
 
             // enter search loop
@@ -358,6 +362,8 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
             logger.trace("Search {} changed status: {} --> {}", this, status, SearchStatus.IDLE);
             // update
             status = SearchStatus.IDLE;
+            // fire status update
+            fireStatusChanged(status);
         }
         
     }
@@ -383,6 +389,8 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
                 logger.trace("Search {} changed status: {} --> {}", this, status, SearchStatus.TERMINATING);
                 // update status
                 status = SearchStatus.TERMINATING;
+                // fire status update
+                fireStatusChanged(status);
             }
         }
     }
@@ -405,6 +413,8 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
             logger.trace("Search {} changed status: {} --> {}", this, status, SearchStatus.DISPOSED);
             // update status
             status = SearchStatus.DISPOSED;
+            // fire status update
+            fireStatusChanged(status);
         }
     }
     
@@ -595,6 +605,18 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
     private void fireStepCompleted(long numSteps){
         for(SearchListener<? super SolutionType> listener : searchListeners){
             listener.stepCompleted(this, numSteps);
+        }
+    }
+    
+    /**
+     * Calls {@link SearchListener#statusChanged(Search, SearchStatus)} on every attached search listener.
+     * Should only be called exactly once for every status update.
+     * 
+     * @param newStatus new search status
+     */
+    private void fireStatusChanged(SearchStatus newStatus){
+        for(SearchListener<? super SolutionType> listener : searchListeners){
+            listener.statusChanged(this, newStatus);
         }
     }
     
