@@ -199,24 +199,18 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
     /**
      * Sets the number of steps performed by each replica in every iteration of the global parallel tempering
      * algorithm, before considering solution swaps. Defaults to 500. The specified number of steps should
-     * be strictly positive. Note that this method may only be called while the search is idle.
+     * be strictly positive.
      * 
-     * @throws SearchException if the search is not idle
      * @throws IllegalArgumentException if <code>steps</code> is not strictly positive
      * @param steps number of steps performed by replicas in each iteration
      */
     public void setReplicaSteps(int steps){
-        // synchronize with status updates
-        synchronized(getStatusLock()){
-            // assert idle
-            assertIdle("Cannot change number of replica steps in parallel tempering.");
-            // check number of steps
-            if(steps <= 0){
-                throw new IllegalArgumentException("Number of replica steps in parallel tempering should be strictly positive.");
-            }
-            // set number
-            this.replicaSteps = steps;
+        // check number of steps
+        if(steps <= 0){
+            throw new IllegalArgumentException("Number of replica steps in parallel tempering should be strictly positive.");
         }
+        // set number
+        this.replicaSteps = steps;
     }
     
     /**
@@ -230,7 +224,9 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
     }
     
     /**
-     * Get the list of Metropolis replicas used by this parallel tempering algorithm. Replicas are ordered by temperature (ascending).
+     * Get the list of Metropolis replicas used by this parallel tempering algorithm. Replicas are ordered by temperature
+     * (ascending). This method should be used with care, as modifying the parameters or order of replicas might break
+     * the execution of the parallel tempering search.
      * 
      * @return Metropolis replicas
      */
@@ -241,21 +237,16 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
     /**
      * Set the same temperature scale factor \(k &gt; 0\) for each replica. Temperatures are multiplied with this factor
      * in all computations. By default, the scale factor is set to 1 for every replica, see {@link MetropolisSearch}.
-     * Note that this method may only be called when the search is idle.
+     * This method should be used with care when called while the search is running, as the scale factor update is
+     * not guaranteed to happen atomically for all replicas.
      * 
      * @param scale temperature scale factor to be set for each replica
      * @throws IllegalArgumentException if <code>scale</code> is not strictly positive
-     * @throws SearchException if the search is not idle
      */
     public void setTemperatureScaleFactor(double scale){
-        // synchronize with status updates
-        synchronized(getStatusLock()){
-            // assert idle
-            assertIdle("Cannot set temperature scale factor in parallel tempering.");
-            // update scale factor in every replica
-            for(MetropolisSearch<SolutionType> r : replicas){
-                r.setTemperatureScaleFactor(scale);
-            }
+        // update scale factor in every replica
+        for(MetropolisSearch<SolutionType> r : replicas){
+            r.setTemperatureScaleFactor(scale);
         }
     }
     
@@ -345,7 +336,7 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
                 double b1 = 1.0 / (r1.getTemperatureScaleFactor() * r1.getTemperature());
                 double b2 = 1.0 / (r2.getTemperatureScaleFactor() * r2.getTemperature());
                 double p = Math.exp((b1 - b2) * delta);
-                // double check: p should be a probability in [0,1], else the replica are not
+                // double check: p should be a probability in [0,1], else the replicas are not
                 // correctly orederd by temperature (ascending)
                 if(p > 1.0){
                     throw new SearchException("Error in parallel tempering algorithm: replicas are not correctly ordered by "
