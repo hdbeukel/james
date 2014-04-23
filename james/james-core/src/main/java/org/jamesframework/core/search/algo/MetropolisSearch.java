@@ -91,24 +91,18 @@ public class MetropolisSearch<SolutionType extends Solution> extends SingleNeigh
     }
     
     /**
-     * Set the temperature (\(T &gt; 0\)). Note that this method may only be called when the search is idle.
+     * Set the temperature (\(T &gt; 0\)).
      * 
      * @param temperature new temperature
      * @throws IllegalArgumentException if <code>temperature</code> is not strictly positive
-     * @throws SearchException if the search is not idle
      */
     public void setTemperature(double temperature){
-        // synchronize with status updates
-        synchronized(getStatusLock()){
-            // assert
-            assertIdle("Cannot set temperature of Metropolis search.");
-            // check temperature
-            if(temperature <= 0.0){
-                throw new IllegalArgumentException("Temperature of Metropolis search should be strictly positive.");
-            }
-            // update temperature
-            this.temperature = temperature;
+        // check temperature
+        if(temperature <= 0.0){
+            throw new IllegalArgumentException("Temperature of Metropolis search should be strictly positive.");
         }
+        // update temperature
+        this.temperature = temperature;
     }
     
     /**
@@ -122,24 +116,18 @@ public class MetropolisSearch<SolutionType extends Solution> extends SingleNeigh
     
     /**
      * Set the temperature scale factor \(k &gt; 0\). All temperatures are multiplied with this factor. By default,
-     * the scale factor is set to 1. Note that this method may only be called when the search is idle.
+     * the scale factor is set to 1.
      * 
      * @param scale temperature scale factor
      * @throws IllegalArgumentException if <code>scale</code> is not strictly positive
-     * @throws SearchException if the search is not idle
      */
     public void setTemperatureScaleFactor(double scale){
-        // synchronize with status updates
-        synchronized(getStatusLock()){
-            // assert idle
-            assertIdle("Cannot set temperature scale factor of Metropolis search.");
-            // check scale
-            if(scale <= 0.0){
-                throw new IllegalArgumentException("Temperature scale factor of Metropolis search should be strictly positive.");
-            }
-            // update temperature scale factor
-            this.scale = scale;
+        // check scale
+        if(scale <= 0.0){
+            throw new IllegalArgumentException("Temperature scale factor of Metropolis search should be strictly positive.");
         }
+        // update temperature scale factor
+        this.scale = scale;
     }
     
     /**
