@@ -465,12 +465,11 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
 <pre>public&nbsp;void&nbsp;setReplicaSteps(int&nbsp;steps)</pre>
 <div class="block">Sets the number of steps performed by each replica in every iteration of the global parallel tempering
  algorithm, before considering solution swaps. Defaults to 500. The specified number of steps should
- be strictly positive. Note that this method may only be called while the search is idle.</div>
+ be strictly positive.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>steps</code> - number of steps performed by replicas in each iteration</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions">SearchException</a></code> - if the search is not idle</dd>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>steps</code> is not strictly positive</dd>
 </dl>
 </li>
@@ -497,7 +496,9 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
 <li class="blockList">
 <h4>getReplicas</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&gt;&nbsp;getReplicas()</pre>
-<div class="block">Get the list of Metropolis replicas used by this parallel tempering algorithm. Replicas are ordered by temperature (ascending).</div>
+<div class="block">Get the list of Metropolis replicas used by this parallel tempering algorithm. Replicas are ordered by temperature
+ (ascending). This method should be used with care, as modifying the parameters or order of replicas might break
+ the execution of the parallel tempering search.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>Metropolis replicas</dd>
@@ -513,13 +514,13 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
 <pre>public&nbsp;void&nbsp;setTemperatureScaleFactor(double&nbsp;scale)</pre>
 <div class="block">Set the same temperature scale factor \(k &gt; 0\) for each replica. Temperatures are multiplied with this factor
  in all computations. By default, the scale factor is set to 1 for every replica, see <a href="../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo"><code>MetropolisSearch</code></a>.
- Note that this method may only be called when the search is idle.</div>
+ This method should be used with care when called while the search is running, as the scale factor update is
+ not guaranteed to happen atomically for all replicas.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>scale</code> - temperature scale factor to be set for each replica</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>scale</code> is not strictly positive</dd>
-<dd><code><a href="../../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions">SearchException</a></code> - if the search is not idle</dd>
 </dl>
 </li>
 </ul>

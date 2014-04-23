@@ -401,13 +401,11 @@ extends <a href="../../../../../../org/jamesframework/core/search/MultiNeighbour
 <h4>setModificationAlgorithmFactory</h4>
 <pre>public&nbsp;void&nbsp;setModificationAlgorithmFactory(<a href="../../../../../../org/jamesframework/core/util/NeighbourhoodSearchFactory.html" title="interface in org.jamesframework.core.util">NeighbourhoodSearchFactory</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;modificationAlgorithmFactory)</pre>
 <div class="block">Set a custom factory to create instances of the modification algorithm to be applied to modify solutions
- obtained by shaking. The given factory can not be <code>null</code>. Note that this method may only be
- called when the search is idle.</div>
+ obtained by shaking. The given factory can not be <code>null</code>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>modificationAlgorithmFactory</code> - custom modification algorithm factory</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../../../../org/jamesframework/core/exceptions/SolutionModificationException.html" title="class in org.jamesframework.core.exceptions">SolutionModificationException</a></code> - if the search is not idle</dd>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>modificationAlgorithmFactory</code> is <code>null</code></dd>
 </dl>
 </li>

@@ -346,13 +346,12 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <li class="blockList">
 <h4>setTemperature</h4>
 <pre>public&nbsp;void&nbsp;setTemperature(double&nbsp;temperature)</pre>
-<div class="block">Set the temperature (\(T &gt; 0\)). Note that this method may only be called when the search is idle.</div>
+<div class="block">Set the temperature (\(T &gt; 0\)).</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>temperature</code> - new temperature</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>temperature</code> is not strictly positive</dd>
-<dd><code><a href="../../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions">SearchException</a></code> - if the search is not idle</dd>
 </dl>
 </li>
 </ul>
@@ -378,13 +377,12 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <h4>setTemperatureScaleFactor</h4>
 <pre>public&nbsp;void&nbsp;setTemperatureScaleFactor(double&nbsp;scale)</pre>
 <div class="block">Set the temperature scale factor \(k &gt; 0\). All temperatures are multiplied with this factor. By default,
- the scale factor is set to 1. Note that this method may only be called when the search is idle.</div>
+ the scale factor is set to 1.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>scale</code> - temperature scale factor</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>scale</code> is not strictly positive</dd>
-<dd><code><a href="../../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions">SearchException</a></code> - if the search is not idle</dd>
 </dl>
 </li>
 </ul>
