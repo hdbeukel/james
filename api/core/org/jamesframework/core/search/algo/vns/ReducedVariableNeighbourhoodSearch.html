@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10};
+var methods = {"i0":10,"i1":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -140,7 +140,10 @@ extends <a href="../../../../../../org/jamesframework/core/search/MultiNeighbour
  solution is sampled using the k-th neighbourhood (initially, k = 0). If this neighbour is a improvement, it is
  accepted as the new current solution. Else, k is increased by 1 so that the next neighbourhood will be used in
  the next step. Whenever an improvement is found, or whenever all neighbourhoods have been used, k is reset to 0.
- Note that RVNS never terminates internally, but continues until a stop criterion is met.
+ Note that, by default, RVNS never terminates internally, as neighbourhoods are applied cyclically. This behaviour
+ can be changed so that the search stops when all neighbourhoods have been successively applied without yielding
+ any improvement. However, in most cases, this is not desired as random moves are produced so that a few cycles
+ through all neighbourhoods might be required to find an improvement.
  </p>
  <p>
  The reduced variable neighbourhood search can be useful for larger problems, for which variable neighbourhood
@@ -182,6 +185,16 @@ extends <a href="../../../../../../org/jamesframework/core/search/MultiNeighbour
  to modify the current solution, and a custom search name.</div>
 </td>
 </tr>
+<tr class="altColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/vns/ReducedVariableNeighbourhoodSearch.html#ReducedVariableNeighbourhoodSearch-java.lang.String-org.jamesframework.core.problems.Problem-java.util.List-boolean-">ReducedVariableNeighbourhoodSearch</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+                                  <a href="../../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/ReducedVariableNeighbourhoodSearch.html" title="type parameter in ReducedVariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;problem,
+                                  <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/vns/ReducedVariableNeighbourhoodSearch.html" title="type parameter in ReducedVariableNeighbourhoodSearch">SolutionType</a>&gt;&gt;&nbsp;neighs,
+                                  boolean&nbsp;cycleNeighbourhoods)</code>
+<div class="block">Creates a new reduced variable neighbourhood search, specifying the problem to solve, the neighbourhoods used
+ to modify the current solution, and a custom search name, also, it is indicated whether neighbourhoods should
+ be applied cyclically or not (by default, they are).</div>
+</td>
+</tr>
 </table>
 </li>
 </ul>
@@ -202,6 +215,13 @@ extends <a href="../../../../../../org/jamesframework/core/search/MultiNeighbour
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/vns/ReducedVariableNeighbourhoodSearch.html#searchStep--">searchStep</a></span>()</code>
 <div class="block">Samples a random neighbour of the current solution, using the k-th neighbourhood, and accepts it as the new
  current solution if it is an improvement.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/vns/ReducedVariableNeighbourhoodSearch.html#setCycleNeighbourhoods-boolean-">setCycleNeighbourhoods</a></span>(boolean&nbsp;cycleNeighbourhoods)</code>
+<div class="block">Indicates whether neighbourhoods should be applied cyclically or not, when all neighbourhoods have been
+ successively applied without finding any improvements.</div>
 </td>
 </tr>
 </table>
@@ -271,7 +291,7 @@ extends <a href="../../../../../../org/jamesframework/core/search/MultiNeighbour
 <a name="ReducedVariableNeighbourhoodSearch-java.lang.String-org.jamesframework.core.problems.Problem-java.util.List-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>ReducedVariableNeighbourhoodSearch</h4>
 <pre>public&nbsp;ReducedVariableNeighbourhoodSearch(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
@@ -292,6 +312,35 @@ extends <a href="../../../../../../org/jamesframework/core/search/MultiNeighbour
 </dl>
 </li>
 </ul>
+<a name="ReducedVariableNeighbourhoodSearch-java.lang.String-org.jamesframework.core.problems.Problem-java.util.List-boolean-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>ReducedVariableNeighbourhoodSearch</h4>
+<pre>public&nbsp;ReducedVariableNeighbourhoodSearch(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+                                          <a href="../../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/ReducedVariableNeighbourhoodSearch.html" title="type parameter in ReducedVariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;problem,
+                                          <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/vns/ReducedVariableNeighbourhoodSearch.html" title="type parameter in ReducedVariableNeighbourhoodSearch">SolutionType</a>&gt;&gt;&nbsp;neighs,
+                                          boolean&nbsp;cycleNeighbourhoods)</pre>
+<div class="block">Creates a new reduced variable neighbourhood search, specifying the problem to solve, the neighbourhoods used
+ to modify the current solution, and a custom search name, also, it is indicated whether neighbourhoods should
+ be applied cyclically or not (by default, they are). The problem and list of neighbourhoods can not be
+ <code>null</code> and the list of neighbourhoods can not be empty. The search name can be <code>null</code>
+ in which case the default name "ReducedVariableNeighbourhoodSearch" is assigned.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>problem</code> - problem to solve</dd>
+<dd><code>neighs</code> - list of neighbourhoods used to create neighbouring solutions</dd>
+<dd><code>cycleNeighbourhoods</code> - indicates whether neighbourhoods are applied cyclically; if not, the search
+                            will terminate internally when all neighbourhoods have been successively applied
+                            without yielding any improvement</dd>
+<dd><code>name</code> - custom search name</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> or <code>neighs</code> are <code>null</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>neighs</code> is empty</dd>
+</dl>
+</li>
+</ul>
 </li>
 </ul>
 <!-- ============ METHOD DETAIL ========== -->
@@ -300,6 +349,21 @@ extends <a href="../../../../../../org/jamesframework/core/search/MultiNeighbour
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="setCycleNeighbourhoods-boolean-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setCycleNeighbourhoods</h4>
+<pre>public&nbsp;void&nbsp;setCycleNeighbourhoods(boolean&nbsp;cycleNeighbourhoods)</pre>
+<div class="block">Indicates whether neighbourhoods should be applied cyclically or not, when all neighbourhoods have been
+ successively applied without finding any improvements.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>cycleNeighbourhoods</code> - indicates whether neighbourhoods are cyclically applied</dd>
+</dl>
+</li>
+</ul>
 <a name="searchStep--">
 <!--   -->
 </a>
@@ -309,7 +373,8 @@ extends <a href="../../../../../../org/jamesframework/core/search/MultiNeighbour
 <pre>protected&nbsp;void&nbsp;searchStep()</pre>
 <div class="block">Samples a random neighbour of the current solution, using the k-th neighbourhood, and accepts it as the new
  current solution if it is an improvement. If no improvement is found, k is increased. Upon each improvement,
- or when k has reached the number of available neighbourhoods, k is reset to 0.
+ or when k has reached the number of available neighbourhoods (if cycling is enbabled, as is the default), k
+ is reset to 0.
  <p>
  If the k-th neighbourhood is unable to generate any move, k is also increased to try the next neighbourhood
  in the next step.</div>
