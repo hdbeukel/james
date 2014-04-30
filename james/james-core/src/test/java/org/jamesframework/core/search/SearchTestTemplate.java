@@ -109,9 +109,13 @@ public class SearchTestTemplate {
      * Perform a single run of a search, with maximum runtime. It is verified that the best solution is not rejected, if any.
      */
     protected void singleRunWithMaxRuntime(Search<SubsetSolution> search, Problem<SubsetSolution> problem, long maxRuntime, TimeUnit maxRuntimeTimeUnit){
-        // set maximum runtime
-        search.addStopCriterion(new MaxRuntime(maxRuntime, maxRuntimeTimeUnit));
-        System.out.println("   >>> max time: " + maxRuntimeTimeUnit.toMillis(maxRuntime) + " ms");
+        if(maxRuntimeTimeUnit != null){
+            // set maximum runtime
+            search.addStopCriterion(new MaxRuntime(maxRuntime, maxRuntimeTimeUnit));
+            System.out.println("   >>> max time: " + maxRuntimeTimeUnit.toMillis(maxRuntime) + " ms");
+        } else {
+            System.out.println("   >>> max time: none");
+        }
         
         // add best solution listener
         BestSolutionListener bsl = new BestSolutionListener();
@@ -139,11 +143,16 @@ public class SearchTestTemplate {
      */
     protected void multiRunWithMaximumRuntime(Search<SubsetSolution> search, long maxRuntime, TimeUnit maxRuntimeTimeUnit,
                                                                 int numRuns, boolean maximizing, boolean printEvaluations){
-        // add stop criterion
-        search.addStopCriterion(new MaxRuntime(maxRuntime, maxRuntimeTimeUnit));
-        System.out.println("   >>> max time: " + maxRuntimeTimeUnit.toMillis(maxRuntime) + " ms");
-        // set check period to same value for frequent enough checks
-        search.setStopCriterionCheckPeriod(maxRuntime, maxRuntimeTimeUnit);
+        if(maxRuntimeTimeUnit != null){
+            // add stop criterion
+            search.addStopCriterion(new MaxRuntime(maxRuntime, maxRuntimeTimeUnit));
+            System.out.println("   >>> max time: " + maxRuntimeTimeUnit.toMillis(maxRuntime) + " ms");
+            // set check period to same value for frequent enough checks
+            search.setStopCriterionCheckPeriod(maxRuntime, maxRuntimeTimeUnit);
+        } else {
+            System.out.println("   >>> max time: none");
+        }
+        
         // add best solution listener
         BestSolutionListener bsl = new BestSolutionListener();
         search.addSearchListener(bsl);

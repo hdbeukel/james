@@ -111,6 +111,18 @@ public class ReducedVariableNeighbourhoodSearchTest extends SearchTestTemplate {
     }
     
     /**
+     * Test without cycling.
+     */
+    @Test
+    public void testWithoutCycling() {
+        System.out.println(" - test without cycling (should terminate internally)");
+        // disable cycling
+        search.setCycleNeighbourhoods(false);
+        // single run (no time limit)
+        singleRunWithMaxRuntime(search, problem, 0, null);
+    }
+    
+    /**
      * Test single run with unsatisfiable constraint.
      */
     @Test
