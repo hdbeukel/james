@@ -51,9 +51,7 @@ import org.jamesframework.core.search.listeners.SearchListener;
  * {@link Solution}
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class BasicParallelSearch<SolutionType extends Solution>
-        extends Search<SolutionType>
-        implements SearchListener<SolutionType> {
+public class BasicParallelSearch<SolutionType extends Solution> extends Search<SolutionType>{
 
     // thread pool for concurrent search execution
     private final ExecutorService pool;
@@ -62,6 +60,8 @@ public class BasicParallelSearch<SolutionType extends Solution>
 
     // searches to be executed in parallel
     private final List<Search<SolutionType>> searches;
+    // subsearch listener
+    private final SearchListener<SolutionType> subsearchListener;
 
     /**
      * Creates a new basic parallel search, specifying the problem to solve. The problem can not be <code>null</code>.
@@ -91,6 +91,8 @@ public class BasicParallelSearch<SolutionType extends Solution>
         futures = new LinkedList<>();
         // initialize search list
         searches = new ArrayList<>();
+        // create subsearch listener
+        subsearchListener = new SubsearchListener();
     }
 
     /**
@@ -116,8 +118,8 @@ public class BasicParallelSearch<SolutionType extends Solution>
             // assert idle
             assertIdle("Cannot add search to basic parallel search algorithm.");
             if (search.getProblem() == getProblem()) {
-                // attach main search as listener
-                search.addSearchListener(this);
+                // listen to events fired by subsearch
+                search.addSearchListener(subsearchListener);
                 // add search
                 searches.add(search);
             } else {
@@ -142,7 +144,7 @@ public class BasicParallelSearch<SolutionType extends Solution>
             // assert idle
             assertIdle("Cannot remove search from basic parallel search algorithm.");
             // stop listening to this search
-            search.removeSearchListener(this);
+            search.removeSearchListener(subsearchListener);
             // remove search
             return searches.remove(search);
         }
@@ -226,61 +228,69 @@ public class BasicParallelSearch<SolutionType extends Solution>
         stop();
     }
 
-    /*****************************************/
-    /* CALLBACKS FIRED BY CONTAINED SEARCHES */
-    /*****************************************/
+    /**
+     * Private listener attached to each contained subsearch, to keep track of the global best solution and to abort
+     * a search that attempts to start when the main search is already terminating.
+     */
+    private class SubsearchListener implements SearchListener<SolutionType> {
     
-    /**
-     * When a new best solution is found in any concurrently executed subsearch, it is picked up by the main search
-     * which updates the global best solution accordingly. This method is synchronized to avoid concurrent updates of
-     * the global best solution, as searches are running in separate threads.
-     *
-     * @param search subsearch that found a new best solution
-     * @param newBestSolution new best solution in subsearch
-     * @param newBestSolutionEvaluation new best solution evaluation
-     */
-    @Override
-    public synchronized void newBestSolution(Search<? extends SolutionType> search, SolutionType newBestSolution, double newBestSolutionEvaluation) {
-        updateBestSolution(newBestSolution, newBestSolutionEvaluation);
-    }
+        /*****************************************/
+        /* CALLBACKS FIRED BY CONTAINED SEARCHES */
+        /*****************************************/
 
-    /**
-     * When a subsearch has started, the main parallel search verifies that it has not yet been requested
-     * to stop in the meantime. Else, the subsearch is stopped before executing any search steps.
-     *
-     * @param search subsearch which is starting
-     */
-    @Override
-    public void searchStarted(Search<? extends SolutionType> search) {
-        if (getStatus() == SearchStatus.TERMINATING) {
-            search.stop();
+        /**
+         * When a new best solution is found in any concurrently executed subsearch, it is picked up by the main search
+         * which updates the global best solution accordingly. This method is synchronized to avoid concurrent updates of
+         * the global best solution, as searches are running in separate threads.
+         *
+         * @param search subsearch that found a new best solution
+         * @param newBestSolution new best solution in subsearch
+         * @param newBestSolutionEvaluation new best solution evaluation
+         */
+        @Override
+        public synchronized void newBestSolution(Search<? extends SolutionType> search, SolutionType newBestSolution, double newBestSolutionEvaluation) {
+            updateBestSolution(newBestSolution, newBestSolutionEvaluation);
         }
+
+        /**
+         * When a subsearch has started, the main parallel search verifies that it has not yet been requested
+         * to stop in the meantime. Else, the subsearch is stopped before executing any search steps.
+         *
+         * @param search subsearch which is starting
+         */
+        @Override
+        public void searchStarted(Search<? extends SolutionType> search) {
+            if (getStatus() == SearchStatus.TERMINATING) {
+                search.stop();
+            }
+        }
+
+        /**
+         * No actions are taken when a subsearch has stopped.
+         *
+         * @param search ignored
+         */
+        @Override
+        public void searchStopped(Search<? extends SolutionType> search) {}
+
+        /**
+         * No actions are taken when a subsearch has completed a step.
+         *
+         * @param search ignored
+         * @param numSteps ignored
+         */
+        @Override
+        public void stepCompleted(Search<? extends SolutionType> search, long numSteps) {}
+
+        /**
+         * No actions are taken when a subsearch has changed status.
+         * 
+         * @param search ignored
+         * @param newStatus ignored
+         */
+        @Override
+        public void statusChanged(Search<? extends SolutionType> search, SearchStatus newStatus) {}
+        
     }
-
-    /**
-     * No actions are taken when a subsearch has stopped.
-     *
-     * @param search ignored
-     */
-    @Override
-    public void searchStopped(Search<? extends SolutionType> search) {}
-
-    /**
-     * No actions are taken when a subsearch has completed a step.
-     *
-     * @param search ignored
-     * @param numSteps ignored
-     */
-    @Override
-    public void stepCompleted(Search<? extends SolutionType> search, long numSteps) {}
-    
-    /**
-     * No actions are taken when a subsearch has changed status.
-     * 
-     * @param search ignored
-     * @param newStatus ignored
-     */
-    @Override
-    public void statusChanged(Search<? extends SolutionType> search, SearchStatus newStatus) {}
 
 }

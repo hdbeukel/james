@@ -92,7 +92,7 @@ import org.slf4j.LoggerFactory;
  * @param <SolutionType> solution type of the problems that may be solved using this search, required to extend {@link Solution}
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class ParallelTempering<SolutionType extends Solution> extends SingleNeighbourhoodSearch<SolutionType> implements SearchListener<SolutionType>{
+public class ParallelTempering<SolutionType extends Solution> extends SingleNeighbourhoodSearch<SolutionType>{
 
     // logger
     private static final Logger logger = LoggerFactory.getLogger(ParallelTempering.class);
@@ -193,9 +193,9 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
         futures = new LinkedList<>();
         // set initial swap base
         swapBase = 0;
-        // parallel tempering algorithm listens to replicas
+        // listen to events fired by replicas
         for(MetropolisSearch<SolutionType> r : replicas){
-            r.addSearchListener(this);
+            r.addSearchListener(new ReplicaListener());
         }
     }
     
@@ -378,73 +378,81 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
         pool.shutdown();
     }
 
-    /*******************************/
-    /* CALLBACKS FIRED BY REPLICAS */
-    /*******************************/
-    
     /**
-     * Parallel tempering algorithm listens to its Metropolis replicas: whenever a new best solution is reported inside a replica, it is
-     * verified whether this is also a global improvement. If so, the global best solution is updated. This method is synchronized to avoid
-     * concurrent updates of the global best solution, as the replicas run in separate threads.
-     * 
-     * @param replica Metropolis replica that has found a (local) best solution
-     * @param newBestSolution new best solution found in replica
-     * @param newBestSolutionEvaluation evaluation of new best solution
+     * Private listener attached to each replica, to keep track of the global best solution and aggregated number of
+     * accepted and rejected moves, and to terminate a replica when it has performed the desired number of steps.
      */
-    @Override
-    public synchronized void newBestSolution(Search<? extends SolutionType> replica, final SolutionType newBestSolution, final double newBestSolutionEvaluation) {
-        updateBestSolution(newBestSolution, newBestSolutionEvaluation);
-    }
+    private class ReplicaListener implements SearchListener<SolutionType>{
+    
+        /*******************************/
+        /* CALLBACKS FIRED BY REPLICAS */
+        /*******************************/
 
-    /**
-     * Parallel tempering algorithm listens to its Metropolis replicas: whenever a replica has completed a step, it is verified whether
-     * the desired number of steps have been performed and, if so, the replica is stopped. This approach is favoured here over attaching
-     * a generic maximum steps stop criterion (see {@link MaxSteps}) to each replica because of its finer granularity, i.e. because it is
-     * checked after every single step.
-     * 
-     * @param replica Metropolis replica that completed a search step
-     * @param numSteps number of steps completed so far
-     */
-    @Override
-    public void stepCompleted(Search<? extends SolutionType> replica, long numSteps) {
-        if (numSteps >= replicaSteps){
-            replica.stop();
+        /**
+         * Parallel tempering algorithm listens to its Metropolis replicas: whenever a new best solution is reported inside a replica, it is
+         * verified whether this is also a global improvement. If so, the global best solution is updated. This method is synchronized to avoid
+         * concurrent updates of the global best solution, as the replicas run in separate threads.
+         * 
+         * @param replica Metropolis replica that has found a (local) best solution
+         * @param newBestSolution new best solution found in replica
+         * @param newBestSolutionEvaluation evaluation of new best solution
+         */
+        @Override
+        public synchronized void newBestSolution(Search<? extends SolutionType> replica, final SolutionType newBestSolution, final double newBestSolutionEvaluation) {
+            updateBestSolution(newBestSolution, newBestSolutionEvaluation);
         }
+
+        /**
+         * Parallel tempering algorithm listens to its Metropolis replicas: whenever a replica has completed a step, it is verified whether
+         * the desired number of steps have been performed and, if so, the replica is stopped. This approach is favoured here over attaching
+         * a generic maximum steps stop criterion (see {@link MaxSteps}) to each replica because of its finer granularity, i.e. because it is
+         * checked after every single step.
+         * 
+         * @param replica Metropolis replica that completed a search step
+         * @param numSteps number of steps completed so far
+         */
+        @Override
+        public void stepCompleted(Search<? extends SolutionType> replica, long numSteps) {
+            if (numSteps >= replicaSteps){
+                replica.stop();
+            }
+        }
+
+        /**
+         * Parallel tempering algorithm listens to its Metropolis replicas: whenever a replica has finished its current run,
+         * the number of accepted and rejected moves during this run are accounted for by increase the global counters. This
+         * method is synchronized to avoid concurrent updates of the global number of accepted and rejected moves, as the
+         * replicas run in separate threads.
+         * 
+         * @param replica Metropolis replica that has finished its current run
+         */
+        @Override
+        public synchronized void searchStopped(Search<? extends SolutionType> replica) {
+            // cast to neighbourhood search (should never fail, as this callback is only fired by Metropolis searches)
+            NeighbourhoodSearch<?> nreplica = (NeighbourhoodSearch<?>) replica;
+            // update number of accepted moves
+            incNumAcceptedMoves(nreplica.getNumAcceptedMoves());
+            // update number of rejected moves
+            incNumRejectedMoves(nreplica.getNumRejectedMoves());
+        }
+
+        /**
+         * Empty callback: no action taken here when a replica has started.
+         * 
+         * @param replica ignored
+         */
+        @Override
+        public void searchStarted(Search<? extends SolutionType> replica) {}
+
+        /**
+         * Empty callback: no action taken here when a replica enters a new status.
+         * 
+         * @param search ignored
+         * @param newStatus ignored
+         */
+        @Override
+        public void statusChanged(Search<? extends SolutionType> search, SearchStatus newStatus) {}
+        
     }
-    
-    /**
-     * Parallel tempering algorithm listens to its Metropolis replicas: whenever a replica has finished its current run,
-     * the number of accepted and rejected moves during this run are accounted for by increase the global counters. This
-     * method is synchronized to avoid concurrent updates of the global number of accepted and rejected moves, as the
-     * replicas run in separate threads.
-     * 
-     * @param replica Metropolis replica that has finished its current run
-     */
-    @Override
-    public synchronized void searchStopped(Search<? extends SolutionType> replica) {
-        // cast to neighbourhood search (should never fail, as this callback is only fired by Metropolis searches)
-        NeighbourhoodSearch<?> nreplica = (NeighbourhoodSearch<?>) replica;
-        // update number of accepted moves
-        incNumAcceptedMoves(nreplica.getNumAcceptedMoves());
-        // update number of rejected moves
-        incNumRejectedMoves(nreplica.getNumRejectedMoves());
-    }
-    
-    /**
-     * Empty callback: no action taken here when a replica has started.
-     * 
-     * @param replica ignored
-     */
-    @Override
-    public void searchStarted(Search<? extends SolutionType> replica) {}
-    
-    /**
-     * Empty callback: no action taken here when a replica enters a new status.
-     * 
-     * @param search ignored
-     * @param newStatus ignored
-     */
-    @Override
-    public void statusChanged(Search<? extends SolutionType> search, SearchStatus newStatus) {}
 
 }
