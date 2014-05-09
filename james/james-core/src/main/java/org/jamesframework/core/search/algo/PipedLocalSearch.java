@@ -182,10 +182,8 @@ public class PipedLocalSearch<SolutionType extends Solution> extends LocalSearch
     /**
      * Private listener attached to each search in the pipeline, to abort searches that attempt to start when
      * the main search is already terminating.
-     * 
-     * @param <SolutionType> 
      */
-    private class AbortWhenTerminatingListener<SolutionType extends Solution> implements SearchListener<SolutionType>{
+    private class AbortWhenTerminatingListener implements SearchListener<SolutionType>{
     
         /*******************************************/
         /* CALLBACKS FIRED BY SEARCHES IN PIPELINE */
