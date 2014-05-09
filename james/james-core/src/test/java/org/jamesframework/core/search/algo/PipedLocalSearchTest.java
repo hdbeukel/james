@@ -80,7 +80,7 @@ public class PipedLocalSearchTest extends SearchTestTemplate {
         pipeline.add(sd);
         pipeline.add(rd);
         // create piped local search
-        pipedLocalSearch = new PipedLocalSearch(problem, pipeline);
+        pipedLocalSearch = new PipedLocalSearch<>(problem, pipeline);
     }
     
     @After
@@ -96,7 +96,7 @@ public class PipedLocalSearchTest extends SearchTestTemplate {
     public void testConstructor1() {
         System.out.println(" - test constructor 1");
         // try with pipeline null
-        Search<?> garbage = new PipedLocalSearch(problem, null);
+        Search<?> garbage = new PipedLocalSearch<>(problem, null);
     }
     
     /**
@@ -106,7 +106,7 @@ public class PipedLocalSearchTest extends SearchTestTemplate {
     public void testConstructor2() {
         System.out.println(" - test constructor 2");
         // try with problem null
-        Search<?> garbage = new PipedLocalSearch(null, new ArrayList<>());
+        Search<SubsetSolution> garbage = new PipedLocalSearch<>(null, new ArrayList<LocalSearch<SubsetSolution>>());
     }
     
     /**
@@ -116,7 +116,7 @@ public class PipedLocalSearchTest extends SearchTestTemplate {
     public void testConstructor3() {
         System.out.println(" - test constructor 3");
         // try with pipeline containing null elements
-        Search<?> garbage = new PipedLocalSearch(problem, Arrays.asList((Object) null));
+        Search<SubsetSolution> garbage = new PipedLocalSearch<>(problem, Arrays.asList((LocalSearch<SubsetSolution>) null));
     }
     
     /**
@@ -126,7 +126,7 @@ public class PipedLocalSearchTest extends SearchTestTemplate {
     public void testConstructor4() {
         System.out.println(" - test constructor 4");
         // try with empty pipeline
-        Search<?> garbage = new PipedLocalSearch(problem, new ArrayList<>());
+        Search<SubsetSolution> garbage = new PipedLocalSearch<>(problem, new ArrayList<LocalSearch<SubsetSolution>>());
     }
     
     /**
@@ -136,12 +136,14 @@ public class PipedLocalSearchTest extends SearchTestTemplate {
     public void testConstructor5() {
         System.out.println(" - test constructor 5");
         // try with search in pipeline that solves a different problem
-        SubsetProblemWithData<ScoredFakeSubsetData> problem2 = new SubsetProblemWithData(
+        SubsetProblemWithData<ScoredFakeSubsetData> problem2 = new SubsetProblemWithData<>(
                                                                     new FixedEvaluationObjectiveStub(7.0),
                                                                     data,
                                                                     DATASET_SIZE
                                                                 );
-        Search<?> garbage = new PipedLocalSearch(problem, Arrays.asList(new RandomDescent<>(problem2, neigh)));
+        List<LocalSearch<SubsetSolution>> pipeline = new ArrayList<>();
+        pipeline.add(new RandomDescent<>(problem2, neigh));
+        Search<SubsetSolution> garbage = new PipedLocalSearch<>(problem, pipeline);
     }
     
     /**
@@ -192,7 +194,7 @@ public class PipedLocalSearchTest extends SearchTestTemplate {
         List<LocalSearch<SubsetSolution>> pipeline = new ArrayList<>();
         pipeline.add(dummy);
         pipeline.add(sd);
-        pipedLocalSearch = new PipedLocalSearch(problem, pipeline);
+        pipedLocalSearch = new PipedLocalSearch<>(problem, pipeline);
         // single run
         singleRunWithMaxRuntime(pipedLocalSearch, problem, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
     }
@@ -206,9 +208,9 @@ public class PipedLocalSearchTest extends SearchTestTemplate {
         // create pipeline with 10 never ending local searches
         List<LocalSearch<SubsetSolution>> pipeline = new ArrayList<>();
         for(int i=0; i<10; i++){
-            pipeline.add(new RandomDescent(problem, neigh));
+            pipeline.add(new RandomDescent<>(problem, neigh));
         }
-        pipedLocalSearch = new PipedLocalSearch(problem, pipeline);
+        pipedLocalSearch = new PipedLocalSearch<>(problem, pipeline);
         // single run
         singleRunWithMaxRuntime(pipedLocalSearch, problem, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
     }
