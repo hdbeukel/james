@@ -128,8 +128,6 @@ public class BasicParallelSearchTest extends SearchTestTemplate {
         System.out.println(" - test addSearch 2");
         Search<SubsetSolution> s = new RandomSearch<>(problem);
         parallelSearch.addSearch(s);
-        // parallel search should have been added as listener to subsearch, so removing it should yield true
-        assertTrue(s.removeSearchListener(parallelSearch));
     }
     
     /**
@@ -140,8 +138,6 @@ public class BasicParallelSearchTest extends SearchTestTemplate {
         System.out.println(" - test removeSearch");
         for(Search<SubsetSolution> s : subsearches){
             parallelSearch.removeSearch(s);
-            // parallel search should stop listening to removed subsearches
-            assertFalse(s.removeSearchListener(parallelSearch));
         }
     }
     
