@@ -194,8 +194,9 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
         // set initial swap base
         swapBase = 0;
         // listen to events fired by replicas
+        ReplicaListener listener = new ReplicaListener();
         for(MetropolisSearch<SolutionType> r : replicas){
-            r.addSearchListener(new ReplicaListener());
+            r.addSearchListener(listener);
         }
     }
     

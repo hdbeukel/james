@@ -191,13 +191,15 @@ public class SearchTestTemplate {
         private boolean ok = true;
         @Override
         public void newBestSolution(Search<? extends SubsetSolution> search, SubsetSolution newBestSolution, double newBestSolutionEvaluation) {
-            //System.out.println("New: " + newBestSolutionEvaluation + "; prev: " + prevBestEval);
             if(prevBestEval != null){
                 if(search.getProblem().isMinimizing()){
                     ok = ok && DoubleComparatorWithPrecision.smallerThanOrEqual(newBestSolutionEvaluation, prevBestEval, delta);
                 } else {
                     ok = ok && DoubleComparatorWithPrecision.greaterThanOrEqual(newBestSolutionEvaluation, prevBestEval, delta);
                 }
+                /*if(!ok){
+                    System.out.println("New: " + newBestSolutionEvaluation + "; prev: " + prevBestEval);
+                }*/
             }
             prevBestEval = newBestSolutionEvaluation;
         }
