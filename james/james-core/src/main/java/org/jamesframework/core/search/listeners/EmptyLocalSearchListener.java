@@ -15,22 +15,22 @@
 package org.jamesframework.core.search.listeners;
 
 import org.jamesframework.core.problems.solutions.Solution;
-import org.jamesframework.core.search.NeighbourhoodSearch;
+import org.jamesframework.core.search.LocalSearch;
 
 /**
- * An empty neighbourhood search listener contains empty implementations of all methods in {@link NeighbourhoodSearchListener},
+ * An empty local search listener contains empty implementations of all methods in {@link LocalSearchListener},
  * acting as an easy entry point for custom search listeners which desire to listen only to a subset of events fired
- * by a search, by overriding the corresponding empty implementation.
+ * by a search, by overriding the corresponding empty implementations.
  * 
  * @param <SolutionType> solution type, required to extend {@link Solution}
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class EmptyNeighbourhoodSearchListener<SolutionType extends Solution>
+public class EmptyLocalSearchListener<SolutionType extends Solution>
                                 extends EmptySearchListener<SolutionType>
-                                implements NeighbourhoodSearchListener<SolutionType> {
+                                implements LocalSearchListener<SolutionType> {
 
     @Override
-    public void modifiedCurrentSolution(NeighbourhoodSearch<? extends SolutionType> search,
+    public void modifiedCurrentSolution(LocalSearch<? extends SolutionType> search,
                                         SolutionType newCurrentSolution,
                                         double newCurrentSolutionEvaluation) {
     }

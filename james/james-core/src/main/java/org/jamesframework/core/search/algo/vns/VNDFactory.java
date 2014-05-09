@@ -19,7 +19,7 @@ import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.solutions.Solution;
 import org.jamesframework.core.search.NeighbourhoodSearch;
 import org.jamesframework.core.search.neigh.Neighbourhood;
-import org.jamesframework.core.util.NeighbourhoodSearchFactory;
+import org.jamesframework.core.util.LocalSearchFactory;
 
 /**
  * A VND factory creates a variable neighbourhood descent search, where the list of neighbourhoods to apply are
@@ -30,7 +30,7 @@ import org.jamesframework.core.util.NeighbourhoodSearchFactory;
  * @param <SolutionType> solution type of modified solutions, required to extend {@link Solution}
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class VNDFactory<SolutionType extends Solution> implements NeighbourhoodSearchFactory<SolutionType> {
+public class VNDFactory<SolutionType extends Solution> implements LocalSearchFactory<SolutionType> {
     
     // applied neighbourhoods
     List<Neighbourhood<? super SolutionType>> neighs;

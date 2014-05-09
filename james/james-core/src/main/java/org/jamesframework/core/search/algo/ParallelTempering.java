@@ -60,13 +60,16 @@ import org.slf4j.LoggerFactory;
  *  </li>
  * </ol>
  * <p>
+ * All replicas use the same neighbourhood which is specified when creating the parallel tempering search. If an initial
+ * solution is set, this solution is passed to each replica. Else, each replica starts with a distinct randomly generated
+ * solution.
+ * </p>
+ * <p>
  * The overall best solution found by all replicas is tracked and eventually returned by the parallel tempering algorithm.
  * The main algorithm does not actively generate nor apply any moves to its current solution, but simply updates it when a
- * replica found a new global improvement, in which case the main algorithm's best solution is also updated. Only after
- * explicitely setting a current solution using {@link #setCurrentSolution(Solution)}, the main algorithm's current
- * solution may differ from its best solution, until a new global best solution is found and both are again updated.
- * Note that {@link #setCurrentSolution(Solution)} also passes this current solution to each Metropolis replica, and
- * may for example be used to set the same custom initial solution for every replica.
+ * replica has found a new global improvement, in which case the best solution is also updated. After setting a current
+ * solution using {@link #setCurrentSolution(Solution)}, the main algorithm's current solution may differ from its best
+ * solution, until a new global improvement is found and both are again updated.
  * </p>
  * <p>
  * The reported number of accepted and rejected moves (see {@link #getNumAcceptedMoves()} and {@link #getNumRejectedMoves()})

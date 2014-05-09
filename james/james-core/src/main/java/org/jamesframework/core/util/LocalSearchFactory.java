@@ -16,22 +16,22 @@ package org.jamesframework.core.util;
 
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.solutions.Solution;
-import org.jamesframework.core.search.NeighbourhoodSearch;
+import org.jamesframework.core.search.LocalSearch;
 
 /**
- * Interface of a neighbourhood search factory used to create any neighbourhood search.
+ * Interface of a local search factory used to create any local search.
  * 
- * @param <SolutionType> solution type of created neighbourhood searches, required to extend {@link Solution}
+ * @param <SolutionType> solution type of created local searches, required to extend {@link Solution}
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public interface NeighbourhoodSearchFactory<SolutionType extends Solution> {
+public interface LocalSearchFactory<SolutionType extends Solution> {
     
     /**
-     * Create a neighbourhood search, given the problem to solve.
+     * Create a local search, given the problem to solve.
      * 
      * @param problem problem to solve
      * @return neighbourhood search
      */
-    public NeighbourhoodSearch<SolutionType> create(Problem<SolutionType> problem);
+    public LocalSearch<SolutionType> create(Problem<SolutionType> problem);
 
 }

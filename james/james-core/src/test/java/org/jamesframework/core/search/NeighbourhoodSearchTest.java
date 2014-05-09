@@ -19,7 +19,7 @@ import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.SubsetProblemWithData;
 import org.jamesframework.core.problems.solutions.Solution;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
-import org.jamesframework.core.search.listeners.EmptyNeighbourhoodSearchListener;
+import org.jamesframework.core.search.listeners.EmptyLocalSearchListener;
 import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.search.neigh.subset.AdditionMove;
 import org.jamesframework.core.search.neigh.subset.DeletionMove;
@@ -106,7 +106,7 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
         System.out.println(" - test addSearchListener");
         
         // add search listener that counts number of current solution updates
-        NeighbourhoodSearchListenerStub<SubsetSolution> l = new NeighbourhoodSearchListenerStub<>();
+        LocalSearchListenerStub<SubsetSolution> l = new LocalSearchListenerStub<>();
         neighSearch.addSearchListener(l);
         
         // initialize (sets random initial solution)
@@ -131,11 +131,11 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
         System.out.println(" - test removeSearchListener");
         
         // add search listener
-        NeighbourhoodSearchListenerStub<SubsetSolution> l = new NeighbourhoodSearchListenerStub<>();
+        LocalSearchListenerStub<SubsetSolution> l = new LocalSearchListenerStub<>();
         neighSearch.addSearchListener(l);
         
         // try to remove non added listener
-        assertFalse(neighSearch.removeSearchListener(new NeighbourhoodSearchListenerStub<SubsetSolution>()));
+        assertFalse(neighSearch.removeSearchListener(new LocalSearchListenerStub<SubsetSolution>()));
         // remove added listener
         assertTrue(neighSearch.removeSearchListener(l));
         
@@ -406,11 +406,11 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
     }
     
     /**
-     * Neighbourhood search listener stub for testing.
+     * Local search listener stub for testing.
      * 
      * @param <SolutionType> solution type
      */
-    private class NeighbourhoodSearchListenerStub<SolutionType extends Solution> extends EmptyNeighbourhoodSearchListener<SolutionType>{
+    private class LocalSearchListenerStub<SolutionType extends Solution> extends EmptyLocalSearchListener<SolutionType>{
         
         // number of calls of callback
         private int numCalls = 0;
@@ -419,7 +419,7 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
          * Count number of times fired.
          */
         @Override
-        public void modifiedCurrentSolution(NeighbourhoodSearch<? extends SolutionType> search,
+        public void modifiedCurrentSolution(LocalSearch<? extends SolutionType> search,
                                             SolutionType newCurrentSolution,
                                             double newCurrentSolutionEvaluation) {
             numCalls++;

@@ -23,12 +23,12 @@ import org.jamesframework.core.search.NeighbourhoodSearch;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.SearchTestTemplate;
 import org.jamesframework.core.search.algo.RandomDescent;
-import org.jamesframework.core.search.listeners.EmptyNeighbourhoodSearchListener;
+import org.jamesframework.core.search.listeners.EmptyLocalSearchListener;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.search.neigh.subset.SingleSwapNeighbourhood;
 import org.jamesframework.core.search.neigh.subset.adv.DisjointMultiSwapNeighbourhood;
 import org.jamesframework.core.search.stopcriteria.MaxRuntime;
-import org.jamesframework.core.util.NeighbourhoodSearchFactory;
+import org.jamesframework.core.util.LocalSearchFactory;
 import org.jamesframework.test.stubs.NeverSatisfiedConstraintStub;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -59,7 +59,7 @@ public class VariableNeighbourhoodSearchTest extends SearchTestTemplate {
         // second run: custom random descent modification algorithm
         Object[] run2 = new Object[2];
         run2[0] = "Random Descent (custom)";
-        run2[1] = new NeighbourhoodSearchFactory<SubsetSolution>() {
+        run2[1] = new LocalSearchFactory<SubsetSolution>() {
             @Override
             public NeighbourhoodSearch<SubsetSolution> create(Problem<SubsetSolution> problem) {
                 NeighbourhoodSearch<SubsetSolution> search = new RandomDescent<>(problem, new SingleSwapNeighbourhood());
@@ -74,14 +74,14 @@ public class VariableNeighbourhoodSearchTest extends SearchTestTemplate {
         return params;
     }
     
-    public VariableNeighbourhoodSearchTest(String modAlgoString, NeighbourhoodSearchFactory<SubsetSolution> modAlgoFactory){
+    public VariableNeighbourhoodSearchTest(String modAlgoString, LocalSearchFactory<SubsetSolution> modAlgoFactory){
         this.modAlgoString = modAlgoString;
         this.modAlgoFactory = modAlgoFactory;
     }
     
     // parameters
     private final String modAlgoString;
-    private final NeighbourhoodSearchFactory<SubsetSolution> modAlgoFactory;
+    private final LocalSearchFactory<SubsetSolution> modAlgoFactory;
     
     // variable neighbourhood search algorithm
     private VariableNeighbourhoodSearch<SubsetSolution> search;
@@ -237,7 +237,7 @@ public class VariableNeighbourhoodSearchTest extends SearchTestTemplate {
      * Listener (private).
      */
     
-    private class Listener extends EmptyNeighbourhoodSearchListener<SubsetSolution>{
+    private class Listener extends EmptyLocalSearchListener<SubsetSolution>{
         // accepted moves counter
         private int acceptedMoves = 0;
         // rejected moves counter

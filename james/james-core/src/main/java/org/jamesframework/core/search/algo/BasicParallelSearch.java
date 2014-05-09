@@ -174,21 +174,15 @@ public class BasicParallelSearch<SolutionType extends Solution>
     }
 
     /**
-     * When requesting to stop a basic parallel search, the search status changes to TERMINATING
-     * and this request is propagated to each search that has been added to the parallel algorithm.
+     * When requesting to stop a basic parallel search, this request is propagated to each contained search.
      */
     @Override
     public void stop() {
-        // synchronize with status updates
-        synchronized (getStatusLock()) {
-            // stop this search (if running)
-            super.stop();
-            // if search is now terminating: propagate request to subsearches
-            if (getStatus() == SearchStatus.TERMINATING) {
-                for (Search<?> s : searches) {
-                    s.stop();
-                }
-            }
+        // stop this search (if running)
+        super.stop();
+        // propagate request to subsearches
+        for (Search<?> s : searches) {
+            s.stop();
         }
     }
 
@@ -258,11 +252,8 @@ public class BasicParallelSearch<SolutionType extends Solution>
      */
     @Override
     public void searchStarted(Search<? extends SolutionType> search) {
-        // synchronize with status updates
-        synchronized (getStatusLock()) {
-            if (getStatus() == SearchStatus.TERMINATING) {
-                search.stop();
-            }
+        if (getStatus() == SearchStatus.TERMINATING) {
+            search.stop();
         }
     }
 

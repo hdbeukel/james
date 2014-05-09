@@ -18,14 +18,14 @@ import java.util.List;
 import org.jamesframework.core.exceptions.JamesRuntimeException;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.search.LocalSearch;
 import org.jamesframework.core.search.MultiNeighbourhoodSearch;
-import org.jamesframework.core.search.NeighbourhoodSearch;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.SearchStatus;
 import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.search.stopcriteria.StopCriterion;
-import org.jamesframework.core.util.NeighbourhoodSearchFactory;
+import org.jamesframework.core.util.LocalSearchFactory;
 
 /**
  * <p>
@@ -86,19 +86,19 @@ public class VariableNeighbourhoodSearch<SolutionType extends Solution> extends 
     // index of current shaking neighbourhood
     private int s;
     
-    // modification algorithm factory
-    private NeighbourhoodSearchFactory<SolutionType> modificationAlgorithmFactory;
+    // local search factory used to generate a new instance of the applied local search in every step
+    private LocalSearchFactory<SolutionType> localSearchFactory;
     
     /**
      * Creates a new variable neighbourhood search, specifying the problem to solve, the neighbourhoods used for shaking
-     * and the neighbourhoods used by the default VND modification algorithm. None of the arguments can be <code>null</code>
+     * and the neighbourhoods used by the default VND local search algorithm. None of the arguments can be <code>null</code>
      * and the lists of neighbourhoods can not be empty. The search name defaults to "VariableNeighbourhoodSearch".
      * 
      * @throws NullPointerException if <code>problem</code>, <code>neighs</code> or <code>vndNeighs</code> are <code>null</code>
      * @throws IllegalArgumentException if <code>neighs</code> or <code>vndNeighs</code> are empty
      * @param problem problem to solve
      * @param neighs list of shaking neighbourhoods used by VNS
-     * @param vndNeighs list of neighbourhoods applied by VND, which is used as the default modification algorithm
+     * @param vndNeighs list of neighbourhoods applied by VND, which is used as the default local search algorithm
      */
     public VariableNeighbourhoodSearch(Problem<SolutionType> problem, List<Neighbourhood<? super SolutionType>> neighs,
                                                                       List<Neighbourhood<? super SolutionType>> vndNeighs){
@@ -107,84 +107,84 @@ public class VariableNeighbourhoodSearch<SolutionType extends Solution> extends 
     
     /**
      * Creates a new variable neighbourhood search, specifying the problem to solve, the neighbourhoods used for
-     * shaking in VNS, and a factory to create instances of a custom modification algorithm \(A\) to be applied to
+     * shaking in VNS, and a factory to create instances of a custom local search algorithm \(L\) to be applied to
      * modify solutions obtained after shaking. None of the arguments can be <code>null</code> and the list of shaking
      * neighbourhoods can not be empty. The search name defaults to "VariableNeighbourhoodSearch".
      * 
      * @throws NullPointerException if <code>problem</code>, <code>neighs</code> or
-     *                              <code>modificationAlgorithmFactory</code> are <code>null</code>
+     *                              <code>localSearchFactory</code> are <code>null</code>
      * @throws IllegalArgumentException if <code>neighs</code> is empty
      * @param problem problem to solve
      * @param neighs list of shaking neighbourhoods used by VNS
-     * @param modificationAlgorithmFactory factory to create instances of the modification algorithm \(A\) (neighbourhood search)
+     * @param localSearchFactory factory to create instances of the local search algorithm \(L\)
      */
     public VariableNeighbourhoodSearch(Problem<SolutionType> problem, List<Neighbourhood<? super SolutionType>> neighs,
-                                                NeighbourhoodSearchFactory<SolutionType> modificationAlgorithmFactory){
-        this(null, problem, neighs, modificationAlgorithmFactory);
+                                                LocalSearchFactory<SolutionType> localSearchFactory){
+        this(null, problem, neighs, localSearchFactory);
     }
     
     /**
      * Creates a new variable neighbourhood search, specifying the problem to solve, the neighbourhoods used for
-     * shaking in VNS, a factory to create instances of a custom modification algorithm \(A\) to be applied to
+     * shaking in VNS, a factory to create instances of a custom local search algorithm \(L\) to be applied to
      * modify solutions obtained after shaking, and a custom search name. Only the search name can be <code>null</code>
      * in which case the default name "VariableNeighbourhoodSearch" is assigned. The list of shaking neighbourhoods
      * can not be empty.
      * 
      * @throws NullPointerException if <code>problem</code>, <code>neighs</code> or
-     *                              <code>modificationAlgorithmFactory</code> are <code>null</code>
+     *                              <code>localSearchFactory</code> are <code>null</code>
      * @throws IllegalArgumentException if <code>neighs</code> is empty
      * @param name custom search name
      * @param problem problem to solve
      * @param neighs list of shaking neighbourhoods used by VNS
-     * @param modificationAlgorithmFactory factory to create instances of the modification algorithm \(A\) (neighbourhood search)
+     * @param localSearchFactory factory to create instances of the local search algorithm \(L\)
      */
     public VariableNeighbourhoodSearch(String name, Problem<SolutionType> problem, List<Neighbourhood<? super SolutionType>> neighs,
-                                                NeighbourhoodSearchFactory<SolutionType> modificationAlgorithmFactory){
+                                                LocalSearchFactory<SolutionType> localSearchFactory){
         super(name != null ? name : "VariableNeighbourhoodSearch", problem, neighs);
         // check and store factory
-        if(modificationAlgorithmFactory == null){
-            throw new NullPointerException("Can not create variable neighbourhood search: factory can not be null.");
+        if(localSearchFactory == null){
+            throw new NullPointerException("Can not create variable neighbourhood search: local search factory can not be null.");
         }
-        this.modificationAlgorithmFactory = modificationAlgorithmFactory;
+        this.localSearchFactory = localSearchFactory;
         // start with 0th shaking neighbourhood
         s = 0;
     }
     
     /**
-     * Set a custom factory to create instances of the modification algorithm to be applied to modify solutions
-     * obtained by shaking. The given factory can not be <code>null</code>.
+     * Set a custom factory to create instances of the local search algorithm to be applied to modify solutions
+     * obtained after shaking. The given factory can not be <code>null</code>.
      * 
-     * @param modificationAlgorithmFactory custom modification algorithm factory
-     * @throws NullPointerException if <code>modificationAlgorithmFactory</code> is <code>null</code>
+     * @param localSearchFactory custom local search factory
+     * @throws NullPointerException if <code>localSearchFactory</code> is <code>null</code>
      */
-    public void setModificationAlgorithmFactory(NeighbourhoodSearchFactory<SolutionType> modificationAlgorithmFactory){
+    public void setModificationAlgorithmFactory(LocalSearchFactory<SolutionType> localSearchFactory){
         // check not null
-        if(modificationAlgorithmFactory == null){
-            throw new NullPointerException("Cannot set modification algorithm factory in VNS: received null.");
+        if(localSearchFactory == null){
+            throw new NullPointerException("Cannot set local search factory in VNS: received null.");
         }
         // go ahead
-        this.modificationAlgorithmFactory = modificationAlgorithmFactory;
+        this.localSearchFactory = localSearchFactory;
     }
     
     /**
-     * Get the factory used to create instances of the modification algorithm which is applied to modify
-     * solutions obtained by shaking. By default, this factory creates variable neighbourhood descent (VND)
-     * searches, but a custom factory may have been set.
+     * Get the factory used to create instances of the local search algorithm which is applied to modify
+     * solutions obtained after shaking. By default, this factory creates variable neighbourhood descent
+     * (VND) searches, but a custom factory may have been set.
      * 
-     * @return modification algorithm factory
+     * @return local search factory
      */
-    public NeighbourhoodSearchFactory<SolutionType> getModificationAlgorithmFactory(){
-        return modificationAlgorithmFactory;
+    public LocalSearchFactory<SolutionType> getLocalSearchFactory(){
+        return localSearchFactory;
     }
 
     /**
      * Performs a step of VNS. One step consists of:
      * <ol>
      *  <li>Shaking using the current shaking neighbourhood</li>
-     *  <li>Modification using a new instance of the modification algorithm (neighbourhood search)</li>
+     *  <li>Modification using a new instance of the local search algorithm</li>
      *  <li>
-     *   Acceptance of modified solution if it is a global improvement, else, the next shaking neighbourhood
-     *   will be used (cyclic).
+     *   Acceptance of modified solution if it is a global improvement. In such case, the search continues
+     *   with the first shaking neighbourhood; else, the next shaking neighbourhood will be used (cyclically).
      *  </li>
      * </ol>
      * 
@@ -213,31 +213,31 @@ public class VariableNeighbourhoodSearch<SolutionType extends Solution> extends 
             // shake
             shakeMove.apply(shakedSolution);
 
-            // 2) MODIFICATION
+            // 2) LOCAL SEARCH
 
-            // create instance of modification algorithm
-            NeighbourhoodSearch<SolutionType> modAlgo = modificationAlgorithmFactory.create(getProblem());
+            // create instance of local search algorithm
+            LocalSearch<SolutionType> localSearch = localSearchFactory.create(getProblem());
             // set initial solution to be modified
-            modAlgo.setCurrentSolution(shakedSolution);
-            // interrupt modification algorithm when main VNS search wants to terminate
-            modAlgo.addStopCriterion(new StopCriterion() {
+            localSearch.setCurrentSolution(shakedSolution);
+            // interrupt local search algorithm when main VNS search wants to terminate
+            localSearch.addStopCriterion(new StopCriterion() {
                 @Override
                 public boolean searchShouldStop(Search<?> search) {
                     return VariableNeighbourhoodSearch.this.getStatus() == SearchStatus.TERMINATING;
                 }
             });
-            // run algo
-            modAlgo.start();
-            // dispose algo when completed
-            modAlgo.dispose();
+            // run local search
+            localSearch.start();
+            // dispose local search when completed
+            localSearch.dispose();
 
             // 3) ACCEPTANCE
 
-            SolutionType modifiedSolution = modAlgo.getBestSolution();
-            double modifiedSolutionEval = modAlgo.getBestSolutionEvaluation();
-            // check improvement
+            SolutionType modifiedSolution = localSearch.getBestSolution();
+            double modifiedSolutionEval = localSearch.getBestSolutionEvaluation();
+            // check improvement (if best solution is not null, it is guaranteed
+            // to be a valid solution, so validation is not required here)
             if(modifiedSolution != null
-                    && !getProblem().rejectSolution(modifiedSolution)
                     && computeDelta(modifiedSolutionEval, getCurrentSolutionEvaluation()) > 0){
                 // improvement: accept modified solution as new current solution
                 incNumAcceptedMoves(1);
