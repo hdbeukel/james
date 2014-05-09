@@ -30,10 +30,10 @@ import org.jamesframework.core.util.NeighbourhoodSearchFactory;
 /**
  * <p>
  * Variable neighbourhood search (VNS) algorithm. This search applies a series of neighbourhoods for random 
- * shaking of the current solution in combination with an arbitrary other neighbourhood search algorithm to
- * modify the solution obtained after shaking, in an attempt to find a global improvement. More precisely, given
- * a series of \(n_s\) shaking neighbourhoods \(N_i, i=0, ..., n_s-1\) and an arbitrary other neighbourhood search
- * algorithm \(A\), each step of VNS consists of:
+ * shaking of the current solution in combination with an arbitrary other local search algorithm L to modify
+ * the solution obtained after shaking, in an attempt to find a global improvement. More precisely, given a
+ * series of \(n_s\) shaking neighbourhoods \(N_i, i=0, ..., n_s-1\) and an arbitrary other local search
+ * algorithm \(L\), each step of VNS consists of:
  * </p>
  * <ol>
  *  <li>
@@ -41,40 +41,41 @@ import org.jamesframework.core.util.NeighbourhoodSearchFactory;
  *   neighbourhood \(N_s\) (initially, \(s = 0\)).
  *  </li>
  *  <li>
- *   <b>Modification</b>: apply algorithm \(A\) with \(x'\) as its initial solution, until it terminates.
- *   The best solution found by \(A\) is referred to as \(x''\).
+ *   <b>Local search</b>: apply algorithm \(L\) with \(x'\) as its initial solution, until it terminates.
+ *   The best solution found by \(L\) is referred to as \(x''\).
  *  </li>
  *  <li>
  *   <b>Acceptance</b>: if \(x''\) is an improvement over \(x\) (i.e. \(x''\) is not rejected and has a better
  *   evaluation than \(x\)), it is accepted as the new current solution and \(s\) is reset to 0. Else, \(x\)
  *   remains the current solution and \(s\) is increased by one, so that the next shaking neighbourhood will be
- *   applied in the next step. If \(s\) becomes equal to the number of shaking neighbourhoods \(n_s\), it is also
+ *   applied in the next step. If \(s\) becomes equal to the number of shaking neighbourhoods \(n_s\), it is
  *   cyclically reset to 0. Therefore, VNS never terminates internally but continues until a stop criterion is met.
  *  </li>
  * </ol>
  * <p>
- * By default, VNS applies variable neighbourhood descent (VND) as the neighbourhood search algorithm used to modify
+ * By default, VNS applies variable neighbourhood descent (VND) as the local search algorithm L used to modify
  * \(x'\). The list of neighbourhoods of VND is not required to be related to the shaking neighbourhoods of VNS. As VND
  * is computationally intensive (it generates all neighbours in the current neighbourhood in every step), smaller
  * neighbourhoods are often applied for VND compared to the shaking neighbourhoods of VNS. The latter may grow larger
- * without computational issues as they are only used for random sampling.
+ * without computational concerns as they are only used for random sampling.
  * </p>
  * <p>
- * It is possible to use any other neighbourhood search algorithm \(A\), by setting a custom neighbourhood search factory.
- * In every step, a fresh instance of \(A\) is created. Usually, an algorithm is applied that terminates internally at
- * some point in time (VND, steepest descent, ...). Alternatively, a never ending algorithm may be applied in combination
- * with some stop criterion (random descent with maximum runtime, ...).
+ * It is possible to use any other local search algorithm \(L\), by specifying a custom neighbourhood search factory.
+ * In every step, a fresh instance of \(L\) is created to be applied to solution \(x'\); afterwards, this instance is
+ * disposed. Usually, an algorithm is applied that terminates internally at some point in time (VND, steepest descent,
+ * ...). Alternatively, a never ending algorithm may be applied in combination with some stop criterion (e.g. random
+ * descent with a maximum runtime).
  * </p>
  * <p>
- * The combination of shaking and modification is considered as one move in the VNS algorithm, which is only accepted
+ * The combination of shaking and local search is considered to be one move in the VNS algorithm, which is only accepted
  * if it yields a global improvement. Therefore, {@link #getNumAcceptedMoves()} and {@link #getNumRejectedMoves()}
- * reflect the number of times that such move has been accepted and rejected, respectively.
+ * reflect the number of times that such complex move has been accepted and rejected, respectively.
  * </p>
  * <p>
  * Note that {@link #getNeighbourhoods()} returns the list of shaking neighbourhoods applied by VNS, which are, in
- * general, unrelated to the neighbourhoods applied by the default VND modification algorithm. All internals of the
- * applied modification algorithm \(A\) are shielded inside this algorithm, i.e. the algorithm is applied as a black
- * box to transform a given solution \(x'\) into another solution \(x''\).
+ * general, unrelated to the neighbourhoods applied by the default VND local search algorithm. All internals of the
+ * applied local search algorithm \(L\) are shielded inside this algorithm, i.e. the algorithm is simply applied as
+ * a black box to transform a given solution \(x'\) into another solution \(x''\).
  * </p>
  * 
  * @param <SolutionType> solution type of the problems that may be solved using this search, required to extend {@link Solution}
@@ -227,6 +228,8 @@ public class VariableNeighbourhoodSearch<SolutionType extends Solution> extends 
             });
             // run algo
             modAlgo.start();
+            // dispose algo when completed
+            modAlgo.dispose();
 
             // 3) ACCEPTANCE
 
