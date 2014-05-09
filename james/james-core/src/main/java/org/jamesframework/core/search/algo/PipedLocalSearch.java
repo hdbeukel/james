@@ -39,8 +39,7 @@ import org.jamesframework.core.search.listeners.SearchListener;
  * </p>
  * <p>
  * Only searches solving the same problem as the one specified when creating the piped local search can be included
- * in the pipeline. It should also be guaranteed that the searches will terminate, possibly be setting a stop criterion
- * before including the search in the pipeline.
+ * in the pipeline.
  * </p>
  * <p>
  * When a piped local search is requested to stop, this request is propagated to the searches included in the pipeline.
@@ -207,9 +206,7 @@ public class PipedLocalSearch<SolutionType extends Solution> extends LocalSearch
          * @param search ignored
          */
         @Override
-        public void searchStopped(Search<? extends SolutionType> search) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
+        public void searchStopped(Search<? extends SolutionType> search) {}
         /**
          * No actions taken here.
          * @param search ignored
@@ -217,27 +214,21 @@ public class PipedLocalSearch<SolutionType extends Solution> extends LocalSearch
          * @param newBestSolutionEvaluation ignored
          */
         @Override
-        public void newBestSolution(Search<? extends SolutionType> search, SolutionType newBestSolution, double newBestSolutionEvaluation) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
+        public void newBestSolution(Search<? extends SolutionType> search, SolutionType newBestSolution, double newBestSolutionEvaluation) {}
         /**
          * No actions taken here.
          * @param search ignored
          * @param numSteps ignored
          */
         @Override
-        public void stepCompleted(Search<? extends SolutionType> search, long numSteps) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
+        public void stepCompleted(Search<? extends SolutionType> search, long numSteps) {}
         /**
          * No actions taken here.
          * @param search ignored
          * @param newStatus ignored
          */
         @Override
-        public void statusChanged(Search<? extends SolutionType> search, SearchStatus newStatus) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
+        public void statusChanged(Search<? extends SolutionType> search, SearchStatus newStatus) {}
         
     }
     
