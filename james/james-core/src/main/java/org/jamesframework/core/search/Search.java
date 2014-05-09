@@ -398,13 +398,18 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
     /**
      * Dispose this search, upon which all of its resources are released. Note that only idle
      * searches may be disposed and that a disposed search can never be restarted. Sets the search
-     * status to DISPOSED.
+     * status to DISPOSED. When trying to dispose an already disposed search, nothing happens, i.e.
+     * calling this method on a disposed search has no effect.
      * 
-     * @throws SearchException if the search is currently not idle
+     * @throws SearchException if the search is currently not idle (and not already disposed)
      */
     public void dispose(){
         // acquire status lock
         synchronized(statusLock){
+            // abort if already disposed
+            if(status == SearchStatus.DISPOSED){
+                return;
+            }
             // assert idle
             assertIdle("Cannot dispose search.");
             // all good, handle disposed
