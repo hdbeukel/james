@@ -118,7 +118,7 @@ var activeTableTab = "activeTableTab";
 </dl>
 <dl>
 <dt>Direct Known Subclasses:</dt>
-<dd><a href="../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a>, <a href="../../../../org/jamesframework/core/search/algo/exh/ExhaustiveSearch.html" title="class in org.jamesframework.core.search.algo.exh">ExhaustiveSearch</a>, <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a>, <a href="../../../../org/jamesframework/core/search/algo/RandomSearch.html" title="class in org.jamesframework.core.search.algo">RandomSearch</a></dd>
+<dd><a href="../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a>, <a href="../../../../org/jamesframework/core/search/algo/exh/ExhaustiveSearch.html" title="class in org.jamesframework.core.search.algo.exh">ExhaustiveSearch</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a>, <a href="../../../../org/jamesframework/core/search/algo/RandomSearch.html" title="class in org.jamesframework.core.search.algo">RandomSearch</a></dd>
 </dl>
 <hr>
 <br>
@@ -594,10 +594,11 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 <pre>public&nbsp;void&nbsp;dispose()</pre>
 <div class="block">Dispose this search, upon which all of its resources are released. Note that only idle
  searches may be disposed and that a disposed search can never be restarted. Sets the search
- status to DISPOSED.</div>
+ status to DISPOSED. When trying to dispose an already disposed search, nothing happens, i.e.
+ calling this method on a disposed search has no effect.</div>
 <dl>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions">SearchException</a></code> - if the search is currently not idle</dd>
+<dd><code><a href="../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions">SearchException</a></code> - if the search is currently not idle (and not already disposed)</dd>
 </dl>
 </li>
 </ul>

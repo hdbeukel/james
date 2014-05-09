@@ -194,6 +194,17 @@
 </tr>
 <tbody>
 <tr class="altColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/LocalSearch.html#LocalSearch-org.jamesframework.core.problems.Problem-">LocalSearch</a></span>(<a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&gt;&nbsp;problem)</code>
+<div class="block">Create a new local search to solve the given problem, with default name "LocalSearch".</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/LocalSearch.html#LocalSearch-java.lang.String-org.jamesframework.core.problems.Problem-">LocalSearch</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+           <a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&gt;&nbsp;problem)</code>
+<div class="block">Create a new local search to solve the given problem, with a custom name.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/MultiNeighbourhoodSearch.html#MultiNeighbourhoodSearch-org.jamesframework.core.problems.Problem-java.util.List-">MultiNeighbourhoodSearch</a></span>(<a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/MultiNeighbourhoodSearch.html" title="type parameter in MultiNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;problem,
                         <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../org/jamesframework/core/search/MultiNeighbourhoodSearch.html" title="type parameter in MultiNeighbourhoodSearch">SolutionType</a>&gt;&gt;&nbsp;neighs)</code>
 <div class="block">Create a new multi neighbourhood search, specifying the problem to be solved and the neighbourhoods used to
@@ -210,15 +221,13 @@
 </tr>
 <tr class="altColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#NeighbourhoodSearch-org.jamesframework.core.problems.Problem-">NeighbourhoodSearch</a></span>(<a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;problem)</code>
-<div class="block">Create a new neighbourhood search to solve the given problem,
- with default name "NeighbourhoodSearch".</div>
+<div class="block">Create a new neighbourhood search to solve the given problem, with default name "NeighbourhoodSearch".</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#NeighbourhoodSearch-java.lang.String-org.jamesframework.core.problems.Problem-">NeighbourhoodSearch</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
                    <a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;problem)</code>
-<div class="block">Create a new neighbourhood search to solve the given problem,
- with a custom name.</div>
+<div class="block">Create a new neighbourhood search to solve the given problem, with a custom name.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -308,6 +317,21 @@
 <div class="block">
  Creates a new parallel tempering algorithm, specifying the problem to solve, the neighbourhood used in each replica, the number
  of replicas, the minimum and maximum temperature, and a custom search name.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/PipedLocalSearch.html#PipedLocalSearch-org.jamesframework.core.problems.Problem-java.util.List-">PipedLocalSearch</a></span>(<a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/PipedLocalSearch.html" title="type parameter in PipedLocalSearch">SolutionType</a>&gt;&nbsp;problem,
+                <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/PipedLocalSearch.html" title="type parameter in PipedLocalSearch">SolutionType</a>&gt;&gt;&nbsp;pipeline)</code>
+<div class="block">Creates a new piped local search, specifying the problem to solve and a list of local searches to
+ be executed in the pipeline, in the given order.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/PipedLocalSearch.html#PipedLocalSearch-java.lang.String-org.jamesframework.core.problems.Problem-java.util.List-">PipedLocalSearch</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+                <a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/PipedLocalSearch.html" title="type parameter in PipedLocalSearch">SolutionType</a>&gt;&nbsp;problem,
+                <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/PipedLocalSearch.html" title="type parameter in PipedLocalSearch">SolutionType</a>&gt;&gt;&nbsp;pipeline)</code>
+<div class="block">Creates a new piped local search, specifying the problem to solve, a list of local searches to
+ be executed in the pipeline, in the given order, and a custom search name.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -453,25 +477,25 @@
                            <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&gt;&nbsp;neighs,
                            <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&gt;&nbsp;vndNeighs)</code>
 <div class="block">Creates a new variable neighbourhood search, specifying the problem to solve, the neighbourhoods used for shaking
- and the neighbourhoods used by the default VND modification algorithm.</div>
+ and the neighbourhoods used by the default VND local search algorithm.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#VariableNeighbourhoodSearch-org.jamesframework.core.problems.Problem-java.util.List-org.jamesframework.core.util.NeighbourhoodSearchFactory-">VariableNeighbourhoodSearch</a></span>(<a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;problem,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#VariableNeighbourhoodSearch-org.jamesframework.core.problems.Problem-java.util.List-org.jamesframework.core.util.LocalSearchFactory-">VariableNeighbourhoodSearch</a></span>(<a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;problem,
                            <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&gt;&nbsp;neighs,
-                           <a href="../../../../../org/jamesframework/core/util/NeighbourhoodSearchFactory.html" title="interface in org.jamesframework.core.util">NeighbourhoodSearchFactory</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;modificationAlgorithmFactory)</code>
+                           <a href="../../../../../org/jamesframework/core/util/LocalSearchFactory.html" title="interface in org.jamesframework.core.util">LocalSearchFactory</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;localSearchFactory)</code>
 <div class="block">Creates a new variable neighbourhood search, specifying the problem to solve, the neighbourhoods used for
- shaking in VNS, and a factory to create instances of a custom modification algorithm \(A\) to be applied to
+ shaking in VNS, and a factory to create instances of a custom local search algorithm \(L\) to be applied to
  modify solutions obtained after shaking.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#VariableNeighbourhoodSearch-java.lang.String-org.jamesframework.core.problems.Problem-java.util.List-org.jamesframework.core.util.NeighbourhoodSearchFactory-">VariableNeighbourhoodSearch</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#VariableNeighbourhoodSearch-java.lang.String-org.jamesframework.core.problems.Problem-java.util.List-org.jamesframework.core.util.LocalSearchFactory-">VariableNeighbourhoodSearch</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
                            <a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;problem,
                            <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&gt;&nbsp;neighs,
-                           <a href="../../../../../org/jamesframework/core/util/NeighbourhoodSearchFactory.html" title="interface in org.jamesframework.core.util">NeighbourhoodSearchFactory</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;modificationAlgorithmFactory)</code>
+                           <a href="../../../../../org/jamesframework/core/util/LocalSearchFactory.html" title="interface in org.jamesframework.core.util">LocalSearchFactory</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;localSearchFactory)</code>
 <div class="block">Creates a new variable neighbourhood search, specifying the problem to solve, the neighbourhoods used for
- shaking in VNS, a factory to create instances of a custom modification algorithm \(A\) to be applied to
+ shaking in VNS, a factory to create instances of a custom local search algorithm \(L\) to be applied to
  modify solutions obtained after shaking, and a custom search name.</div>
 </td>
 </tr>
@@ -490,9 +514,9 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a>&lt;<a href="../../../../../org/jamesframework/core/util/NeighbourhoodSearchFactory.html" title="type parameter in NeighbourhoodSearchFactory">SolutionType</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">NeighbourhoodSearchFactory.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/util/NeighbourhoodSearchFactory.html#create-org.jamesframework.core.problems.Problem-">create</a></span>(<a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/util/NeighbourhoodSearchFactory.html" title="type parameter in NeighbourhoodSearchFactory">SolutionType</a>&gt;&nbsp;problem)</code>
-<div class="block">Create a neighbourhood search, given the problem to solve.</div>
+<td class="colFirst"><code><a href="../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a>&lt;<a href="../../../../../org/jamesframework/core/util/LocalSearchFactory.html" title="type parameter in LocalSearchFactory">SolutionType</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">LocalSearchFactory.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/util/LocalSearchFactory.html#create-org.jamesframework.core.problems.Problem-">create</a></span>(<a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/util/LocalSearchFactory.html" title="type parameter in LocalSearchFactory">SolutionType</a>&gt;&nbsp;problem)</code>
+<div class="block">Create a local search, given the problem to solve.</div>
 </td>
 </tr>
 </tbody>

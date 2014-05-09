@@ -70,7 +70,7 @@
 <!--   -->
 </a></div>
 <!-- ========= END OF TOP NAVBAR ========= -->
-<div class="contentContainer"><a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:J">J</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a name="I:A">
+<div class="contentContainer"><a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:J">J</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a name="I:A">
 <!--   -->
 </a>
 <h2 class="title">A</h2>
@@ -105,7 +105,7 @@
 <div class="block">
  Add the given search to the parallel algorithm, to be executed in parallel with the other searches.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#addSearchListener-org.jamesframework.core.search.listeners.SearchListener-">addSearchListener(SearchListener&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#addSearchListener-org.jamesframework.core.search.listeners.SearchListener-">addSearchListener(SearchListener&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
 <dd>
 <div class="block">Add a search listener, if not already added before.</div>
 </dd>
@@ -228,9 +228,9 @@
 <div class="block">Create a VND search to solve the given problem, using the list of neighbourhoods
  set at construction of the factory.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/NeighbourhoodSearchFactory.html#create-org.jamesframework.core.problems.Problem-">create(Problem&lt;SolutionType&gt;)</a></span> - Method in interface org.jamesframework.core.util.<a href="org/jamesframework/core/util/NeighbourhoodSearchFactory.html" title="interface in org.jamesframework.core.util">NeighbourhoodSearchFactory</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/LocalSearchFactory.html#create-org.jamesframework.core.problems.Problem-">create(Problem&lt;SolutionType&gt;)</a></span> - Method in interface org.jamesframework.core.util.<a href="org/jamesframework/core/util/LocalSearchFactory.html" title="interface in org.jamesframework.core.util">LocalSearchFactory</a></dt>
 <dd>
-<div class="block">Create a neighbourhood search, given the problem to solve.</div>
+<div class="block">Create a local search, given the problem to solve.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/SubsetProblem.html#createEmptySubsetSolution--">createEmptySubsetSolution()</a></span> - Method in interface org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/SubsetProblem.html" title="interface in org.jamesframework.core.problems">SubsetProblem</a></dt>
 <dd>
@@ -300,13 +300,13 @@
 </a>
 <h2 class="title">E</h2>
 <dl>
-<dt><a href="org/jamesframework/core/search/listeners/EmptyNeighbourhoodSearchListener.html" title="class in org.jamesframework.core.search.listeners"><span class="typeNameLink">EmptyNeighbourhoodSearchListener</span></a>&lt;<a href="org/jamesframework/core/search/listeners/EmptyNeighbourhoodSearchListener.html" title="type parameter in EmptyNeighbourhoodSearchListener">SolutionType</a> extends <a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/listeners/package-summary.html">org.jamesframework.core.search.listeners</a></dt>
+<dt><a href="org/jamesframework/core/search/listeners/EmptyLocalSearchListener.html" title="class in org.jamesframework.core.search.listeners"><span class="typeNameLink">EmptyLocalSearchListener</span></a>&lt;<a href="org/jamesframework/core/search/listeners/EmptyLocalSearchListener.html" title="type parameter in EmptyLocalSearchListener">SolutionType</a> extends <a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/listeners/package-summary.html">org.jamesframework.core.search.listeners</a></dt>
 <dd>
-<div class="block">An empty neighbourhood search listener contains empty implementations of all methods in <a href="org/jamesframework/core/search/listeners/NeighbourhoodSearchListener.html" title="interface in org.jamesframework.core.search.listeners"><code>NeighbourhoodSearchListener</code></a>,
+<div class="block">An empty local search listener contains empty implementations of all methods in <a href="org/jamesframework/core/search/listeners/LocalSearchListener.html" title="interface in org.jamesframework.core.search.listeners"><code>LocalSearchListener</code></a>,
  acting as an easy entry point for custom search listeners which desire to listen only to a subset of events fired
- by a search, by overriding the corresponding empty implementation.</div>
+ by a search, by overriding the corresponding empty implementations.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/EmptyNeighbourhoodSearchListener.html#EmptyNeighbourhoodSearchListener--">EmptyNeighbourhoodSearchListener()</a></span> - Constructor for class org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/EmptyNeighbourhoodSearchListener.html" title="class in org.jamesframework.core.search.listeners">EmptyNeighbourhoodSearchListener</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/EmptyLocalSearchListener.html#EmptyLocalSearchListener--">EmptyLocalSearchListener()</a></span> - Constructor for class org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/EmptyLocalSearchListener.html" title="class in org.jamesframework.core.search.listeners">EmptyLocalSearchListener</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="org/jamesframework/core/search/listeners/EmptySearchListener.html" title="class in org.jamesframework.core.search.listeners"><span class="typeNameLink">EmptySearchListener</span></a>&lt;<a href="org/jamesframework/core/search/listeners/EmptySearchListener.html" title="type parameter in EmptySearchListener">SolutionType</a> extends <a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/listeners/package-summary.html">org.jamesframework.core.search.listeners</a></dt>
 <dd>
@@ -473,11 +473,11 @@
 <dd>
 <div class="block">Retrieve cached rejection, if still available.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#getCurrentSolution--">getCurrentSolution()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#getCurrentSolution--">getCurrentSolution()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
 <dd>
 <div class="block">Returns the current solution.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#getCurrentSolutionEvaluation--">getCurrentSolutionEvaluation()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionEvaluation--">getCurrentSolutionEvaluation()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
 <dd>
 <div class="block">Get the evaluation of the current solution.</div>
 </dd>
@@ -522,6 +522,11 @@
 <dd>
 <div class="block">Get the set of integer IDs corresponding to the underlying entities from which a subset is to be selected.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#getLocalSearchFactory--">getLocalSearchFactory()</a></span> - Method in class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">Get the factory used to create instances of the local search algorithm which is applied to modify
+ solutions obtained after shaking.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/SubsetProblem.html#getMaxSubsetSize--">getMaxSubsetSize()</a></span> - Method in interface org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/SubsetProblem.html" title="interface in org.jamesframework.core.problems">SubsetProblem</a></dt>
 <dd>
 <div class="block">The maximum size of the subset to be selected.</div>
@@ -551,11 +556,6 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/SinglePerturbationNeighbourhood.html#getMinSubsetSize--">getMinSubsetSize()</a></span> - Method in class org.jamesframework.core.search.neigh.subset.<a href="org/jamesframework/core/search/neigh/subset/SinglePerturbationNeighbourhood.html" title="class in org.jamesframework.core.search.neigh.subset">SinglePerturbationNeighbourhood</a></dt>
 <dd>
 <div class="block">Get the minimum subset size specified at construction.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#getModificationAlgorithmFactory--">getModificationAlgorithmFactory()</a></span> - Method in class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodSearch</a></dt>
-<dd>
-<div class="block">Get the factory used to create instances of the modification algorithm which is applied to modify
- solutions obtained by shaking.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#getMoveWithLargestDelta-java.util.Collection-boolean-">getMoveWithLargestDelta(Collection&lt;? extends Move&lt;? super SolutionType&gt;&gt;, boolean)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
 <dd>
@@ -920,6 +920,34 @@
 <div class="block">Constructs an instance with the specified detail message and cause.</div>
 </dd>
 </dl>
+<a name="I:L">
+<!--   -->
+</a>
+<h2 class="title">L</h2>
+<dl>
+<dt><a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search"><span class="typeNameLink">LocalSearch</span></a>&lt;<a href="org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a> extends <a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/package-summary.html">org.jamesframework.core.search</a></dt>
+<dd>
+<div class="block">Local searches are searches that start with some initial solution and modify this solution in an attempt to improve
+ it.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#LocalSearch-org.jamesframework.core.problems.Problem-">LocalSearch(Problem&lt;SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
+<dd>
+<div class="block">Create a new local search to solve the given problem, with default name "LocalSearch".</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#LocalSearch-java.lang.String-org.jamesframework.core.problems.Problem-">LocalSearch(String, Problem&lt;SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
+<dd>
+<div class="block">Create a new local search to solve the given problem, with a custom name.</div>
+</dd>
+<dt><a href="org/jamesframework/core/util/LocalSearchFactory.html" title="interface in org.jamesframework.core.util"><span class="typeNameLink">LocalSearchFactory</span></a>&lt;<a href="org/jamesframework/core/util/LocalSearchFactory.html" title="type parameter in LocalSearchFactory">SolutionType</a> extends <a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Interface in <a href="org/jamesframework/core/util/package-summary.html">org.jamesframework.core.util</a></dt>
+<dd>
+<div class="block">Interface of a local search factory used to create any local search.</div>
+</dd>
+<dt><a href="org/jamesframework/core/search/listeners/LocalSearchListener.html" title="interface in org.jamesframework.core.search.listeners"><span class="typeNameLink">LocalSearchListener</span></a>&lt;<a href="org/jamesframework/core/search/listeners/LocalSearchListener.html" title="type parameter in LocalSearchListener">SolutionType</a> extends <a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Interface in <a href="org/jamesframework/core/search/listeners/package-summary.html">org.jamesframework.core.search.listeners</a></dt>
+<dd>
+<div class="block">Extends the general search listener interface with a local search specific callback, fired when the current solution
+ has been modified.</div>
+</dd>
+</dl>
 <a name="I:M">
 <!--   -->
 </a>
@@ -989,9 +1017,9 @@
 <dd>
 <div class="block">By default, objectives are maximizing.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/EmptyNeighbourhoodSearchListener.html#modifiedCurrentSolution-org.jamesframework.core.search.NeighbourhoodSearch-SolutionType-double-">modifiedCurrentSolution(NeighbourhoodSearch&lt;? extends SolutionType&gt;, SolutionType, double)</a></span> - Method in class org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/EmptyNeighbourhoodSearchListener.html" title="class in org.jamesframework.core.search.listeners">EmptyNeighbourhoodSearchListener</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/EmptyLocalSearchListener.html#modifiedCurrentSolution-org.jamesframework.core.search.LocalSearch-SolutionType-double-">modifiedCurrentSolution(LocalSearch&lt;? extends SolutionType&gt;, SolutionType, double)</a></span> - Method in class org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/EmptyLocalSearchListener.html" title="class in org.jamesframework.core.search.listeners">EmptyLocalSearchListener</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/NeighbourhoodSearchListener.html#modifiedCurrentSolution-org.jamesframework.core.search.NeighbourhoodSearch-SolutionType-double-">modifiedCurrentSolution(NeighbourhoodSearch&lt;? extends SolutionType&gt;, SolutionType, double)</a></span> - Method in interface org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/NeighbourhoodSearchListener.html" title="interface in org.jamesframework.core.search.listeners">NeighbourhoodSearchListener</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/LocalSearchListener.html#modifiedCurrentSolution-org.jamesframework.core.search.LocalSearch-SolutionType-double-">modifiedCurrentSolution(LocalSearch&lt;? extends SolutionType&gt;, SolutionType, double)</a></span> - Method in interface org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/LocalSearchListener.html" title="interface in org.jamesframework.core.search.listeners">LocalSearchListener</a></dt>
 <dd>
 <div class="block">Fired whenever a new current solution has been adopted.</div>
 </dd>
@@ -1040,37 +1068,17 @@
 </dd>
 <dt><a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search"><span class="typeNameLink">NeighbourhoodSearch</span></a>&lt;<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a> extends <a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/package-summary.html">org.jamesframework.core.search</a></dt>
 <dd>
-<div class="block">A neighbourhood search extends the general abstract search by adding a concept of current solution, which is repeatedly modified
- by applying moves generated by a neighbourhood.</div>
+<div class="block">A neighbourhood search is a specific kind of local search in which the current solution is repeatedly modified by
+ applying moves, generated by one or more neighbourhoods, that transform this solution into a similar, neighbouring
+ solution.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#NeighbourhoodSearch-org.jamesframework.core.problems.Problem-">NeighbourhoodSearch(Problem&lt;SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
 <dd>
-<div class="block">Create a new neighbourhood search to solve the given problem,
- with default name "NeighbourhoodSearch".</div>
+<div class="block">Create a new neighbourhood search to solve the given problem, with default name "NeighbourhoodSearch".</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#NeighbourhoodSearch-java.lang.String-org.jamesframework.core.problems.Problem-">NeighbourhoodSearch(String, Problem&lt;SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
 <dd>
-<div class="block">Create a new neighbourhood search to solve the given problem,
- with a custom name.</div>
-</dd>
-<dt><a href="org/jamesframework/core/util/NeighbourhoodSearchFactory.html" title="interface in org.jamesframework.core.util"><span class="typeNameLink">NeighbourhoodSearchFactory</span></a>&lt;<a href="org/jamesframework/core/util/NeighbourhoodSearchFactory.html" title="type parameter in NeighbourhoodSearchFactory">SolutionType</a> extends <a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Interface in <a href="org/jamesframework/core/util/package-summary.html">org.jamesframework.core.util</a></dt>
-<dd>
-<div class="block">Interface of a neighbourhood search factory used to create any neighbourhood search.</div>
-</dd>
-<dt><a href="org/jamesframework/core/search/listeners/NeighbourhoodSearchListener.html" title="interface in org.jamesframework.core.search.listeners"><span class="typeNameLink">NeighbourhoodSearchListener</span></a>&lt;<a href="org/jamesframework/core/search/listeners/NeighbourhoodSearchListener.html" title="type parameter in NeighbourhoodSearchListener">SolutionType</a> extends <a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Interface in <a href="org/jamesframework/core/search/listeners/package-summary.html">org.jamesframework.core.search.listeners</a></dt>
-<dd>
-<div class="block">Extends the general search listener interface with a neighbourhood search specific callback, fired when the current solution
- has been modified.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/BasicParallelSearch.html#newBestSolution-org.jamesframework.core.search.Search-SolutionType-double-">newBestSolution(Search&lt;? extends SolutionType&gt;, SolutionType, double)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a></dt>
-<dd>
-<div class="block">When a new best solution is found in any concurrently executed subsearch, it is picked up by the main search
- which updates the global best solution accordingly.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#newBestSolution-org.jamesframework.core.search.Search-SolutionType-double-">newBestSolution(Search&lt;? extends SolutionType&gt;, SolutionType, double)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
-<dd>
-<div class="block">Parallel tempering algorithm listens to its Metropolis replicas: whenever a new best solution is reported inside a replica, it is
- verified whether this is also a global improvement.</div>
+<div class="block">Create a new neighbourhood search to solve the given problem, with a custom name.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/EmptySearchListener.html#newBestSolution-org.jamesframework.core.search.Search-SolutionType-double-">newBestSolution(Search&lt;? extends SolutionType&gt;, SolutionType, double)</a></span> - Method in class org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/EmptySearchListener.html" title="class in org.jamesframework.core.search.listeners">EmptySearchListener</a></dt>
 <dd>&nbsp;</dd>
@@ -1195,6 +1203,21 @@
 <div class="block">Interface of a penalizing constraint, which assigns a certain penalty to a solution which does not
  satisfy the constraint.</div>
 </dd>
+<dt><a href="org/jamesframework/core/search/algo/PipedLocalSearch.html" title="class in org.jamesframework.core.search.algo"><span class="typeNameLink">PipedLocalSearch</span></a>&lt;<a href="org/jamesframework/core/search/algo/PipedLocalSearch.html" title="type parameter in PipedLocalSearch">SolutionType</a> extends <a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/algo/package-summary.html">org.jamesframework.core.search.algo</a></dt>
+<dd>
+<div class="block">
+ A piped local search consists of a composition of other local search \(S_1, ..., S_n\).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/PipedLocalSearch.html#PipedLocalSearch-org.jamesframework.core.problems.Problem-java.util.List-">PipedLocalSearch(Problem&lt;SolutionType&gt;, List&lt;LocalSearch&lt;SolutionType&gt;&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/PipedLocalSearch.html" title="class in org.jamesframework.core.search.algo">PipedLocalSearch</a></dt>
+<dd>
+<div class="block">Creates a new piped local search, specifying the problem to solve and a list of local searches to
+ be executed in the pipeline, in the given order.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/PipedLocalSearch.html#PipedLocalSearch-java.lang.String-org.jamesframework.core.problems.Problem-java.util.List-">PipedLocalSearch(String, Problem&lt;SolutionType&gt;, List&lt;LocalSearch&lt;SolutionType&gt;&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/PipedLocalSearch.html" title="class in org.jamesframework.core.search.algo">PipedLocalSearch</a></dt>
+<dd>
+<div class="block">Creates a new piped local search, specifying the problem to solve, a list of local searches to
+ be executed in the pipeline, in the given order, and a custom search name.</div>
+</dd>
 <dt><a href="org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems"><span class="typeNameLink">Problem</span></a>&lt;<a href="org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a> extends <a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Interface in <a href="org/jamesframework/core/problems/package-summary.html">org.jamesframework.core.problems</a></dt>
 <dd>
 <div class="block">Interface of a problem with a generic solution type.</div>
@@ -1295,7 +1318,7 @@
 <dd>
 <div class="block">Remove the given search from the parallel algorithm, if it had been added before.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener(SearchListener&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener(SearchListener&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
 <dd>
 <div class="block">Remove the given search listener.</div>
 </dd>
@@ -1339,6 +1362,10 @@
 <dd>
 <div class="block">When disposing a parallel tempering search, it will dispose each contained Metropolis replica and will
  shut down the thread pool used for concurrent execution of replicas.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/PipedLocalSearch.html#searchDisposed--">searchDisposed()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/PipedLocalSearch.html" title="class in org.jamesframework.core.search.algo">PipedLocalSearch</a></dt>
+<dd>
+<div class="block">When disposing a piped local search, all searches in the pipeline are also disposed.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#searchDisposed--">searchDisposed()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
@@ -1397,24 +1424,19 @@
 <dd>
 <div class="block">When the search is started, it is verified whether at least one subsearch has been added.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/BasicParallelSearch.html#searchStarted-org.jamesframework.core.search.Search-">searchStarted(Search&lt;? extends SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a></dt>
-<dd>
-<div class="block">When a subsearch has started, the main parallel search verifies that it has not yet been requested
- to stop in the meantime.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#searchStarted-org.jamesframework.core.search.Search-">searchStarted(Search&lt;? extends SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
-<dd>
-<div class="block">Empty callback: no action taken here when a replica has started.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/EmptySearchListener.html#searchStarted-org.jamesframework.core.search.Search-">searchStarted(Search&lt;? extends SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/EmptySearchListener.html" title="class in org.jamesframework.core.search.listeners">EmptySearchListener</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/SearchListener.html#searchStarted-org.jamesframework.core.search.Search-">searchStarted(Search&lt;? extends SolutionType&gt;)</a></span> - Method in interface org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a></dt>
 <dd>
 <div class="block">Fired when the search has started.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#searchStarted--">searchStarted()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
+<dd>
+<div class="block">When the search is started, a random initial solution is generated if none has been specified.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#searchStarted--">searchStarted()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
 <dd>
-<div class="block">Resets neighbourhood search specific, per run metadata: number of accepted and rejected moves.</div>
+<div class="block">When a neighbourhood search is started, the number of accepted and rejected moves is reset to zero.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#searchStarted--">searchStarted()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
@@ -1450,6 +1472,11 @@
 <div class="block">Perform a search step, in which every replica performs several steps and solutions of adjacent
  replicas may be swapped.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/PipedLocalSearch.html#searchStep--">searchStep()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/PipedLocalSearch.html" title="class in org.jamesframework.core.search.algo">PipedLocalSearch</a></dt>
+<dd>
+<div class="block">Executes all local searches in the pipeline, where the best solution of the previous search is used as initial
+ solution for the next search.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/RandomDescent.html#searchStep--">searchStep()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/RandomDescent.html" title="class in org.jamesframework.core.search.algo">RandomDescent</a></dt>
 <dd>
 <div class="block">Creates a random neighbour of the current solution and accepts it if it improves over the current solution.</div>
@@ -1482,15 +1509,6 @@
 <div class="block">This method is iteratively called while the search is running and should be implemented in every specific
  search according to the corresponding search strategy.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/BasicParallelSearch.html#searchStopped-org.jamesframework.core.search.Search-">searchStopped(Search&lt;? extends SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a></dt>
-<dd>
-<div class="block">No actions are taken when a subsearch has stopped.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#searchStopped-org.jamesframework.core.search.Search-">searchStopped(Search&lt;? extends SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
-<dd>
-<div class="block">Parallel tempering algorithm listens to its Metropolis replicas: whenever a replica has finished its current run,
- the number of accepted and rejected moves during this run are accounted for by increase the global counters.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/EmptySearchListener.html#searchStopped-org.jamesframework.core.search.Search-">searchStopped(Search&lt;? extends SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/EmptySearchListener.html" title="class in org.jamesframework.core.search.listeners">EmptySearchListener</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/SearchListener.html#searchStopped-org.jamesframework.core.search.Search-">searchStopped(Search&lt;? extends SolutionType&gt;)</a></span> - Method in interface org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a></dt>
@@ -1517,7 +1535,7 @@
 <dd>
 <div class="block">Set a custom current solution, which is passed to each replica.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#setCurrentSolution-SolutionType-">setCurrentSolution(SolutionType)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#setCurrentSolution-SolutionType-">setCurrentSolution(SolutionType)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
 <dd>
 <div class="block">Sets the current solution.</div>
 </dd>
@@ -1536,7 +1554,8 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#setEvaluatedMoveCache-org.jamesframework.core.search.cache.EvaluatedMoveCache-">setEvaluatedMoveCache(EvaluatedMoveCache)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
 <dd>
-<div class="block">Sets a custom evaluated move cache.</div>
+<div class="block">Sets a custom evaluated move cache, which is used to avoid repeated evaluation or validation of the same move
+ from the same current solution.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/MinMaxObjective.html#setMaximizing--">setMaximizing()</a></span> - Method in class org.jamesframework.core.problems.objectives.<a href="org/jamesframework/core/problems/objectives/MinMaxObjective.html" title="class in org.jamesframework.core.problems.objectives">MinMaxObjective</a></dt>
 <dd>
@@ -1554,10 +1573,10 @@
 <dd>
 <div class="block">Set the minimum subset size.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#setModificationAlgorithmFactory-org.jamesframework.core.util.NeighbourhoodSearchFactory-">setModificationAlgorithmFactory(NeighbourhoodSearchFactory&lt;SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodSearch</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#setModificationAlgorithmFactory-org.jamesframework.core.util.LocalSearchFactory-">setModificationAlgorithmFactory(LocalSearchFactory&lt;SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodSearch</a></dt>
 <dd>
-<div class="block">Set a custom factory to create instances of the modification algorithm to be applied to modify solutions
- obtained by shaking.</div>
+<div class="block">Set a custom factory to create instances of the local search algorithm to be applied to modify solutions
+ obtained after shaking.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#setNeighbourhood-org.jamesframework.core.search.neigh.Neighbourhood-">setNeighbourhood(Neighbourhood&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
@@ -1686,6 +1705,10 @@
 <dd>
 <div class="block">Constructs an instance with the specified detail message and cause.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/PipedLocalSearch.html#start--">start()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/PipedLocalSearch.html" title="class in org.jamesframework.core.search.algo">PipedLocalSearch</a></dt>
+<dd>
+<div class="block">General start method is overriden so that search is automatically disposed when <a href="org/jamesframework/core/search/Search.html#start--"><code>Search.start()</code></a> returns.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#start--">start()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
 <div class="block">
@@ -1694,14 +1717,6 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#startChecking--">startChecking()</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria">StopCriterionChecker</a></dt>
 <dd>
 <div class="block">Start checking the stop criteria, in a separate background thread.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/BasicParallelSearch.html#statusChanged-org.jamesframework.core.search.Search-org.jamesframework.core.search.SearchStatus-">statusChanged(Search&lt;? extends SolutionType&gt;, SearchStatus)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a></dt>
-<dd>
-<div class="block">No actions are taken when a subsearch has changed status.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#statusChanged-org.jamesframework.core.search.Search-org.jamesframework.core.search.SearchStatus-">statusChanged(Search&lt;? extends SolutionType&gt;, SearchStatus)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
-<dd>
-<div class="block">Empty callback: no action taken here when a replica enters a new status.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/EmptySearchListener.html#statusChanged-org.jamesframework.core.search.Search-org.jamesframework.core.search.SearchStatus-">statusChanged(Search&lt;? extends SolutionType&gt;, SearchStatus)</a></span> - Method in class org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/EmptySearchListener.html" title="class in org.jamesframework.core.search.listeners">EmptySearchListener</a></dt>
 <dd>&nbsp;</dd>
@@ -1723,15 +1738,6 @@
 <div class="block">Creates a new steepest descent search, specifying the problem to solve, the neighbourhood used to
  modify the current solution, and a custom search name.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/BasicParallelSearch.html#stepCompleted-org.jamesframework.core.search.Search-long-">stepCompleted(Search&lt;? extends SolutionType&gt;, long)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a></dt>
-<dd>
-<div class="block">No actions are taken when a subsearch has completed a step.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#stepCompleted-org.jamesframework.core.search.Search-long-">stepCompleted(Search&lt;? extends SolutionType&gt;, long)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
-<dd>
-<div class="block">Parallel tempering algorithm listens to its Metropolis replicas: whenever a replica has completed a step, it is verified whether
- the desired number of steps have been performed and, if so, the replica is stopped.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/EmptySearchListener.html#stepCompleted-org.jamesframework.core.search.Search-long-">stepCompleted(Search&lt;? extends SolutionType&gt;, long)</a></span> - Method in class org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/EmptySearchListener.html" title="class in org.jamesframework.core.search.listeners">EmptySearchListener</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/SearchListener.html#stepCompleted-org.jamesframework.core.search.Search-long-">stepCompleted(Search&lt;? extends SolutionType&gt;, long)</a></span> - Method in interface org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a></dt>
@@ -1740,8 +1746,11 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/BasicParallelSearch.html#stop--">stop()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a></dt>
 <dd>
-<div class="block">When requesting to stop a basic parallel search, the search status changes to TERMINATING
- and this request is propagated to each search that has been added to the parallel algorithm.</div>
+<div class="block">When requesting to stop a basic parallel search, this request is propagated to each contained search.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/PipedLocalSearch.html#stop--">stop()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/PipedLocalSearch.html" title="class in org.jamesframework.core.search.algo">PipedLocalSearch</a></dt>
+<dd>
+<div class="block">When requesting to stop a piped local search, this request is propagated to each search in the pipeline.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#stop--">stop()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
@@ -1911,9 +1920,14 @@
  assuming that the given solution is <b>not</b> rejected by the problem (see
  <a href="org/jamesframework/core/problems/Problem.html#rejectSolution-SolutionType-"><code>Problem.rejectSolution(Solution)</code></a> and has already been evaluated.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#updateCurrentSolution-SolutionType-double-">updateCurrentSolution(SolutionType, double)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#updateCurrentSolution-SolutionType-double-">updateCurrentSolution(SolutionType, double)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
 <dd>
 <div class="block">Update the current solution, given that it has already been evaluated.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#updateCurrentSolution-SolutionType-double-">updateCurrentSolution(SolutionType, double)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">When updating the current solution in a neighbourhood search, the evaluated move cache is cleared because
+ it is no longer valid for the new current solution.</div>
 </dd>
 </dl>
 <a name="I:V">
@@ -1957,18 +1971,18 @@ the order they are declared.</div>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#VariableNeighbourhoodSearch-org.jamesframework.core.problems.Problem-java.util.List-java.util.List-">VariableNeighbourhoodSearch(Problem&lt;SolutionType&gt;, List&lt;Neighbourhood&lt;? super SolutionType&gt;&gt;, List&lt;Neighbourhood&lt;? super SolutionType&gt;&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodSearch</a></dt>
 <dd>
 <div class="block">Creates a new variable neighbourhood search, specifying the problem to solve, the neighbourhoods used for shaking
- and the neighbourhoods used by the default VND modification algorithm.</div>
+ and the neighbourhoods used by the default VND local search algorithm.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#VariableNeighbourhoodSearch-org.jamesframework.core.problems.Problem-java.util.List-org.jamesframework.core.util.NeighbourhoodSearchFactory-">VariableNeighbourhoodSearch(Problem&lt;SolutionType&gt;, List&lt;Neighbourhood&lt;? super SolutionType&gt;&gt;, NeighbourhoodSearchFactory&lt;SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodSearch</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#VariableNeighbourhoodSearch-org.jamesframework.core.problems.Problem-java.util.List-org.jamesframework.core.util.LocalSearchFactory-">VariableNeighbourhoodSearch(Problem&lt;SolutionType&gt;, List&lt;Neighbourhood&lt;? super SolutionType&gt;&gt;, LocalSearchFactory&lt;SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodSearch</a></dt>
 <dd>
 <div class="block">Creates a new variable neighbourhood search, specifying the problem to solve, the neighbourhoods used for
- shaking in VNS, and a factory to create instances of a custom modification algorithm \(A\) to be applied to
+ shaking in VNS, and a factory to create instances of a custom local search algorithm \(L\) to be applied to
  modify solutions obtained after shaking.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#VariableNeighbourhoodSearch-java.lang.String-org.jamesframework.core.problems.Problem-java.util.List-org.jamesframework.core.util.NeighbourhoodSearchFactory-">VariableNeighbourhoodSearch(String, Problem&lt;SolutionType&gt;, List&lt;Neighbourhood&lt;? super SolutionType&gt;&gt;, NeighbourhoodSearchFactory&lt;SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodSearch</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#VariableNeighbourhoodSearch-java.lang.String-org.jamesframework.core.problems.Problem-java.util.List-org.jamesframework.core.util.LocalSearchFactory-">VariableNeighbourhoodSearch(String, Problem&lt;SolutionType&gt;, List&lt;Neighbourhood&lt;? super SolutionType&gt;&gt;, LocalSearchFactory&lt;SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodSearch</a></dt>
 <dd>
 <div class="block">Creates a new variable neighbourhood search, specifying the problem to solve, the neighbourhoods used for
- shaking in VNS, a factory to create instances of a custom modification algorithm \(A\) to be applied to
+ shaking in VNS, a factory to create instances of a custom local search algorithm \(L\) to be applied to
  modify solutions obtained after shaking, and a custom search name.</div>
 </dd>
 <dt><a href="org/jamesframework/core/search/algo/vns/VNDFactory.html" title="class in org.jamesframework.core.search.algo.vns"><span class="typeNameLink">VNDFactory</span></a>&lt;<a href="org/jamesframework/core/search/algo/vns/VNDFactory.html" title="type parameter in VNDFactory">SolutionType</a> extends <a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/algo/vns/package-summary.html">org.jamesframework.core.search.algo.vns</a></dt>
@@ -1981,7 +1995,7 @@ the order they are declared.</div>
 <div class="block">Create a new VND factory, given the list of neighbourhoods to apply.</div>
 </dd>
 </dl>
-<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:J">J</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;</div>
+<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:J">J</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;</div>
 <!-- ======= START OF BOTTOM NAVBAR ====== -->
 <div class="bottomNav"><a name="navbar.bottom">
 <!--   -->

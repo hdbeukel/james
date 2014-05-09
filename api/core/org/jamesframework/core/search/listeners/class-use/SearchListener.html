@@ -90,13 +90,6 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="#org.jamesframework.core.search.algo">org.jamesframework.core.search.algo</a></td>
-<td class="colLast">
-<div class="block">Actual search implementations (non self-contained searches and their related components
- are implemented in separate subpackages).</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.listeners">org.jamesframework.core.search.listeners</a></td>
 <td class="colLast">
 <div class="block">Search listeners.</div>
@@ -126,7 +119,7 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><span class="typeNameLabel">NeighbourhoodSearch.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#addSearchListener-org.jamesframework.core.search.listeners.SearchListener-">addSearchListener</a></span>(<a href="../../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;listener)</code>
+<td class="colLast"><span class="typeNameLabel">LocalSearch.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/LocalSearch.html#addSearchListener-org.jamesframework.core.search.listeners.SearchListener-">addSearchListener</a></span>(<a href="../../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&gt;&nbsp;listener)</code>
 <div class="block">Add a search listener, if not already added before.</div>
 </td>
 </tr>
@@ -138,39 +131,8 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><span class="typeNameLabel">NeighbourhoodSearch.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener</a></span>(<a href="../../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;listener)</code>
+<td class="colLast"><span class="typeNameLabel">LocalSearch.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/LocalSearch.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener</a></span>(<a href="../../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&gt;&nbsp;listener)</code>
 <div class="block">Remove the given search listener.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="org.jamesframework.core.search.algo">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a> in <a href="../../../../../../org/jamesframework/core/search/algo/package-summary.html">org.jamesframework.core.search.algo</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
-<caption><span>Classes in <a href="../../../../../../org/jamesframework/core/search/algo/package-summary.html">org.jamesframework.core.search.algo</a> that implement <a href="../../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Class and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a>&lt;SolutionType extends <a href="../../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span></code>
-<div class="block">
- A basic parallel search runs several (heterogeneous) searches in parallel and keeps track of the best solution found
- by any of these searches.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a>&lt;SolutionType extends <a href="../../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span></code>
-<div class="block">
- Parallel tempering algorithm which uses several Metropolis search replicas with different temperatures in a given range,
- where good solutions are pushed towards cool replicas for the sake of convergence, while bad solutions are pushed towards
- hot replicas in an attempt to find further improvements.</div>
 </td>
 </tr>
 </tbody>
@@ -189,8 +151,8 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>interface&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/listeners/NeighbourhoodSearchListener.html" title="interface in org.jamesframework.core.search.listeners">NeighbourhoodSearchListener</a>&lt;SolutionType extends <a href="../../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span></code>
-<div class="block">Extends the general search listener interface with a neighbourhood search specific callback, fired when the current solution
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/listeners/LocalSearchListener.html" title="interface in org.jamesframework.core.search.listeners">LocalSearchListener</a>&lt;SolutionType extends <a href="../../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span></code>
+<div class="block">Extends the general search listener interface with a local search specific callback, fired when the current solution
  has been modified.</div>
 </td>
 </tr>
@@ -205,10 +167,10 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/listeners/EmptyNeighbourhoodSearchListener.html" title="class in org.jamesframework.core.search.listeners">EmptyNeighbourhoodSearchListener</a>&lt;SolutionType extends <a href="../../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span></code>
-<div class="block">An empty neighbourhood search listener contains empty implementations of all methods in <a href="../../../../../../org/jamesframework/core/search/listeners/NeighbourhoodSearchListener.html" title="interface in org.jamesframework.core.search.listeners"><code>NeighbourhoodSearchListener</code></a>,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/listeners/EmptyLocalSearchListener.html" title="class in org.jamesframework.core.search.listeners">EmptyLocalSearchListener</a>&lt;SolutionType extends <a href="../../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span></code>
+<div class="block">An empty local search listener contains empty implementations of all methods in <a href="../../../../../../org/jamesframework/core/search/listeners/LocalSearchListener.html" title="interface in org.jamesframework.core.search.listeners"><code>LocalSearchListener</code></a>,
  acting as an easy entry point for custom search listeners which desire to listen only to a subset of events fired
- by a search, by overriding the corresponding empty implementation.</div>
+ by a search, by overriding the corresponding empty implementations.</div>
 </td>
 </tr>
 <tr class="rowColor">

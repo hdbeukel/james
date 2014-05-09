@@ -104,6 +104,9 @@ var activeTableTab = "activeTableTab";
 <li><a href="../../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">org.jamesframework.core.search.Search</a>&lt;SolutionType&gt;</li>
 <li>
 <ul class="inheritance">
+<li><a href="../../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">org.jamesframework.core.search.LocalSearch</a>&lt;SolutionType&gt;</li>
+<li>
+<ul class="inheritance">
 <li><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">org.jamesframework.core.search.NeighbourhoodSearch</a>&lt;SolutionType&gt;</li>
 <li>
 <ul class="inheritance">
@@ -111,6 +114,8 @@ var activeTableTab = "activeTableTab";
 <li>
 <ul class="inheritance">
 <li>org.jamesframework.core.search.algo.vns.VariableNeighbourhoodSearch&lt;SolutionType&gt;</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -137,10 +142,10 @@ var activeTableTab = "activeTableTab";
 extends <a href="../../../../../../org/jamesframework/core/search/MultiNeighbourhoodSearch.html" title="class in org.jamesframework.core.search">MultiNeighbourhoodSearch</a>&lt;SolutionType&gt;</pre>
 <div class="block"><p>
  Variable neighbourhood search (VNS) algorithm. This search applies a series of neighbourhoods for random 
- shaking of the current solution in combination with an arbitrary other neighbourhood search algorithm to
- modify the solution obtained after shaking, in an attempt to find a global improvement. More precisely, given
- a series of \(n_s\) shaking neighbourhoods \(N_i, i=0, ..., n_s-1\) and an arbitrary other neighbourhood search
- algorithm \(A\), each step of VNS consists of:
+ shaking of the current solution in combination with an arbitrary other local search algorithm L to modify
+ the solution obtained after shaking, in an attempt to find a global improvement. More precisely, given a
+ series of \(n_s\) shaking neighbourhoods \(N_i, i=0, ..., n_s-1\) and an arbitrary other local search
+ algorithm \(L\), each step of VNS consists of:
  </p>
  <ol>
   <li>
@@ -148,40 +153,41 @@ extends <a href="../../../../../../org/jamesframework/core/search/MultiNeighbour
    neighbourhood \(N_s\) (initially, \(s = 0\)).
   </li>
   <li>
-   <b>Modification</b>: apply algorithm \(A\) with \(x'\) as its initial solution, until it terminates.
-   The best solution found by \(A\) is referred to as \(x''\).
+   <b>Local search</b>: apply algorithm \(L\) with \(x'\) as its initial solution, until it terminates.
+   The best solution found by \(L\) is referred to as \(x''\).
   </li>
   <li>
    <b>Acceptance</b>: if \(x''\) is an improvement over \(x\) (i.e. \(x''\) is not rejected and has a better
    evaluation than \(x\)), it is accepted as the new current solution and \(s\) is reset to 0. Else, \(x\)
    remains the current solution and \(s\) is increased by one, so that the next shaking neighbourhood will be
-   applied in the next step. If \(s\) becomes equal to the number of shaking neighbourhoods \(n_s\), it is also
+   applied in the next step. If \(s\) becomes equal to the number of shaking neighbourhoods \(n_s\), it is
    cyclically reset to 0. Therefore, VNS never terminates internally but continues until a stop criterion is met.
   </li>
  </ol>
  <p>
- By default, VNS applies variable neighbourhood descent (VND) as the neighbourhood search algorithm used to modify
+ By default, VNS applies variable neighbourhood descent (VND) as the local search algorithm L used to modify
  \(x'\). The list of neighbourhoods of VND is not required to be related to the shaking neighbourhoods of VNS. As VND
  is computationally intensive (it generates all neighbours in the current neighbourhood in every step), smaller
  neighbourhoods are often applied for VND compared to the shaking neighbourhoods of VNS. The latter may grow larger
- without computational issues as they are only used for random sampling.
+ without computational concerns as they are only used for random sampling.
  </p>
  <p>
- It is possible to use any other neighbourhood search algorithm \(A\), by setting a custom neighbourhood search factory.
- In every step, a fresh instance of \(A\) is created. Usually, an algorithm is applied that terminates internally at
- some point in time (VND, steepest descent, ...). Alternatively, a never ending algorithm may be applied in combination
- with some stop criterion (random descent with maximum runtime, ...).
+ It is possible to use any other local search algorithm \(L\), by specifying a custom neighbourhood search factory.
+ In every step, a fresh instance of \(L\) is created to be applied to solution \(x'\); afterwards, this instance is
+ disposed. Usually, an algorithm is applied that terminates internally at some point in time (VND, steepest descent,
+ ...). Alternatively, a never ending algorithm may be applied in combination with some stop criterion (e.g. random
+ descent with a maximum runtime).
  </p>
  <p>
- The combination of shaking and modification is considered as one move in the VNS algorithm, which is only accepted
+ The combination of shaking and local search is considered to be one move in the VNS algorithm, which is only accepted
  if it yields a global improvement. Therefore, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumAcceptedMoves--"><code>NeighbourhoodSearch.getNumAcceptedMoves()</code></a> and <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumRejectedMoves--"><code>NeighbourhoodSearch.getNumRejectedMoves()</code></a>
- reflect the number of times that such move has been accepted and rejected, respectively.
+ reflect the number of times that such complex move has been accepted and rejected, respectively.
  </p>
  <p>
  Note that <a href="../../../../../../org/jamesframework/core/search/MultiNeighbourhoodSearch.html#getNeighbourhoods--"><code>MultiNeighbourhoodSearch.getNeighbourhoods()</code></a> returns the list of shaking neighbourhoods applied by VNS, which are, in
- general, unrelated to the neighbourhoods applied by the default VND modification algorithm. All internals of the
- applied modification algorithm \(A\) are shielded inside this algorithm, i.e. the algorithm is applied as a black
- box to transform a given solution \(x'\) into another solution \(x''\).
+ general, unrelated to the neighbourhoods applied by the default VND local search algorithm. All internals of the
+ applied local search algorithm \(L\) are shielded inside this algorithm, i.e. the algorithm is simply applied as
+ a black box to transform a given solution \(x'\) into another solution \(x''\).
  </p></div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
@@ -209,25 +215,25 @@ extends <a href="../../../../../../org/jamesframework/core/search/MultiNeighbour
                            <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&gt;&nbsp;neighs,
                            <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&gt;&nbsp;vndNeighs)</code>
 <div class="block">Creates a new variable neighbourhood search, specifying the problem to solve, the neighbourhoods used for shaking
- and the neighbourhoods used by the default VND modification algorithm.</div>
+ and the neighbourhoods used by the default VND local search algorithm.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#VariableNeighbourhoodSearch-org.jamesframework.core.problems.Problem-java.util.List-org.jamesframework.core.util.NeighbourhoodSearchFactory-">VariableNeighbourhoodSearch</a></span>(<a href="../../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;problem,
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#VariableNeighbourhoodSearch-org.jamesframework.core.problems.Problem-java.util.List-org.jamesframework.core.util.LocalSearchFactory-">VariableNeighbourhoodSearch</a></span>(<a href="../../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;problem,
                            <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&gt;&nbsp;neighs,
-                           <a href="../../../../../../org/jamesframework/core/util/NeighbourhoodSearchFactory.html" title="interface in org.jamesframework.core.util">NeighbourhoodSearchFactory</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;modificationAlgorithmFactory)</code>
+                           <a href="../../../../../../org/jamesframework/core/util/LocalSearchFactory.html" title="interface in org.jamesframework.core.util">LocalSearchFactory</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;localSearchFactory)</code>
 <div class="block">Creates a new variable neighbourhood search, specifying the problem to solve, the neighbourhoods used for
- shaking in VNS, and a factory to create instances of a custom modification algorithm \(A\) to be applied to
+ shaking in VNS, and a factory to create instances of a custom local search algorithm \(L\) to be applied to
  modify solutions obtained after shaking.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#VariableNeighbourhoodSearch-java.lang.String-org.jamesframework.core.problems.Problem-java.util.List-org.jamesframework.core.util.NeighbourhoodSearchFactory-">VariableNeighbourhoodSearch</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#VariableNeighbourhoodSearch-java.lang.String-org.jamesframework.core.problems.Problem-java.util.List-org.jamesframework.core.util.LocalSearchFactory-">VariableNeighbourhoodSearch</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
                            <a href="../../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;problem,
                            <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&gt;&nbsp;neighs,
-                           <a href="../../../../../../org/jamesframework/core/util/NeighbourhoodSearchFactory.html" title="interface in org.jamesframework.core.util">NeighbourhoodSearchFactory</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;modificationAlgorithmFactory)</code>
+                           <a href="../../../../../../org/jamesframework/core/util/LocalSearchFactory.html" title="interface in org.jamesframework.core.util">LocalSearchFactory</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;localSearchFactory)</code>
 <div class="block">Creates a new variable neighbourhood search, specifying the problem to solve, the neighbourhoods used for
- shaking in VNS, a factory to create instances of a custom modification algorithm \(A\) to be applied to
+ shaking in VNS, a factory to create instances of a custom local search algorithm \(L\) to be applied to
  modify solutions obtained after shaking, and a custom search name.</div>
 </td>
 </tr>
@@ -247,10 +253,10 @@ extends <a href="../../../../../../org/jamesframework/core/search/MultiNeighbour
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/util/NeighbourhoodSearchFactory.html" title="interface in org.jamesframework.core.util">NeighbourhoodSearchFactory</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#getModificationAlgorithmFactory--">getModificationAlgorithmFactory</a></span>()</code>
-<div class="block">Get the factory used to create instances of the modification algorithm which is applied to modify
- solutions obtained by shaking.</div>
+<td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/util/LocalSearchFactory.html" title="interface in org.jamesframework.core.util">LocalSearchFactory</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#getLocalSearchFactory--">getLocalSearchFactory</a></span>()</code>
+<div class="block">Get the factory used to create instances of the local search algorithm which is applied to modify
+ solutions obtained after shaking.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -261,9 +267,9 @@ extends <a href="../../../../../../org/jamesframework/core/search/MultiNeighbour
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#setModificationAlgorithmFactory-org.jamesframework.core.util.NeighbourhoodSearchFactory-">setModificationAlgorithmFactory</a></span>(<a href="../../../../../../org/jamesframework/core/util/NeighbourhoodSearchFactory.html" title="interface in org.jamesframework.core.util">NeighbourhoodSearchFactory</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;modificationAlgorithmFactory)</code>
-<div class="block">Set a custom factory to create instances of the modification algorithm to be applied to modify solutions
- obtained by shaking.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#setModificationAlgorithmFactory-org.jamesframework.core.util.LocalSearchFactory-">setModificationAlgorithmFactory</a></span>(<a href="../../../../../../org/jamesframework/core/util/LocalSearchFactory.html" title="interface in org.jamesframework.core.util">LocalSearchFactory</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;localSearchFactory)</code>
+<div class="block">Set a custom factory to create instances of the local search algorithm to be applied to modify solutions
+ obtained after shaking.</div>
 </td>
 </tr>
 </table>
@@ -279,7 +285,14 @@ extends <a href="../../../../../../org/jamesframework/core/search/MultiNeighbour
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.jamesframework.core.search.<a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></h3>
-<code><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#acceptMove-org.jamesframework.core.search.neigh.Move-">acceptMove</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#addSearchListener-org.jamesframework.core.search.listeners.SearchListener-">addSearchListener</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#evaluateMove-org.jamesframework.core.search.neigh.Move-">evaluateMove</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getCurrentSolution--">getCurrentSolution</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getCurrentSolutionEvaluation--">getCurrentSolutionEvaluation</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getMoveWithLargestDelta-java.util.Collection-boolean-">getMoveWithLargestDelta</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumAcceptedMoves--">getNumAcceptedMoves</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumRejectedMoves--">getNumRejectedMoves</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#incNumAcceptedMoves-long-">incNumAcceptedMoves</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#incNumRejectedMoves-long-">incNumRejectedMoves</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#isImprovement-org.jamesframework.core.search.neigh.Move-">isImprovement</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#rejectMove--">rejectMove</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#searchStarted--">searchStarted</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#setCurrentSolution-SolutionType-">setCurrentSolution</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#setEvaluatedMoveCache-org.jamesframework.core.search.cache.EvaluatedMoveCache-">setEvaluatedMoveCache</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#updateCurrentSolution-SolutionType-double-">updateCurrentSolution</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#validateMove-org.jamesframework.core.search.neigh.Move-">validateMove</a></code></li>
+<code><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#acceptMove-org.jamesframework.core.search.neigh.Move-">acceptMove</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#evaluateMove-org.jamesframework.core.search.neigh.Move-">evaluateMove</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getMoveWithLargestDelta-java.util.Collection-boolean-">getMoveWithLargestDelta</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumAcceptedMoves--">getNumAcceptedMoves</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumRejectedMoves--">getNumRejectedMoves</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#incNumAcceptedMoves-long-">incNumAcceptedMoves</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#incNumRejectedMoves-long-">incNumRejectedMoves</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#isImprovement-org.jamesframework.core.search.neigh.Move-">isImprovement</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#rejectMove--">rejectMove</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#searchStarted--">searchStarted</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#setEvaluatedMoveCache-org.jamesframework.core.search.cache.EvaluatedMoveCache-">setEvaluatedMoveCache</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#updateCurrentSolution-SolutionType-double-">updateCurrentSolution</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#validateMove-org.jamesframework.core.search.neigh.Move-">validateMove</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.org.jamesframework.core.search.LocalSearch">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;org.jamesframework.core.search.<a href="../../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></h3>
+<code><a href="../../../../../../org/jamesframework/core/search/LocalSearch.html#addSearchListener-org.jamesframework.core.search.listeners.SearchListener-">addSearchListener</a>, <a href="../../../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolution--">getCurrentSolution</a>, <a href="../../../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionEvaluation--">getCurrentSolutionEvaluation</a>, <a href="../../../../../../org/jamesframework/core/search/LocalSearch.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener</a>, <a href="../../../../../../org/jamesframework/core/search/LocalSearch.html#setCurrentSolution-SolutionType-">setCurrentSolution</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.org.jamesframework.core.search.Search">
@@ -319,20 +332,20 @@ extends <a href="../../../../../../org/jamesframework/core/search/MultiNeighbour
                                    <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&gt;&nbsp;neighs,
                                    <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&gt;&nbsp;vndNeighs)</pre>
 <div class="block">Creates a new variable neighbourhood search, specifying the problem to solve, the neighbourhoods used for shaking
- and the neighbourhoods used by the default VND modification algorithm. None of the arguments can be <code>null</code>
+ and the neighbourhoods used by the default VND local search algorithm. None of the arguments can be <code>null</code>
  and the lists of neighbourhoods can not be empty. The search name defaults to "VariableNeighbourhoodSearch".</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>problem</code> - problem to solve</dd>
 <dd><code>neighs</code> - list of shaking neighbourhoods used by VNS</dd>
-<dd><code>vndNeighs</code> - list of neighbourhoods applied by VND, which is used as the default modification algorithm</dd>
+<dd><code>vndNeighs</code> - list of neighbourhoods applied by VND, which is used as the default local search algorithm</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code>, <code>neighs</code> or <code>vndNeighs</code> are <code>null</code></dd>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>neighs</code> or <code>vndNeighs</code> are empty</dd>
 </dl>
 </li>
 </ul>
-<a name="VariableNeighbourhoodSearch-org.jamesframework.core.problems.Problem-java.util.List-org.jamesframework.core.util.NeighbourhoodSearchFactory-">
+<a name="VariableNeighbourhoodSearch-org.jamesframework.core.problems.Problem-java.util.List-org.jamesframework.core.util.LocalSearchFactory-">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -340,24 +353,24 @@ extends <a href="../../../../../../org/jamesframework/core/search/MultiNeighbour
 <h4>VariableNeighbourhoodSearch</h4>
 <pre>public&nbsp;VariableNeighbourhoodSearch(<a href="../../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;problem,
                                    <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&gt;&nbsp;neighs,
-                                   <a href="../../../../../../org/jamesframework/core/util/NeighbourhoodSearchFactory.html" title="interface in org.jamesframework.core.util">NeighbourhoodSearchFactory</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;modificationAlgorithmFactory)</pre>
+                                   <a href="../../../../../../org/jamesframework/core/util/LocalSearchFactory.html" title="interface in org.jamesframework.core.util">LocalSearchFactory</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;localSearchFactory)</pre>
 <div class="block">Creates a new variable neighbourhood search, specifying the problem to solve, the neighbourhoods used for
- shaking in VNS, and a factory to create instances of a custom modification algorithm \(A\) to be applied to
+ shaking in VNS, and a factory to create instances of a custom local search algorithm \(L\) to be applied to
  modify solutions obtained after shaking. None of the arguments can be <code>null</code> and the list of shaking
  neighbourhoods can not be empty. The search name defaults to "VariableNeighbourhoodSearch".</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>problem</code> - problem to solve</dd>
 <dd><code>neighs</code> - list of shaking neighbourhoods used by VNS</dd>
-<dd><code>modificationAlgorithmFactory</code> - factory to create instances of the modification algorithm \(A\) (neighbourhood search)</dd>
+<dd><code>localSearchFactory</code> - factory to create instances of the local search algorithm \(L\)</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code>, <code>neighs</code> or
-                              <code>modificationAlgorithmFactory</code> are <code>null</code></dd>
+                              <code>localSearchFactory</code> are <code>null</code></dd>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>neighs</code> is empty</dd>
 </dl>
 </li>
 </ul>
-<a name="VariableNeighbourhoodSearch-java.lang.String-org.jamesframework.core.problems.Problem-java.util.List-org.jamesframework.core.util.NeighbourhoodSearchFactory-">
+<a name="VariableNeighbourhoodSearch-java.lang.String-org.jamesframework.core.problems.Problem-java.util.List-org.jamesframework.core.util.LocalSearchFactory-">
 <!--   -->
 </a>
 <ul class="blockListLast">
@@ -366,9 +379,9 @@ extends <a href="../../../../../../org/jamesframework/core/search/MultiNeighbour
 <pre>public&nbsp;VariableNeighbourhoodSearch(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
                                    <a href="../../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;problem,
                                    <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&gt;&nbsp;neighs,
-                                   <a href="../../../../../../org/jamesframework/core/util/NeighbourhoodSearchFactory.html" title="interface in org.jamesframework.core.util">NeighbourhoodSearchFactory</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;modificationAlgorithmFactory)</pre>
+                                   <a href="../../../../../../org/jamesframework/core/util/LocalSearchFactory.html" title="interface in org.jamesframework.core.util">LocalSearchFactory</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;localSearchFactory)</pre>
 <div class="block">Creates a new variable neighbourhood search, specifying the problem to solve, the neighbourhoods used for
- shaking in VNS, a factory to create instances of a custom modification algorithm \(A\) to be applied to
+ shaking in VNS, a factory to create instances of a custom local search algorithm \(L\) to be applied to
  modify solutions obtained after shaking, and a custom search name. Only the search name can be <code>null</code>
  in which case the default name "VariableNeighbourhoodSearch" is assigned. The list of shaking neighbourhoods
  can not be empty.</div>
@@ -377,10 +390,10 @@ extends <a href="../../../../../../org/jamesframework/core/search/MultiNeighbour
 <dd><code>name</code> - custom search name</dd>
 <dd><code>problem</code> - problem to solve</dd>
 <dd><code>neighs</code> - list of shaking neighbourhoods used by VNS</dd>
-<dd><code>modificationAlgorithmFactory</code> - factory to create instances of the modification algorithm \(A\) (neighbourhood search)</dd>
+<dd><code>localSearchFactory</code> - factory to create instances of the local search algorithm \(L\)</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code>, <code>neighs</code> or
-                              <code>modificationAlgorithmFactory</code> are <code>null</code></dd>
+                              <code>localSearchFactory</code> are <code>null</code></dd>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>neighs</code> is empty</dd>
 </dl>
 </li>
@@ -393,36 +406,36 @@ extends <a href="../../../../../../org/jamesframework/core/search/MultiNeighbour
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="setModificationAlgorithmFactory-org.jamesframework.core.util.NeighbourhoodSearchFactory-">
+<a name="setModificationAlgorithmFactory-org.jamesframework.core.util.LocalSearchFactory-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setModificationAlgorithmFactory</h4>
-<pre>public&nbsp;void&nbsp;setModificationAlgorithmFactory(<a href="../../../../../../org/jamesframework/core/util/NeighbourhoodSearchFactory.html" title="interface in org.jamesframework.core.util">NeighbourhoodSearchFactory</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;modificationAlgorithmFactory)</pre>
-<div class="block">Set a custom factory to create instances of the modification algorithm to be applied to modify solutions
- obtained by shaking. The given factory can not be <code>null</code>.</div>
+<pre>public&nbsp;void&nbsp;setModificationAlgorithmFactory(<a href="../../../../../../org/jamesframework/core/util/LocalSearchFactory.html" title="interface in org.jamesframework.core.util">LocalSearchFactory</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;localSearchFactory)</pre>
+<div class="block">Set a custom factory to create instances of the local search algorithm to be applied to modify solutions
+ obtained after shaking. The given factory can not be <code>null</code>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>modificationAlgorithmFactory</code> - custom modification algorithm factory</dd>
+<dd><code>localSearchFactory</code> - custom local search factory</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>modificationAlgorithmFactory</code> is <code>null</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>localSearchFactory</code> is <code>null</code></dd>
 </dl>
 </li>
 </ul>
-<a name="getModificationAlgorithmFactory--">
+<a name="getLocalSearchFactory--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getModificationAlgorithmFactory</h4>
-<pre>public&nbsp;<a href="../../../../../../org/jamesframework/core/util/NeighbourhoodSearchFactory.html" title="interface in org.jamesframework.core.util">NeighbourhoodSearchFactory</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;getModificationAlgorithmFactory()</pre>
-<div class="block">Get the factory used to create instances of the modification algorithm which is applied to modify
- solutions obtained by shaking. By default, this factory creates variable neighbourhood descent (VND)
- searches, but a custom factory may have been set.</div>
+<h4>getLocalSearchFactory</h4>
+<pre>public&nbsp;<a href="../../../../../../org/jamesframework/core/util/LocalSearchFactory.html" title="interface in org.jamesframework.core.util">LocalSearchFactory</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="type parameter in VariableNeighbourhoodSearch">SolutionType</a>&gt;&nbsp;getLocalSearchFactory()</pre>
+<div class="block">Get the factory used to create instances of the local search algorithm which is applied to modify
+ solutions obtained after shaking. By default, this factory creates variable neighbourhood descent
+ (VND) searches, but a custom factory may have been set.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>modification algorithm factory</dd>
+<dd>local search factory</dd>
 </dl>
 </li>
 </ul>
@@ -436,10 +449,10 @@ extends <a href="../../../../../../org/jamesframework/core/search/MultiNeighbour
 <div class="block">Performs a step of VNS. One step consists of:
  <ol>
   <li>Shaking using the current shaking neighbourhood</li>
-  <li>Modification using a new instance of the modification algorithm (neighbourhood search)</li>
+  <li>Modification using a new instance of the local search algorithm</li>
   <li>
-   Acceptance of modified solution if it is a global improvement, else, the next shaking neighbourhood
-   will be used (cyclic).
+   Acceptance of modified solution if it is a global improvement. In such case, the search continues
+   with the first shaking neighbourhood; else, the next shaking neighbourhood will be used (cyclically).
   </li>
  </ol></div>
 <dl>

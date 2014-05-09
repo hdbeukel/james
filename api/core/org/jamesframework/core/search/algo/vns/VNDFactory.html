@@ -114,13 +114,13 @@ var activeTableTab = "activeTableTab";
 </dl>
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="../../../../../../org/jamesframework/core/util/NeighbourhoodSearchFactory.html" title="interface in org.jamesframework.core.util">NeighbourhoodSearchFactory</a>&lt;SolutionType&gt;</dd>
+<dd><a href="../../../../../../org/jamesframework/core/util/LocalSearchFactory.html" title="interface in org.jamesframework.core.util">LocalSearchFactory</a>&lt;SolutionType&gt;</dd>
 </dl>
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">VNDFactory&lt;SolutionType extends <a href="../../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span>
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
-implements <a href="../../../../../../org/jamesframework/core/util/NeighbourhoodSearchFactory.html" title="interface in org.jamesframework.core.util">NeighbourhoodSearchFactory</a>&lt;SolutionType&gt;</pre>
+implements <a href="../../../../../../org/jamesframework/core/util/LocalSearchFactory.html" title="interface in org.jamesframework.core.util">LocalSearchFactory</a>&lt;SolutionType&gt;</pre>
 <div class="block">A VND factory creates a variable neighbourhood descent search, where the list of neighbourhoods to apply are
  set upon construction of the factory. By default, variable neighbourhood search uses a VND factory to generate
  VND searches that modify the solution obtained by randomly sampling a neighbour of the current solution using
@@ -233,7 +233,7 @@ implements <a href="../../../../../../org/jamesframework/core/util/Neighbourhood
  set at construction of the factory.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../../org/jamesframework/core/util/NeighbourhoodSearchFactory.html#create-org.jamesframework.core.problems.Problem-">create</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/jamesframework/core/util/NeighbourhoodSearchFactory.html" title="interface in org.jamesframework.core.util">NeighbourhoodSearchFactory</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VNDFactory.html" title="type parameter in VNDFactory">SolutionType</a> extends <a href="../../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</code></dd>
+<dd><code><a href="../../../../../../org/jamesframework/core/util/LocalSearchFactory.html#create-org.jamesframework.core.problems.Problem-">create</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/jamesframework/core/util/LocalSearchFactory.html" title="interface in org.jamesframework.core.util">LocalSearchFactory</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VNDFactory.html" title="type parameter in VNDFactory">SolutionType</a> extends <a href="../../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>problem</code> - problem to solve</dd>
 <dt><span class="returnLabel">Returns:</span></dt>

@@ -102,18 +102,6 @@
 <div class="block">Variable neighbourhood searches.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="#org.jamesframework.core.search.listeners">org.jamesframework.core.search.listeners</a></td>
-<td class="colLast">
-<div class="block">Search listeners.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="#org.jamesframework.core.util">org.jamesframework.core.util</a></td>
-<td class="colLast">
-<div class="block">General utilities.</div>
-</td>
-</tr>
 </tbody>
 </table>
 </li>
@@ -232,54 +220,6 @@
 <td class="colLast"><span class="typeNameLabel">VNDFactory.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/vns/VNDFactory.html#create-org.jamesframework.core.problems.Problem-">create</a></span>(<a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/vns/VNDFactory.html" title="type parameter in VNDFactory">SolutionType</a>&gt;&nbsp;problem)</code>
 <div class="block">Create a VND search to solve the given problem, using the list of neighbourhoods
  set at construction of the factory.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="org.jamesframework.core.search.listeners">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a> in <a href="../../../../../org/jamesframework/core/search/listeners/package-summary.html">org.jamesframework.core.search.listeners</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../org/jamesframework/core/search/listeners/package-summary.html">org.jamesframework.core.search.listeners</a> with parameters of type <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">NeighbourhoodSearchListener.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/listeners/NeighbourhoodSearchListener.html#modifiedCurrentSolution-org.jamesframework.core.search.NeighbourhoodSearch-SolutionType-double-">modifiedCurrentSolution</a></span>(<a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/NeighbourhoodSearchListener.html" title="type parameter in NeighbourhoodSearchListener">SolutionType</a>&gt;&nbsp;search,
-                       <a href="../../../../../org/jamesframework/core/search/listeners/NeighbourhoodSearchListener.html" title="type parameter in NeighbourhoodSearchListener">SolutionType</a>&nbsp;newCurrentSolution,
-                       double&nbsp;newCurrentSolutionEvaluation)</code>
-<div class="block">Fired whenever a new current solution has been adopted.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">EmptyNeighbourhoodSearchListener.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/listeners/EmptyNeighbourhoodSearchListener.html#modifiedCurrentSolution-org.jamesframework.core.search.NeighbourhoodSearch-SolutionType-double-">modifiedCurrentSolution</a></span>(<a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/EmptyNeighbourhoodSearchListener.html" title="type parameter in EmptyNeighbourhoodSearchListener">SolutionType</a>&gt;&nbsp;search,
-                       <a href="../../../../../org/jamesframework/core/search/listeners/EmptyNeighbourhoodSearchListener.html" title="type parameter in EmptyNeighbourhoodSearchListener">SolutionType</a>&nbsp;newCurrentSolution,
-                       double&nbsp;newCurrentSolutionEvaluation)</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="org.jamesframework.core.util">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a> in <a href="../../../../../org/jamesframework/core/util/package-summary.html">org.jamesframework.core.util</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../org/jamesframework/core/util/package-summary.html">org.jamesframework.core.util</a> that return <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a>&lt;<a href="../../../../../org/jamesframework/core/util/NeighbourhoodSearchFactory.html" title="type parameter in NeighbourhoodSearchFactory">SolutionType</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">NeighbourhoodSearchFactory.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/util/NeighbourhoodSearchFactory.html#create-org.jamesframework.core.problems.Problem-">create</a></span>(<a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/util/NeighbourhoodSearchFactory.html" title="type parameter in NeighbourhoodSearchFactory">SolutionType</a>&gt;&nbsp;problem)</code>
-<div class="block">Create a neighbourhood search, given the problem to solve.</div>
 </td>
 </tr>
 </tbody>

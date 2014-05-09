@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -51,7 +51,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../../org/jamesframework/core/search/algo/RandomDescent.html" title="class in org.jamesframework.core.search.algo"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../../org/jamesframework/core/search/algo/PipedLocalSearch.html" title="class in org.jamesframework.core.search.algo"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?org/jamesframework/core/search/algo/ParallelTempering.html" target="_top">Frames</a></li>
@@ -104,6 +104,9 @@ var activeTableTab = "activeTableTab";
 <li><a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">org.jamesframework.core.search.Search</a>&lt;SolutionType&gt;</li>
 <li>
 <ul class="inheritance">
+<li><a href="../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">org.jamesframework.core.search.LocalSearch</a>&lt;SolutionType&gt;</li>
+<li>
+<ul class="inheritance">
 <li><a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">org.jamesframework.core.search.NeighbourhoodSearch</a>&lt;SolutionType&gt;</li>
 <li>
 <ul class="inheritance">
@@ -111,6 +114,8 @@ var activeTableTab = "activeTableTab";
 <li>
 <ul class="inheritance">
 <li>org.jamesframework.core.search.algo.ParallelTempering&lt;SolutionType&gt;</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -129,13 +134,12 @@ var activeTableTab = "activeTableTab";
 </dl>
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</a>, <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;SolutionType&gt;</dd>
+<dd><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">ParallelTempering&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span>
-extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourhoodSearch.html" title="class in org.jamesframework.core.search">SingleNeighbourhoodSearch</a>&lt;SolutionType&gt;
-implements <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;SolutionType&gt;</pre>
+extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourhoodSearch.html" title="class in org.jamesframework.core.search">SingleNeighbourhoodSearch</a>&lt;SolutionType&gt;</pre>
 <div class="block"><p>
  Parallel tempering algorithm which uses several Metropolis search replicas with different temperatures in a given range,
  where good solutions are pushed towards cool replicas for the sake of convergence, while bad solutions are pushed towards
@@ -158,13 +162,16 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
   </li>
  </ol>
  <p>
+ All replicas use the same neighbourhood which is specified when creating the parallel tempering search. If an initial
+ solution is set, a copy of this solution is set as initial solution in each replica. Else, each replica starts with a
+ distinct randomly generated solution.
+ </p>
+ <p>
  The overall best solution found by all replicas is tracked and eventually returned by the parallel tempering algorithm.
  The main algorithm does not actively generate nor apply any moves to its current solution, but simply updates it when a
- replica found a new global improvement, in which case the main algorithm's best solution is also updated. Only after
- explicitely setting a current solution using <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#setCurrentSolution-SolutionType-"><code>setCurrentSolution(Solution)</code></a>, the main algorithm's current
- solution may differ from its best solution, until a new global best solution is found and both are again updated.
- Note that <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#setCurrentSolution-SolutionType-"><code>setCurrentSolution(Solution)</code></a> also passes this current solution to each Metropolis replica, and
- may for example be used to set the same custom initial solution for every replica.
+ replica has found a new global improvement, in which case the best solution is also updated. After setting a current
+ solution using <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#setCurrentSolution-SolutionType-"><code>setCurrentSolution(Solution)</code></a>, the main algorithm's current solution may differ from its best
+ solution, until a new global improvement is found and both are again updated.
  </p>
  <p>
  The reported number of accepted and rejected moves (see <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumAcceptedMoves--"><code>NeighbourhoodSearch.getNumAcceptedMoves()</code></a> and <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumRejectedMoves--"><code>NeighbourhoodSearch.getNumRejectedMoves()</code></a>)
@@ -256,79 +263,42 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#newBestSolution-org.jamesframework.core.search.Search-SolutionType-double-">newBestSolution</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&nbsp;replica,
-               <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&nbsp;newBestSolution,
-               double&nbsp;newBestSolutionEvaluation)</code>
-<div class="block">Parallel tempering algorithm listens to its Metropolis replicas: whenever a new best solution is reported inside a replica, it is
- verified whether this is also a global improvement.</div>
-</td>
-</tr>
-<tr id="i3" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#searchDisposed--">searchDisposed</a></span>()</code>
 <div class="block">When disposing a parallel tempering search, it will dispose each contained Metropolis replica and will
  shut down the thread pool used for concurrent execution of replicas.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#searchStarted-org.jamesframework.core.search.Search-">searchStarted</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&nbsp;replica)</code>
-<div class="block">Empty callback: no action taken here when a replica has started.</div>
-</td>
-</tr>
-<tr id="i5" class="rowColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#searchStep--">searchStep</a></span>()</code>
 <div class="block">Perform a search step, in which every replica performs several steps and solutions of adjacent
  replicas may be swapped.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#searchStopped-org.jamesframework.core.search.Search-">searchStopped</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&nbsp;replica)</code>
-<div class="block">Parallel tempering algorithm listens to its Metropolis replicas: whenever a replica has finished its current run,
- the number of accepted and rejected moves during this run are accounted for by increase the global counters.</div>
-</td>
-</tr>
-<tr id="i7" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#setCurrentSolution-SolutionType-">setCurrentSolution</a></span>(<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&nbsp;solution)</code>
 <div class="block">Set a custom current solution, which is passed to each replica.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#setNeighbourhood-org.jamesframework.core.search.neigh.Neighbourhood-">setNeighbourhood</a></span>(<a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&nbsp;neighbourhood)</code>
 <div class="block">Set the same neighbourhood for each replica.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#setReplicaSteps-int-">setReplicaSteps</a></span>(int&nbsp;steps)</code>
 <div class="block">Sets the number of steps performed by each replica in every iteration of the global parallel tempering
  algorithm, before considering solution swaps.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#setTemperatureScaleFactor-double-">setTemperatureScaleFactor</a></span>(double&nbsp;scale)</code>
 <div class="block">Set the same temperature scale factor \(k &gt; 0\) for each replica.</div>
-</td>
-</tr>
-<tr id="i11" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#statusChanged-org.jamesframework.core.search.Search-org.jamesframework.core.search.SearchStatus-">statusChanged</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&nbsp;search,
-             <a href="../../../../../org/jamesframework/core/search/SearchStatus.html" title="enum in org.jamesframework.core.search">SearchStatus</a>&nbsp;newStatus)</code>
-<div class="block">Empty callback: no action taken here when a replica enters a new status.</div>
-</td>
-</tr>
-<tr id="i12" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#stepCompleted-org.jamesframework.core.search.Search-long-">stepCompleted</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&nbsp;replica,
-             long&nbsp;numSteps)</code>
-<div class="block">Parallel tempering algorithm listens to its Metropolis replicas: whenever a replica has completed a step, it is verified whether
- the desired number of steps have been performed and, if so, the replica is stopped.</div>
 </td>
 </tr>
 </table>
@@ -344,7 +314,14 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.jamesframework.core.search.<a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></h3>
-<code><a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#acceptMove-org.jamesframework.core.search.neigh.Move-">acceptMove</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#addSearchListener-org.jamesframework.core.search.listeners.SearchListener-">addSearchListener</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#evaluateMove-org.jamesframework.core.search.neigh.Move-">evaluateMove</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getCurrentSolution--">getCurrentSolution</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getCurrentSolutionEvaluation--">getCurrentSolutionEvaluation</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getMoveWithLargestDelta-java.util.Collection-boolean-">getMoveWithLargestDelta</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumAcceptedMoves--">getNumAcceptedMoves</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumRejectedMoves--">getNumRejectedMoves</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#incNumAcceptedMoves-long-">incNumAcceptedMoves</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#incNumRejectedMoves-long-">incNumRejectedMoves</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#isImprovement-org.jamesframework.core.search.neigh.Move-">isImprovement</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#rejectMove--">rejectMove</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#searchStarted--">searchStarted</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#setEvaluatedMoveCache-org.jamesframework.core.search.cache.EvaluatedMoveCache-">setEvaluatedMoveCache</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#updateCurrentSolution-SolutionType-double-">updateCurrentSolution</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#validateMove-org.jamesframework.core.search.neigh.Move-">validateMove</a></code></li>
+<code><a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#acceptMove-org.jamesframework.core.search.neigh.Move-">acceptMove</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#evaluateMove-org.jamesframework.core.search.neigh.Move-">evaluateMove</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getMoveWithLargestDelta-java.util.Collection-boolean-">getMoveWithLargestDelta</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumAcceptedMoves--">getNumAcceptedMoves</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumRejectedMoves--">getNumRejectedMoves</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#incNumAcceptedMoves-long-">incNumAcceptedMoves</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#incNumRejectedMoves-long-">incNumRejectedMoves</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#isImprovement-org.jamesframework.core.search.neigh.Move-">isImprovement</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#rejectMove--">rejectMove</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#searchStarted--">searchStarted</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#setEvaluatedMoveCache-org.jamesframework.core.search.cache.EvaluatedMoveCache-">setEvaluatedMoveCache</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#updateCurrentSolution-SolutionType-double-">updateCurrentSolution</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#validateMove-org.jamesframework.core.search.neigh.Move-">validateMove</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.org.jamesframework.core.search.LocalSearch">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;org.jamesframework.core.search.<a href="../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></h3>
+<code><a href="../../../../../org/jamesframework/core/search/LocalSearch.html#addSearchListener-org.jamesframework.core.search.listeners.SearchListener-">addSearchListener</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolution--">getCurrentSolution</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionEvaluation--">getCurrentSolutionEvaluation</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.org.jamesframework.core.search.Search">
@@ -557,7 +534,7 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
  can not be <code>null</code> and that this method may only be called when the search is idle.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#setCurrentSolution-SolutionType-">setCurrentSolution</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</code></dd>
+<dd><code><a href="../../../../../org/jamesframework/core/search/LocalSearch.html#setCurrentSolution-SolutionType-">setCurrentSolution</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>solution</code> - current solution to be set for each replica</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
@@ -588,7 +565,7 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
 <a name="searchDisposed--">
 <!--   -->
 </a>
-<ul class="blockList">
+<ul class="blockListLast">
 <li class="blockList">
 <h4>searchDisposed</h4>
 <pre>protected&nbsp;void&nbsp;searchDisposed()</pre>
@@ -597,104 +574,6 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../../../../org/jamesframework/core/search/Search.html#searchDisposed--">searchDisposed</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</code></dd>
-</dl>
-</li>
-</ul>
-<a name="newBestSolution-org.jamesframework.core.search.Search-org.jamesframework.core.problems.solutions.Solution-double-">
-<!--   -->
-</a><a name="newBestSolution-org.jamesframework.core.search.Search-SolutionType-double-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>newBestSolution</h4>
-<pre>public&nbsp;void&nbsp;newBestSolution(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&nbsp;replica,
-                            <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&nbsp;newBestSolution,
-                            double&nbsp;newBestSolutionEvaluation)</pre>
-<div class="block">Parallel tempering algorithm listens to its Metropolis replicas: whenever a new best solution is reported inside a replica, it is
- verified whether this is also a global improvement. If so, the global best solution is updated. This method is synchronized to avoid
- concurrent updates of the global best solution, as the replicas run in separate threads.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#newBestSolution-org.jamesframework.core.search.Search-SolutionType-double-">newBestSolution</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>replica</code> - Metropolis replica that has found a (local) best solution</dd>
-<dd><code>newBestSolution</code> - new best solution found in replica</dd>
-<dd><code>newBestSolutionEvaluation</code> - evaluation of new best solution</dd>
-</dl>
-</li>
-</ul>
-<a name="stepCompleted-org.jamesframework.core.search.Search-long-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>stepCompleted</h4>
-<pre>public&nbsp;void&nbsp;stepCompleted(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&nbsp;replica,
-                          long&nbsp;numSteps)</pre>
-<div class="block">Parallel tempering algorithm listens to its Metropolis replicas: whenever a replica has completed a step, it is verified whether
- the desired number of steps have been performed and, if so, the replica is stopped. This approach is favoured here over attaching
- a generic maximum steps stop criterion (see <a href="../../../../../org/jamesframework/core/search/stopcriteria/MaxSteps.html" title="class in org.jamesframework.core.search.stopcriteria"><code>MaxSteps</code></a>) to each replica because of its finer granularity, i.e. because it is
- checked after every single step.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#stepCompleted-org.jamesframework.core.search.Search-long-">stepCompleted</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>replica</code> - Metropolis replica that completed a search step</dd>
-<dd><code>numSteps</code> - number of steps completed so far</dd>
-</dl>
-</li>
-</ul>
-<a name="searchStopped-org.jamesframework.core.search.Search-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>searchStopped</h4>
-<pre>public&nbsp;void&nbsp;searchStopped(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&nbsp;replica)</pre>
-<div class="block">Parallel tempering algorithm listens to its Metropolis replicas: whenever a replica has finished its current run,
- the number of accepted and rejected moves during this run are accounted for by increase the global counters. This
- method is synchronized to avoid concurrent updates of the global number of accepted and rejected moves, as the
- replicas run in separate threads.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#searchStopped-org.jamesframework.core.search.Search-">searchStopped</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>replica</code> - Metropolis replica that has finished its current run</dd>
-</dl>
-</li>
-</ul>
-<a name="searchStarted-org.jamesframework.core.search.Search-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>searchStarted</h4>
-<pre>public&nbsp;void&nbsp;searchStarted(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&nbsp;replica)</pre>
-<div class="block">Empty callback: no action taken here when a replica has started.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#searchStarted-org.jamesframework.core.search.Search-">searchStarted</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>replica</code> - ignored</dd>
-</dl>
-</li>
-</ul>
-<a name="statusChanged-org.jamesframework.core.search.Search-org.jamesframework.core.search.SearchStatus-">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>statusChanged</h4>
-<pre>public&nbsp;void&nbsp;statusChanged(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&nbsp;search,
-                          <a href="../../../../../org/jamesframework/core/search/SearchStatus.html" title="enum in org.jamesframework.core.search">SearchStatus</a>&nbsp;newStatus)</pre>
-<div class="block">Empty callback: no action taken here when a replica enters a new status.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#statusChanged-org.jamesframework.core.search.Search-org.jamesframework.core.search.SearchStatus-">statusChanged</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>search</code> - ignored</dd>
-<dd><code>newStatus</code> - ignored</dd>
 </dl>
 </li>
 </ul>
@@ -728,7 +607,7 @@ implements <a href="../../../../../org/jamesframework/core/search/listeners/Sear
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../../org/jamesframework/core/search/algo/RandomDescent.html" title="class in org.jamesframework.core.search.algo"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../../org/jamesframework/core/search/algo/PipedLocalSearch.html" title="class in org.jamesframework.core.search.algo"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?org/jamesframework/core/search/algo/ParallelTempering.html" target="_top">Frames</a></li>
