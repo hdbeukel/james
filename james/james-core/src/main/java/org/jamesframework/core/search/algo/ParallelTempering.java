@@ -61,8 +61,8 @@ import org.slf4j.LoggerFactory;
  * </ol>
  * <p>
  * All replicas use the same neighbourhood which is specified when creating the parallel tempering search. If an initial
- * solution is set, this solution is passed to each replica. Else, each replica starts with a distinct randomly generated
- * solution.
+ * solution is set, a copy of this solution is set as initial solution in each replica. Else, each replica starts with a
+ * distinct randomly generated solution.
  * </p>
  * <p>
  * The overall best solution found by all replicas is tracked and eventually returned by the parallel tempering algorithm.
@@ -288,9 +288,9 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
         synchronized(getStatusLock()){
             // call super
             super.setCurrentSolution(solution);
-            // pass current solution to every replica
+            // pass current solution to every replica (copy!)
             for(MetropolisSearch<SolutionType> r : replicas){
-                r.setCurrentSolution(solution);
+                r.setCurrentSolution(getProblem().copySolution(solution));
             }
         }
     }
