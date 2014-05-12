@@ -175,7 +175,7 @@ extends <a href="../../../../../../org/jamesframework/core/search/MultiNeighbour
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodDescent.html#VariableNeighbourhoodDescent-org.jamesframework.core.problems.Problem-java.util.List-">VariableNeighbourhoodDescent</a></span>(<a href="../../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodDescent.html" title="type parameter in VariableNeighbourhoodDescent">SolutionType</a>&gt;&nbsp;problem,
-                            <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodDescent.html" title="type parameter in VariableNeighbourhoodDescent">SolutionType</a>&gt;&gt;&nbsp;neighs)</code>
+                            <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;? extends <a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodDescent.html" title="type parameter in VariableNeighbourhoodDescent">SolutionType</a>&gt;&gt;&nbsp;neighs)</code>
 <div class="block">Creates a new variable neighbourhood descent search, specifying the problem to solve and the neighbourhoods
  used to modify the current solution.</div>
 </td>
@@ -183,7 +183,7 @@ extends <a href="../../../../../../org/jamesframework/core/search/MultiNeighbour
 <tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodDescent.html#VariableNeighbourhoodDescent-java.lang.String-org.jamesframework.core.problems.Problem-java.util.List-">VariableNeighbourhoodDescent</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
                             <a href="../../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodDescent.html" title="type parameter in VariableNeighbourhoodDescent">SolutionType</a>&gt;&nbsp;problem,
-                            <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodDescent.html" title="type parameter in VariableNeighbourhoodDescent">SolutionType</a>&gt;&gt;&nbsp;neighs)</code>
+                            <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;? extends <a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodDescent.html" title="type parameter in VariableNeighbourhoodDescent">SolutionType</a>&gt;&gt;&nbsp;neighs)</code>
 <div class="block">Creates a new variable neighbourhood descent search, specifying the problem to solve, the neighbourhoods used
  to modify the current solution, and a custom search name.</div>
 </td>
@@ -267,16 +267,18 @@ extends <a href="../../../../../../org/jamesframework/core/search/MultiNeighbour
 <li class="blockList">
 <h4>VariableNeighbourhoodDescent</h4>
 <pre>public&nbsp;VariableNeighbourhoodDescent(<a href="../../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodDescent.html" title="type parameter in VariableNeighbourhoodDescent">SolutionType</a>&gt;&nbsp;problem,
-                                    <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodDescent.html" title="type parameter in VariableNeighbourhoodDescent">SolutionType</a>&gt;&gt;&nbsp;neighs)</pre>
+                                    <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;? extends <a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodDescent.html" title="type parameter in VariableNeighbourhoodDescent">SolutionType</a>&gt;&gt;&nbsp;neighs)</pre>
 <div class="block">Creates a new variable neighbourhood descent search, specifying the problem to solve and the neighbourhoods
  used to modify the current solution. Neither arguments can be <code>null</code> and the list of neighbourhoods
- can not be empty. The search name defaults to "VariableNeighbourhoodDescent".</div>
+ can not be empty and can not contain any <code>null</code> elements. The search name defaults to
+ "VariableNeighbourhoodDescent".</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>problem</code> - problem to solve</dd>
 <dd><code>neighs</code> - list of neighbourhoods used to create neighbouring solutions</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> or <code>neighs</code> are <code>null</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> or <code>neighs</code> are <code>null</code>, or if
+                              <code>neighs</code> contains a <code>null</code> element</dd>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>neighs</code> is empty</dd>
 </dl>
 </li>
@@ -289,18 +291,20 @@ extends <a href="../../../../../../org/jamesframework/core/search/MultiNeighbour
 <h4>VariableNeighbourhoodDescent</h4>
 <pre>public&nbsp;VariableNeighbourhoodDescent(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
                                     <a href="../../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodDescent.html" title="type parameter in VariableNeighbourhoodDescent">SolutionType</a>&gt;&nbsp;problem,
-                                    <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodDescent.html" title="type parameter in VariableNeighbourhoodDescent">SolutionType</a>&gt;&gt;&nbsp;neighs)</pre>
+                                    <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;? extends <a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodDescent.html" title="type parameter in VariableNeighbourhoodDescent">SolutionType</a>&gt;&gt;&nbsp;neighs)</pre>
 <div class="block">Creates a new variable neighbourhood descent search, specifying the problem to solve, the neighbourhoods used
  to modify the current solution, and a custom search name. The problem and list of neighbourhoods can not be
- <code>null</code> and the list of neighbourhoods can not be empty. The search name can be <code>null</code>
- in which case the default name "VariableNeighbourhoodDescent" is assigned.</div>
+ <code>null</code>, and the list of neighbourhoods can not be empty and can not contain any <code>null</code>
+ elements. The search name can be <code>null</code> in which case the default name "VariableNeighbourhoodDescent"
+ is assigned.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>problem</code> - problem to solve</dd>
 <dd><code>neighs</code> - list of neighbourhoods used to create neighbouring solutions</dd>
 <dd><code>name</code> - custom search name</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> or <code>neighs</code> are <code>null</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> or <code>neighs</code> are <code>null</code>, or if
+                              <code>neighs</code> contains a <code>null</code> element</dd>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>neighs</code> is empty</dd>
 </dl>
 </li>

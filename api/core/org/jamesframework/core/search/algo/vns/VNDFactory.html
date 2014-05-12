@@ -147,7 +147,7 @@ implements <a href="../../../../../../org/jamesframework/core/util/LocalSearchFa
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/vns/VNDFactory.html#VNDFactory-java.util.List-">VNDFactory</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/vns/VNDFactory.html" title="type parameter in VNDFactory">SolutionType</a>&gt;&gt;&nbsp;neighs)</code>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/vns/VNDFactory.html#VNDFactory-java.util.List-">VNDFactory</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;? extends <a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/vns/VNDFactory.html" title="type parameter in VNDFactory">SolutionType</a>&gt;&gt;&nbsp;neighs)</code>
 <div class="block">Create a new VND factory, given the list of neighbourhoods to apply.</div>
 </td>
 </tr>
@@ -201,15 +201,16 @@ implements <a href="../../../../../../org/jamesframework/core/util/LocalSearchFa
 <ul class="blockListLast">
 <li class="blockList">
 <h4>VNDFactory</h4>
-<pre>public&nbsp;VNDFactory(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/vns/VNDFactory.html" title="type parameter in VNDFactory">SolutionType</a>&gt;&gt;&nbsp;neighs)</pre>
+<pre>public&nbsp;VNDFactory(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;? extends <a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/vns/VNDFactory.html" title="type parameter in VNDFactory">SolutionType</a>&gt;&gt;&nbsp;neighs)</pre>
 <div class="block">Create a new VND factory, given the list of neighbourhoods to apply.
- Note that <code>neighs</code> can not be <code>null</code> nor empty;
- else, an exception is thrown.</div>
+ Note that <code>neighs</code> can not be <code>null</code> nor empty,
+ and can not contain any <code>null</code> elements.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>neighs</code> - neighbourhoods applied by VND</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>neighs</code> is <code>null</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>neighs</code> is <code>null</code> or contains any
+                              <code>null</code> elements</dd>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>neighs</code> is empty</dd>
 </dl>
 </li>
