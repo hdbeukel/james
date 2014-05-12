@@ -21,7 +21,7 @@ import org.jamesframework.core.problems.solutions.Solution;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 
 /**
- * Abstract neighbourhood search that uses a <i>multiple</i> neighbourhoods to modify the current solution. This
+ * Abstract neighbourhood search that uses <i>multiple</i> neighbourhoods to modify the current solution. This
  * includes variable neighbourhood descent and variable neighbourhood search.
  *
  * @param <SolutionType> solution type of the problems that may be solved using this search, required to extend {@link Solution}
@@ -30,40 +30,51 @@ import org.jamesframework.core.search.neigh.Neighbourhood;
 public abstract class MultiNeighbourhoodSearch<SolutionType extends Solution> extends NeighbourhoodSearch<SolutionType> {
 
     // neighbourhoods
-    private List<Neighbourhood<? super SolutionType>> neighs;
+    private List<? extends Neighbourhood<? super SolutionType>> neighs;
     
     /**
      * Create a new multi neighbourhood search, specifying the problem to be solved and the neighbourhoods used to
      * modify the current solution. None of both arguments may be <code>null</code> and the list of neighbourhoods
-     * may not be empty, else, an exception is thrown. The default search name "MultiNeighbourhoodSearch" is assigned.
+     * may not be empty and may not contain any null elements The default search name "MultiNeighbourhoodSearch"
+     * is assigned.
      * 
-     * @throws NullPointerException if <code>problem</code> or <code>neighs</code> are <code>null</code>
+     * @throws NullPointerException if <code>problem</code> or <code>neighs</code> are <code>null</code>, or if
+     *                              <code>neighs</code> contains a <code>null</code> element
      * @throws IllegalArgumentException if <code>neighs</code> is empty
      * @param problem problem to be solved
      * @param neighs neighbourhoods used to modify the current solution
      */
-    public MultiNeighbourhoodSearch(Problem<SolutionType> problem, List<Neighbourhood<? super SolutionType>> neighs){
+    public MultiNeighbourhoodSearch(Problem<SolutionType> problem, List<? extends Neighbourhood<? super SolutionType>> neighs){
         this(null, problem, neighs);
     }
     
     /**
      * Create a new multi neighbourhood search, specifying the problem to be solved, the neighbourhoods used to
      * modify the current solution, and a custom search name. The problem and neighbourhood list may not be
-     * <code>null</code> and the neighbourhood list may not be empty, else, an exception is thrown. The search
-     * name may be <code>null</code> in which case it is set to the default name "MultiNeighbourhoodSearch".
+     * <code>null</code> and the neighbourhood list may not be empty and may not contain any <code>null</code>
+     * elements. The search name may be <code>null</code> in which case the default name "MultiNeighbourhoodSearch"
+     * is assigned.
      * 
-     * @throws NullPointerException if <code>problem</code> or <code>neighs</code> are <code>null</code>
+     * @throws NullPointerException if <code>problem</code> or <code>neighs</code> are <code>null</code>, or if
+     *                              <code>neighs</code> contains a <code>null</code> element
      * @throws IllegalArgumentException if <code>neighs</code> is empty
      * @param name custom search name
      * @param problem problem to be solved
      * @param neighs neighbourhoods used to modify the current solution
      */
-    public MultiNeighbourhoodSearch(String name, Problem<SolutionType> problem, List<Neighbourhood<? super SolutionType>> neighs){
+    public MultiNeighbourhoodSearch(String name, Problem<SolutionType> problem, List<? extends Neighbourhood<? super SolutionType>> neighs){
         // pass problem to super
         super(name != null ? name : "MultiNeighbourhoodSearch", problem);
         // check neighs not null
         if(neighs == null){
             throw new NullPointerException("Error while creating multi neighbourhood search: neighbourhood list can not be null.");
+        }
+        // check that neighs does not contain any null elements
+        for(Neighbourhood<?> n : neighs){
+            if(n == null){
+                throw new NullPointerException("Error while creating multi neighbourhood search: neighbourhood list can not"
+                                                    + " contain any null elements.");
+            }
         }
         // check neighs not empty
         if(neighs.isEmpty()){
@@ -76,7 +87,7 @@ public abstract class MultiNeighbourhoodSearch<SolutionType extends Solution> ex
     /**
      * Get the list of neighbourhoods used to modify the current solution.
      * 
-     * @return list of neighbourhoods used to modify the current solution
+     * @return list of applied neighbourhoods
      */
     public List<? extends Neighbourhood<? super SolutionType>> getNeighbourhoods(){
         return neighs;
@@ -84,12 +95,12 @@ public abstract class MultiNeighbourhoodSearch<SolutionType extends Solution> ex
     
     /**
      * Sets the list of neighbourhoods used to modify the current solution. Note that <code>neighs</code>
-     * can not be <code>null</code> nor empty, and that this method may only be called when the search is
-     * idle. This method should be used with care for searches that have already been run before and will
-     * be restarted later, as updating the neighbourhoods might break the execution of a restarted search
-     * that tries to continue from where it had arrived.
+     * can not be <code>null</code> nor empty and can not contain any <code>null</code> elements. This method
+     * may only be called when the search is idle. It should be used with care for searches that have already
+     * been run before and will be restarted later, as updating the neighbourhoods might break the execution
+     * of a restarted search that tries to continue from where it had arrived.
      * 
-     * @throws NullPointerException if <code>neighs</code> is <code>null</code>
+     * @throws NullPointerException if <code>neighs</code> is <code>null</code> or contains any <code>null</code> elements
      * @throws IllegalArgumentException if <code>neighs</code> is empty
      * @throws SearchException if the search is currently not idle
      * @param neighs list of neighbourhoods used to modify the current solution
@@ -101,11 +112,18 @@ public abstract class MultiNeighbourhoodSearch<SolutionType extends Solution> ex
             assertIdle("Cannot set list of neighbourhoods.");
             // check not null
             if(neighs == null){
-                throw new NullPointerException("Cannot set neighbourhoods: received null.");
+                throw new NullPointerException("Can not set neighbourhoods: received null.");
+            }
+            // check that neighs does not contain any null elements
+            for(Neighbourhood<?> n : neighs){
+                if(n == null){
+                    throw new NullPointerException("Can not set neighbourhoods: neighbourhood list can not"
+                                                        + " contain any null elements.");
+                }
             }
             // check not empty
             if(neighs.isEmpty()){
-                throw new NullPointerException("Cannot set neighbourhoods: received empty list.");
+                throw new NullPointerException("Can not set neighbourhoods: received empty list.");
             }
             // go ahead
             this.neighs = neighs;

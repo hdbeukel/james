@@ -82,7 +82,7 @@ public class ReducedVariableNeighbourhoodSearchTest extends SearchTestTemplate {
         // create multi swap neighbourhood with 2 swaps
         multiSwapNeigh = new DisjointMultiSwapNeighbourhood(2);
         // create list of neighbourhoods: (1) single swap, (2) dual swap
-        List<Neighbourhood<? super SubsetSolution>> neighs = new ArrayList<>();
+        List<Neighbourhood<SubsetSolution>> neighs = new ArrayList<>();
         neighs.add(neigh);
         neighs.add(multiSwapNeigh);
         // create reduced variable neighbourhood search

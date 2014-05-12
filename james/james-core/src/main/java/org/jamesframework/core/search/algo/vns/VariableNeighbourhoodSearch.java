@@ -92,35 +92,39 @@ public class VariableNeighbourhoodSearch<SolutionType extends Solution> extends 
     /**
      * Creates a new variable neighbourhood search, specifying the problem to solve, the neighbourhoods used for shaking
      * and the neighbourhoods used by the default VND local search algorithm. None of the arguments can be <code>null</code>
-     * and the lists of neighbourhoods can not be empty. The search name defaults to "VariableNeighbourhoodSearch".
+     * and the lists of neighbourhoods can not be empty and can not contain any <code>null</code> elements. The search name
+     * defaults to "VariableNeighbourhoodSearch".
      * 
-     * @throws NullPointerException if <code>problem</code>, <code>neighs</code> or <code>vndNeighs</code> are <code>null</code>
-     * @throws IllegalArgumentException if <code>neighs</code> or <code>vndNeighs</code> are empty
+     * @throws NullPointerException if <code>problem</code>, <code>shakingNeighs</code> or <code>vndNeighs</code> are <code>null</code>,
+     *                              or if <code>shakingNeighs</code> or <code>vndNeighs</code> contain any <code>null</code> elements
+     * @throws IllegalArgumentException if <code>shakingNeighs</code> or <code>vndNeighs</code> are empty
      * @param problem problem to solve
-     * @param neighs list of shaking neighbourhoods used by VNS
+     * @param shakingNeighs list of shaking neighbourhoods used by VNS
      * @param vndNeighs list of neighbourhoods applied by VND, which is used as the default local search algorithm
      */
-    public VariableNeighbourhoodSearch(Problem<SolutionType> problem, List<Neighbourhood<? super SolutionType>> neighs,
-                                                                      List<Neighbourhood<? super SolutionType>> vndNeighs){
-        this(problem, neighs, new VNDFactory<>(vndNeighs));
+    public VariableNeighbourhoodSearch(Problem<SolutionType> problem, List<? extends Neighbourhood<? super SolutionType>> shakingNeighs,
+                                                                      List<? extends Neighbourhood<? super SolutionType>> vndNeighs){
+        this(problem, shakingNeighs, new VNDFactory<>(vndNeighs));
     }
     
     /**
      * Creates a new variable neighbourhood search, specifying the problem to solve, the neighbourhoods used for
      * shaking in VNS, and a factory to create instances of a custom local search algorithm \(L\) to be applied to
-     * modify solutions obtained after shaking. None of the arguments can be <code>null</code> and the list of shaking
-     * neighbourhoods can not be empty. The search name defaults to "VariableNeighbourhoodSearch".
+     * modify solutions obtained after shaking. None of the arguments can be <code>null</code>, and the list of shaking
+     * neighbourhoods can not be empty and can not contain any <code>null</code> elements. The search name defaults to
+     * "VariableNeighbourhoodSearch".
      * 
-     * @throws NullPointerException if <code>problem</code>, <code>neighs</code> or
-     *                              <code>localSearchFactory</code> are <code>null</code>
-     * @throws IllegalArgumentException if <code>neighs</code> is empty
+     * @throws NullPointerException if <code>problem</code>, <code>shakingNeighs</code> or
+     *                              <code>localSearchFactory</code> are <code>null</code>, or if
+     *                              <code>shakingNeighs</code> contains any <code>null</code> elements
+     * @throws IllegalArgumentException if <code>shakingNeighs</code> is empty
      * @param problem problem to solve
-     * @param neighs list of shaking neighbourhoods used by VNS
+     * @param shakingNeighs list of shaking neighbourhoods used by VNS
      * @param localSearchFactory factory to create instances of the local search algorithm \(L\)
      */
-    public VariableNeighbourhoodSearch(Problem<SolutionType> problem, List<Neighbourhood<? super SolutionType>> neighs,
+    public VariableNeighbourhoodSearch(Problem<SolutionType> problem, List<? extends Neighbourhood<? super SolutionType>> shakingNeighs,
                                                 LocalSearchFactory<SolutionType> localSearchFactory){
-        this(null, problem, neighs, localSearchFactory);
+        this(null, problem, shakingNeighs, localSearchFactory);
     }
     
     /**
@@ -128,19 +132,20 @@ public class VariableNeighbourhoodSearch<SolutionType extends Solution> extends 
      * shaking in VNS, a factory to create instances of a custom local search algorithm \(L\) to be applied to
      * modify solutions obtained after shaking, and a custom search name. Only the search name can be <code>null</code>
      * in which case the default name "VariableNeighbourhoodSearch" is assigned. The list of shaking neighbourhoods
-     * can not be empty.
+     * can not be empty and can not contain any <code>null</code> elements.
      * 
-     * @throws NullPointerException if <code>problem</code>, <code>neighs</code> or
-     *                              <code>localSearchFactory</code> are <code>null</code>
-     * @throws IllegalArgumentException if <code>neighs</code> is empty
+     * @throws NullPointerException if <code>problem</code>, <code>shakingNeighs</code> or
+     *                              <code>localSearchFactory</code> are <code>null</code>, or if
+     *                              <code>shakingNeighs</code> contains any <code>null</code> elements
+     * @throws IllegalArgumentException if <code>shakingNeighs</code> is empty
      * @param name custom search name
      * @param problem problem to solve
-     * @param neighs list of shaking neighbourhoods used by VNS
+     * @param shakingNeighs list of shaking neighbourhoods used by VNS
      * @param localSearchFactory factory to create instances of the local search algorithm \(L\)
      */
-    public VariableNeighbourhoodSearch(String name, Problem<SolutionType> problem, List<Neighbourhood<? super SolutionType>> neighs,
+    public VariableNeighbourhoodSearch(String name, Problem<SolutionType> problem, List<? extends Neighbourhood<? super SolutionType>> shakingNeighs,
                                                 LocalSearchFactory<SolutionType> localSearchFactory){
-        super(name != null ? name : "VariableNeighbourhoodSearch", problem, neighs);
+        super(name != null ? name : "VariableNeighbourhoodSearch", problem, shakingNeighs);
         // check and store factory
         if(localSearchFactory == null){
             throw new NullPointerException("Can not create variable neighbourhood search: local search factory can not be null.");
@@ -157,7 +162,7 @@ public class VariableNeighbourhoodSearch<SolutionType extends Solution> extends 
      * @param localSearchFactory custom local search factory
      * @throws NullPointerException if <code>localSearchFactory</code> is <code>null</code>
      */
-    public void setModificationAlgorithmFactory(LocalSearchFactory<SolutionType> localSearchFactory){
+    public void setLocalSearchFactory(LocalSearchFactory<SolutionType> localSearchFactory){
         // check not null
         if(localSearchFactory == null){
             throw new NullPointerException("Cannot set local search factory in VNS: received null.");

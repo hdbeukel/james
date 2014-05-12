@@ -124,7 +124,7 @@ public class VariableNeighbourhoodSearchTest extends SearchTestTemplate {
         // call super
         super.setUp();
         // create list of neighbourhoods with 1 up to 5 swaps
-        List<Neighbourhood<? super SubsetSolution>> neighs = new ArrayList<>();
+        List<Neighbourhood<SubsetSolution>> neighs = new ArrayList<>();
         neighs.add(neigh);
         for(int s=2; s<=5; s++){
             neighs.add(new DisjointMultiSwapNeighbourhood(s));

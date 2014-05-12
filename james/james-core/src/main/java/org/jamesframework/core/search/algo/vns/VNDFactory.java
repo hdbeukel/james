@@ -33,21 +33,28 @@ import org.jamesframework.core.util.LocalSearchFactory;
 public class VNDFactory<SolutionType extends Solution> implements LocalSearchFactory<SolutionType> {
     
     // applied neighbourhoods
-    List<Neighbourhood<? super SolutionType>> neighs;
+    List<? extends Neighbourhood<? super SolutionType>> neighs;
 
     /**
      * Create a new VND factory, given the list of neighbourhoods to apply.
-     * Note that <code>neighs</code> can not be <code>null</code> nor empty;
-     * else, an exception is thrown.
+     * Note that <code>neighs</code> can not be <code>null</code> nor empty,
+     * and can not contain any <code>null</code> elements.
      * 
      * @param neighs neighbourhoods applied by VND
-     * @throws NullPointerException if <code>neighs</code> is <code>null</code>
+     * @throws NullPointerException if <code>neighs</code> is <code>null</code> or contains any
+     *                              <code>null</code> elements
      * @throws IllegalArgumentException if <code>neighs</code> is empty
      */
-    public VNDFactory(List<Neighbourhood<? super SolutionType>> neighs){
+    public VNDFactory(List<? extends Neighbourhood<? super SolutionType>> neighs){
         // check neighbourhoods
         if(neighs == null){
             throw new NullPointerException("Can not create VND factory: list of neighbourhoods can not be null.");
+        }
+        for(Neighbourhood<?> n : neighs){
+            if(n == null){
+                throw new NullPointerException("Can not create VND factory: list of neighbourhoods can not contain"
+                                                    + " any null elements.");
+            }
         }
         if(neighs.isEmpty()){
             throw new IllegalArgumentException("Can not create VND factory: list of neighbourhoods can not be empty.");

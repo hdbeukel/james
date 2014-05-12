@@ -47,31 +47,35 @@ public class VariableNeighbourhoodDescent<SolutionType extends Solution> extends
     /**
      * Creates a new variable neighbourhood descent search, specifying the problem to solve and the neighbourhoods
      * used to modify the current solution. Neither arguments can be <code>null</code> and the list of neighbourhoods
-     * can not be empty. The search name defaults to "VariableNeighbourhoodDescent".
+     * can not be empty and can not contain any <code>null</code> elements. The search name defaults to
+     * "VariableNeighbourhoodDescent".
      * 
-     * @throws NullPointerException if <code>problem</code> or <code>neighs</code> are <code>null</code>
+     * @throws NullPointerException if <code>problem</code> or <code>neighs</code> are <code>null</code>, or if
+     *                              <code>neighs</code> contains a <code>null</code> element
      * @throws IllegalArgumentException if <code>neighs</code> is empty
      * @param problem problem to solve
      * @param neighs list of neighbourhoods used to create neighbouring solutions
      */
-    public VariableNeighbourhoodDescent(Problem<SolutionType> problem, List<Neighbourhood<? super SolutionType>> neighs){
+    public VariableNeighbourhoodDescent(Problem<SolutionType> problem, List<? extends Neighbourhood<? super SolutionType>> neighs){
         this(null, problem, neighs);
     }
     
     /**
      * Creates a new variable neighbourhood descent search, specifying the problem to solve, the neighbourhoods used
      * to modify the current solution, and a custom search name. The problem and list of neighbourhoods can not be
-     * <code>null</code> and the list of neighbourhoods can not be empty. The search name can be <code>null</code>
-     * in which case the default name "VariableNeighbourhoodDescent" is assigned.
+     * <code>null</code>, and the list of neighbourhoods can not be empty and can not contain any <code>null</code>
+     * elements. The search name can be <code>null</code> in which case the default name "VariableNeighbourhoodDescent"
+     * is assigned.
      * 
-     * @throws NullPointerException if <code>problem</code> or <code>neighs</code> are <code>null</code>
+     * @throws NullPointerException if <code>problem</code> or <code>neighs</code> are <code>null</code>, or if
+     *                              <code>neighs</code> contains a <code>null</code> element
      * @throws IllegalArgumentException if <code>neighs</code> is empty
      * @param problem problem to solve
      * @param neighs list of neighbourhoods used to create neighbouring solutions
      * @param name custom search name
      */
     public VariableNeighbourhoodDescent(String name, Problem<SolutionType> problem,
-                                            List<Neighbourhood<? super SolutionType>> neighs){
+                                            List<? extends Neighbourhood<? super SolutionType>> neighs){
         super(name != null ? name : "VariableNeighbourhoodDescent", problem, neighs);
         // start with 0th neighbourhood
         k = 0;
