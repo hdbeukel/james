@@ -185,6 +185,10 @@
 <dd>
 <div class="block">Cache rejection of the given move, discarding any previously cached value.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/solutions/Solution.html#checkedCopy-T-">checkedCopy(T)</a></span> - Static method in class org.jamesframework.core.problems.solutions.<a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a></dt>
+<dd>
+<div class="block">Creates a checked deep copy of the given solution with specific type <code>T</code> (a subclass of <a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions"><code>Solution</code></a>).</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html#clear--">clear()</a></span> - Method in interface org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html" title="interface in org.jamesframework.core.search.cache">EvaluatedMoveCache</a></dt>
 <dd>
 <div class="block">Clears all cached values.</div>
@@ -215,13 +219,14 @@
 <dd>
 <div class="block">Interface of a constraint that can be imposed on the solutions, based on underlying data.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/Problem.html#copySolution-SolutionType-">copySolution(SolutionType)</a></span> - Method in interface org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/solutions/Solution.html#copy--">copy()</a></span> - Method in class org.jamesframework.core.problems.solutions.<a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a></dt>
 <dd>
-<div class="block">Creates a (deep) copy of the given solution.</div>
+<div class="block">Creates a deep copy of this solution.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/SubsetProblemWithData.html#copySolution-org.jamesframework.core.problems.solutions.SubsetSolution-">copySolution(SubsetSolution)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/SubsetProblemWithData.html" title="class in org.jamesframework.core.problems">SubsetProblemWithData</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/solutions/SubsetSolution.html#copy--">copy()</a></span> - Method in class org.jamesframework.core.problems.solutions.<a href="org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a></dt>
 <dd>
-<div class="block">Create a deep copy of the given subset solution.</div>
+<div class="block">Create a deep copy of this subset solution, obtained through the copy constructor,
+ passing <code>this</code> as argument.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VNDFactory.html#create-org.jamesframework.core.problems.Problem-">create(Problem&lt;SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VNDFactory.html" title="class in org.jamesframework.core.search.algo.vns">VNDFactory</a></dt>
 <dd>
@@ -1725,6 +1730,26 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/solutions/Solution.html#Solution--">Solution()</a></span> - Constructor for class org.jamesframework.core.problems.solutions.<a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="org/jamesframework/core/exceptions/SolutionCopyException.html" title="class in org.jamesframework.core.exceptions"><span class="typeNameLink">SolutionCopyException</span></a> - Exception in <a href="org/jamesframework/core/exceptions/package-summary.html">org.jamesframework.core.exceptions</a></dt>
+<dd>
+<div class="block">Exception thrown when failing to create a deep copy of a solution.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/exceptions/SolutionCopyException.html#SolutionCopyException--">SolutionCopyException()</a></span> - Constructor for exception org.jamesframework.core.exceptions.<a href="org/jamesframework/core/exceptions/SolutionCopyException.html" title="class in org.jamesframework.core.exceptions">SolutionCopyException</a></dt>
+<dd>
+<div class="block">Creates a new instance without detail message.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/exceptions/SolutionCopyException.html#SolutionCopyException-java.lang.String-">SolutionCopyException(String)</a></span> - Constructor for exception org.jamesframework.core.exceptions.<a href="org/jamesframework/core/exceptions/SolutionCopyException.html" title="class in org.jamesframework.core.exceptions">SolutionCopyException</a></dt>
+<dd>
+<div class="block">Constructs an instance with the specified detail message.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/exceptions/SolutionCopyException.html#SolutionCopyException-java.lang.Throwable-">SolutionCopyException(Throwable)</a></span> - Constructor for exception org.jamesframework.core.exceptions.<a href="org/jamesframework/core/exceptions/SolutionCopyException.html" title="class in org.jamesframework.core.exceptions">SolutionCopyException</a></dt>
+<dd>
+<div class="block">Constructs an instance with the specified cause.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/exceptions/SolutionCopyException.html#SolutionCopyException-java.lang.String-java.lang.Throwable-">SolutionCopyException(String, Throwable)</a></span> - Constructor for exception org.jamesframework.core.exceptions.<a href="org/jamesframework/core/exceptions/SolutionCopyException.html" title="class in org.jamesframework.core.exceptions">SolutionCopyException</a></dt>
+<dd>
+<div class="block">Constructs an instance with the specified detail message and cause.</div>
+</dd>
 <dt><a href="org/jamesframework/core/search/algo/exh/SolutionIterator.html" title="interface in org.jamesframework.core.search.algo.exh"><span class="typeNameLink">SolutionIterator</span></a>&lt;<a href="org/jamesframework/core/search/algo/exh/SolutionIterator.html" title="type parameter in SolutionIterator">SolutionType</a> extends <a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Interface in <a href="org/jamesframework/core/search/algo/exh/package-summary.html">org.jamesframework.core.search.algo.exh</a></dt>
 <dd>
 <div class="block">Interface of a generic solution iterator that iterates through a collection of solutions.</div>
@@ -1868,6 +1893,10 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/solutions/SubsetSolution.html#SubsetSolution-java.util.Set-java.util.Set-boolean-">SubsetSolution(Set&lt;Integer&gt;, Set&lt;Integer&gt;, boolean)</a></span> - Constructor for class org.jamesframework.core.problems.solutions.<a href="org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a></dt>
 <dd>
 <div class="block">Creates a new subset solution given the set of all IDs, and the set of currently selected IDs.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/solutions/SubsetSolution.html#SubsetSolution-org.jamesframework.core.problems.solutions.SubsetSolution-">SubsetSolution(SubsetSolution)</a></span> - Constructor for class org.jamesframework.core.problems.solutions.<a href="org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a></dt>
+<dd>
+<div class="block">Copy constructor.</div>
 </dd>
 <dt><a href="org/jamesframework/core/search/algo/exh/SubsetSolutionIterator.html" title="class in org.jamesframework.core.search.algo.exh"><span class="typeNameLink">SubsetSolutionIterator</span></a> - Class in <a href="org/jamesframework/core/search/algo/exh/package-summary.html">org.jamesframework.core.search.algo.exh</a></dt>
 <dd>

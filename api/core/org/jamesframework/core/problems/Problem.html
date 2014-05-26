@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6};
+var methods = {"i0":6,"i1":6,"i2":6,"i3":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -115,9 +115,8 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">Problem&lt;SolutionType extends <a href="../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span></pre>
-<div class="block">Interface of a problem with a generic solution type. Contains methods
-  to evaluate a solution, to compare solutions based on their evaluation,
-  and to create random solutions or to copy a solution.</div>
+<div class="block">Interface of a problem with a generic solution type. Contains methods to evaluate or validate a solution and
+ to create a random solution. Also indicates whether the evaluations are to be maximized or minimized.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a></dd>
@@ -142,29 +141,23 @@ var activeTableTab = "activeTableTab";
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Problem.html#copySolution-SolutionType-">copySolution</a></span>(<a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;solution)</code>
-<div class="block">Creates a (deep) copy of the given solution.</div>
-</td>
-</tr>
-<tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Problem.html#createRandomSolution--">createRandomSolution</a></span>()</code>
 <div class="block">Creates a random solution.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Problem.html#evaluate-SolutionType-">evaluate</a></span>(<a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;solution)</code>
 <div class="block">Evaluates a given solution.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Problem.html#isMinimizing--">isMinimizing</a></span>()</code>
 <div class="block">Indicates whether scores are being minimized or maximized.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Problem.html#rejectSolution-SolutionType-">rejectSolution</a></span>(<a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;solution)</code>
 <div class="block">Indicates whether the given solution should be rejected during search,
@@ -245,7 +238,7 @@ var activeTableTab = "activeTableTab";
 <a name="createRandomSolution--">
 <!--   -->
 </a>
-<ul class="blockList">
+<ul class="blockListLast">
 <li class="blockList">
 <h4>createRandomSolution</h4>
 <pre><a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;createRandomSolution()</pre>
@@ -254,24 +247,6 @@ var activeTableTab = "activeTableTab";
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a random solution</dd>
-</dl>
-</li>
-</ul>
-<a name="copySolution-org.jamesframework.core.problems.solutions.Solution-">
-<!--   -->
-</a><a name="copySolution-SolutionType-">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>copySolution</h4>
-<pre><a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;copySolution(<a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;solution)</pre>
-<div class="block">Creates a (deep) copy of the given solution.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>solution</code> - solution to copy</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>a deep copy of the given solution</dd>
 </dl>
 </li>
 </ul>

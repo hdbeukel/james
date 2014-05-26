@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -167,6 +167,11 @@ extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solut
 <div class="block">Creates a new subset solution given the set of all IDs, and the set of currently selected IDs.</div>
 </td>
 </tr>
+<tr class="altColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html#SubsetSolution-org.jamesframework.core.problems.solutions.SubsetSolution-">SubsetSolution</a></span>(<a href="../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;sol)</code>
+<div class="block">Copy constructor.</div>
+</td>
+</tr>
 </table>
 </li>
 </ul>
@@ -190,90 +195,97 @@ extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solut
 </td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html#copy--">copy</a></span>()</code>
+<div class="block">Create a deep copy of this subset solution, obtained through the copy constructor,
+ passing <code>this</code> as argument.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html#deselect-int-">deselect</a></span>(int&nbsp;ID)</code>
 <div class="block">Deselect the given ID.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html#deselectAll--">deselectAll</a></span>()</code>
 <div class="block">Deselect all IDs.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html#deselectAll-java.util.Collection-">deselectAll</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;IDs)</code>
 <div class="block">Deselect all IDs contained in the given collection.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html#getAllIDs--">getAllIDs</a></span>()</code>
 <div class="block">Returns an unmodifiable view of the set of all IDs.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html#getNumSelectedIDs--">getNumSelectedIDs</a></span>()</code>
 <div class="block">Get the number of IDs which are currently selected.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html#getNumUnselectedIDs--">getNumUnselectedIDs</a></span>()</code>
 <div class="block">Get the number of IDs which are currently unselected.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html#getSelectedIDs--">getSelectedIDs</a></span>()</code>
 <div class="block">Returns an unmodifiable view of the set of currently selected IDs.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html#getTotalNumIDs--">getTotalNumIDs</a></span>()</code>
 <div class="block">Get the total number of IDs.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html#getUnselectedIDs--">getUnselectedIDs</a></span>()</code>
 <div class="block">Returns an unmodifiable view of the set of currently non selected IDs.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html#isSameSolution-org.jamesframework.core.problems.solutions.Solution-">isSameSolution</a></span>(<a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&nbsp;sol)</code>
 <div class="block">Checks if the given solution is also a subset solution which is conceptually equal to this subset solution.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html#isSorted--">isSorted</a></span>()</code>
 <div class="block">Indicates whether IDs are stored in sorted sets.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html#select-int-">select</a></span>(int&nbsp;ID)</code>
 <div class="block">Select the given ID.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html#selectAll--">selectAll</a></span>()</code>
 <div class="block">Select all IDs.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html#selectAll-java.util.Collection-">selectAll</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;IDs)</code>
 <div class="block">Select all IDs contained in the given collection.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html#toString--">toString</a></span>()</code>
 <div class="block">Creates a nicely formatted, human readable string containing the selected IDs.</div>
@@ -285,7 +297,7 @@ extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solut
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.jamesframework.core.problems.solutions.<a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a></h3>
-<code><a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html#equals-java.lang.Object-">equals</a>, <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html#hashCode--">hashCode</a></code></li>
+<code><a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html#checkedCopy-T-">checkedCopy</a>, <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html#equals-java.lang.Object-">equals</a>, <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html#hashCode--">hashCode</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -377,7 +389,7 @@ extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solut
 <a name="SubsetSolution-java.util.Set-java.util.Set-boolean-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>SubsetSolution</h4>
 <pre>public&nbsp;SubsetSolution(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;allIDs,
@@ -400,6 +412,23 @@ extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solut
 </dl>
 </li>
 </ul>
+<a name="SubsetSolution-org.jamesframework.core.problems.solutions.SubsetSolution-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>SubsetSolution</h4>
+<pre>public&nbsp;SubsetSolution(<a href="../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;sol)</pre>
+<div class="block">Copy constructor. Creates a new subset solution which is identical to the given solution, but does not have
+ any reference to any data structures contained within the given solution (deep copy). The obtained subset
+ solution will have exactly the same selected/unselected IDs as the given solution, and if IDs are ordered
+ in the given solution this ordering will be retained.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>sol</code> - solution to copy</dd>
+</dl>
+</li>
+</ul>
 </li>
 </ul>
 <!-- ============ METHOD DETAIL ========== -->
@@ -408,6 +437,23 @@ extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solut
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="copy--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>copy</h4>
+<pre>public&nbsp;<a href="../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;copy()</pre>
+<div class="block">Create a deep copy of this subset solution, obtained through the copy constructor,
+ passing <code>this</code> as argument.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html#copy--">copy</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>deep copy of this subset solution</dd>
+</dl>
+</li>
+</ul>
 <a name="isSorted--">
 <!--   -->
 </a>
