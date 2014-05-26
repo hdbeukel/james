@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6};
+var methods = {"i0":6,"i1":6,"i2":6,"i3":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -155,6 +155,13 @@ extends <a href="../../../../org/jamesframework/core/problems/Problem.html" titl
 <div class="block">The minimum size of the subset to be selected.</div>
 </td>
 </tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/SubsetProblem.html#rejectSolution-org.jamesframework.core.problems.solutions.SubsetSolution-boolean-">rejectSolution</a></span>(<a href="../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;solution,
+              boolean&nbsp;checkSubsetSize)</code>
+<div class="block">Checks whether the given subset solution is to be rejected, possibly ignoring its current size.</div>
+</td>
+</tr>
 </table>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.org.jamesframework.core.problems.Problem">
@@ -208,7 +215,7 @@ extends <a href="../../../../org/jamesframework/core/problems/Problem.html" titl
 <a name="getMaxSubsetSize--">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>getMaxSubsetSize</h4>
 <pre>int&nbsp;getMaxSubsetSize()</pre>
@@ -216,6 +223,26 @@ extends <a href="../../../../org/jamesframework/core/problems/Problem.html" titl
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>maximum subset size</dd>
+</dl>
+</li>
+</ul>
+<a name="rejectSolution-org.jamesframework.core.problems.solutions.SubsetSolution-boolean-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>rejectSolution</h4>
+<pre>boolean&nbsp;rejectSolution(<a href="../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;solution,
+                       boolean&nbsp;checkSubsetSize)</pre>
+<div class="block">Checks whether the given subset solution is to be rejected, possibly ignoring its current size.
+ If <code>checkSubsetSize</code> is <code>false</code>, the given solution is <b>not</b> rejected
+ if it has an invalid size but yet satisfies all other constraints.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>solution</code> - subset solution to verify</dd>
+<dd><code>checkSubsetSize</code> - indicates whether a solution should be rejected if it has an invalid size</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> if the solution is rejected</dd>
 </dl>
 </li>
 </ul>

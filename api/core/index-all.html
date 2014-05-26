@@ -522,6 +522,10 @@
 <dd>
 <div class="block">Get the set of integer IDs corresponding to the underlying entities from which a subset is to be selected.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/LRSubsetSearch.html#getL--">getL()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/LRSubsetSearch.html" title="class in org.jamesframework.core.search.algo">LRSubsetSearch</a></dt>
+<dd>
+<div class="block">Get \(L\): the number of additions performed in every search step.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#getLocalSearchFactory--">getLocalSearchFactory()</a></span> - Method in class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodSearch</a></dt>
 <dd>
 <div class="block">Get the factory used to create instances of the local search algorithm which is applied to modify
@@ -637,9 +641,17 @@
 <dd>
 <div class="block">Get the objective function.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/LRSubsetSearch.html#getProblem--">getProblem()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/LRSubsetSearch.html" title="class in org.jamesframework.core.search.algo">LRSubsetSearch</a></dt>
+<dd>
+<div class="block">Returns the subset problem that is being solved.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#getProblem--">getProblem()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
 <div class="block">Get the problem being solved, as specified at construction.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/LRSubsetSearch.html#getR--">getR()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/LRSubsetSearch.html" title="class in org.jamesframework.core.search.algo">LRSubsetSearch</a></dt>
+<dd>
+<div class="block">Get \(R\): the number of deletions performed in every search step.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/util/SetUtilities.html#getRandomElement-java.util.Set-java.util.Random-">getRandomElement(Set&lt;? extends T&gt;, Random)</a></span> - Static method in class org.jamesframework.core.util.<a href="org/jamesframework/core/util/SetUtilities.html" title="class in org.jamesframework.core.util">SetUtilities</a></dt>
 <dd>
@@ -946,6 +958,20 @@
 <dd>
 <div class="block">Extends the general search listener interface with a local search specific callback, fired when the current solution
  has been modified.</div>
+</dd>
+<dt><a href="org/jamesframework/core/search/algo/LRSubsetSearch.html" title="class in org.jamesframework.core.search.algo"><span class="typeNameLink">LRSubsetSearch</span></a> - Class in <a href="org/jamesframework/core/search/algo/package-summary.html">org.jamesframework.core.search.algo</a></dt>
+<dd>
+<div class="block">LR subset search is a greedy local search heuristic for subset selection.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/LRSubsetSearch.html#LRSubsetSearch-org.jamesframework.core.problems.SubsetProblem-int-int-">LRSubsetSearch(SubsetProblem, int, int)</a></span> - Constructor for class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/LRSubsetSearch.html" title="class in org.jamesframework.core.search.algo">LRSubsetSearch</a></dt>
+<dd>
+<div class="block">Create an LR subset search, given the subset problem to solve and a value for \(L \ge 0\) and \(R \ge 0\),
+ \(L \ne R\).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/LRSubsetSearch.html#LRSubsetSearch-java.lang.String-org.jamesframework.core.problems.SubsetProblem-int-int-">LRSubsetSearch(String, SubsetProblem, int, int)</a></span> - Constructor for class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/LRSubsetSearch.html" title="class in org.jamesframework.core.search.algo">LRSubsetSearch</a></dt>
+<dd>
+<div class="block">Create an LR subset search, given the subset problem to solve, a value for \(L \ge 0\) and \(R \ge 0\),
+ \(L \ne R\), and a custom search name.</div>
 </dd>
 </dl>
 <a name="I:M">
@@ -1298,7 +1324,15 @@
 <dd>
 <div class="block">Checks whether any of the specified rejecting constraints are violated.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/SubsetProblem.html#rejectSolution-org.jamesframework.core.problems.solutions.SubsetSolution-boolean-">rejectSolution(SubsetSolution, boolean)</a></span> - Method in interface org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/SubsetProblem.html" title="interface in org.jamesframework.core.problems">SubsetProblem</a></dt>
+<dd>
+<div class="block">Checks whether the given subset solution is to be rejected, possibly ignoring its current size.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/SubsetProblemWithData.html#rejectSolution-org.jamesframework.core.problems.solutions.SubsetSolution-">rejectSolution(SubsetSolution)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/SubsetProblemWithData.html" title="class in org.jamesframework.core.problems">SubsetProblemWithData</a></dt>
+<dd>
+<div class="block">Checks whether the given subset solution is rejected.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/SubsetProblemWithData.html#rejectSolution-org.jamesframework.core.problems.solutions.SubsetSolution-boolean-">rejectSolution(SubsetSolution, boolean)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/SubsetProblemWithData.html" title="class in org.jamesframework.core.problems">SubsetProblemWithData</a></dt>
 <dd>
 <div class="block">Checks whether the given subset solution is rejected.</div>
 </dd>
@@ -1424,6 +1458,12 @@
 <dd>
 <div class="block">When the search is started, it is verified whether at least one subsearch has been added.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/LRSubsetSearch.html#searchStarted--">searchStarted()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/LRSubsetSearch.html" title="class in org.jamesframework.core.search.algo">LRSubsetSearch</a></dt>
+<dd>
+<div class="block">When the search is started for the first time, and no custom initial solution has been set,
+ an empty or full subset solution is created depending on whether \(L \gt R\) or \(R \gt L\),
+ respectively, to be repeatedly modified during search.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/EmptySearchListener.html#searchStarted-org.jamesframework.core.search.Search-">searchStarted(Search&lt;? extends SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/EmptySearchListener.html" title="class in org.jamesframework.core.search.listeners">EmptySearchListener</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/SearchListener.html#searchStarted-org.jamesframework.core.search.Search-">searchStarted(Search&lt;? extends SolutionType&gt;)</a></span> - Method in interface org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a></dt>
@@ -1455,6 +1495,10 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/exh/ExhaustiveSearch.html#searchStep--">searchStep()</a></span> - Method in class org.jamesframework.core.search.algo.exh.<a href="org/jamesframework/core/search/algo/exh/ExhaustiveSearch.html" title="class in org.jamesframework.core.search.algo.exh">ExhaustiveSearch</a></dt>
 <dd>
 <div class="block">In every search step it is verified whether there are more solution to be generated using the solution iterator.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/LRSubsetSearch.html#searchStep--">searchStep()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/LRSubsetSearch.html" title="class in org.jamesframework.core.search.algo">LRSubsetSearch</a></dt>
+<dd>
+<div class="block">In every search step, the \(L\) best additions and \(R\) best deletions of a single item are performed.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/MetropolisSearch.html#searchStep--">searchStep()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a></dt>
 <dd>
@@ -1920,9 +1964,13 @@
  assuming that the given solution is <b>not</b> rejected by the problem (see
  <a href="org/jamesframework/core/problems/Problem.html#rejectSolution-SolutionType-"><code>Problem.rejectSolution(Solution)</code></a> and has already been evaluated.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-">updateCurrentAndBestSolution(SolutionType)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
+<dd>
+<div class="block">Update the current and best solution during search.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#updateCurrentSolution-SolutionType-double-">updateCurrentSolution(SolutionType, double)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
 <dd>
-<div class="block">Update the current solution, given that it has already been evaluated.</div>
+<div class="block">Update the current solution during search, given that it has already been evaluated.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#updateCurrentSolution-SolutionType-double-">updateCurrentSolution(SolutionType, double)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
 <dd>

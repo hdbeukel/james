@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -123,7 +123,7 @@ var activeTableTab = "activeTableTab";
 </dl>
 <dl>
 <dt>Direct Known Subclasses:</dt>
-<dd><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a>, <a href="../../../../org/jamesframework/core/search/algo/PipedLocalSearch.html" title="class in org.jamesframework.core.search.algo">PipedLocalSearch</a></dd>
+<dd><a href="../../../../org/jamesframework/core/search/algo/LRSubsetSearch.html" title="class in org.jamesframework.core.search.algo">LRSubsetSearch</a>, <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a>, <a href="../../../../org/jamesframework/core/search/algo/PipedLocalSearch.html" title="class in org.jamesframework.core.search.algo">PipedLocalSearch</a></dd>
 </dl>
 <hr>
 <br>
@@ -219,9 +219,15 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-">updateCurrentAndBestSolution</a></span>(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution)</code>
+<div class="block">Update the current and best solution during search.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentSolution-SolutionType-double-">updateCurrentSolution</a></span>(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution,
                      double&nbsp;evaluation)</code>
-<div class="block">Update the current solution, given that it has already been evaluated.</div>
+<div class="block">Update the current solution during search, given that it has already been evaluated.</div>
 </td>
 </tr>
 </table>
@@ -415,18 +421,35 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 </a><a name="updateCurrentSolution-SolutionType-double-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>updateCurrentSolution</h4>
 <pre>protected&nbsp;void&nbsp;updateCurrentSolution(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution,
                                      double&nbsp;evaluation)</pre>
-<div class="block">Update the current solution, given that it has already been evaluated. This method stores
- the new current solution and its evaluation, and informs any local search listeners about
+<div class="block">Update the current solution during search, given that it has already been evaluated. This method
+ stores the new current solution and its evaluation, and informs any local search listeners about
  this update.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>solution</code> - new current solution</dd>
 <dd><code>evaluation</code> - evaluation of new current solution</dd>
+</dl>
+</li>
+</ul>
+<a name="updateCurrentAndBestSolution-org.jamesframework.core.problems.solutions.Solution-">
+<!--   -->
+</a><a name="updateCurrentAndBestSolution-SolutionType-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>updateCurrentAndBestSolution</h4>
+<pre>protected&nbsp;void&nbsp;updateCurrentAndBestSolution(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution)</pre>
+<div class="block">Update the current and best solution during search. The current solution is first evaluated and then
+ updated. If the current solution is not rejected by the problem, the best solution is updated accordingly.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>solution</code> - new current solution</dd>
 </dl>
 </li>
 </ul>

@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -228,18 +228,25 @@ implements <a href="../../../../org/jamesframework/core/problems/SubsetProblem.h
 </td>
 </tr>
 <tr id="i6" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/SubsetProblemWithData.html#rejectSolution-org.jamesframework.core.problems.solutions.SubsetSolution-boolean-">rejectSolution</a></span>(<a href="../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;solution,
+              boolean&nbsp;checkSubsetSize)</code>
+<div class="block">Checks whether the given subset solution is rejected.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/SubsetProblemWithData.html#setData-DataType-">setData</a></span>(<a href="../../../../org/jamesframework/core/problems/SubsetProblemWithData.html" title="type parameter in SubsetProblemWithData">DataType</a>&nbsp;data)</code>
 <div class="block">Set new subset data, verifying that the data is not <code>null</code>.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/SubsetProblemWithData.html#setMaxSubsetSize-int-">setMaxSubsetSize</a></span>(int&nbsp;maxSubsetSize)</code>
 <div class="block">Set the maximum subset size.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/SubsetProblemWithData.html#setMinSubsetSize-int-">setMinSubsetSize</a></span>(int&nbsp;minSubsetSize)</code>
 <div class="block">Set the minimum subset size.</div>
@@ -467,6 +474,28 @@ implements <a href="../../../../org/jamesframework/core/problems/SubsetProblem.h
 <dd><code><a href="../../../../org/jamesframework/core/problems/ProblemWithData.html#rejectSolution-SolutionType-">rejectSolution</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/jamesframework/core/problems/ProblemWithData.html" title="class in org.jamesframework.core.problems">ProblemWithData</a>&lt;<a href="../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>,<a href="../../../../org/jamesframework/core/problems/SubsetProblemWithData.html" title="type parameter in SubsetProblemWithData">DataType</a> extends <a href="../../../../org/jamesframework/core/problems/datatypes/SubsetData.html" title="interface in org.jamesframework.core.problems.datatypes">SubsetData</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>solution</code> - subset solution to verify</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> if the solution is rejected</dd>
+</dl>
+</li>
+</ul>
+<a name="rejectSolution-org.jamesframework.core.problems.solutions.SubsetSolution-boolean-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>rejectSolution</h4>
+<pre>public&nbsp;boolean&nbsp;rejectSolution(<a href="../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;solution,
+                              boolean&nbsp;checkSubsetSize)</pre>
+<div class="block">Checks whether the given subset solution is rejected. A subset solution is rejected if any of the rejecting constraints is
+ violated (see <a href="../../../../org/jamesframework/core/problems/ProblemWithData.html#addRejectingConstraint-org.jamesframework.core.problems.constraints.Constraint-"><code>ProblemWithData.addRejectingConstraint(Constraint)</code></a>). Also, if <code>checkSubsetSize</code> is <code>true</code>,
+ the solution is rejected if it has an invalid size.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../org/jamesframework/core/problems/SubsetProblem.html#rejectSolution-org.jamesframework.core.problems.solutions.SubsetSolution-boolean-">rejectSolution</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../org/jamesframework/core/problems/SubsetProblem.html" title="interface in org.jamesframework.core.problems">SubsetProblem</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>solution</code> - subset solution to verify</dd>
+<dd><code>checkSubsetSize</code> - indicates whether a solution should be rejected if it has an invalid size</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd><code>true</code> if the solution is rejected</dd>
 </dl>
