@@ -89,6 +89,7 @@ public class SearchTestTemplate {
             min += sorted[i];
             max += sorted[sorted.length-i-1];
         }
+        System.out.println("# Selecting " + SUBSET_SIZE + " out of " + DATASET_SIZE + " items");
         System.out.println("# Maximum subset evaluation: " + max);
         System.out.println("# Minimum subset evaluation: " + min);
     }

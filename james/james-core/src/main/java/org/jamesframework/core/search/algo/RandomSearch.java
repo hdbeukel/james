@@ -21,14 +21,14 @@ import org.jamesframework.core.search.Search;
 /**
  * The random search algorithm iteratively samples a random solution and checks
  * whether a new best solution has been found, in every search step.
-
-* @param <SolutionType> solution type of the problems that may be solved using this search, required to extend {@link Solution}
+ * 
+ * @param <SolutionType> solution type of the problems that may be solved using this search, required to extend {@link Solution}
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class RandomSearch<SolutionType extends Solution> extends Search<SolutionType> {
     
     /**
-     * Create a random search, given the problem to solve. Note that problem can not be <code>null</code>.
+     * Create a random search, given the problem to solve. Note that <code>problem</code> can not be <code>null</code>.
      * The search name is set to the default name "RandomSearch".
      * 
      * @throws NullPointerException if <code>problem</code> is <code>null</code>
@@ -39,9 +39,9 @@ public class RandomSearch<SolutionType extends Solution> extends Search<Solution
     }
     
     /**
-     * Create a random search, given the problem to solve and a custom search name.
-     * Note that problem can not be <code>null</code>. The search name can be <code>null</code>
-     * in which case it is set to the default name "RandomSearch".
+     * Create a random search, given the problem to solve and a custom search name. Note that <code>problem</code> can
+     * not be <code>null</code>. The search name can be <code>null</code> in which case it is set to the default name
+     * "RandomSearch".
      * 
      * @throws NullPointerException if <code>problem</code> is <code>null</code>
      * @param problem problem to solve

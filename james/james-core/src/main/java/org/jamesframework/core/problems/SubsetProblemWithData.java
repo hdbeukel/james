@@ -193,9 +193,28 @@ public class SubsetProblemWithData<DataType extends SubsetData> extends ProblemW
      */
     @Override
     public boolean rejectSolution(SubsetSolution solution){
-        return solution.getNumSelectedIDs() < getMinSubsetSize()        // too small
-                || solution.getNumSelectedIDs() > getMaxSubsetSize()    // too large
-                || super.rejectSolution(solution);                      // violates rejecting constraint
+        return rejectSolution(solution, true);
+    }
+    
+    /**
+     * Checks whether the given subset solution is rejected. A subset solution is rejected if any of the rejecting constraints is
+     * violated (see {@link #addRejectingConstraint(Constraint)}). Also, if <code>checkSubsetSize</code> is <code>true</code>,
+     * the solution is rejected if it has an invalid size.
+     * 
+     * @param solution subset solution to verify
+     * @param checkSubsetSize indicates whether a solution should be rejected if it has an invalid size
+     * @return <code>true</code> if the solution is rejected
+     */
+    @Override
+    public boolean rejectSolution(SubsetSolution solution, boolean checkSubsetSize){
+        if(checkSubsetSize){
+            return solution.getNumSelectedIDs() < getMinSubsetSize()        // too small
+                    || solution.getNumSelectedIDs() > getMaxSubsetSize()    // too large
+                    || super.rejectSolution(solution);                      // violates rejecting constraint
+        } else {
+            // ignore size
+            return super.rejectSolution(solution);
+        }
     }
 
     /**

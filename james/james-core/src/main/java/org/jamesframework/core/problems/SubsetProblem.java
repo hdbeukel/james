@@ -45,5 +45,16 @@ public interface SubsetProblem extends Problem<SubsetSolution>{
      * @return maximum subset size
      */
     public int getMaxSubsetSize();
+    
+    /**
+     * Checks whether the given subset solution is to be rejected, possibly ignoring its current size.
+     * If <code>checkSubsetSize</code> is <code>false</code>, the given solution is <b>not</b> rejected
+     * if it has an invalid size but yet satisfies all other constraints.
+     * 
+     * @param solution subset solution to verify
+     * @param checkSubsetSize indicates whether a solution should be rejected if it has an invalid size
+     * @return <code>true</code> if the solution is rejected
+     */
+    public boolean rejectSolution(SubsetSolution solution, boolean checkSubsetSize);
 
 }

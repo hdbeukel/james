@@ -94,25 +94,7 @@ public abstract class LocalSearch<SolutionType extends Solution> extends Search<
         super.searchStarted();
         // create random initial solution if none is set
         if(curSolution == null){
-            setCurrentSolutionAndUpdateBestSolution(getProblem().createRandomSolution());
-        }
-    }
-    
-    /**
-     * Private method to adjust the current solution, which does not verify the search status and may
-     * therefore be called when the search is not idle. Called when creating a random initial solution
-     * during initialization, and from within the public {@link #setCurrentSolution(Solution)} after
-     * verifying the search status. Automatically evaluates and validates the new current solution,
-     * and updates the best solution if applicable.
-     * 
-     * @param solution new current solution
-     */
-    private void setCurrentSolutionAndUpdateBestSolution(SolutionType solution){
-        // update current solution
-        updateCurrentSolution(solution, getProblem().evaluate(solution));
-        // update best solution, if current solution is not rejected
-        if(!getProblem().rejectSolution(solution)){
-            updateBestSolution(curSolution, curSolutionEvaluation);
+            updateCurrentAndBestSolution(getProblem().createRandomSolution());
         }
     }
     
@@ -233,7 +215,7 @@ public abstract class LocalSearch<SolutionType extends Solution> extends Search<
                 throw new NullPointerException("Cannot set current solution: received null.");
             }
             // go ahead and adjust current solution
-            setCurrentSolutionAndUpdateBestSolution(solution);
+            updateCurrentAndBestSolution(solution);
         }
     }
     
@@ -242,8 +224,8 @@ public abstract class LocalSearch<SolutionType extends Solution> extends Search<
     /***********************/
     
     /**
-     * Update the current solution, given that it has already been evaluated. This method stores
-     * the new current solution and its evaluation, and informs any local search listeners about
+     * Update the current solution during search, given that it has already been evaluated. This method
+     * stores the new current solution and its evaluation, and informs any local search listeners about
      * this update.
      * 
      * @param solution new current solution
@@ -256,6 +238,21 @@ public abstract class LocalSearch<SolutionType extends Solution> extends Search<
         curSolutionEvaluation = evaluation;
         // inform listeners
         fireModifiedCurrentSolution(curSolution, curSolutionEvaluation);
+    }
+    
+    /**
+     * Update the current and best solution during search. The current solution is first evaluated and then
+     * updated. If the current solution is not rejected by the problem, the best solution is updated accordingly.
+     * 
+     * @param solution new current solution
+     */
+    protected void updateCurrentAndBestSolution(SolutionType solution){
+        // update current solution
+        updateCurrentSolution(solution, getProblem().evaluate(solution));
+        // update best solution, if current solution is not rejected
+        if(!getProblem().rejectSolution(solution)){
+            updateBestSolution(curSolution, curSolutionEvaluation);
+        }
     }
     
 }
