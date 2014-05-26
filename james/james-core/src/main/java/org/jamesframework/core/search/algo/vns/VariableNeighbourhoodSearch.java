@@ -203,9 +203,9 @@ public class VariableNeighbourhoodSearch<SolutionType extends Solution> extends 
             s = 0;
         }
         
-        // create copy of current solution to shake and modify
+        // create copy of current solution to shake and modify by applying local search procedure
         
-        SolutionType shakedSolution = getProblem().copySolution(getCurrentSolution());
+        SolutionType shakedSolution = Solution.checkedCopy(getCurrentSolution());
         
         // 1) SHAKING
         

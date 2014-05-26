@@ -777,7 +777,7 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
             }
             // update best solution: create copy because new solution
             // might be further modified in subsequent search steps
-            bestSolution = problem.copySolution(newSolution);
+            bestSolution = Solution.checkedCopy(newSolution);
             bestSolutionEvaluation = newSolutionEvaluation;
             // log
             logger.debug("{}: new best solution: {}", this, bestSolutionEvaluation);

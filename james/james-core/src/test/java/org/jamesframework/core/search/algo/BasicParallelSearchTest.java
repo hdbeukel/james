@@ -114,8 +114,6 @@ public class BasicParallelSearchTest extends SearchTestTemplate {
         Problem<SubsetSolution> p = new ProblemWithData<SubsetSolution, ScoredFakeSubsetData>(obj, data) {
             @Override
             public SubsetSolution createRandomSolution() {return null;}
-            @Override
-            public SubsetSolution copySolution(SubsetSolution solution) {return null;}
         };
         parallelSearch.addSearch(new RandomSearch<>(p));
     }

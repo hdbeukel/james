@@ -161,7 +161,7 @@ public class PipedLocalSearch<SolutionType extends Solution> extends LocalSearch
         // execute pipeline
         for(LocalSearch<SolutionType> l : pipeline){
             // set initial solution (copy!)
-            l.setCurrentSolution(getProblem().copySolution(getCurrentSolution()));
+            l.setCurrentSolution(Solution.checkedCopy(getCurrentSolution()));
             // run local search
             l.start();
             // get best solution found by search l

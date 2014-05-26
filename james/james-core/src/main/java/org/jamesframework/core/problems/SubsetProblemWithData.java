@@ -156,23 +156,6 @@ public class SubsetProblemWithData<DataType extends SubsetData> extends ProblemW
         // return random solution
         return sol;
     }
-
-    /**
-     * Create a deep copy of the given subset solution. This implementation creates a new subset solution and sets the same IDs,
-     * selected IDs and unselected IDs as in the given solution.
-     * 
-     * @param solution solution to copy
-     * @return deep copy with same selected/unselected IDs
-     */
-    @Override
-    public SubsetSolution copySolution(SubsetSolution solution) {
-        // create a new subset solution with same IDs
-        SubsetSolution copy = new SubsetSolution(solution.getAllIDs(), sortedIDs);
-        // select same IDs as those selected in given solution
-        copy.selectAll(solution.getSelectedIDs());
-        // return copy
-        return copy;
-    }
     
     /**
      * Creates an empty subset solution containing the IDs of the underlying data, where none of these IDs are selected.

@@ -384,16 +384,6 @@ public class ProblemWithDataTest {
             return null;
         }
 
-        /**
-         * Not used here for testing.
-         * 
-         * @param solution any solution
-         * @return null
-         */
-        @Override
-        public Solution copySolution(Solution solution) {
-            return null;
-        }
     }
 
 }

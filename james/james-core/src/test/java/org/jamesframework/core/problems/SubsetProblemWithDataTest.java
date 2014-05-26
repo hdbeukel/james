@@ -15,6 +15,7 @@
 package org.jamesframework.core.problems;
 
 import java.util.Random;
+import org.jamesframework.core.problems.solutions.Solution;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.util.SetUtilities;
 import org.jamesframework.test.fakes.ScoredFakeSubsetData;
@@ -211,13 +212,13 @@ public class SubsetProblemWithDataTest {
             // create random solution for problem 1
             sol1 = problem1.createRandomSolution();
             // copy it
-            copy1 = problem1.copySolution(sol1);
+            copy1 = Solution.checkedCopy(sol1);
             // verify
             assertEquals(sol1, copy1);
            // create random solution for problem 2
             sol2 = problem2.createRandomSolution();
             // copy it
-            copy2 = problem2.copySolution(sol2);
+            copy2 = Solution.checkedCopy(sol2);
             // verify
             assertEquals(sol2, copy2);
         }
@@ -542,7 +543,7 @@ public class SubsetProblemWithDataTest {
             prevID = ID;
         }
         // repeat with copy
-        sol = problem1.copySolution(sol);
+        sol = Solution.checkedCopy(sol);
         prevID = null;
         for(int ID : sol.getAllIDs()){
             if(prevID != null){

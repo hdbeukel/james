@@ -323,7 +323,7 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
         neighSearch.searchStarted();
         
         // copy initial solution
-        SubsetSolution copy = problem.copySolution(neighSearch.getCurrentSolution());
+        SubsetSolution copy = Solution.checkedCopy(neighSearch.getCurrentSolution());
         double copyEval;
         Move<SubsetSolution> m;
         for(int i=0; i<1000; i++){
@@ -359,7 +359,7 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
         neighSearch.searchStarted();
         
         // copy initial solution
-        SubsetSolution copy = problem.copySolution(neighSearch.getCurrentSolution());
+        SubsetSolution copy = Solution.checkedCopy(neighSearch.getCurrentSolution());
         double copyEval;
         Move<SubsetSolution> m;
         for(int i=0; i<100; i++){

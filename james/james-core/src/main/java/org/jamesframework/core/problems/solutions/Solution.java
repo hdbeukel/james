@@ -14,17 +14,102 @@
 
 package org.jamesframework.core.problems.solutions;
 
+import org.jamesframework.core.exceptions.SolutionCopyException;
+
 /**
- *  Represents an abstract solution. Every solution class should provide
- *  methods to compute the hash code of a specific solution, and to check for
- *  conceptual equality with other solutions. The implemented equality
- *  should be consistent with the computed hash codes, i.e. two solutions which
- *  are deemed equal should produce the same hash code, while unequal solutions
- *  may (and preferably should) produce different hash codes.
+ * Represents an abstract solution. Every extending solution class should provide methods to check for conceptual
+ * equality with a given other solution and to compute a corresponding hash code. Two solutions which are deemed
+ * equal should always produce the same hash code, while different solutions may (and preferably should) produce
+ * different hash codes (according to the general contract of {@link Object#hashCode()}).
+ * <p>
+ * Every solution class should also implement the abstract method {@link #copy()} which is used to create a deep
+ * copy of a solution. The returned deep copy should <b>always</b> have the exact same type as the solution on which
+ * the method was called.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public abstract class Solution {
+    
+    /**
+     * Creates a checked deep copy of the given solution with specific type <code>T</code> (a subclass of {@link Solution}).
+     * Both the given solution and return type are of the same type <code>T</code>. This method calls {@link #copy()} on
+     * the given solution and casts the result to the respective type <code>T</code>. If this cast fails, an exception
+     * with a detailed error message is thrown, precisely indicating the expected cause of the type mismatch: the method
+     * {@link #copy()} does not return a solution of the correct type <code>T</code>, either because the implementation
+     * is inherrited from a super class or because the direct implementation violates the general contract of {@link #copy()}.
+     * 
+     * @param <T> solution type, required to extend {@link Solution}
+     * @param solution solution to copy, of type <code>T</code>
+     * @throws SolutionCopyException if calling {@link #copy()} on the given solution of type <code>T</code>
+     *                                       does not yield a copy of the exact same type <code>T</code>, indicating
+     *                                       a faulty implementation (contains a detailed error message)
+     * @return copy of type <code>T</code>
+     */
+    static public <T extends Solution> T checkedCopy(T solution){
+        // copy solution
+        Solution copy = solution.copy();
+        // verify type of copy
+        Class<?> origClass = solution.getClass();
+        Class<?> copyClass = copy.getClass();
+        if(copyClass == origClass){
+            return (T) copy;
+        } else {
+            // mismatching types: find out why and throw a detailed exception
+            try {
+                Class<?> declaringClassOfCopy = origClass.getMethod("copy").getDeclaringClass();
+                if(declaringClassOfCopy != origClass){
+                    // method copy() not directly implemented in T
+                    throw new SolutionCopyException("Deep copy of solution of type " + simpleClassName(origClass) + " failed. "
+                                                            + "Calling copy() yields a solution of type " + simpleClassName(copyClass) + ", not "
+                                                            + simpleClassName(origClass) + ". Expected cause of this type mismatch: "
+                                                            + simpleClassName(origClass) + " does not directly implement method copy() but "
+                                                            + "inherits an undesired implementation from super class "
+                                                            + simpleClassName(declaringClassOfCopy) + ".");
+                } else {
+                    // copy() implemented in T but does not return correct type
+                    throw new SolutionCopyException("Deep copy of solution of type " + simpleClassName(origClass) + " failed. "
+                                                            + "Calling copy() yields a solution of type " + simpleClassName(copyClass) + ", not "
+                                                            + simpleClassName(origClass) + ". Expected cause of this type mismatch: "
+                                                            + "faulty implementation of copy() in " + simpleClassName(origClass) + ", "
+                                                            + "does not return solution of type " + simpleClassName(origClass) + ".");
+                }
+            } catch (NoSuchMethodException noSuchMethodEx){
+                // this should never happen, all subclasses of Solution have a method copy() somewhere in the class hierarchy
+                throw new Error("Solution without method 'copy()': this should never happen; if it does, "
+                                + "there is a serious bug in Solution.", noSuchMethodEx);
+            }
+        }
+    }
+    
+    /**
+     * Get simple class name by stripping anything before the last dot (".") from the canonical class name.
+     * 
+     * @param clazz class object
+     * @return simple class name
+     */
+    static private String simpleClassName(Class<?> clazz){
+        String canonicalClassName = clazz.getCanonicalName();
+        int lastDotIndex = canonicalClassName.lastIndexOf(".");
+        int startIndex = lastDotIndex+1;
+        if(startIndex >= 0 && startIndex <= canonicalClassName.length()){
+            return canonicalClassName.substring(startIndex);
+        } else {
+            return "";
+        }
+    }
+    
+    /**
+     * Creates a deep copy of this solution. The implementation of this method should <b>always</b> return a solution
+     * of the correct type, i.e. the exact same type as the solution on which the method was called. Violating this
+     * contract might result in class cast exceptions thrown from within various classes of the framework. It is
+     * therefore of <b>utmost</b> importance that every solution class directly implements this method, also when
+     * extending an other concrete solution class in which the method has already been implemented, as an inherited
+     * implementation will never return a copy of the correct type.
+     * 
+     * @return deep copy of this solution, which is equal to the original solution but does not share any references
+     *         of contained objects with this original solution
+     */
+    public abstract Solution copy();
     
     /**
      * Checks whether this solution is conceptually equal to an other, given solution.

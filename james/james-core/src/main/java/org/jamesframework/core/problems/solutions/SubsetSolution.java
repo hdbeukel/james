@@ -124,6 +124,29 @@ public class SubsetSolution extends Solution {
     }
     
     /**
+     * Copy constructor. Creates a new subset solution which is identical to the given solution, but does not have
+     * any reference to any data structures contained within the given solution (deep copy). The obtained subset
+     * solution will have exactly the same selected/unselected IDs as the given solution, and if IDs are ordered
+     * in the given solution this ordering will be retained.
+     * 
+     * @param sol solution to copy
+     */
+    public SubsetSolution(SubsetSolution sol){
+        this(sol.getAllIDs(), sol.getSelectedIDs(), sol.isSorted());
+    }
+    
+    /**
+     * Create a deep copy of this subset solution, obtained through the copy constructor,
+     * passing <code>this</code> as argument.
+     * 
+     * @return deep copy of this subset solution
+     */
+    @Override
+    public SubsetSolution copy() {
+        return new SubsetSolution(this);
+    }
+    
+    /**
      * Indicates whether IDs are stored in sorted sets.
      * 
      * @return <code>true</code> if IDs are stored in sorted sets

@@ -38,4 +38,9 @@ public class EmptySolutionStub extends Solution {
         return 5;
     }
 
+    @Override
+    public Solution copy() {
+        return new EmptySolutionStub();
+    }
+
 }

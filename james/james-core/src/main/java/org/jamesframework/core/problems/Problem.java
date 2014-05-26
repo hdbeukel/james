@@ -17,9 +17,8 @@ package org.jamesframework.core.problems;
 import org.jamesframework.core.problems.solutions.Solution;
 
 /**
- *  Interface of a problem with a generic solution type. Contains methods
- *  to evaluate a solution, to compare solutions based on their evaluation,
- *  and to create random solutions or to copy a solution.
+ * Interface of a problem with a generic solution type. Contains methods to evaluate or validate a solution and
+ * to create a random solution. Also indicates whether the evaluations are to be maximized or minimized.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  * @param <SolutionType> the solution type that corresponds to this problem, required to extend {@link Solution}
@@ -61,13 +60,5 @@ public interface Problem<SolutionType extends Solution> {
      * @return a random solution
      */
     public SolutionType createRandomSolution();
-    
-    /**
-     * Creates a (deep) copy of the given solution.
-     * 
-     * @param solution solution to copy
-     * @return a deep copy of the given solution
-     */
-    public SolutionType copySolution(SolutionType solution);
     
 }

@@ -291,7 +291,7 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
             super.setCurrentSolution(solution);
             // pass current solution to every replica (copy!)
             for(MetropolisSearch<SolutionType> r : replicas){
-                r.setCurrentSolution(getProblem().copySolution(solution));
+                r.setCurrentSolution(Solution.checkedCopy(solution));
             }
         }
     }
