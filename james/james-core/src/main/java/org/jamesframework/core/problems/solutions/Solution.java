@@ -24,7 +24,11 @@ import org.jamesframework.core.exceptions.SolutionCopyException;
  * <p>
  * Every solution class should also implement the abstract method {@link #copy()} which is used to create a deep
  * copy of a solution. The returned deep copy should <b>always</b> have the exact same type as the solution on which
- * the method was called.
+ * the method was called. A static method {@link #checkedCopy(Solution)} is provided to create type safe copies of
+ * any solution class: it returns a deep copy of the exact same type as its argument, given that the general contract
+ * of {@link #copy()} is followed in every solution class implementation. If this contract is violated, calling
+ * {@link #checkedCopy(Solution)} will throw a detailed exception that precisely indicates the cause of the
+ * occurred type mismatch.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
@@ -35,8 +39,8 @@ public abstract class Solution {
      * Both the given solution and return type are of the same type <code>T</code>. This method calls {@link #copy()} on
      * the given solution and casts the result to the respective type <code>T</code>. If this cast fails, an exception
      * with a detailed error message is thrown, precisely indicating the expected cause of the type mismatch: the method
-     * {@link #copy()} does not return a solution of the correct type <code>T</code>, either because the implementation
-     * is inherrited from a super class or because the direct implementation violates the general contract of {@link #copy()}.
+     * {@link #copy()} does not return a solution of the correct type <code>T</code>, either because an undesired implementation
+     * is inherited from a super class or because the direct implementation violates the general contract of {@link #copy()}.
      * 
      * @param <T> solution type, required to extend {@link Solution}
      * @param solution solution to copy, of type <code>T</code>
@@ -100,11 +104,11 @@ public abstract class Solution {
     
     /**
      * Creates a deep copy of this solution. The implementation of this method should <b>always</b> return a solution
-     * of the correct type, i.e. the exact same type as the solution on which the method was called. Violating this
-     * contract might result in class cast exceptions thrown from within various classes of the framework. It is
-     * therefore of <b>utmost</b> importance that every solution class directly implements this method, also when
-     * extending an other concrete solution class in which the method has already been implemented, as an inherited
-     * implementation will never return a copy of the correct type.
+     * of the exact same type as the solution on which the method was called. Violating this contract might result in
+     * exceptions when copying solutions from within various classes of the framework. It is therefore of <b>utmost</b>
+     * importance that every solution class directly implements this method, also when extending an other concrete
+     * solution class in which the method has already been implemented, as an inherited implementation will never
+     * return a copy of the correct type.
      * 
      * @return deep copy of this solution, which is equal to the original solution but does not share any references
      *         of contained objects with this original solution
