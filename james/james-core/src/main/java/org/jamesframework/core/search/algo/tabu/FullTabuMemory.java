@@ -16,6 +16,8 @@
 
 package org.jamesframework.core.search.algo.tabu;
 
+import java.util.Queue;
+import org.apache.commons.collections4.queue.CircularFifoQueue;
 import org.jamesframework.core.problems.solutions.Solution;
 import org.jamesframework.core.search.neigh.Move;
 
@@ -33,14 +35,58 @@ import org.jamesframework.core.search.neigh.Move;
  */
 public class FullTabuMemory<SolutionType extends Solution> implements TabuMemory<SolutionType> {
     
+    // limited size queue containing recently visited solutions (deep copies)
+    private final Queue<SolutionType> memory;
+    
+    /**
+     * Creates a full tabu memory with specified size. This memory stores deep copies of recently
+     * visited solutions, where the least recently visited solution is discarded if the memory
+     * size is exceeded.
+     * 
+     * @param size memory size (strictly positive)
+     * @throws IllegalArgumentException if <code>size</code> is not strictly positive
+     */
+    public FullTabuMemory(int size){
+        // verify size
+        if(size <= 0){
+            throw new IllegalArgumentException("Tabu memory size should be > 0.");
+        }
+        // create memory (limited size queue)
+        memory = new CircularFifoQueue<>(size);
+    }
+    
+    /**
+     * Verifies whether the given move is tabu by applying it to the current solution and checking if the obtained
+     * neighbour is currently contained in the tabu memory. If not, the move is allowed. Before returning, the move
+     * is undone to restore the original state of the current solution.
+     * 
+     * @param move move to be applied to the current solution
+     * @param currentSolution current solution
+     * @return <code>true</code> if the neighbour obtained by applying the given move to the current solution is
+     *         currently already contained in the tabu memory
+     */
     @Override
     public boolean isTabu(Move<SolutionType> move, SolutionType currentSolution) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // apply move
+        move.apply(currentSolution);
+        // check: contained in tabu memory?
+        boolean tabu = memory.contains(currentSolution);
+        // undo move
+        move.undo(currentSolution);
+        // return result
+        return tabu;
     }
 
+    /**
+     * A newly visited solution is registered by storing a deep copy of this solution in the full tabu memory.
+     * 
+     * @param visitedSolution newly visited solution (copied to memory)
+     * @param appliedMove applied move (not used here, can be <code>null</code>)
+     */
     @Override
     public void registerVisitedSolution(SolutionType visitedSolution, Move<SolutionType> appliedMove) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // store deep copy of newly visited solution
+        memory.add(Solution.checkedCopy(visitedSolution));
     }
 
 }
