@@ -125,5 +125,13 @@ public class IDBasedSubsetTabuMemory implements TabuMemory<SubsetSolution> {
             }
         }
     }
+    
+    /**
+     * Clear the tabu memory.
+     */
+    @Override
+    public void clear() {
+        memory.clear();
+    }
 
 }

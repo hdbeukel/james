@@ -39,7 +39,7 @@ public interface TabuMemory<SolutionType extends Solution> {
      * Indicates whether the given move is tabu, considering the current solution to which it will be applied
      * and the current state of the tabu memory. If this method returns <code>true</code>, the respective move
      * should not be considered by the search. If desired, the given move may be cast to a specific move type.
-     * If this cast fails, an {@link IncompatibleTabuMemoryException} might be thrown.
+     * If this cast fails, an {@link IncompatibleTabuMemoryException} should be thrown.
      * <p>
      * Note that if the specified current solution is modified by this method, it should be restored to its
      * original state before returning.
@@ -55,7 +55,7 @@ public interface TabuMemory<SolutionType extends Solution> {
      * Register a newly visited solution in the tabu memory. This method should be called whenever the
      * current solution has been updated, i.e. whenever a new solution is accepted, so that the tabu
      * memory is updated accordingly. If desired, the given move may be cast to a specific move type.
-     * If this cast fails, an {@link IncompatibleTabuMemoryException} might be thrown.
+     * If this cast fails, an {@link IncompatibleTabuMemoryException} should be thrown.
      * <p>
      * Note that if the specified newly visited solution is modified by this method, it should be restored
      * to its original state before returning.
@@ -66,5 +66,10 @@ public interface TabuMemory<SolutionType extends Solution> {
      * @throws IncompatibleTabuMemoryException in case of a mismatch in the given move type
      */
     public void registerVisitedSolution(SolutionType visitedSolution, Move<SolutionType> appliedMove);
+    
+    /**
+     * Clears the tabu memory.
+     */
+    public void clear();
     
 }

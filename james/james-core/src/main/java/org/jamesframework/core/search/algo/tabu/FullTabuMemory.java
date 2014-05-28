@@ -89,4 +89,12 @@ public class FullTabuMemory<SolutionType extends Solution> implements TabuMemory
         memory.add(Solution.checkedCopy(visitedSolution));
     }
 
+    /**
+     * Clear the tabu memory.
+     */
+    @Override
+    public void clear() {
+        memory.clear();
+    }
+
 }
