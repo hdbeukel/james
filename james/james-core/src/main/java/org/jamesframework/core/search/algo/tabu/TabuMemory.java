@@ -49,7 +49,7 @@ public interface TabuMemory<SolutionType extends Solution> {
      * @return <code>true</code> if the given move is tabu and should not be considered
      * @throws IncompatibleTabuMemoryException in case of a mismatch in the given move type
      */
-    public boolean isTabu(Move<SolutionType> move, SolutionType currentSolution);
+    public boolean isTabu(Move<? super SolutionType> move, SolutionType currentSolution);
     
     /**
      * Register a newly visited solution in the tabu memory. This method should be called whenever the
@@ -65,7 +65,7 @@ public interface TabuMemory<SolutionType extends Solution> {
      *                    otherwise, e.g. when updating the memory after setting a custom initial solution
      * @throws IncompatibleTabuMemoryException in case of a mismatch in the given move type
      */
-    public void registerVisitedSolution(SolutionType visitedSolution, Move<SolutionType> appliedMove);
+    public void registerVisitedSolution(SolutionType visitedSolution, Move<? super SolutionType> appliedMove);
     
     /**
      * Clears the tabu memory.

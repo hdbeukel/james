@@ -66,7 +66,7 @@ public class FullTabuMemory<SolutionType extends Solution> implements TabuMemory
      *         currently already contained in the tabu memory
      */
     @Override
-    public boolean isTabu(Move<SolutionType> move, SolutionType currentSolution) {
+    public boolean isTabu(Move<? super SolutionType> move, SolutionType currentSolution) {
         // apply move
         move.apply(currentSolution);
         // check: contained in tabu memory?
@@ -84,7 +84,7 @@ public class FullTabuMemory<SolutionType extends Solution> implements TabuMemory
      * @param appliedMove applied move (not used here, can be <code>null</code>)
      */
     @Override
-    public void registerVisitedSolution(SolutionType visitedSolution, Move<SolutionType> appliedMove) {
+    public void registerVisitedSolution(SolutionType visitedSolution, Move<? super SolutionType> appliedMove) {
         // store deep copy of newly visited solution
         memory.add(Solution.checkedCopy(visitedSolution));
     }

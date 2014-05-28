@@ -65,7 +65,7 @@ public class IDBasedSubsetTabuMemory implements TabuMemory<SubsetSolution> {
      * @throws IncompatibleTabuMemoryException if the given move is not of type {@link SubsetMove}
      */
     @Override
-    public boolean isTabu(Move<SubsetSolution> move, SubsetSolution currentSolution) {
+    public boolean isTabu(Move<? super SubsetSolution> move, SubsetSolution currentSolution) {
         // check move type
         if(move instanceof SubsetMove){
             // cast
@@ -107,7 +107,7 @@ public class IDBasedSubsetTabuMemory implements TabuMemory<SubsetSolution> {
      * @throws IncompatibleTabuMemoryException if the given move is not of type {@link SubsetMove}
      */
     @Override
-    public void registerVisitedSolution(SubsetSolution visitedSolution, Move<SubsetSolution> appliedMove) {
+    public void registerVisitedSolution(SubsetSolution visitedSolution, Move<? super SubsetSolution> appliedMove) {
         // don't do anything if move is null
         if(appliedMove != null){
             // check move type
