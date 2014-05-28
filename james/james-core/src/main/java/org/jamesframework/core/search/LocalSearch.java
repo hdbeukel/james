@@ -224,9 +224,10 @@ public abstract class LocalSearch<SolutionType extends Solution> extends Search<
     /***********************/
     
     /**
-     * Update the current solution during search, given that it has already been evaluated. This method
-     * stores the new current solution and its evaluation, and informs any local search listeners about
-     * this update.
+     * Update the current solution during search, given that it has already been evaluated. This method stores the
+     * new current solution and its evaluation, and informs any local search listeners about this update. It does
+     * <b>not</b> validate the new current solution, if it is required that {@link Problem#rejectSolution(Solution)}
+     * returns <code>false</code> this must be verified before updating the current solution.
      * 
      * @param solution new current solution
      * @param evaluation evaluation of new current solution
@@ -241,17 +242,50 @@ public abstract class LocalSearch<SolutionType extends Solution> extends Search<
     }
     
     /**
-     * Update the current and best solution during search. The current solution is first evaluated and then
-     * updated. If the current solution is not rejected by the problem, the best solution is updated accordingly.
+     * Update the current and best solution during search. The current solution is first evaluated and then updated,
+     * also in case it is an invalid solution (see {@link Problem#rejectSolution(Solution)}). Conversely, the best
+     * solution is only updated if the new current solution is not rejected, to ensure that the best solution is
+     * always valid.
      * 
      * @param solution new current solution
      */
     protected void updateCurrentAndBestSolution(SolutionType solution){
+        updateCurrentAndBestSolution(solution, getProblem().evaluate(solution));
+    }
+    
+    /**
+     * Update the current and best solution during search, given that the new current solution has already
+     * been evaluated. The current solution is always updated, also in case it is an invalid solution (see
+     * {@link Problem#rejectSolution(Solution)}). Conversely, the best solution is only updated if the new
+     * current solution is not rejected, to ensure that the best solution is always valid.
+     * 
+     * @param solution new current solution
+     * @param evaluation evaluation of new current solution
+     */
+    protected void updateCurrentAndBestSolution(SolutionType solution, double evaluation){
+        updateCurrentAndBestSolution(solution, evaluation, false);
+    }
+    
+    /**
+     * Update the current and best solution during search, given that the new current solution has already
+     * been evaluated. The current solution is always updated, also in case it is an invalid solution (see
+     * {@link Problem#rejectSolution(Solution)}). Conversely, the best solution is only updated if the new
+     * current solution is not rejected, to ensure that the best solution is always valid, unless
+     * <code>skipBestSolutionValidation</code> is <code>true</code>. In the latter case, it should
+     * have been verified that the given solution is valid before calling this method; revalidation
+     * is then ommitted.
+     * 
+     * @param solution new current solution
+     * @param evaluation evaluation of new current solution
+     * @param skipBestSolutionValidation if <code>true</code>, the best solution is always updated, without validating
+     *                                   the given solution (useful if this solution is already known to be valid)
+     */
+    protected void updateCurrentAndBestSolution(SolutionType solution, double evaluation, boolean skipBestSolutionValidation){
         // update current solution
-        updateCurrentSolution(solution, getProblem().evaluate(solution));
-        // update best solution, if current solution is not rejected
-        if(!getProblem().rejectSolution(solution)){
-            updateBestSolution(curSolution, curSolutionEvaluation);
+        updateCurrentSolution(solution, evaluation);
+        // update best solution, if solution is not rejected (or if validation is skipped)
+        if(skipBestSolutionValidation || !getProblem().rejectSolution(solution)){
+            updateBestSolution(solution, evaluation);
         }
     }
     
