@@ -70,11 +70,15 @@
 <!--   -->
 </a></div>
 <!-- ========= END OF TOP NAVBAR ========= -->
-<div class="contentContainer"><a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:J">J</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a name="I:A">
+<div class="contentContainer"><a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:J">J</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a name="I:A">
 <!--   -->
 </a>
 <h2 class="title">A</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html#acceptMove-org.jamesframework.core.search.neigh.Move-">acceptMove(Move&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="class in org.jamesframework.core.search.algo.tabu">TabuSearch</a></dt>
+<dd>
+<div class="block">Overrides acceptance of a move to update the tabu memory by registering the newly visited solution.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#acceptMove-org.jamesframework.core.search.neigh.Move-">acceptMove(Move&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
 <dd>
 <div class="block">Accept the given move by applying it to the current solution.</div>
@@ -189,6 +193,18 @@
 <dd>
 <div class="block">Creates a checked deep copy of the given solution with specific type <code>T</code> (a subclass of <a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions"><code>Solution</code></a>).</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html#clear--">clear()</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="class in org.jamesframework.core.search.algo.tabu">FullTabuMemory</a></dt>
+<dd>
+<div class="block">Clear the tabu memory.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/IDBasedSubsetTabuMemory.html#clear--">clear()</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/IDBasedSubsetTabuMemory.html" title="class in org.jamesframework.core.search.algo.tabu">IDBasedSubsetTabuMemory</a></dt>
+<dd>
+<div class="block">Clear the tabu memory.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/TabuMemory.html#clear--">clear()</a></span> - Method in interface org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/TabuMemory.html" title="interface in org.jamesframework.core.search.algo.tabu">TabuMemory</a></dt>
+<dd>
+<div class="block">Clears the tabu memory.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html#clear--">clear()</a></span> - Method in interface org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html" title="interface in org.jamesframework.core.search.cache">EvaluatedMoveCache</a></dt>
 <dd>
 <div class="block">Clears all cached values.</div>
@@ -196,6 +212,10 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#clear--">clear()</a></span> - Method in class org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html" title="class in org.jamesframework.core.search.cache">SingleEvaluatedMoveCache</a></dt>
 <dd>
 <div class="block">Clear all cached values.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html#clearTabuMemory--">clearTabuMemory()</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="class in org.jamesframework.core.search.algo.tabu">TabuSearch</a></dt>
+<dd>
+<div class="block">Clear the tabu memory.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#computeDelta-double-double-">computeDelta(double, double)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
@@ -375,6 +395,22 @@
 <dd>
 <div class="block">Create an exhaustive search algorithm to solve the given problem, using the given solution iterator to generate
  possible solutions, with a custom search name.</div>
+</dd>
+</dl>
+<a name="I:F">
+<!--   -->
+</a>
+<h2 class="title">F</h2>
+<dl>
+<dt><a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="class in org.jamesframework.core.search.algo.tabu"><span class="typeNameLink">FullTabuMemory</span></a>&lt;<a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="type parameter in FullTabuMemory">SolutionType</a> extends <a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/algo/tabu/package-summary.html">org.jamesframework.core.search.algo.tabu</a></dt>
+<dd>
+<div class="block">Full tabu memory that stores deeps copies of recently visited solutions and declares a move tabu if
+ applying it to the current solution yields a neighbouring solution which is currently contained in
+ the memory.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html#FullTabuMemory-int-">FullTabuMemory(int)</a></span> - Constructor for class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="class in org.jamesframework.core.search.algo.tabu">FullTabuMemory</a></dt>
+<dd>
+<div class="block">Creates a full tabu memory with specified size.</div>
 </dd>
 </dl>
 <a name="I:G">
@@ -801,6 +837,16 @@
 </a>
 <h2 class="title">I</h2>
 <dl>
+<dt><a href="org/jamesframework/core/search/algo/tabu/IDBasedSubsetTabuMemory.html" title="class in org.jamesframework.core.search.algo.tabu"><span class="typeNameLink">IDBasedSubsetTabuMemory</span></a> - Class in <a href="org/jamesframework/core/search/algo/tabu/package-summary.html">org.jamesframework.core.search.algo.tabu</a></dt>
+<dd>
+<div class="block">An ID based subset tabu memory keeps track of recently added and deleted IDs (recently applied moves) and does not
+ allow that these IDs are added nor deleted to/from the current solution as long as they are contained in the limited
+ size tabu memory.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/IDBasedSubsetTabuMemory.html#IDBasedSubsetTabuMemory-int-">IDBasedSubsetTabuMemory(int)</a></span> - Constructor for class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/IDBasedSubsetTabuMemory.html" title="class in org.jamesframework.core.search.algo.tabu">IDBasedSubsetTabuMemory</a></dt>
+<dd>
+<div class="block">Creates an ID based subset tabu memory with specified size.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#incNumAcceptedMoves-long-">incNumAcceptedMoves(long)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
 <dd>
 <div class="block">Increase the number of accepted moves with the given value.</div>
@@ -846,6 +892,26 @@
 <div class="block">Constructs an instance with the specified cause.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/exceptions/IncompatibleStopCriterionException.html#IncompatibleStopCriterionException-java.lang.String-java.lang.Throwable-">IncompatibleStopCriterionException(String, Throwable)</a></span> - Constructor for exception org.jamesframework.core.exceptions.<a href="org/jamesframework/core/exceptions/IncompatibleStopCriterionException.html" title="class in org.jamesframework.core.exceptions">IncompatibleStopCriterionException</a></dt>
+<dd>
+<div class="block">Constructs an instance with the specified detail message and cause.</div>
+</dd>
+<dt><a href="org/jamesframework/core/exceptions/IncompatibleTabuMemoryException.html" title="class in org.jamesframework.core.exceptions"><span class="typeNameLink">IncompatibleTabuMemoryException</span></a> - Exception in <a href="org/jamesframework/core/exceptions/package-summary.html">org.jamesframework.core.exceptions</a></dt>
+<dd>
+<div class="block">Exception thrown when an incompatible tabu memory is used for tabu search.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/exceptions/IncompatibleTabuMemoryException.html#IncompatibleTabuMemoryException--">IncompatibleTabuMemoryException()</a></span> - Constructor for exception org.jamesframework.core.exceptions.<a href="org/jamesframework/core/exceptions/IncompatibleTabuMemoryException.html" title="class in org.jamesframework.core.exceptions">IncompatibleTabuMemoryException</a></dt>
+<dd>
+<div class="block">Creates a new instance without detail message.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/exceptions/IncompatibleTabuMemoryException.html#IncompatibleTabuMemoryException-java.lang.String-">IncompatibleTabuMemoryException(String)</a></span> - Constructor for exception org.jamesframework.core.exceptions.<a href="org/jamesframework/core/exceptions/IncompatibleTabuMemoryException.html" title="class in org.jamesframework.core.exceptions">IncompatibleTabuMemoryException</a></dt>
+<dd>
+<div class="block">Constructs an instance with the specified detail message.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/exceptions/IncompatibleTabuMemoryException.html#IncompatibleTabuMemoryException-java.lang.Throwable-">IncompatibleTabuMemoryException(Throwable)</a></span> - Constructor for exception org.jamesframework.core.exceptions.<a href="org/jamesframework/core/exceptions/IncompatibleTabuMemoryException.html" title="class in org.jamesframework.core.exceptions">IncompatibleTabuMemoryException</a></dt>
+<dd>
+<div class="block">Constructs an instance with the specified cause.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/exceptions/IncompatibleTabuMemoryException.html#IncompatibleTabuMemoryException-java.lang.String-java.lang.Throwable-">IncompatibleTabuMemoryException(String, Throwable)</a></span> - Constructor for exception org.jamesframework.core.exceptions.<a href="org/jamesframework/core/exceptions/IncompatibleTabuMemoryException.html" title="class in org.jamesframework.core.exceptions">IncompatibleTabuMemoryException</a></dt>
 <dd>
 <div class="block">Constructs an instance with the specified detail message and cause.</div>
 </dd>
@@ -903,6 +969,20 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/solutions/SubsetSolution.html#isSorted--">isSorted()</a></span> - Method in class org.jamesframework.core.problems.solutions.<a href="org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a></dt>
 <dd>
 <div class="block">Indicates whether IDs are stored in sorted sets.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html#isTabu-org.jamesframework.core.search.neigh.Move-SolutionType-">isTabu(Move&lt;? super SolutionType&gt;, SolutionType)</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="class in org.jamesframework.core.search.algo.tabu">FullTabuMemory</a></dt>
+<dd>
+<div class="block">Verifies whether the given move is tabu by applying it to the current solution and checking if the obtained
+ neighbour is currently contained in the tabu memory.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/IDBasedSubsetTabuMemory.html#isTabu-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.solutions.SubsetSolution-">isTabu(Move&lt;? super SubsetSolution&gt;, SubsetSolution)</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/IDBasedSubsetTabuMemory.html" title="class in org.jamesframework.core.search.algo.tabu">IDBasedSubsetTabuMemory</a></dt>
+<dd>
+<div class="block">A move is considered tabu if any involved ID (added or deleted) is currently contained in the tabu memory.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/TabuMemory.html#isTabu-org.jamesframework.core.search.neigh.Move-SolutionType-">isTabu(Move&lt;? super SolutionType&gt;, SolutionType)</a></span> - Method in interface org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/TabuMemory.html" title="interface in org.jamesframework.core.search.algo.tabu">TabuMemory</a></dt>
+<dd>
+<div class="block">Indicates whether the given move is tabu, considering the current solution to which it will be applied
+ and the current state of the tabu memory.</div>
 </dd>
 </dl>
 <a name="I:J">
@@ -1172,6 +1252,10 @@
 <dd>
 <div class="block">Exhaustive search and related components.</div>
 </dd>
+<dt><a href="org/jamesframework/core/search/algo/tabu/package-summary.html">org.jamesframework.core.search.algo.tabu</a> - package org.jamesframework.core.search.algo.tabu</dt>
+<dd>
+<div class="block">Tabu search and related components, including tabu memory specification.</div>
+</dd>
 <dt><a href="org/jamesframework/core/search/algo/vns/package-summary.html">org.jamesframework.core.search.algo.vns</a> - package org.jamesframework.core.search.algo.vns</dt>
 <dd>
 <div class="block">Variable neighbourhood searches.</div>
@@ -1315,6 +1399,18 @@
 <div class="block">Creates a new reduced variable neighbourhood search, specifying the problem to solve, the neighbourhoods used
  to modify the current solution, and a custom search name; also, it is indicated whether neighbourhoods should
  be applied cyclically or not (by default, they are).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html#registerVisitedSolution-SolutionType-org.jamesframework.core.search.neigh.Move-">registerVisitedSolution(SolutionType, Move&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="class in org.jamesframework.core.search.algo.tabu">FullTabuMemory</a></dt>
+<dd>
+<div class="block">A newly visited solution is registered by storing a deep copy of this solution in the full tabu memory.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/IDBasedSubsetTabuMemory.html#registerVisitedSolution-org.jamesframework.core.problems.solutions.SubsetSolution-org.jamesframework.core.search.neigh.Move-">registerVisitedSolution(SubsetSolution, Move&lt;? super SubsetSolution&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/IDBasedSubsetTabuMemory.html" title="class in org.jamesframework.core.search.algo.tabu">IDBasedSubsetTabuMemory</a></dt>
+<dd>
+<div class="block">Registers an applied subset move by storing all involved IDs (added or deleted) in the tabu memory.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/TabuMemory.html#registerVisitedSolution-SolutionType-org.jamesframework.core.search.neigh.Move-">registerVisitedSolution(SolutionType, Move&lt;? super SolutionType&gt;)</a></span> - Method in interface org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/TabuMemory.html" title="interface in org.jamesframework.core.search.algo.tabu">TabuMemory</a></dt>
+<dd>
+<div class="block">Register a newly visited solution in the tabu memory.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#rejectMove--">rejectMove()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
 <dd>
@@ -1518,8 +1614,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#searchStep--">searchStep()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
-<div class="block">Perform a search step, in which every replica performs several steps and solutions of adjacent
- replicas may be swapped.</div>
+<div class="block">Perform a search step, in which every replica performs several steps and solutions of adjacent replicas may be swapped.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/PipedLocalSearch.html#searchStep--">searchStep()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/PipedLocalSearch.html" title="class in org.jamesframework.core.search.algo">PipedLocalSearch</a></dt>
 <dd>
@@ -1538,6 +1633,11 @@
 <dd>
 <div class="block">Investigates all neighbours of the current solution and adopts the best one as the new current solution,
  if it is an improvement.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html#searchStep--">searchStep()</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="class in org.jamesframework.core.search.algo.tabu">TabuSearch</a></dt>
+<dd>
+<div class="block">In every step, all neighbours of the current solution are inspected and the best valid, non tabu neighbour is
+ adopted as the new current solution, if any.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/ReducedVariableNeighbourhoodSearch.html#searchStep--">searchStep()</a></span> - Method in class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/ReducedVariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">ReducedVariableNeighbourhoodSearch</a></dt>
 <dd>
@@ -1582,7 +1682,11 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#setCurrentSolution-SolutionType-">setCurrentSolution(SolutionType)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
-<div class="block">Set a custom current solution, which is passed to each replica.</div>
+<div class="block">Set a custom current solution, of which a copy is passed to each replica.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html#setCurrentSolution-SolutionType-">setCurrentSolution(SolutionType)</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="class in org.jamesframework.core.search.algo.tabu">TabuSearch</a></dt>
+<dd>
+<div class="block">Updates the tabu memory when a custom current/initial solution is set.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#setCurrentSolution-SolutionType-">setCurrentSolution(SolutionType)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
 <dd>
@@ -1655,6 +1759,10 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#setStopCriterionCheckPeriod-long-java.util.concurrent.TimeUnit-">setStopCriterionCheckPeriod(long, TimeUnit)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
 <div class="block">Instructs the search to check its stop criteria at regular intervals separated by the given period.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html#setTabuMemory-org.jamesframework.core.search.algo.tabu.TabuMemory-">setTabuMemory(TabuMemory&lt;SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="class in org.jamesframework.core.search.algo.tabu">TabuSearch</a></dt>
+<dd>
+<div class="block">Set the tabu memory.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/MetropolisSearch.html#setTemperature-double-">setTemperature(double)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a></dt>
 <dd>
@@ -1929,6 +2037,26 @@
 </a>
 <h2 class="title">T</h2>
 <dl>
+<dt><a href="org/jamesframework/core/search/algo/tabu/TabuMemory.html" title="interface in org.jamesframework.core.search.algo.tabu"><span class="typeNameLink">TabuMemory</span></a>&lt;<a href="org/jamesframework/core/search/algo/tabu/TabuMemory.html" title="type parameter in TabuMemory">SolutionType</a> extends <a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Interface in <a href="org/jamesframework/core/search/algo/tabu/package-summary.html">org.jamesframework.core.search.algo.tabu</a></dt>
+<dd>
+<div class="block">Interface of tabu memory which is used by tabu search and keeps track of
+ recently visited solutions, properties of those solutions and/or recent
+ modifications made to the current solution.</div>
+</dd>
+<dt><a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="class in org.jamesframework.core.search.algo.tabu"><span class="typeNameLink">TabuSearch</span></a>&lt;<a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="type parameter in TabuSearch">SolutionType</a> extends <a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/algo/tabu/package-summary.html">org.jamesframework.core.search.algo.tabu</a></dt>
+<dd>
+<div class="block">Tabu search algorithm.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html#TabuSearch-org.jamesframework.core.problems.Problem-org.jamesframework.core.search.neigh.Neighbourhood-org.jamesframework.core.search.algo.tabu.TabuMemory-">TabuSearch(Problem&lt;SolutionType&gt;, Neighbourhood&lt;? super SolutionType&gt;, TabuMemory&lt;SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="class in org.jamesframework.core.search.algo.tabu">TabuSearch</a></dt>
+<dd>
+<div class="block">Creates a new tabu search, specifying the problem to solve, the neighbourhood used to modify the current
+ solution and the applied tabu memory.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html#TabuSearch-java.lang.String-org.jamesframework.core.problems.Problem-org.jamesframework.core.search.neigh.Neighbourhood-org.jamesframework.core.search.algo.tabu.TabuMemory-">TabuSearch(String, Problem&lt;SolutionType&gt;, Neighbourhood&lt;? super SolutionType&gt;, TabuMemory&lt;SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="class in org.jamesframework.core.search.algo.tabu">TabuSearch</a></dt>
+<dd>
+<div class="block">Creates a new tabu search, specifying the problem to solve, the neighbourhood used to modify the current
+ solution, the applied tabu memory and a custom search name.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/exceptions/SolutionModificationException.html#toString--">toString()</a></span> - Method in exception org.jamesframework.core.exceptions.<a href="org/jamesframework/core/exceptions/SolutionModificationException.html" title="class in org.jamesframework.core.exceptions">SolutionModificationException</a></dt>
 <dd>
 <div class="block">Extend string representation to include solution that was being modified.</div>
@@ -1997,6 +2125,16 @@
 <dd>
 <div class="block">Update the current and best solution during search.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-double-">updateCurrentAndBestSolution(SolutionType, double)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
+<dd>
+<div class="block">Update the current and best solution during search, given that the new current solution has already
+ been evaluated.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-double-boolean-">updateCurrentAndBestSolution(SolutionType, double, boolean)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
+<dd>
+<div class="block">Update the current and best solution during search, given that the new current solution has already
+ been evaluated.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#updateCurrentSolution-SolutionType-double-">updateCurrentSolution(SolutionType, double)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
 <dd>
 <div class="block">Update the current solution during search, given that it has already been evaluated.</div>
@@ -2012,6 +2150,10 @@
 </a>
 <h2 class="title">V</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html#validateMove-org.jamesframework.core.search.neigh.Move-">validateMove(Move&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="class in org.jamesframework.core.search.algo.tabu">TabuSearch</a></dt>
+<dd>
+<div class="block">Overrides validation of moves so that it is verified whether the move is not tabu.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#validateMove-org.jamesframework.core.search.neigh.Move-">validateMove(Move&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
 <dd>
 <div class="block">Validates the neighbour obtained by applying the given move to the current solution.</div>
@@ -2072,7 +2214,7 @@ the order they are declared.</div>
 <div class="block">Create a new VND factory, given the list of neighbourhoods to apply.</div>
 </dd>
 </dl>
-<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:J">J</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;</div>
+<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:J">J</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;</div>
 <!-- ======= START OF BOTTOM NAVBAR ====== -->
 <div class="bottomNav"><a name="navbar.bottom">
 <!--   -->

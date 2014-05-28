@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -225,6 +225,23 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-double-">updateCurrentAndBestSolution</a></span>(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution,
+                            double&nbsp;evaluation)</code>
+<div class="block">Update the current and best solution during search, given that the new current solution has already
+ been evaluated.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-double-boolean-">updateCurrentAndBestSolution</a></span>(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution,
+                            double&nbsp;evaluation,
+                            boolean&nbsp;skipBestSolutionValidation)</code>
+<div class="block">Update the current and best solution during search, given that the new current solution has already
+ been evaluated.</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentSolution-SolutionType-double-">updateCurrentSolution</a></span>(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution,
                      double&nbsp;evaluation)</code>
 <div class="block">Update the current solution during search, given that it has already been evaluated.</div>
@@ -426,9 +443,10 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 <h4>updateCurrentSolution</h4>
 <pre>protected&nbsp;void&nbsp;updateCurrentSolution(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution,
                                      double&nbsp;evaluation)</pre>
-<div class="block">Update the current solution during search, given that it has already been evaluated. This method
- stores the new current solution and its evaluation, and informs any local search listeners about
- this update.</div>
+<div class="block">Update the current solution during search, given that it has already been evaluated. This method stores the
+ new current solution and its evaluation, and informs any local search listeners about this update. It does
+ <b>not</b> validate the new current solution, if it is required that <a href="../../../../org/jamesframework/core/problems/Problem.html#rejectSolution-SolutionType-"><code>Problem.rejectSolution(Solution)</code></a>
+ returns <code>false</code> this must be verified before updating the current solution.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>solution</code> - new current solution</dd>
@@ -441,15 +459,65 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 </a><a name="updateCurrentAndBestSolution-SolutionType-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>updateCurrentAndBestSolution</h4>
 <pre>protected&nbsp;void&nbsp;updateCurrentAndBestSolution(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution)</pre>
-<div class="block">Update the current and best solution during search. The current solution is first evaluated and then
- updated. If the current solution is not rejected by the problem, the best solution is updated accordingly.</div>
+<div class="block">Update the current and best solution during search. The current solution is first evaluated and then updated,
+ also in case it is an invalid solution (see <a href="../../../../org/jamesframework/core/problems/Problem.html#rejectSolution-SolutionType-"><code>Problem.rejectSolution(Solution)</code></a>). Conversely, the best
+ solution is only updated if the new current solution is not rejected, to ensure that the best solution is
+ always valid.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>solution</code> - new current solution</dd>
+</dl>
+</li>
+</ul>
+<a name="updateCurrentAndBestSolution-org.jamesframework.core.problems.solutions.Solution-double-">
+<!--   -->
+</a><a name="updateCurrentAndBestSolution-SolutionType-double-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>updateCurrentAndBestSolution</h4>
+<pre>protected&nbsp;void&nbsp;updateCurrentAndBestSolution(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution,
+                                            double&nbsp;evaluation)</pre>
+<div class="block">Update the current and best solution during search, given that the new current solution has already
+ been evaluated. The current solution is always updated, also in case it is an invalid solution (see
+ <a href="../../../../org/jamesframework/core/problems/Problem.html#rejectSolution-SolutionType-"><code>Problem.rejectSolution(Solution)</code></a>). Conversely, the best solution is only updated if the new
+ current solution is not rejected, to ensure that the best solution is always valid.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>solution</code> - new current solution</dd>
+<dd><code>evaluation</code> - evaluation of new current solution</dd>
+</dl>
+</li>
+</ul>
+<a name="updateCurrentAndBestSolution-org.jamesframework.core.problems.solutions.Solution-double-boolean-">
+<!--   -->
+</a><a name="updateCurrentAndBestSolution-SolutionType-double-boolean-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>updateCurrentAndBestSolution</h4>
+<pre>protected&nbsp;void&nbsp;updateCurrentAndBestSolution(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution,
+                                            double&nbsp;evaluation,
+                                            boolean&nbsp;skipBestSolutionValidation)</pre>
+<div class="block">Update the current and best solution during search, given that the new current solution has already
+ been evaluated. The current solution is always updated, also in case it is an invalid solution (see
+ <a href="../../../../org/jamesframework/core/problems/Problem.html#rejectSolution-SolutionType-"><code>Problem.rejectSolution(Solution)</code></a>). Conversely, the best solution is only updated if the new
+ current solution is not rejected, to ensure that the best solution is always valid, unless
+ <code>skipBestSolutionValidation</code> is <code>true</code>. In the latter case, it should
+ have been verified that the given solution is valid before calling this method; revalidation
+ is then ommitted.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>solution</code> - new current solution</dd>
+<dd><code>evaluation</code> - evaluation of new current solution</dd>
+<dd><code>skipBestSolutionValidation</code> - if <code>true</code>, the best solution is always updated, without validating
+                                   the given solution (useful if this solution is already known to be valid)</dd>
 </dl>
 </li>
 </ul>

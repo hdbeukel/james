@@ -123,7 +123,11 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
  <p>
  Every solution class should also implement the abstract method <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html#copy--"><code>copy()</code></a> which is used to create a deep
  copy of a solution. The returned deep copy should <b>always</b> have the exact same type as the solution on which
- the method was called.</div>
+ the method was called. A static method <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html#checkedCopy-T-"><code>checkedCopy(Solution)</code></a> is provided to create type safe copies of
+ any solution class: it returns a deep copy of the exact same type as its argument, given that the general contract
+ of <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html#copy--"><code>copy()</code></a> is followed in every solution class implementation. If this contract is violated, calling
+ <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html#checkedCopy-T-"><code>checkedCopy(Solution)</code></a> will throw a detailed exception that precisely indicates the cause of the
+ occurred type mismatch.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a></dd>
@@ -253,8 +257,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
  Both the given solution and return type are of the same type <code>T</code>. This method calls <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html#copy--"><code>copy()</code></a> on
  the given solution and casts the result to the respective type <code>T</code>. If this cast fails, an exception
  with a detailed error message is thrown, precisely indicating the expected cause of the type mismatch: the method
- <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html#copy--"><code>copy()</code></a> does not return a solution of the correct type <code>T</code>, either because the implementation
- is inherrited from a super class or because the direct implementation violates the general contract of <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html#copy--"><code>copy()</code></a>.</div>
+ <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html#copy--"><code>copy()</code></a> does not return a solution of the correct type <code>T</code>, either because an undesired implementation
+ is inherited from a super class or because the direct implementation violates the general contract of <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html#copy--"><code>copy()</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>T</code> - solution type, required to extend <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions"><code>Solution</code></a></dd>
@@ -277,11 +281,11 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <h4>copy</h4>
 <pre>public abstract&nbsp;<a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&nbsp;copy()</pre>
 <div class="block">Creates a deep copy of this solution. The implementation of this method should <b>always</b> return a solution
- of the correct type, i.e. the exact same type as the solution on which the method was called. Violating this
- contract might result in class cast exceptions thrown from within various classes of the framework. It is
- therefore of <b>utmost</b> importance that every solution class directly implements this method, also when
- extending an other concrete solution class in which the method has already been implemented, as an inherited
- implementation will never return a copy of the correct type.</div>
+ of the exact same type as the solution on which the method was called. Violating this contract might result in
+ exceptions when copying solutions from within various classes of the framework. It is therefore of <b>utmost</b>
+ importance that every solution class directly implements this method, also when extending an other concrete
+ solution class in which the method has already been implemented, as an inherited implementation will never
+ return a copy of the correct type.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>deep copy of this solution, which is equal to the original solution but does not share any references

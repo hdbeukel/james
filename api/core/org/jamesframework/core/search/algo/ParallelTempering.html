@@ -175,15 +175,15 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
  </p>
  <p>
  The reported number of accepted and rejected moves (see <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumAcceptedMoves--"><code>NeighbourhoodSearch.getNumAcceptedMoves()</code></a> and <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumRejectedMoves--"><code>NeighbourhoodSearch.getNumRejectedMoves()</code></a>)
- corresponds to the sum of the number of accepted and rejected moves across all replicas, during the current run of the
- parallel tempering search. The corresponding values are updated with some delay, whenever a Metropolis replica has
- completed its current run.
+ corresponds to the sum of the number of accepted and rejected moves in all replicas, during the current run of the
+ parallel tempering search. These values are updated with some delay, whenever a Metropolis replica has completed
+ its current run.
  </p>
  <p>
  When creating the parallel tempering algorithm, the number of replicas and a minimum and maximum temperature have to be
  specified. Temperatures assigned to the replicas are unique and equally spaced in the desired interval. The number of
  replica steps defaults to 500 but it is strongly advised to tune this parameter for every specific problem, e.g. in case
- of a computationally intensive objective function, a lower number of steps may be more appropriate.
+ of a computationally expensive objective function, a lower number of steps may be more appropriate.
  </p>
  <p>
  Note that every replica runs in a separate thread so that they will be executed in parallel on multi core machines.
@@ -272,14 +272,13 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#searchStep--">searchStep</a></span>()</code>
-<div class="block">Perform a search step, in which every replica performs several steps and solutions of adjacent
- replicas may be swapped.</div>
+<div class="block">Perform a search step, in which every replica performs several steps and solutions of adjacent replicas may be swapped.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#setCurrentSolution-SolutionType-">setCurrentSolution</a></span>(<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&nbsp;solution)</code>
-<div class="block">Set a custom current solution, which is passed to each replica.</div>
+<div class="block">Set a custom current solution, of which a copy is passed to each replica.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
@@ -321,7 +320,7 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.jamesframework.core.search.<a href="../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></h3>
-<code><a href="../../../../../org/jamesframework/core/search/LocalSearch.html#addSearchListener-org.jamesframework.core.search.listeners.SearchListener-">addSearchListener</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolution--">getCurrentSolution</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionEvaluation--">getCurrentSolutionEvaluation</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-">updateCurrentAndBestSolution</a></code></li>
+<code><a href="../../../../../org/jamesframework/core/search/LocalSearch.html#addSearchListener-org.jamesframework.core.search.listeners.SearchListener-">addSearchListener</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolution--">getCurrentSolution</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionEvaluation--">getCurrentSolutionEvaluation</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-">updateCurrentAndBestSolution</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-double-">updateCurrentAndBestSolution</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-double-boolean-">updateCurrentAndBestSolution</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.org.jamesframework.core.search.Search">
@@ -530,7 +529,7 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <li class="blockList">
 <h4>setCurrentSolution</h4>
 <pre>public&nbsp;void&nbsp;setCurrentSolution(<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&nbsp;solution)</pre>
-<div class="block">Set a custom current solution, which is passed to each replica. Note that <code>solution</code>
+<div class="block">Set a custom current solution, of which a copy is passed to each replica. Note that <code>solution</code>
  can not be <code>null</code> and that this method may only be called when the search is idle.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
@@ -550,8 +549,7 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <li class="blockList">
 <h4>searchStep</h4>
 <pre>protected&nbsp;void&nbsp;searchStep()</pre>
-<div class="block">Perform a search step, in which every replica performs several steps and solutions of adjacent
- replicas may be swapped.</div>
+<div class="block">Perform a search step, in which every replica performs several steps and solutions of adjacent replicas may be swapped.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../../../org/jamesframework/core/search/Search.html#searchStep--">searchStep</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</code></dd>

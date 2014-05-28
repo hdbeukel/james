@@ -102,12 +102,18 @@
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><a href="#org.jamesframework.core.search.algo.tabu">org.jamesframework.core.search.algo.tabu</a></td>
+<td class="colLast">
+<div class="block">Tabu search and related components, including tabu memory specification.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.neigh.subset">org.jamesframework.core.search.neigh.subset</a></td>
 <td class="colLast">
 <div class="block">Neighbourhoods and moves for subset selection.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.neigh.subset.adv">org.jamesframework.core.search.neigh.subset.adv</a></td>
 <td class="colLast">
 <div class="block">Advanced subset selection neighbourhoods.</div>
@@ -260,6 +266,57 @@
 <td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a></code></td>
 <td class="colLast"><span class="typeNameLabel">SubsetSolutionIterator.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/exh/SubsetSolutionIterator.html#next--">next</a></span>()</code>
 <div class="block">Generate the next subset solution.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.search.algo.tabu">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a> in <a href="../../../../../../org/jamesframework/core/search/algo/tabu/package-summary.html">org.jamesframework.core.search.algo.tabu</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../../org/jamesframework/core/search/algo/tabu/package-summary.html">org.jamesframework.core.search.algo.tabu</a> with parameters of type <a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><span class="typeNameLabel">IDBasedSubsetTabuMemory.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/tabu/IDBasedSubsetTabuMemory.html#isTabu-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.solutions.SubsetSolution-">isTabu</a></span>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&gt;&nbsp;move,
+      <a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;currentSolution)</code>
+<div class="block">A move is considered tabu if any involved ID (added or deleted) is currently contained in the tabu memory.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">IDBasedSubsetTabuMemory.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/tabu/IDBasedSubsetTabuMemory.html#registerVisitedSolution-org.jamesframework.core.problems.solutions.SubsetSolution-org.jamesframework.core.search.neigh.Move-">registerVisitedSolution</a></span>(<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;visitedSolution,
+                       <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&gt;&nbsp;appliedMove)</code>
+<div class="block">Registers an applied subset move by storing all involved IDs (added or deleted) in the tabu memory.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Method parameters in <a href="../../../../../../org/jamesframework/core/search/algo/tabu/package-summary.html">org.jamesframework.core.search.algo.tabu</a> with type arguments of type <a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><span class="typeNameLabel">IDBasedSubsetTabuMemory.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/tabu/IDBasedSubsetTabuMemory.html#isTabu-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.solutions.SubsetSolution-">isTabu</a></span>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&gt;&nbsp;move,
+      <a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;currentSolution)</code>
+<div class="block">A move is considered tabu if any involved ID (added or deleted) is currently contained in the tabu memory.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">IDBasedSubsetTabuMemory.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/tabu/IDBasedSubsetTabuMemory.html#registerVisitedSolution-org.jamesframework.core.problems.solutions.SubsetSolution-org.jamesframework.core.search.neigh.Move-">registerVisitedSolution</a></span>(<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;visitedSolution,
+                       <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&gt;&nbsp;appliedMove)</code>
+<div class="block">Registers an applied subset move by storing all involved IDs (added or deleted) in the tabu memory.</div>
 </td>
 </tr>
 </tbody>

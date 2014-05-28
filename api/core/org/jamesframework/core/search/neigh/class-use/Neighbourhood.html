@@ -97,18 +97,24 @@
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><a href="#org.jamesframework.core.search.algo.tabu">org.jamesframework.core.search.algo.tabu</a></td>
+<td class="colLast">
+<div class="block">Tabu search and related components, including tabu memory specification.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo.vns">org.jamesframework.core.search.algo.vns</a></td>
 <td class="colLast">
 <div class="block">Variable neighbourhood searches.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.neigh.subset">org.jamesframework.core.search.neigh.subset</a></td>
 <td class="colLast">
 <div class="block">Neighbourhoods and moves for subset selection.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.neigh.subset.adv">org.jamesframework.core.search.neigh.subset.adv</a></td>
 <td class="colLast">
 <div class="block">Advanced subset selection neighbourhoods.</div>
@@ -322,6 +328,36 @@
                <a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/SteepestDescent.html" title="type parameter in SteepestDescent">SolutionType</a>&gt;&nbsp;neighbourhood)</code>
 <div class="block">Creates a new steepest descent search, specifying the problem to solve, the neighbourhood used to
  modify the current solution, and a custom search name.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.search.algo.tabu">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a> in <a href="../../../../../../org/jamesframework/core/search/algo/tabu/package-summary.html">org.jamesframework.core.search.algo.tabu</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
+<caption><span>Constructors in <a href="../../../../../../org/jamesframework/core/search/algo/tabu/package-summary.html">org.jamesframework.core.search.algo.tabu</a> with parameters of type <a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Constructor and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html#TabuSearch-org.jamesframework.core.problems.Problem-org.jamesframework.core.search.neigh.Neighbourhood-org.jamesframework.core.search.algo.tabu.TabuMemory-">TabuSearch</a></span>(<a href="../../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="type parameter in TabuSearch">SolutionType</a>&gt;&nbsp;problem,
+          <a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="type parameter in TabuSearch">SolutionType</a>&gt;&nbsp;neighbourhood,
+          <a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html" title="interface in org.jamesframework.core.search.algo.tabu">TabuMemory</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="type parameter in TabuSearch">SolutionType</a>&gt;&nbsp;tabuMemory)</code>
+<div class="block">Creates a new tabu search, specifying the problem to solve, the neighbourhood used to modify the current
+ solution and the applied tabu memory.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html#TabuSearch-java.lang.String-org.jamesframework.core.problems.Problem-org.jamesframework.core.search.neigh.Neighbourhood-org.jamesframework.core.search.algo.tabu.TabuMemory-">TabuSearch</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+          <a href="../../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="type parameter in TabuSearch">SolutionType</a>&gt;&nbsp;problem,
+          <a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="type parameter in TabuSearch">SolutionType</a>&gt;&nbsp;neighbourhood,
+          <a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html" title="interface in org.jamesframework.core.search.algo.tabu">TabuMemory</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="type parameter in TabuSearch">SolutionType</a>&gt;&nbsp;tabuMemory)</code>
+<div class="block">Creates a new tabu search, specifying the problem to solve, the neighbourhood used to modify the current
+ solution, the applied tabu memory and a custom search name.</div>
 </td>
 </tr>
 </tbody>
