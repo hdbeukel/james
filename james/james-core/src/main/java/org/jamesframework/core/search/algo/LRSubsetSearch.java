@@ -223,7 +223,7 @@ public class LRSubsetSearch extends LocalSearch<SubsetSolution> {
             // consider all possible additions to find the best one (biggest improvement / smallest decrease)
             Set<Integer> possibleAdds = new HashSet<>(getCurrentSolution().getUnselectedIDs());
             Integer bestAdd = null;
-            double bestAddDelta = -Double.MAX_VALUE, newEval, delta;
+            double bestDelta = -Double.MAX_VALUE, delta, newEval, bestEval = 0.0;
             SubsetSolution updated;
             for(int add : possibleAdds){
                 // add item
@@ -236,9 +236,10 @@ public class LRSubsetSearch extends LocalSearch<SubsetSolution> {
                     // compute delta
                     delta = computeDelta(newEval, getCurrentSolutionEvaluation());
                     // new best addition?
-                    if(delta > bestAddDelta){
-                        bestAddDelta = delta;
+                    if(delta > bestDelta){
+                        bestDelta = delta;
                         bestAdd = add;
+                        bestEval = newEval;
                     }
                 }
                 // undo addition
@@ -248,8 +249,9 @@ public class LRSubsetSearch extends LocalSearch<SubsetSolution> {
             if(bestAdd != null){
                 // add item
                 getCurrentSolution().select(bestAdd);
-                // re-evaluate updated current solution and update best solution
-                updateCurrentAndBestSolution(getCurrentSolution());
+                // update current and best solution (IMPORTANT: best solution is
+                // validated, also taking into account the current subset size)
+                updateCurrentAndBestSolution(getCurrentSolution(), bestEval);
                 // increase counter
                 added++;
             } else {
@@ -277,7 +279,7 @@ public class LRSubsetSearch extends LocalSearch<SubsetSolution> {
             // consider all possible deletions to find the best one (biggest improvement / smallest decrease)
             Set<Integer> possibleDels = new HashSet<>(getCurrentSolution().getSelectedIDs());
             Integer bestDel = null;
-            double bestDelDelta = -Double.MAX_VALUE, newEval, delta;
+            double bestDelDelta = -Double.MAX_VALUE, delta, newEval, bestEval = 0.0;
             SubsetSolution updated;
             for(int del : possibleDels){
                 // delete item
@@ -293,6 +295,7 @@ public class LRSubsetSearch extends LocalSearch<SubsetSolution> {
                     if(delta > bestDelDelta){
                         bestDelDelta = delta;
                         bestDel = del;
+                        bestEval = newEval;
                     }
                 }
                 // undo deletion
@@ -302,8 +305,9 @@ public class LRSubsetSearch extends LocalSearch<SubsetSolution> {
             if(bestDel != null){
                 // delete item
                 getCurrentSolution().deselect(bestDel);
-                // re-evaluate updated current solution and update best solution
-                updateCurrentAndBestSolution(getCurrentSolution());
+                // update current and best solution (IMPORTANT: best solution is
+                // validated, also taking into account the current subset size)
+                updateCurrentAndBestSolution(getCurrentSolution(), bestEval);
                 // increase counter
                 removed++;
             } else {
