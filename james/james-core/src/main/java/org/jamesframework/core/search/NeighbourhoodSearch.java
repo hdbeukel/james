@@ -350,7 +350,7 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
      * {@link Problem#rejectSolution(Solution)} returns <code>true</code>.
      * <p>
      * After updating the current solution, the evaluated move cache is cleared as this cache is no longer valid for the new current
-     * solution. Furthermore, any neighbourhood search listeners are informed and the number of accepted moves is updated.
+     * solution. Furthermore, any local search listeners are informed and the number of accepted moves is updated.
      * 
      * @param move accepted move to be applied to the current solution
      */
