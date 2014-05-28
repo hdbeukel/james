@@ -78,7 +78,6 @@ public class SteepestDescent<SolutionType extends Solution> extends SingleNeighb
             acceptMove(move);
         } else {
             // no improvement found
-            rejectMove();
             stop();
         }
     }

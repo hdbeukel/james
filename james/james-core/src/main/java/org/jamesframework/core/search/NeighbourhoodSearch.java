@@ -360,7 +360,7 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
         // apply move to current solution (IMPORTANT: after evaluating the move!)
         move.apply(getCurrentSolution());
         // update current solution (same object, modified in place)
-        // and best solution (no validation, i.e. always update best solution)
+        // and best solution (always update best solution, no validation)
         updateCurrentAndBestSolution(getCurrentSolution(), newEval, true);
         // increase accepted move counter
         numAcceptedMoves++;
