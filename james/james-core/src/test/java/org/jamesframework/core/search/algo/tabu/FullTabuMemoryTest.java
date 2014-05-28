@@ -60,7 +60,7 @@ public class FullTabuMemoryTest {
         // create memory with size 3
         TabuMemory<SubsetSolution> mem = new FullTabuMemory<>(3);
         
-        // create subset solution {0,1,2} -- rest = {3,4,5}
+        // create subset solution {0,1,2} -- rest = {3,4}
         SubsetSolution sol = new SubsetSolution(new HashSet<>(Arrays.asList(0,1,2,3,4)), new HashSet<>(Arrays.asList(0,1,2)));
         // create swap move: 3 <-> 2
         SubsetMove move = new SwapMove(3, 2);
@@ -71,11 +71,13 @@ public class FullTabuMemoryTest {
         // register current solution
         mem.registerVisitedSolution(sol, null);
         
+        // CURRENTLY TABU: {0,1,2}        
+        
         // check again: still not tabu
         assertFalse(mem.isTabu(move, sol));
         
         // apply move to current solution
-        move.apply(sol); // sol = {0,1,3} -- rest = {2,4,5}
+        move.apply(sol); // sol = {0,1,3} -- rest = {2,4}
         // register newly visited solution
         mem.registerVisitedSolution(sol, move);
         
@@ -92,7 +94,7 @@ public class FullTabuMemoryTest {
         assertFalse(mem.isTabu(move, sol));
         
         // apply move
-        move.apply(sol); // sol = {0,1,3,4} -- rest = {2,5}
+        move.apply(sol); // sol = {0,1,3,4} -- rest = {2}
         // register newly visited solution
         mem.registerVisitedSolution(sol, move);
         
@@ -109,15 +111,25 @@ public class FullTabuMemoryTest {
         assertFalse(mem.isTabu(move, sol));
         
         // apply move
-        move.apply(sol); // sol = {0,1,4} -- rest = {2,3,5}
+        move.apply(sol); // sol = {0,1,4} -- rest = {2,3}
         // register newly visited solution
         mem.registerVisitedSolution(sol, move);
         
         // CURRENTLY TABU: {0,1,3}, {0,1,3,4}, {0,1,4} -- discarded: {0,1,2}
         
-        // swap move: 2 <-> 4 (yields original solution {0,1,2}
+        // swap move: 2 <-> 4 (yields original solution {0,1,2})
         move = new SwapMove(2, 4);
         // check: not tabu anymore (discarded because of size limit)
+        assertFalse(mem.isTabu(move, sol));
+        
+        // swap move: 3 <-> 4 (yields {0,1,3})
+        move = new SwapMove(3,4);
+        // check: tabu
+        assertTrue(mem.isTabu(move, sol));
+        
+        // clear tabu memory
+        mem.clear();
+        // check: same move no longer tabu
         assertFalse(mem.isTabu(move, sol));
         
     }
@@ -130,7 +142,7 @@ public class FullTabuMemoryTest {
     
         System.out.println(" - test constructor (1)");
         
-        TabuMemory dummy = new FullTabuMemory<>(-1);
+        TabuMemory<?> dummy = new FullTabuMemory<>(-1);
         
     }
     
@@ -142,7 +154,7 @@ public class FullTabuMemoryTest {
     
         System.out.println(" - test constructor (2)");
         
-        TabuMemory dummy = new FullTabuMemory<>(0);
+        TabuMemory<?> dummy = new FullTabuMemory<>(0);
         
     }
 
