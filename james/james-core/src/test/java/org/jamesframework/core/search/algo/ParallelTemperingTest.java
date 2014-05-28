@@ -46,7 +46,7 @@ public class ParallelTemperingTest extends SearchTestTemplate {
     
     // maximum runtime
     private final long SINGLE_RUN_RUNTIME = 1000;
-    private final long MULTI_RUN_RUNTIME = 50;
+    private final long MULTI_RUN_RUNTIME = 100;
     private final TimeUnit MAX_RUNTIME_TIME_UNIT = TimeUnit.MILLISECONDS;
     
     // number of runs in multi run tests

@@ -73,15 +73,15 @@ import org.slf4j.LoggerFactory;
  * </p>
  * <p>
  * The reported number of accepted and rejected moves (see {@link #getNumAcceptedMoves()} and {@link #getNumRejectedMoves()})
- * corresponds to the sum of the number of accepted and rejected moves across all replicas, during the current run of the
- * parallel tempering search. The corresponding values are updated with some delay, whenever a Metropolis replica has
- * completed its current run.
+ * corresponds to the sum of the number of accepted and rejected moves in all replicas, during the current run of the
+ * parallel tempering search. These values are updated with some delay, whenever a Metropolis replica has completed
+ * its current run.
  * </p>
  * <p>
  * When creating the parallel tempering algorithm, the number of replicas and a minimum and maximum temperature have to be
  * specified. Temperatures assigned to the replicas are unique and equally spaced in the desired interval. The number of
  * replica steps defaults to 500 but it is strongly advised to tune this parameter for every specific problem, e.g. in case
- * of a computationally intensive objective function, a lower number of steps may be more appropriate.
+ * of a computationally expensive objective function, a lower number of steps may be more appropriate.
  * </p>
  * <p>
  * Note that every replica runs in a separate thread so that they will be executed in parallel on multi core machines.
@@ -276,7 +276,7 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
     }
     
     /**
-     * Set a custom current solution, which is passed to each replica. Note that <code>solution</code>
+     * Set a custom current solution, of which a copy is passed to each replica. Note that <code>solution</code>
      * can not be <code>null</code> and that this method may only be called when the search is idle.
      * 
      * @param solution current solution to be set for each replica
@@ -287,7 +287,7 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
     public void setCurrentSolution(SolutionType solution){
         // synchronize with status updates
         synchronized(getStatusLock()){
-            // call super
+            // call super (also verifies status)
             super.setCurrentSolution(solution);
             // pass current solution to every replica (copy!)
             for(MetropolisSearch<SolutionType> r : replicas){
@@ -297,8 +297,7 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
     }
     
     /**
-     * Perform a search step, in which every replica performs several steps and solutions of adjacent
-     * replicas may be swapped.
+     * Perform a search step, in which every replica performs several steps and solutions of adjacent replicas may be swapped.
      * 
      * @throws SearchException if an error occurs during concurrent execution of the Metropolis replicas, or if
      *                          it is detected that replicas are not correctly ordered by temperature (ascending)
@@ -390,17 +389,21 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
         /*******************************/
 
         /**
-         * Parallel tempering algorithm listens to its Metropolis replicas: whenever a new best solution is reported inside a replica, it is
-         * verified whether this is also a global improvement. If so, the global best solution is updated. This method is synchronized to avoid
-         * concurrent updates of the global best solution, as the replicas run in separate threads.
+         * Parallel tempering algorithm listens to its Metropolis replicas: whenever a new best solution is reported
+         * inside a replica, it is verified whether this is also a global improvement. If so, the main algorithm's current
+         * and best solution are both updated to refer to this new global best solution. This method is synchronized to
+         * avoid conflicting updates by replicas running in separate threads.
          * 
          * @param replica Metropolis replica that has found a (local) best solution
          * @param newBestSolution new best solution found in replica
          * @param newBestSolutionEvaluation evaluation of new best solution
          */
         @Override
-        public synchronized void newBestSolution(Search<? extends SolutionType> replica, final SolutionType newBestSolution, final double newBestSolutionEvaluation) {
-            updateBestSolution(newBestSolution, newBestSolutionEvaluation);
+        public synchronized void newBestSolution(Search<? extends SolutionType> replica, final SolutionType newBestSolution,
+                                                                                     final double newBestSolutionEvaluation) {
+            // update main algorithm's current and best solution (skip validation,
+            // already known to be valid if reported as best solution by a replica)
+            updateCurrentAndBestSolution(newBestSolution, newBestSolutionEvaluation, true);
         }
 
         /**
