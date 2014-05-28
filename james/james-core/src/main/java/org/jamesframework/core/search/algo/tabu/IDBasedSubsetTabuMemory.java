@@ -14,6 +14,7 @@
 
 package org.jamesframework.core.search.algo.tabu;
 
+import java.util.Collection;
 import java.util.Queue;
 import org.apache.commons.collections4.queue.CircularFifoQueue;
 import org.jamesframework.core.exceptions.IncompatibleTabuMemoryException;
@@ -56,21 +57,73 @@ public class IDBasedSubsetTabuMemory implements TabuMemory<SubsetSolution> {
      * A move is considered tabu if any involved ID (added or deleted) is currently contained in the tabu memory.
      * If not, the move is allowed. It is required that the given move is of type {@link SubsetMove}, else an
      * {@link IncompatibleTabuMemoryException} will be thrown. Note that the argument <code>currentSolution</code>
-     * is not used here because the move itself contains all necessary information.
+     * is not used here, because the move itself contains all necessary information, and may be <code>null</code>.
      * 
      * @param move subset move to be applied to the current solution (required to be of type {@link SubsetMove})
-     * @param currentSolution current solution (not used here)
+     * @param currentSolution current solution (not used here, may be <code>null</code>)
      * @return <code>true</code> if the current memory contains any ID which is added or deleted by the given move
      * @throws IncompatibleTabuMemoryException if the given move is not of type {@link SubsetMove}
      */
     @Override
     public boolean isTabu(Move<SubsetSolution> move, SubsetSolution currentSolution) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // check move type
+        if(move instanceof SubsetMove){
+            // cast
+            SubsetMove sMove = (SubsetMove) move;
+            // check if any involved ID is tabu
+            return containsTabuID(sMove.getAddedIDs()) || containsTabuID(sMove.getDeletedIDs());
+        } else {
+            // wrong move type
+            throw new IncompatibleTabuMemoryException("ID based subset tabu memory can only be used in combination with "
+                                                    + "neighbourhoods that generate moves of type SubsetMove. Received: "
+                                                    + move.getClass().getName());
+        }
+    }
+    
+    /**
+     * Checks whether the given collection of IDs contains any ID which is currently tabu.
+     * 
+     * @param ids collection of ids
+     * @return <code>true</code> if <code>ids</code> contains any ID which is currently tabu
+     */
+    private boolean containsTabuID(Collection<Integer> ids){
+        for(int  ID : ids){
+            if(memory.contains(ID)){
+                return true;
+            }
+        }
+        return false;
     }
 
+    /**
+     * Registers an applied subset move by storing all involved IDs (added or deleted) in the tabu memory. It is required
+     * that the given move is of type {@link SubsetMove}, else an {@link IncompatibleTabuMemoryException} will be thrown.
+     * The argument <code>visitedSolution</code> is ignored, as the applied move contains all necessary information, and
+     * may be <code>null</code>. If <code>appliedMove</code> is <code>null</code>, calling this method does not have any
+     * effect.
+     * 
+     * @param visitedSolution newly visited solution (not used here, may be <code>null</code>)
+     * @param appliedMove applied move of which all involved IDs are stored in the tabu memory
+     * @throws IncompatibleTabuMemoryException if the given move is not of type {@link SubsetMove}
+     */
     @Override
     public void registerVisitedSolution(SubsetSolution visitedSolution, Move<SubsetSolution> appliedMove) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // don't do anything if move is null
+        if(appliedMove != null){
+            // check move type
+            if(appliedMove instanceof SubsetMove){
+                // cast
+                SubsetMove sMove = (SubsetMove) appliedMove;
+                // store involved IDs
+                memory.addAll(sMove.getAddedIDs());
+                memory.addAll(sMove.getDeletedIDs());
+            } else {
+                // wrong move type
+                throw new IncompatibleTabuMemoryException("ID based subset tabu memory can only be used in combination with "
+                                                        + "neighbourhoods that generate moves of type SubsetMove. Received: "
+                                                        + appliedMove.getClass().getName());
+            }
+        }
     }
 
 }
