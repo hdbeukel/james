@@ -170,8 +170,9 @@ public class PipedLocalSearch<SolutionType extends Solution> extends LocalSearch
             // if not null and different from current solution: set as new
             // current solution and update global best solution accordingly
             if(bestSol != null && !bestSol.equals(getCurrentSolution())){
-                updateCurrentSolution(bestSol, bestSolEval);
-                updateBestSolution(bestSol, bestSolEval);
+                // skip validation (already known to be valid if
+                // reported as best solution of executed search)
+                updateCurrentAndBestSolution(bestSol, bestSolEval, true);
             }
         }
         // pipeline complete: stop search

@@ -244,11 +244,11 @@ public class VariableNeighbourhoodSearch<SolutionType extends Solution> extends 
             // to be a valid solution, so validation is not required here)
             if(modifiedSolution != null
                     && computeDelta(modifiedSolutionEval, getCurrentSolutionEvaluation()) > 0){
-                // improvement: accept modified solution as new current solution
+                // improvement: increase number of accepted moves
                 incNumAcceptedMoves(1);
-                updateCurrentSolution(modifiedSolution, modifiedSolutionEval);
-                // update best solution
-                updateBestSolution(modifiedSolution, modifiedSolutionEval);
+                // update current and best solution (skip validation, best solution
+                // reported by local search is already guaranteed to be valid)
+                updateCurrentAndBestSolution(modifiedSolution, modifiedSolutionEval, true);
                 // reset shaking neighbourhood
                 s = 0;
             } else {
