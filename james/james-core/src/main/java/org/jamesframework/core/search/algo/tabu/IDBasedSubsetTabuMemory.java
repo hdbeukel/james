@@ -15,8 +15,6 @@
 package org.jamesframework.core.search.algo.tabu;
 
 import java.util.Collection;
-import java.util.Queue;
-import org.apache.commons.collections4.queue.CircularFifoQueue;
 import org.jamesframework.core.exceptions.IncompatibleTabuMemoryException;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.search.neigh.Move;
@@ -34,7 +32,7 @@ import org.jamesframework.core.search.neigh.subset.SubsetMove;
 public class IDBasedSubsetTabuMemory implements TabuMemory<SubsetSolution> {
 
     // limited size queue containing recently touched IDs
-    private final Queue<Integer> memory;
+    private final FastLimitedQueue<Integer> memory;
     
     /**
      * Creates an ID based subset tabu memory with specified size. This memory stores recently added and deleted
@@ -50,7 +48,7 @@ public class IDBasedSubsetTabuMemory implements TabuMemory<SubsetSolution> {
             throw new IllegalArgumentException("Tabu memory size should be > 0.");
         }
         // create memory (limited size queue)
-        memory = new CircularFifoQueue<>(size);
+        memory = new FastLimitedQueue<>(size);
     }
     
     /**

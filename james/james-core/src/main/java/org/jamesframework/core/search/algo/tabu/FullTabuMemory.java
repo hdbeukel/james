@@ -16,8 +16,6 @@
 
 package org.jamesframework.core.search.algo.tabu;
 
-import java.util.Queue;
-import org.apache.commons.collections4.queue.CircularFifoQueue;
 import org.jamesframework.core.problems.solutions.Solution;
 import org.jamesframework.core.search.neigh.Move;
 
@@ -36,7 +34,7 @@ import org.jamesframework.core.search.neigh.Move;
 public class FullTabuMemory<SolutionType extends Solution> implements TabuMemory<SolutionType> {
     
     // limited size queue containing recently visited solutions (deep copies)
-    private final Queue<SolutionType> memory;
+    private final FastLimitedQueue<SolutionType> memory;
     
     /**
      * Creates a full tabu memory with specified size. This memory stores deep copies of recently
@@ -52,7 +50,7 @@ public class FullTabuMemory<SolutionType extends Solution> implements TabuMemory
             throw new IllegalArgumentException("Tabu memory size should be > 0.");
         }
         // create memory (limited size queue)
-        memory = new CircularFifoQueue<>(size);
+        memory = new FastLimitedQueue<>(size);
     }
     
     /**
