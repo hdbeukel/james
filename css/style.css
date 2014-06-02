@@ -23,7 +23,7 @@ body {
 #footer {
 	height: 130px;
 	background-color: #f5f5f5;
-    border: solid;
+    margin: 0;
 }
 #footer .logos{
 	font-variant: small-caps;
