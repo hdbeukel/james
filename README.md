@@ -8,15 +8,15 @@ Modules
 
 The James framework consists of several modules:
  
- - [James Core Module][1]: as its name suggests, this module contains the core components of the framework. It includes general concepts modeling problems, objectives, constraints, algorithms, neighbourhoods, etc.
+ - [James Core Module][1]: as its name suggests, this module contains the core components of the framework. It includes many general concepts modelling problems, objectives, constraints, algorithms, neighbourhoods, etc.
  
-   A number of generic local search algorithms are provided out-of-the-box, including random descent, steepest descent, tabu search, variable neighbourhood search, parallel tempering, etc. Exhaustive search is also available, which is of course only applicable to problems with a reasonable small, finite search space.
+   A wide range of generic local search algorithms are provided out-of-the-box, including random descent, steepest descent, tabu search, variable neighbourhood search and parallel tempering. Exhaustive search is also available, which is of course only applicable to problems with a reasonable small search space.
    
-   Moreover, the core module contains implementations of components for subset selection, as well as some specific subset sampling algorithms.
+   Moreover, the core module contains implementations of specific components for subset selection as well as some additional heuristics to be applied to subset sampling only.
    
- - [James Extensions Module][2]: this module extends the core with components to model and solve other types of problems besides subset selection (e.g. permutation problems). Also, general utilities for advanced problem specification, such as weighted objective functions, are provided.
+ - [James Extensions Module][2]: this module extends the core with components to model and solve other types of problems besides subset selection (e.g. permutation problems). Also, general utilities for advanced problem specification, such as weighted multi-objective functions, are provided.
  
- - [James Examples Module][3]: this module provides a series of example problem implementations. The examples are described at the [James website](http://www.jamesframework.org/examples.html).
+ - [James Examples Module][3]: this module provides a series of example problem implementations as described at the [James website](http://www.jamesframework.org/examples.html).
 
 Dependencies
 ============
