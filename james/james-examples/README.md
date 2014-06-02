@@ -13,7 +13,7 @@ Status
 Documentation
 =============
 
-Documentation for all implemented examples is provided at the [James website](www.jamesframework.org/examples.html).
+Documentation for all implemented examples is provided at the [James website](http://www.jamesframework.org/examples.html).
 
 License and copyright
 =====================
