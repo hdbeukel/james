@@ -19,6 +19,7 @@ body {
   margin: 0 auto -130px;
   /* Pad bottom by footer height + spacing */
   padding: 0 0 140px;
+  border: solid;
 }
 
 /* Set the fixed height of the footer here */
