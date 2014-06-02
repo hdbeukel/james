@@ -108,6 +108,7 @@ from inside the `james` root directory
 ```
 |-- james
   |-- james-core
+  |-- james-examples
   |-- james-extensions
   |-- pom.xml
 ```
