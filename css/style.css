@@ -4,9 +4,9 @@
 html,
 body {
   /* The html and body elements cannot have any padding or margin. */
-  height: 100%;
-  padding: 0;
-  margin: 0;
+  height: 100%; !important
+  padding: 0; !important
+  margin: 0; !important
   /* Set minimum width */
   min-width: 320px;
 }
@@ -14,7 +14,6 @@ body {
 /* Wrapper for page content to push down footer */
 #wrap {
   min-height: 100%;
-  height: auto;
   /* Negative indent footer by its height */
   margin: 0 auto -130px;
   /* Pad bottom by footer height */
