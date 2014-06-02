@@ -37,6 +37,7 @@
     <modules>
         <module>james-core</module>
         <module>james-extensions</module>
+        <module>james-examples</module>
     </modules>
     <build>
         <pluginManagement>
