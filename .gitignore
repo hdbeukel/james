@@ -1,4 +1,6 @@
-james/*/target
-/james/target/
+**/target/*
+**/bin/*
+**/dist/*
+!**/dist/resources/
 *.log
 update-api.sh

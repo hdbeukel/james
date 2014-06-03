@@ -13,7 +13,7 @@ Status
 Documentation
 =============
 
-Documentation for all implemented examples is provided at the [James website](http://www.jamesframework.org/examples.html).
+Documentation for all implemented examples is provided at the [James website][2].
 
 License and copyright
 =====================
@@ -38,3 +38,4 @@ A list of changes is provided in the CHANGES file.
 
 
 [1]: https://github.com/hdbeukel/james
+[2]: http://www.jamesframework.org/examples.html

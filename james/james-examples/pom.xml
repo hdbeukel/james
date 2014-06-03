@@ -24,6 +24,92 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <build>
+        <plugins>
+            <!-- assemblies -->
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <!-- jar with dependencies -->
+                    <execution>
+                        <id>make-jar-with-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>src/assemble/jar-with-dependencies.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                    <!-- ZIP package (binaries) for distribution -->
+                    <execution>
+                        <id>make-zip</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>src/assemble/bin.xml</descriptor>
+                            </descriptors>
+                            <finalName>james-examples-${project.version}</finalName>
+                            <appendAssemblyId>false</appendAssemblyId>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- attach ant tasks to maven phases -->
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <configuration>
+                            <target>
+                                <!-- copy jar with dependencies to bin directory after packaging -->
+                                <copy
+                                    file="${project.build.directory}/${project.artifactId}-${project.version}-jar-with-dependencies.jar"
+                                    tofile="bin/james-examples.jar"
+                                />
+                                <!-- copy binary distribution (ZIP) to dist directory after packaging -->
+                                <copy
+                                    file="${project.build.directory}/james-examples-${project.version}.zip"
+                                    todir="dist"
+                                />
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- extend clean phase -->
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <filesets>
+                        <!-- remove bin directory -->
+                        <fileset>
+                            <directory>bin</directory>
+                        </fileset>
+                        <!-- remove contents of dist directory, except resources subdir -->
+                        <fileset>
+                            <directory>dist</directory>
+                            <excludes>
+                                <exclude>resources/**</exclude>
+                            </excludes>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <dependencies>
         <!-- depends on core module -->
         <dependency>
