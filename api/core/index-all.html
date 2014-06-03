@@ -83,9 +83,17 @@
 <dd>
 <div class="block">Accept the given move by applying it to the current solution.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html#add-E-">add(E)</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html" title="class in org.jamesframework.core.search.algo.tabu">FastLimitedQueue</a></dt>
+<dd>
+<div class="block">Add an element at the tail of the queue, replacing the least recently added item if the queue is full.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#add-org.jamesframework.core.search.stopcriteria.StopCriterion-">add(StopCriterion)</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria">StopCriterionChecker</a></dt>
 <dd>
 <div class="block">Add a stop criterion to check.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html#addAll-java.util.Collection-">addAll(Collection&lt;E&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html" title="class in org.jamesframework.core.search.algo.tabu">FastLimitedQueue</a></dt>
+<dd>
+<div class="block">Add the given collection of items.</div>
 </dd>
 <dt><a href="org/jamesframework/core/search/neigh/subset/AdditionMove.html" title="class in org.jamesframework.core.search.neigh.subset"><span class="typeNameLink">AdditionMove</span></a> - Class in <a href="org/jamesframework/core/search/neigh/subset/package-summary.html">org.jamesframework.core.search.neigh.subset</a></dt>
 <dd>
@@ -193,6 +201,10 @@
 <dd>
 <div class="block">Creates a checked deep copy of the given solution with specific type <code>T</code> (a subclass of <a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions"><code>Solution</code></a>).</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html#clear--">clear()</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html" title="class in org.jamesframework.core.search.algo.tabu">FastLimitedQueue</a></dt>
+<dd>
+<div class="block">Clear the queue.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html#clear--">clear()</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="class in org.jamesframework.core.search.algo.tabu">FullTabuMemory</a></dt>
 <dd>
 <div class="block">Clear the tabu memory.</div>
@@ -238,6 +250,10 @@
 <dt><a href="org/jamesframework/core/problems/constraints/Constraint.html" title="interface in org.jamesframework.core.problems.constraints"><span class="typeNameLink">Constraint</span></a>&lt;<a href="org/jamesframework/core/problems/constraints/Constraint.html" title="type parameter in Constraint">SolutionType</a> extends <a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>,<a href="org/jamesframework/core/problems/constraints/Constraint.html" title="type parameter in Constraint">DataType</a>&gt; - Interface in <a href="org/jamesframework/core/problems/constraints/package-summary.html">org.jamesframework.core.problems.constraints</a></dt>
 <dd>
 <div class="block">Interface of a constraint that can be imposed on the solutions, based on underlying data.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html#contains-E-">contains(E)</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html" title="class in org.jamesframework.core.search.algo.tabu">FastLimitedQueue</a></dt>
+<dd>
+<div class="block">Checks whether the given item is contained in the queue.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/solutions/Solution.html#copy--">copy()</a></span> - Method in class org.jamesframework.core.problems.solutions.<a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a></dt>
 <dd>
@@ -402,6 +418,15 @@
 </a>
 <h2 class="title">F</h2>
 <dl>
+<dt><a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html" title="class in org.jamesframework.core.search.algo.tabu"><span class="typeNameLink">FastLimitedQueue</span></a>&lt;<a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html" title="type parameter in FastLimitedQueue">E</a>&gt; - Class in <a href="org/jamesframework/core/search/algo/tabu/package-summary.html">org.jamesframework.core.search.algo.tabu</a></dt>
+<dd>
+<div class="block">A fast queue with limited size that replaces the least recently added items if it is full, and which never contains
+ duplicates of the same item.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html#FastLimitedQueue-int-">FastLimitedQueue(int)</a></span> - Constructor for class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html" title="class in org.jamesframework.core.search.algo.tabu">FastLimitedQueue</a></dt>
+<dd>
+<div class="block">Creat a new instance with given size limit.</div>
+</dd>
 <dt><a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="class in org.jamesframework.core.search.algo.tabu"><span class="typeNameLink">FullTabuMemory</span></a>&lt;<a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="type parameter in FullTabuMemory">SolutionType</a> extends <a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/algo/tabu/package-summary.html">org.jamesframework.core.search.algo.tabu</a></dt>
 <dd>
 <div class="block">Full tabu memory that stores deeps copies of recently visited solutions and declares a move tabu if
@@ -1437,6 +1462,10 @@
 <dd>
 <div class="block">Checks whether the given subset solution is rejected.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html#remove--">remove()</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html" title="class in org.jamesframework.core.search.algo.tabu">FastLimitedQueue</a></dt>
+<dd>
+<div class="block">Retrieves and removes the head of the queue, or returns <code>null</code> if the queue is empty.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#remove-org.jamesframework.core.search.stopcriteria.StopCriterion-">remove(StopCriterion)</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria">StopCriterionChecker</a></dt>
 <dd>
 <div class="block">Remove a stop criterion.</div>
@@ -1831,6 +1860,14 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/subset/SingleSwapNeighbourhood.html#SingleSwapNeighbourhood-java.util.Set-">SingleSwapNeighbourhood(Set&lt;Integer&gt;)</a></span> - Constructor for class org.jamesframework.core.search.neigh.subset.<a href="org/jamesframework/core/search/neigh/subset/SingleSwapNeighbourhood.html" title="class in org.jamesframework.core.search.neigh.subset">SingleSwapNeighbourhood</a></dt>
 <dd>
 <div class="block">Creates a single swap neighbourhood with a given set of fixed IDs which are not allowed to be swapped.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html#size--">size()</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html" title="class in org.jamesframework.core.search.algo.tabu">FastLimitedQueue</a></dt>
+<dd>
+<div class="block">Get the number of items contained in the queue.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html#sizeLimit--">sizeLimit()</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html" title="class in org.jamesframework.core.search.algo.tabu">FastLimitedQueue</a></dt>
+<dd>
+<div class="block">Get the size limit of the queue.</div>
 </dd>
 <dt><a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions"><span class="typeNameLink">Solution</span></a> - Class in <a href="org/jamesframework/core/problems/solutions/package-summary.html">org.jamesframework.core.problems.solutions</a></dt>
 <dd>
