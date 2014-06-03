@@ -132,6 +132,9 @@ public class CoreSubset {
         System.out.println("Best solution (names): " + mapNames(search.getBestSolution().getSelectedIDs(), data));
         System.out.println("Best solution evaluation: " + search.getBestSolutionEvaluation());
         
+        // dispose search
+        search.dispose();
+        
     }
     
     private static Set<String> mapNames(Set<Integer> selected, CoreSubsetData data){
