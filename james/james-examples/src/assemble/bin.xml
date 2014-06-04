@@ -27,5 +27,10 @@
                 <directory>dist/resources</directory>
                 <outputDirectory>/</outputDirectory>
             </fileSet>
+            <!-- input files -->
+            <fileSet>
+                <directory>input</directory>
+                <outputDirectory>/input</outputDirectory>
+            </fileSet>
         </fileSets>
 </assembly>

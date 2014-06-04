@@ -42,6 +42,11 @@
                             <descriptors>
                                 <descriptor>src/assemble/jar-with-dependencies.xml</descriptor>
                             </descriptors>
+                            <archive>
+                                <manifest>
+                                    <mainClass>org.jamesframework.examples.Main</mainClass>
+                                </manifest>
+                            </archive>
                         </configuration>
                     </execution>
                     <!-- ZIP package (binaries) for distribution -->
@@ -70,6 +75,11 @@
                         <phase>package</phase>
                         <configuration>
                             <target>
+                                <!-- copy jar with dependencies to bin directory after packaging -->
+                                <copy
+                                    file="${project.build.directory}/${project.artifactId}-${project.version}-jar-with-dependencies.jar"
+                                    tofile="bin/james-examples.jar"
+                                />
                                 <!-- copy binary distribution (ZIP) to dist directory after packaging -->
                                 <copy
                                     file="${project.build.directory}/james-examples-${project.version}.zip"
@@ -89,6 +99,10 @@
                 <version>2.5</version>
                 <configuration>
                     <filesets>
+                        <!-- remove contents of bin directory -->
+                        <fileset>
+                            <directory>bin</directory>
+                        </fileset>
                         <!-- remove contents of dist directory, except resources subdir -->
                         <fileset>
                             <directory>dist</directory>
