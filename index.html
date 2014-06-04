@@ -81,7 +81,7 @@
       </div>
 
       <!-- Begin page content -->
-      <div class="container">
+      <div id="home" class="container">
         <div class="page-header">
           <h1>
 			  James
@@ -92,21 +92,113 @@
         </div>
 		<p class="lead">
 			James is an extensive Java framework for optimization using local search metaheuristics.
-			The framework is mainly focused on subset selection, with applications in many areas, though other types
-			of problems can also easily be plugged in.
+			The framework is mainly focused on subset selection, with applications in many areas, but
+            other types of problems can also easily be implemented.
 		</p>
-		<div class="jumbotron" id="under-construction">
-		  <h1>Under Construction</h1>
-		  <p>The homepage of the James framework is currently under construction. Please come back later for detailed information and examples on how to use the framework. You can already view the source code on GitHub.</p>
-		  <p class="view-on-github"><a class="btn btn-primary btn-lg" role="button" href="https://github.com/hdbeukel/james"><i class="fa fa-github fa-lg"></i> View On GitHub</a></p>
-		</div>
-		<blockquote class="cartoon text-center">
-			<img class="visible-lg" src="images/leighton-escher.jpg" />
-			<img class="visible-md" src="images/leighton-escher.jpg" />
-			<img class="visible-sm" src="images/leighton-escher-sm.jpg" />
-			<img class="visible-xs" src="images/leighton-escher-sm.jpg" />
-		    <small>cartoon by <a href="http://www.robert-leighton.com" target="_blank">Robert Leighton</a></small>
-		</blockquote>
+        <div class="container start text-center">
+            <div class="row">
+                <div class="col-sm-4">
+                    <i class="fa fa-download text-info"></i>
+                    <h3>Get started with James</h3>
+                    <p>
+                        Download and install the latest version of the James framework.
+                        You can either add a Maven dependency to automatically
+                        pull in all required packages or you can manually
+                        download and install the JAR-files.
+                    </p>
+                    <!-- only show button within this row on extra small screens -->
+                    <div class="col-sm-4 visible-xs">
+                        <a class="btn btn-primary" href="download.html" role="button">Download</a>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <i class="fa fa-book text-info"></i>
+                    <h3>Read the documentation</h3>
+                    <p>
+                        Scroll through the list of available optimization algorithms,
+                        consult the Javadoc API or take a look at the GitHub
+                        wiki pages for more detailed information about the architecture
+                        of the framework.
+                    </p>
+                    <!-- only show button within this row on extra small screens -->
+                    <div class="col-sm-4 visible-xs">
+                        <a class="btn btn-default" href="docs.html" role="button">Documentation</a>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <i class="fa fa-life-ring text-info"></i>
+                    <h3>Look at some examples</h3>
+                    <p>
+                        Step-by-step implementation guides are provided for a series
+                        of example problems. In these examples, several
+                        different optimization algorithms are applied to obtain
+                        solutions for the specified problems.
+                    </p>
+                    <!-- only show button within this row on extra small screens -->
+                    <div class="col-sm-4 visible-xs">
+                        <a class="btn btn-default" href="examples.html" role="button">Examples</a>
+                    </div>
+                </div>
+            </div>
+            <!-- do not show this row on extra small screens, then buttons are shown within the first row -->
+            <div class="row hidden-xs">
+                <div class="col-sm-4">
+                    <a class="btn btn-primary" href="download.html" role="button">Download</a>
+                </div>
+                <div class="col-sm-4">
+                    <a class="btn btn-default" href="docs.html" role="button">Documentation</a>
+                </div>
+                <div class="col-sm-4">
+                    <a class="btn btn-default" href="examples.html" role="button">Examples</a>
+                </div>
+            </div>
+        </div>
+        
+        <h1 class="page-header">
+            <i class="fa fa-github"></i>
+            Source code repository
+        </h1>
+        <p>
+            The James framework is fully open source, visit GitHub to view the
+            <a href="https://github.com/hdbeukel/james">James source code repository</a>.
+        </p>
+        
+        <h1 class="page-header">
+            License and copyright
+        </h1>
+        <p>
+            All source code and binaries are licensed under the permissive non-copyleft
+            <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+            For a quick summary of what can, cannot and must be done according
+            to the Apache license we recommend looking at
+            <a href="https://www.tldrlegal.com/l/apache2">tl;drLegal</a>. The following copyright
+            notice should be included in every distribution or derivative work, stating all
+            applicable modules:
+<small>
+<pre>
+James Core Module
+James Extensions Module
+...
+
+Copyright 2014
+Ghent University
+Bayer CropScience
+</pre>
+</small>
+        </p>
+        <p class="cc-license">
+            <a href="http://creativecommons.org/licenses/by/4.0/">
+                <img class="pull-left" src="http://i.creativecommons.org/l/by/4.0/88x31.png" />
+            </a>
+            The documentation and website are licensed under the
+            <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+            The website is built using <a href="http://getbootstrap.com">Twitter Bootstrap</a>
+            (with icons from <a href="http://fontawesome.io">Font Awesome</a> by Dave Gandy)
+            which is released under the
+            <a href="http://opensource.org/licenses/mit-license.html">MIT license</a> with
+            copyright &copy; 2014 Twitter.
+        </p>
+        
       </div>
     </div>
 

@@ -18,9 +18,10 @@ body {
 /* Wrapper for page content to push down footer */
 #wrap {
   min-height: 100%;
-  /* Equal to footer height */
+  /* Equal to inverse of footer height */
   margin-bottom: -130px;
-  padding-bottom: 130px;
+  /* Equal to footer height + spacing */
+  padding-bottom: 180px;
 }
 
 #footer {
@@ -84,23 +85,41 @@ body {
 	height: 100%;
 }
 
-/* UNDER CONSTRUCTION MESSAGE AND CARTOON */
+/* CODE BLOCK STYLES */
 
-#under-construction {
-	margin-top: 40px;
-}
-#under-construction .view-on-github {
-	margin-top: 30px;
+pre {
+    overflow: auto;
+    word-wrap: normal;
+    white-space: pre;
 }
 
-blockquote.cartoon {
-	border-left: none;
+/* HOME PAGE */
+
+#home .start {
+    margin: 20px 0;
 }
-blockquote.cartoon img {
-	margin: 0 auto;
+
+#home .start .fa {
+    font-size: 72pt;
+    margin-top: 40px;
 }
-blockquote.cartoon img.visible-xs {
-	max-width: 100%;
+
+#home .start p {
+    margin: 0;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+#home .start a.btn {
+    margin: 20px 0;
+}
+
+#home .cc-license {
+    margin-top: 20px;
+}
+
+#home .cc-license img {
+    margin: 4px 15px 0 0;
 }
 
 /* Custom page CSS
