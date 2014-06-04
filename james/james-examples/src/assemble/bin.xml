@@ -22,7 +22,7 @@
             </file>
         </files>
         <fileSets>
-            <!-- distribution resources: LICENSE, NOTICE, ... -->
+            <!-- distribution resources: LICENSE, NOTICE, README.md, ... -->
             <fileSet>
                 <directory>dist/resources</directory>
                 <outputDirectory>/</outputDirectory>
