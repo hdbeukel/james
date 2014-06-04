@@ -33,7 +33,7 @@ SLF4J: Defaulting to no-operation (NOP) logger implementation
 SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
 ```
 
-is printed to the console and all log messages are silently discarded. If you do not mind about logging messages
+is printed to the console and all log messages are silently discarded. If you do not mind about log messages
 it is perfectly safe to ignore this warning.
 
 Download and install
