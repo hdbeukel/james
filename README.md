@@ -115,6 +115,13 @@ from inside the `james` root directory
 
 assuming that [Maven][8] has been installed on your computer. This will compile the code, create jar packages and install them in your local Maven repository, so that they can be added as dependencies in any other Maven project. After building James, you can also grab the created jar packages from the `target` directory of each module.
 
+For the examples module, an additional jar including all dependencies is created in `james-examples/bin`. To print an overview
+of the implemented examples and the corresponding usage information, execute
+
+```
+cd james-examples/bin
+java -jar james-examples.jar
+```
 
 Documentation
 =============
