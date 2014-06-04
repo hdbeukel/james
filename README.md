@@ -128,6 +128,11 @@ Documentation
 
 More information, user documentation and examples of how to use the framework are provided at the James website www.jamesframework.org (coming soon). In addition, developer documentation is posted on the [wiki](http://github.com/hdbeukel/james/wiki).
 
+License and copyright
+=====================
+
+All modules of the James framework are licensed under the Apache License, Version 2.0, see http://www.apache.org/licenses/LICENSE-2.0 and the LICENSE and NOTICE files included with each module.
+
 Contact
 =======
 
