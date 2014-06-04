@@ -3,8 +3,7 @@ James
 
 James is an extensive Java framework for optimization using local search metaheuristics. The framework is mainly focused on subset selection, which has many applications in various areas, though other types of problems can also easily be plugged in.
 
-Modules
--------
+### Modules
 
 The James framework consists of several modules:
  
