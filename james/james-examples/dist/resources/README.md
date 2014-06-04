@@ -20,7 +20,9 @@ are provided at the [James website][2].
 License and copyright
 =====================
 
-The James examples module is licensed under the Apache License, Version 2.0, see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0. Copyright information is stated in the NOTICE file.
+The James examples module is licensed under the Apache License, Version 2.0, see LICENSE
+file or http://www.apache.org/licenses/LICENSE-2.0. Copyright information is stated in
+the NOTICE file.
 
 Contact
 =======
@@ -33,9 +35,6 @@ Changes
 =======
 
 A list of changes is provided in the CHANGES file.
-
-
-
 
 
 
