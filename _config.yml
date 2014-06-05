@@ -4,3 +4,6 @@
 # Build settings
 markdown: kramdown
 permalink: pretty
+
+# Custom variables
+snapshotversion: 0.1-SNAPSHOT
