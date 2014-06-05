@@ -1,0 +1,6 @@
+# Site settings
+# baseurl: /james
+
+# Build settings
+markdown: kramdown
+permalink: pretty
