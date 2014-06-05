@@ -4,3 +4,4 @@
 !**/dist/resources/
 *.log
 update-api.sh
+_site/
