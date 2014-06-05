@@ -1,5 +1,5 @@
 # Site settings
-baseurl: /james
+# baseurl: /james
 
 # Build settings
 markdown: kramdown
