@@ -22,6 +22,11 @@
             </file>
         </files>
         <fileSets>
+            <!-- Java sources -->
+            <fileSet>
+                <directory>src/main/java</directory>
+                <outputDirectory>/source</outputDirectory>
+            </fileSet>
             <!-- distribution resources: LICENSE, NOTICE, README.md, ... -->
             <fileSet>
                 <directory>dist/resources</directory>
