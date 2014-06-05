@@ -26,10 +26,15 @@ body {
 
 #footer {
 	height: 130px;
-	background-color: #f5f5f5;
+	background-color: #fff;
     position: relative;
     bottom: 0;
     width: 100%;
+}
+
+#footer .container {
+    border-top: solid 1px #eee;
+    padding: 0;
 }
 
 #footer .logos{
@@ -41,11 +46,15 @@ body {
 #footer .hidden-xs .copyright {
 	line-height: 25px;
 	margin-top: 40px;
+    width: 340px;
+    display: inline-block;
 }
 #footer .hidden-xs .logos {
 	line-height: 35px;
 	margin-top: 8px;
 	font-size: 110%;
+    width: 300px;
+    display: inline-block;
 }
 #footer .hidden-xs .logos img.fwo {
 	margin-left: 15px;
@@ -64,7 +73,8 @@ body {
 #footer .visible-xs .copyright {
 	text-align: center;
 	line-height: 20px;
-	margin: 11px 0 11px 0;
+    width: 250px;
+    margin: 11px auto;
 }
 #footer .visible-xs .logos img.fwo {
 	margin-left: 15px;
@@ -76,13 +86,31 @@ body {
 	height: 56px;
 }
 
-/* NAV BAR */
+/* NAV BAR CUSTOMIZATION */
+
+.navbar {
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+}
 
 .navbar-brand{
 	background: url('../images/james-nav@2x.png') no-repeat 10px 7px;
 	background-size: 35px 35px;
 	padding-left: 50px;
 	height: 100%;
+    color: #eee !important;
+}
+ 
+.navbar-brand:hover {
+    color: #fff !important;
+}
+
+/* lighter dropdown headers on extra small screens */
+@media (max-width: 767px) {
+    .navbar .dropdown-header {
+        color: #eee;
+    }
 }
 
 /* CODE BLOCK STYLES */
@@ -96,7 +124,7 @@ pre {
 /* HOME PAGE */
 
 #home .start {
-    margin: 20px 0;
+    margin: 20px 0 55px 0;
 }
 
 #home .start .fa {
@@ -111,7 +139,7 @@ pre {
 }
 
 #home .start a.btn {
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
 #home .cc-license {
@@ -120,6 +148,12 @@ pre {
 
 #home .cc-license img {
     margin: 4px 15px 0 0;
+}
+
+/* GETTING STARTED */
+
+#getstarted dd {
+    margin-bottom: 7px;
 }
 
 /* Custom page CSS

@@ -47,7 +47,7 @@
     <div id="wrap">
 
       <!-- Fixed navbar -->
-      <div class="navbar navbar-default" role="navigation">
+      <div class="navbar navbar-inverse" role="navigation">
         <div class="container">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -63,6 +63,7 @@
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
               <li class="active"><a href="index.html">Home</a></li>
+              <li><a href="getstarted.html">Getting started</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <i class="fa fa-caret-down"></i></a>
                 <ul class="dropdown-menu">
@@ -82,20 +83,18 @@
 
       <!-- Begin page content -->
       <div id="home" class="container">
-        <div class="page-header">
-          <h1>
-			  James
-			  <small>
-				  &ndash; A <b class="text-info">Ja</b>va <b class="text-info">Me</b>taheuristics <b class="text-info">S</b>earch Framework
-			  </small>
-		  </h1>
-        </div>
+      <h1 class="page-header">
+		  James
+		  <small>
+			  &ndash; A <b class="text-info">Ja</b>va <b class="text-info">Me</b>taheuristics <b class="text-info">S</b>earch Framework
+		  </small>
+	  </h1>
 		<p class="lead">
 			James is an extensive Java framework for optimization using local search metaheuristics.
 			The framework is mainly focused on subset selection, with applications in many areas, but
             other types of problems can also easily be implemented.
 		</p>
-        <div class="container start text-center">
+        <div class="container-fluid start text-center">
             <div class="row">
                 <div class="col-sm-4">
                     <i class="fa fa-download text-info"></i>
@@ -107,8 +106,8 @@
                         download and install the JAR-files.
                     </p>
                     <!-- only show button within this row on extra small screens -->
-                    <div class="col-sm-4 visible-xs">
-                        <a class="btn btn-primary" href="download.html" role="button">Download</a>
+                    <div class="visible-xs">
+                        <a class="btn btn-primary" href="getstarted.html" role="button">Get started</a>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -121,7 +120,7 @@
                         of the framework.
                     </p>
                     <!-- only show button within this row on extra small screens -->
-                    <div class="col-sm-4 visible-xs">
+                    <div class="visible-xs">
                         <a class="btn btn-default" href="docs.html" role="button">Documentation</a>
                     </div>
                 </div>
@@ -135,7 +134,7 @@
                         solutions for the specified problems.
                     </p>
                     <!-- only show button within this row on extra small screens -->
-                    <div class="col-sm-4 visible-xs">
+                    <div class="visible-xs">
                         <a class="btn btn-default" href="examples.html" role="button">Examples</a>
                     </div>
                 </div>
@@ -143,7 +142,7 @@
             <!-- do not show this row on extra small screens, then buttons are shown within the first row -->
             <div class="row hidden-xs">
                 <div class="col-sm-4">
-                    <a class="btn btn-primary" href="download.html" role="button">Download</a>
+                    <a class="btn btn-primary" href="getstarted.html" role="button">Get started</a>
                 </div>
                 <div class="col-sm-4">
                     <a class="btn btn-default" href="docs.html" role="button">Documentation</a>
@@ -191,12 +190,13 @@ Bayer CropScience
                 <img class="pull-left" src="http://i.creativecommons.org/l/by/4.0/88x31.png" />
             </a>
             The documentation and website are licensed under the
-            <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+            <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+            &copy;&nbsp;2014 Ghent University.
             The website is built using <a href="http://getbootstrap.com">Twitter Bootstrap</a>
-            (with icons from <a href="http://fontawesome.io">Font Awesome</a> by Dave Gandy)
-            which is released under the
-            <a href="http://opensource.org/licenses/mit-license.html">MIT license</a> with
-            copyright &copy; 2014 Twitter.
+            (with icons from <a href="http://fontawesome.io">Font Awesome</a> &copy;&nbsp;Dave Gandy)
+            released under the
+            <a href="http://opensource.org/licenses/mit-license.html">MIT license</a>
+            &copy;&nbsp;2011 - 2014 Twitter.
         </p>
         
       </div>
@@ -206,49 +206,38 @@ Bayer CropScience
 		<!-- footer for small, medium, large screens -->
 		<div class="hidden-xs">
 			<div class="container">
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="copyright">
-							James website maintained by <a href="mailto:Herman.DeBeukelaer@UGent.be">Herman De Beukelaer</a><br />
-							 &copy; 2014
-							 <a href="http://www.ugent.be/en" target="_blank">Ghent University</a>
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="logos">
-							Supported By<br />
-							<a href="http://www.ugent.be/en" target="_blank">
-								<img class="ugent" src="images/ugent@2x.png" />
-							</a>
-							<a href="http://www.fwo.be/en" target="_blank">
-								<img class="fwo" src="images/fwo@2x.png" />
-							</a>
-						</div>
-					</div>
+				<div class="copyright">
+					James website maintained by <a href="mailto:Herman.DeBeukelaer@UGent.be">Herman De Beukelaer</a>
+					 &copy; 2014
+					 <a href="http://www.ugent.be/en" target="_blank">Ghent University</a>
+				</div>
+				<div class="logos">
+                    <div>
+                        Supported By
+                    </div>
+					<a href="http://www.ugent.be/en" target="_blank">
+						<img class="ugent" src="images/ugent@2x.png" />
+					</a>
+					<a href="http://www.fwo.be/en" target="_blank">
+						<img class="fwo" src="images/fwo@2x.png" />
+					</a>
 				</div>
 			</div>
 		</div>
 		<!-- footer for extra small screens -->
 		<div class="visible-xs">
 			<div class="container">
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="copyright">
-							James website &middot; <a href="mailto:Herman.DeBeukelaer@UGent.be">Herman De Beukelaer</a><br />
-							 &copy; 2014
-							 <a href="http://www.ugent.be/en" target="_blank">Ghent University</a>
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="logos">
-							<a href="http://www.ugent.be/en" target="_blank">
-								<img class="ugent" src="images/ugent@2x.png" />
-							</a>
-							<a href="http://www.fwo.be/en" target="_blank">
-								<img class="fwo" src="images/fwo@2x.png" />
-							</a>
-						</div>
-					</div>
+				<div class="copyright">
+					James website &middot; <a href="mailto:Herman.DeBeukelaer@UGent.be">Herman De Beukelaer</a>
+					 &copy; 2014 <a href="http://www.ugent.be/en" target="_blank">Ghent University</a>
+				</div>
+				<div class="logos">
+					<a href="http://www.ugent.be/en" target="_blank">
+						<img class="ugent" src="images/ugent@2x.png" />
+					</a>
+					<a href="http://www.fwo.be/en" target="_blank">
+						<img class="fwo" src="images/fwo@2x.png" />
+					</a>
 				</div>
 			</div>
 		</div>
