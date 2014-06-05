@@ -1,5 +1,5 @@
 # Site settings
-# baseurl: /james
+baseurl: www.jamesframework.org
 
 # Build settings
 markdown: kramdown
