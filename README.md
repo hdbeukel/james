@@ -145,7 +145,7 @@ The James framework is developed and maintained by
 [1]: https://github.com/hdbeukel/james/tree/master/james/james-core
 [2]: https://github.com/hdbeukel/james/tree/master/james/james-extensions
 [3]: https://github.com/hdbeukel/james/tree/master/james/james-examples
-[4]: http://www.jamesframework.org/examples.html
+[4]: http://www.jamesframework.org/examples
 [5]: http://www.slf4j.org
 [6]: http://www.slf4j.org/manual.html
 [7]: https://oss.sonatype.org/index.html#welcome
