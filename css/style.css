@@ -216,13 +216,18 @@ pre {
     margin-bottom: 0;
 }
 
+/* DOCUMENTATION */
+
+#docs dl {
+    margin-bottom: 10px;
+}
+
 /* Autoscroll sidebar
 ----------------------*/
 
 /* sidebar */
 .bs-docs-sidebar {
     padding-left: 10px;
-    width: 100%;
     /* fix font weight difference for fixed position */
     -webkit-font-smoothing: antialiased;
 }

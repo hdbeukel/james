@@ -20,9 +20,10 @@ layout: default
                 Documentation
             </h1>
             <p>
-                This page describes all available optimization algorithms, provides a fully specified
-                Javadoc API for each module and links to the GitHub wiki pages for those interested in
-                the details of the architecture of the James framework.
+                This page explains how problems are specified in James and describes all available optimization algorithms
+                that can be used to obtain solutions for these problems.
+                Furthermore, it provides a fully specified Javadoc API for each module and links to the GitHub wiki pages
+                for those interested in the details of the architecture of the framework.
             </p>
             
             <h2 id="problems" class="page-header">
@@ -214,7 +215,7 @@ layout: default
                 Variable neighbourhood descent
             </h4>
             <p>
-                Variable neighbourhood descent is an extension of <a href="#steepest-descent">steepest descent</a> which uses a
+                Variable neighbourhood descent (VND) is an extension of <a href="#steepest-descent">steepest descent</a> which uses a
                 series of neighbourhoods N<sub>1</sub>, ..., N<sub>k</sub>. The search starts as a steepest descent using
                 neighbourhood N<sub>1</sub>. When this neighbourhood does not contain any improvement (local optimum)
                 the other neighbourhoods N<sub>2</sub>, ..., N<sub>k</sub> are
@@ -237,6 +238,89 @@ layout: default
                 <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/vns/VariableNeighbourhoodDescent.html">
                     <i class="fa fa-book"></i>
                     Variable neighbourhood descent
+                </a>
+                <small class="text-muted">
+                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                </small>
+            </p>
+            
+            <h4 id="rvns" class="page-header">
+                Reduced variable neighbourhood search
+            </h4>
+            <p>
+                Reduced variable neighbourhood search (RVNS) is a <a href="#random-descent">random descent</a> based algorithm that uses
+                a series of neighbourhoods N<sub>1</sub>, ..., N<sub>k</sub>. It iteratively samples a random neighbour from the
+                current neighbourhood N<sub>i</sub> (initially starting with N<sub>1</sub>). If this neighbour is no valid improvement
+                over the current solution, a new neighbour is sampled using the next neighbourhood N<sub>i+1</sub> in the subsequent step.
+                Else, the neighbour is accepted as the new current solution and the neighbourhood is reset to N<sub>1</sub>.
+            </p>
+            <p>
+                By default, when a neighbour obtained from the last neighbourhood N<sub>k</sub> is not accepted, RVNS cyclically continues with neighbourhood
+                N<sub>1</sub> as some neighbourhoods may not yet have been fully explored due to random sampling. If desired,
+                this neighbourhood cycling can be disabled in which case the search terminates when one neighbour of the current solution has been
+                sampled from every neighbourhood, without finding an improvement.
+            </p>
+            <p>
+                Except when neighbourhood cycling is disabled, reduced variable neighbourhood search never terminates internally.
+                Therefore, a stop criterion should be specified, such as a maximum number of steps or a maximum runtime. 
+                By default, the search starts with a random initial solution. Alternatively, a custom initial solution can
+                be specified. Any series of neighbourhoods that are compatible with the solution type of the considered problem
+                can be applied.
+            </p>
+            <p>
+                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/vns/ReducedVariableNeighbourhoodSearch.html">
+                    <i class="fa fa-book"></i>
+                    Reduced variable neighbourhood search
+                </a>
+                <small class="text-muted">
+                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                </small>
+            </p>
+            
+            <h4 id="vns" class="page-header">
+                Variable neighbourhood search
+            </h4>
+            <p>
+                Variable neighbourhood search (VNS) is a more advanced multi-neighbourhood search compared to <a href="#vnd">VND</a> and
+                <a href="#rvns">RVNS</a>. It applies a combination of a series of neighbourhoods for random shaking and an arbitrary other
+                local search algorithm
+                to modify solutions obtained after shaking, in an attempt to find a global improvement. The local search algorithm is applied
+                as a black box. More precisely, given a series of shaking neighbourhoods N<sub>1</sub>, ..., N<sub>s</sub> and an arbitrary
+                other local search algorithm L, each step of VNS consists of:
+                <dl class="dl-horizontal">
+                    <dt>Shaking:</dt>
+                    <dd>
+                        Sample a random neighbour x' of the current solution x, using shaking neighbourhood N<sub>i</sub> (initially, i = 1).
+                    </dd>
+                    <dt>Local search:</dt>
+                    <dd>
+                        Apply local search algorithm L with x' as initial solution to obtain x'' (best solution found by L).
+                    </dd>
+                    <dt>Acceptance:</dt>
+                    <dd>
+                        If x'' is a valid improvement over x, it is accepted as the new current solution and the search switches back to the 
+                        first shaking neighbourhood N<sub>1</sub>. Else, x remains the current solution and the next shaking neighbourhood
+                        N<sub>i+1</sub> is applied in the subsequent step. If there is no neighbourhood N<sub>i+1</sub> (i &ge; s) the search
+                        cyclically continues with N<sub>1</sub>.
+                    </dd>
+                </dl>
+                By default, VNS applies <a href="#vnd">variable neighbourhood descent (VND)</a> as its local search algorithm L, with a distinct
+                list of neighbourhoods (i.e. not related to the shaking neighbourhoods of VNS). Alternatively, any custom local search may be applied
+                for this purpose.
+            </p>
+            <p>
+                Variable neighbourhood search does not terminate internally so that a stop criterion
+                should be specified, such as a maximum number of steps or a maximum runtime. Keep in mind that one
+                step of VNS is composed of shaking and local search and may therefore be quite time consuming, depending
+                on the applied local search algorithm L.
+                By default, the search starts with a random initial solution. Alternatively, a custom initial solution can
+                be specified. Any series of shaking neighbourhoods that are compatible with the solution type of the considered
+                problem can be applied.
+            </p>
+            <p>
+                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html">
+                    <i class="fa fa-book"></i>
+                    Variable neighbourhood search
                 </a>
                 <small class="text-muted">
                     (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
@@ -281,6 +365,8 @@ layout: default
                             <li><a href="#metropolis-search">Metropolis search</a></li>
                             <li><a href="#parallel-tempering">Parallel tempering</a></li>
                             <li><a href="#vnd">Variable neighbourhood descent</a></li>
+                            <li><a href="#rvns">Reduced variable neighbourhood search</a></li>
+                            <li><a href="#vns">Variable neighbourhood search</a></li>
                         </ul>
                     </li>
                     <li>
