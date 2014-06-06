@@ -16,12 +16,15 @@
         <ul class="nav navbar-nav">
           <li {% if page.url == '/' %}class="active"{% endif %}><a href="/index.html">Home</a></li>
           <li {% if page.url == '/getstarted/' %}class="active"{% endif %}><a href="/getstarted">Getting started</a></li>
-          <li class="dropdown">
+          <li class="dropdown {% if page.url == '/docs/' %} active {% endif %}">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <i class="fa fa-caret-down"></i></a>
             <ul class="dropdown-menu">
+    			<li><a href="/docs">Overview</a></li>
+    			<li><a href="/docs/#algorithms">Available algorithms</a></li>
+    			<li class="divider"></li>                
     			<li class="dropdown-header">Javadoc API <span class="text-danger">(snapshots)</span></li>
-    			<li><a href="/api/core">James core module</a></li>
-    			<li><a href="/api/ext">James extensions module</a></li>
+    			<li><a href="/api/snapshots/core">James core module</a></li>
+    			<li><a href="/api/snapshots/ext">James extensions module</a></li>
     			<li class="divider"></li>
     			<li class="dropdown-header">Developer documentation</li>
     			<li><a href="https://github.com/hdbeukel/james/wiki">GitHub wiki</a></li>

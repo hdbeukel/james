@@ -156,6 +156,14 @@ color: #3A87AD;
     }
 }
 
+/* blue hover background on dropdown links in non-collapsed navbar */
+@media (min-width: 768px) {
+    .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:hover {
+        background: #428bca;
+        color: #fff;
+    }
+}
+
 /* CODE BLOCK STYLES */
 
 pre {
@@ -210,7 +218,7 @@ pre {
 }
 /* positions: sticked to top, scroll through and sticked to bottom */
 .bs-docs-sidebar.affix-top {
-    margin-top: 40px;    
+    margin-top: 45px;    
 }
 .bs-docs-sidebar.affix {
     position: fixed !important;
@@ -281,8 +289,18 @@ pre {
     text-decoration: none;
 }
 
+/* page lead */
+.bs-docs-sidebar li.sidebar-lead a{
+    font-size: 17px;
+    font-variant: small-caps;
+}
+
 /* General stuff
 -----------------*/
+
+.small-caps {
+    font-variant: small-caps;
+}
 
 #wrap > .container {
   padding: 0 15px;
