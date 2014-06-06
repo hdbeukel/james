@@ -3,5 +3,5 @@
 **/dist/*
 !**/dist/resources/
 *.log
-update-api.sh
+update-snapshot-api.sh
 _site/
