@@ -212,7 +212,8 @@ pre {
 
 /* sidebar */
 .bs-docs-sidebar {
-    padding-left: 20px;
+    padding-left: 10px;
+    width: 100%;
     /* fix font weight difference for fixed position */
     -webkit-font-smoothing: antialiased;
 }

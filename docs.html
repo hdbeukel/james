@@ -20,26 +20,185 @@ layout: default
                 Documentation
             </h1>
             <p>
-                ...
+                This page describes all available optimization algorithms, provides a fully specified
+                Javadoc API for each module and links to the GitHub wiki pages for those interested in
+                the details of the architecture of the James framework.
             </p>
             
-            <h1 id="algorithms" class="page-header">
-                Algorithms
-            </h1>
+            <h2 id="problems" class="page-header">
+                Problem specification
+            </h2>
             <p>
                 ...
             </p>
             
-            <h1 id="api" class="page-header">
+            <h2 id="algorithms" class="page-header">
+                Available algorithms
+            </h2>
+            <p>
+                All available algorithms that can be used to obtain solutions for the specified problems are listed here.
+                Most algorithms are local search metaheuristics, with a few exceptions such as exhaustive
+                search and one heuristic specifically designed for subset sampling. Some basic building
+                blocks for hybrid (parallel) searches are also provided.
+            </p>
+            <p>
+                If you do not know what a local search metaheuristic is, read
+                <a href="http://en.wikipedia.org/wiki/Local_search_(optimization)">this</a>.
+            </p>
+            
+            <h4 id="random-descent" class="page-header">
+                Random descent
+            </h4>
+            <p>
+                Random descent is the most basic local search algorithm. In every step, a random neighbour of the current
+                solution is evaluated and accepted as the new current solution if and only if it is valid and better than the
+                current solution.
+            </p>
+            <p>
+                Random descent does not terminate internally so that a stop criterion should be specified, such
+                as a maximum number of steps or a maximum runtime.
+                By default, the search starts with a random initial solution. Alternatively, a custom initial solution can
+                be specified. Any neighbourhood that is compatible with the solution type of the considered problem can be
+                applied.
+            </p>
+            
+            <h4 id="steepest-descent" class="page-header">
+                Steepest descent
+            </h4>
+            <p>
+                Steepest descent (also referred to as hill climbing) is a local search algorithm that always accepts the
+                best valid neighbour of the current solution as the new current solution, until no more improvement is
+                made.
+            </p>
+            <p>
+                By default, the search starts with a random initial solution. Alternatively, a custom initial solution can
+                be specified. Any neighbourhood that is compatible with the solution type of the considered problem can be
+                applied.
+            </p>
+            
+            <h4 id="tabu-search" class="page-header">
+                Tabu search
+            </h4>
+            <p>
+                Tabu Search is based on <a href="#steepest-descent">steepest descent</a> but does not require that an
+                improvement is made in every step.
+                The best valid non-tabu neighbour of the current solution is always accepted as the new current solution.
+                This may allow the search to escape from a local optimum.
+            </p>
+            <p>
+                To avoid repeatedly revisiting the same solutions (i.e. traversing cycles in the solution space)
+                the neighbourhood is dynamically modified using a tabu memory.
+                This memory keeps track of recently visited solutions, presence of specific features in these solutions and/or
+                recently modified features (recently applied moves). Based on this memory, specific solutions are declared
+                tabu and are removed from the neighbourhood to favour unvisited regions which may contain new improvements.
+            </p>
+            <p>
+                The search terminates if it happens that all valid neighbours of the current solution are tabu. However, it
+                is possible that this is never the case, so that a stop criterion should preferably be specified to guarantee
+                termination.
+                By default, the search starts with a random initial solution. Alternatively, a custom initial solution can
+                be specified. Any neighbourhood that is compatible with the solution type of the considered problem can be
+                applied.
+            </p>
+            
+            <h4 id="metropolis-search" class="page-header">
+                Metropolis search
+            </h4>
+            <p>
+                Metropolis search is an extension of <a href="#random-descent">random descent</a> where a valid neighbour that
+                is no improvement over the current solution may still be accepted as the new current solution. The probability
+                to accept such inferior neighbour is proportional to both
+                <ol>
+                    <li>
+                        the difference of its evaluation compared to that of the current solution, and
+                    </li>
+                    <li>
+                        the temperature of the search.
+                    </li>
+                </ol>
+                A higher temperature yields a higher probability to accept inferior moves. Thus, a high temperature allows a lot
+                of freedom to escape from local optima, while lower temperatures ease convergence towards an optimum.
+            </p>
+            <p>
+                The basic Metropolis search implementation in James has a fixed temperature. It may therefore not be very useful
+                on its own, but it is for example used by the more advanced <a href="#parallel-tempering">parallel tempering</a>
+                algorithm. Also, it can provide useful insights in the performance of different temperatures for a specific
+                application.
+            </p>
+            <p>
+                Metropolis search does not terminate internally so that a stop criterion should be specified, such
+                as a maximum number of steps or a maximum runtime.
+                By default, the search starts with a random initial solution. Alternatively, a custom initial solution can
+                be specified. Any neighbourhood that is compatible with the solution type of the considered problem can be
+                applied.
+            </p>
+            
+            <h4 id="parallel-tempering" class="page-header">
+                Parallel tempering
+            </h4>
+            <p>
+                Parallel tempering (also referred to as Replica Exchange Monte Carlo) is an advanced local search algorithm
+                that concurrently runs several Metropolis searches with different temperatures. Each of these subsearches
+                repeatedly apply a series of moves on a private solution and the global best solution found by any replica
+                is tracked by the main search.
+            </p>
+            <p>
+                When applying the parallel tempering algorithm, the number of replcias and a minimum and maximum temperature
+                have to be set. Temperatures assigned to replicas are equally spaced in the specified interval and replicas
+                are ordered according to their temperature.
+                Between consecutive runs of the Metropolis searches, solutions of neighbouring replicas are swapped
+                to push the most promising solutions towards the lowest temperatures, for the sake of convergence, while
+                inferior solutions are shifted to hot replicas where they can be extensively modified in an attempt to
+                find further improvements. In this way, the hot replicas continuously provide new seeds for the cooler
+                replicas.
+            </p>
+            <p>
+                The parallel tempering algorithm does not terminate internally so that a stop criterion
+                should be specified, such as a maximum number of steps or a maximum runtime. Keep in mind that every
+                step of parallel tempering consists of a number of steps performed by each Metropolis search.
+                By default, every replica starts with an independently generated random initial solution.
+                Alternatively, a custom initial solution can be specified in which case (a copy of) the same
+                initial solution is used by all replicas.
+                Any neighbourhood that is compatible with the solution type of the considered problem can be applied.
+            </p>
+            <p>
+                Note that all Metropolis searches are executed in separate threads to take advantage of multi-core architectures.
+            </p>
+            
+            <h4 id="vnd" class="page-header">
+                Variable neighbourhood descent
+            </h4>
+            <p>
+                Variable neighbourhood descent is an extension of <a href="#steepest-descent">steepest descent</a> which uses a
+                series of neighbourhoods N<sub>1</sub>, ..., N<sub>k</sub>. The search starts as a steepest descent using
+                neighbourhood N<sub>1</sub>. When this neighbourhood does not contain any improvement (local optimum)
+                the other neighbourhoods N<sub>2</sub>, ..., N<sub>k</sub> are
+                explored one by one. If an improvement is found in one of these alternative neighbourhoods,
+                the algorithm switches back to
+                neighbourhood N<sub>1</sub> and continues from the new current solution, else, the search terminates.
+            </p>
+            <p>
+                Combining several neighbourhoods can be beneficial because a local optimum for one neighbourhood is not
+                necessarily a local optimum for an other neighbourhood. Often, neighbourhoods of increasing size are chosen
+                so that the smallest neighbourhood is most frequently applied, for efficiency, while the larger neighbourhoods
+                still offer a way out of local optima of the smaller neighbourhoods.
+            </p>
+            <p>
+                By default, the search starts with a random initial solution. Alternatively, a custom initial solution can
+                be specified. Any series of neighbourhoods that are compatible with the solution type of the considered problem
+                can be applied.
+            </p>
+            
+            <h2 id="api" class="page-header">
                 Javadoc API
-            </h1>
+            </h2>
             <p>
                 ...
             </p>
             
-            <h1 id="github-wiki" class="page-header">
+            <h2 id="github-wiki" class="page-header">
                 GitHub wiki
-            </h1>
+            </h2>
             <p>
                 ...
             </p>
@@ -54,9 +213,20 @@ layout: default
                         <a href="#page-header">Documentation</a>
                     </li>
                     <li>
-                        <a href="#algorithms">Algorithms</a>
+                        <a href="#problems">Problem specification</a>
                         <ul class="nav nav-stacked">
                             <li><a href="#">...</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#algorithms">Available algorithms</a>
+                        <ul class="nav nav-stacked">
+                            <li><a href="#random-descent">Random descent</a></li>
+                            <li><a href="#steepest-descent">Steepest descent</a></li>
+                            <li><a href="#tabu-search">Tabu search</a></li>
+                            <li><a href="#metropolis-search">Metropolis search</a></li>
+                            <li><a href="#parallel-tempering">Parallel tempering</a></li>
+                            <li><a href="#vnd">Variable neighbourhood search</a></li>
                         </ul>
                     </li>
                     <li>

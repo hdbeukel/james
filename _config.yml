@@ -1,9 +1,8 @@
-# Site settings
-# baseurl: /james
-
 # Build settings
 markdown: kramdown
 permalink: pretty
 
 # Custom variables
+# TODO: replace by first release when published
+latestrelease: 0.1-SNAPSHOT
 snapshotversion: 0.1-SNAPSHOT
