@@ -129,6 +129,11 @@ color: #C09853;
 color: #3A87AD;
 }
 
+/* Alternative styles for elements contained in callout */
+.bs-callout dl {
+    margin: 0;
+}
+
 /* NAV BAR CUSTOMIZATION */
 
 .navbar {
@@ -205,6 +210,10 @@ pre {
 
 #getstarted dd {
     margin-bottom: 7px;
+}
+
+#getstarted .bs-callout dd {
+    margin-bottom: 0;
 }
 
 /* Autoscroll sidebar

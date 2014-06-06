@@ -61,6 +61,15 @@ layout: default
                 be specified. Any neighbourhood that is compatible with the solution type of the considered problem can be
                 applied.
             </p>
+            <p>
+                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/RandomDescent.html">
+                    <i class="fa fa-book"></i>
+                    Random descent
+                </a>
+                <small class="text-muted">
+                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                </small>
+            </p>
             
             <h4 id="steepest-descent" class="page-header">
                 Steepest descent
@@ -74,6 +83,15 @@ layout: default
                 By default, the search starts with a random initial solution. Alternatively, a custom initial solution can
                 be specified. Any neighbourhood that is compatible with the solution type of the considered problem can be
                 applied.
+            </p>
+            <p>
+                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/SteepestDescent.html">
+                    <i class="fa fa-book"></i>
+                    Steepest descent
+                </a>
+                <small class="text-muted">
+                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                </small>
             </p>
             
             <h4 id="tabu-search" class="page-header">
@@ -99,6 +117,15 @@ layout: default
                 By default, the search starts with a random initial solution. Alternatively, a custom initial solution can
                 be specified. Any neighbourhood that is compatible with the solution type of the considered problem can be
                 applied.
+            </p>
+            <p>
+                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/tabu/TabuSearch.html">
+                    <i class="fa fa-book"></i>
+                    Tabu search
+                </a>
+                <small class="text-muted">
+                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                </small>
             </p>
             
             <h4 id="metropolis-search" class="page-header">
@@ -132,15 +159,24 @@ layout: default
                 be specified. Any neighbourhood that is compatible with the solution type of the considered problem can be
                 applied.
             </p>
+            <p>
+                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/MetropolisSearch.html">
+                    <i class="fa fa-book"></i>
+                    Metropolis search
+                </a>
+                <small class="text-muted">
+                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                </small>
+            </p>
             
             <h4 id="parallel-tempering" class="page-header">
                 Parallel tempering
             </h4>
             <p>
                 Parallel tempering (also referred to as Replica Exchange Monte Carlo) is an advanced local search algorithm
-                that concurrently runs several Metropolis searches with different temperatures. Each of these subsearches
-                repeatedly apply a series of moves on a private solution and the global best solution found by any replica
-                is tracked by the main search.
+                that concurrently runs several <a href="#metropolis-search">Metropolis searches</a> with different temperatures.
+                Each of these subsearches repeatedly apply a series of moves on a private solution and the global best solution
+                found by any replica is tracked by the main search.
             </p>
             <p>
                 When applying the parallel tempering algorithm, the number of replcias and a minimum and maximum temperature
@@ -163,6 +199,15 @@ layout: default
             </p>
             <p>
                 Note that all Metropolis searches are executed in separate threads to take advantage of multi-core architectures.
+            </p>
+            <p>
+                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/ParallelTempering.html">
+                    <i class="fa fa-book"></i>
+                    Parallel tempering
+                </a>
+                <small class="text-muted">
+                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                </small>
             </p>
             
             <h4 id="vnd" class="page-header">
@@ -187,6 +232,15 @@ layout: default
                 By default, the search starts with a random initial solution. Alternatively, a custom initial solution can
                 be specified. Any series of neighbourhoods that are compatible with the solution type of the considered problem
                 can be applied.
+            </p>
+            <p>
+                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/vns/VariableNeighbourhoodDescent.html">
+                    <i class="fa fa-book"></i>
+                    Variable neighbourhood descent
+                </a>
+                <small class="text-muted">
+                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                </small>
             </p>
             
             <h2 id="api" class="page-header">
@@ -226,7 +280,7 @@ layout: default
                             <li><a href="#tabu-search">Tabu search</a></li>
                             <li><a href="#metropolis-search">Metropolis search</a></li>
                             <li><a href="#parallel-tempering">Parallel tempering</a></li>
-                            <li><a href="#vnd">Variable neighbourhood search</a></li>
+                            <li><a href="#vnd">Variable neighbourhood descent</a></li>
                         </ul>
                     </li>
                     <li>
