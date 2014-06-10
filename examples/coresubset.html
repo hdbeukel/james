@@ -81,6 +81,60 @@ public double getDistance(int id1, int id2){
         The method <code>getName(int id)</code> returns the name of an item with a given ID and <code>getDistance(int id1, int id2)</code>
         yields the distance between two items with given IDs.
     </p>
+    
+    <h4 class="page-header">
+        Objective
+    </h4>
+    <p>
+        Now create a class <code>CoreSubsetObjective</code> that implements the <code>Objective</code> interface. This interface has two
+        type parameters (generics): the solution type and data type. Here, the solution type should be set to <code>SubsetSolution</code>
+        and the data type to <code>CoreSubsetData</code>. The objective can then use our custom data class to evaluate any given subset
+        solution by inspecting the set of selected IDs and computing the average distance between all pairs of selected items.
+    </p>
+<pre class="prettyprint">
+public class CoreSubsetObjective implements Objective&lt;SubsetSolution, CoreSubsetData&gt;{
+
+    // evaluates the given subset solution using the given data, by computing the average
+    // distance between all pairs of selected items. If less than two items are selected,
+    // this method always returns 0.
+    @Override
+    public double evaluate(SubsetSolution solution, CoreSubsetData data) {
+        if(solution.getNumSelectedIDs() &lt; 2){
+            return 0.0;
+        } else {
+            // at least two items selected: compute average distance
+            List&lt;Integer&gt; ids = new ArrayList&lt;&gt;(solution.getSelectedIDs());
+            int id1, id2, numDist = 0;
+            double sumDist = 0.0;
+            for(int i=0; i&lt;ids.size(); i++){
+                id1 = ids.get(i);
+                for(int j=i+1; j&lt;ids.size(); j++){
+                    id2 = ids.get(j);
+                    sumDist += data.getDistance(id1, id2);
+                    numDist++;
+                }
+            }
+            return sumDist/numDist;
+        }
+    }
+
+    @Override
+    public boolean isMinimizing() {
+        return false;
+    }
+
+}
+</pre>
+    <p>
+        The method <code>isMinimizing()</code> returns <code>false</code> as the average distance is to be maximized.
+    </p>
+    
+    <h4 class="page-header">
+        Optimization
+    </h4>
+    <p>
+        ...
+    </p>
 
 </div>
 
