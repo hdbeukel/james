@@ -12,9 +12,9 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-package org.jamesframework.examples.coresubset;
+package org.jamesframework.examples.util;
 
-import org.jamesframework.core.problems.solutions.SubsetSolution;
+import org.jamesframework.core.problems.solutions.Solution;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.listeners.EmptySearchListener;
 
@@ -23,20 +23,20 @@ import org.jamesframework.core.search.listeners.EmptySearchListener;
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class CoreSubsetSearchListener extends EmptySearchListener<SubsetSolution> {
+public class ProgressionSearchListener extends EmptySearchListener<Solution> {
 
     @Override
-    public void searchStarted(Search<? extends SubsetSolution> search) {
+    public void searchStarted(Search<? extends Solution> search) {
         System.out.println(" >>> Search started");
     }
 
     @Override
-    public void searchStopped(Search<? extends SubsetSolution> search) {
+    public void searchStopped(Search<? extends Solution> search) {
         System.out.println(" >>> Search stopped");
     }
 
     @Override
-    public void newBestSolution(Search<? extends SubsetSolution> search, SubsetSolution newBestSolution, double newBestSolutionEvaluation) {
+    public void newBestSolution(Search<? extends Solution> search, Solution newBestSolution, double newBestSolutionEvaluation) {
         System.out.println(" >>> New best solution: " + newBestSolutionEvaluation);
     }
     

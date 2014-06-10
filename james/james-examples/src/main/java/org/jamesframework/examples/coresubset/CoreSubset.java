@@ -14,6 +14,7 @@
 
 package org.jamesframework.examples.coresubset;
 
+import org.jamesframework.examples.util.ProgressionSearchListener;
 import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Set;
@@ -88,7 +89,7 @@ public class CoreSubset {
             // set maximum runtime
             search.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
             // attach listener
-            search.addSearchListener(new CoreSubsetSearchListener());
+            search.addSearchListener(new ProgressionSearchListener());
 
             // start search
             search.start();
