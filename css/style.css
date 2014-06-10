@@ -222,6 +222,18 @@ pre {
     margin-bottom: 10px;
 }
 
+#docs #problem-uml {
+    width: 220px;
+    margin: 10px 25px 10px 10px;
+}
+
+/* don't float problem uml on very small screens */
+@media (max-width: 450px) {
+    #docs #problem-uml {
+        float: none !important;
+    }
+}
+
 /* Autoscroll sidebar
 ----------------------*/
 
@@ -312,6 +324,10 @@ pre {
 
 /* General stuff
 -----------------*/
+
+.clear {
+    clear: both;
+}
 
 .small-caps {
     font-variant: small-caps;

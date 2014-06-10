@@ -19,13 +19,13 @@
           <li class="dropdown {% if page.url == '/docs/' %} active {% endif %}">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <i class="fa fa-caret-down"></i></a>
             <ul class="dropdown-menu">
-    			<li><a href="/docs">Overview</a></li>
+    			<li class="dropdown-header">Javadoc API</li>
+    			<li><a href="/api/core/snapshot">James core module <small class="text-danger">({{ site.core-snapshot }})</small></a></li>
+    			<li><a href="/api/ext/snapshot">James extensions module <small class="text-danger">({{ site.extensions-snapshot }})</small></a></li>
+    			<li><a href="/docs/#api">Other versions...</a></li>
+    			<li class="divider"></li>                
     			<li><a href="/docs/#problems">Problem specification</a></li>
     			<li><a href="/docs/#algorithms">Optimization algorithms</a></li>
-    			<li class="divider"></li>                
-    			<li class="dropdown-header">Javadoc API <span class="text-danger">(snapshots)</span></li>
-    			<li><a href="/api/core/snapshot">James core module</a></li>
-    			<li><a href="/api/ext/snapshot">James extensions module</a></li>
     			<li class="divider"></li>
     			<li class="dropdown-header">Developer documentation</li>
     			<li><a href="https://github.com/hdbeukel/james/wiki">GitHub wiki</a></li>
