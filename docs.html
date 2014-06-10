@@ -5,9 +5,7 @@ layout: default
 <div id="docs">
             
     <ol class="breadcrumb">
-        <li>
-            <a href="/index.html">Home</a>
-        </li>
+        <li><a href="/index.html">Home</a></li>
         <li class="active">Documentation</li>
     </ol>
 
@@ -96,14 +94,15 @@ layout: default
                 A predefined solution type <code>SubsetSolution</code> is available that models
                 a set of selected and unselected IDs. A corresponding abstract problem class <code>SubsetProblemWithData</code>
                 is also provided which separates data from the objective (and constraints, if any).
-                The data class contains the link between the IDs and the properties of the corresponding items, and
-                is used by the objective and constraints for evaluation and validation of a given subset solution.
+                The data class is required to implement the <code>SubsetData</code> interface and contains the link between the
+                IDs and the properties of the corresponding items. It is used by the objective and constraints
+                for evaluation and validation of a given subset solution.
             </p>
             <p>
                 The minimum requirements to implement a subset selection problem are to provide the necessary data
                 and an objective. These are combined in a <code>SubsetProblemWithData</code> which can be passed to any of the
-                optimization algorithms, using one of the predifined subset neighbourhoods (or a custom neighbourhood).
-                The details of this approach are best explained through an <a href="/examples/#subset-selection">example</a>.
+                optimization algorithms, using one of the predifined subset neighbourhoods (or a custom neighbourhood)
+                if applicable. The details are best explained through an <a href="/examples/#subset-selection">example</a>.
             </p>
             
             <h4 id="beyond-subset-selection" class="page-header">

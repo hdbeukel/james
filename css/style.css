@@ -171,10 +171,16 @@ color: #3A87AD;
 
 /* CODE BLOCK STYLES */
 
-pre {
+pre,
+pre.prettyprint {
     overflow: auto;
     word-wrap: normal;
     white-space: pre;
+    padding: 9px 14px;
+    margin-bottom: 14px;
+    background-color: #f7f7f9;
+    border: 1px solid #e1e1e8;
+    border-radius: 4px;
 }
 
 /* HOME PAGE */
@@ -232,6 +238,12 @@ pre {
     #docs #problem-uml {
         float: none !important;
     }
+}
+
+/* EXAMPLES */
+
+#examples h4 .label {
+    margin-left: 5px;
 }
 
 /* Autoscroll sidebar

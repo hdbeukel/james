@@ -1,0 +1,103 @@
+---
+layout: default
+---
+
+<div id="examples-coresubset">
+    <ol class="breadcrumb">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/examples">Examples</a></li>
+        <li class="active">Core subset selection</li>
+    </ol>
+    
+    <h2 class="page-header">
+        Example 1: Core subset selection
+    </h2>
+    
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-info-circle"></i>
+            Info:
+        </h4>
+        In this example, the random descent metaheuristic is applied to sample a good core subset. Don't know what random descent is?
+        Read <a href="/docs/#random-descent">this</a>.
+    </div>
+    <p>
+        This example demonstrates the implementation of a simplified core subset selection problem in James. Given a distance matrix, the goal
+        is to select a subset of items so that the average distance between all pairs of selected items is maximized. In this example,
+        every item also has a name. Therefore, the input consists of the combination of an N &times; N distance matrix and an array of N
+        item names (with corresponding order).
+    </p>
+    
+    <h4 class="page-header">
+        Data class
+    </h4>
+    <p>
+        First create a data class <code>CoreSubsetData</code> that contains the distance matrix and item names. The data class implements the
+        <code>SubsetData</code> interface which has a single method <code>getIDs()</code>. This method returns the set of integer IDs that have been
+        assigned to the items. In this example, the IDs correspond to indices in the distance matrix and name array.
+    </p>
+<pre class="prettyprint">
+public class CoreSubsetData implements SubsetData {
+
+    // item names
+    private final String[] names;
+    // distance matrix
+    private final double[][] dist;
+    // IDs
+    private final Set<Integer> ids;
+
+    public CoreSubsetData(String[] names, double[][] dist){
+        // store data
+        this.names = names;
+        this.dist = dist;
+        // infer IDs: 0..N-1 in case of N items
+        // (indices in distance matrix and name array)
+        ids = new HashSet&lt;&gt;();
+        for(int id=0; id&lt;names.length; id++){
+            ids.add(id);
+        }
+    }
+
+    @Override
+    public Set&lt;Integer&gt; getIDs() {
+        return ids;
+    }
+    
+}
+</pre>
+    <p>
+        Now add two custom methods to access the underlying data based on IDs of selected items.
+    </p>
+<pre class="prettyprint">
+public String getName(int id){
+    return names[id];
+}
+
+public double getDistance(int id1, int id2){
+    return dist[id1][id2];
+}
+</pre>
+    <p>
+        The method <code>getName(int id)</code> returns the name of an item with a given ID and <code>getDistance(int id1, int id2)</code>
+        yields the distance between two items with given IDs.
+    </p>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
