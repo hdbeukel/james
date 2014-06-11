@@ -1,0 +1,611 @@
+---
+layout: default
+---
+
+<div id="docs">
+            
+    <ol class="breadcrumb">
+        <li><a href="/index.html">Home</a></li>
+        <li class="active">Documentation</li>
+    </ol>
+
+    <div id="page-header"></div>
+
+    <div class="row">
+    
+        <!-- content -->
+        <div class="col-md-9">
+            
+            <h2 id="api" class="page-header">
+                Javadoc API
+            </h2>
+            <p>
+                A fully specified Javadoc API is provided here for the core and extensions module.
+            </p>
+            
+            <h4 id="latest-stable-api" class="page-header">
+                Latest stable API
+            </h4>
+            <p>
+                James is currently under development and no stable API has yet been released.
+                Subscribe to the <a href="/rss/james-releases.xml">RSS feed <i class="fa fa-rss"></i></a>
+                to stay informed about upcoming stable releases.
+            </p>
+            
+            <h4 id="snapshot-api" class="page-header">
+                Development snapshots
+            </h4>
+            <p>
+                Bleeding edge development snapshot APIs are found here:
+                <ul>
+                   <li>
+                       <a href="/api/core/snapshot">Core module API</a> <small class="text-muted text-danger">({{ site.core-snapshot }})</small>
+                   </li>
+                   <li>
+                       <a href="/api/ext/snapshot">Extensions module API</a> <small class="text-muted text-danger">({{ site.extensions-snapshot }})</small>
+                   </li>
+                </ul>
+                <div class="bs-callout bs-callout-warning">
+                    <h4>
+                        <i class="fa fa-warning"></i>
+                        Warning!
+                    </h4>
+                    Snapshot APIs may change without notice. Use with care. If possible, consult a stable API instead.
+                </div>
+            </p>
+            
+            <h2 id="problems" class="page-header">
+                Problem specification
+            </h2>
+            <img id="problem-uml" src="/images/problem.png" class="pull-left" />
+            <p>
+                The James framework is mainly focused on subset selection but other types of problems can also easily be
+                plugged in. The effort needed to implement a subset selection problem is reduced to a minimum, while
+                modeling other problems requires a bit more coding.
+            </p>
+            <p>
+                Every problem has a specific solution type. This can be any Java class, given
+                that it extends the abstract <code>Solution</code> class from the framework, and models a solution
+                to the specified problem. The <code>Problem</code> itself then provides methods to evaluate and
+                validate a solution of this type, indicating whether evaluations are to be maximized or minimized.
+                It is also responsible for creating random solutions which are for example used as the default
+                initial solution of many local search algorithms.
+            </p>
+            <p>
+                James relies on Java generics for many reusable components of the framework. The <code>Problem</code>
+                interface has one parameter <code>SolutionType</code> which should be specified when implementing
+                the problem. An optimization algorithm can then be applied to obtain a solution of this type, where
+                the algorithm consults the <code>Problem</code> interface to evaluate and validate inspected solutions.
+                Most local search algorithms use a neighbourhood designed for the appropriate solution
+                type to explore the search space, starting from a random initial solution which is repeatedly
+                modified in an attempt to improve it (see <a href="#algorithms">below</a>).
+            </p>
+            
+            <h4 id="subset-selection" class="page-header">
+                Subset selection
+            </h4>
+            <p>
+                A number of reusable components are provided for subset selection problems so that the implementation
+                effort is reduced to a minimum. The only requirement to use these components
+                is that a unique integer ID should be assigned to every item that can be selected. Any
+                subset selection problem is then reduced to selection of a subset of these IDs.
+            </p>
+            <p>
+                A predefined solution type <code>SubsetSolution</code> is available that models
+                a set of selected and unselected IDs. A corresponding abstract problem class <code>SubsetProblemWithData</code>
+                is also provided which separates data from the objective (and constraints, if any).
+                The data class is required to implement the <code>SubsetData</code> interface and contains the link between the
+                IDs and the properties of the corresponding items. It is used by the objective and constraints
+                for evaluation and validation of a given subset solution.
+            </p>
+            <p>
+                The minimum requirements to implement a subset selection problem are to provide the necessary data
+                and an objective. These are combined in a <code>SubsetProblemWithData</code> which can be passed to any of the
+                optimization algorithms, using one of the predifined subset neighbourhoods (or a custom neighbourhood)
+                if applicable. The details are best explained through an <a href="/examples/#subset-selection">example</a>.
+            </p>
+            
+            <h4 id="beyond-subset-selection" class="page-header">
+                Beyond subset selection
+            </h4>
+            <p>
+                To implement other types of problems besides subset selection, a bit more coding is required. First of all,
+                you will have to create a custom solution type that extends the abstract <code>Solution</code> class and that
+                models a solution to your problem. Then, the problem itself needs to be specified by implementing the
+                <code>Problem</code> interface for the custom
+                solution type. This problem can then be passed to one of the optimization algorithms. However, most algorithms
+                are local search metaheuristics that rely on a definition of a neighbourhood, so you will also have to provide
+                at least one neighbourhood that operates on the custom solution type to be able to use these algorithms.
+            </p>
+            <p>
+                An example will soon be provided <a href="/examples/#beyond-subset-selection">here</a>.
+            </p>
+            
+            <h2 id="algorithms" class="page-header clear">
+                Optimization algorithms
+            </h2>
+            <p>
+                All available algorithms that can be used to obtain solutions for the specified problems are listed here.
+                Most algorithms are local search metaheuristics, with a few exceptions such as exhaustive
+                search and one heuristic specifically designed for subset sampling. Some basic building
+                blocks for hybrid (parallel) searches are also provided.
+            </p>
+            <p>
+                If you do not know what a local search metaheuristic is, read
+                <a href="http://en.wikipedia.org/wiki/Local_search_(optimization)">this</a>.
+            </p>
+            <p>
+                Most local search algorithms use one ore more neighbourhood(s) to explore the search space, starting
+                from a random (or manually specified) initial solution. A neighbourhood defines a set of solutions
+                similar to the current solution that can be obtained by applying small changes (moves) to this current
+                solution. Such moves are repeatedly applied to the current solution in an attempt to improve it.
+                Therefore, the chosen neighbourhoods strongly influence the behaviour of the search algorithms.
+            </p>
+            
+            <h4 id="random-descent" class="page-header">
+                Random descent
+            </h4>
+            <p>
+                Random descent is the most basic local search algorithm. In every step, a random neighbour of the current
+                solution is evaluated and accepted as the new current solution if and only if it is valid and better than the
+                current solution.
+            </p>
+            <p>
+                Random descent does not terminate internally so that a stop criterion should be specified, such
+                as a maximum number of steps or a maximum runtime.
+                By default, the search starts with a random initial solution. Alternatively, a custom initial solution can
+                be specified. Any neighbourhood that is compatible with the solution type of the considered problem can be
+                applied.
+            </p>
+            <p>
+                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/RandomDescent.html">
+                    <i class="fa fa-book"></i>
+                    Random descent
+                </a>
+                <small class="text-muted">
+                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                </small>
+            </p>
+            
+            <h4 id="steepest-descent" class="page-header">
+                Steepest descent
+            </h4>
+            <p>
+                Steepest descent (also referred to as hill climbing) is a local search algorithm that always accepts the
+                best valid neighbour of the current solution as the new current solution, until no more improvement is
+                made.
+            </p>
+            <p>
+                By default, the search starts with a random initial solution. Alternatively, a custom initial solution can
+                be specified. Any neighbourhood that is compatible with the solution type of the considered problem can be
+                applied.
+            </p>
+            <p>
+                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/SteepestDescent.html">
+                    <i class="fa fa-book"></i>
+                    Steepest descent
+                </a>
+                <small class="text-muted">
+                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                </small>
+            </p>
+            
+            <h4 id="tabu-search" class="page-header">
+                Tabu search
+            </h4>
+            <p>
+                Tabu Search is based on <a href="#steepest-descent">steepest descent</a> but does not require that an
+                improvement is made in every step.
+                The best valid non-tabu neighbour of the current solution is always accepted as the new current solution.
+                This may allow the search to escape from a local optimum.
+            </p>
+            <p>
+                To avoid repeatedly revisiting the same solutions (i.e. traversing cycles in the solution space)
+                the neighbourhood is dynamically modified using a tabu memory.
+                This memory keeps track of recently visited solutions, presence of specific features in these solutions and/or
+                recently modified features (recently applied moves). Based on this memory, specific solutions are declared
+                tabu and are removed from the neighbourhood to favour unvisited regions which may contain new improvements.
+            </p>
+            <p>
+                The search terminates if it happens that all valid neighbours of the current solution are tabu. However, it
+                is possible that this is never the case, so that a stop criterion should preferably be specified to guarantee
+                termination.
+                By default, the search starts with a random initial solution. Alternatively, a custom initial solution can
+                be specified. Any neighbourhood that is compatible with the solution type of the considered problem can be
+                applied.
+            </p>
+            <p>
+                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/tabu/TabuSearch.html">
+                    <i class="fa fa-book"></i>
+                    Tabu search
+                </a>
+                <small class="text-muted">
+                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                </small>
+            </p>
+            
+            <h4 id="metropolis-search" class="page-header">
+                Metropolis search
+            </h4>
+            <p>
+                Metropolis search is an extension of <a href="#random-descent">random descent</a> where a valid neighbour that
+                is no improvement over the current solution may still be accepted as the new current solution. The probability
+                to accept such inferior neighbour is proportional to both
+                <ol>
+                    <li>
+                        the difference of its evaluation compared to that of the current solution, and
+                    </li>
+                    <li>
+                        the temperature of the search.
+                    </li>
+                </ol>
+                A higher temperature yields a higher probability to accept inferior moves. Thus, a high temperature allows a lot
+                of freedom to escape from local optima, while lower temperatures ease convergence towards an optimum.
+            </p>
+            <p>
+                The basic Metropolis search implementation in James has a fixed temperature. It may therefore not be very useful
+                on its own, but it is for example used by the more advanced <a href="#parallel-tempering">parallel tempering</a>
+                algorithm. Also, it can provide useful insights in the performance of different temperatures for a specific
+                application.
+            </p>
+            <p>
+                Metropolis search does not terminate internally so that a stop criterion should be specified, such
+                as a maximum number of steps or a maximum runtime.
+                By default, the search starts with a random initial solution. Alternatively, a custom initial solution can
+                be specified. Any neighbourhood that is compatible with the solution type of the considered problem can be
+                applied.
+            </p>
+            <p>
+                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/MetropolisSearch.html">
+                    <i class="fa fa-book"></i>
+                    Metropolis search
+                </a>
+                <small class="text-muted">
+                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                </small>
+            </p>
+            
+            <h4 id="parallel-tempering" class="page-header">
+                Parallel tempering
+            </h4>
+            <p>
+                Parallel tempering (also referred to as Replica Exchange Monte Carlo) is an advanced local search algorithm
+                that concurrently runs several <a href="#metropolis-search">Metropolis searches</a> with different temperatures.
+                Each of these subsearches repeatedly apply a series of moves on a private solution and the global best solution
+                found by any replica is tracked by the main search.
+            </p>
+            <p>
+                When applying the parallel tempering algorithm, the number of replcias and a minimum and maximum temperature
+                have to be set. Temperatures assigned to replicas are equally spaced in the specified interval and replicas
+                are ordered according to their temperature.
+                Between consecutive runs of the Metropolis searches, solutions of neighbouring replicas are swapped
+                to push the most promising solutions towards the lowest temperatures, for the sake of convergence, while
+                inferior solutions are shifted to hot replicas where they can be extensively modified in an attempt to
+                find further improvements. In this way, the hot replicas continuously provide new seeds for the cooler
+                replicas.
+            </p>
+            <p>
+                The parallel tempering algorithm does not terminate internally so that a stop criterion
+                should be specified, such as a maximum number of steps or a maximum runtime. Keep in mind that every
+                step of parallel tempering consists of a number of steps performed by each Metropolis search.
+                By default, every replica starts with an independently generated random initial solution.
+                Alternatively, a custom initial solution can be specified in which case (a copy of) the same
+                initial solution is used by all replicas.
+                Any neighbourhood that is compatible with the solution type of the considered problem can be applied.
+            </p>
+            <p>
+                Note that all Metropolis searches are executed in separate threads to take advantage of multi-core architectures.
+            </p>
+            <p>
+                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/ParallelTempering.html">
+                    <i class="fa fa-book"></i>
+                    Parallel tempering
+                </a>
+                <small class="text-muted">
+                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                </small>
+            </p>
+            
+            <h4 id="vnd" class="page-header">
+                Variable neighbourhood descent
+            </h4>
+            <p>
+                Variable neighbourhood descent (VND) is an extension of <a href="#steepest-descent">steepest descent</a> which uses a
+                series of neighbourhoods N<sub>1</sub>, ..., N<sub>k</sub>. The search starts as a steepest descent using
+                neighbourhood N<sub>1</sub>. When this neighbourhood does not contain any improvement (local optimum)
+                the other neighbourhoods N<sub>2</sub>, ..., N<sub>k</sub> are
+                explored one by one. If an improvement is found in one of these alternative neighbourhoods,
+                the algorithm switches back to
+                neighbourhood N<sub>1</sub> and continues from the new current solution, else, the search terminates.
+            </p>
+            <p>
+                Combining several neighbourhoods can be beneficial because a local optimum for one neighbourhood is not
+                necessarily a local optimum for an other neighbourhood. Often, neighbourhoods of increasing size are chosen
+                so that the smallest neighbourhood is most frequently applied, for efficiency, while the larger neighbourhoods
+                still offer a way out of local optima of the smaller neighbourhoods.
+            </p>
+            <p>
+                By default, the search starts with a random initial solution. Alternatively, a custom initial solution can
+                be specified. Any series of neighbourhoods that are compatible with the solution type of the considered problem
+                can be applied.
+            </p>
+            <p>
+                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/vns/VariableNeighbourhoodDescent.html">
+                    <i class="fa fa-book"></i>
+                    Variable neighbourhood descent
+                </a>
+                <small class="text-muted">
+                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                </small>
+            </p>
+            
+            <h4 id="rvns" class="page-header">
+                Reduced variable neighbourhood search
+            </h4>
+            <p>
+                Reduced variable neighbourhood search (RVNS) is a <a href="#random-descent">random descent</a> based algorithm that uses
+                a series of neighbourhoods N<sub>1</sub>, ..., N<sub>k</sub>. It iteratively samples a random neighbour from the
+                current neighbourhood N<sub>i</sub> (initially starting with N<sub>1</sub>). If this neighbour is no valid improvement
+                over the current solution, a new neighbour is sampled using the next neighbourhood N<sub>i+1</sub> in the subsequent step.
+                Else, the neighbour is accepted as the new current solution and the neighbourhood is reset to N<sub>1</sub>.
+            </p>
+            <p>
+                By default, when a neighbour obtained from the last neighbourhood N<sub>k</sub> is not accepted, RVNS cyclically continues with neighbourhood
+                N<sub>1</sub> as some neighbourhoods may not yet have been fully explored due to random sampling. If desired,
+                this neighbourhood cycling can be disabled in which case the search terminates when one neighbour of the current solution has been
+                sampled from every neighbourhood, without finding an improvement.
+            </p>
+            <p>
+                Except when neighbourhood cycling is disabled, reduced variable neighbourhood search never terminates internally.
+                Therefore, a stop criterion should be specified, such as a maximum number of steps or a maximum runtime. 
+                By default, the search starts with a random initial solution. Alternatively, a custom initial solution can
+                be specified. Any series of neighbourhoods that are compatible with the solution type of the considered problem
+                can be applied.
+            </p>
+            <p>
+                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/vns/ReducedVariableNeighbourhoodSearch.html">
+                    <i class="fa fa-book"></i>
+                    Reduced variable neighbourhood search
+                </a>
+                <small class="text-muted">
+                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                </small>
+            </p>
+            
+            <h4 id="vns" class="page-header">
+                Variable neighbourhood search
+            </h4>
+            <p>
+                Variable neighbourhood search (VNS) is a more advanced multi-neighbourhood search compared to <a href="#vnd">VND</a> and
+                <a href="#rvns">RVNS</a>. It applies a combination of a series of neighbourhoods for random shaking and an arbitrary other
+                local search algorithm
+                to modify solutions obtained after shaking, in an attempt to find a global improvement. The local search algorithm is applied
+                as a black box. More precisely, given a series of shaking neighbourhoods N<sub>1</sub>, ..., N<sub>s</sub> and an arbitrary
+                other local search algorithm L, each step of VNS consists of:
+                <dl class="dl-horizontal">
+                    <dt>Shaking:</dt>
+                    <dd>
+                        Sample a random neighbour x' of the current solution x, using shaking neighbourhood N<sub>i</sub> (initially, i = 1).
+                    </dd>
+                    <dt>Local search:</dt>
+                    <dd>
+                        Apply local search algorithm L with x' as initial solution to obtain x'' (best solution found by L).
+                    </dd>
+                    <dt>Acceptance:</dt>
+                    <dd>
+                        If x'' is a valid improvement over x, it is accepted as the new current solution and the search switches back to the 
+                        first shaking neighbourhood N<sub>1</sub>. Else, x remains the current solution and the next shaking neighbourhood
+                        N<sub>i+1</sub> is applied in the subsequent step. If there is no neighbourhood N<sub>i+1</sub> (i &ge; s) the search
+                        cyclically continues with N<sub>1</sub>.
+                    </dd>
+                </dl>
+                By default, VNS applies <a href="#vnd">variable neighbourhood descent (VND)</a> as its local search algorithm L, with a distinct
+                list of neighbourhoods (i.e. not related to the shaking neighbourhoods of VNS). Alternatively, any custom local search may be applied
+                for this purpose.
+            </p>
+            <p>
+                Variable neighbourhood search does not terminate internally so that a stop criterion
+                should be specified, such as a maximum number of steps or a maximum runtime. Keep in mind that one
+                step of VNS is composed of shaking and local search and may therefore be quite time consuming, depending
+                on the applied local search algorithm L.
+                By default, the search starts with a random initial solution. Alternatively, a custom initial solution can
+                be specified. Any series of shaking neighbourhoods that are compatible with the solution type of the considered
+                problem can be applied.
+            </p>
+            <p>
+                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html">
+                    <i class="fa fa-book"></i>
+                    Variable neighbourhood search
+                </a>
+                <small class="text-muted">
+                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                </small>
+            </p>
+            
+            <h4 id="piped-local-search" class="page-header">
+                Piped local search
+            </h4>
+            <p>
+                A piped local search consists of a composition of a series of other local searches S<sub>1</sub>, ..., S<sub>n</sub>.
+                These local searches are executed in a pipeline where the best solution found by search S<sub>i</sub>, 1 &le; i &lt; n,
+                is used as the initial solution of the next search S<sub>i+1</sub>. The initial solution of search S<sub>1</sub> corresponds
+                to the initial solution that has been set for the piped search, if any, else a random initial solution is generated for S<sub>1</sub>.
+                The best solution obtained after executing the entire pipeline is eventually returned as the global best solution of the piped search.
+            </p>
+            <p>
+                Note that this is a single step search, meaning that the execution of the entire pipeline is considered to be one step and that
+                the piped search terminates when this single step has completed. Moreover, a piped local search can only be started once. After
+                its single step has completed, the search automatically disposes itself together with all contained local searches so that it
+                can never be restarted.
+            </p>
+            <p>
+                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/PipedLocalSearch.html">
+                    <i class="fa fa-book"></i>
+                    Piped local search
+                </a>
+                <small class="text-muted">
+                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                </small>
+            </p>
+            
+            <h4 id="random-search" class="page-header">
+                Random search
+            </h4>
+            <p>
+                Random search iteratively samples independent random solutions and checks whether a new valid best solution has been found. It is a very basic algorithm
+                and can for example be used for comparison with other searches to assess whether they are able to find better results than random sampling.
+            </p>
+            <p>
+                As random search does not terminate internally, a stop criterion should be specified such as a maximum number of steps (number of randomly sampled solutions)
+                or a maximum runtime.
+            </p>
+            <p>
+                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/RandomSearch.html">
+                    <i class="fa fa-book"></i>
+                    Random search
+                </a>
+                <small class="text-muted">
+                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                </small>
+            </p>
+            
+            <h4 id="exhaustive-search" class="page-header">
+                Exhaustive search
+            </h4>
+            <p>
+                Exhaustive search traverses the entire solution space: every possible solution is evaluated and validated and the best valid solution is selected.
+                This algorithm <strong>guarantees</strong> to find the best solution but soon becomes infeasible for many problems of realistic size. However, it
+                may be useful for problems with a reasonably small solution space.
+            </p>
+            <p>
+                Traversing the entire solution space is of course very problem specific. The exhaustive search algorithm uses a custom solution iterator for this
+                purpose. To apply exhaustive search, such solution iterator must be provided for the considered problem. All solutions generated by this solution
+                iterator will be considered. For subset selection, a predefined solution iterator is provided that generates all possible subsets within the desired
+                size range.
+            </p>
+            <p>
+                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/exh/ExhaustiveSearch.html">
+                    <i class="fa fa-book"></i>
+                    Exhaustive search
+                </a>
+                <small class="text-muted">
+                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                </small>
+            </p>
+            
+            <h4 id="lr-search" class="page-header">
+                LR subset search
+            </h4>
+            <p>
+                LR subset search is a greedy heuristic specifically designed for subset selection. It has two parameters L &ge; 0 and R &ge; 0, with L &ne; R, and its
+                precise execution depends on whether L &gt; R or R &gt; L:
+                <dl class="dl-horizontal">
+                    <dt>L &gt; R:</dt>
+                    <dd>
+                        The search starts with an empty subset and iteratively performs the L best additions followed by the R best removals. The subset size will
+                        increase while the search progresses until the desired size is reached.
+                    </dd>
+                    <dt>R &gt; L:</dt>
+                    <dd>
+                        All items are initially selected and the search iteratively performs the R best removals followed by the L best additions. The subset size
+                        will decrease while the search progresses until the desired size is reached.
+                    </dd>
+                </dl>
+                When small subsets are desired, it is advised to set L &gt; R because then the desired size is more quickly reached when starting from an empty subset,
+                while setting R &gt; L is most suited for sampling large subsets (larger than half of the entire set). It is also allowed to specify a custom initial
+                solution before starting the search.
+            </p>
+            <p>
+                The LR subset search terminates as soon as the desired subset size is reached. If a minimum and maximum allowed size are specified, the search terminates
+                when the entire valid subset size range has been explored.
+            </p>
+            <p>
+                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/LRSubsetSearch.html">
+                    <i class="fa fa-book"></i>
+                    LR subset search
+                </a>
+                <small class="text-muted">
+                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                </small>
+            </p>
+            
+            <h4 id="basic-parallel-search" class="page-header">
+                Basic parallel search
+            </h4>
+            <p>
+                The basic parallel search algorithm concurrently runs a (possibly heterogeneous) collection of other searches and keeps track of the global best
+                solution found by any subsearch. It provides an easy way to create a parallel hybrid search, for example containing different algorithms or multiple
+                instances of the same local search with different initial solutions (multi-start). All searches run in a separate thread so that on multicore machines
+                (with a sufficient amount of cores) searches will be executed in parallel.
+            </p>
+            <p>
+                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/BasicParallelSearch.html">
+                    <i class="fa fa-book"></i>
+                    Basic parallel search
+                </a>
+                <small class="text-muted">
+                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                </small>
+            </p>
+            
+            <h2 id="github-wiki" class="page-header">
+                GitHub wiki
+            </h2>
+            
+            <p>
+                Additional information about the architecture of the James framework is available on the
+                <a href="https://github.com/hdbeukel/james/wiki">GitHub wiki pages</a>. The wiki includes
+                several UML diagrams and gives a detailed description of the lifecycle of a search. You can
+                also browse the source code on GitHub.
+            </p>
+            
+        </div><!-- end of content -->
+    
+        <!-- sidebar -->
+        <div class="col-md-3 hidden-xs hidden-sm">
+            <div class="bs-docs-sidebar" data-spy="affix" data-offset-top="150" data-offset-bottom="150">
+                <ul class="nav nav-stacked">
+                    <li class="active sidebar-lead">
+                        <a href="#page-header">Documentation</a>
+                    </li>
+                    <li>
+                        <a href="#api">Javadoc API</a>
+                        <ul class="nav nav-stacked">
+                            <li><a href="#latest-stable-api">Latest stable API</a></li>
+                            <li><a href="#snapshot-api">Development snapshots</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#problems">Problem specification</a>
+                        <ul class="nav nav-stacked">
+                            <li><a href="#subset-selection">Subset selection</a></li>
+                            <li><a href="#beyond-subset-selection">Beyond subset selection</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#algorithms">Optimization algorithms</a>
+                        <ul class="nav nav-stacked">
+                            <li><a href="#random-descent">Random descent</a></li>
+                            <li><a href="#steepest-descent">Steepest descent</a></li>
+                            <li><a href="#tabu-search">Tabu search</a></li>
+                            <li><a href="#metropolis-search">Metropolis search</a></li>
+                            <li><a href="#parallel-tempering">Parallel tempering</a></li>
+                            <li><a href="#vnd">Variable neighbourhood descent</a></li>
+                            <li><a href="#rvns">Reduced variable neighbourhood search</a></li>
+                            <li><a href="#vns">Variable neighbourhood search</a></li>
+                            <li><a href="#piped-local-search">Piped local search</a></li>
+                            <li><a href="#random-search">Random search</a></li>
+                            <li><a href="#exhaustive-search">Exhaustive search</a></li>
+                            <li><a href="#lr-search">LR subset search</a></li>
+                            <li><a href="#basic-parallel-search">Basic parallel search</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#github-wiki">GitHub wiki</a>
+                    </li>
+                </ul>
+                <a class="back-to-top" href="#">Back to top</a>
+            </div>
+        </div><!-- end of sidebar -->
+    
+</div>

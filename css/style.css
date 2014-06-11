@@ -7,28 +7,34 @@
 
 html,
 body {
-  /* The html and body elements cannot have any padding or margin. */
-  height: 100%;
-  padding: 0;
-  margin: 0;
-  /* Set minimum width */
-  min-width: 320px;
+    /* The html and body elements cannot have any padding or margin. */
+    padding: 0;
+    margin: 0;
+    /* Set minimum width */
+    min-width: 320px;
 }
 
-/* Wrapper for page content to push down footer */
-#wrap {
-  min-height: 100%;
-  /* Equal to footer height */
-  margin-bottom: -130px;
-  padding-bottom: 130px;
+html{
+    position: relative;
+    min-height: 100%;
+}
+body {
+    /* Margin bottom by footer height (+ spacing) */
+    margin-bottom: 160px;
 }
 
 #footer {
-	height: 130px;
-	background-color: #f5f5f5;
-    position: relative;
+    position: absolute;
     bottom: 0;
     width: 100%;
+    /* Fixed footer height */
+	height: 130px;
+	background-color: #fff;
+}
+
+#footer .container {
+    border-top: solid 1px #eee;
+    padding: 0;
 }
 
 #footer .logos{
@@ -40,11 +46,15 @@ body {
 #footer .hidden-xs .copyright {
 	line-height: 25px;
 	margin-top: 40px;
+    width: 340px;
+    display: inline-block;
 }
 #footer .hidden-xs .logos {
 	line-height: 35px;
 	margin-top: 8px;
 	font-size: 110%;
+    width: 300px;
+    display: inline-block;
 }
 #footer .hidden-xs .logos img.fwo {
 	margin-left: 15px;
@@ -63,7 +73,8 @@ body {
 #footer .visible-xs .copyright {
 	text-align: center;
 	line-height: 20px;
-	margin: 11px 0 11px 0;
+    width: 250px;
+    margin: 11px auto;
 }
 #footer .visible-xs .logos img.fwo {
 	margin-left: 15px;
@@ -75,37 +86,264 @@ body {
 	height: 56px;
 }
 
-/* NAV BAR */
+/* Side notes for calling out things
+-------------------------------------------------- */
+ 
+/* Base styles (regardless of theme) */
+.bs-callout {
+  margin: 20px 0;
+  padding: 15px 30px 15px 15px;
+  border-left: 5px solid #eee;
+}
+.bs-callout h4 {
+  margin-top: 0;
+}
+.bs-callout p:last-child {
+  margin-bottom: 0;
+}
+.bs-callout code,
+.bs-callout .highlight {
+  background-color: #fff;
+}
+ 
+/* Themes for different contexts */
+.bs-callout-danger {
+  background-color: #fcf2f2;
+  border-color: #dFb5b4;
+}
+.bs-callout-warning {
+  background-color: #fefbed;
+  border-color: #f1e7bc;
+}
+.bs-callout-info {
+  background-color: #f0f7fd;
+  border-color: #d0e3f0;
+}
+.bs-callout-danger h4 {
+color: #B94A48;
+}
+.bs-callout-warning h4 {
+color: #C09853;
+}
+.bs-callout-info h4 {
+color: #3A87AD;
+}
+
+/* Alternative styles for elements contained in callout */
+.bs-callout dl {
+    margin: 0;
+}
+
+/* NAV BAR CUSTOMIZATION */
+
+.navbar {
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+}
 
 .navbar-brand{
 	background: url('../images/james-nav@2x.png') no-repeat 10px 7px;
 	background-size: 35px 35px;
 	padding-left: 50px;
 	height: 100%;
+    color: #eee !important;
+}
+ 
+.navbar-brand:hover {
+    color: #fff !important;
 }
 
-/* UNDER CONSTRUCTION MESSAGE AND CARTOON */
-
-#under-construction {
-	margin-top: 40px;
-}
-#under-construction .view-on-github {
-	margin-top: 30px;
+/* lighter dropdown headers on extra small screens */
+@media (max-width: 767px) {
+    .navbar .dropdown-header {
+        color: #eee;
+    }
 }
 
-blockquote.cartoon {
-	border-left: none;
-}
-blockquote.cartoon img {
-	margin: 0 auto;
-}
-blockquote.cartoon img.visible-xs {
-	max-width: 100%;
+/* blue hover background on dropdown links in non-collapsed navbar */
+@media (min-width: 768px) {
+    .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:hover {
+        background: #428bca;
+        color: #fff;
+    }
 }
 
-/* Custom page CSS
--------------------------------------------------- */
-/* Not required for template or sticky footer method. */
+/* CODE BLOCK STYLES */
+
+pre,
+pre.prettyprint {
+    overflow: auto;
+    word-wrap: normal;
+    white-space: pre;
+    padding: 9px 14px;
+    margin-bottom: 14px;
+    background-color: #f7f7f9;
+    border: 1px solid #e1e1e8;
+    border-radius: 4px;
+}
+
+/* HOME PAGE */
+
+#home .start {
+    margin: 20px 0 55px 0;
+}
+
+#home .start .fa {
+    font-size: 72pt;
+    margin-top: 40px;
+}
+
+#home .start p {
+    margin: 0;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+#home .start a.btn {
+    margin: 10px 0;
+}
+
+#home .cc-license {
+    margin-top: 20px;
+}
+
+#home .cc-license img {
+    margin: 4px 15px 0 0;
+}
+
+/* GETTING STARTED */
+
+#getstarted dd {
+    margin-bottom: 7px;
+}
+
+#getstarted .bs-callout dd {
+    margin-bottom: 0;
+}
+
+/* DOCUMENTATION */
+
+#docs dl {
+    margin-bottom: 10px;
+}
+
+#docs #problem-uml {
+    width: 220px;
+    margin: 10px 25px 10px 10px;
+}
+
+/* don't float problem uml on very small screens */
+@media (max-width: 450px) {
+    #docs #problem-uml {
+        float: none !important;
+    }
+}
+
+/* EXAMPLES */
+
+#examples h4 .label {
+    margin-left: 5px;
+}
+
+/* Autoscroll sidebar
+----------------------*/
+
+/* sidebar */
+.bs-docs-sidebar {
+    padding-left: 10px;
+    /* fix font weight difference for fixed position */
+    -webkit-font-smoothing: antialiased;
+}
+/* positions: sticked to top, scroll through and sticked to bottom */
+.bs-docs-sidebar.affix-top {
+    margin-top: 45px;    
+}
+.bs-docs-sidebar.affix {
+    position: fixed !important;
+    top: 20px !important;
+}
+.bs-docs-sidebar.affix-bottom {
+
+}
+
+/* all links */
+.bs-docs-sidebar .nav>li>a {
+    color: #999;
+    border-left: 2px solid transparent;
+    padding: 4px 20px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* nested links */
+.bs-docs-sidebar .nav .nav>li>a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+}
+
+/* active & hover links */
+.bs-docs-sidebar .nav>.active>a, 
+.bs-docs-sidebar .nav>li>a:hover, 
+.bs-docs-sidebar .nav>li>a:focus {
+    color: #563d7c;                 
+    text-decoration: none;          
+    background-color: transparent;  
+    border-left-color: #563d7c; 
+}
+/* all active links */
+.bs-docs-sidebar .nav>.active>a, 
+.bs-docs-sidebar .nav>.active:hover>a,
+.bs-docs-sidebar .nav>.active:focus>a {
+    font-weight: 700;
+}
+/* nested active links */
+.bs-docs-sidebar .nav .nav>.active>a, 
+.bs-docs-sidebar .nav .nav>.active:hover>a,
+.bs-docs-sidebar .nav .nav>.active:focus>a {
+    font-weight: 500;
+}
+
+/* hide inactive nested list */
+.bs-docs-sidebar .nav ul.nav {
+    display: none;           
+}
+/* show active nested list */
+.bs-docs-sidebar .nav>.active>ul.nav {
+    display: block;           
+}
+
+/* back to top link */
+.bs-docs-sidebar a.back-to-top {
+    color: #999;
+    padding: 20px 4px 20px 22px;
+    font-size: 13px;
+    font-weight: 500;
+    display: block;
+}
+.bs-docs-sidebar a.back-to-top:hover {
+    color: #563d7c;                 
+    text-decoration: none;
+}
+
+/* page lead */
+.bs-docs-sidebar li.sidebar-lead a{
+    font-size: 17px;
+    font-variant: small-caps;
+}
+
+/* General stuff
+-----------------*/
+
+.clear {
+    clear: both;
+}
+
+.small-caps {
+    font-variant: small-caps;
+}
 
 #wrap > .container {
   padding: 0 15px;

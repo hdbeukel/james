@@ -1,0 +1,16 @@
+# Build settings
+markdown: kramdown
+permalink: pretty
+
+# Custom variables
+
+# used for links to latest snapshot JARs (core, extensions) and ZIP (examples) at Sonatype OSSRH
+core-snapshot: 0.1-SNAPSHOT
+extensions-snapshot: 0.1-SNAPSHOT
+examples-snapshot: 0.1-SNAPSHOT
+
+# used for links to Javadoc API of latest stable versions
+# appended to /api/core/... and /api/ext/...
+# TODO: replace by first stable release when published
+core-latest-stable-api: snapshot
+extensions-latest-stable-api: snapshot
