@@ -97,7 +97,7 @@ The James framework is developed and maintained by
 [slf4j]:             http://www.slf4j.org
 [slf4j-manual]:      http://www.slf4j.org/manual.html
 [sonatype]:          https://oss.sonatype.org/index.html#welcome
-[maven]:             http://maven.apache.org/download.cgi
+[maven]:             http://maven.apache.org
 [getstarted]:        http://www.jamesframework.org/getstarted/
 [james-website]:     http://www.jamesframework.org
 [james-wiki]:        http://github.com/hdbeukel/james/wiki
