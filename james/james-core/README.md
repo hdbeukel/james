@@ -1,7 +1,7 @@
 James Core Module
 =================
 
-The James core module is part of the [James framework][1].
+The James core module is part of the [James framework][james-github].
 
 The core module includes general concepts modeling problems, objectives, constraints, solutions, etc. It also contains generic metaheuristics to solve the problems, as well as implementations of specific components for subset selection.
 
@@ -14,7 +14,7 @@ A wide range of local search algorithms are provided out-of-the-box, including
 5. Metropolis search
 6. Parallel tempering
 
-In addition, some specific subset sampling algorithms are available, as well as exhaustive search, which is of course only feasible for problems with a reasonably small, finite search space.
+In addition, a greedy subset sampling heuristic is available (LR subset search) as well as exhaustive search, which is of course only feasible for problems with a reasonably small search space.
 
 Status
 ======
@@ -24,7 +24,7 @@ Status
 Documentation
 =============
 
-More information, user documentation and examples of how to use the framework are provided at the James website www.jamesframework.org. In addition, developer documentation is posted on the [wiki](http://github.com/hdbeukel/james/wiki).
+More information, user documentation and examples of how to use the framework are provided at the [James website][james-website]. Additional developer documentation is posted on the [wiki][james-wiki].
 
 License and copyright
 =====================
@@ -44,6 +44,6 @@ Changes
 A list of changes is provided in the CHANGES file.
 
 
-
-
-[1]: https://github.com/hdbeukel/james
+[james-github]:   https://github.com/hdbeukel/james
+[james-website]:  http://www.jamesframework.org
+[james-wiki]:     http://github.com/hdbeukel/james/wiki
