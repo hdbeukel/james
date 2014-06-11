@@ -1,7 +1,7 @@
 James Extensions Module
 =======================
 
-The James extensions module is part of the [James framework][1].
+The James extensions module is part of the [James framework][james-github].
 
 This module provides components to model and solve other types of problems besides subset selection (e.g. permutation problems). Also, general utilities for advanced problem specification, such as weighted objectives, are provided.
 
@@ -13,7 +13,7 @@ Status
 Documentation
 =============  
 
-More information, user documentation and examples of how to use the framework are provided at the James website www.jamesframework.org. In addition, developer documentation is posted on the [wiki](http://github.com/hdbeukel/james/wiki).
+More information, user documentation and examples of how to use the framework are provided at the [James website][james-website]. Additional developer documentation is posted on the [wiki][james-wiki].
 
 License and copyright
 =====================
@@ -33,8 +33,6 @@ Changes
 A list of changes is provided in the CHANGES file.
 
 
-
-
-
-
-[1]: https://github.com/hdbeukel/james
+[james-github]:  https://github.com/hdbeukel/james
+[james-website]: http://www.jamesframework.org
+[james-wiki]:    https://github.com/hdbeukel/james/wiki
