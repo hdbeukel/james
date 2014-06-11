@@ -25,11 +25,11 @@ layout: default
         This example demonstrates the implementation of a simplified core subset selection problem in James. Given a distance matrix, the goal
         is to select a subset of items so that the average distance between all pairs of selected items is maximized. In this example,
         every item also has a name. Therefore, the input consists of the combination of an N &times; N distance matrix and an array of N
-        item names (with corresponding order).
+        item names (in corresponding order).
     </p>
     
     <h4 class="page-header">
-        Data class
+        Providing the data
     </h4>
     <p>
         First create a data class <code>CoreSubsetData</code> that contains the distance matrix and item names. The data class implements the
@@ -83,7 +83,7 @@ public double getDistance(int id1, int id2){
     </p>
     
     <h4 class="page-header">
-        Objective
+        Defining the objective
     </h4>
     <p>
         Now create a class <code>CoreSubsetObjective</code> that implements the <code>Objective</code> interface. This interface has two
@@ -94,7 +94,7 @@ public double getDistance(int id1, int id2){
 <pre class="prettyprint">
 public class CoreSubsetObjective implements Objective&lt;SubsetSolution, CoreSubsetData&gt;{
 
-    // evaluates the given subset solution using the given data, by computing the average
+    // Evaluates the given subset solution using the given data, by computing the average
     // distance between all pairs of selected items. If less than two items are selected,
     // this method always returns 0.
     @Override
@@ -130,12 +130,141 @@ public class CoreSubsetObjective implements Objective&lt;SubsetSolution, CoreSub
     </p>
     
     <h4 class="page-header">
-        Optimization
+        Selecting a core subset
     </h4>
     <p>
-        ...
+        We are now ready to apply an optimization algorithm to sample a good core subset. Here we will use the
+        <a href="/docs/#random-descent">random descent</a> algorithm with the predefined <code>SingleSwapNeighbourhood</code>
+        which generates moves that swap a single selected and unselected ID. The search starts from a random initial
+        solution (default). The data and objective are wrapped in a
+        <code>SubsetProblemWithData</code> which is passed to the algorithm. When creating the problem,
+        the desired subset size is also specified. Note that searches are parameterized on the solution type
+        of the problem that is being solved, which should be set to <code>SubsetSolution</code> for this example.
     </p>
+    <p>
+        A maximum runtime is set before starting the search.
+        Alternatively, a diffferent stop criterion could be used such as a maximum number of steps
+        or a maximum time without finding any improvement. Calling <code>search.start()</code> blocks
+        until the search has terminated, after which the best found solution and its evaluation are
+        printed to the console. Here, the data is used again to map selected IDs to item names.
+        Finally, the search is disposed so that all resources are released.
+    </p>
+<pre class="prettyprint">
+public static void main(String[] args) {
+    // set name array and distance matrix (e.g. read from a file)
+    String[] names = ...
+    double[][] dist = ...
+    // create data object
+    CoreSubsetData data = new CoreSubsetData(names, dist);
+    // create objective
+    CoreSubsetObjective obj = new CoreSubsetObjective();
 
+    // wrap data and objective in a subset problem, specify desired subset size
+    int subsetSize = ...
+    SubsetProblemWithData&lt;CoreSubsetData&gt; problem = new SubsetProblemWithData&lt;&gt;(obj, data, subsetSize);
+
+    // create random descent search with single swap neighbourhood
+    RandomDescent&lt;SubsetSolution&gt; search = new RandomDescent&lt;&gt;(problem, new SingleSwapNeighbourhood());
+    // set maximum runtime (in seconds)
+    long timeLimit = ...
+    search.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
+
+    // start search
+    search.start();
+
+    // print best solution and evaluation
+    System.out.println("Best solution (IDs): " + search.getBestSolution().getSelectedIDs());
+    System.out.println("Best solution (names): " + mapNames(search.getBestSolution().getSelectedIDs(), data));
+    System.out.println("Best solution evaluation: " + search.getBestSolutionEvaluation());
+
+    // dispose search
+    search.dispose();
+}
+
+private static Set&lt;String&gt; mapNames(Set&lt;Integer&gt; selected, CoreSubsetData data){
+    Set&lt;String&gt; names = new HashSet&lt;&gt;();
+    for(int ID : selected){
+        names.add(data.getName(ID));
+    }
+    return names;
+}
+</pre>
+
+    <h4 class="page-header">
+        Attaching a search listener
+    </h4>
+    <p>
+        It is possible to attach a search listener to any optimization algorithm, which is informed by the algorithm when certain
+        events occur. For example, an event is fired when the search has started, stopped or found a new best solution. We will now
+        create a <code>ProgressionSearchListener</code> that prints messages to the console to stay informed about the progression
+        of an active search.
+    </p>
+<pre class="prettyprint">
+public class ProgressionSearchListener extends EmptySearchListener&lt;Solution&gt; {
+
+    @Override
+    public void searchStarted(Search&lt;? extends Solution&gt; search) {
+        System.out.println(" &gt;&gt;&gt; Search started");
+    }
+
+    @Override
+    public void searchStopped(Search&lt;? extends Solution&gt; search) {
+        System.out.println(" &gt;&gt;&gt; Search stopped");
+    }
+
+    @Override
+    public void newBestSolution(Search&lt;? extends Solution&gt; search, Solution newBestSolution, double newBestSolutionEvaluation) {
+        System.out.println(" &gt;&gt;&gt; New best solution: " + newBestSolutionEvaluation);
+    }
+    
+}
+</pre>
+    <p>
+        Search listeners are parameterized on the solution type of the searches to which they can be attached. However, the solution
+        type of a listener is allowed to be more general than the solution type of the search. As the implemented progression listener
+        does not perform any solution type specific actions, its solution type is set to the top-level class <code>Solution</code>.
+        It can then be attached to track the progression of any search with any solution type as all solution types are subclasses of
+        <code>Solution</code>.
+    </p>
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-lightbulb-o"></i>
+            Good to know:
+        </h4>
+        Here, the <code>EmptySearchListener</code> class has been extended to create the <code>ProgressionSearchListener</code>. This
+        dummy class contains an empty implementation of all callbacks defined in the <code>SearchListener</code> interface. Extending
+        it provides an easy way to create a listener that responds to a selection of callbacks only by overriding their empty implementation.
+        Alternatively, the <code>SearchListener</code> interface can be directly implemented in which case a (possibly empty) implementation
+        has to be given to all callbacks.
+    </div>
+    <p>
+        To track the progression of the applied random descent algorithm, simply add the listener before starting the search.
+    </p>
+<pre class="prettyprint">
+search.addSearchListener(new ProgressionSearchListener());
+</pre>
+
+    <h4 class="page-header">
+        Full source code
+    </h4>
+    <p>
+        The complete source code of this example is available on
+        <a href="https://github.com/hdbeukel/james/tree/master/james/james-examples/src/main/java/org/jamesframework/examples/coresubset">GitHub</a>,
+        including some additional code to read the input from a CSV file.
+        You can also download a <a href="/getstarted/#snapshots-examples">ZIP file</a> that contains the Java sources of all examples, a compiled
+        JAR (including all dependencies) as well as some input files in case you want to run any of the examples. To run this example, execute
+    </p>
+<pre class="prettyprint">
+$ java -cp james-examples.jar org.jamesframework.examples.coresubset.CoreSubset &lt;inputfile&gt; &lt;subsetsize&gt; &lt;runtime&gt;
+</pre>
+    </p>
+        from command line. The input file should be a CSV file in which the first row contains N item names and the subsequent N rows
+        specify an N &times; N distance matrix. The runtime is specified in seconds.
+    </p>
+    <p>
+        <a href="/files/examples/coresubset.csv"><i class="fa fa-file-text-o"></i> Example input file (100 items)</a>
+    </p>
+    
 </div>
 
 
