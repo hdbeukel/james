@@ -1,7 +1,7 @@
 James Examples Module
 =====================
 
-The James examples module is part of the [James framework][1].
+The James examples module is part of the [James framework][james-github].
 
 This module provides a series of example problem implementations.
 
@@ -13,7 +13,7 @@ Status
 Documentation
 =============
 
-Documentation for all implemented examples is provided at the [James website][2].
+Documentation for all implemented examples is provided at the [James website][examples-website].
 
 License and copyright
 =====================
@@ -33,9 +33,5 @@ Changes
 A list of changes is provided in the CHANGES file.
 
 
-
-
-
-
-[1]: https://github.com/hdbeukel/james
-[2]: http://www.jamesframework.org/examples.html
+[james-github]:      https://github.com/hdbeukel/james
+[examples-website]:  http://www.jamesframework.org/examples
