@@ -134,11 +134,14 @@ public class CoreSubsetObjective implements Objective&lt;SubsetSolution, CoreSub
     </h4>
     <p>
         We are now ready to apply an optimization algorithm to sample a good core subset. Here we will use the
-        <a href="/docs/#random-descent">random descent</a> algorithm with the predefined <code>SingleSwapNeighbourhood</code>
-        which generates moves that swap a single selected and unselected ID. The search starts from a random initial
-        solution (default). The data and objective are wrapped in a
-        <code>SubsetProblemWithData</code> which is passed to the algorithm. When creating the problem,
-        the desired subset size is also specified. Note that searches are parameterized on the solution type
+        <a href="/docs/#random-descent">random descent</a> algorithm, starting from a random initial solution (default),
+        with the predefined <code>SingleSwapNeighbourhood</code>
+        which generates moves that swap a single selected and unselected ID.
+        The data and objective are wrapped in a
+        <code>SubsetProblemWithData</code> with data type <code>CoreSubsetData</code>. When creating the problem,
+        the desired subset size is also specified.
+        The problem is then given to the search.
+        Note that searches are parameterized on the solution type
         of the problem that is being solved, which should be set to <code>SubsetSolution</code> for this example.
     </p>
     <p>
@@ -258,8 +261,8 @@ search.addSearchListener(new ProgressionSearchListener());
 $ java -cp james-examples.jar org.jamesframework.examples.coresubset.CoreSubset &lt;inputfile&gt; &lt;subsetsize&gt; &lt;runtime&gt;
 </pre>
     </p>
-        from command line. The input file should be a CSV file in which the first row contains N item names and the subsequent N rows
-        specify an N &times; N distance matrix. The runtime is specified in seconds.
+        from the command line. The input file should be a CSV file in which the first row contains N item names and the subsequent N rows
+        specify an N &times; N distance matrix. The runtime is given in seconds.
     </p>
     <p>
         <a href="/files/examples/coresubset.csv"><i class="fa fa-file-text-o"></i> Example input file (100 items)</a>
