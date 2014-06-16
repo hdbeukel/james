@@ -38,6 +38,18 @@ public class Main {
         System.out.println("");
         System.out.println("java -cp james-examples.jar org.jamesframework.examples.coresubset.CoreSubset <inputfile> <subsetsize> <runtime>");
         System.out.println("");
+        System.out.println("Example 2: the knapsack problem");
+        System.out.println("--------------------------------");
+        System.out.println("");
+        System.out.println("Given a series of items with a specific profit and weight, select a subset\n"
+                         + "of these items with maximum total profit without exceeding the capacity\n"
+                         + "(maximum total weight) of the knapsack. Both random descent and parallel \n"
+                         + "tempering are applied for optimization of the knapsack.");
+        System.out.println("");
+        System.out.println("Usage:");
+        System.out.println("");
+        System.out.println("java -cp james-examples.jar org.jamesframework.examples.knapsack.KnapSack <inputfile> <capacity> <runtime>");
+        System.out.println("");
     }
     
 }

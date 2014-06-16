@@ -14,7 +14,6 @@
 
 package org.jamesframework.examples.coresubset;
 
-import org.jamesframework.examples.util.ProgressionSearchListener;
 import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,6 +23,7 @@ import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.search.algo.RandomDescent;
 import org.jamesframework.core.search.neigh.subset.SingleSwapNeighbourhood;
 import org.jamesframework.core.search.stopcriteria.MaxRuntime;
+import org.jamesframework.examples.util.ProgressionSearchListener;
 
 /**
  * Main class for the core subset selection example.
@@ -95,9 +95,13 @@ public class CoreSubset {
             search.start();
 
             // print best solution and evaluation
-            System.out.println("Best solution (IDs): " + search.getBestSolution().getSelectedIDs());
-            System.out.println("Best solution (names): " + mapNames(search.getBestSolution().getSelectedIDs(), data));
-            System.out.println("Best solution evaluation: " + search.getBestSolutionEvaluation());
+            if(search.getBestSolution() != null){
+                System.out.println("Best solution (IDs): " + search.getBestSolution().getSelectedIDs());
+                System.out.println("Best solution (names): " + mapNames(search.getBestSolution().getSelectedIDs(), data));
+                System.out.println("Best solution evaluation: " + search.getBestSolutionEvaluation());
+            } else {
+                System.out.println("No valid solution found...");
+            }
 
             // dispose search
             search.dispose();
