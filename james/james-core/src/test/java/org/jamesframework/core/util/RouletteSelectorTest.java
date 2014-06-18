@@ -53,7 +53,7 @@ public class RouletteSelectorTest {
      * Test roulette selector.
      */
     @Test
-    public void testGetRandomElement() {
+    public void testSelect() {
         
         System.out.println(" - testing select");
         
