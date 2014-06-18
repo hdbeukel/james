@@ -13,7 +13,9 @@ The James framework consists of several modules:
    
    Moreover, the core module contains implementations of specific components for subset selection as well as some additional heuristics to be applied to subset sampling only.
    
- - [James Extensions Module][extensions-module]: this module extends the core with components to model and solve other types of problems besides subset selection (e.g. permutation problems). Also, general utilities for advanced problem specification, such as weighted multi-objective functions, are provided.
+ - [James Extensions Module][extensions-module]: this module provides additional components for advanced problem specification and search customization, including utilities for weighted multi-objective functions and composite neighbourhoods.
+
+	For later versions it is also planned to add generic components that reduce the effort to model and solve other types of problems besides subset selection (e.g. permutation problems).
  
  - [James Examples Module][examples-module]: this module provides a series of example problem implementations as described at the [James website][examples-website].
 
