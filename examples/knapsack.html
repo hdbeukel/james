@@ -1,0 +1,172 @@
+---
+layout: default
+---
+
+<div id="examples-knapsack">
+    <ol class="breadcrumb">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/examples">Examples</a></li>
+        <li class="active">Knapsack problem</li>
+    </ol>
+    
+    <h2 class="page-header">
+        Example 2: The 0/1 knapsack problem
+    </h2>
+    
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-info-circle"></i>
+            Info:
+        </h4>
+        The random descent and parallel tempering metaheuristics are applied to optimize the selected knapsack.
+        Don't know what random descent is? Read <a href="/docs/#random-descent">this</a>. Never heard about parallel tempering
+        either? Read <a href="/docs/#parallel-tempering">this</a>.
+    </div>
+    <p>
+        In this example the 0/1 knapsack problem &mdash; a constrained variable size subset selection
+        problem &mdash; is implemented in James. Given a list of items which each have a specific weight and profit, the goal
+        is to select a subset of these items so that the total profit is maximized without exceeding
+        the capacity of the knapsack. More precisely, the total weight of all selected items should be
+        smaller than or equal to a constant W.
+    </p>
+    
+    <h4 class="page-header">
+        Providing the data
+    </h4>
+    <p>
+        First we provide the data by implementing the <code>SubsetData</code> interface in <code>KnapsackData</code>.
+        Every item is assigned an ID in [0, N-1]. The data then stores two arrays <code>weights</code>
+        and <code>profits</code> of length N where <code>weights[i]</code> and <code>profits[i]</code> contain
+        the weight and profit, respectively, of the item with ID i. These two arrays are specified when
+        creating the data and the IDs are automatically inferred. Methods are provided to get all IDs
+        (as required by the <code>SubsetData</code> interface) as well as to get the weight or profit
+        of an item with a given ID.
+    </p>
+<pre class="prettyprint">
+public class KnapsackData implements SubsetData {
+
+    // weights
+    private final double[] weights;
+    // profits
+    private final double[] profits;
+    // IDs (indices in weight and profit arrays)
+    private final Set&lt;Integer&gt; ids;
+    
+    public KnapsackData(double[] weights, double[] profits){
+        // store data
+        this.weights = weights;
+        this.profits = profits;
+        // infer IDs: 0..N-1 in case of N items
+        // (indices in weight and profit arrays)
+        ids = new HashSet&lt;&gt;();
+        for(int id=0; id&lt;weights.length; id++){
+            ids.add(id);
+        }
+    }
+    
+    @Override
+    public Set&lt;Integer&gt; getIDs() {
+        return ids;
+    }
+    
+    public double getWeight(int id){
+        return weights[id];
+    }
+    
+    public double getProfit(int id){
+        return profits[id];
+    }
+
+}
+</pre>
+
+    <h4 class="page-header">
+        Defining the objective
+    </h4>
+    <p>
+        The objective of the knapsack problem is easily defined. We create a class <code>KnapsackObjective</code>
+        that implements the <code>Objective</code> interface where the solution and data type are set to
+        <code>SubsetSolution</code> and <code>KnapsackData</code>, respectively. A given subset solution
+        is evaluated by computing the sum of profits of all selected items. This value is to be maximized.
+    </p>
+<pre class="prettyprint">
+public class KnapsackObjective implements Objective&lt;SubsetSolution, KnapsackData&gt;{
+
+    @Override
+    public double evaluate(SubsetSolution solution, KnapsackData data) {
+        // compute sum of profits of selected items
+        double profit = 0.0;
+        for(int id : solution.getSelectedIDs()){
+            profit += data.getProfit(id);
+        }
+        return profit;
+    }
+
+    @Override
+    public boolean isMinimizing() {
+        return false;
+    }
+
+}
+</pre>
+
+    <h4 class="page-header">
+        Implementing the constraint
+    </h4>
+    <p>
+        To impose that the knapsack capacity is never exceeded we will add a constraint to our problem. Therefore, we provide
+        a <code>KnapsackConstraint</code> that implements the <code>Constraint</code> interface with solution and
+        data type <code>SubsetSolution</code> and <code>KnapsackData</code>, respectively (just like we did for the
+        objective). Given a subset solution, the constraint computes the total weight of all selected items and verifies
+        that it does not exceed a predefined maximum weight. If so, the constraint is satisfied.
+    </p>
+<pre class="prettyprint">
+public class KnapsackConstraint implements Constraint&lt;SubsetSolution, KnapsackData&gt; {
+
+    // maximum total weight
+    private final double maxWeight;
+    
+    public KnapsackConstraint(double maxWeight){
+        this.maxWeight = maxWeight;
+    }
+
+    @Override
+    public boolean isSatisfied(SubsetSolution solution, KnapsackData data) {
+        // compute total weight of currently selected items
+        double curWeight = 0.0;
+        for(int id : solution.getSelectedIDs()){
+            curWeight += data.getWeight(id);
+        }
+        // check: maximum weight not exceeded
+        return curWeight &lt;= maxWeight;
+    }
+    
+}
+</pre>
+
+    <h4 class="page-header">
+        Optimizing the knapsack
+    </h4>
+    <p>
+        For this example we will apply two different local search metaheuristics to optimize the selected knapsack. ...
+    </p>
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
