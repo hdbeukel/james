@@ -49,6 +49,7 @@ public abstract class Solution {
      *                                       a faulty implementation (contains a detailed error message)
      * @return copy of type <code>T</code>
      */
+    @SuppressWarnings("unchecked")
     static public <T extends Solution> T checkedCopy(T solution){
         // copy solution
         Solution copy = solution.copy();
@@ -94,12 +95,7 @@ public abstract class Solution {
     static private String simpleClassName(Class<?> clazz){
         String canonicalClassName = clazz.getCanonicalName();
         int lastDotIndex = canonicalClassName.lastIndexOf(".");
-        int startIndex = lastDotIndex+1;
-        if(startIndex >= 0 && startIndex <= canonicalClassName.length()){
-            return canonicalClassName.substring(startIndex);
-        } else {
-            return "";
-        }
+        return canonicalClassName.substring(lastDotIndex+1);
     }
     
     /**
