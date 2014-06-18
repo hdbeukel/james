@@ -7,6 +7,18 @@ Bayer CropScience
 Copyright notices for bundled dependencies are listed below.
 
 ------------------------------------------------------
+James Core Module
+James Extensions Module
+
+Copyright 2014
+Ghent University
+Bayer CropScience
+
+The RouletteSelector in org.jamesframework.core.util is
+based on original code developed by The Apache Software
+Foundation (http://www.apache.org/) for the Hadoop
+Mapreduce project (http://hadoop.apache.org).
+------------------------------------------------------
 SLF4J API
 Copyright (c) 2004-2013 QOS.ch
 All rights reserved.

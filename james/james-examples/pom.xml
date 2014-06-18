@@ -122,6 +122,12 @@
             <artifactId>james-core</artifactId>
             <version>0.1-SNAPSHOT</version>
         </dependency>
+        <!-- depends on extensions module -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>james-extensions</artifactId>
+            <version>0.1-SNAPSHOT</version>
+        </dependency>
         <!-- tests depend on core module tests -->
         <dependency>
             <groupId>${project.groupId}</groupId>
