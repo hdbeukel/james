@@ -31,7 +31,8 @@ import java.util.Random;
  * </p>
  * <p>
  * The implementation is heavily inspired by original code written by the Apache Software Foundation
- * ({@linkplain http://www.apache.org/}) for the Hadoop MapReduce project ({@linkplain http://hadoop.apache.org}).
+ * (<a href="http://www.apache.org/" target="_blank">http://www.apache.org</a>) for the Hadoop MapReduce
+ * project (<a href="http://hadoop.apache.org" target="_blank">http://hadoop.apache.org</a>).
  * </p>
  * 
  * @param <E> type of items from which one is to be selected
