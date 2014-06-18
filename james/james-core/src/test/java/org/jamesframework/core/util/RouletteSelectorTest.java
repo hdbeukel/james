@@ -83,6 +83,12 @@ public class RouletteSelectorTest {
             assertTrue(items.contains(selected));
         }
         
+        // check: item list can contain null elements
+        items = Arrays.asList(null, null, null, null);
+        for(int i=0; i<100; i++){
+            assertNull(roulette.select(items, weights));
+        }
+        
     }
 
 }
