@@ -106,9 +106,9 @@ public class MultiSwapNeighbourhood implements Neighbourhood<SubsetSolution> {
      * random subset of this size is sampled from the currently selected and unselected IDs, to be swapped (again,
      * all possible subsets are uniformly distributed, within the fixed size). Because the amount of possible moves
      * increases with the number of performed swaps, the probability of generating each specific move thus decreases
-     * with the number of swaps. In other words, randomly generated moves are <b>not</b> uniformly distributed for
-     * different numbers of performed swaps, but those performing fewer swaps are more likely to be selected compared
-     * to those performing more swaps.
+     * with the number of swaps. In other words, randomly generated moves are <b>not</b> uniformly distributed across
+     * different numbers of performed swaps, but each specific move performing fewer swaps is more likely to be
+     * selected than each specific move performing more swaps.
      * </p>
      * 
      * @param solution solution for which a random multi swap move is generated
