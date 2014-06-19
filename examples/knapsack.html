@@ -232,6 +232,14 @@ randomDescent.addSearchListener(new ProgressionSearchListener());
         we specify a custom initial solution which is guaranteed to satisfy the constraint. We could simply always start from an empty solution
         but a different approach is taken here to increase the variability of initial solutions.
     </p>
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-lightbulb-o"></i>
+            Rejecting versus penalizing constraints (revisited)
+        </h4>
+        When using a penalizing instead of a rejecting constraint (see above) it is not necessary to set an initial solution that satisfies
+        the constraint, as then the search is allowed to move through invalid regions of the search space.
+    </div>
 <pre class="prettyprint">
 // random generator
 private static final Random RG = new Random();
