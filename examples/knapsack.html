@@ -16,7 +16,7 @@ layout: default
     <div class="bs-callout bs-callout-info">
         <h4>
             <i class="fa fa-info-circle"></i>
-            Info:
+            Info
         </h4>
         The random descent and parallel tempering metaheuristics are applied to optimize the selected knapsack.
         Don't know what random descent is? Read <a href="/docs/#random-descent">this</a>. Never heard about parallel tempering
@@ -145,10 +145,262 @@ public class KnapsackConstraint implements Constraint&lt;SubsetSolution, Knapsac
 </pre>
 
     <h4 class="page-header">
+        Finalizing the problem specification
+    </h4>
+    <p>
+        We are now ready to combine the data, objective and constraint in a <code>SubsetProblemWithData</code>.
+        As all subset sizes are allowed the minimum and maximum size are set to 0 and the total number of items,
+        respectively. The data and objective are passed to the problem upon construction and the constraint is
+        added afterwards by calling <code>addRejectingConstraint(...)</code>. By adding a <i>rejecting</i> constraint,
+        solutions that violate this constraint are rejected so that no modification that yields such
+        solution will ever be accepted by any local search. The returned best found solution (if any) is then always
+        guaranteed to satisfy the constraint(s).
+    </p>
+<pre class="prettyprint">
+// set weights, profits and capacity
+double[] weights = ...
+double[] profits = ...
+double capacity = ...
+
+// create data object
+KnapsackData data = new KnapsackData(weights, profits);
+// create objective
+KnapsackObjective obj = new KnapsackObjective();       
+// create constraint
+KnapsackConstraint constraint = new KnapsackConstraint(capacity);
+
+// create subset problem (all sizes allowed)
+SubsetProblemWithData&lt;KnapsackData&gt; problem = new SubsetProblemWithData&lt;&gt;(obj, data, 0, data.getIDs().size());
+
+// add rejecting constraint
+problem.addRejectingConstraint(constraint);
+</pre>
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-lightbulb-o"></i>
+            Rejecting versus penalizing constraints
+        </h4>
+        <p>
+            Instead of adding a rejecting constraint you may also provide a penalizing constraint. Such constraint is required to implement the
+            <code>PenalizingConstraint</code> interface and does not result in rejection of solutions that violate the constraint. Instead, a
+            penalty is assigned to the solution's evaluation. This allows to cross invalid regions of the search space and may for example
+            be useful in case of a tight constraint which is difficult to satisfy.
+        </p>
+        <p>
+            However, the assigned penalties should be carefully
+            chosen &ndash; usually reflecting the severeness of the constraint violation &ndash; and there is no guarantee that
+            the best found solution of a search will actually satisfy all penalizing constraints. It is therefore adviced to use rejecting
+            constraints whenever possible and only to switch to a penalizing constraint if necessary.
+        </p>
+    </div>
+    
+    <h4 class="page-header">
         Optimizing the knapsack
     </h4>
     <p>
-        We will apply two different local search metaheuristics to optimize the selected knapsack. ...
+        We will apply two different local search metaheuristics to optimize the selected knapsack:
+        <a href="/docs/#random-descent">random descent</a> (basic) and
+        <a href="/docs/#parallel-tempering">parallel tempering</a> (advanced).
+        Random descent only accepts modifications of the current solution that yield an improvement so that
+        it can easily get stuck in a local optimum. On the other hand, parallel tempering also allows
+        to accept inferior moves to be able to escape from such local optima.
+    </p>
+    
+    <h5 class="page-header">
+        Random descent
+    </h5>
+    <p>
+        First we create the <code>RandomDescent</code> search with a predefined <code>SinglePerturbationNeighbourhood</code> which
+        generates moves that add, delete or swap a single (pair of) ID(s) in the current selection. This neighbourhood allows selection
+        of variable size subsets. For this example the minimum and maximum allowed size are set to 0 and the number of items, respectively.
+        The solution type of the search is fixed to <code>SubsetSolution</code>. A maximum runtime is specified as stop criterion and a
+        <code>ProgressionSearchListener</code> is attached to track the progression of the search (see
+        <a href="/examples/coresubset/#search-listener">example 1: core subset selection</a>).
+    </p>
+<pre class="prettyprint">
+// create random descent search with single perturbation neighbourhood
+RandomDescent&lt;SubsetSolution&gt; randomDescent = new RandomDescent&lt;&gt;(problem, new SinglePerturbationNeighbourhood(0, data.getIDs().size()));
+// set maximum runtime
+long timeLimit = ...
+randomDescent.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
+// attach listener
+randomDescent.addSearchListener(new ProgressionSearchListener());
+</pre>
+    <p>
+        By default, random descent starts from a randomly generated initial solution. However, it may happen that none of the neighbours of such
+        random solution satisfy the constraint on the total weight so that they are all rejected and the search immediately gets stuck. To avoid this
+        we specify a custom initial solution which is guaranteed to satisfy the constraint. We could simply always start from an empty solution
+        but a different approach is taken here to increase the variability of initial solutions.
+    </p>
+<pre class="prettyprint">
+// random generator
+private static final Random RG = new Random();
+
+// creates a custom initial solution that does not exceed the knapsack capacity
+private static SubsetSolution createInitalSolution(Problem&lt;SubsetSolution&gt; problem, KnapsackData data, double capacity){
+    // 1: create random initial solution
+    SubsetSolution initialSolution = problem.createRandomSolution();
+    // 2: compute current total weight
+    double weight = computeSelectionWeight(initialSolution, data);
+    // 3: remove random items as long as total weight is larger than the capacity
+    while(weight > capacity){
+        int id = SetUtilities.getRandomElement(initialSolution.getSelectedIDs(), RG);
+        initialSolution.deselect(id);
+        weight -= data.getWeight(id);
+    }
+    // 4: retain random subset to increase variability
+    int finalSize = RG.nextInt(initialSolution.getNumSelectedIDs()+1);
+    initialSolution.deselectAll(SetUtilities.getRandomSubset(
+                                                initialSolution.getSelectedIDs(),
+                                                initialSolution.getNumSelectedIDs()-finalSize,
+                                                RG)
+                                            );
+    return initialSolution;
+}
+
+// computes the total weight of items selected in the given subset solution
+private static double computeSelectionWeight(SubsetSolution solution, KnapsackData data){
+    double totalWeight = 0.0;
+    for(int id : solution.getSelectedIDs()){
+        totalWeight += data.getWeight(id);
+    }
+    return totalWeight;
+}
+</pre>
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-lightbulb-o"></i>
+            Good to know
+        </h4>
+        The utility class <code>SetUtilities</code> can be used to sample random items and subsets of any given set.
+    </div>
+    <p>
+        Now we can set a custom initial solution before starting the search.
+    </p>
+<pre class="prettyprint">
+// set custom initial solution within the constraint
+randomDescent.setCurrentSolution(createInitalSolution(problem, data, capacity));
+</pre>
+    <p>
+        Then start the search, get the best found solution when it completes and eventually dispose it to release all resources.
+    </p>
+<pre class="prettyprint">
+// start search (blocks until search terminates)
+randomDescent.start();
+// print results
+if(randomDescent.getBestSolution() != null){
+    System.out.println("Items in knapsack: " + randomDescent.getBestSolution().getNumSelectedIDs() + "/" + data.getIDs().size());
+    System.out.println("Total profit: " + randomDescent.getBestSolutionEvaluation());
+    System.out.println("Total weight: " + computeSelectionWeight(randomDescent.getBestSolution(), data) + "/" + capacity);
+} else {
+    System.out.println("No valid solution found...");
+}
+// dispose search
+randomDescent.dispose();
+</pre>
+
+    <h5 class="page-header">
+        Parallel tempering
+    </h5>
+    <p>
+        The parallel tempering algorithm uses several <a href="/docs/#metropolis-search">Metropolis searches</a> with different
+        temperatures where higher temperatures yield higher probabilities to accept inferior moves. When applying parallel tempering
+        the number of underlying Metropolis replicas and the minimum and maximum temperature have to be specified. It is very important
+        to set appropriate temperatures, taking into account the scale of the objective function. For example, whether a temperature
+        of 0.001 is considered high or low strongly depends on whether evaluations range from e.g. zero to one or from ten thousand
+        up to a hundred thousand.
+    </p>
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-lightbulb-o"></i>
+            Temperature range
+        </h4>
+        To find an appropriate temperature range to be used for parallel tempering it might help to experiment with individual Metropolis
+        searches with different fixed temperatures.
+    </div>
+<pre class="prettyprint">
+// create parallel tempering with single perturbation neighbourhood
+double minTemp = 0.001;
+double maxTemp = 0.05;
+int numReplicas = 10;
+ParallelTempering&lt;SubsetSolution&gt; parallelTempering = new ParallelTempering&lt;&gt;(
+                                                                    problem,
+                                                                    new SinglePerturbationNeighbourhood(0, data.getIDs().size()),
+                                                                    numReplicas, minTemp, maxTemp
+                                                                );
+</pre>
+    <p>
+        For the knapsack problem the scale of the evaluations highly depends on the scale of the profits assigned to the items.
+        Therefore all temperatures are scaled accordingly by multiplying them with the average profit of all knapsack items.
+    </p>
+<pre class="prettyprint">
+// scale temperatures according to average profit of knapsack items
+double scale = computeAverageProfit(data);
+parallelTempering.setTemperatureScaleFactor(scale);
+</pre>
+    <p>
+        The average profit of all knapsack items is easily computed.
+    </p>
+<pre class="prettyprint">
+private static double computeAverageProfit(KnapsackData data){
+    double totalProfit = 0.0;
+    for(int id : data.getIDs()){
+        totalProfit += data.getProfit(id);
+    }
+    return totalProfit / data.getIDs().size();
+}
+</pre>
+    <p>
+        Running the search is now done in exactly the same way as for the random descent algorithm. If you experiment
+        with some example input, you will see that the advanced parallel tempering algorithm finds much better solutions
+        for the 0/1 knapsack problem compared to the basic random descent algorithm.
+    </p>
+<pre class="prettyprint">
+// set maximum runtime
+long timeLimit = ...
+parallelTempering.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
+// attach listener
+parallelTempering.addSearchListener(new ProgressionSearchListener());
+// set valid initial solution
+parallelTempering.setCurrentSolution(createInitalSolution(problem, data, capacity));
+
+// start search (blocks until search terminates)
+parallelTempering.start();
+// print results
+if(parallelTempering.getBestSolution() != null){
+    System.out.println("Items in knapsack: " + parallelTempering.getBestSolution().getNumSelectedIDs() + "/" + data.getIDs().size());
+    System.out.println("Total profit: " + parallelTempering.getBestSolutionEvaluation());
+    System.out.println("Total weight: " + computeSelectionWeight(parallelTempering.getBestSolution(), data) + "/" + capacity);
+} else {
+    System.out.println("No valid solution found...");
+}
+// dispose search
+parallelTempering.dispose();
+</pre>
+
+    <h4 class="page-header">
+        Full source code
+    </h4>
+    <p>
+        The complete source code of this example is available on
+        <a href="https://github.com/hdbeukel/james/tree/master/james/james-examples/src/main/java/org/jamesframework/examples/knapsack">GitHub</a>,
+        including some additional code to read the input from a text file.
+        You can also download a <a href="/getstarted/#snapshots-examples">ZIP file</a> that contains the Java sources of all examples, a compiled
+        JAR (including all dependencies) as well as some input files in case you want to run any of the examples. To run this example, execute
+    </p>
+<pre class="prettyprint">
+$ java -cp james-examples.jar org.jamesframework.examples.knapsack.KnapSack &lt;inputfile&gt; &lt;capacity&gt; &lt;runtime&gt;
+</pre>
+    </p>
+        from the command line. The input file should be a text file in which the first row contains a single number N that indicates
+        the number of available knapsack items. The subsequent N rows each contain the profit and weight (in this order) of a single item,
+        separated by one or more spaces. The runtime is given in seconds.
+    </p>
+    <p>
+        <ul class="list-unstyled">
+            <li><a href="/files/examples/knapsack-100.txt"><i class="fa fa-file-text-o"></i> Example input file 1 (100 items)</a></li>
+            <li><a href="/files/examples/knapsack-1000.txt"><i class="fa fa-file-text-o"></i> Example input file 2 (1000 items)</a></li>
+        </ul>
     </p>
     
 </div>

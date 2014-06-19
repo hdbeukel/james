@@ -16,7 +16,7 @@ layout: default
     <div class="bs-callout bs-callout-info">
         <h4>
             <i class="fa fa-info-circle"></i>
-            Info:
+            Info
         </h4>
         In this example, the random descent metaheuristic is applied to sample a good core subset. Don't know what random descent is?
         Read <a href="/docs/#random-descent">this</a>.
@@ -189,7 +189,7 @@ private static Set&lt;String&gt; mapNames(Set&lt;Integer&gt; selected, CoreSubse
 }
 </pre>
 
-    <h4 class="page-header">
+    <h4 id="search-listener" class="page-header">
         Attaching a search listener
     </h4>
     <p>
@@ -228,7 +228,7 @@ public class ProgressionSearchListener extends EmptySearchListener&lt;Solution&g
     <div class="bs-callout bs-callout-info">
         <h4>
             <i class="fa fa-lightbulb-o"></i>
-            Good to know:
+            Good to know
         </h4>
         Here, the <code>EmptySearchListener</code> class has been extended to create the <code>ProgressionSearchListener</code>. This
         dummy class contains an empty implementation of all callbacks defined in the <code>SearchListener</code> interface. Extending
