@@ -16,7 +16,7 @@ layout: default
     <div class="bs-callout bs-callout-info">
         <h4>
             <i class="fa fa-info-circle"></i>
-            Info:
+            Info
         </h4>
         In this example, the random descent metaheuristic is applied to sample a good core subset. Don't know what random descent is?
         Read <a href="/docs/#random-descent">this</a>.
@@ -67,6 +67,8 @@ public class CoreSubsetData implements SubsetData {
 </pre>
     <p>
         Now add two custom methods to access the underlying data based on IDs of selected items.
+        The method <code>getName(int id)</code> returns the name of an item with a given ID and <code>getDistance(int id1, int id2)</code>
+        yields the distance between two items with given IDs.
     </p>
 <pre class="prettyprint">
 public String getName(int id){
@@ -77,19 +79,16 @@ public double getDistance(int id1, int id2){
     return dist[id1][id2];
 }
 </pre>
-    <p>
-        The method <code>getName(int id)</code> returns the name of an item with a given ID and <code>getDistance(int id1, int id2)</code>
-        yields the distance between two items with given IDs.
-    </p>
     
     <h4 class="page-header">
         Defining the objective
     </h4>
     <p>
         Now create a class <code>CoreSubsetObjective</code> that implements the <code>Objective</code> interface. This interface has two
-        type parameters (generics): the solution type and data type. Here, the solution type should be set to <code>SubsetSolution</code>
+        type parameters: the solution type and data type. Here, the solution type should be set to <code>SubsetSolution</code>
         and the data type to <code>CoreSubsetData</code>. The objective can then use our custom data class to evaluate any given subset
         solution by inspecting the set of selected IDs and computing the average distance between all pairs of selected items.
+        The method <code>isMinimizing()</code> returns <code>false</code> as the average distance is to be maximized.
     </p>
 <pre class="prettyprint">
 public class CoreSubsetObjective implements Objective&lt;SubsetSolution, CoreSubsetData&gt;{
@@ -125,9 +124,6 @@ public class CoreSubsetObjective implements Objective&lt;SubsetSolution, CoreSub
 
 }
 </pre>
-    <p>
-        The method <code>isMinimizing()</code> returns <code>false</code> as the average distance is to be maximized.
-    </p>
     
     <h4 class="page-header">
         Selecting a core subset
@@ -193,7 +189,7 @@ private static Set&lt;String&gt; mapNames(Set&lt;Integer&gt; selected, CoreSubse
 }
 </pre>
 
-    <h4 class="page-header">
+    <h4 id="search-listener" class="page-header">
         Attaching a search listener
     </h4>
     <p>
@@ -232,7 +228,7 @@ public class ProgressionSearchListener extends EmptySearchListener&lt;Solution&g
     <div class="bs-callout bs-callout-info">
         <h4>
             <i class="fa fa-lightbulb-o"></i>
-            Good to know:
+            Good to know
         </h4>
         Here, the <code>EmptySearchListener</code> class has been extended to create the <code>ProgressionSearchListener</code>. This
         dummy class contains an empty implementation of all callbacks defined in the <code>SearchListener</code> interface. Extending

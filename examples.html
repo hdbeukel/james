@@ -39,7 +39,7 @@ layout: default
                 <span class="hidden-xs">
                     <span class="pull-right label label-warning">
                         Difficulty:
-                        <i class="fa fa-star-half-full"></i>
+                        <i class="fa fa-star"></i>
                         <i class="fa fa-star-o"></i>
                         <i class="fa fa-star-o"></i>
                         <i class="fa fa-star-o"></i>
@@ -69,16 +69,52 @@ layout: default
             </p>
             <p>
                 The basic <a href="/docs/#random-descent">random descent</a> algorithm is applied to sample a core subset,
-                using a predefined subset neighbourhood (single swap).
+                using a predefined subset neighbourhood that swaps a single selected and unselected ID to modify the
+                current solution.
             </p>
             <p>
                 <a class="btn btn-default" href="/examples/coresubset"><i class="fa fa-chevron-right"></i> View example</a>
             </p>
             
+            <h4 class="page-header example-header">
+                Example 2: The 0/1 knapsack problem
+                <span class="hidden-xs">
+                    <span class="pull-right label label-warning">
+                        Difficulty:
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </span>
+                    <span class="pull-right label label-success">
+                        <i class="fa fa-check"></i>
+                        Subset selection
+                    </span>
+                </span>
+            </h4>
+            <p class="lead">
+                Variable size subset selection with constraints. Optimization algorithms: random descent and parallel tempering
+                with a predefined subset neighbourhood (single perturbation).
+            </p>
+            <p>
+                The 0/1 knapsack problem is a contrained variable size subset selection problem. The input consists of a list of items
+                which each have a fixed weight and profit. The goal is to select a subset of these items with maximal total profit where
+                the total weight does not exceed a given knapsack capacity.
+            </p>
+            <p>
+                The <a href="/docs/#random-descent">random descent</a> and <a href="/docs/#parallel-tempering">parallel tempering</a>
+                algorithms are applied to optimize the selected subset, using a predefined subset neighbourhood that adds, deletes or
+                swaps a (pair of) ID(s) to modify the current selection.
+            </p>
+            <p>
+                <a class="btn btn-default" href="/examples/knapsack"><i class="fa fa-chevron-right"></i> View example</a>
+            </p>
+            
             <div class="bs-callout bs-callout-info">
                 <h4>
                     <i class="fa fa-info-circle"></i>
-                    Info:
+                    Info
                 </h4>
                 More examples will soon be added.
             </div>
