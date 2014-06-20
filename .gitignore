@@ -5,3 +5,5 @@
 *.log
 update-snapshot-api.sh
 _site/
+*.jar
+*.zip
