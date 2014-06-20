@@ -50,6 +50,16 @@ public class Main {
         System.out.println("");
         System.out.println("java -cp james-examples.jar org.jamesframework.examples.knapsack.KnapSack <inputfile> <capacity> <runtime>");
         System.out.println("");
+        System.out.println("Example 3: the maximum clique problem");
+        System.out.println("-------------------------------------");
+        System.out.println("");
+        System.out.println("Random descent and variable neighbourhood search are applied to find a clique\n"
+                         + "of maximum size in a given graph.");
+        System.out.println("");
+        System.out.println("Usage:");
+        System.out.println("");
+        System.out.println("java -cp james-examples.jar org.jamesframework.examples.clique.MaximumClique <inputfile> <maxshake> <runtime>");
+        System.out.println("");
     }
     
 }
