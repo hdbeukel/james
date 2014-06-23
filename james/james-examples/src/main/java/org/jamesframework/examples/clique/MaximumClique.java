@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.problems.Problem;
-import org.jamesframework.core.problems.SubsetProblemWithData;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.search.LocalSearch;
 import org.jamesframework.core.search.algo.RandomDescent;
@@ -84,8 +83,12 @@ public class MaximumClique {
 
             // create objective
             CliqueObjective obj = new CliqueObjective();
+            
             // create subset problem (all sizes allowed)
-            SubsetProblemWithData<CliqueData> problem = new SubsetProblemWithData<>(obj, data, 0, data.numVertices());
+            // SubsetProblemWithData<CliqueData> problem = new SubsetProblemWithData<>(obj, data, 0, data.numVertices());
+            
+            // OPTIMIZED: create clique problem with clique solution type
+            CliqueProblem problem = new CliqueProblem(obj, data);
             
             /******************/
             /* RANDOM DESCENT */
@@ -94,13 +97,21 @@ public class MaximumClique {
             System.out.println("# RANDOM DESCENT");
             
             // create random descent search with greedy clique neighbourhood
-            RandomDescent<SubsetSolution> randomDescent = new RandomDescent<>(problem, new GreedyCliqueNeighbourhood(data));
+            // RandomDescent<SubsetSolution> randomDescent = new RandomDescent<>(problem, new GreedyCliqueNeighbourhood(data));
+            
+            // OPTIMIZED: use neighbourhood defined for clique solution type
+            RandomDescent<CliqueSolution> randomDescent = new RandomDescent<>(problem, new GreedyCliqueNeighbourhood2(data));
+
             // set maximum runtime
             randomDescent.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
             // attach listener
             randomDescent.addSearchListener(new ProgressionSearchListener());
+            
             // IMPORTANT: start with empty clique
-            randomDescent.setCurrentSolution(new SubsetSolution(data.getIDs()));
+            // randomDescent.setCurrentSolution(new SubsetSolution(data.getIDs()));
+            
+            // IMPORTANT: start with empty clique
+            randomDescent.setCurrentSolution(new CliqueSolution(data.getIDs(), data));
 
             // start search
             randomDescent.start();
@@ -122,14 +133,14 @@ public class MaximumClique {
                 shakingNeighs.add(new ShakingNeighbourhood(s));
             }
             // factory for random descent with greedy clique neighbourhood
-            LocalSearchFactory<SubsetSolution> localSearchFactory = new LocalSearchFactory<SubsetSolution>() {
+            LocalSearchFactory<CliqueSolution> localSearchFactory = new LocalSearchFactory<CliqueSolution>() {
                 @Override
-                public LocalSearch<SubsetSolution> create(Problem<SubsetSolution> problem) {
+                public LocalSearch<CliqueSolution> create(Problem<CliqueSolution> problem) {
                     return new RandomDescent<>(problem, new GreedyCliqueNeighbourhood(data));
                 }
             };
             // create variable neighbourhood search
-            VariableNeighbourhoodSearch<SubsetSolution> vns = new VariableNeighbourhoodSearch<>(
+            VariableNeighbourhoodSearch<CliqueSolution> vns = new VariableNeighbourhoodSearch<>(
                                                                     problem,
                                                                     shakingNeighs,
                                                                     localSearchFactory
@@ -139,7 +150,7 @@ public class MaximumClique {
             // attach listener
             vns.addSearchListener(new ProgressionSearchListener());
             // IMPORTANT: start with empty clique
-            vns.setCurrentSolution(new SubsetSolution(data.getIDs()));
+            vns.setCurrentSolution(new CliqueSolution(data.getIDs(), data));
 
             // start search
             vns.start();
