@@ -32,7 +32,7 @@ public class ProgressionSearchListener extends EmptySearchListener<Solution> {
 
     @Override
     public void searchStopped(Search<? extends Solution> search) {
-        System.out.println(" >>> Search stopped");
+        System.out.println(" >>> Search stopped (" + search.getRuntime()/1000 + " sec, " + search.getSteps() + "  steps)");
     }
 
     @Override
