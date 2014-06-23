@@ -35,7 +35,7 @@ import org.junit.Before;
 public class SingleSwapNeighbourhoodTest {
 
     // swap neighbourhood
-    private Neighbourhood<SubsetSolution> neigh;
+    private SingleSwapNeighbourhood neigh;
     
     // subset solution to work with
     private SubsetSolution sol;

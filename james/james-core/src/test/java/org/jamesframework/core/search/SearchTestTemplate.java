@@ -62,7 +62,7 @@ public class SearchTestTemplate {
     protected final double MIN_SCORE_DIFF = 0.02;
     
     // neighbourhood
-    protected Neighbourhood<SubsetSolution> neigh;
+    protected SingleSwapNeighbourhood neigh;
     
     // random generator
     protected static final Random RG = new Random();

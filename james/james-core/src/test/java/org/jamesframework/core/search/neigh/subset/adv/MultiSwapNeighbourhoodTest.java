@@ -100,8 +100,8 @@ public class MultiSwapNeighbourhoodTest {
         // 1) compare with single swap neighbourhood by setting maxSwaps to 1
         
         // create multi swap neighbourhood
-        Neighbourhood<SubsetSolution> ssn = new SingleSwapNeighbourhood();
-        Neighbourhood<SubsetSolution> msn = new MultiSwapNeighbourhood(1);
+        SingleSwapNeighbourhood ssn = new SingleSwapNeighbourhood();
+        MultiSwapNeighbourhood msn = new MultiSwapNeighbourhood(1);
 
         // create empty subset solution
         SubsetSolution sol = new SubsetSolution(IDs);
@@ -131,7 +131,7 @@ public class MultiSwapNeighbourhoodTest {
         
         for(int s=2; s<=5; s++){
             // create multi swap neighbourhood
-            Neighbourhood<SubsetSolution> neigh = new MultiSwapNeighbourhood(s);
+            MultiSwapNeighbourhood neigh = new MultiSwapNeighbourhood(s);
             // compute number of expected moves
             int num = 0;
             for(int j=1; j<=s; j++){

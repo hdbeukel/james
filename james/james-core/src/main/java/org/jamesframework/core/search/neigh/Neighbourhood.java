@@ -34,7 +34,7 @@ public interface Neighbourhood<SolutionType extends Solution> {
      * @return random move transforming the given solution into a random neighbour,
      *         <code>null</code> if the given solution does not have any neighbours
      */
-    public Move<SolutionType> getRandomMove(SolutionType solution);
+    public Move<? super SolutionType> getRandomMove(SolutionType solution);
     
     /**
      * Get a set of all moves that can be applied to the given solution to transform
@@ -45,6 +45,6 @@ public interface Neighbourhood<SolutionType extends Solution> {
      * @return set of all moves for this neighbourhood, may be empty if the
      *         given solution does not have any neighbours
      */
-    public Set<Move<SolutionType>> getAllMoves(SolutionType solution);
+    public Set<? extends Move<? super SolutionType>> getAllMoves(SolutionType solution);
     
 }

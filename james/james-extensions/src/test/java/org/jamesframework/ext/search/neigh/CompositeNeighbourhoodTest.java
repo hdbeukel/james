@@ -94,8 +94,8 @@ public class CompositeNeighbourhoodTest {
         SubsetSolution sol = new SubsetSolution(IDs, SetUtilities.getRandomSubset(IDs, SUBSET_SIZE, RG));
         
         // construct set of all moves for both neighbourhoods
-        Set<Move<SubsetSolution>> swapMoves = neighs.get(0).getAllMoves(sol);
-        Set<Move<SubsetSolution>> pertMoves = neighs.get(1).getAllMoves(sol);
+        Set<? extends Move<? super SubsetSolution>> swapMoves = neighs.get(0).getAllMoves(sol);
+        Set<? extends Move<? super SubsetSolution>> pertMoves = neighs.get(1).getAllMoves(sol);
         
         // weights (80, 20)
         double swapWeight = 80;
@@ -107,7 +107,7 @@ public class CompositeNeighbourhoodTest {
         int numSwap = 0, numDel = 0, numAdd = 0;
         for(int i=0; i<1000; i++){
             // get random move
-            Move<SubsetSolution> move = compositeNeigh.getRandomMove(sol);
+            Move<? super SubsetSolution> move = compositeNeigh.getRandomMove(sol);
             assertTrue(swapMoves.contains(move) || pertMoves.contains(move));
             // count
             if(move instanceof SwapMove){
@@ -134,7 +134,7 @@ public class CompositeNeighbourhoodTest {
         numSwap = numDel = numAdd = 0;
         for(int i=0; i<1000; i++){
             // get random move
-            Move<SubsetSolution> move = compositeNeigh.getRandomMove(sol);
+            Move<? super SubsetSolution> move = compositeNeigh.getRandomMove(sol);
             assertTrue(swapMoves.contains(move) || pertMoves.contains(move));
             // count
             if(move instanceof SwapMove){
@@ -165,8 +165,8 @@ public class CompositeNeighbourhoodTest {
         SubsetSolution sol = new SubsetSolution(IDs, SetUtilities.getRandomSubset(IDs, SUBSET_SIZE, RG));
         
         // construct set of all moves for both neighbourhoods
-        Set<Move<SubsetSolution>> swapMoves = neighs.get(0).getAllMoves(sol);
-        Set<Move<SubsetSolution>> pertMoves = neighs.get(1).getAllMoves(sol);
+        Set<? extends Move<? super SubsetSolution>> swapMoves = neighs.get(0).getAllMoves(sol);
+        Set<? extends Move<? super SubsetSolution>> pertMoves = neighs.get(1).getAllMoves(sol);
         
         for(int i=0; i<100; i++){
             // composite neighbourhood with arbitrary weights
@@ -175,7 +175,7 @@ public class CompositeNeighbourhoodTest {
                                                                 Arrays.asList(RG.nextDouble(), RG.nextDouble())
                                                            );
             // get all moves
-            Set<Move<SubsetSolution>> moves = compositeNeigh.getAllMoves(sol);
+            Set<? extends Move<? super SubsetSolution>> moves = compositeNeigh.getAllMoves(sol);
             // verify
             assertTrue(moves.size() <= swapMoves.size()+pertMoves.size());
             assertTrue(moves.containsAll(swapMoves));

@@ -101,9 +101,9 @@ public class DisjointMultiSwapNeighbourhoodTest {
         //    which should each produce equivalent moves
         
         // create neighbourhoods
-        Neighbourhood<SubsetSolution> ssn = new SingleSwapNeighbourhood();
-        Neighbourhood<SubsetSolution> msn = new MultiSwapNeighbourhood(1);
-        Neighbourhood<SubsetSolution> dmsn = new DisjointMultiSwapNeighbourhood(1);
+        SingleSwapNeighbourhood ssn = new SingleSwapNeighbourhood();
+        MultiSwapNeighbourhood msn = new MultiSwapNeighbourhood(1);
+        DisjointMultiSwapNeighbourhood dmsn = new DisjointMultiSwapNeighbourhood(1);
 
         // create empty subset solution
         SubsetSolution sol = new SubsetSolution(IDs);
@@ -143,7 +143,7 @@ public class DisjointMultiSwapNeighbourhoodTest {
         
         for(int s=2; s<=5; s++){
             // create disjoint multi swap neighbourhood
-            Neighbourhood<SubsetSolution> neigh = new DisjointMultiSwapNeighbourhood(s);
+            DisjointMultiSwapNeighbourhood neigh = new DisjointMultiSwapNeighbourhood(s);
             // compute number of expected moves
             int num = numSubsets(sol.getNumSelectedIDs(), s)*numSubsets(sol.getNumUnselectedIDs(), s);
             // generate all moves
