@@ -132,11 +132,11 @@ public class MaximumClique {
             for(int s=1; s <= maxShake; s++){
                 shakingNeighs.add(new ShakingNeighbourhood(s));
             }
-            // factory for random descent with greedy clique neighbourhood
+            // factory for random descent with greedy clique neighbourhood (optimized version)
             LocalSearchFactory<CliqueSolution> localSearchFactory = new LocalSearchFactory<CliqueSolution>() {
                 @Override
                 public LocalSearch<CliqueSolution> create(Problem<CliqueSolution> problem) {
-                    return new RandomDescent<>(problem, new GreedyCliqueNeighbourhood(data));
+                    return new RandomDescent<>(problem, new GreedyCliqueNeighbourhood2(data));
                 }
             };
             // create variable neighbourhood search
