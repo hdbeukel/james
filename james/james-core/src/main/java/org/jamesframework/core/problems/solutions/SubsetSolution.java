@@ -249,14 +249,14 @@ public class SubsetSolution extends Solution {
      * Select all IDs.
      */
     public void selectAll(){
-        selectAll(getUnselectedIDs());
+        selectAll(getAllIDs());
     }
     
     /**
      * Deselect all IDs.
      */
     public void deselectAll(){
-        deselectAll(getSelectedIDs());
+        deselectAll(getAllIDs());
     }
     
     /**
