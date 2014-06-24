@@ -339,11 +339,11 @@ public class SubsetSolution extends Solution {
         // cast to subset solution
         final SubsetSolution other = (SubsetSolution) sol;
         // check selected IDs
-        if (!Objects.equals(selected, other.selected)) {
+        if (!Objects.equals(getSelectedIDs(), other.getSelectedIDs())) {
             return false;
         }
         // check unselected IDs
-        if (!Objects.equals(unselected, other.unselected)) {
+        if (!Objects.equals(getUnselectedIDs(), other.getUnselectedIDs())) {
             return false;
         }
         // all checks passed: equal
@@ -361,9 +361,9 @@ public class SubsetSolution extends Solution {
     public int computeHashCode() {
         int hash = 7;
         // account for selected IDs
-        hash = 23 * hash + Objects.hashCode(selected);
+        hash = 23 * hash + Objects.hashCode(getSelectedIDs());
         // account for unselected IDs
-        hash = 23 * hash + Objects.hashCode(unselected);
+        hash = 23 * hash + Objects.hashCode(getUnselectedIDs());
         return hash;    
     }
     
@@ -378,7 +378,7 @@ public class SubsetSolution extends Solution {
         str.append("SubsetSolution: {");
         // add selected IDs, if any
         if(getNumSelectedIDs() > 0){
-            for(int ID : selected){
+            for(int ID : getSelectedIDs()){
                 str.append(ID).append(", ");
             }
             // remove final comma and space
