@@ -1,0 +1,615 @@
+---
+layout: default
+---
+
+<div id="examples-coresubset">
+    <ol class="breadcrumb">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/examples">Examples</a></li>
+        <li class="active">Maximum clique problem</li>
+    </ol>
+    
+    <h2 class="page-header">
+        Example 3: The maximum clique problem
+    </h2>
+    
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-info-circle"></i>
+            Info
+        </h4>
+        In this example, the random descent and variable neighbourhood search algorithms are applied for optimization. Don't know
+        what random descent is? Read <a href="/docs/#random-descent">this</a>. Never heard about variable neighbourhood search?
+        Read <a href="/docs/#vns">this</a>.
+    </div>
+    <p>
+        This example demonstrates the application of a greedy heuristic to search for a maximum clique in a given graph. The heuristic
+        is created by plugging in a custom greedy neighbourhood in the random descent algorithm. A variable neighbourhood search
+        is also applied based on the greedy heuristics where custom shaking neighbourhoods are used to escape from local optima.
+    </p>
+    
+    <h4 class="page-header">
+        Providing the data
+    </h4>
+    <p>
+        First we provide the graph data by implementing the <code>SubsetData</code> interface in <code>CliqueData</code>.
+        Each vertex in the graph is represented by a unique integer ID. Edges are modeled using an adjacency map in which
+        every vertex is mapped onto the set of adjacent vertices. The data provides some utility methods to get the neighbours
+        or degree of a given vertex, to check whether two vertices are connected, etc. The method
+        <code>degree(int v, Set&lt;Integer&gt; subGraph)</code> computes the degree of a given vertex
+        in a specific subgraph, in which case edges to vertices outside this subgraph are not counted.
+    </p>
+<pre class="prettyprint">
+public class CliqueData implements SubsetData {
+
+    // maps each vertex to set of adjacent vertices
+    private final Map&lt;Integer, Set&lt;Integer&gt;&gt; adjacencyMap;
+    // number of edges
+    private final int numEdges;
+
+    public CliqueData(Map&lt;Integer, Set&lt;Integer&gt;&gt; adjacencyMap) {
+        this.adjacencyMap = adjacencyMap;
+        // count number of edges
+        int edges = 0;
+        for(int v : adjacencyMap.keySet()){
+            edges += adjacencyMap.get(v).size();
+        }
+        // edges have been counted twice
+        this.numEdges = edges/2;
+    }
+    
+    @Override
+    public Set&lt;Integer&gt; getIDs() {
+        return adjacencyMap.keySet();
+    }
+    
+    public Set&lt;Integer&gt; getNeighbours(int vertex){
+        return adjacencyMap.get(vertex);
+    }
+    
+    public boolean connected(int v1, int v2){
+        return adjacencyMap.get(v1).contains(v2);
+    }
+    
+    public int degree(int v){
+        return adjacencyMap.get(v).size();
+    }
+    
+    // computes the degree of a given vertex in a subgraph
+    // (edges to vertices outside the subgraph are not counted)
+    public int degree(int v, Set&lt;Integer&gt; subGraph){
+        // get neighbours of v
+        Set&lt;Integer&gt; neighbours = adjacencyMap.get(v);
+        // count degree within subgraph
+        int degree = 0;
+        for(int n : neighbours){
+            if(subGraph.contains(n)){
+                degree++;
+            }
+        }
+        return degree;
+    }
+    
+    public int numVertices(){
+        return adjacencyMap.size();
+    }
+    
+    public int numEdges(){
+        return numEdges;
+    }
+
+}
+</pre>
+
+    <h4 class="page-header">
+        Defining the objective
+    </h4>
+    <p>
+        The objective for the maximum clique problem is straightforward: maximize the size of the selected subset. The solution type of
+        <code>CliqueObjective</code> is <code>SubsetSolution</code>. The data type is set to <code>Object</code> as no data is used for
+        evaluation. In fact, this same objective could also be used for other subset problems with any data type.
+    </p>
+<pre class="prettyprint">
+public class CliqueObjective implements Objective&lt;SubsetSolution, Object&gt;{
+
+    @Override
+    public double evaluate(SubsetSolution solution, Object data) {
+        return solution.getNumSelectedIDs();
+    }
+
+    @Override
+    public boolean isMinimizing() {
+        return false;
+    }
+
+}
+</pre>
+
+    <h4 class="page-header">
+        Implementing a custom greedy neighbourhood
+    </h4>
+    <p>
+        Our basic search strategy is to start with an empty clique and iteratively add a vertex that is connected to
+        all vertices in the current clique. This is a greedy approach in which the size of the clique inceases with one
+        vertex in each search step. To implement this strategy we provide a custom neighbourhood that will be used in a
+        random descent search. The <code>GreedyCliqueNeighbourhood</code> implements the <code>Neighbourhood</code> interface
+        with solution type <code>SubsetSolution</code>. It has two methods: one to get a random move and one to get the set
+        of all considered moves to modify the current solution. The greedy neighbourhood generates moves that add a single new
+        vertex with maximum degree among all vertices that are connected to the entire current clique.
+    </p>
+    <p>
+        To get a random move, all moves are generated and one is randomly selected. If no vertex can be added, <code>null</code>
+        is returned. The set of all considered moves is created as follows:
+        <ol>
+            <li>
+                Infer the set of possible adds, i.e. unselected vertices that are connected to the entire current clique.
+            </li>
+            <li>
+                Retain only those vertices from the set of possible adds with maximum degree in the subgraph induced by
+                this set of vertices.
+            </li>
+        </ol>
+        For every retained candidate vertex a predefined <code>AdditionMove</code> is generated. If desired, a custom move
+        type could be created as well but this is not required here.
+    </p>
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-info-circle"></i>
+            Info
+        </h4>
+        The utility class <code>SetUtilities</code> can be used to easily select a random item or subset from any given set.
+    </div>
+<pre class="prettyprint">
+public class GreedyCliqueNeighbourhood implements Neighbourhood&lt;SubsetSolution&gt; {
+
+    // clique data (graph)
+    private final CliqueData data;
+
+    public GreedyCliqueNeighbourhood(CliqueData data) {
+        this.data = data;
+    }
+    
+    @Override
+    public Move&lt;SubsetSolution&gt; getRandomMove(SubsetSolution solution) {
+        Set&lt;Move&lt;SubsetSolution&gt;&gt; allMoves = getAllMoves(solution);
+        if(allMoves.isEmpty()){
+            return null;
+        } else {
+            return SetUtilities.getRandomElement(allMoves, ThreadLocalRandom.current());
+        }
+    }
+
+    @Override
+    public Set&lt;Move&lt;SubsetSolution&gt;&gt; getAllMoves(SubsetSolution solution) {
+        // get current clique
+        Set&lt;Integer&gt; clique = solution.getSelectedIDs();
+        // construct set of possible additions
+        Set&lt;Integer&gt; possibleAdds = new HashSet&lt;&gt;();
+        for(int v : solution.getUnselectedIDs()){
+            if(isPossibleAdd(v, clique)){
+                possibleAdds.add(v);
+            }
+        }
+        // retain only additions of candidate vertices
+        // with maximum degree within induced subgraph
+        Set&lt;Move&lt;SubsetSolution&gt;&gt; moves = new HashSet&lt;&gt;();
+        int degree, maxDegree = -1;
+        for(int v : possibleAdds){
+            // get degree within subgraph
+            degree = data.degree(v, possibleAdds);
+            if(degree > maxDegree){
+                // higher degree
+                maxDegree = degree;
+                moves.clear();
+                moves.add(new AdditionMove(v));
+            } else if (degree == maxDegree){
+                // same degree
+                moves.add(new AdditionMove(v));
+            }
+        }
+        return moves;
+    }
+    
+    // check if given vertex is connected to all vertices in the current clique
+    private boolean isPossibleAdd(int vertex, Set&lt;Integer&gt; clique){
+        for(int vc : clique){
+            if(!data.connected(vertex, vc)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+}
+</pre>
+
+    <h4 class="page-header">
+        Basic greedy search
+    </h4>
+    <p>
+        A basic greedy search is obtained by plugging in our <code>GreedyCliqueNeighbourhood</code> in a random
+        descent algorithm that starts with an empty clique. In every step a random vertex with maximum degree
+        among all possible adds is included in the clique. When no more vertices can be added, the neighbourhood
+        returns <code>null</code> and the search automatically stops.
+    </p>
+<pre class="prettyprint">
+// define adjacency map (graph)
+Map&lt;Integer, Set&lt;Integer&gt;&gt; adjacencyMap = ...
+
+// create data object
+CliqueData data = new CliqueData(adjacencyMap);
+// create objective
+CliqueObjective obj = new CliqueObjective();
+// create subset problem (all sizes allowed)
+SubsetProblemWithData&lt;CliqueData&gt; problem = new SubsetProblemWithData&lt;&gt;(obj, data, 0, data.numVertices());
+
+// create random descent search with greedy clique neighbourhood
+RandomDescent&lt;SubsetSolution&gt; randomDescent = new RandomDescent&lt;&gt;(problem, new GreedyCliqueNeighbourhood(data));
+
+// attach listener
+randomDescent.addSearchListener(new ProgressionSearchListener());
+
+// IMPORTANT: start with empty clique
+randomDescent.setCurrentSolution(new SubsetSolution(data.getIDs()));
+
+// start search
+randomDescent.start();
+// print results
+System.out.println("Clique size: " + randomDescent.getBestSolution().getNumSelectedIDs());
+// dispose search
+randomDescent.dispose();
+</pre>
+
+    <h4 class="page-header">
+        Variable neighbourhood search
+    </h4>
+    <p>
+        The basic greedy approach may easily get stuck in a local optimum, i.e. a clique which can not be further extended but
+        which is not the largest clique in the entire graph. We will now create a more advanced variable neighbourhood search
+        that is based on the greedy approach from above in combination with custom shaking neighbourhoods used to escape from
+        local optima. The implemented <code>ShakingNeighbourhood</code> only supports generation of random moves which remove
+        a fixed number of randomly picked items (vertices) from the selection (clique). The number of removed items is specified
+        as a parameter when creating the neighbourhood.
+    </p>
+<pre class="prettyprint">
+public class ShakingNeighbourhood implements Neighbourhood&lt;SubsetSolution&gt;{
+
+    // number of vertices which are removed from the clique
+    private final int numRemovals;
+
+    public ShakingNeighbourhood(int numRemovals) {
+        this.numRemovals = numRemovals;
+    }
+    
+    @Override
+    public Move&lt;SubsetSolution&gt; getRandomMove(SubsetSolution solution) {
+        Set&lt;Integer&gt; remove = SetUtilities.getRandomSubset(
+                                    solution.getSelectedIDs(),
+                                    Math.min(numRemovals, solution.getNumSelectedIDs()),
+                                    ThreadLocalRandom.current()
+                              );
+        Set&lt;Integer&gt; add = Collections.emptySet();
+        return new GeneralSubsetMove(add, remove);
+    }
+
+    @Override
+    public Set&lt;Move&lt;SubsetSolution&gt;&gt; getAllMoves(SubsetSolution solution) {
+        throw new UnsupportedOperationException("Neighbourhood only supports generation of random moves.");
+    }
+
+}
+</pre>
+    <p>
+        Now we can create a <a href="/docs/#vns">variable neighbourhood search</a> that iteratively applies the greedy strategy from before,
+        using a series of shaking neighbourhoods with a different number of removals to escape from local optima. When the greedy search
+        terminates some vertices will be randomly removed from the clique through shaking and the greedy strategy is resumed. This process
+        is repeated until some stop criterion is satisfied.
+    </p>
+<pre class="prettyprint">
+// create shaking neighbourhoods
+int maxShake = ...
+List&lt;Neighbourhood&lt;SubsetSolution&gt;&gt; shakingNeighs = new ArrayList&lt;&gt;();
+for(int s=1; s &lt;= maxShake; s++){
+    shakingNeighs.add(new ShakingNeighbourhood(s));
+}
+// factory for random descent with greedy clique neighbourhood
+LocalSearchFactory&lt;SubsetSolution&gt; localSearchFactory = new LocalSearchFactory&lt;SubsetSolution&gt;() {
+    @Override
+    public LocalSearch&lt;SubsetSolution&gt; create(Problem&lt;SubsetSolution&gt; problem) {
+        return new RandomDescent&lt;&gt;(problem, new GreedyCliqueNeighbourhood(data));
+    }
+};
+// create variable neighbourhood search
+VariableNeighbourhoodSearch&lt;SubsetSolution&gt; vns = new VariableNeighbourhoodSearch&lt;&gt;(
+                                                        problem,
+                                                        shakingNeighs,
+                                                        localSearchFactory
+                                                  );
+// set maximum runtime
+long timeLimit = ...
+vns.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
+// attach listener
+vns.addSearchListener(new ProgressionSearchListener());
+// IMPORTANT: start with empty clique
+vns.setCurrentSolution(new SubsetSolution(data.getIDs()));
+
+// start search
+vns.start();
+// print results
+System.out.println("Clique size: " + vns.getBestSolution().getNumSelectedIDs(););
+// dispose search
+vns.dispose();
+</pre>
+    <p>
+        The applied VNS strategy is a simplification of a much more advanced and powerful variable neighbourhood search described in
+        <a href="http://www.sciencedirect.com/science/article/pii/S0166218X04000708">"Variable neighborhood search for the maximum clique" &mdash; Hansen et al</a>.
+        This full VNS strategy can easily be implemented in James by plugging in the necessary custom neighbourhoods in the available algorithms
+        and chaining different local searches using a <a href="/docs/#piped-local-search">piped local search</a>.
+    </p>
+    
+    <h4 class="page-header">
+        Optimization: a new solution type
+    </h4>
+    <p>
+        The current implementation of <code>GreedyCliqueNeighbourhood</code> first constructs the set of possible adds
+        by traversing all unselected vertices and verifying whether they are connected to the entire current clique.
+        These computations are repeated whenever a random move is generated. Here we describe an opimization that
+        dynamically updates the set of possible adds whenever a vertex is added to or
+        removed from the clique. This reduces the overall time complexity of the optimization process so that more
+        steps can be taken in the same time.
+    </p>
+    <p>
+        To keep track of the set of possible adds we extend <code>SubsetSolution</code> in <code>CliqueSolution</code>.
+        Only a single constructor is provided to create an empty clique. When a vertex is added to the clique all
+        unconnected vertices are removed from the possible adds.
+        It is also verified whether the added vertex itself is actually contained in the set of possible adds and if not,
+        the vertex is not added. This ensures that the selected subset is always a clique.
+        When removing a vertex from the clique all vertices that are connected to all remaining clique nodes are
+        again marked as possible adds.
+        The set of possible adds can be accessed at any time using <code>getPossibleAdds()</code>.
+    </p>
+    <p>
+        When implementing or extending a solution type it is important to always provide a
+        <code>copy()</code> method that returns a copy of the appropriate solution type.
+        Therefore we override this method as well: it creates a new <code>CliqueSolution</code>
+        in which exactly the same clique is selected.
+    </p>
+<pre class="prettyprint">
+public class CliqueSolution extends SubsetSolution {
+
+    // possible adds (connected to entire current clique)
+    private final Set&lt;Integer&gt; possibleAdds;
+    // impossible adds (not connected to at least one vertex in current clique)
+    private final Set&lt;Integer&gt; impossibleAdds;
+    
+    // reference to clique data
+    private final CliqueData data;
+    
+    // single constructor (empty clique)
+    public CliqueSolution(Set&lt;Integer&gt; vertexIDs, CliqueData data){
+        super(vertexIDs);
+        // initialize possible adds (all vertices)
+        possibleAdds = new HashSet&lt;&gt;(vertexIDs);
+        // initialize impossible adds (empty)
+        impossibleAdds = new HashSet&lt;&gt;();
+        // store data reference
+        this.data = data;
+    }
+    
+    @Override
+    public boolean select(int vertex){
+        if(possibleAdds.contains(vertex) &amp;&amp; super.select(vertex)){
+            // new vertex included in clique
+            possibleAdds.remove(vertex);
+            Set&lt;Integer&gt; eliminated = new HashSet&lt;&gt;();
+            for(int v : possibleAdds){
+                if(!data.connected(v, vertex)){
+                    // v is no longer a possible add
+                    eliminated.add(v);
+                }
+            }
+            // update (im)possible adds
+            possibleAdds.removeAll(eliminated);
+            impossibleAdds.addAll(eliminated);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    @Override
+    public boolean deselect(int vertex){
+        if(super.deselect(vertex)){
+            // vertex removed from clique (goes back to possible adds)
+            possibleAdds.add(vertex);
+            // check for new possible adds (connected to remaining clique)
+            Set&lt;Integer&gt; newPossibleAdds = new HashSet&lt;&gt;();
+            for(int v : impossibleAdds){
+                if(connectedToClique(v)){
+                    newPossibleAdds.add(v);
+                }
+            }
+            // update (im)possible adds
+            possibleAdds.addAll(newPossibleAdds);
+            impossibleAdds.removeAll(newPossibleAdds);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    // checks whether a given vertex is conected to the entire current clique
+    private boolean connectedToClique(int vertex){
+        for(int v : getSelectedIDs()){
+            if(!data.connected(vertex, v)){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public Set&lt;Integer&gt; getPossibleAdds(){
+        return possibleAdds;
+    }
+        
+    @Override
+    public CliqueSolution copy() {
+        CliqueSolution copy = new CliqueSolution(getAllIDs(), data);
+        copy.selectAll(getSelectedIDs());
+        return copy;
+    }
+    
+}
+</pre>
+    <p>
+        Now we can not use the predefined <code>SubsetProblemWithData</code> as it has solution type <code>SubsetSolution</code>
+        instead of <code>CliqueSolution</code>. Therefore we extend
+        <code>ProblemWithData</code> to create <code>CliqueProblem</code> with solution and data type <code>CliqueSolution</code> and
+        <code>CliqueData</code>, respectively. <code>ProblemWithData</code> has a single abstract method <code>createRandomSolution()</code>.
+        As creating a random clique is not supported, we throw an error here. Alternatively we could also return an empty instead of a random clique.
+        Throwing an error has the advantage that we are notified if a search attempts to create a random solution, which should never happen if
+        we manually set an empty initial solution and indicates a mistake.
+    </p>
+<pre class="prettyprint">
+public class CliqueProblem extends ProblemWithData&lt;CliqueSolution, CliqueData&gt;{
+
+    public CliqueProblem(Objective&lt;? super CliqueSolution, ? super CliqueData&gt; objective, CliqueData data) {
+        super(objective, data);
+    }
+
+    @Override
+    public CliqueSolution createRandomSolution() {
+        throw new UnsupportedOperationException("Creating a random clique is not supported.");
+    }
+
+}
+</pre>
+    <p>
+        To actually benefit from the new solution type we create an alternative implementation of the greedy clique neighbourhood
+        with solution type <code>CliqueSolution</code>. It can simply call
+        <code>clique.getPossibleAdds()</code> to get the set of possible adds in constant time. Note that we still
+        return an <code>AdditionMove</code> which is defined for solution type <code>SubsetSolution</code>. This is allowed because the method
+        definitions in the <code>Neighbourhood</code> interface allow to return a more general move type (using generics
+        with wildcards) and <code>CliqueSolution</code> extends <code>SubsetSolution</code>. After all, a move that can be applied
+        to any subset solution can certainly also be applied to a clique solution.
+    </p>
+<pre class="prettyprint">
+public class GreedyCliqueNeighbourhood2 implements Neighbourhood&lt;CliqueSolution&gt; {
+    
+    // ...
+    
+    @Override
+    public Move&lt;SubsetSolution&gt; getRandomMove(CliqueSolution clique) {
+        // ... (same as before)
+    }
+
+    @Override
+    public Set&lt;Move&lt;SubsetSolution&gt;&gt; getAllMoves(CliqueSolution clique) {
+        
+        // get possible adds (constant time!)
+        Set&lt;Integer&gt; possibleAdds = clique.getPossibleAdds();
+        
+        // retain only additions of candidate vertices
+        // with maximum degree within induced subgraph
+        
+        // ... (same as before)
+        
+    }
+
+}
+</pre>
+    <p>
+        Finally we need to modify the searches so that they use the new solution type <code>CliqueSolution</code> and
+        corresponding optimized neighbourhood <code>GreedyCliqueNeighbourhood2</code>.
+    </p>
+<pre class="prettyprint">
+CliqueData data = ...
+CliqueObjective obj = ...
+
+// create clique problem with clique solution type
+CliqueProblem problem = new CliqueProblem(obj, data);
+
+// RANDOM DESCENT
+
+// use neighbourhood defined for clique solution type
+RandomDescent&lt;CliqueSolution&gt; randomDescent = new RandomDescent&lt;&gt;(problem, new GreedyCliqueNeighbourhood2(data));
+// start with empty clique
+randomDescent.setCurrentSolution(new CliqueSolution(data.getIDs(), data));
+
+// ... (same as before)
+
+// VARIABLE NEIGHBOURHOOD SEARCH
+
+// create shaking neighbourhoods (same as before)
+List&lt;Neighbourhood&lt;SubsetSolution&gt;&gt; shakingNeighs = ...
+
+// factory for random descent with greedy clique neighbourhood (optimized version)
+LocalSearchFactory&lt;CliqueSolution&gt; localSearchFactory = new LocalSearchFactory&lt;CliqueSolution&gt;() {
+    @Override
+    public LocalSearch&lt;CliqueSolution&gt; create(Problem&lt;CliqueSolution&gt; problem) {
+        return new RandomDescent&lt;&gt;(problem, new GreedyCliqueNeighbourhood2(data));
+    }
+};
+// create variable neighbourhood search
+VariableNeighbourhoodSearch&lt;CliqueSolution&gt; vns = new VariableNeighbourhoodSearch&lt;&gt;(
+                                                        problem,
+                                                        shakingNeighs,
+                                                        localSearchFactory
+                                                  );
+// start with empty clique
+vns.setCurrentSolution(new CliqueSolution(data.getIDs(), data));
+
+// ... (same as before)
+</pre>
+
+    <h4 class="page-header">
+        Full source code
+    </h4>
+    <p>
+        The complete source code of this example is available on
+        <a href="https://github.com/hdbeukel/james/tree/master/james/james-examples/src/main/java/org/jamesframework/examples/clique">GitHub</a>,
+        including some additional code to read the input from a text file.
+        You can also download a <a href="/getstarted/#snapshots-examples">ZIP file</a> that contains the Java sources of all examples, a compiled
+        JAR (including all dependencies) as well as some input files in case you want to run any of the examples. To run this example, execute
+    </p>
+<pre class="prettyprint">
+$ java -cp james-examples.jar org.jamesframework.examples.clique.MaximumClique &lt;inputfile&gt; &lt;maxshake&gt; &lt;runtime&gt;
+</pre>
+    </p>
+        from the command line. The input file should be a text file in which every row indicates an edge between two vertices (integer IDs)
+        separated by one or more spaces.
+        The <code>&lt;maxshake&gt;</code> parameter determines the number of shaking neighbourhoods that are used for VNS which each remove
+        a fixed number of vertices in [1,<code>&lt;maxshake&gt;</code>].
+        The runtime is given in seconds.
+    </p>
+    <p>
+        <ul class="list-unstyled">
+            <li><a href="/files/examples/clique-125.txt"><i class="fa fa-file-text-o"></i> Example input file 1 (125 vertices, &gt; 6000 edges)</a></li>
+            <li><a href="/files/examples/clique-500.txt"><i class="fa fa-file-text-o"></i> Example input file 2 (500 vertices, &gt; 110000 edges)</a></li>
+            <li><a href="/files/examples/clique-700.txt"><i class="fa fa-file-text-o"></i> Example input file 3 (700 vertices, &gt; 120000 edges)</a></li>
+        </ul>
+    </p>
+    <p>
+        The example input files correspond to instances C125.9, C500.9 and p_hat700-2, respectively, from the
+        <a href="http://iridia.ulb.ac.be/~fmascia/maximum_clique/DIMACS-benchmark">DIMACS benchmark set</a>.
+    </p>
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

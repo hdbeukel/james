@@ -39,7 +39,7 @@ layout: default
                 <span class="hidden-xs">
                     <span class="pull-right label label-warning">
                         Difficulty:
-                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-full"></i>
                         <i class="fa fa-star-o"></i>
                         <i class="fa fa-star-o"></i>
                         <i class="fa fa-star-o"></i>
@@ -82,7 +82,7 @@ layout: default
                     <span class="pull-right label label-warning">
                         Difficulty:
                         <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-full"></i>
                         <i class="fa fa-star-o"></i>
                         <i class="fa fa-star-o"></i>
                         <i class="fa fa-star-o"></i>
@@ -109,6 +109,42 @@ layout: default
             </p>
             <p>
                 <a class="btn btn-default" href="/examples/knapsack"><i class="fa fa-chevron-right"></i> View example</a>
+            </p>
+            
+            <h4 class="page-header example-header">
+                Example 3: The maximum clique problem
+                <span class="hidden-xs">
+                    <span class="pull-right label label-warning">
+                        Difficulty:
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-full"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </span>
+                    <span class="pull-right label label-success">
+                        <i class="fa fa-check"></i>
+                        Subset selection
+                    </span>
+                </span>
+            </h4>
+            <p class="lead">
+                Variable size subset selection with a custom greedy neighbourhood. Optimization algorithms: random descent
+                and variable neighbourhood search.
+            </p>
+            <p>
+                The maximum clique problem originates from graph theory and has many applications in e.g. social networks, bioinformatics
+                and computational chemistry. The goal is to find a clique of maximum size in a given graph. Such clique consists of a subset
+                of vertices which are all connected to each other (a complete subgraph).
+            </p>
+            <p>
+                The <a href="/docs/#random-descent">random descent</a> and <a href="/docs/#vns">variable neighbourhood search</a>
+                algorithms are applied to search for a maximum clique. The algorithms start from an empty clique and use a custom greedy
+                neighbourhood that always adds a single vertex which is connected to all vertices in the current clique. The variable
+                neighbourhood search also uses custom shaking neighbourhoods to escape from local optima.
+            </p>
+            <p>
+                <a class="btn btn-default" href="/examples/clique"><i class="fa fa-chevron-right"></i> View example</a>
             </p>
             
             <div class="bs-callout bs-callout-info">
