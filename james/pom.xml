@@ -10,7 +10,7 @@
     <!-- project info -->
     <groupId>org.jamesframework</groupId>
     <artifactId>james</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.1</version>
     <packaging>pom</packaging>
     <name>james</name>
     <description>James is an extensive Java framework for optimization using local search metaheuristics.</description>
