@@ -225,6 +225,10 @@ pre.prettyprint {
     margin-bottom: 0;
 }
 
+#getstarted .changes-link {
+    margin-left: 5px;
+}
+
 /* DOCUMENTATION */
 
 #docs dl {
