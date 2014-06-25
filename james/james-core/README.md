@@ -3,7 +3,7 @@ James Core Module
 
 The James core module is part of the [James framework][james-github].
 
-The core module includes general concepts modeling problems, objectives, constraints, solutions, etc. It also contains generic metaheuristics to solve the problems, as well as implementations of specific components for subset selection.
+The core module includes general components to model problems, objectives, constraints, neighbourhoods, etc. It also contains generic metaheuristics to solve the problems as well as implementations of specific components for subset selection.
 
 A wide range of local search algorithms are provided out-of-the-box, including
 
@@ -13,13 +13,10 @@ A wide range of local search algorithms are provided out-of-the-box, including
 4. Variable neighbourhood search
 5. Metropolis search
 6. Parallel tempering
+7. ...
 
 In addition, a greedy subset sampling heuristic is available (LR subset search) as well as exhaustive search, which is of course only feasible for problems with a reasonably small search space.
 
-Status
-======
-
-*James core module is currently under development*
   
 Documentation
 =============

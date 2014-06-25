@@ -7,11 +7,11 @@ James is an extensive Java framework for optimization using local search metaheu
 
 The James framework consists of several modules:
  
- - [James Core Module][core-module]: as its name suggests, this module contains the core components of the framework. It includes many general concepts modelling problems, objectives, constraints, algorithms, neighbourhoods, etc.
+ - [James Core Module][core-module]: as its name suggests, this module contains the core components of the framework. It includes general components to model problems, objectives, constraints, algorithms, neighbourhoods, etc.
  
    A wide range of generic local search algorithms are provided out-of-the-box, including random descent, steepest descent, tabu search, variable neighbourhood search and parallel tempering. Exhaustive search is also available, which is of course only applicable to problems with a reasonable small search space.
    
-   Moreover, the core module contains implementations of specific components for subset selection as well as some additional heuristics to be applied to subset sampling only.
+   Moreover, the core module contains implementations of specific components for subset selection as well as some additional heuristics to be applied for subset sampling only.
    
  - [James Extensions Module][extensions-module]: this module provides additional components for advanced problem specification and search customization, including utilities for weighted multi-objective functions and composite neighbourhoods.
 

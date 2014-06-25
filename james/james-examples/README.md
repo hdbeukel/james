@@ -4,11 +4,6 @@ James Examples Module
 The James examples module is part of the [James framework][james-github].
 
 This module provides a series of example problem implementations.
-
-Status
-======
-
-*James examples module is currently under development*
   
 Documentation
 =============
