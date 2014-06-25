@@ -167,6 +167,9 @@ color: #3A87AD;
         background: #428bca;
         color: #fff;
     }
+    .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:hover .text-info {
+        color: #fff;
+    }
 }
 
 /* CODE BLOCK STYLES */

@@ -20,23 +20,29 @@ layout: default
                 Javadoc API
             </h2>
             <p>
-                A fully specified Javadoc API is provided here for the core and extensions module.
+                A fully specified Javadoc API is provided for the core and extensions module.
             </p>
             
             <h4 id="latest-stable-api" class="page-header">
                 Latest stable API
             </h4>
             <p>
-                James is currently under development and no stable API has yet been released.
-                Subscribe to the <a href="/rss/james-releases.xml">RSS feed <i class="fa fa-rss"></i></a>
-                to stay informed about upcoming stable releases.
+                <ul>
+                   <li>
+                       <a href="/api/core/{{site.core-latest-stable}}">Core module API</a> <small class="text-muted">({{ site.core-latest-stable }})</small>
+                   </li>
+                   <li>
+                       <a href="/api/ext/{{site.extensions-latest-stable}}">Extensions module API</a> <small class="text-muted">({{ site.extensions-latest-stable }})</small>
+                   </li>
+                </ul>
+                
             </p>
             
             <h4 id="snapshot-api" class="page-header">
                 Development snapshots
             </h4>
             <p>
-                Bleeding edge development snapshot APIs are found here:
+                Bleeding edge development snapshot APIs are also available:
                 <ul>
                    <li>
                        <a href="/api/core/snapshot">Core module API</a> <small class="text-muted text-danger">({{ site.core-snapshot }})</small>
@@ -50,7 +56,7 @@ layout: default
                         <i class="fa fa-warning"></i>
                         Warning!
                     </h4>
-                    Snapshot APIs may change without notice. Use with care. If possible, consult a stable API instead.
+                    Snapshot APIs may change without notice. Use with care until a stable version is released.
                 </div>
             </p>
             
@@ -164,12 +170,12 @@ layout: default
                 applied.
             </p>
             <p>
-                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/RandomDescent.html">
+                <a href="/api/core/{{ site.core-latest-stable }}/index.html?org/jamesframework/core/search/algo/RandomDescent.html">
                     <i class="fa fa-book"></i>
                     Random descent
                 </a>
                 <small class="text-muted">
-                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                    (API version: <span>{{ site.core-latest-stable }}</span>)
                 </small>
             </p>
             
@@ -187,12 +193,12 @@ layout: default
                 applied.
             </p>
             <p>
-                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/SteepestDescent.html">
+                <a href="/api/core/{{ site.core-latest-stable }}/index.html?org/jamesframework/core/search/algo/SteepestDescent.html">
                     <i class="fa fa-book"></i>
                     Steepest descent
                 </a>
                 <small class="text-muted">
-                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                    (API version: <span>{{ site.core-latest-stable }}</span>)
                 </small>
             </p>
             
@@ -221,12 +227,12 @@ layout: default
                 applied.
             </p>
             <p>
-                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/tabu/TabuSearch.html">
+                <a href="/api/core/{{ site.core-latest-stable }}/index.html?org/jamesframework/core/search/algo/tabu/TabuSearch.html">
                     <i class="fa fa-book"></i>
                     Tabu search
                 </a>
                 <small class="text-muted">
-                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                    (API version: <span>{{ site.core-latest-stable }}</span>)
                 </small>
             </p>
             
@@ -262,12 +268,12 @@ layout: default
                 applied.
             </p>
             <p>
-                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/MetropolisSearch.html">
+                <a href="/api/core/{{ site.core-latest-stable }}/index.html?org/jamesframework/core/search/algo/MetropolisSearch.html">
                     <i class="fa fa-book"></i>
                     Metropolis search
                 </a>
                 <small class="text-muted">
-                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                    (API version: <span>{{ site.core-latest-stable }}</span>)
                 </small>
             </p>
             
@@ -303,12 +309,12 @@ layout: default
                 Note that all Metropolis searches are executed in separate threads to take advantage of multi-core architectures.
             </p>
             <p>
-                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/ParallelTempering.html">
+                <a href="/api/core/{{ site.core-latest-stable }}/index.html?org/jamesframework/core/search/algo/ParallelTempering.html">
                     <i class="fa fa-book"></i>
                     Parallel tempering
                 </a>
                 <small class="text-muted">
-                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                    (API version: <span>{{ site.core-latest-stable }}</span>)
                 </small>
             </p>
             
@@ -336,12 +342,12 @@ layout: default
                 can be applied.
             </p>
             <p>
-                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/vns/VariableNeighbourhoodDescent.html">
+                <a href="/api/core/{{ site.core-latest-stable }}/index.html?org/jamesframework/core/search/algo/vns/VariableNeighbourhoodDescent.html">
                     <i class="fa fa-book"></i>
                     Variable neighbourhood descent
                 </a>
                 <small class="text-muted">
-                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                    (API version: <span>{{ site.core-latest-stable }}</span>)
                 </small>
             </p>
             
@@ -369,12 +375,12 @@ layout: default
                 can be applied.
             </p>
             <p>
-                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/vns/ReducedVariableNeighbourhoodSearch.html">
+                <a href="/api/core/{{ site.core-latest-stable }}/index.html?org/jamesframework/core/search/algo/vns/ReducedVariableNeighbourhoodSearch.html">
                     <i class="fa fa-book"></i>
                     Reduced variable neighbourhood search
                 </a>
                 <small class="text-muted">
-                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                    (API version: <span>{{ site.core-latest-stable }}</span>)
                 </small>
             </p>
             
@@ -419,12 +425,12 @@ layout: default
                 problem can be applied.
             </p>
             <p>
-                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html">
+                <a href="/api/core/{{ site.core-latest-stable }}/index.html?org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html">
                     <i class="fa fa-book"></i>
                     Variable neighbourhood search
                 </a>
                 <small class="text-muted">
-                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                    (API version: <span>{{ site.core-latest-stable }}</span>)
                 </small>
             </p>
             
@@ -445,12 +451,12 @@ layout: default
                 can never be restarted.
             </p>
             <p>
-                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/PipedLocalSearch.html">
+                <a href="/api/core/{{ site.core-latest-stable }}/index.html?org/jamesframework/core/search/algo/PipedLocalSearch.html">
                     <i class="fa fa-book"></i>
                     Piped local search
                 </a>
                 <small class="text-muted">
-                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                    (API version: <span>{{ site.core-latest-stable }}</span>)
                 </small>
             </p>
             
@@ -466,12 +472,12 @@ layout: default
                 or a maximum runtime.
             </p>
             <p>
-                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/RandomSearch.html">
+                <a href="/api/core/{{ site.core-latest-stable }}/index.html?org/jamesframework/core/search/algo/RandomSearch.html">
                     <i class="fa fa-book"></i>
                     Random search
                 </a>
                 <small class="text-muted">
-                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                    (API version: <span>{{ site.core-latest-stable }}</span>)
                 </small>
             </p>
             
@@ -490,12 +496,12 @@ layout: default
                 size range.
             </p>
             <p>
-                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/exh/ExhaustiveSearch.html">
+                <a href="/api/core/{{ site.core-latest-stable }}/index.html?org/jamesframework/core/search/algo/exh/ExhaustiveSearch.html">
                     <i class="fa fa-book"></i>
                     Exhaustive search
                 </a>
                 <small class="text-muted">
-                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                    (API version: <span>{{ site.core-latest-stable }}</span>)
                 </small>
             </p>
             
@@ -526,12 +532,12 @@ layout: default
                 when the entire valid subset size range has been explored.
             </p>
             <p>
-                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/LRSubsetSearch.html">
+                <a href="/api/core/{{ site.core-latest-stable }}/index.html?org/jamesframework/core/search/algo/LRSubsetSearch.html">
                     <i class="fa fa-book"></i>
                     LR subset search
                 </a>
                 <small class="text-muted">
-                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                    (API version: <span>{{ site.core-latest-stable }}</span>)
                 </small>
             </p>
             
@@ -545,12 +551,12 @@ layout: default
                 (with a sufficient amount of cores) searches will be executed in parallel.
             </p>
             <p>
-                <a href="/api/core/{{ site.core-latest-stable-api }}/index.html?org/jamesframework/core/search/algo/BasicParallelSearch.html">
+                <a href="/api/core/{{ site.core-latest-stable }}/index.html?org/jamesframework/core/search/algo/BasicParallelSearch.html">
                     <i class="fa fa-book"></i>
                     Basic parallel search
                 </a>
                 <small class="text-muted">
-                    (API version: <span {% if site.core-latest-stable-api == 'snapshot' %}class="text-danger"{% endif %}>{{ site.core-latest-stable-api }}</span>)
+                    (API version: <span>{{ site.core-latest-stable }}</span>)
                 </small>
             </p>
             
