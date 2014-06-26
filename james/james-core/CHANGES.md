@@ -1,6 +1,7 @@
 James Core Module Changes
 =========================
 
+
 Version 0.2 (under development)
 -------------------------------
 

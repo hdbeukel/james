@@ -18,7 +18,7 @@
             </file>
             <!-- CHANGES -->
             <file>
-                <source>CHANGES</source>
+                <source>CHANGES.md</source>
             </file>
         </files>
         <fileSets>
