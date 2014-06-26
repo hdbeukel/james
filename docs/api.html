@@ -1,0 +1,83 @@
+---
+layout: default
+---
+
+<div id="api">
+            
+    <ol class="breadcrumb">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/docs/">Documentation</a></li>
+        <li class="active">Stable API overview</li>
+    </ol>
+
+    <div class="row">
+        
+        {% assign numrows = site.core-all-stable.size %}
+        
+        <!-- API table column -->
+        <div class="col-md-6">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <tr>
+                    <th>James Core Module</th>
+                    <th>James Extensions Module</th>
+                </tr>
+                {% assign core-latest = true %}
+                {% assign ext-latest = true %}
+                {% for r in (1..numrows) %}
+                    {% assign i = r | minus:1 %}
+                    {% assign core-version = site.core-all-stable[i] %}
+                    {% assign ext-version = site.extensions-all-stable[i] %}
+                    <tr>
+                        {% if core-version != '' %}
+                            <td>
+                                <a href="/api/core/{{ core-version }}/">
+                                    API version {{ core-version}}
+                                </a>
+                                {% if core-latest %}
+                                    <span class="text-success hidden-xs">
+                                        (latest version)
+                                    </span>
+                                {% endif %}
+                            </td>
+                            {% assign core-latest = false %}
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                        {% if ext-version != '' %}
+                            <td>
+                                <a href="/api/ext/{{ ext-version }}/">
+                                    API version {{ ext-version }}
+                                </a>
+                                {% if ext-latest %}
+                                    <span class="text-success hidden-xs">
+                                        (latest version)
+                                    </span>
+                                {% endif %}
+                            </td>
+                            {% assign ext-latest = false %}
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+              </table>
+            </div>
+        </div>
+        <!-- end of API table column -->
+        
+        <!-- compatibility warning -->
+        <div class="col-md-6">
+            <div class="bs-callout bs-callout-warning">
+                <h4>
+                    <i class="fa fa-warning"></i>
+                    Warning!
+                </h4>
+                To ensure compatibility, always use version <code>x.y</code> of the core module
+                in combination with version <code>x.y</code> or <code>x.y.*</code> of the extensions
+                module.
+            </div>
+        </div>
+        <!-- end of compatibility warning -->
+    
+</div>

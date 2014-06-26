@@ -247,6 +247,13 @@ pre.prettyprint {
     }
 }
 
+/* API OVERVIEW */
+
+#api .bs-callout
+{
+    margin-top: 0;
+}
+
 /* EXAMPLES */
 
 #examples h4 .label {
