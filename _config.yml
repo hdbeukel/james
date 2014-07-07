@@ -1,6 +1,3 @@
-# required gems
-gems: ['jekyll-less']
-
 # Build settings
 markdown: kramdown
 permalink: pretty
