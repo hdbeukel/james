@@ -232,6 +232,14 @@ public class GreedyCliqueNeighbourhood implements Neighbourhood&lt;SubsetSolutio
         among all possible adds is included in the clique. When no more vertices can be added, the neighbourhood
         returns <code>null</code> and the search automatically stops.
     </p>
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-lightbulb-o"></i>
+            Search listener
+        </h4>
+        The attached <code>ProgressionSearchListener</code> keeps track of the search progress (see
+        <a href="/examples/coresubset/#search-listener">example 1: core subset selection</a>).
+    </div>
 <pre class="prettyprint">
 // define adjacency map (graph)
 Map&lt;Integer, Set&lt;Integer&gt;&gt; adjacencyMap = ...
