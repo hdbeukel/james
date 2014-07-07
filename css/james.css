@@ -1,0 +1,316 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+* {
+  margin: 0;
+}
+html,
+body {
+  /* The html and body elements cannot have any padding or margin. */
+  padding: 0;
+  margin: 0;
+  /* Set minimum width */
+  min-width: 320px;
+}
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height (+ spacing) */
+  margin-bottom: 160px;
+}
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Fixed footer height */
+  height: 130px;
+  background-color: #fff;
+}
+#footer .container {
+  border-top: solid 1px #eee;
+  padding: 0;
+}
+#footer .logos {
+  font-variant: small-caps;
+  text-align: center;
+}
+/* Footer for small, medium, large screens */
+#footer .hidden-xs .copyright {
+  line-height: 25px;
+  margin-top: 40px;
+  width: 340px;
+  display: inline-block;
+}
+#footer .hidden-xs .logos {
+  line-height: 35px;
+  margin-top: 8px;
+  font-size: 110%;
+  width: 300px;
+  display: inline-block;
+}
+#footer .hidden-xs .logos img.fwo {
+  margin-left: 15px;
+  width: 128px;
+  height: 50px;
+}
+#footer .hidden-xs .logos img.ugent {
+  width: 99px;
+  height: 70px;
+}
+#footer .hidden-xs .logos {
+  float: right;
+}
+/* Footer for extra small screens */
+#footer .visible-xs .copyright {
+  text-align: center;
+  line-height: 20px;
+  width: 250px;
+  margin: 11px auto;
+}
+#footer .visible-xs .logos img.fwo {
+  margin-left: 15px;
+  width: 102px;
+  height: 40px;
+}
+#footer .visible-xs .logos img.ugent {
+  width: 80px;
+  height: 56px;
+}
+/* Side notes for calling out things
+-------------------------------------------------- */
+/* Base styles (regardless of theme) */
+.bs-callout {
+  margin: 20px 0;
+  padding: 15px 30px 15px 15px;
+  border-left: 5px solid #eee;
+}
+.bs-callout h4 {
+  margin-top: 0;
+}
+.bs-callout p:last-child {
+  margin-bottom: 0;
+}
+.bs-callout code,
+.bs-callout .highlight {
+  background-color: #fff;
+}
+/* Themes for different contexts */
+.bs-callout-danger {
+  background-color: #fcf2f2;
+  border-color: #dFb5b4;
+}
+.bs-callout-warning {
+  background-color: #fefbed;
+  border-color: #f1e7bc;
+}
+.bs-callout-info {
+  background-color: #f0f7fd;
+  border-color: #d0e3f0;
+}
+.bs-callout-danger h4 {
+  color: #B94A48;
+}
+.bs-callout-warning h4 {
+  color: #C09853;
+}
+.bs-callout-info h4 {
+  color: #3A87AD;
+}
+/* Alternative styles for elements contained in callout */
+.bs-callout dl {
+  margin: 0;
+}
+/* NAV BAR CUSTOMIZATION */
+.navbar {
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+}
+.navbar-brand {
+  background: url('../images/james-nav@2x.png') no-repeat 10px 7px;
+  background-size: 35px 35px;
+  padding-left: 50px;
+  height: 100%;
+  color: #eee !important;
+}
+.navbar-brand:hover {
+  color: #fff !important;
+}
+/* lighter dropdown headers on extra small screens */
+@media (max-width: 767px) {
+  .navbar .dropdown-header {
+    color: #eee;
+  }
+}
+/* blue hover background on dropdown links in non-collapsed navbar */
+@media (min-width: 768px) {
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover {
+    background: #428bca;
+    color: #fff;
+  }
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover .text-info {
+    color: #fff;
+  }
+}
+/* CODE BLOCK STYLES */
+pre,
+pre.prettyprint {
+  overflow: auto;
+  word-wrap: normal;
+  white-space: pre;
+  padding: 9px 14px;
+  margin-bottom: 14px;
+  background-color: #f7f7f9;
+  border: 1px solid #e1e1e8;
+  border-radius: 4px;
+}
+/* HOME PAGE */
+#home .start {
+  margin: 20px 0 55px 0;
+}
+#home .start .fa {
+  font-size: 72pt;
+  margin-top: 40px;
+}
+#home .start p {
+  margin: 0;
+  max-width: 450px;
+  margin: 0 auto;
+}
+#home .start a.btn {
+  margin: 10px 0;
+}
+#home .cc-license {
+  margin-top: 20px;
+}
+#home .cc-license img {
+  margin: 4px 15px 0 0;
+}
+/* GETTING STARTED */
+#getstarted dd {
+  margin-bottom: 7px;
+}
+#getstarted .bs-callout dd {
+  margin-bottom: 0;
+}
+#getstarted .changes-link {
+  margin-left: 5px;
+}
+/* DOCUMENTATION */
+#docs dl {
+  margin-bottom: 10px;
+}
+#docs #problem-uml {
+  width: 220px;
+  margin: 10px 25px 10px 10px;
+}
+/* don't float problem uml on very small screens */
+@media (max-width: 450px) {
+  #docs #problem-uml {
+    float: none !important;
+  }
+}
+/* API OVERVIEW */
+#api .bs-callout {
+  margin-top: 0;
+}
+/* EXAMPLES */
+#examples h4 .label {
+  margin-left: 5px;
+}
+/* Autoscroll sidebar
+----------------------*/
+/* sidebar */
+.bs-docs-sidebar {
+  padding-left: 10px;
+  /* fix font weight difference for fixed position */
+  -webkit-font-smoothing: antialiased;
+}
+/* positions: sticked to top, scroll through and sticked to bottom */
+.bs-docs-sidebar.affix-top {
+  margin-top: 45px;
+}
+.bs-docs-sidebar.affix {
+  position: fixed !important;
+  top: 20px !important;
+}
+/* all links */
+.bs-docs-sidebar .nav > li > a {
+  color: #999;
+  border-left: 2px solid transparent;
+  padding: 4px 20px;
+  font-size: 13px;
+  font-weight: 500;
+}
+/* nested links */
+.bs-docs-sidebar .nav .nav > li > a {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 30px;
+  font-size: 12px;
+}
+/* active & hover links */
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+  color: #563d7c;
+  text-decoration: none;
+  background-color: transparent;
+  border-left-color: #563d7c;
+}
+/* all active links */
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+  font-weight: 700;
+}
+/* nested active links */
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+  font-weight: 500;
+}
+/* hide inactive nested list */
+.bs-docs-sidebar .nav ul.nav {
+  display: none;
+}
+/* show active nested list */
+.bs-docs-sidebar .nav > .active > ul.nav {
+  display: block;
+}
+/* back to top link */
+.bs-docs-sidebar a.back-to-top {
+  color: #999;
+  padding: 20px 4px 20px 22px;
+  font-size: 13px;
+  font-weight: 500;
+  display: block;
+}
+.bs-docs-sidebar a.back-to-top:hover {
+  color: #563d7c;
+  text-decoration: none;
+}
+/* page lead */
+.bs-docs-sidebar li.sidebar-lead a {
+  font-size: 17px;
+  font-variant: small-caps;
+}
+/* General stuff
+-----------------*/
+.clear {
+  clear: both;
+}
+.small-caps {
+  font-variant: small-caps;
+}
+#wrap > .container {
+  padding: 0 15px;
+}
+#footer > .container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+code {
+  font-size: 80%;
+}
