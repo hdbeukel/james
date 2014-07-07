@@ -1,3 +1,4 @@
 /james/
 update-snapshot-api.sh
 _site
+node_modules
