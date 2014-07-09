@@ -7,3 +7,5 @@ update-snapshot-api.sh
 _site/
 *.jar
 *.zip
+_bootstrap
+node_modules
