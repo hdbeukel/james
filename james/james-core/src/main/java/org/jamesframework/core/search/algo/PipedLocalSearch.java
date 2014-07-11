@@ -20,7 +20,7 @@ import org.jamesframework.core.problems.solutions.Solution;
 import org.jamesframework.core.search.LocalSearch;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.SearchStatus;
-import org.jamesframework.core.search.listeners.SearchListener;
+import org.jamesframework.core.search.listeners.EmptySearchListener;
 
 /**
  * <p>
@@ -183,11 +183,7 @@ public class PipedLocalSearch<SolutionType extends Solution> extends LocalSearch
      * Private listener attached to each search in the pipeline, to abort searches that attempt to start when
      * the main search is already terminating.
      */
-    private class AbortWhenTerminatingListener implements SearchListener<SolutionType>{
-    
-        /*******************************************/
-        /* CALLBACKS FIRED BY SEARCHES IN PIPELINE */
-        /*******************************************/
+    private class AbortWhenTerminatingListener extends EmptySearchListener<SolutionType>{
 
         /**
          * When a search from the pipeline has started, the main search verifies that it has not yet been
@@ -201,35 +197,6 @@ public class PipedLocalSearch<SolutionType extends Solution> extends LocalSearch
                 search.stop();
             }
         }
-
-        /**
-         * No actions taken here.
-         * @param search ignored
-         */
-        @Override
-        public void searchStopped(Search<? extends SolutionType> search) {}
-        /**
-         * No actions taken here.
-         * @param search ignored
-         * @param newBestSolution ignored
-         * @param newBestSolutionEvaluation ignored
-         */
-        @Override
-        public void newBestSolution(Search<? extends SolutionType> search, SolutionType newBestSolution, double newBestSolutionEvaluation) {}
-        /**
-         * No actions taken here.
-         * @param search ignored
-         * @param numSteps ignored
-         */
-        @Override
-        public void stepCompleted(Search<? extends SolutionType> search, long numSteps) {}
-        /**
-         * No actions taken here.
-         * @param search ignored
-         * @param newStatus ignored
-         */
-        @Override
-        public void statusChanged(Search<? extends SolutionType> search, SearchStatus newStatus) {}
         
     }
     
