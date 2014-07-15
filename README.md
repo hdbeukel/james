@@ -1,21 +1,25 @@
 James
 =====
 
-James is an extensive Java framework for optimization using local search metaheuristics. The framework is mainly focused on subset selection, which has many applications in various areas, but other types of problems can also easily be implemented.
+James is an extensive Java framework for discrete optimization using local search metaheuristics.
+A wide range of generic optimization algorithms are provided that can be applied to any user-defined
+problem by plugging in a custom solution type and corresponding neighbourhood. Predefined components
+are included for subset selection, which is the main focus of the framework.
 
 ### Modules
 
 The James framework consists of several modules:
  
- - [James Core Module][core-module]: as its name suggests, this module contains the core components of the framework. It includes general components to model problems, objectives, constraints, algorithms, neighbourhoods, etc.
- 
-   A wide range of generic local search algorithms are provided out-of-the-box, including random descent, steepest descent, tabu search, variable neighbourhood search and parallel tempering. Exhaustive search is also available, which is of course only applicable to problems with a reasonable small search space.
+ - [James Core Module][core-module]: this module contains the core of the framework. It includes many general
+     components for both problem specification and search application. A wide range of generic local search
+     algorithms are provided out-of-the-box, including random descent, steepest descent, tabu search, variable
+     neighbourhood search and parallel tempering. Moreover, the core module contains implementations of specific
+     components for subset selection as well as some specific subset sampling heuristics.
    
-   Moreover, the core module contains implementations of specific components for subset selection as well as some additional heuristics to be applied for subset sampling only.
-   
- - [James Extensions Module][extensions-module]: this module provides additional components for advanced problem specification and search customization, including utilities for weighted multi-objective functions and composite neighbourhoods.
-
-	For later versions it is also planned to add generic components that reduce the effort to model and solve other types of problems besides subset selection (e.g. permutation problems).
+ - [James Extensions Module][extensions-module]: this module provides additional components for advanced problem
+     specification and search customization, including utilities for weighted multi-objective functions and composite neighbourhoods.
+     For later versions it is also planned to add components that reduce the effort to model and solve other types of problems besides
+     subset selection (e.g. permutation problems).
  
  - [James Examples Module][examples-module]: this module provides a series of example problem implementations as described at the [James website][examples-website].
 

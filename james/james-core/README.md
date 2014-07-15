@@ -3,7 +3,7 @@ James Core Module
 
 The James core module is part of the [James framework][james-github].
 
-The core module includes general components to model problems, objectives, constraints, neighbourhoods, etc. It also contains generic metaheuristics to solve the problems as well as implementations of specific components for subset selection.
+The core module includes many general components for both problem specification and search application.
 
 A wide range of local search algorithms are provided out-of-the-box, including
 
@@ -15,18 +15,24 @@ A wide range of local search algorithms are provided out-of-the-box, including
 6. Parallel tempering
 7. ...
 
-In addition, a greedy subset sampling heuristic is available (LR subset search) as well as exhaustive search, which is of course only feasible for problems with a reasonably small search space.
+In addition, a greedy subset sampling heuristic is available (LR subset search) as well as exhaustive search,
+which is of course only feasible for problems with a reasonably small search space.
+
+The core also contains specific components for subset selection such as a predefined solution type, an abstract
+problem specification and various subset neighbourhoods.
 
   
 Documentation
 =============
 
-More information, user documentation and examples of how to use the framework are provided at the [James website][james-website]. Additional developer documentation is posted on the [wiki][james-wiki].
+More information, user documentation and examples of how to use the framework are provided at the [James website][james-website].
+Additional developer documentation is posted on the [wiki][james-wiki].
 
 License and copyright
 =====================
 
-The James core module is licensed under the Apache License, Version 2.0, see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0. Copyright information is stated in the NOTICE file.
+The James core module is licensed under the Apache License, Version 2.0, see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0.
+Copyright information is stated in the NOTICE file.
 
 Contact
 =======
