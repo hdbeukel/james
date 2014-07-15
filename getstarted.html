@@ -33,14 +33,14 @@ layout: default
                     <dl class="dl-horizontal">
                       <dt id="core-module">Core Module</dt>
                       <dd>
-                        As its name suggests, this module contains the core components of the framework.
-                        It includes many general utilities for both problem specification and search
+                        This module contains the core of the framework.
+                        It includes many general components for both problem specification and search
                         application.
                         A wide range of generic local search algorithms are provided out-of-the-box, including
                         random descent, tabu search, variable neighbourhood search and parallel
                         tempering (all algorithms are listed <a href="/docs/#algorithms">here</a>).
-                        Moreover, the core module contains implementations of abstract components for subset selection
-                        as well as some heuristics that have been specifially designed for subset sampling.
+                        Moreover, the core module contains implementations of specific components for subset selection
+                        as well as some specific subset sampling heuristics.
                         <a href="https://github.com/hdbeukel/james/tree/master/james/james-core">
                             <i class="fa fa-github"></i>
                             GitHub
@@ -50,7 +50,7 @@ layout: default
                       <dd>
                         Extends the core with additional components for advanced problem specification and search customization,
                         including utilities for weighted multi-objective functions and composite neighbourhoods. For later versions
-                        it is also planned to add generic components that reduce the effort to model and solve other types of problems
+                        it is also planned to add components that reduce the effort to model and solve other types of problems
                         besides subset selection (e.g. permutation problems). This module is optional and should only be
                         included if any of its components are used.
                         <a href="https://github.com/hdbeukel/james/tree/master/james/james-extensions">
