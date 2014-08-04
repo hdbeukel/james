@@ -64,74 +64,95 @@ layout: default
             <h2 id="problems" class="page-header">
                 Problem specification
             </h2>
-            <img id="problem-uml" src="/images/problem.png" class="pull-left" />
             <p>
-                The James framework is mainly focused on subset selection but other types of problems can also easily be
-                plugged in. The effort needed to implement a subset selection problem is reduced to a minimum, while
-                modeling other problems requires a bit more coding.
+                The James framework strongly separates problem specification from search application so that existing algorithms
+                can easily be applied to obtain solutions for newly implemented problems. Each problem has a specific solution
+                type and a search creates solutions of this type to solve the problem. The search talks to the problem to obtain
+                random solutions (e.g. used as the default initial solution of a local search) and to evaluate and validate
+                constructed solutions.
             </p>
+            <img src="/images/diagram.png" class="centered-image" />
             <p>
-                Every problem has a specific solution type. This can be any Java class, given
-                that it extends the abstract <code>Solution</code> class from the framework, and models a solution
-                to the specified problem. The <code>Problem</code> itself then provides methods to evaluate and
-                validate a solution of this type, indicating whether evaluations are to be maximized or minimized.
-                It is also responsible for creating random solutions which are for example used as the default
-                initial solution of many local search algorithms.
+                Some utilities are provided to split the problem specification into an objective, data and possibly a number
+                of constraints. The objective and constraints are then responsible for evaluating and validating solutions,
+                using the data. Most available optimization algorithms are local searches that repeatedly modify the current
+                solution in an attempt to improve it. To use these searches it is necessary to provide a neighbourhood which
+                generates moves that are applied to the current solution. This neighbourhood should be compatible with the
+                solution type of the problem that is being solved.
             </p>
+            <img src="/images/diagram-detailed.png" class="centered-image" />
             <p>
-                James relies on Java generics for many reusable components of the framework. The <code>Problem</code>
-                interface has one parameter <code>SolutionType</code> which should be specified when implementing
-                the problem. An optimization algorithm can then be applied to obtain a solution of this type, where
-                the algorithm consults the <code>Problem</code> interface to evaluate and validate inspected solutions.
-                Most local search algorithms use a neighbourhood designed for the appropriate solution
-                type to explore the search space, starting from a random initial solution which is repeatedly
-                modified in an attempt to improve it (see <a href="#algorithms">below</a>).
+                The core module contains predefined components for subset selection problems, including a predefined solution
+                type, a high-level problem specification and several subset neighbourhoods. Similar components can easily be
+                added for other types of problems.
             </p>
             
             <h4 id="subset-selection" class="page-header">
                 Subset selection
             </h4>
             <p>
-                A number of reusable components are provided for subset selection problems so that the implementation
-                effort is reduced to a minimum. The only requirement to use these components
-                is that a unique integer ID should be assigned to every item that can be selected. Any
-                subset selection problem is then reduced to selection of a subset of these IDs.
+                The provided subset selection components require that a unique integer ID is assigned to each item in
+                the entire data set. Any subset selection problem then comes down to selecting a subset of these IDs.
+                Follow these steps to implement a subset selection problem:
             </p>
+            <ol>
+                <li>
+                    Create a custom data class (e.g. <code>MySubsetData</code>) by implementing the <code>SubsetData</code> interface.
+                    This interface defines a single method <code>getIDs()</code> that should return the set of all IDs that are
+                    assigned to an item. Custom methods may be added as well, for example to access data corresponding
+                    to specific items based on their IDs.
+                </li>
+                <li>
+                    Provide an objective function by implementing the <code>Objective</code> interface. This is a generic interface
+                    with two type parameters: the solution and data type.
+                    Set the solution and data type to <code>SubsetSolution</code> and <code>MySubsetData</code>, respectively, and
+                    implement the necessary methods to evaluate solutions using the underlying data and to inform the
+                    search whether evaluations are to be minimized or maximized.
+                </li>
+                <li>
+                    If there are any constraints, these can be specified by implementing the <code>Constraint</code> or
+                    <code>PenalizingConstraint</code> interfaces. The former rejects all invalid solutions, while the latter
+                    assigns a penalty to the evaluation that usually corresponds to the severity of the constraint violation.
+                    Both interfaces again have a generic solution and data type.
+                </li>
+                <li>
+                    Combine the data, objective and constraints (if any) in a <code>SubsetProblemWithData</code> class, where
+                    the desired minimum and maximum subset size are also specified. The data and objective are required and
+                    set at construction while constraints can be added later using <code>addRejectingConstraint(c)</code>
+                    and <code>addPenalizingConstraint(c)</code>.
+                </li>
+            </ol>
             <p>
-                A predefined solution type <code>SubsetSolution</code> is available that models
-                the selected IDs. An abstract class <code>SubsetProblemWithData</code>
-                is also provided which implements the <code>Problem</code> interface and separates data from the
-                objective (and constraints, if any). Any data class implementing the <code>SubsetData</code>
-                interface can be plugged in. The data contains the link between the IDs and (the properties of)
-                the corresponding items. It is used by the objective and constraints for evaluation and validation
-                of a given subset solution. Several predefined subset neighbourhoods are available that add, delete
-                and swap IDs in the current selection. Alternatively, a custom neighbourhood can be specified as well.
-            </p>
-            <p>
-                In short, the minimum requirements to implement a subset selection problem are to provide the necessary data
-                and an objective, wrapped in a <code>SubsetProblemWithData</code>. The details are best explained
-                through an <a href="/examples/#subset-selection">example</a>.
+                The obtained problem definition can be passed to any search to optimize the selection. Several predefined subset
+                neighbourhoods are available which add and/or remove some IDs to/from the selection to modify the current solution.
+                The details are best explained through an <a href="/examples/#subset-selection">example</a>.
             </p>
             
             <h4 id="beyond-subset-selection" class="page-header">
                 Beyond subset selection
             </h4>
             <p>
-                A bit more coding is required to implement other types of problems besides subset selection. First of all,
-                you will have to create a custom solution type that extends the abstract <code>Solution</code> class and that
-                models a solution to your problem. Then, the problem itself needs to be specified by implementing the
-                <code>Problem</code> interface for the new solution type.
-                If you would like to separate data from the objective and constraints, similar to what has been done for
-                subset selection problems, you may extend the abstract <code>ProblemWithData</code> class instead of directly
-                implementing the <code>Problem</code> interface.
+                A bit more coding is required to implement other types of problems besides subset selection:
             </p>
+            <ol>
+                <li>
+                    Define a custom solution type (e.g. <code>MySolution</code>) by extending the abstract <code>Solution</code> class.
+                </li>
+                <li>
+                    Either directly implement the <code>Problem</code> interface or extend the abstract <code>ProblemWithData</code>
+                    class. The latter option offers the same separation between data, objectives and constraints as for subset
+                    selection problems but requires to specify a data type (any class or interface is allowed).
+                    The solution type of the problem should be set to <code>MySolution</code>. If extending <code>ProblemWithData</code>,
+                    implement the data, objective and constraints (if any) by following the same steps as for a subset selection problem (see above).
+                </li>
+                <li>
+                    Provide at least one implementation of the <code>Neighbourhood</code> interface with solution type <code>MySolution</code>.
+                    A neighbourhood generates moves that can be applied to a solution to modify it and undone to go back to the previous solution.
+                    All moves implement the <code>Move</code> interface.
+                </li>
+            </ol>
             <p>
-                Your problem can then be passed to one of the optimization algorithms. However, most algorithms
-                are local search metaheuristics that rely on a definition of a neighbourhood. To use these algorithms,
-                you will also have to provide at least one custom neighbourhood that operates on the newly defined solution type.
-            </p>
-            <p>
-                An example will soon be provided <a href="/examples/#beyond-subset-selection">here</a>.
+                Some examples will soon be provided <a href="/examples/#beyond-subset-selection">here</a>.
             </p>
             
             <h2 id="algorithms" class="page-header clear">
