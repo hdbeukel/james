@@ -16,6 +16,7 @@
 
 package org.jamesframework.core.search.algo.tabu;
 
+import org.jamesframework.core.util.FastLimitedQueue;
 import java.util.Collection;
 import org.jamesframework.core.exceptions.IncompatibleTabuMemoryException;
 import org.jamesframework.core.problems.solutions.SubsetSolution;

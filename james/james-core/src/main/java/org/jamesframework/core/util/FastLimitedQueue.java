@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jamesframework.core.search.algo.tabu;
+package org.jamesframework.core.util;
 
 import java.util.Collection;
 import java.util.HashSet;
