@@ -30,8 +30,8 @@ import org.jamesframework.core.search.neigh.Neighbourhood;
  * The best valid neighbour is then adopted as the new current solution, even if it is no improvement over the current
  * solution. To avoid repeatedly revisiting the same solutions, moves might be declared tabu based on a tabu memory.
  * This memory dynamically tracks (a limited number of) recently visited solutions, features of these solutions and/or
- * recently applied moves (i.e. recently modified features). If a move is tabu, it is not considered. Thus, the best
- * valid, non tabu move is applied to the current solution in every step.
+ * recently applied moves (i.e. recently modified features). If a move is tabu, it is not considered, unless it yields
+ * a solution which is better than the best solution found so far (aspiration criterion).
  * <p>
  * If all valid neighbours of the current solution are tabu, the search stops. Note that this may never happen so that
  * a stop criterion should preferably be set to ensure termination.
@@ -113,14 +113,16 @@ public class TabuSearch<SolutionType extends Solution> extends SingleNeighbourho
     }
 
     /**
-     * Overrides validation of moves so that it is verified whether the move is not tabu.
+     * Overrides validation of moves to verify that the move is not tabu. A basic aspiration criterion
+     * is applied so that moves which yield a new best solution are always considered, i.e. never tabu.
      * 
      * @param move applied move
      * @return <code>true</code> if the move is valid and not tabu
      */
     @Override
     protected boolean validateMove(Move<? super SolutionType> move){
-        return !tabuMemory.isTabu(move, getCurrentSolution())   // ensure: not tabu
+        return (!tabuMemory.isTabu(move, getCurrentSolution())  // not tabu (or better than best solution found so far)
+                 || computeDelta(evaluateMove(move), getBestSolutionEvaluation()) > 0)
                 && super.validateMove(move);                    // call super for usual validation
     }
     
@@ -163,12 +165,12 @@ public class TabuSearch<SolutionType extends Solution> extends SingleNeighbourho
      */
     @Override
     protected void searchStep() {
-        // get best valid, non tabu move (ensured by overriding validateMove)
+        // get best valid, non tabu move (ensured by overriding move validation)
         Move<? super SolutionType> move = getMoveWithLargestDelta(
                                             getNeighbourhood().getAllMoves(getCurrentSolution()), // inspect all moves
                                             false);                                               // not necessarily an improvement
         if(move != null){
-            // accept move (also updates tabu memory by overriding acceptMove)
+            // accept move (also updates tabu memory by overriding move acceptance)
             acceptMove(move);
         } else {
             // no valid, non tabu neighbour found: stop search
