@@ -16,8 +16,8 @@
 
 package org.jamesframework.test.stubs;
 
-import org.jamesframework.core.problems.objectives.MinMaxObjective;
 import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.test.util.MinMaxObjective;
 
 /**
  * Objective stub that evaluates every solution (of any type) to a fixed value.

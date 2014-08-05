@@ -16,8 +16,8 @@
 
 package org.jamesframework.test.fakes;
 
-import org.jamesframework.core.problems.objectives.MinMaxObjective;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
+import org.jamesframework.test.util.MinMaxObjective;
 
 /**
  * A fake subset objective that ignores any given data, as it evaluates a subset solution by
