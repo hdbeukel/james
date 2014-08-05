@@ -6,8 +6,8 @@ permalink: pretty
 
 # used for links to latest snapshot JARs (core, extensions) and ZIP (examples) at Sonatype OSSRH
 core-snapshot: 0.2-SNAPSHOT
-extensions-snapshot: 0.1.1-SNAPSHOT
-examples-snapshot: 0.1.1-SNAPSHOT
+extensions-snapshot: 0.2-SNAPSHOT
+examples-snapshot: 0.2-SNAPSHOT
 
 # used for links to latest stable releases and corresponding APIs
 core-latest-stable: 0.1
