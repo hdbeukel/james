@@ -140,8 +140,8 @@ public class SubsetProblemWithData<DataType extends SubsetData> extends ProblemW
     }
     
     /**
-     * Create a random solution within the allowed minimum and maximum subset size. The IDs of all entities are taken from the
-     * underlying subset data, and a random subset of IDs is selected.
+     * Create a random solution within the allowed minimum and maximum subset size. The IDs of all entities
+     * are taken from the underlying subset data, and a random subset of IDs is selected.
      * 
      * @return random subset solution within minimum and maximum size
      */
@@ -160,8 +160,9 @@ public class SubsetProblemWithData<DataType extends SubsetData> extends ProblemW
     }
     
     /**
-     * Creates an empty subset solution containing the IDs of the underlying data, where none of these IDs are selected.
-     * 
+     * Creates an empty subset solution in which no IDs are selected. The set of all IDs is obtained from
+     * the underlying data and passed to the created empty solution.
+     *
      * @return empty subset solution with no selected IDs
      */
     @Override
@@ -170,8 +171,9 @@ public class SubsetProblemWithData<DataType extends SubsetData> extends ProblemW
     }
     
     /**
-     * Checks whether the given subset solution is rejected. A subset solution is rejected if any of the rejecting constraints is
-     * violated (see {@link #addRejectingConstraint(Constraint)}) or if it has an invalid size (number of selected IDs).
+     * Checks whether the given subset solution is rejected. A subset solution is rejected if any of the
+     * rejecting constraints is violated (see {@link #addRejectingConstraint(Constraint)}) or if it has
+     * an invalid size (number of selected IDs).
      * 
      * @param solution subset solution to verify
      * @return <code>true</code> if the solution is rejected
@@ -182,9 +184,10 @@ public class SubsetProblemWithData<DataType extends SubsetData> extends ProblemW
     }
     
     /**
-     * Checks whether the given subset solution is rejected. A subset solution is rejected if any of the rejecting constraints is
-     * violated (see {@link #addRejectingConstraint(Constraint)}). Also, if <code>checkSubsetSize</code> is <code>true</code>,
-     * the solution is rejected if it has an invalid size.
+     * Checks whether the given subset solution is rejected. A subset solution is rejected if any of
+     * the rejecting constraints is violated (see {@link #addRejectingConstraint(Constraint)}). Only
+     * when <code>checkSubsetSize</code> is <code>true</code> the solution is also rejected if it has
+     * an invalid size.
      * 
      * @param solution subset solution to verify
      * @param checkSubsetSize indicates whether a solution should be rejected if it has an invalid size

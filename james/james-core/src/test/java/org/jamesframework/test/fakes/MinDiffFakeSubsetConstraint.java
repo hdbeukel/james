@@ -53,7 +53,7 @@ public class MinDiffFakeSubsetConstraint implements Constraint<SubsetSolution, S
      */
     @Override
     public boolean isSatisfied(SubsetSolution solution, ScoredFakeSubsetData data) {
-        // store score in sorted set
+        // store scores in sorted set
         TreeSet<Double> scores  = new TreeSet<>();
         for(int ID : solution.getSelectedIDs()){
             scores.add(data.getScore(ID));

@@ -20,7 +20,7 @@ import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.search.neigh.Move;
 
 /**
- * Interface of a cache that records validity (see {@link Problem#rejectSolution(Solution)}) and
+ * Interface of a cache that records rejections (see {@link Problem#rejectSolution(Solution)}) and
  * evaluations (see {@link Problem#evaluate(Solution)}) of neighbours obtained by applying moves
  * to the current solution in a neighbourhood search. Whenever a move is validated and evaluated, the
  * computed values may be offered to the cache. They can be retrieved later, when the same move is

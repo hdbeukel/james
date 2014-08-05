@@ -232,7 +232,7 @@ public abstract class ProblemWithData<SolutionType extends Solution, DataType> i
         for(PenalizingConstraint<? super SolutionType, ? super DataType> pc : penalizingConstraints){
             // take into account penalty of penalizing constraint pc -- according to the general contract
             // of a penalizing constraint, no penalty (zero) will be assigned if the constraint is satisfied
-            // so we do not explicitely check this to avoid unnecessary computations
+            // so this is not explicitely checked to avoid unnecessary computations
             penalty += pc.computePenalty(solution, data);
         }
         // assign penalty to evaluation
