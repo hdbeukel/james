@@ -6,11 +6,11 @@
     <parent>
         <groupId>org.jamesframework</groupId>
         <artifactId>james</artifactId>
-        <version>0.1</version>
+        <version>0.2-SNAPSHOT</version>
     </parent>
     <!-- james examples specifications -->
     <artifactId>james-examples</artifactId>
-    <version>0.1.1-SNAPSHOT</version>
+    <version>0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>james-examples</name>
     <description>
@@ -120,19 +120,19 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>james-core</artifactId>
-            <version>0.1</version>
+            <version>0.2-SNAPSHOT</version>
         </dependency>
         <!-- depends on extensions module -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>james-extensions</artifactId>
-            <version>0.1</version>
+            <version>0.2-SNAPSHOT</version>
         </dependency>
         <!-- tests depend on core module tests -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>james-core</artifactId>
-            <version>0.1</version>
+            <version>0.2-SNAPSHOT</version>
             <type>test-jar</type>
             <scope>test</scope>
         </dependency>
