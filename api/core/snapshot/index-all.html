@@ -83,15 +83,15 @@
 <dd>
 <div class="block">Accept the given move by applying it to the current solution.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html#add-E-">add(E)</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html" title="class in org.jamesframework.core.search.algo.tabu">FastLimitedQueue</a></dt>
-<dd>
-<div class="block">Add an element at the tail of the queue, replacing the least recently added item if the queue is full.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#add-org.jamesframework.core.search.stopcriteria.StopCriterion-">add(StopCriterion)</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria">StopCriterionChecker</a></dt>
 <dd>
 <div class="block">Add a stop criterion to check.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html#addAll-java.util.Collection-">addAll(Collection&lt;E&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html" title="class in org.jamesframework.core.search.algo.tabu">FastLimitedQueue</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/FastLimitedQueue.html#add-E-">add(E)</a></span> - Method in class org.jamesframework.core.util.<a href="org/jamesframework/core/util/FastLimitedQueue.html" title="class in org.jamesframework.core.util">FastLimitedQueue</a></dt>
+<dd>
+<div class="block">Add an element at the tail of the queue, replacing the least recently added item if the queue is full.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/FastLimitedQueue.html#addAll-java.util.Collection-">addAll(Collection&lt;E&gt;)</a></span> - Method in class org.jamesframework.core.util.<a href="org/jamesframework/core/util/FastLimitedQueue.html" title="class in org.jamesframework.core.util">FastLimitedQueue</a></dt>
 <dd>
 <div class="block">Add the given collection of items.</div>
 </dd>
@@ -201,10 +201,6 @@
 <dd>
 <div class="block">Creates a checked deep copy of the given solution with specific type <code>T</code> (a subclass of <a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions"><code>Solution</code></a>).</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html#clear--">clear()</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html" title="class in org.jamesframework.core.search.algo.tabu">FastLimitedQueue</a></dt>
-<dd>
-<div class="block">Clear the queue.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html#clear--">clear()</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="class in org.jamesframework.core.search.algo.tabu">FullTabuMemory</a></dt>
 <dd>
 <div class="block">Clear the tabu memory.</div>
@@ -224,6 +220,10 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#clear--">clear()</a></span> - Method in class org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html" title="class in org.jamesframework.core.search.cache">SingleEvaluatedMoveCache</a></dt>
 <dd>
 <div class="block">Clear all cached values.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/FastLimitedQueue.html#clear--">clear()</a></span> - Method in class org.jamesframework.core.util.<a href="org/jamesframework/core/util/FastLimitedQueue.html" title="class in org.jamesframework.core.util">FastLimitedQueue</a></dt>
+<dd>
+<div class="block">Clear the queue.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html#clearTabuMemory--">clearTabuMemory()</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="class in org.jamesframework.core.search.algo.tabu">TabuSearch</a></dt>
 <dd>
@@ -251,7 +251,7 @@
 <dd>
 <div class="block">Interface of a constraint that can be imposed on the solutions, based on underlying data.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html#contains-E-">contains(E)</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html" title="class in org.jamesframework.core.search.algo.tabu">FastLimitedQueue</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/FastLimitedQueue.html#contains-E-">contains(E)</a></span> - Method in class org.jamesframework.core.util.<a href="org/jamesframework/core/util/FastLimitedQueue.html" title="class in org.jamesframework.core.util">FastLimitedQueue</a></dt>
 <dd>
 <div class="block">Checks whether the given item is contained in the queue.</div>
 </dd>
@@ -418,12 +418,12 @@
 </a>
 <h2 class="title">F</h2>
 <dl>
-<dt><a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html" title="class in org.jamesframework.core.search.algo.tabu"><span class="typeNameLink">FastLimitedQueue</span></a>&lt;<a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html" title="type parameter in FastLimitedQueue">E</a>&gt; - Class in <a href="org/jamesframework/core/search/algo/tabu/package-summary.html">org.jamesframework.core.search.algo.tabu</a></dt>
+<dt><a href="org/jamesframework/core/util/FastLimitedQueue.html" title="class in org.jamesframework.core.util"><span class="typeNameLink">FastLimitedQueue</span></a>&lt;<a href="org/jamesframework/core/util/FastLimitedQueue.html" title="type parameter in FastLimitedQueue">E</a>&gt; - Class in <a href="org/jamesframework/core/util/package-summary.html">org.jamesframework.core.util</a></dt>
 <dd>
 <div class="block">A fast queue with limited size that replaces the least recently added items if it is full, and which never contains
  duplicates of the same item.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html#FastLimitedQueue-int-">FastLimitedQueue(int)</a></span> - Constructor for class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html" title="class in org.jamesframework.core.search.algo.tabu">FastLimitedQueue</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/FastLimitedQueue.html#FastLimitedQueue-int-">FastLimitedQueue(int)</a></span> - Constructor for class org.jamesframework.core.util.<a href="org/jamesframework/core/util/FastLimitedQueue.html" title="class in org.jamesframework.core.util">FastLimitedQueue</a></dt>
 <dd>
 <div class="block">Creat a new instance with given size limit.</div>
 </dd>
@@ -964,8 +964,6 @@
 <dd>
 <div class="block">Checks whether the given move leads to an improvement when being applied to the current solution.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/MinMaxObjective.html#isMinimizing--">isMinimizing()</a></span> - Method in class org.jamesframework.core.problems.objectives.<a href="org/jamesframework/core/problems/objectives/MinMaxObjective.html" title="class in org.jamesframework.core.problems.objectives">MinMaxObjective</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/Objective.html#isMinimizing--">isMinimizing()</a></span> - Method in interface org.jamesframework.core.problems.objectives.<a href="org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a></dt>
 <dd>
 <div class="block">Check whether the objective is minimizing.</div>
@@ -1144,14 +1142,6 @@
 <dd>
 <div class="block">Create a stop criterion that imposes a minimum evaluation delta when
  finding a new best solution during a search run.</div>
-</dd>
-<dt><a href="org/jamesframework/core/problems/objectives/MinMaxObjective.html" title="class in org.jamesframework.core.problems.objectives"><span class="typeNameLink">MinMaxObjective</span></a>&lt;<a href="org/jamesframework/core/problems/objectives/MinMaxObjective.html" title="type parameter in MinMaxObjective">SolutionType</a> extends <a href="org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>,<a href="org/jamesframework/core/problems/objectives/MinMaxObjective.html" title="type parameter in MinMaxObjective">DataType</a>&gt; - Class in <a href="org/jamesframework/core/problems/objectives/package-summary.html">org.jamesframework.core.problems.objectives</a></dt>
-<dd>
-<div class="block">Abstract objective that handles minimization/maximization settings.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/MinMaxObjective.html#MinMaxObjective--">MinMaxObjective()</a></span> - Constructor for class org.jamesframework.core.problems.objectives.<a href="org/jamesframework/core/problems/objectives/MinMaxObjective.html" title="class in org.jamesframework.core.problems.objectives">MinMaxObjective</a></dt>
-<dd>
-<div class="block">By default, objectives are maximizing.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/EmptyLocalSearchListener.html#modifiedCurrentSolution-org.jamesframework.core.search.LocalSearch-SolutionType-double-">modifiedCurrentSolution(LocalSearch&lt;? extends SolutionType&gt;, SolutionType, double)</a></span> - Method in class org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/EmptyLocalSearchListener.html" title="class in org.jamesframework.core.search.listeners">EmptyLocalSearchListener</a></dt>
 <dd>&nbsp;</dd>
@@ -1462,13 +1452,13 @@
 <dd>
 <div class="block">Checks whether the given subset solution is rejected.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html#remove--">remove()</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html" title="class in org.jamesframework.core.search.algo.tabu">FastLimitedQueue</a></dt>
-<dd>
-<div class="block">Retrieves and removes the head of the queue, or returns <code>null</code> if the queue is empty.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#remove-org.jamesframework.core.search.stopcriteria.StopCriterion-">remove(StopCriterion)</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria">StopCriterionChecker</a></dt>
 <dd>
 <div class="block">Remove a stop criterion.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/FastLimitedQueue.html#remove--">remove()</a></span> - Method in class org.jamesframework.core.util.<a href="org/jamesframework/core/util/FastLimitedQueue.html" title="class in org.jamesframework.core.util">FastLimitedQueue</a></dt>
+<dd>
+<div class="block">Retrieves and removes the head of the queue, or returns <code>null</code> if the queue is empty.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/ProblemWithData.html#removePenalizingConstraint-org.jamesframework.core.problems.constraints.PenalizingConstraint-">removePenalizingConstraint(PenalizingConstraint&lt;? super SolutionType, ? super DataType&gt;)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/ProblemWithData.html" title="class in org.jamesframework.core.problems">ProblemWithData</a></dt>
 <dd>
@@ -1759,17 +1749,9 @@
 <div class="block">Set a custom factory to create instances of the local search algorithm to be applied to modify solutions
  obtained after shaking.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/MinMaxObjective.html#setMaximizing--">setMaximizing()</a></span> - Method in class org.jamesframework.core.problems.objectives.<a href="org/jamesframework/core/problems/objectives/MinMaxObjective.html" title="class in org.jamesframework.core.problems.objectives">MinMaxObjective</a></dt>
-<dd>
-<div class="block">Turn this objective into a maximizing objective.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/SubsetProblemWithData.html#setMaxSubsetSize-int-">setMaxSubsetSize(int)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/SubsetProblemWithData.html" title="class in org.jamesframework.core.problems">SubsetProblemWithData</a></dt>
 <dd>
 <div class="block">Set the maximum subset size.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/MinMaxObjective.html#setMinimizing--">setMinimizing()</a></span> - Method in class org.jamesframework.core.problems.objectives.<a href="org/jamesframework/core/problems/objectives/MinMaxObjective.html" title="class in org.jamesframework.core.problems.objectives">MinMaxObjective</a></dt>
-<dd>
-<div class="block">Turn this objective into a minimizing objective.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/SubsetProblemWithData.html#setMinSubsetSize-int-">setMinSubsetSize(int)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/SubsetProblemWithData.html" title="class in org.jamesframework.core.problems">SubsetProblemWithData</a></dt>
 <dd>
@@ -1876,11 +1858,11 @@
 <dd>
 <div class="block">Creates a single swap neighbourhood with a given set of fixed IDs which are not allowed to be swapped.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html#size--">size()</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html" title="class in org.jamesframework.core.search.algo.tabu">FastLimitedQueue</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/FastLimitedQueue.html#size--">size()</a></span> - Method in class org.jamesframework.core.util.<a href="org/jamesframework/core/util/FastLimitedQueue.html" title="class in org.jamesframework.core.util">FastLimitedQueue</a></dt>
 <dd>
 <div class="block">Get the number of items contained in the queue.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html#sizeLimit--">sizeLimit()</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/FastLimitedQueue.html" title="class in org.jamesframework.core.search.algo.tabu">FastLimitedQueue</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/FastLimitedQueue.html#sizeLimit--">sizeLimit()</a></span> - Method in class org.jamesframework.core.util.<a href="org/jamesframework/core/util/FastLimitedQueue.html" title="class in org.jamesframework.core.util">FastLimitedQueue</a></dt>
 <dd>
 <div class="block">Get the size limit of the queue.</div>
 </dd>
