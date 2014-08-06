@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package org.jamesframework.core.search.neigh.subset;
+package org.jamesframework.core.subset.neigh;
 
+import org.jamesframework.core.subset.neigh.AdditionMove;
 import org.jamesframework.core.subset.neigh.SubsetMove;
-import org.jamesframework.core.subset.neigh.DeletionMove;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -32,11 +32,11 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 
 /**
- * Test DeletionMove (subset move).
+ * Test AdditionMove (subset move).
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class DeletionMoveTest {
+public class AdditionMoveTest {
 
     // subset solution to work with
     private SubsetSolution sol;
@@ -52,7 +52,7 @@ public class DeletionMoveTest {
      */
     @BeforeClass
     public static void setUpClass() {
-        System.out.println("# Testing DeletionMove ...");
+        System.out.println("# Testing AdditionMove ...");
     }
 
     /**
@@ -60,7 +60,7 @@ public class DeletionMoveTest {
      */
     @AfterClass
     public static void tearDownClass() {
-        System.out.println("# Done testing DeletionMove!");
+        System.out.println("# Done testing AdditionMove!");
     }
     
     /**
@@ -78,90 +78,90 @@ public class DeletionMoveTest {
     }
 
     /**
-     * Test of getAddedIDs method, of class DeletionMove.
+     * Test of getAddedIDs method, of class AdditionMove.
      */
     @Test
     public void testGetAddedIDs() {
         
         System.out.println(" - test getAddedIDs");
         
-        // create arbitrary deletion move
-        SubsetMove move = new DeletionMove(0);
+        // create random move
+        Integer add = RG.nextInt();
+        SubsetMove move = new AdditionMove(add);
         
         // verify
-        assertTrue(move.getAddedIDs().isEmpty());
+        assertEquals(add, move.getAddedIDs().iterator().next());
+        assertEquals(1, move.getAddedIDs().size());
         
     }
 
     /**
-     * Test of getDeletedIDs method, of class DeletionMove.
+     * Test of getAddedID method, of class AdditionMove.
+     */
+    @Test
+    public void testGetAddedID() {
+       
+        System.out.println(" - test getAddedID");
+        
+        // create random move
+        int add = RG.nextInt();
+        AdditionMove move = new AdditionMove(add);
+        
+        // verify
+        assertEquals(add, move.getAddedID());
+        
+    }
+
+    /**
+     * Test of getDeletedIDs method, of class AdditionMove.
      */
     @Test
     public void testGetDeletedIDs() {
         
         System.out.println(" - test getDeletedIDs");
         
-        // create random deletion move
-        Integer del = RG.nextInt();
-        SubsetMove move = new DeletionMove(del);
+        // create arbitrary move
+        SubsetMove move = new AdditionMove(0);
         
         // verify
-        assertEquals(del, move.getDeletedIDs().iterator().next());
-        assertEquals(1, move.getDeletedIDs().size());
-        
-    }
-    
-    /**
-     * Test of getDeletedID method, of class DeletionMove.
-     */
-    @Test
-    public void testGetDeletedID() {
-        
-        System.out.println(" - test getDeletedID");
-        
-        // create random deletion move
-        int del = RG.nextInt();
-        DeletionMove move = new DeletionMove(del);
-        
-        // verify
-        assertEquals(del, move.getDeletedID());
+        assertTrue(move.getDeletedIDs().isEmpty());
         
     }
 
     /**
-     * Test of getNumAdded method, of class DeletionMove.
+     * Test of getNumAdded method, of class AdditionMove.
      */
     @Test
     public void testGetNumAdded() {
         
         System.out.println(" - test getNumAdded");
         
-        // create arbitary move
-        SubsetMove move = new DeletionMove(0);
+        // create arbitary addition move
+        SubsetMove move = new AdditionMove(0);
         
         // verify
-        assertEquals(0, move.getNumAdded());
+        assertEquals(1, move.getNumAdded());
         
     }
 
     /**
-     * Test of getNumDeleted method, of class DeletionMove.
+     * Test of getNumDeleted method, of class AdditionMove.
      */
     @Test
     public void testGetNumDeleted() {
         
         System.out.println(" - test getNumDeleted");
         
-        // create arbitrary move
-        SubsetMove move = new DeletionMove(0);
+        // create arbitary addition move
+        SubsetMove move = new AdditionMove(0);
         
         // verify
-        assertEquals(1, move.getNumDeleted());
+        assertEquals(0, move.getNumDeleted());
         
     }
 
     /**
-     * Test of apply method, of class DeletionMove.
+     * Test of apply method, of class AdditionMove.
      */
     @Test
     public void testApply() {
@@ -171,8 +171,8 @@ public class DeletionMoveTest {
         Move<SubsetSolution> move;
         boolean thrown;
         
-        // try to delete non existing ID
-        move = new DeletionMove(NUM_IDS+123);
+        // try to add non existing ID
+        move = new AdditionMove(NUM_IDS+123);
         thrown = false;
         try {
             move.apply(sol);
@@ -181,8 +181,10 @@ public class DeletionMoveTest {
         }
         assertTrue(thrown);
         
-        // try to delete existing but unselected ID
-        move = new DeletionMove(SetUtilities.getRandomElement(sol.getUnselectedIDs(), RG));
+        // try to add already selected ID
+        int sel = SetUtilities.getRandomElement(sol.getUnselectedIDs(), RG);
+        sol.select(sel);
+        move = new AdditionMove(sel);
         thrown = false;
         try {
             move.apply(sol);
@@ -191,30 +193,22 @@ public class DeletionMoveTest {
         }
         assertTrue(thrown);
         
-        // randomly select 50% of IDs
-        sol.selectAll(SetUtilities.getRandomSubset(sol.getUnselectedIDs(), (int) (0.5*sol.getNumUnselectedIDs()), RG));
-        
-        // apply random deletion move
-        int del = SetUtilities.getRandomElement(sol.getSelectedIDs(), RG);
-        Set<Integer> selectedCopy = new HashSet<>(sol.getSelectedIDs());
-        move = new DeletionMove(del);
-        move.apply(sol);
-        selectedCopy.remove(del);
-        // verify
-        assertEquals(selectedCopy, sol.getSelectedIDs());
-        
-        // apply chain deletion moves until selection is empty again
-        while(sol.getNumSelectedIDs() > 0){
-            move = new DeletionMove(SetUtilities.getRandomElement(sol.getSelectedIDs(), RG));
+        // apply chain of 10 addition moves
+        sol.deselectAll();
+        Set<Integer> selected = new HashSet<>();
+        for(int m=0; m<10; m++){
+            sel = SetUtilities.getRandomElement(sol.getUnselectedIDs(), RG);
+            move = new AdditionMove(sel);
             move.apply(sol);
+            selected.add(sel);
         }
         // verify
-        assertTrue(sol.getSelectedIDs().isEmpty());
+        assertEquals(selected, sol.getSelectedIDs());
         
     }
 
     /**
-     * Test of undo method, of class DeletionMove.
+     * Test of undo method, of class AdditionMove.
      */
     @Test
     public void testUndo() {
@@ -229,7 +223,7 @@ public class DeletionMoveTest {
         SubsetSolution copy;
         for(int i=0; i<100; i++){
             // random move
-            move = new DeletionMove(SetUtilities.getRandomElement(sol.getSelectedIDs(), RG));
+            move = new AdditionMove(SetUtilities.getRandomElement(sol.getUnselectedIDs(), RG));
             // copy current solution
             copy = new SubsetSolution(sol.getAllIDs());
             copy.selectAll(sol.getSelectedIDs());
@@ -244,17 +238,17 @@ public class DeletionMoveTest {
     }
     
     /**
-     * Test of equals and hashCode methods, of class DeletionMove.
+     * Test of equals and hashCode methods, of class AdditionMove.
      */
     @Test
     public void testEqualsAndHashCode() {
         
         System.out.println(" - test equals and hashCode");
         
-        // create deletion moves
-        SubsetMove move1 = new DeletionMove(123);   // equal
-        SubsetMove move2 = new DeletionMove(123);   // equal
-        SubsetMove move3 = new DeletionMove(456);   // different
+        // create addition moves
+        SubsetMove move1 = new AdditionMove(123);   // equal
+        SubsetMove move2 = new AdditionMove(123);   // equal
+        SubsetMove move3 = new AdditionMove(456);   // different
         
         // verify
         assertEquals(move1, move2);

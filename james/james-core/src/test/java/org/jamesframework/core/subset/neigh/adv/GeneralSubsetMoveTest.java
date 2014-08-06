@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jamesframework.core.search.neigh.subset.adv;
+package org.jamesframework.core.subset.neigh.adv;
 
 import org.jamesframework.core.subset.neigh.adv.GeneralSubsetMove;
 import java.util.HashSet;

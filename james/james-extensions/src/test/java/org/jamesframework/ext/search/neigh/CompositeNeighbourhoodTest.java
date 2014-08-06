@@ -29,7 +29,6 @@ import java.util.Random;
 import java.util.Set;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.neigh.*;
-import org.jamesframework.core.search.neigh.subset.*;
 import org.jamesframework.core.util.SetUtilities;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;

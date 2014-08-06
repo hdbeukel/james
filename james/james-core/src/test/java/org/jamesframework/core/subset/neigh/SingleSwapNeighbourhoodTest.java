@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jamesframework.core.search.neigh.subset;
+package org.jamesframework.core.subset.neigh;
 
 import org.jamesframework.core.subset.neigh.SubsetMove;
 import org.jamesframework.core.subset.neigh.SwapMove;

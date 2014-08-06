@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jamesframework.core.problems.solutions;
+package org.jamesframework.core.subset;
 
 import org.jamesframework.core.subset.SubsetSolution;
 import java.util.Collections;

@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-package org.jamesframework.core.search.algo;
+package org.jamesframework.core.subset.algo;
 
 import org.jamesframework.core.subset.algo.LRSubsetSearch;
 import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.subset.SubsetProblem;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.SearchTestTemplate;
+import org.jamesframework.core.subset.SubsetProblem;
+import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.util.SetUtilities;
 import org.jamesframework.test.stubs.NeverSatisfiedConstraintStub;
 import org.junit.After;

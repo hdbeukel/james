@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-package org.jamesframework.core.search.algo.tabu;
+package org.jamesframework.core.subset.algo.tabu;
 
 import org.jamesframework.core.subset.algo.tabu.IDBasedSubsetTabuMemory;
 import java.util.Arrays;
 import java.util.HashSet;
+import org.jamesframework.core.search.algo.tabu.TabuMemory;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.subset.neigh.AdditionMove;
 import org.jamesframework.core.subset.neigh.DeletionMove;
