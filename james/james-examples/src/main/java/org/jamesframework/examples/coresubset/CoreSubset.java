@@ -20,7 +20,7 @@ import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-import org.jamesframework.core.problems.SubsetProblemWithData;
+import org.jamesframework.core.problems.SubsetProblem;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.search.algo.RandomDescent;
 import org.jamesframework.core.search.neigh.subset.SingleSwapNeighbourhood;
@@ -84,7 +84,7 @@ public class CoreSubset {
             // create objective
             CoreSubsetObjective obj = new CoreSubsetObjective();
             // create subset problem
-            SubsetProblemWithData<CoreSubsetData> problem = new SubsetProblemWithData<>(obj, data, subsetSize);
+            SubsetProblem<CoreSubsetData> problem = new SubsetProblem<>(obj, data, subsetSize);
 
             // create random descent search with single swap neighbourhood
             RandomDescent<SubsetSolution> search = new RandomDescent<>(problem, new SingleSwapNeighbourhood());

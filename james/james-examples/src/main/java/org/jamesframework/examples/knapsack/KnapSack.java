@@ -20,7 +20,7 @@ import java.io.FileNotFoundException;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.problems.Problem;
-import org.jamesframework.core.problems.SubsetProblemWithData;
+import org.jamesframework.core.problems.SubsetProblem;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.search.algo.ParallelTempering;
 import org.jamesframework.core.search.algo.RandomDescent;
@@ -91,7 +91,7 @@ public class KnapSack {
             // create constraint
             KnapsackConstraint constraint = new KnapsackConstraint(capacity);
             // create subset problem (all sizes allowed)
-            SubsetProblemWithData<KnapsackData> problem = new SubsetProblemWithData<>(obj, data, 0, data.getIDs().size());
+            SubsetProblem<KnapsackData> problem = new SubsetProblem<>(obj, data, 0, data.getIDs().size());
             // add rejecting constraint
             problem.addRejectingConstraint(constraint);
             

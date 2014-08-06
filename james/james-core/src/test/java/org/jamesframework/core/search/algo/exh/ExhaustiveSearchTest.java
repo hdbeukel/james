@@ -18,7 +18,7 @@ package org.jamesframework.core.search.algo.exh;
 
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
-import org.jamesframework.core.problems.SubsetProblemWithData;
+import org.jamesframework.core.problems.SubsetProblem;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.search.SearchTestTemplate;
 import org.jamesframework.test.fakes.ScoredFakeSubsetData;
@@ -65,7 +65,7 @@ public class ExhaustiveSearchTest extends SearchTestTemplate {
     protected SumOfScoresFakeSubsetObjective objSmall;
 
     // subset problem to solve (select SUBSET_SIZE_SMALL out of DATASET_SIZE_SMALL)
-    protected SubsetProblemWithData<ScoredFakeSubsetData> problemSmall;
+    protected SubsetProblem<ScoredFakeSubsetData> problemSmall;
     protected static final int SUBSET_SIZE_SMALL = 10;
     
     /**
@@ -110,7 +110,7 @@ public class ExhaustiveSearchTest extends SearchTestTemplate {
         // create small problem components
         dataSmall = new ScoredFakeSubsetData(scoresSmall);
         objSmall = new SumOfScoresFakeSubsetObjective();
-        problemSmall = new SubsetProblemWithData<>(objSmall, dataSmall, SUBSET_SIZE_SMALL);
+        problemSmall = new SubsetProblem<>(objSmall, dataSmall, SUBSET_SIZE_SMALL);
         // create solution iterators
         solutionIterator = new SubsetSolutionIterator(data.getIDs(), SUBSET_SIZE);
         solutionIteratorSmall = new SubsetSolutionIterator(dataSmall.getIDs(), SUBSET_SIZE_SMALL);

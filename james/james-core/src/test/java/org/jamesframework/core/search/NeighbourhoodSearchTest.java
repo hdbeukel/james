@@ -18,7 +18,7 @@ package org.jamesframework.core.search;
 
 import java.util.Set;
 import org.jamesframework.core.problems.Problem;
-import org.jamesframework.core.problems.SubsetProblemWithData;
+import org.jamesframework.core.problems.SubsetProblem;
 import org.jamesframework.core.problems.solutions.Solution;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.search.listeners.EmptyLocalSearchListener;
@@ -72,7 +72,7 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
     public void setUp(){
         super.setUp();
         // for this test, a variable size subset problem is used (+/- 1 allowed)
-        problem = new SubsetProblemWithData<>(obj, data, SUBSET_SIZE-1, SUBSET_SIZE+1);
+        problem = new SubsetProblem<>(obj, data, SUBSET_SIZE-1, SUBSET_SIZE+1);
         neighSearch = new NeighbourhoodSearchStub<>(problem);
     }
     

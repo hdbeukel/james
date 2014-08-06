@@ -21,7 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.problems.Problem;
-import org.jamesframework.core.problems.SubsetProblemWithData;
+import org.jamesframework.core.problems.SubsetProblem;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.search.LocalSearch;
 import org.jamesframework.core.search.Search;
@@ -138,7 +138,7 @@ public class PipedLocalSearchTest extends SearchTestTemplate {
     public void testConstructor5() {
         System.out.println(" - test constructor 5");
         // try with search in pipeline that solves a different problem
-        SubsetProblemWithData<ScoredFakeSubsetData> problem2 = new SubsetProblemWithData<>(
+        SubsetProblem<ScoredFakeSubsetData> problem2 = new SubsetProblem<>(
                                                                     new FixedEvaluationObjectiveStub(7.0),
                                                                     data,
                                                                     DATASET_SIZE

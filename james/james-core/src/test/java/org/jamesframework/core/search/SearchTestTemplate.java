@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.problems.Problem;
-import org.jamesframework.core.problems.SubsetProblemWithData;
+import org.jamesframework.core.problems.SubsetProblem;
 import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.search.listeners.EmptySearchListener;
 import org.jamesframework.core.search.neigh.subset.SingleSwapNeighbourhood;
@@ -54,7 +54,7 @@ public class SearchTestTemplate {
     protected SumOfScoresFakeSubsetObjective obj;
 
     // subset problem to solve (select SUBSET_SIZE out of DATASET_SIZE)
-    protected SubsetProblemWithData<ScoredFakeSubsetData> problem;
+    protected SubsetProblem<ScoredFakeSubsetData> problem;
     protected static int SUBSET_SIZE = 20;
     
     // fake constraint (not assigned by default)
@@ -102,7 +102,7 @@ public class SearchTestTemplate {
     public void setUp(){
         data = new ScoredFakeSubsetData(scores);
         obj = new SumOfScoresFakeSubsetObjective();
-        problem = new SubsetProblemWithData<>(obj, data, SUBSET_SIZE);
+        problem = new SubsetProblem<>(obj, data, SUBSET_SIZE);
         constraint = new MinDiffFakeSubsetPenalizingConstraint(MIN_SCORE_DIFF);
         neigh = new SingleSwapNeighbourhood();
     }

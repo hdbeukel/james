@@ -59,7 +59,7 @@ public class LRSubsetSearch extends LocalSearch<SubsetSolution> {
      * @throws NullPointerException if <code>problem</code> is <code>null</code>
      * @throws IllegalArgumentException if <code>l</code> or <code>r</code> are negative or equal
      */
-    public LRSubsetSearch(SubsetProblem problem, int l, int r){
+    public LRSubsetSearch(SubsetProblem<?> problem, int l, int r){
         this(null, problem, l, r);
     }
     
@@ -76,7 +76,7 @@ public class LRSubsetSearch extends LocalSearch<SubsetSolution> {
      * @throws NullPointerException if <code>problem</code> is <code>null</code>
      * @throws IllegalArgumentException if <code>l</code> or <code>r</code> are negative or equal
      */
-    public LRSubsetSearch(String name, SubsetProblem problem, int l, int r){
+    public LRSubsetSearch(String name, SubsetProblem<?> problem, int l, int r){
         super(name != null ? name : "LRSubsetSearch", problem);
         // check l and r
         if(l < 0){
@@ -135,8 +135,8 @@ public class LRSubsetSearch extends LocalSearch<SubsetSolution> {
      * @return subset problem being solved
      */
     @Override
-    public SubsetProblem getProblem(){
-        return (SubsetProblem) super.getProblem();
+    public SubsetProblem<?> getProblem(){
+        return (SubsetProblem<?>) super.getProblem();
     }
     
     /**
