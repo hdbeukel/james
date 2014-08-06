@@ -27,10 +27,9 @@ import org.jamesframework.core.problems.solutions.Solution;
 
 /**
  * <p>
- * Represents an abstract problem that separates data from the objective and constraints (if any). The problem depends
- * on data of a specific data type (parameter <code>DataType</code>) and solutions are evaluated and validated based
- * on a combination of an objective and constraints which use the underlying data. Two types of constraints can be
- * specified:
+ * Represents an abstract problem that separates data from the objective and constraints (if any). The problem contains
+ * data of a specific data type (parameter <code>DataType</code>) and solutions are evaluated and validated based on a
+ * combination of an objective and constraints which use the underlying data. Two types of constraints can be specified:
  * </p>
  * <ul>
  *  <li>
