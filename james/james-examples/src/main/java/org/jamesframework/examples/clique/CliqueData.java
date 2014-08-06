@@ -18,14 +18,14 @@ package org.jamesframework.examples.clique;
 
 import java.util.Map;
 import java.util.Set;
-import org.jamesframework.core.problems.datatypes.SubsetData;
+import org.jamesframework.core.problems.datatypes.IntegerIdentifiedData;
 
 /**
  * Graph for the maximum clique problem where vertices are represented by unique integers.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class CliqueData implements SubsetData {
+public class CliqueData implements IntegerIdentifiedData {
 
     // maps each vertex to set of adjacent vertices
     private final Map<Integer, Set<Integer>> adjacencyMap;

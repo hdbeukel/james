@@ -17,22 +17,19 @@
 package org.jamesframework.core.problems.datatypes;
 
 import java.util.Set;
-import org.jamesframework.core.problems.solutions.SubsetSolution;
 
 /**
- * Represents data that corresponds to a subset selection problem. The data consists of a set of entities from which a subset
- * is to be selected, where it is required that each entity can be uniquely identified using an integer ID. This is the only
- * requirement, so that the data can be connected with abstract subset solutions, which are fully defined in terms of IDs only
- * (see {@link SubsetSolution}).
+ * Interface of a data set in which each item is identified using a unique integer ID.
+ * The IDs can be freely chosen and are exposed using the defined method {@link #getIDs()}.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public interface SubsetData {
+public interface IntegerIdentifiedData {
 
     /**
-     * Get the set of integer IDs corresponding to the underlying entities from which a subset is to be selected.
+     * Get the set of all integer IDs corresponding to an item in the data set.
      * 
-     * @return set of integer IDs corresponding to underlying entities
+     * @return set of all IDs
      */
     public Set<Integer> getIDs();
     

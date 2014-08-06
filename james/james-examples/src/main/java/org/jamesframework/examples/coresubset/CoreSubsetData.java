@@ -18,14 +18,14 @@ package org.jamesframework.examples.coresubset;
 
 import java.util.HashSet;
 import java.util.Set;
-import org.jamesframework.core.problems.datatypes.SubsetData;
+import org.jamesframework.core.problems.datatypes.IntegerIdentifiedData;
 
 /**
  * Provides the distance matrix which is used for the core subset selection problem.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class CoreSubsetData implements SubsetData {
+public class CoreSubsetData implements IntegerIdentifiedData {
 
     // item names
     private final String[] names;

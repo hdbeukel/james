@@ -15,6 +15,6 @@
  */
 
 /**
- * Available data types, used for problem specification.
+ * Predefined data types.
  */
 package org.jamesframework.core.problems.datatypes;

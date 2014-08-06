@@ -18,14 +18,14 @@ package org.jamesframework.test.fakes;
 
 import java.util.HashSet;
 import java.util.Set;
-import org.jamesframework.core.problems.datatypes.SubsetData;
+import org.jamesframework.core.problems.datatypes.IntegerIdentifiedData;
 
 /**
  * Fake subset data that assigns a score to every ID. Used for testing only.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class ScoredFakeSubsetData implements SubsetData {
+public class ScoredFakeSubsetData implements IntegerIdentifiedData {
 
     // array of scores
     private final double[] scores;

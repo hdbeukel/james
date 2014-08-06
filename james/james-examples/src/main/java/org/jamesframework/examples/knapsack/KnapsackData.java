@@ -18,14 +18,14 @@ package org.jamesframework.examples.knapsack;
 
 import java.util.HashSet;
 import java.util.Set;
-import org.jamesframework.core.problems.datatypes.SubsetData;
+import org.jamesframework.core.problems.datatypes.IntegerIdentifiedData;
 
 /**
  * Provides the data for the knapsack problem by specifying the weight and profit of each item.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class KnapsackData implements SubsetData {
+public class KnapsackData implements IntegerIdentifiedData {
 
     // weights
     private final double[] weights;
