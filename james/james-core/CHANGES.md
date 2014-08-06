@@ -5,6 +5,7 @@ James Core Module Changes
 Version 0.2 (under development)
 -------------------------------
 
+ - Renamed ProblemWithData to AbstractProblem
  - Renamed SubsetProblemWithData to SubsetProblem (removed separate SubsetProblem interface)
  - Removed MinMaxObjective
  - Reorganized package structure

@@ -34,22 +34,22 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 
 /**
- * Test general functionalities of ProblemWithData that do not actually rely on the specific data, using
+ * Test general functionalities of AbstractProblem that do not actually rely on the specific data, using
  * objectives and constraints that ignore the data.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class ProblemWithDataTest {
+public class AbstractProblemTest {
 
     // problem stub to work with
-    private ProblemWithData<Solution, Object> problem;
+    private AbstractProblem<Solution, Object> problem;
     
     /**
      * Print message when starting tests.
      */
     @BeforeClass
     public static void setUpClass() {
-        System.out.println("# Testing ProblemWithData ...");
+        System.out.println("# Testing AbstractProblem ...");
     }
 
     /**
@@ -57,7 +57,7 @@ public class ProblemWithDataTest {
      */
     @AfterClass
     public static void tearDownClass() {
-        System.out.println("# Done testing ProblemWithData!");
+        System.out.println("# Done testing AbstractProblem!");
     }
     
     /**
@@ -70,7 +70,7 @@ public class ProblemWithDataTest {
     }
 
     /**
-     * Test constructor, of class ProblemWithData.
+     * Test constructor, of class AbstractProblem.
      */
     @Test
     public void testConstructor() {
@@ -80,7 +80,7 @@ public class ProblemWithDataTest {
         // try to create problem without objective, should result in error
         boolean thrown = false;
         try {
-            ProblemWithData p = new ProblemStub(null);
+            AbstractProblem p = new ProblemStub(null);
         } catch (NullPointerException ex) {
             thrown = true;
         }
@@ -89,7 +89,7 @@ public class ProblemWithDataTest {
     }
     
     /**
-     * Test of getObjective method, of class ProblemWithData.
+     * Test of getObjective method, of class AbstractProblem.
      */
     @Test
     public void testGetObjective() {
@@ -103,7 +103,7 @@ public class ProblemWithDataTest {
     }
 
     /**
-     * Test of setObjective method, of class ProblemWithData.
+     * Test of setObjective method, of class AbstractProblem.
      */
     @Test
     public void testSetObjective() {
@@ -122,7 +122,7 @@ public class ProblemWithDataTest {
     }
 
     /**
-     * Test of getData method, of class ProblemWithData.
+     * Test of getData method, of class AbstractProblem.
      */
     @Test
     public void testGetData() {
@@ -140,7 +140,7 @@ public class ProblemWithDataTest {
     }
     
     /**
-     * Test of addRejectingConstraint method, of class ProblemWithData.
+     * Test of addRejectingConstraint method, of class AbstractProblem.
      */
     @Test
     public void testAddRejectingConstraintConstraint() {
@@ -157,7 +157,7 @@ public class ProblemWithDataTest {
     }
 
     /**
-     * Test of removeRejectingConstraint method, of class ProblemWithData.
+     * Test of removeRejectingConstraint method, of class AbstractProblem.
      */
     @Test
     public void testRemoveRejectingConstraint() {
@@ -185,7 +185,7 @@ public class ProblemWithDataTest {
     }
 
     /**
-     * Test of addPenalizingConstraint method, of class ProblemWithData.
+     * Test of addPenalizingConstraint method, of class AbstractProblem.
      */
     @Test
     public void testAddPenalizingConstraint() {
@@ -199,7 +199,7 @@ public class ProblemWithDataTest {
     }
 
     /**
-     * Test of removePenalizingConstraint method, of class ProblemWithData.
+     * Test of removePenalizingConstraint method, of class AbstractProblem.
      */
     @Test
     public void testRemovePenalizingConstraint() {
@@ -225,7 +225,7 @@ public class ProblemWithDataTest {
     }
 
     /**
-     * Test of rejectSolution method, of class ProblemWithData.
+     * Test of rejectSolution method, of class AbstractProblem.
      */
     @Test
     public void testRejectSolution() {
@@ -260,7 +260,7 @@ public class ProblemWithDataTest {
     }
     
     /**
-     * Test of getViolatedConstraints method, of class ProblemWithData.
+     * Test of getViolatedConstraints method, of class AbstractProblem.
      */
     @Test
     public void testGetViolatedConstraints() {
@@ -297,7 +297,7 @@ public class ProblemWithDataTest {
     }
 
     /**
-     * Test of evaluate method, of class ProblemWithData.
+     * Test of evaluate method, of class AbstractProblem.
      */
     @Test
     public void testEvaluate() {
@@ -343,7 +343,7 @@ public class ProblemWithDataTest {
     }
 
     /**
-     * Test of isMinimizing method, of class ProblemWithData.
+     * Test of isMinimizing method, of class AbstractProblem.
      */
     @Test
     public void testIsMinimizing() {
@@ -365,7 +365,7 @@ public class ProblemWithDataTest {
      * Problem stub used for testing. Only accepts objectives/constraints that can handle any solution type
      * and that do not use any data.
      */
-    private class ProblemStub extends ProblemWithData<Solution, Object> {
+    private class ProblemStub extends AbstractProblem<Solution, Object> {
 
         /**
          * Create problem stub with given objective, without specifying the data.

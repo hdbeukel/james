@@ -24,7 +24,7 @@ import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.util.SetUtilities;
 
 /**
- * High-level subset problem consisting of subset data, an objective and possibly some constraints (see {@link ProblemWithData}).
+ * High-level subset problem consisting of subset data, an objective and possibly some constraints (see {@link AbstractProblem}).
  * All items in the data set are identified using a unique integer ID so that any subset selection problem comes down to
  * selection of a subset of these IDs. The solution type is fixed to {@link SubsetSolution} and the data type can be set
  * to any implementation of the {@link SubsetData} interface. When creating the problem, the minimum and maximum allowed
@@ -34,7 +34,7 @@ import org.jamesframework.core.util.SetUtilities;
  * @param <DataType> underlying data type, should implement the interface {@link SubsetData}
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class SubsetProblem<DataType extends SubsetData> extends ProblemWithData<SubsetSolution, DataType> {
+public class SubsetProblem<DataType extends SubsetData> extends AbstractProblem<SubsetSolution, DataType> {
 
     // minimum and maximum subset size
     private int minSubsetSize, maxSubsetSize;
@@ -62,7 +62,7 @@ public class SubsetProblem<DataType extends SubsetData> extends ProblemWithData<
      */
     public SubsetProblem(Objective<? super SubsetSolution, ? super DataType> objective,
                                 DataType data, int minSubsetSize, int maxSubsetSize, boolean sortedIDs) {
-        // call constructor of ProblemWithData (already checks that objective is not null)
+        // call constructor of AbstractProblem (already checks that objective is not null)
         super(objective, data);
         // check that data is not null
         if(data == null){

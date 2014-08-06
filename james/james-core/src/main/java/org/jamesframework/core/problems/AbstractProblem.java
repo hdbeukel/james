@@ -53,7 +53,7 @@ import org.jamesframework.core.problems.solutions.Solution;
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public abstract class ProblemWithData<SolutionType extends Solution, DataType> implements Problem<SolutionType> {
+public abstract class AbstractProblem<SolutionType extends Solution, DataType> implements Problem<SolutionType> {
     
     // objective function (can be more general than solution and data types of problem)
     private Objective<? super SolutionType, ? super DataType> objective;
@@ -72,7 +72,7 @@ public abstract class ProblemWithData<SolutionType extends Solution, DataType> i
      * @param data underlying data
      * @throws NullPointerException if <code>objective</code> is <code>null</code>
      */
-    public ProblemWithData(Objective<? super SolutionType, ? super DataType> objective, DataType data) {
+    public AbstractProblem(Objective<? super SolutionType, ? super DataType> objective, DataType data) {
         // check that objective is not null
         if(objective == null){
             throw new NullPointerException("Error while creating problem: null not allowed for objective.");

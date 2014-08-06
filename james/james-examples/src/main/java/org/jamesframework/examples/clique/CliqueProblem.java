@@ -16,7 +16,7 @@
 
 package org.jamesframework.examples.clique;
 
-import org.jamesframework.core.problems.ProblemWithData;
+import org.jamesframework.core.problems.AbstractProblem;
 import org.jamesframework.core.problems.objectives.Objective;
 
 /**
@@ -24,7 +24,7 @@ import org.jamesframework.core.problems.objectives.Objective;
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class CliqueProblem extends ProblemWithData<CliqueSolution, CliqueData>{
+public class CliqueProblem extends AbstractProblem<CliqueSolution, CliqueData>{
 
     public CliqueProblem(Objective<? super CliqueSolution, ? super CliqueData> objective, CliqueData data) {
         super(objective, data);
