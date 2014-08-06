@@ -36,7 +36,7 @@ import org.junit.Before;
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class SubsetProblemWithDataTest {
+public class SubsetProblemTest {
 
     // fake subset data
     private ScoredFakeSubsetData fakeData;
@@ -66,7 +66,7 @@ public class SubsetProblemWithDataTest {
      */
     @BeforeClass
     public static void setUpClass() {
-        System.out.println("# Testing SubsetProblemWithData ...");
+        System.out.println("# Testing SubsetProblem ...");
     }
 
     /**
@@ -74,7 +74,7 @@ public class SubsetProblemWithDataTest {
      */
     @AfterClass
     public static void tearDownClass() {
-        System.out.println("# Done testing SubsetProblemWithData!");
+        System.out.println("# Done testing SubsetProblem!");
     }
     
     /**
