@@ -16,13 +16,14 @@
 
 package org.jamesframework.core.search.algo.tabu;
 
+import org.jamesframework.core.subset.algo.tabu.IDBasedSubsetTabuMemory;
 import java.util.Arrays;
 import java.util.HashSet;
-import org.jamesframework.core.problems.solutions.SubsetSolution;
-import org.jamesframework.core.search.neigh.subset.AdditionMove;
-import org.jamesframework.core.search.neigh.subset.DeletionMove;
-import org.jamesframework.core.search.neigh.subset.SubsetMove;
-import org.jamesframework.core.search.neigh.subset.SwapMove;
+import org.jamesframework.core.subset.SubsetSolution;
+import org.jamesframework.core.subset.neigh.AdditionMove;
+import org.jamesframework.core.subset.neigh.DeletionMove;
+import org.jamesframework.core.subset.neigh.SubsetMove;
+import org.jamesframework.core.subset.neigh.SwapMove;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;

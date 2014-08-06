@@ -16,11 +16,12 @@
 
 package org.jamesframework.core.search;
 
+import org.jamesframework.core.search.status.SearchStatus;
 import java.util.Collection;
 import java.util.Iterator;
 import org.jamesframework.core.exceptions.SearchException;
 import org.jamesframework.core.problems.Problem;
-import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.search.cache.EvaluatedMoveCache;
 import org.jamesframework.core.search.cache.SingleEvaluatedMoveCache;
 import org.jamesframework.core.search.neigh.Move;

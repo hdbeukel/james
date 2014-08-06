@@ -16,10 +16,11 @@
 
 package org.jamesframework.core.search.neigh.subset.adv;
 
+import org.jamesframework.core.subset.neigh.adv.GeneralSubsetMove;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
-import org.jamesframework.core.problems.solutions.SubsetSolution;
+import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.util.SetUtilities;
 import org.junit.Test;
 import static org.junit.Assert.*;

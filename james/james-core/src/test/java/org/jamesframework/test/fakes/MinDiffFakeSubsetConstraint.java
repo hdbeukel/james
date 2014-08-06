@@ -18,7 +18,7 @@ package org.jamesframework.test.fakes;
 
 import java.util.TreeSet;
 import org.jamesframework.core.problems.constraints.Constraint;
-import org.jamesframework.core.problems.solutions.SubsetSolution;
+import org.jamesframework.core.subset.SubsetSolution;
 
 /**
  * Fake subset constraint based on fake subset data. Only accepts solutions where the minimum difference

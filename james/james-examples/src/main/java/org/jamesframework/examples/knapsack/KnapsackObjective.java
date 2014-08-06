@@ -17,7 +17,7 @@
 package org.jamesframework.examples.knapsack;
 
 import org.jamesframework.core.problems.objectives.Objective;
-import org.jamesframework.core.problems.solutions.SubsetSolution;
+import org.jamesframework.core.subset.SubsetSolution;
 
 /**
  * Objective for the knapsack problem: maximize the total profit.

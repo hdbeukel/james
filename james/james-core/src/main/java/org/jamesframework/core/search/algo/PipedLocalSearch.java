@@ -18,10 +18,10 @@ package org.jamesframework.core.search.algo;
 
 import java.util.List;
 import org.jamesframework.core.problems.Problem;
-import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.search.LocalSearch;
 import org.jamesframework.core.search.Search;
-import org.jamesframework.core.search.SearchStatus;
+import org.jamesframework.core.search.status.SearchStatus;
 import org.jamesframework.core.search.listeners.EmptySearchListener;
 
 /**

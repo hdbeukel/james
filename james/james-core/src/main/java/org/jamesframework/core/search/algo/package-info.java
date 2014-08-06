@@ -15,7 +15,6 @@
  */
 
 /**
- * Actual search implementations (non self-contained searches and their related components
- * are implemented in separate subpackages).
+ * Algorithm implementations.
  */
 package org.jamesframework.core.search.algo;

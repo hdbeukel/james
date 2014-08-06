@@ -15,6 +15,6 @@
  */
 
 /**
- * Advanced subset selection neighbourhoods.
+ * Specific subset sampling algorithms.
  */
-package org.jamesframework.core.search.neigh.subset.adv;
+package org.jamesframework.core.subset.algo;

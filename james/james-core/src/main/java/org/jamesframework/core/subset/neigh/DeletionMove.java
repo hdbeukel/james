@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package org.jamesframework.core.search.neigh.subset;
+package org.jamesframework.core.subset.neigh;
 
 import java.util.Collections;
 import java.util.Set;
 import org.jamesframework.core.exceptions.SolutionModificationException;
-import org.jamesframework.core.problems.solutions.SubsetSolution;
+import org.jamesframework.core.subset.SubsetSolution;
 
 /**
  * Simple subset move that removes a single ID from the current selection.

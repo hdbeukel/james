@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jamesframework.core.problems.solutions;
+package org.jamesframework.core.subset;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -23,11 +23,11 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 import org.jamesframework.core.exceptions.SolutionModificationException;
+import org.jamesframework.core.problems.Solution;
 
 /**
- * Implements a generic subset solution based on IDs of selected entities. The subset is sampled from a set of entities
- * which are each assumed to be uniquely identified using an integer ID, so that a generic subset solution can be modeled
- * using these IDs only, independently of the actual corresponding entities.
+ * High-level subset solution modeled in terms of IDs of selected items. The subset is sampled from a data set
+ * of items which are each assumed to be identified using a unique integer ID.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
@@ -321,8 +321,9 @@ public class SubsetSolution extends Solution {
     }
 
     /**
-     * Checks if the given solution is also a subset solution which is conceptually equal to this subset solution.
-     * Subset solutions are considered equal if and only if they contain exactly the same selected and unselected IDs.
+     * Checks whether the given other solution represents the same subset solution.
+     * Subset solutions are considered equal if and only if they contain exactly the same
+     * selected and unselected IDs.
      * 
      * @param sol other solution to check for equality
      * @return <code>true</code> if the other solution is also a subset solution and contains exactly the same

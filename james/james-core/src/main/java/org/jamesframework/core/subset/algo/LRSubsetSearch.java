@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package org.jamesframework.core.search.algo;
+package org.jamesframework.core.subset.algo;
 
 import java.util.HashSet;
 import java.util.Set;
-import org.jamesframework.core.problems.SubsetProblem;
-import org.jamesframework.core.problems.solutions.Solution;
-import org.jamesframework.core.problems.solutions.SubsetSolution;
+import org.jamesframework.core.subset.SubsetProblem;
+import org.jamesframework.core.problems.Solution;
+import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.LocalSearch;
 
 /**

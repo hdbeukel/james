@@ -14,14 +14,15 @@
  * limitations under the License.
  */
 
-package org.jamesframework.core.search.algo.tabu;
+package org.jamesframework.core.subset.algo.tabu;
 
 import org.jamesframework.core.util.FastLimitedQueue;
 import java.util.Collection;
 import org.jamesframework.core.exceptions.IncompatibleTabuMemoryException;
-import org.jamesframework.core.problems.solutions.SubsetSolution;
+import org.jamesframework.core.search.algo.tabu.TabuMemory;
+import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.neigh.Move;
-import org.jamesframework.core.search.neigh.subset.SubsetMove;
+import org.jamesframework.core.subset.neigh.SubsetMove;
 
 /**
  * An ID based subset tabu memory keeps track of recently added and deleted IDs (recently applied moves) and does not

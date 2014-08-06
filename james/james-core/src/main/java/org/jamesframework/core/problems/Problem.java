@@ -16,8 +16,6 @@
 
 package org.jamesframework.core.problems;
 
-import org.jamesframework.core.problems.solutions.Solution;
-
 /**
  * Interface of a problem with a generic solution type. Contains methods to evaluate or validate a solution and
  * to create a random solution. Also indicates whether the evaluations are to be maximized or minimized.

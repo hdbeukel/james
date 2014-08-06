@@ -20,10 +20,10 @@ import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-import org.jamesframework.core.problems.SubsetProblem;
-import org.jamesframework.core.problems.solutions.SubsetSolution;
+import org.jamesframework.core.subset.SubsetProblem;
+import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.algo.RandomDescent;
-import org.jamesframework.core.search.neigh.subset.SingleSwapNeighbourhood;
+import org.jamesframework.core.subset.neigh.SingleSwapNeighbourhood;
 import org.jamesframework.core.search.stopcriteria.MaxRuntime;
 import org.jamesframework.examples.util.ProgressionSearchListener;
 

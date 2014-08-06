@@ -18,7 +18,7 @@ package org.jamesframework.core.search;
 
 import org.jamesframework.core.exceptions.SearchException;
 import org.jamesframework.core.problems.Problem;
-import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 
 /**

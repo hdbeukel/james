@@ -17,7 +17,7 @@
 package org.jamesframework.core.search.algo.tabu;
 
 import org.jamesframework.core.exceptions.IncompatibleTabuMemoryException;
-import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.search.neigh.Move;
 
 /**

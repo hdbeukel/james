@@ -17,7 +17,7 @@
 package org.jamesframework.core.search.algo.tabu;
 
 import java.util.concurrent.TimeUnit;
-import org.jamesframework.core.problems.solutions.SubsetSolution;
+import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.SearchTestTemplate;
 import org.junit.After;
 import org.junit.AfterClass;

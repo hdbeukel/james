@@ -16,10 +16,11 @@
 
 package org.jamesframework.core.search.algo.tabu;
 
+import org.jamesframework.core.subset.algo.tabu.IDBasedSubsetTabuMemory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import org.jamesframework.core.problems.solutions.SubsetSolution;
+import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.SearchTestTemplate;
 import org.jamesframework.test.stubs.NeverSatisfiedConstraintStub;
 import org.junit.After;

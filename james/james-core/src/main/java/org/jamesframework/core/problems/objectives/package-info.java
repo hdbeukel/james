@@ -15,6 +15,6 @@
  */
 
 /**
- * Objective interface and utilities, used for problem specification.
+ * Objective interfaces.
  */
 package org.jamesframework.core.problems.objectives;

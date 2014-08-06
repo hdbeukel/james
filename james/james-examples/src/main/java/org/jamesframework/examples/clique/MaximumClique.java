@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.problems.Problem;
-import org.jamesframework.core.problems.solutions.SubsetSolution;
+import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.LocalSearch;
 import org.jamesframework.core.search.algo.RandomDescent;
 import org.jamesframework.core.search.algo.vns.VariableNeighbourhoodSearch;

@@ -16,7 +16,7 @@
 
 package org.jamesframework.test.stubs;
 
-import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.problems.Solution;
 
 /**
  * Empty solution stub. Used for testing purposes only.

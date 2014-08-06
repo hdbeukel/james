@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.jamesframework.core.exceptions.SearchException;
 import org.jamesframework.core.problems.Problem;
-import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.search.listeners.LocalSearchListener;
 import org.jamesframework.core.search.listeners.SearchListener;
 

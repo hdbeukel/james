@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package org.jamesframework.core.problems.solutions;
+package org.jamesframework.core.problems;
 
 import org.jamesframework.core.exceptions.SolutionCopyException;
 
 /**
- * Represents an abstract solution. Every extending solution class should provide methods to check for conceptual
- * equality with a given other solution and to compute a corresponding hash code. Two solutions which are deemed
- * equal should always produce the same hash code, while different solutions may (and preferably should) produce
+ * Represents an abstract solution. Every extending solution class should provide methods to check for equality
+ * with a given other solution and to compute a corresponding hash code. Two solutions which are deemed equal
+ * should always produce the same hash code, while different solutions may (and preferably should) produce
  * different hash codes (according to the general contract of {@link Object#hashCode()}).
  * <p>
  * Every solution class should also implement the abstract method {@link #copy()} which is used to create a deep
@@ -114,12 +114,13 @@ public abstract class Solution {
     public abstract Solution copy();
     
     /**
-     * Checks whether this solution is conceptually equal to an other, given solution.
-     * The implementation should be consistent with {@link #computeHashCode()}, i.e. if
-     * it returns true, both solutions should always yield the same hash code.
+     * Checks whether this solution is equal to an other, given solution.
+     * The implementation should be consistent with {@link #computeHashCode()},
+     * i.e. if it returns <code>true</code>, both solutions should always yield
+     * the same hash code.
      * 
      * @param sol other solution to check for equality
-     * @return true if both solutions are conceptually equal
+     * @return <code>true</code> if both solutions are equal
      */
     public abstract boolean isSameSolution(Solution sol);
     
@@ -133,13 +134,11 @@ public abstract class Solution {
     public abstract int computeHashCode();
 
     /**
-     * Overrides default equality check by verifying whether the given object is of type
-     * {@link Solution} and subsequently calling the specific equality check
-     * {@link #isSameSolution(Solution)}.
+     * Overrides the default equality check by first verifying whether the given object is also of type
+     * {@link Solution} and subsequently calling the specific equality check {@link #isSameSolution(Solution)}.
      * 
      * @param obj object to check for equality
-     * @return true in case given object is a solution which is conceptually equal to this
-     *  solution
+     * @return <code>true</code> if the given object is an equal solution
      */
     @Override
     public final boolean equals(Object obj) {

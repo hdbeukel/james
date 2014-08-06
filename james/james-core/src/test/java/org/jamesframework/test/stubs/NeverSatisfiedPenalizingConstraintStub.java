@@ -17,7 +17,7 @@
 package org.jamesframework.test.stubs;
 
 import org.jamesframework.core.problems.constraints.PenalizingConstraint;
-import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.problems.Solution;
 
 /**
  * Penalizing constraint stub that is never satisfied for any solution. A fixed penalty is returned for any solution.

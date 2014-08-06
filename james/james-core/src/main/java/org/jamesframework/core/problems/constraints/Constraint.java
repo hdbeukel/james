@@ -16,7 +16,7 @@
 
 package org.jamesframework.core.problems.constraints;
 
-import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.problems.Solution;
 
 /**
  * Interface of a constraint that can be imposed on the solutions, based on underlying data.

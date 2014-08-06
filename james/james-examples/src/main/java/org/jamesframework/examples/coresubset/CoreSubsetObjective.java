@@ -19,7 +19,7 @@ package org.jamesframework.examples.coresubset;
 import java.util.ArrayList;
 import java.util.List;
 import org.jamesframework.core.problems.objectives.Objective;
-import org.jamesframework.core.problems.solutions.SubsetSolution;
+import org.jamesframework.core.subset.SubsetSolution;
 
 /**
  * Implements the core subset selection objective: maximizing the average distance between all pairs of selected items.

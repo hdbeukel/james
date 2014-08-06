@@ -15,6 +15,6 @@
  */
 
 /**
- * Tabu search and related components, including tabu memory specification.
+ * Tabu search and components (including tabu memory specification).
  */
 package org.jamesframework.core.search.algo.tabu;

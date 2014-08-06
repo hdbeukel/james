@@ -15,6 +15,6 @@
  */
 
 /**
- * General neighbourhood and move specification.
+ * Neighbourhoods and components.
  */
 package org.jamesframework.core.search.neigh;

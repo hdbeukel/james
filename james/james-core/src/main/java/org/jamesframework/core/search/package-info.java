@@ -15,6 +15,6 @@
  */
 
 /**
- * Abstract search templates, including both general searches and neighbourhood searches.
+ * High-level search templates.
  */
 package org.jamesframework.core.search;

@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package org.jamesframework.core.problems;
+package org.jamesframework.core.subset;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+import org.jamesframework.core.problems.AbstractProblem;
 import org.jamesframework.core.problems.datatypes.IntegerIdentifiedData;
 import org.jamesframework.core.problems.objectives.Objective;
-import org.jamesframework.core.problems.solutions.SubsetSolution;
 import org.jamesframework.core.util.SetUtilities;
 
 /**

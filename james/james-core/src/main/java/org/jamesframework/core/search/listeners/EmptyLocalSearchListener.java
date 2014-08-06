@@ -16,7 +16,7 @@
 
 package org.jamesframework.core.search.listeners;
 
-import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.search.LocalSearch;
 
 /**

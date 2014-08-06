@@ -17,7 +17,7 @@
 package org.jamesframework.test.util;
 
 import org.jamesframework.core.problems.objectives.Objective;
-import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.problems.Solution;
 
 /**
  * Abstract objective that handles minimization/maximization settings. The default setting is maximization.

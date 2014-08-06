@@ -17,7 +17,7 @@
 package org.jamesframework.core.search.algo.exh;
 
 import java.util.NoSuchElementException;
-import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.problems.Solution;
 
 /**
  * Interface of a generic solution iterator that iterates through a collection of solutions.

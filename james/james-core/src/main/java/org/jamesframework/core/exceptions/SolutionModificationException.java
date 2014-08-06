@@ -16,7 +16,7 @@
 
 package org.jamesframework.core.exceptions;
 
-import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.problems.Solution;
 
 /**
  * Exception thrown when trying to apply an invalid modification to a solution.

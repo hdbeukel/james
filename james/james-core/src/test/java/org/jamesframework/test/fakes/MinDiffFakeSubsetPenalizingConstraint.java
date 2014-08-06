@@ -20,7 +20,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.TreeSet;
 import org.jamesframework.core.problems.constraints.PenalizingConstraint;
-import org.jamesframework.core.problems.solutions.SubsetSolution;
+import org.jamesframework.core.subset.SubsetSolution;
 
 /**
  * Fake subset constraint based on fake subset data. Only accepts solutions where the minimum difference

@@ -16,13 +16,18 @@
 
 package org.jamesframework.ext.search.neigh;
 
+import org.jamesframework.core.subset.neigh.SwapMove;
+import org.jamesframework.core.subset.neigh.SingleSwapNeighbourhood;
+import org.jamesframework.core.subset.neigh.DeletionMove;
+import org.jamesframework.core.subset.neigh.AdditionMove;
+import org.jamesframework.core.subset.neigh.SinglePerturbationNeighbourhood;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-import org.jamesframework.core.problems.solutions.SubsetSolution;
+import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.neigh.*;
 import org.jamesframework.core.search.neigh.subset.*;
 import org.jamesframework.core.util.SetUtilities;

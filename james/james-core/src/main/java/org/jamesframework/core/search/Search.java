@@ -16,6 +16,7 @@
 
 package org.jamesframework.core.search;
 
+import org.jamesframework.core.search.status.SearchStatus;
 import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.search.stopcriteria.StopCriterion;
 import java.util.HashSet;
@@ -25,7 +26,7 @@ import org.jamesframework.core.exceptions.IncompatibleStopCriterionException;
 import org.jamesframework.core.exceptions.JamesRuntimeException;
 import org.jamesframework.core.exceptions.SearchException;
 import org.jamesframework.core.problems.Problem;
-import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.search.stopcriteria.StopCriterionChecker;
 import org.jamesframework.core.util.JamesConstants;
 import org.slf4j.Logger;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jamesframework.core.search;
+package org.jamesframework.core.search.status;
 
 /**
  * Enumeration of possible search statuses.

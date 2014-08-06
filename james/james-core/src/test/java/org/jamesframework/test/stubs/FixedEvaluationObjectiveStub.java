@@ -16,7 +16,7 @@
 
 package org.jamesframework.test.stubs;
 
-import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.problems.Solution;
 import org.jamesframework.test.util.MinMaxObjective;
 
 /**

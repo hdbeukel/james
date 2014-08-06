@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-package org.jamesframework.core.search.algo.exh;
+package org.jamesframework.core.subset.algo.exh;
 
 import java.util.NoSuchElementException;
 import java.util.Set;
-import org.jamesframework.core.problems.solutions.SubsetSolution;
+import org.jamesframework.core.search.algo.exh.SolutionIterator;
+import org.jamesframework.core.subset.SubsetSolution;
 
 /**
  * A subset solution iterator generates all possible subsets within a given size range, given a

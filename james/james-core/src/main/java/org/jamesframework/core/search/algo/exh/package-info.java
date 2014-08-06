@@ -15,6 +15,6 @@
  */
 
 /**
- * Exhaustive search and related components.
+ * Exhaustive search and components.
  */
 package org.jamesframework.core.search.algo.exh;

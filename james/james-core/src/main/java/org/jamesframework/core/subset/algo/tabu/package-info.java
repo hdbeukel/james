@@ -15,6 +15,6 @@
  */
 
 /**
- * Neighbourhoods and moves for subset selection.
+ * Tabu search components for subset selection.
  */
-package org.jamesframework.core.search.neigh.subset;
+package org.jamesframework.core.subset.algo.tabu;

@@ -16,7 +16,7 @@
 
 package org.jamesframework.core.problems.constraints;
 
-import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.problems.Solution;
 
 /**
  * Interface of a penalizing constraint, which assigns a certain penalty to a solution which does not

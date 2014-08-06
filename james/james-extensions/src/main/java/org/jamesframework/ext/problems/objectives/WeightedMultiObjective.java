@@ -19,7 +19,7 @@ package org.jamesframework.ext.problems.objectives;
 import java.util.HashMap;
 import java.util.Map;
 import org.jamesframework.core.problems.objectives.Objective;
-import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.problems.Solution;
 
 /**
  * Implements an objective which calculates a weighted sum of other objectives. A weighted multi-objective

@@ -18,7 +18,7 @@ package org.jamesframework.examples.clique;
 
 import java.util.HashSet;
 import java.util.Set;
-import org.jamesframework.core.problems.solutions.SubsetSolution;
+import org.jamesframework.core.subset.SubsetSolution;
 
 /**
  * Extension of subset solution for maximum clique problem. Dynamically keeps track of the set of vertices

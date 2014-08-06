@@ -19,7 +19,7 @@ package org.jamesframework.core.search.algo.vns;
 import java.util.List;
 import org.jamesframework.core.exceptions.JamesRuntimeException;
 import org.jamesframework.core.problems.Problem;
-import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.search.MultiNeighbourhoodSearch;
 import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.search.neigh.Neighbourhood;

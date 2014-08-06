@@ -16,9 +16,9 @@
 
 package org.jamesframework.core.search.listeners;
 
-import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.search.Search;
-import org.jamesframework.core.search.SearchStatus;
+import org.jamesframework.core.search.status.SearchStatus;
 
 /**
  * An empty search listener contains empty implementations of all methods in {@link SearchListener}, acting as

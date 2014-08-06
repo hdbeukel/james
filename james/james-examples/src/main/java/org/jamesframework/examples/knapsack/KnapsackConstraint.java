@@ -17,7 +17,7 @@
 package org.jamesframework.examples.knapsack;
 
 import org.jamesframework.core.problems.constraints.Constraint;
-import org.jamesframework.core.problems.solutions.SubsetSolution;
+import org.jamesframework.core.subset.SubsetSolution;
 
 /**
  * Knapsack constraint verifying that the maximum total weight is not exceeded.

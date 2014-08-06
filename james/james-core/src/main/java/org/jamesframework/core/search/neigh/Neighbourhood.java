@@ -17,7 +17,7 @@
 package org.jamesframework.core.search.neigh;
 
 import java.util.Set;
-import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.problems.Solution;
 
 /**
  * Interface of a neighbourhood that generates moves to transform a given solution into a neighbouring solution.

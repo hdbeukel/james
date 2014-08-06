@@ -16,7 +16,7 @@
 
 package org.jamesframework.core.problems.objectives;
 
-import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.problems.Solution;
 
 /**
  * Interface of a general objective used to evaluate solutions, using some underlying data.

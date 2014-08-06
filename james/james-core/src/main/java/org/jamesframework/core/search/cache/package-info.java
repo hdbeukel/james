@@ -15,6 +15,6 @@
  */
 
 /**
- * Caches used by searches for efficient solution evaluation and validation.
+ * Caches used by searches for efficient move evaluation and validation.
  */
 package org.jamesframework.core.search.cache;

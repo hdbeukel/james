@@ -26,9 +26,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import org.jamesframework.core.exceptions.SearchException;
 import org.jamesframework.core.problems.Problem;
-import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.search.Search;
-import org.jamesframework.core.search.SearchStatus;
+import org.jamesframework.core.search.status.SearchStatus;
 import org.jamesframework.core.search.listeners.EmptySearchListener;
 import org.jamesframework.core.search.listeners.SearchListener;
 

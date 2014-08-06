@@ -15,6 +15,6 @@
  */
 
 /**
- * Constraint interfaces, used for problem specification.
+ * Constraint interfaces.
  */
 package org.jamesframework.core.problems.constraints;

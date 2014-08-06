@@ -19,10 +19,10 @@ package org.jamesframework.examples.clique;
 import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
-import org.jamesframework.core.problems.solutions.SubsetSolution;
+import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.search.neigh.Neighbourhood;
-import org.jamesframework.core.search.neigh.subset.adv.GeneralSubsetMove;
+import org.jamesframework.core.subset.neigh.adv.GeneralSubsetMove;
 import org.jamesframework.core.util.SetUtilities;
 
 /**

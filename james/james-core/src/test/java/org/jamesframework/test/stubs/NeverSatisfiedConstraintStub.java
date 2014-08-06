@@ -17,7 +17,7 @@
 package org.jamesframework.test.stubs;
 
 import org.jamesframework.core.problems.constraints.Constraint;
-import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.problems.Solution;
 
 /**
  * Constraint stub which is never satisfied for any solution. Data is ignored. Only used for testing.

@@ -15,6 +15,6 @@
  */
 
 /**
- * Solution modelling.
+ * Exhaustive search components for subset selection.
  */
-package org.jamesframework.core.problems.solutions;
+package org.jamesframework.core.subset.algo.exh;

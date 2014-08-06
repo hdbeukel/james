@@ -16,9 +16,10 @@
 
 package org.jamesframework.core.search.algo.exh;
 
+import org.jamesframework.core.subset.algo.exh.SubsetSolutionIterator;
 import java.util.HashSet;
 import java.util.Set;
-import org.jamesframework.core.problems.solutions.SubsetSolution;
+import org.jamesframework.core.subset.SubsetSolution;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;

@@ -19,7 +19,7 @@ package org.jamesframework.core.search.algo;
 import java.util.concurrent.ThreadLocalRandom;
 import org.jamesframework.core.exceptions.JamesRuntimeException;
 import org.jamesframework.core.problems.Problem;
-import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.search.SingleNeighbourhoodSearch;
 import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.search.neigh.Neighbourhood;

@@ -15,6 +15,6 @@
  */
 
 /**
- * Problem specification.
+ * High-level problem specification.
  */
 package org.jamesframework.core.problems;

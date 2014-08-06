@@ -15,6 +15,6 @@
  */
 
 /**
- * Variable neighbourhood searches.
+ * Variable neighbourhood searches and components.
  */
 package org.jamesframework.core.search.algo.vns;

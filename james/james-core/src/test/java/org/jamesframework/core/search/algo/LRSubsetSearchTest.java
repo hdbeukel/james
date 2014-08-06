@@ -16,9 +16,10 @@
 
 package org.jamesframework.core.search.algo;
 
+import org.jamesframework.core.subset.algo.LRSubsetSearch;
 import java.util.concurrent.TimeUnit;
-import org.jamesframework.core.problems.SubsetProblem;
-import org.jamesframework.core.problems.solutions.SubsetSolution;
+import org.jamesframework.core.subset.SubsetProblem;
+import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.SearchTestTemplate;
 import org.jamesframework.core.util.SetUtilities;
 import org.jamesframework.test.stubs.NeverSatisfiedConstraintStub;

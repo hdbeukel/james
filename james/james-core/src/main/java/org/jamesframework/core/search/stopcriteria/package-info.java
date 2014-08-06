@@ -15,6 +15,6 @@
  */
 
 /**
- * Stop criteria used by searches.
+ * Stop criteria.
  */
 package org.jamesframework.core.search.stopcriteria;

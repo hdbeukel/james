@@ -17,9 +17,9 @@
 package org.jamesframework.core.search.listeners;
 
 import org.jamesframework.core.exceptions.IncompatibleSearchListenerException;
-import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.search.Search;
-import org.jamesframework.core.search.SearchStatus;
+import org.jamesframework.core.search.status.SearchStatus;
 
 /**
  * Interface of a listener which may be attached to a search with the specified solution type (or a more specific solution type).

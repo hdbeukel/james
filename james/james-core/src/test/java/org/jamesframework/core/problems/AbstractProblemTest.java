@@ -19,7 +19,6 @@ package org.jamesframework.core.problems;
 import org.jamesframework.core.problems.constraints.Constraint;
 import org.jamesframework.core.problems.constraints.PenalizingConstraint;
 import org.jamesframework.core.problems.objectives.Objective;
-import org.jamesframework.core.problems.solutions.Solution;
 import org.jamesframework.test.stubs.AlwaysSatisfiedConstraintStub;
 import org.jamesframework.test.stubs.AlwaysSatisfiedPenalizingConstraintStub;
 import org.jamesframework.test.stubs.EmptySolutionStub;

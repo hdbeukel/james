@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package org.jamesframework.core.search.neigh.subset;
+package org.jamesframework.core.subset.neigh;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
-import org.jamesframework.core.problems.solutions.SubsetSolution;
+import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.util.RouletteSelector;

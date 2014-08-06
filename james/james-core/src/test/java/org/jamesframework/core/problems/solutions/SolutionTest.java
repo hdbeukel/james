@@ -16,6 +16,7 @@
 
 package org.jamesframework.core.problems.solutions;
 
+import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.exceptions.SolutionCopyException;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;

@@ -17,7 +17,7 @@
 package org.jamesframework.core.util;
 
 import org.jamesframework.core.problems.Problem;
-import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.search.LocalSearch;
 
 /**

@@ -18,7 +18,7 @@ package org.jamesframework.test.search;
 
 import org.jamesframework.core.search.algo.RandomSearch;
 import org.jamesframework.core.problems.Problem;
-import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.problems.Solution;
 
 /**
  * Extension of random search with an internally limit on the number of performed steps,

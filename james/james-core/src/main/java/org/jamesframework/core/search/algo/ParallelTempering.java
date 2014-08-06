@@ -28,7 +28,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import org.jamesframework.core.exceptions.JamesRuntimeException;
 import org.jamesframework.core.exceptions.SearchException;
 import org.jamesframework.core.problems.Problem;
-import org.jamesframework.core.problems.solutions.Solution;
+import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.search.NeighbourhoodSearch;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.SingleNeighbourhoodSearch;
