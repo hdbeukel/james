@@ -94,7 +94,7 @@ var activeTableTab = "activeTableTab";
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">org.jamesframework.core.search.algo.tabu</div>
-<h2 title="Class TabuSearch" class="title">Class TabuSearch&lt;SolutionType extends <a href="../../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</h2>
+<h2 title="Class TabuSearch" class="title">Class TabuSearch&lt;SolutionType extends <a href="../../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</h2>
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
@@ -130,7 +130,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
-<dd><code>SolutionType</code> - solution type of the problems that may be solved using this search, required to extend <a href="../../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions"><code>Solution</code></a></dd>
+<dd><code>SolutionType</code> - solution type of the problems that may be solved using this search, required to extend <a href="../../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems"><code>Solution</code></a></dd>
 </dl>
 <dl>
 <dt>All Implemented Interfaces:</dt>
@@ -138,14 +138,14 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public class <span class="typeNameLabel">TabuSearch&lt;SolutionType extends <a href="../../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span>
+<pre>public class <span class="typeNameLabel">TabuSearch&lt;SolutionType extends <a href="../../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span>
 extends <a href="../../../../../../org/jamesframework/core/search/SingleNeighbourhoodSearch.html" title="class in org.jamesframework.core.search">SingleNeighbourhoodSearch</a>&lt;SolutionType&gt;</pre>
 <div class="block">Tabu search algorithm. In every search step, all neighbours of the current solution are validated and evaluated.
  The best valid neighbour is then adopted as the new current solution, even if it is no improvement over the current
  solution. To avoid repeatedly revisiting the same solutions, moves might be declared tabu based on a tabu memory.
  This memory dynamically tracks (a limited number of) recently visited solutions, features of these solutions and/or
- recently applied moves (i.e. recently modified features). If a move is tabu, it is not considered. Thus, the best
- valid, non tabu move is applied to the current solution in every step.
+ recently applied moves (i.e. recently modified features). If a move is tabu, it is not considered, unless it yields
+ a solution which is better than the best solution found so far (aspiration criterion).
  <p>
  If all valid neighbours of the current solution are tabu, the search stops. Note that this may never happen so that
  a stop criterion should preferably be set to ensure termination.</div>
@@ -236,7 +236,7 @@ extends <a href="../../../../../../org/jamesframework/core/search/SingleNeighbou
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html#validateMove-org.jamesframework.core.search.neigh.Move-">validateMove</a></span>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="type parameter in TabuSearch">SolutionType</a>&gt;&nbsp;move)</code>
-<div class="block">Overrides validation of moves so that it is verified whether the move is not tabu.</div>
+<div class="block">Overrides validation of moves to verify that the move is not tabu.</div>
 </td>
 </tr>
 </table>
@@ -385,10 +385,11 @@ extends <a href="../../../../../../org/jamesframework/core/search/SingleNeighbou
 <li class="blockList">
 <h4>validateMove</h4>
 <pre>protected&nbsp;boolean&nbsp;validateMove(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="type parameter in TabuSearch">SolutionType</a>&gt;&nbsp;move)</pre>
-<div class="block">Overrides validation of moves so that it is verified whether the move is not tabu.</div>
+<div class="block">Overrides validation of moves to verify that the move is not tabu. A basic aspiration criterion
+ is applied so that moves which yield a new best solution are always considered, i.e. never tabu.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#validateMove-org.jamesframework.core.search.neigh.Move-">validateMove</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="type parameter in TabuSearch">SolutionType</a> extends <a href="../../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</code></dd>
+<dd><code><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#validateMove-org.jamesframework.core.search.neigh.Move-">validateMove</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="type parameter in TabuSearch">SolutionType</a> extends <a href="../../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>move</code> - applied move</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -406,13 +407,13 @@ extends <a href="../../../../../../org/jamesframework/core/search/SingleNeighbou
 <div class="block">Overrides acceptance of a move to update the tabu memory by registering the newly visited solution.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#acceptMove-org.jamesframework.core.search.neigh.Move-">acceptMove</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="type parameter in TabuSearch">SolutionType</a> extends <a href="../../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</code></dd>
+<dd><code><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#acceptMove-org.jamesframework.core.search.neigh.Move-">acceptMove</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="type parameter in TabuSearch">SolutionType</a> extends <a href="../../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>move</code> - accepted move</dd>
 </dl>
 </li>
 </ul>
-<a name="setCurrentSolution-org.jamesframework.core.problems.solutions.Solution-">
+<a name="setCurrentSolution-org.jamesframework.core.problems.Solution-">
 <!--   -->
 </a><a name="setCurrentSolution-SolutionType-">
 <!--   -->
@@ -425,7 +426,7 @@ extends <a href="../../../../../../org/jamesframework/core/search/SingleNeighbou
  may only be called when the search is idle.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../../../org/jamesframework/core/search/LocalSearch.html#setCurrentSolution-SolutionType-">setCurrentSolution</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="type parameter in TabuSearch">SolutionType</a> extends <a href="../../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</code></dd>
+<dd><code><a href="../../../../../../org/jamesframework/core/search/LocalSearch.html#setCurrentSolution-SolutionType-">setCurrentSolution</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="type parameter in TabuSearch">SolutionType</a> extends <a href="../../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>solution</code> - manually specified current solution</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
@@ -445,7 +446,7 @@ extends <a href="../../../../../../org/jamesframework/core/search/SingleNeighbou
  adopted as the new current solution, if any. If all valid neighbours are tabu, the search stops.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../../org/jamesframework/core/search/Search.html#searchStep--">searchStep</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="type parameter in TabuSearch">SolutionType</a> extends <a href="../../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</code></dd>
+<dd><code><a href="../../../../../../org/jamesframework/core/search/Search.html#searchStep--">searchStep</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="type parameter in TabuSearch">SolutionType</a> extends <a href="../../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</code></dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../../../../org/jamesframework/core/exceptions/IncompatibleTabuMemoryException.html" title="class in org.jamesframework.core.exceptions">IncompatibleTabuMemoryException</a></code> - if the applied tabu memory is not compatible with the type of moves
                                          generated by the applied neighbourhood</dd>

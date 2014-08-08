@@ -86,7 +86,13 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.problems">org.jamesframework.core.problems</a></td>
 <td class="colLast">
-<div class="block">Problem specification.</div>
+<div class="block">High-level problem specification.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="#org.jamesframework.core.subset">org.jamesframework.core.subset</a></td>
+<td class="colLast">
+<div class="block">Predefined subset problem.</div>
 </td>
 </tr>
 </tbody>
@@ -106,8 +112,8 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/ProblemWithData.html" title="type parameter in ProblemWithData">SolutionType</a>,? super <a href="../../../../../../org/jamesframework/core/problems/ProblemWithData.html" title="type parameter in ProblemWithData">DataType</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ProblemWithData.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/ProblemWithData.html#getObjective--">getObjective</a></span>()</code>
+<td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">SolutionType</a>,? super <a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">DataType</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AbstractProblem.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html#getObjective--">getObjective</a></span>()</code>
 <div class="block">Get the objective function.</div>
 </td>
 </tr>
@@ -122,7 +128,7 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">ProblemWithData.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/ProblemWithData.html#setObjective-org.jamesframework.core.problems.objectives.Objective-">setObjective</a></span>(<a href="../../../../../../org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/ProblemWithData.html" title="type parameter in ProblemWithData">SolutionType</a>,? super <a href="../../../../../../org/jamesframework/core/problems/ProblemWithData.html" title="type parameter in ProblemWithData">DataType</a>&gt;&nbsp;objective)</code>
+<td class="colLast"><span class="typeNameLabel">AbstractProblem.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html#setObjective-org.jamesframework.core.problems.objectives.Objective-">setObjective</a></span>(<a href="../../../../../../org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">SolutionType</a>,? super <a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">DataType</a>&gt;&nbsp;objective)</code>
 <div class="block">Set a new objective function.</div>
 </td>
 </tr>
@@ -135,32 +141,45 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/ProblemWithData.html#ProblemWithData-org.jamesframework.core.problems.objectives.Objective-DataType-">ProblemWithData</a></span>(<a href="../../../../../../org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/ProblemWithData.html" title="type parameter in ProblemWithData">SolutionType</a>,? super <a href="../../../../../../org/jamesframework/core/problems/ProblemWithData.html" title="type parameter in ProblemWithData">DataType</a>&gt;&nbsp;objective,
-               <a href="../../../../../../org/jamesframework/core/problems/ProblemWithData.html" title="type parameter in ProblemWithData">DataType</a>&nbsp;data)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html#AbstractProblem-org.jamesframework.core.problems.objectives.Objective-DataType-">AbstractProblem</a></span>(<a href="../../../../../../org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">SolutionType</a>,? super <a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">DataType</a>&gt;&nbsp;objective,
+               <a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">DataType</a>&nbsp;data)</code>
 <div class="block">Creates a new abstract problem with given objective and data.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/SubsetProblemWithData.html#SubsetProblemWithData-org.jamesframework.core.problems.objectives.Objective-DataType-int-">SubsetProblemWithData</a></span>(<a href="../../../../../../org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>,? super <a href="../../../../../../org/jamesframework/core/problems/SubsetProblemWithData.html" title="type parameter in SubsetProblemWithData">DataType</a>&gt;&nbsp;objective,
-                     <a href="../../../../../../org/jamesframework/core/problems/SubsetProblemWithData.html" title="type parameter in SubsetProblemWithData">DataType</a>&nbsp;data,
-                     int&nbsp;fixedSubsetSize)</code>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.subset">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../../org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a> in <a href="../../../../../../org/jamesframework/core/subset/package-summary.html">org.jamesframework.core.subset</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
+<caption><span>Constructors in <a href="../../../../../../org/jamesframework/core/subset/package-summary.html">org.jamesframework.core.subset</a> with parameters of type <a href="../../../../../../org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Constructor and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/SubsetProblem.html#SubsetProblem-org.jamesframework.core.problems.objectives.Objective-DataType-int-">SubsetProblem</a></span>(<a href="../../../../../../org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;? super <a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>,? super <a href="../../../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a>&gt;&nbsp;objective,
+             <a href="../../../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a>&nbsp;data,
+             int&nbsp;fixedSubsetSize)</code>
 <div class="block">Creates a subset problem with fixed subset size.</div>
 </td>
 </tr>
-<tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/SubsetProblemWithData.html#SubsetProblemWithData-org.jamesframework.core.problems.objectives.Objective-DataType-int-int-">SubsetProblemWithData</a></span>(<a href="../../../../../../org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>,? super <a href="../../../../../../org/jamesframework/core/problems/SubsetProblemWithData.html" title="type parameter in SubsetProblemWithData">DataType</a>&gt;&nbsp;objective,
-                     <a href="../../../../../../org/jamesframework/core/problems/SubsetProblemWithData.html" title="type parameter in SubsetProblemWithData">DataType</a>&nbsp;data,
-                     int&nbsp;minSubsetSize,
-                     int&nbsp;maxSubsetSize)</code>
+<tr class="rowColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/SubsetProblem.html#SubsetProblem-org.jamesframework.core.problems.objectives.Objective-DataType-int-int-">SubsetProblem</a></span>(<a href="../../../../../../org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;? super <a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>,? super <a href="../../../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a>&gt;&nbsp;objective,
+             <a href="../../../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a>&nbsp;data,
+             int&nbsp;minSubsetSize,
+             int&nbsp;maxSubsetSize)</code>
 <div class="block">Creates a new subset problem with given objective, data and minimum/maximum subset size.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/SubsetProblemWithData.html#SubsetProblemWithData-org.jamesframework.core.problems.objectives.Objective-DataType-int-int-boolean-">SubsetProblemWithData</a></span>(<a href="../../../../../../org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>,? super <a href="../../../../../../org/jamesframework/core/problems/SubsetProblemWithData.html" title="type parameter in SubsetProblemWithData">DataType</a>&gt;&nbsp;objective,
-                     <a href="../../../../../../org/jamesframework/core/problems/SubsetProblemWithData.html" title="type parameter in SubsetProblemWithData">DataType</a>&nbsp;data,
-                     int&nbsp;minSubsetSize,
-                     int&nbsp;maxSubsetSize,
-                     boolean&nbsp;sortedIDs)</code>
+<tr class="altColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/SubsetProblem.html#SubsetProblem-org.jamesframework.core.problems.objectives.Objective-DataType-int-int-boolean-">SubsetProblem</a></span>(<a href="../../../../../../org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;? super <a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>,? super <a href="../../../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a>&gt;&nbsp;objective,
+             <a href="../../../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a>&nbsp;data,
+             int&nbsp;minSubsetSize,
+             int&nbsp;maxSubsetSize,
+             boolean&nbsp;sortedIDs)</code>
 <div class="block">Creates a new subset problem with given objective, data and minimum/maximum subset size.</div>
 </td>
 </tr>

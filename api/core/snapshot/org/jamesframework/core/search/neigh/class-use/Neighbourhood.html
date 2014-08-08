@@ -86,36 +86,35 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search">org.jamesframework.core.search</a></td>
 <td class="colLast">
-<div class="block">Abstract search templates, including both general searches and neighbourhood searches.</div>
+<div class="block">High-level search templates.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo">org.jamesframework.core.search.algo</a></td>
 <td class="colLast">
-<div class="block">Actual search implementations (non self-contained searches and their related components
- are implemented in separate subpackages).</div>
+<div class="block">Algorithm implementations.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo.tabu">org.jamesframework.core.search.algo.tabu</a></td>
 <td class="colLast">
-<div class="block">Tabu search and related components, including tabu memory specification.</div>
+<div class="block">Tabu search and components (including tabu memory specification).</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo.vns">org.jamesframework.core.search.algo.vns</a></td>
 <td class="colLast">
-<div class="block">Variable neighbourhood searches.</div>
+<div class="block">Variable neighbourhood searches and components.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><a href="#org.jamesframework.core.search.neigh.subset">org.jamesframework.core.search.neigh.subset</a></td>
+<td class="colFirst"><a href="#org.jamesframework.core.subset.neigh">org.jamesframework.core.subset.neigh</a></td>
 <td class="colLast">
-<div class="block">Neighbourhoods and moves for subset selection.</div>
+<div class="block">Subset selection neighbourhoods.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="#org.jamesframework.core.search.neigh.subset.adv">org.jamesframework.core.search.neigh.subset.adv</a></td>
+<td class="colFirst"><a href="#org.jamesframework.core.subset.neigh.adv">org.jamesframework.core.subset.neigh.adv</a></td>
 <td class="colLast">
 <div class="block">Advanced subset selection neighbourhoods.</div>
 </td>
@@ -456,12 +455,12 @@
 </tbody>
 </table>
 </li>
-<li class="blockList"><a name="org.jamesframework.core.search.neigh.subset">
+<li class="blockList"><a name="org.jamesframework.core.subset.neigh">
 <!--   -->
 </a>
-<h3>Uses of <a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a> in <a href="../../../../../../org/jamesframework/core/search/neigh/subset/package-summary.html">org.jamesframework.core.search.neigh.subset</a></h3>
+<h3>Uses of <a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a> in <a href="../../../../../../org/jamesframework/core/subset/neigh/package-summary.html">org.jamesframework.core.subset.neigh</a></h3>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
-<caption><span>Classes in <a href="../../../../../../org/jamesframework/core/search/neigh/subset/package-summary.html">org.jamesframework.core.search.neigh.subset</a> that implement <a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a></span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span>Classes in <a href="../../../../../../org/jamesframework/core/subset/neigh/package-summary.html">org.jamesframework.core.subset.neigh</a> that implement <a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Class and Description</th>
@@ -469,28 +468,28 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/neigh/subset/SinglePerturbationNeighbourhood.html" title="class in org.jamesframework.core.search.neigh.subset">SinglePerturbationNeighbourhood</a></span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SinglePerturbationNeighbourhood</a></span></code>
 <div class="block">
- A subset neighbourhood that generates swap moves (see <a href="../../../../../../org/jamesframework/core/search/neigh/subset/SwapMove.html" title="class in org.jamesframework.core.search.neigh.subset"><code>SwapMove</code></a>), addition moves (see <a href="../../../../../../org/jamesframework/core/search/neigh/subset/AdditionMove.html" title="class in org.jamesframework.core.search.neigh.subset"><code>AdditionMove</code></a>) and deletion
- moves (see <a href="../../../../../../org/jamesframework/core/search/neigh/subset/DeletionMove.html" title="class in org.jamesframework.core.search.neigh.subset"><code>DeletionMove</code></a>).</div>
+ A subset neighbourhood that generates swap moves (see <a href="../../../../../../org/jamesframework/core/subset/neigh/SwapMove.html" title="class in org.jamesframework.core.subset.neigh"><code>SwapMove</code></a>), addition moves (see <a href="../../../../../../org/jamesframework/core/subset/neigh/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh"><code>AdditionMove</code></a>) and deletion
+ moves (see <a href="../../../../../../org/jamesframework/core/subset/neigh/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh"><code>DeletionMove</code></a>).</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/neigh/subset/SingleSwapNeighbourhood.html" title="class in org.jamesframework.core.search.neigh.subset">SingleSwapNeighbourhood</a></span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/SingleSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleSwapNeighbourhood</a></span></code>
 <div class="block">
- A subset neighbourhood that generates swap moves only (see <a href="../../../../../../org/jamesframework/core/search/neigh/subset/SwapMove.html" title="class in org.jamesframework.core.search.neigh.subset"><code>SwapMove</code></a>).</div>
+ A subset neighbourhood that generates swap moves only (see <a href="../../../../../../org/jamesframework/core/subset/neigh/SwapMove.html" title="class in org.jamesframework.core.subset.neigh"><code>SwapMove</code></a>).</div>
 </td>
 </tr>
 </tbody>
 </table>
 </li>
-<li class="blockList"><a name="org.jamesframework.core.search.neigh.subset.adv">
+<li class="blockList"><a name="org.jamesframework.core.subset.neigh.adv">
 <!--   -->
 </a>
-<h3>Uses of <a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a> in <a href="../../../../../../org/jamesframework/core/search/neigh/subset/adv/package-summary.html">org.jamesframework.core.search.neigh.subset.adv</a></h3>
+<h3>Uses of <a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a> in <a href="../../../../../../org/jamesframework/core/subset/neigh/adv/package-summary.html">org.jamesframework.core.subset.neigh.adv</a></h3>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
-<caption><span>Classes in <a href="../../../../../../org/jamesframework/core/search/neigh/subset/adv/package-summary.html">org.jamesframework.core.search.neigh.subset.adv</a> that implement <a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a></span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span>Classes in <a href="../../../../../../org/jamesframework/core/subset/neigh/adv/package-summary.html">org.jamesframework.core.subset.neigh.adv</a> that implement <a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Class and Description</th>
@@ -498,7 +497,7 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/neigh/subset/adv/DisjointMultiSwapNeighbourhood.html" title="class in org.jamesframework.core.search.neigh.subset.adv">DisjointMultiSwapNeighbourhood</a></span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/adv/DisjointMultiSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiSwapNeighbourhood</a></span></code>
 <div class="block">
  A subset neighbourhood that generates moves performing a fixed number of simultaneous swaps of selected and unselected
  IDs.</div>
@@ -506,7 +505,7 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/neigh/subset/adv/MultiSwapNeighbourhood.html" title="class in org.jamesframework.core.search.neigh.subset.adv">MultiSwapNeighbourhood</a></span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/adv/MultiSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiSwapNeighbourhood</a></span></code>
 <div class="block">
  A subset neighbourhood that generates moves performing up to \(k\) multiple simultaneous swaps of selected and
  unselected IDs, where \(k\) is specified when creating the neighbourhood.</div>

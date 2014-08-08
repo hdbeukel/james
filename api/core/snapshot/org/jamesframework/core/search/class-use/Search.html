@@ -86,32 +86,31 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search">org.jamesframework.core.search</a></td>
 <td class="colLast">
-<div class="block">Abstract search templates, including both general searches and neighbourhood searches.</div>
+<div class="block">High-level search templates.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo">org.jamesframework.core.search.algo</a></td>
 <td class="colLast">
-<div class="block">Actual search implementations (non self-contained searches and their related components
- are implemented in separate subpackages).</div>
+<div class="block">Algorithm implementations.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo.exh">org.jamesframework.core.search.algo.exh</a></td>
 <td class="colLast">
-<div class="block">Exhaustive search and related components.</div>
+<div class="block">Exhaustive search and components.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo.tabu">org.jamesframework.core.search.algo.tabu</a></td>
 <td class="colLast">
-<div class="block">Tabu search and related components, including tabu memory specification.</div>
+<div class="block">Tabu search and components (including tabu memory specification).</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo.vns">org.jamesframework.core.search.algo.vns</a></td>
 <td class="colLast">
-<div class="block">Variable neighbourhood searches.</div>
+<div class="block">Variable neighbourhood searches and components.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -123,7 +122,13 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.stopcriteria">org.jamesframework.core.search.stopcriteria</a></td>
 <td class="colLast">
-<div class="block">Stop criteria used by searches.</div>
+<div class="block">Stop criteria.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="#org.jamesframework.core.subset.algo">org.jamesframework.core.subset.algo</a></td>
+<td class="colLast">
+<div class="block">Specific subset sampling algorithms.</div>
 </td>
 </tr>
 </tbody>
@@ -144,20 +149,20 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
 <div class="block">Local searches are searches that start with some initial solution and modify this solution in an attempt to improve
  it.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/MultiNeighbourhoodSearch.html" title="class in org.jamesframework.core.search">MultiNeighbourhoodSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/MultiNeighbourhoodSearch.html" title="class in org.jamesframework.core.search">MultiNeighbourhoodSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
 <div class="block">Abstract neighbourhood search that uses <i>multiple</i> neighbourhoods to modify the current solution.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
 <div class="block">A neighbourhood search is a specific kind of local search in which the current solution is repeatedly modified by
  applying moves, generated by one or more neighbourhoods, that transform this solution into a similar, neighbouring
  solution.</div>
@@ -165,7 +170,7 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/SingleNeighbourhoodSearch.html" title="class in org.jamesframework.core.search">SingleNeighbourhoodSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/SingleNeighbourhoodSearch.html" title="class in org.jamesframework.core.search">SingleNeighbourhoodSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
 <div class="block">Abstract neighbourhood search that uses a <i>single</i> neighbourhood to modify the current solution.</div>
 </td>
 </tr>
@@ -185,7 +190,7 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
 <div class="block">
  A basic parallel search runs several (heterogeneous) searches in parallel and keeps track of the best solution found
  by any of these searches.</div>
@@ -193,48 +198,42 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/LRSubsetSearch.html" title="class in org.jamesframework.core.search.algo">LRSubsetSearch</a></span></code>
-<div class="block">LR subset search is a greedy local search heuristic for subset selection.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
+<div class="block">Metropolis search with fixed temperature.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span></code>
-<div class="block">Metropolis search with fixed temperature.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
 <div class="block">
  Parallel tempering algorithm which uses several Metropolis search replicas with different temperatures in a given range,
  where good solutions are pushed towards cool replicas for the sake of convergence, while bad solutions are pushed towards
  hot replicas in an attempt to find further improvements.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/PipedLocalSearch.html" title="class in org.jamesframework.core.search.algo">PipedLocalSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/PipedLocalSearch.html" title="class in org.jamesframework.core.search.algo">PipedLocalSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
 <div class="block">
  A piped local search consists of a composition of other local search \(S_1, ..., S_n\).</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/RandomDescent.html" title="class in org.jamesframework.core.search.algo">RandomDescent</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/RandomDescent.html" title="class in org.jamesframework.core.search.algo">RandomDescent</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
 <div class="block">Basic random descent algorithm.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/RandomSearch.html" title="class in org.jamesframework.core.search.algo">RandomSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/RandomSearch.html" title="class in org.jamesframework.core.search.algo">RandomSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
 <div class="block">The random search algorithm iteratively samples a random solution and checks
  whether a new best solution has been found, in every search step.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/SteepestDescent.html" title="class in org.jamesframework.core.search.algo">SteepestDescent</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/SteepestDescent.html" title="class in org.jamesframework.core.search.algo">SteepestDescent</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
 <div class="block">Steepest descent algorithm, also referred to as hill climbing.</div>
 </td>
 </tr>
@@ -291,7 +290,7 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/exh/ExhaustiveSearch.html" title="class in org.jamesframework.core.search.algo.exh">ExhaustiveSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/exh/ExhaustiveSearch.html" title="class in org.jamesframework.core.search.algo.exh">ExhaustiveSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
 <div class="block">The exhaustive search algorithm evaluates every solution generated by the given solution iterator and selects the best one.</div>
 </td>
 </tr>
@@ -311,7 +310,7 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="class in org.jamesframework.core.search.algo.tabu">TabuSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="class in org.jamesframework.core.search.algo.tabu">TabuSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
 <div class="block">Tabu search algorithm.</div>
 </td>
 </tr>
@@ -331,21 +330,21 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/vns/ReducedVariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">ReducedVariableNeighbourhoodSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/vns/ReducedVariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">ReducedVariableNeighbourhoodSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
 <div class="block">
  Reduced variable neighbourhood search (RVNS) algorithm.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodDescent.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodDescent</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodDescent.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodDescent</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
 <div class="block">
  Variable neighbourhood descent algorithm.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
 <div class="block">
  Variable neighbourhood search (VNS) algorithm.</div>
 </td>
@@ -365,7 +364,7 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code>void</code></td>
+<td class="colFirst"><code>default void</code></td>
 <td class="colLast"><span class="typeNameLabel">SearchListener.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#newBestSolution-org.jamesframework.core.search.Search-SolutionType-double-">newBestSolution</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="type parameter in SearchListener">SolutionType</a>&gt;&nbsp;search,
                <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="type parameter in SearchListener">SolutionType</a>&nbsp;newBestSolution,
                double&nbsp;newBestSolutionEvaluation)</code>
@@ -373,54 +372,30 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">EmptySearchListener.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/listeners/EmptySearchListener.html#newBestSolution-org.jamesframework.core.search.Search-SolutionType-double-">newBestSolution</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/EmptySearchListener.html" title="type parameter in EmptySearchListener">SolutionType</a>&gt;&nbsp;search,
-               <a href="../../../../../org/jamesframework/core/search/listeners/EmptySearchListener.html" title="type parameter in EmptySearchListener">SolutionType</a>&nbsp;newBestSolution,
-               double&nbsp;newBestSolutionEvaluation)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
+<td class="colFirst"><code>default void</code></td>
 <td class="colLast"><span class="typeNameLabel">SearchListener.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#searchStarted-org.jamesframework.core.search.Search-">searchStarted</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="type parameter in SearchListener">SolutionType</a>&gt;&nbsp;search)</code>
 <div class="block">Fired when the search has started.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">EmptySearchListener.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/listeners/EmptySearchListener.html#searchStarted-org.jamesframework.core.search.Search-">searchStarted</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/EmptySearchListener.html" title="type parameter in EmptySearchListener">SolutionType</a>&gt;&nbsp;search)</code>&nbsp;</td>
-</tr>
 <tr class="altColor">
-<td class="colFirst"><code>void</code></td>
+<td class="colFirst"><code>default void</code></td>
 <td class="colLast"><span class="typeNameLabel">SearchListener.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#searchStopped-org.jamesframework.core.search.Search-">searchStopped</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="type parameter in SearchListener">SolutionType</a>&gt;&nbsp;search)</code>
 <div class="block">Fired when the search has stopped.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">EmptySearchListener.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/listeners/EmptySearchListener.html#searchStopped-org.jamesframework.core.search.Search-">searchStopped</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/EmptySearchListener.html" title="type parameter in EmptySearchListener">SolutionType</a>&gt;&nbsp;search)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">SearchListener.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#statusChanged-org.jamesframework.core.search.Search-org.jamesframework.core.search.SearchStatus-">statusChanged</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="type parameter in SearchListener">SolutionType</a>&gt;&nbsp;search,
-             <a href="../../../../../org/jamesframework/core/search/SearchStatus.html" title="enum in org.jamesframework.core.search">SearchStatus</a>&nbsp;newStatus)</code>
+<td class="colFirst"><code>default void</code></td>
+<td class="colLast"><span class="typeNameLabel">SearchListener.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#statusChanged-org.jamesframework.core.search.Search-org.jamesframework.core.search.status.SearchStatus-">statusChanged</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="type parameter in SearchListener">SolutionType</a>&gt;&nbsp;search,
+             <a href="../../../../../org/jamesframework/core/search/status/SearchStatus.html" title="enum in org.jamesframework.core.search.status">SearchStatus</a>&nbsp;newStatus)</code>
 <div class="block">Fired when the search enters a new status.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">EmptySearchListener.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/listeners/EmptySearchListener.html#statusChanged-org.jamesframework.core.search.Search-org.jamesframework.core.search.SearchStatus-">statusChanged</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/EmptySearchListener.html" title="type parameter in EmptySearchListener">SolutionType</a>&gt;&nbsp;search,
-             <a href="../../../../../org/jamesframework/core/search/SearchStatus.html" title="enum in org.jamesframework.core.search">SearchStatus</a>&nbsp;newStatus)</code>&nbsp;</td>
-</tr>
 <tr class="altColor">
-<td class="colFirst"><code>void</code></td>
+<td class="colFirst"><code>default void</code></td>
 <td class="colLast"><span class="typeNameLabel">SearchListener.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#stepCompleted-org.jamesframework.core.search.Search-long-">stepCompleted</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="type parameter in SearchListener">SolutionType</a>&gt;&nbsp;search,
              long&nbsp;numSteps)</code>
 <div class="block">Fired when the search has completed a step.</div>
 </td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">EmptySearchListener.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/listeners/EmptySearchListener.html#stepCompleted-org.jamesframework.core.search.Search-long-">stepCompleted</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/EmptySearchListener.html" title="type parameter in EmptySearchListener">SolutionType</a>&gt;&nbsp;search,
-             long&nbsp;numSteps)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -484,6 +459,26 @@
 <tr class="altColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#StopCriterionChecker-org.jamesframework.core.search.Search-">StopCriterionChecker</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;?&gt;&nbsp;search)</code>
 <div class="block">Create a stop criterion checker dedicated to checking the stop criteria of the given search.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.subset.algo">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a> in <a href="../../../../../org/jamesframework/core/subset/algo/package-summary.html">org.jamesframework.core.subset.algo</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing subclasses, and an explanation">
+<caption><span>Subclasses of <a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a> in <a href="../../../../../org/jamesframework/core/subset/algo/package-summary.html">org.jamesframework.core.subset.algo</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/subset/algo/LRSubsetSearch.html" title="class in org.jamesframework.core.subset.algo">LRSubsetSearch</a></span></code>
+<div class="block">LR subset search is a greedy local search heuristic for subset selection.</div>
 </td>
 </tr>
 </tbody>

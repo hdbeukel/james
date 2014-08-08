@@ -86,35 +86,41 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search">org.jamesframework.core.search</a></td>
 <td class="colLast">
-<div class="block">Abstract search templates, including both general searches and neighbourhood searches.</div>
+<div class="block">High-level search templates.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo.tabu">org.jamesframework.core.search.algo.tabu</a></td>
 <td class="colLast">
-<div class="block">Tabu search and related components, including tabu memory specification.</div>
+<div class="block">Tabu search and components (including tabu memory specification).</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.cache">org.jamesframework.core.search.cache</a></td>
 <td class="colLast">
-<div class="block">Caches used by searches for efficient solution evaluation and validation.</div>
+<div class="block">Caches used by searches for efficient move evaluation and validation.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.neigh">org.jamesframework.core.search.neigh</a></td>
 <td class="colLast">
-<div class="block">General neighbourhood and move specification.</div>
+<div class="block">Neighbourhoods and components.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><a href="#org.jamesframework.core.search.neigh.subset">org.jamesframework.core.search.neigh.subset</a></td>
+<td class="colFirst"><a href="#org.jamesframework.core.subset.algo.tabu">org.jamesframework.core.subset.algo.tabu</a></td>
 <td class="colLast">
-<div class="block">Neighbourhoods and moves for subset selection.</div>
+<div class="block">Tabu search components for subset selection.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="#org.jamesframework.core.search.neigh.subset.adv">org.jamesframework.core.search.neigh.subset.adv</a></td>
+<td class="colFirst"><a href="#org.jamesframework.core.subset.neigh">org.jamesframework.core.subset.neigh</a></td>
+<td class="colLast">
+<div class="block">Subset selection neighbourhoods.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#org.jamesframework.core.subset.neigh.adv">org.jamesframework.core.subset.neigh.adv</a></td>
 <td class="colLast">
 <div class="block">Advanced subset selection neighbourhoods.</div>
 </td>
@@ -232,37 +238,23 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><span class="typeNameLabel">IDBasedSubsetTabuMemory.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/tabu/IDBasedSubsetTabuMemory.html#isTabu-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.solutions.SubsetSolution-">isTabu</a></span>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&gt;&nbsp;move,
-      <a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;currentSolution)</code>
-<div class="block">A move is considered tabu if any involved ID (added or deleted) is currently contained in the tabu memory.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">TabuMemory.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html#registerVisitedSolution-SolutionType-org.jamesframework.core.search.neigh.Move-">registerVisitedSolution</a></span>(<a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html" title="type parameter in TabuMemory">SolutionType</a>&nbsp;visitedSolution,
                        <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html" title="type parameter in TabuMemory">SolutionType</a>&gt;&nbsp;appliedMove)</code>
 <div class="block">Register a newly visited solution in the tabu memory.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">FullTabuMemory.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/tabu/FullTabuMemory.html#registerVisitedSolution-SolutionType-org.jamesframework.core.search.neigh.Move-">registerVisitedSolution</a></span>(<a href="../../../../../../org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="type parameter in FullTabuMemory">SolutionType</a>&nbsp;visitedSolution,
                        <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="type parameter in FullTabuMemory">SolutionType</a>&gt;&nbsp;appliedMove)</code>
 <div class="block">A newly visited solution is registered by storing a deep copy of this solution in the full tabu memory.</div>
 </td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">IDBasedSubsetTabuMemory.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/tabu/IDBasedSubsetTabuMemory.html#registerVisitedSolution-org.jamesframework.core.problems.solutions.SubsetSolution-org.jamesframework.core.search.neigh.Move-">registerVisitedSolution</a></span>(<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;visitedSolution,
-                       <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&gt;&nbsp;appliedMove)</code>
-<div class="block">Registers an applied subset move by storing all involved IDs (added or deleted) in the tabu memory.</div>
-</td>
-</tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><span class="typeNameLabel">TabuSearch.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html#validateMove-org.jamesframework.core.search.neigh.Move-">validateMove</a></span>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="type parameter in TabuSearch">SolutionType</a>&gt;&nbsp;move)</code>
-<div class="block">Overrides validation of moves so that it is verified whether the move is not tabu.</div>
+<div class="block">Overrides validation of moves to verify that the move is not tabu.</div>
 </td>
 </tr>
 </tbody>
@@ -375,12 +367,40 @@
 </tbody>
 </table>
 </li>
-<li class="blockList"><a name="org.jamesframework.core.search.neigh.subset">
+<li class="blockList"><a name="org.jamesframework.core.subset.algo.tabu">
 <!--   -->
 </a>
-<h3>Uses of <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a> in <a href="../../../../../../org/jamesframework/core/search/neigh/subset/package-summary.html">org.jamesframework.core.search.neigh.subset</a></h3>
+<h3>Uses of <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a> in <a href="../../../../../../org/jamesframework/core/subset/algo/tabu/package-summary.html">org.jamesframework.core.subset.algo.tabu</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../../org/jamesframework/core/subset/algo/tabu/package-summary.html">org.jamesframework.core.subset.algo.tabu</a> with parameters of type <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><span class="typeNameLabel">IDBasedSubsetTabuMemory.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/algo/tabu/IDBasedSubsetTabuMemory.html#isTabu-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.subset.SubsetSolution-">isTabu</a></span>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&gt;&nbsp;move,
+      <a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;currentSolution)</code>
+<div class="block">A move is considered tabu if any involved ID (added or deleted) is currently contained in the tabu memory.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">IDBasedSubsetTabuMemory.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/algo/tabu/IDBasedSubsetTabuMemory.html#registerVisitedSolution-org.jamesframework.core.subset.SubsetSolution-org.jamesframework.core.search.neigh.Move-">registerVisitedSolution</a></span>(<a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;visitedSolution,
+                       <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&gt;&nbsp;appliedMove)</code>
+<div class="block">Registers an applied subset move by storing all involved IDs (added or deleted) in the tabu memory.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.subset.neigh">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a> in <a href="../../../../../../org/jamesframework/core/subset/neigh/package-summary.html">org.jamesframework.core.subset.neigh</a></h3>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing subinterfaces, and an explanation">
-<caption><span>Subinterfaces of <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a> in <a href="../../../../../../org/jamesframework/core/search/neigh/subset/package-summary.html">org.jamesframework.core.search.neigh.subset</a></span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span>Subinterfaces of <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a> in <a href="../../../../../../org/jamesframework/core/subset/neigh/package-summary.html">org.jamesframework.core.subset.neigh</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Interface and Description</th>
@@ -388,7 +408,7 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>interface&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/neigh/subset/SubsetMove.html" title="interface in org.jamesframework.core.search.neigh.subset">SubsetMove</a></span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh">SubsetMove</a></span></code>
 <div class="block">General interface of a subset move that adds a number of IDs to the selection and/or
  removes a number of IDs.</div>
 </td>
@@ -396,7 +416,7 @@
 </tbody>
 </table>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
-<caption><span>Classes in <a href="../../../../../../org/jamesframework/core/search/neigh/subset/package-summary.html">org.jamesframework.core.search.neigh.subset</a> that implement <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a></span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span>Classes in <a href="../../../../../../org/jamesframework/core/subset/neigh/package-summary.html">org.jamesframework.core.subset.neigh</a> that implement <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Class and Description</th>
@@ -404,19 +424,19 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/neigh/subset/AdditionMove.html" title="class in org.jamesframework.core.search.neigh.subset">AdditionMove</a></span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh">AdditionMove</a></span></code>
 <div class="block">Simple subset move that adds a single ID to the current selection.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/neigh/subset/DeletionMove.html" title="class in org.jamesframework.core.search.neigh.subset">DeletionMove</a></span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh">DeletionMove</a></span></code>
 <div class="block">Simple subset move that removes a single ID from the current selection.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/neigh/subset/SwapMove.html" title="class in org.jamesframework.core.search.neigh.subset">SwapMove</a></span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/SwapMove.html" title="class in org.jamesframework.core.subset.neigh">SwapMove</a></span></code>
 <div class="block">Simple subset move that removes a single ID from the current selection
  and replaces it with a new ID which was previously not selected.</div>
 </td>
@@ -424,22 +444,22 @@
 </tbody>
 </table>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../../org/jamesframework/core/search/neigh/subset/package-summary.html">org.jamesframework.core.search.neigh.subset</a> that return <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a></span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span>Methods in <a href="../../../../../../org/jamesframework/core/subset/neigh/package-summary.html">org.jamesframework.core.subset.neigh</a> that return <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">SingleSwapNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/neigh/subset/SingleSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.problems.solutions.SubsetSolution-">getRandomMove</a></span>(<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;solution)</code>
+<td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;<a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">SingleSwapNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/SingleSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove</a></span>(<a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
 <div class="block">Generates a random swap move for the given subset solution that removes a single ID from the set of currently selected IDs,
  and replaces it with a random ID taken from the set of currently unselected IDs.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">SinglePerturbationNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/neigh/subset/SinglePerturbationNeighbourhood.html#getRandomMove-org.jamesframework.core.problems.solutions.SubsetSolution-">getRandomMove</a></span>(<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;solution)</code>
+<td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;<a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">SinglePerturbationNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove</a></span>(<a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
 <div class="block">
  Generates a random swap, deletion or addition move that transforms the given subset solution into
  a neighbour within the minimum and maximum allowed subset size.</div>
@@ -448,22 +468,22 @@
 </tbody>
 </table>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../../org/jamesframework/core/search/neigh/subset/package-summary.html">org.jamesframework.core.search.neigh.subset</a> that return types with arguments of type <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a></span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span>Methods in <a href="../../../../../../org/jamesframework/core/subset/neigh/package-summary.html">org.jamesframework.core.subset.neigh</a> that return types with arguments of type <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">SingleSwapNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/neigh/subset/SingleSwapNeighbourhood.html#getAllMoves-org.jamesframework.core.problems.solutions.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;solution)</code>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;<a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">SingleSwapNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/SingleSwapNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
 <div class="block">Generates a set of all possible swap moves that transform the given subset solution by removing a single ID from
  the current selection and replacing it with a new ID which is currently not selected.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">SinglePerturbationNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/neigh/subset/SinglePerturbationNeighbourhood.html#getAllMoves-org.jamesframework.core.problems.solutions.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;solution)</code>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;<a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">SinglePerturbationNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
 <div class="block">Generate all valid swap, deletion and addition moves that transform the given subset solution into
  a neighbour within the minimum and maximum allowed subset size.</div>
 </td>
@@ -471,12 +491,12 @@
 </tbody>
 </table>
 </li>
-<li class="blockList"><a name="org.jamesframework.core.search.neigh.subset.adv">
+<li class="blockList"><a name="org.jamesframework.core.subset.neigh.adv">
 <!--   -->
 </a>
-<h3>Uses of <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a> in <a href="../../../../../../org/jamesframework/core/search/neigh/subset/adv/package-summary.html">org.jamesframework.core.search.neigh.subset.adv</a></h3>
+<h3>Uses of <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a> in <a href="../../../../../../org/jamesframework/core/subset/neigh/adv/package-summary.html">org.jamesframework.core.subset.neigh.adv</a></h3>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
-<caption><span>Classes in <a href="../../../../../../org/jamesframework/core/search/neigh/subset/adv/package-summary.html">org.jamesframework.core.search.neigh.subset.adv</a> that implement <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a></span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span>Classes in <a href="../../../../../../org/jamesframework/core/subset/neigh/adv/package-summary.html">org.jamesframework.core.subset.neigh.adv</a> that implement <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Class and Description</th>
@@ -484,7 +504,7 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/neigh/subset/adv/GeneralSubsetMove.html" title="class in org.jamesframework.core.search.neigh.subset.adv">GeneralSubsetMove</a></span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/adv/GeneralSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.adv">GeneralSubsetMove</a></span></code>
 <div class="block">A general subset move adds and/or removes several IDs at once to/from the current selection
  of a subset solution.</div>
 </td>
@@ -492,23 +512,23 @@
 </tbody>
 </table>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../../org/jamesframework/core/search/neigh/subset/adv/package-summary.html">org.jamesframework.core.search.neigh.subset.adv</a> that return <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a></span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span>Methods in <a href="../../../../../../org/jamesframework/core/subset/neigh/adv/package-summary.html">org.jamesframework.core.subset.neigh.adv</a> that return <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">MultiSwapNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/neigh/subset/adv/MultiSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.problems.solutions.SubsetSolution-">getRandomMove</a></span>(<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;solution)</code>
+<td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;<a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">MultiSwapNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/adv/MultiSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove</a></span>(<a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
 <div class="block">
  Generates a move for the given subset solution that removes a random subset of IDs from the current selection
  and replaces them with an equally large random subset of the currently unselected IDs.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DisjointMultiSwapNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/neigh/subset/adv/DisjointMultiSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.problems.solutions.SubsetSolution-">getRandomMove</a></span>(<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;solution)</code>
+<td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;<a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">DisjointMultiSwapNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/adv/DisjointMultiSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove</a></span>(<a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
 <div class="block">Generates a move for the given subset solution that removes a random subset of \(k\) IDs from the current
  selection and replaces them with an equally large random subset of the currently unselected IDs, where
  \(k\) is the number of swaps specified at construction.</div>
@@ -517,23 +537,23 @@
 </tbody>
 </table>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../../org/jamesframework/core/search/neigh/subset/adv/package-summary.html">org.jamesframework.core.search.neigh.subset.adv</a> that return types with arguments of type <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a></span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span>Methods in <a href="../../../../../../org/jamesframework/core/subset/neigh/adv/package-summary.html">org.jamesframework.core.subset.neigh.adv</a> that return types with arguments of type <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">MultiSwapNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/neigh/subset/adv/MultiSwapNeighbourhood.html#getAllMoves-org.jamesframework.core.problems.solutions.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;solution)</code>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;<a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">MultiSwapNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/adv/MultiSwapNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
 <div class="block">
  Generates the set of all possible moves that perform 1 up to \(k\) swaps, where \(k\) is the maximum number
  of swaps specified at construction.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DisjointMultiSwapNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/neigh/subset/adv/DisjointMultiSwapNeighbourhood.html#getAllMoves-org.jamesframework.core.problems.solutions.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions">SubsetSolution</a>&nbsp;solution)</code>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;<a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">DisjointMultiSwapNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/adv/DisjointMultiSwapNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
 <div class="block">
  Generates the set of all possible moves that perform exactly \(k\) swaps, where \(k\) is the desired number
  of swaps specified at construction.</div>

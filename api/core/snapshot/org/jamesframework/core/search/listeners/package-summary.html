@@ -88,43 +88,18 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../../../org/jamesframework/core/search/listeners/LocalSearchListener.html" title="interface in org.jamesframework.core.search.listeners">LocalSearchListener</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</td>
+<td class="colFirst"><a href="../../../../../org/jamesframework/core/search/listeners/LocalSearchListener.html" title="interface in org.jamesframework.core.search.listeners">LocalSearchListener</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</td>
 <td class="colLast">
-<div class="block">Extends the general search listener interface with a local search specific callback, fired when the current solution
+<div class="block">
+ Extends the general search listener interface with a local search specific callback, fired when the current solution
  has been modified.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</td>
+<td class="colFirst"><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</td>
 <td class="colLast">
-<div class="block">Interface of a listener which may be attached to a search with the specified solution type (or a more specific solution type).</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList">
-<table class="typeSummary" border="0" cellpadding="3" cellspacing="0" summary="Class Summary table, listing classes, and an explanation">
-<caption><span>Class Summary</span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Class</th>
-<th class="colLast" scope="col">Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../../../org/jamesframework/core/search/listeners/EmptyLocalSearchListener.html" title="class in org.jamesframework.core.search.listeners">EmptyLocalSearchListener</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</td>
-<td class="colLast">
-<div class="block">An empty local search listener contains empty implementations of all methods in <a href="../../../../../org/jamesframework/core/search/listeners/LocalSearchListener.html" title="interface in org.jamesframework.core.search.listeners"><code>LocalSearchListener</code></a>,
- acting as an easy entry point for custom search listeners which desire to listen only to a subset of events fired
- by a search, by overriding the corresponding empty implementations.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="../../../../../org/jamesframework/core/search/listeners/EmptySearchListener.html" title="class in org.jamesframework.core.search.listeners">EmptySearchListener</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</td>
-<td class="colLast">
-<div class="block">An empty search listener contains empty implementations of all methods in <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners"><code>SearchListener</code></a>, acting as
- an easy entry point for custom search listeners which desire to listen only to a subset of events fired by
- a search, by overriding the corresponding empty implementation.</div>
+<div class="block">
+ Interface of a search listener that can be attached to any search with the specified (or more specific) solution type.</div>
 </td>
 </tr>
 </tbody>

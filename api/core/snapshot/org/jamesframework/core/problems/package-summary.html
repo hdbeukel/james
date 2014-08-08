@@ -73,7 +73,7 @@
 <div class="header">
 <h1 title="Package" class="title">Package&nbsp;org.jamesframework.core.problems</h1>
 <div class="docSummary">
-<div class="block">Problem specification.</div>
+<div class="block">High-level problem specification.</div>
 </div>
 <p>See:&nbsp;<a href="#package.description">Description</a></p>
 </div>
@@ -88,15 +88,9 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;SolutionType extends <a href="../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</td>
+<td class="colFirst"><a href="../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;SolutionType extends <a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</td>
 <td class="colLast">
 <div class="block">Interface of a problem with a generic solution type.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="../../../../org/jamesframework/core/problems/SubsetProblem.html" title="interface in org.jamesframework.core.problems">SubsetProblem</a></td>
-<td class="colLast">
-<div class="block">Interface of a subset problem with solution type <a href="../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions"><code>SubsetSolution</code></a>, extending the general <a href="../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems"><code>Problem</code></a> interface.</div>
 </td>
 </tr>
 </tbody>
@@ -111,17 +105,16 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../../org/jamesframework/core/problems/ProblemWithData.html" title="class in org.jamesframework.core.problems">ProblemWithData</a>&lt;SolutionType extends <a href="../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>,DataType&gt;</td>
+<td class="colFirst"><a href="../../../../org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a>&lt;SolutionType extends <a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>,DataType&gt;</td>
 <td class="colLast">
 <div class="block">
- Represents an abstract problem that separates data from the objective and possible constraints.</div>
+ Represents an abstract problem that separates data from the objective and constraints (if any).</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="../../../../org/jamesframework/core/problems/SubsetProblemWithData.html" title="class in org.jamesframework.core.problems">SubsetProblemWithData</a>&lt;DataType extends <a href="../../../../org/jamesframework/core/problems/datatypes/SubsetData.html" title="interface in org.jamesframework.core.problems.datatypes">SubsetData</a>&gt;</td>
+<td class="colFirst"><a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a></td>
 <td class="colLast">
-<div class="block">Represents a subset problem with data of a given data type, implementing the interface <a href="../../../../org/jamesframework/core/problems/datatypes/SubsetData.html" title="interface in org.jamesframework.core.problems.datatypes"><code>SubsetData</code></a>, and with solution
- type <a href="../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions"><code>SubsetSolution</code></a>.</div>
+<div class="block">Represents an abstract solution.</div>
 </td>
 </tr>
 </tbody>
@@ -132,7 +125,7 @@
 <!--   -->
 </a>
 <h2 title="Package org.jamesframework.core.problems Description">Package org.jamesframework.core.problems Description</h2>
-<div class="block">Problem specification.</div>
+<div class="block">High-level problem specification.</div>
 </div>
 <!-- ======= START OF BOTTOM NAVBAR ====== -->
 <div class="bottomNav"><a name="navbar.bottom">

@@ -73,8 +73,7 @@
 <div class="header">
 <h1 title="Package" class="title">Package&nbsp;org.jamesframework.core.search.algo</h1>
 <div class="docSummary">
-<div class="block">Actual search implementations (non self-contained searches and their related components
- are implemented in separate subpackages).</div>
+<div class="block">Algorithm implementations.</div>
 </div>
 <p>See:&nbsp;<a href="#package.description">Description</a></p>
 </div>
@@ -89,7 +88,7 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</td>
+<td class="colFirst"><a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</td>
 <td class="colLast">
 <div class="block">
  A basic parallel search runs several (heterogeneous) searches in parallel and keeps track of the best solution found
@@ -97,19 +96,13 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="../../../../../org/jamesframework/core/search/algo/LRSubsetSearch.html" title="class in org.jamesframework.core.search.algo">LRSubsetSearch</a></td>
-<td class="colLast">
-<div class="block">LR subset search is a greedy local search heuristic for subset selection.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</td>
+<td class="colFirst"><a href="../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</td>
 <td class="colLast">
 <div class="block">Metropolis search with fixed temperature.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</td>
+<tr class="altColor">
+<td class="colFirst"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</td>
 <td class="colLast">
 <div class="block">
  Parallel tempering algorithm which uses several Metropolis search replicas with different temperatures in a given range,
@@ -117,28 +110,28 @@
  hot replicas in an attempt to find further improvements.</div>
 </td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../../../org/jamesframework/core/search/algo/PipedLocalSearch.html" title="class in org.jamesframework.core.search.algo">PipedLocalSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</td>
+<tr class="rowColor">
+<td class="colFirst"><a href="../../../../../org/jamesframework/core/search/algo/PipedLocalSearch.html" title="class in org.jamesframework.core.search.algo">PipedLocalSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</td>
 <td class="colLast">
 <div class="block">
  A piped local search consists of a composition of other local search \(S_1, ..., S_n\).</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="../../../../../org/jamesframework/core/search/algo/RandomDescent.html" title="class in org.jamesframework.core.search.algo">RandomDescent</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</td>
+<tr class="altColor">
+<td class="colFirst"><a href="../../../../../org/jamesframework/core/search/algo/RandomDescent.html" title="class in org.jamesframework.core.search.algo">RandomDescent</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</td>
 <td class="colLast">
 <div class="block">Basic random descent algorithm.</div>
 </td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../../../org/jamesframework/core/search/algo/RandomSearch.html" title="class in org.jamesframework.core.search.algo">RandomSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</td>
+<tr class="rowColor">
+<td class="colFirst"><a href="../../../../../org/jamesframework/core/search/algo/RandomSearch.html" title="class in org.jamesframework.core.search.algo">RandomSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</td>
 <td class="colLast">
 <div class="block">The random search algorithm iteratively samples a random solution and checks
  whether a new best solution has been found, in every search step.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="../../../../../org/jamesframework/core/search/algo/SteepestDescent.html" title="class in org.jamesframework.core.search.algo">SteepestDescent</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</td>
+<tr class="altColor">
+<td class="colFirst"><a href="../../../../../org/jamesframework/core/search/algo/SteepestDescent.html" title="class in org.jamesframework.core.search.algo">SteepestDescent</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</td>
 <td class="colLast">
 <div class="block">Steepest descent algorithm, also referred to as hill climbing.</div>
 </td>
@@ -151,8 +144,7 @@
 <!--   -->
 </a>
 <h2 title="Package org.jamesframework.core.search.algo Description">Package org.jamesframework.core.search.algo Description</h2>
-<div class="block">Actual search implementations (non self-contained searches and their related components
- are implemented in separate subpackages).</div>
+<div class="block">Algorithm implementations.</div>
 </div>
 <!-- ======= START OF BOTTOM NAVBAR ====== -->
 <div class="bottomNav"><a name="navbar.bottom">

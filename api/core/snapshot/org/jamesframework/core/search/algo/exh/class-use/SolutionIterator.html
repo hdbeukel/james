@@ -86,7 +86,13 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo.exh">org.jamesframework.core.search.algo.exh</a></td>
 <td class="colLast">
-<div class="block">Exhaustive search and related components.</div>
+<div class="block">Exhaustive search and components.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="#org.jamesframework.core.subset.algo.exh">org.jamesframework.core.subset.algo.exh</a></td>
+<td class="colLast">
+<div class="block">Exhaustive search components for subset selection.</div>
 </td>
 </tr>
 </tbody>
@@ -98,22 +104,6 @@
 <!--   -->
 </a>
 <h3>Uses of <a href="../../../../../../../org/jamesframework/core/search/algo/exh/SolutionIterator.html" title="interface in org.jamesframework.core.search.algo.exh">SolutionIterator</a> in <a href="../../../../../../../org/jamesframework/core/search/algo/exh/package-summary.html">org.jamesframework.core.search.algo.exh</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
-<caption><span>Classes in <a href="../../../../../../../org/jamesframework/core/search/algo/exh/package-summary.html">org.jamesframework.core.search.algo.exh</a> that implement <a href="../../../../../../../org/jamesframework/core/search/algo/exh/SolutionIterator.html" title="interface in org.jamesframework.core.search.algo.exh">SolutionIterator</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Class and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/search/algo/exh/SubsetSolutionIterator.html" title="class in org.jamesframework.core.search.algo.exh">SubsetSolutionIterator</a></span></code>
-<div class="block">A subset solution iterator generates all possible subsets within a given size range, given a
- set of IDs from which to select.</div>
-</td>
-</tr>
-</tbody>
-</table>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
 <caption><span>Constructors in <a href="../../../../../../../org/jamesframework/core/search/algo/exh/package-summary.html">org.jamesframework.core.search.algo.exh</a> with parameters of type <a href="../../../../../../../org/jamesframework/core/search/algo/exh/SolutionIterator.html" title="interface in org.jamesframework.core.search.algo.exh">SolutionIterator</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
@@ -133,6 +123,27 @@
                 <a href="../../../../../../../org/jamesframework/core/search/algo/exh/SolutionIterator.html" title="interface in org.jamesframework.core.search.algo.exh">SolutionIterator</a>&lt;? extends <a href="../../../../../../../org/jamesframework/core/search/algo/exh/ExhaustiveSearch.html" title="type parameter in ExhaustiveSearch">SolutionType</a>&gt;&nbsp;solutionIterator)</code>
 <div class="block">Create an exhaustive search algorithm to solve the given problem, using the given solution iterator to generate
  possible solutions, with a custom search name.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.subset.algo.exh">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../../../org/jamesframework/core/search/algo/exh/SolutionIterator.html" title="interface in org.jamesframework.core.search.algo.exh">SolutionIterator</a> in <a href="../../../../../../../org/jamesframework/core/subset/algo/exh/package-summary.html">org.jamesframework.core.subset.algo.exh</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../../../../org/jamesframework/core/subset/algo/exh/package-summary.html">org.jamesframework.core.subset.algo.exh</a> that implement <a href="../../../../../../../org/jamesframework/core/search/algo/exh/SolutionIterator.html" title="interface in org.jamesframework.core.search.algo.exh">SolutionIterator</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/algo/exh/SubsetSolutionIterator.html" title="class in org.jamesframework.core.subset.algo.exh">SubsetSolutionIterator</a></span></code>
+<div class="block">A subset solution iterator generates all possible subsets within a given size range, given a
+ set of IDs from which to select.</div>
 </td>
 </tr>
 </tbody>

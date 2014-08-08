@@ -94,7 +94,7 @@ var activeTableTab = "activeTableTab";
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">org.jamesframework.ext.problems.objectives</div>
-<h2 title="Class WeightedMultiObjective" class="title">Class WeightedMultiObjective&lt;SolutionType extends <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/solutions/Solution.html?is-external=true" title="class or interface in org.jamesframework.core.problems.solutions">Solution</a>,DataType&gt;</h2>
+<h2 title="Class WeightedMultiObjective" class="title">Class WeightedMultiObjective&lt;SolutionType extends <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/Solution.html?is-external=true" title="class or interface in org.jamesframework.core.problems">Solution</a>,DataType&gt;</h2>
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
@@ -110,7 +110,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
-<dd><code>SolutionType</code> - solution type to be evaluated, required to extend <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/solutions/Solution.html?is-external=true" title="class or interface in org.jamesframework.core.problems.solutions"><code>Solution</code></a></dd>
+<dd><code>SolutionType</code> - solution type to be evaluated, required to extend <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/Solution.html?is-external=true" title="class or interface in org.jamesframework.core.problems"><code>Solution</code></a></dd>
 <dd><code>DataType</code> - underlying data type</dd>
 </dl>
 <dl>
@@ -119,7 +119,7 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public class <span class="typeNameLabel">WeightedMultiObjective&lt;SolutionType extends <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/solutions/Solution.html?is-external=true" title="class or interface in org.jamesframework.core.problems.solutions">Solution</a>,DataType&gt;</span>
+<pre>public class <span class="typeNameLabel">WeightedMultiObjective&lt;SolutionType extends <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/Solution.html?is-external=true" title="class or interface in org.jamesframework.core.problems">Solution</a>,DataType&gt;</span>
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/objectives/Objective.html?is-external=true" title="class or interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;SolutionType,DataType&gt;</pre>
 <div class="block">Implements an objective which calculates a weighted sum of other objectives. A weighted multi-objective
@@ -280,13 +280,13 @@ implements <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesfr
  objectives are inverted.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/objectives/Objective.html?is-external=true#isMinimizing--" title="class or interface in org.jamesframework.core.problems.objectives">isMinimizing</a></code>&nbsp;in interface&nbsp;<code><a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/objectives/Objective.html?is-external=true" title="class or interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;<a href="../../../../../org/jamesframework/ext/problems/objectives/WeightedMultiObjective.html" title="type parameter in WeightedMultiObjective">SolutionType</a> extends <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/solutions/Solution.html?is-external=true" title="class or interface in org.jamesframework.core.problems.solutions">Solution</a>,<a href="../../../../../org/jamesframework/ext/problems/objectives/WeightedMultiObjective.html" title="type parameter in WeightedMultiObjective">DataType</a>&gt;</code></dd>
+<dd><code><a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/objectives/Objective.html?is-external=true#isMinimizing--" title="class or interface in org.jamesframework.core.problems.objectives">isMinimizing</a></code>&nbsp;in interface&nbsp;<code><a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/objectives/Objective.html?is-external=true" title="class or interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;<a href="../../../../../org/jamesframework/ext/problems/objectives/WeightedMultiObjective.html" title="type parameter in WeightedMultiObjective">SolutionType</a> extends <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/Solution.html?is-external=true" title="class or interface in org.jamesframework.core.problems">Solution</a>,<a href="../../../../../org/jamesframework/ext/problems/objectives/WeightedMultiObjective.html" title="type parameter in WeightedMultiObjective">DataType</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>false</dd>
 </dl>
 </li>
 </ul>
-<a name="evaluate-org.jamesframework.core.problems.solutions.Solution-java.lang.Object-">
+<a name="evaluate-org.jamesframework.core.problems.Solution-java.lang.Object-">
 <!--   -->
 </a><a name="evaluate-SolutionType-DataType-">
 <!--   -->
@@ -299,7 +299,7 @@ implements <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesfr
 <div class="block">Computes the weighted sum of evaluations of all underlying objectives.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/objectives/Objective.html?is-external=true#evaluate-SolutionType-DataType-" title="class or interface in org.jamesframework.core.problems.objectives">evaluate</a></code>&nbsp;in interface&nbsp;<code><a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/objectives/Objective.html?is-external=true" title="class or interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;<a href="../../../../../org/jamesframework/ext/problems/objectives/WeightedMultiObjective.html" title="type parameter in WeightedMultiObjective">SolutionType</a> extends <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/solutions/Solution.html?is-external=true" title="class or interface in org.jamesframework.core.problems.solutions">Solution</a>,<a href="../../../../../org/jamesframework/ext/problems/objectives/WeightedMultiObjective.html" title="type parameter in WeightedMultiObjective">DataType</a>&gt;</code></dd>
+<dd><code><a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/objectives/Objective.html?is-external=true#evaluate-SolutionType-DataType-" title="class or interface in org.jamesframework.core.problems.objectives">evaluate</a></code>&nbsp;in interface&nbsp;<code><a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/objectives/Objective.html?is-external=true" title="class or interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;<a href="../../../../../org/jamesframework/ext/problems/objectives/WeightedMultiObjective.html" title="type parameter in WeightedMultiObjective">SolutionType</a> extends <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/Solution.html?is-external=true" title="class or interface in org.jamesframework.core.problems">Solution</a>,<a href="../../../../../org/jamesframework/ext/problems/objectives/WeightedMultiObjective.html" title="type parameter in WeightedMultiObjective">DataType</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>solution</code> - solution to evaluate</dd>
 <dd><code>data</code> - data to be used for evaluation</dd>

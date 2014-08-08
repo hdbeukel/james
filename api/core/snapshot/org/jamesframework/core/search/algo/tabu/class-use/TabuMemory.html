@@ -86,7 +86,13 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo.tabu">org.jamesframework.core.search.algo.tabu</a></td>
 <td class="colLast">
-<div class="block">Tabu search and related components, including tabu memory specification.</div>
+<div class="block">Tabu search and components (including tabu memory specification).</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="#org.jamesframework.core.subset.algo.tabu">org.jamesframework.core.subset.algo.tabu</a></td>
+<td class="colLast">
+<div class="block">Tabu search components for subset selection.</div>
 </td>
 </tr>
 </tbody>
@@ -107,18 +113,10 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="class in org.jamesframework.core.search.algo.tabu">FullTabuMemory</a>&lt;SolutionType extends <a href="../../../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="class in org.jamesframework.core.search.algo.tabu">FullTabuMemory</a>&lt;SolutionType extends <a href="../../../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
 <div class="block">Full tabu memory that stores deeps copies of recently visited solutions and declares a move tabu if
  applying it to the current solution yields a neighbouring solution which is currently contained in
  the memory.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/search/algo/tabu/IDBasedSubsetTabuMemory.html" title="class in org.jamesframework.core.search.algo.tabu">IDBasedSubsetTabuMemory</a></span></code>
-<div class="block">An ID based subset tabu memory keeps track of recently added and deleted IDs (recently applied moves) and does not
- allow that these IDs are added nor deleted to/from the current solution as long as they are contained in the limited
- size tabu memory.</div>
 </td>
 </tr>
 </tbody>
@@ -159,6 +157,28 @@
           <a href="../../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html" title="interface in org.jamesframework.core.search.algo.tabu">TabuMemory</a>&lt;<a href="../../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="type parameter in TabuSearch">SolutionType</a>&gt;&nbsp;tabuMemory)</code>
 <div class="block">Creates a new tabu search, specifying the problem to solve, the neighbourhood used to modify the current
  solution, the applied tabu memory and a custom search name.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.subset.algo.tabu">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html" title="interface in org.jamesframework.core.search.algo.tabu">TabuMemory</a> in <a href="../../../../../../../org/jamesframework/core/subset/algo/tabu/package-summary.html">org.jamesframework.core.subset.algo.tabu</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../../../../org/jamesframework/core/subset/algo/tabu/package-summary.html">org.jamesframework.core.subset.algo.tabu</a> that implement <a href="../../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html" title="interface in org.jamesframework.core.search.algo.tabu">TabuMemory</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/algo/tabu/IDBasedSubsetTabuMemory.html" title="class in org.jamesframework.core.subset.algo.tabu">IDBasedSubsetTabuMemory</a></span></code>
+<div class="block">An ID based subset tabu memory keeps track of recently added and deleted IDs (recently applied moves) and does not
+ allow that these IDs are added nor deleted to/from the current solution as long as they are contained in the limited
+ size tabu memory.</div>
 </td>
 </tr>
 </tbody>

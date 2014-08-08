@@ -94,7 +94,7 @@ var activeTableTab = "activeTableTab";
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">org.jamesframework.core.search</div>
-<h2 title="Class LocalSearch" class="title">Class LocalSearch&lt;SolutionType extends <a href="../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</h2>
+<h2 title="Class LocalSearch" class="title">Class LocalSearch&lt;SolutionType extends <a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</h2>
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
@@ -115,7 +115,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
-<dd><code>SolutionType</code> - solution type of the problems that may be solved using this search, required to extend <a href="../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions"><code>Solution</code></a></dd>
+<dd><code>SolutionType</code> - solution type of the problems that may be solved using this search, required to extend <a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems"><code>Solution</code></a></dd>
 </dl>
 <dl>
 <dt>All Implemented Interfaces:</dt>
@@ -123,11 +123,11 @@ var activeTableTab = "activeTableTab";
 </dl>
 <dl>
 <dt>Direct Known Subclasses:</dt>
-<dd><a href="../../../../org/jamesframework/core/search/algo/LRSubsetSearch.html" title="class in org.jamesframework.core.search.algo">LRSubsetSearch</a>, <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a>, <a href="../../../../org/jamesframework/core/search/algo/PipedLocalSearch.html" title="class in org.jamesframework.core.search.algo">PipedLocalSearch</a></dd>
+<dd><a href="../../../../org/jamesframework/core/subset/algo/LRSubsetSearch.html" title="class in org.jamesframework.core.subset.algo">LRSubsetSearch</a>, <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a>, <a href="../../../../org/jamesframework/core/search/algo/PipedLocalSearch.html" title="class in org.jamesframework.core.search.algo">PipedLocalSearch</a></dd>
 </dl>
 <hr>
 <br>
-<pre>public abstract class <span class="typeNameLabel">LocalSearch&lt;SolutionType extends <a href="../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span>
+<pre>public abstract class <span class="typeNameLabel">LocalSearch&lt;SolutionType extends <a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span>
 extends <a href="../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;SolutionType&gt;</pre>
 <div class="block">Local searches are searches that start with some initial solution and modify this solution in an attempt to improve
  it. The initial solution can be specified using <a href="../../../../org/jamesframework/core/search/LocalSearch.html#setCurrentSolution-SolutionType-"><code>setCurrentSolution(Solution)</code></a> before running the search, else,
@@ -329,7 +329,7 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 <div class="block">When the search is started, a random initial solution is generated if none has been specified.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../org/jamesframework/core/search/Search.html#searchStarted--">searchStarted</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a> extends <a href="../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</code></dd>
+<dd><code><a href="../../../../org/jamesframework/core/search/Search.html#searchStarted--">searchStarted</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a> extends <a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</code></dd>
 </dl>
 </li>
 </ul>
@@ -345,7 +345,7 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
  Note that this method may only be called when the search is idle.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../org/jamesframework/core/search/Search.html#addSearchListener-org.jamesframework.core.search.listeners.SearchListener-">addSearchListener</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a> extends <a href="../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</code></dd>
+<dd><code><a href="../../../../org/jamesframework/core/search/Search.html#addSearchListener-org.jamesframework.core.search.listeners.SearchListener-">addSearchListener</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a> extends <a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>listener</code> - search listener to add to the search</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -367,7 +367,7 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
  local search listener. Note that this method may only be called when the search is idle.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../org/jamesframework/core/search/Search.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a> extends <a href="../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</code></dd>
+<dd><code><a href="../../../../org/jamesframework/core/search/Search.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a> extends <a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>listener</code> - search listener to be removed</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -411,7 +411,7 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 </dl>
 </li>
 </ul>
-<a name="setCurrentSolution-org.jamesframework.core.problems.solutions.Solution-">
+<a name="setCurrentSolution-org.jamesframework.core.problems.Solution-">
 <!--   -->
 </a><a name="setCurrentSolution-SolutionType-">
 <!--   -->
@@ -433,7 +433,7 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 </dl>
 </li>
 </ul>
-<a name="updateCurrentSolution-org.jamesframework.core.problems.solutions.Solution-double-">
+<a name="updateCurrentSolution-org.jamesframework.core.problems.Solution-double-">
 <!--   -->
 </a><a name="updateCurrentSolution-SolutionType-double-">
 <!--   -->
@@ -454,7 +454,7 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 </dl>
 </li>
 </ul>
-<a name="updateCurrentAndBestSolution-org.jamesframework.core.problems.solutions.Solution-">
+<a name="updateCurrentAndBestSolution-org.jamesframework.core.problems.Solution-">
 <!--   -->
 </a><a name="updateCurrentAndBestSolution-SolutionType-">
 <!--   -->
@@ -473,7 +473,7 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 </dl>
 </li>
 </ul>
-<a name="updateCurrentAndBestSolution-org.jamesframework.core.problems.solutions.Solution-double-">
+<a name="updateCurrentAndBestSolution-org.jamesframework.core.problems.Solution-double-">
 <!--   -->
 </a><a name="updateCurrentAndBestSolution-SolutionType-double-">
 <!--   -->
@@ -494,7 +494,7 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 </dl>
 </li>
 </ul>
-<a name="updateCurrentAndBestSolution-org.jamesframework.core.problems.solutions.Solution-double-boolean-">
+<a name="updateCurrentAndBestSolution-org.jamesframework.core.problems.Solution-double-boolean-">
 <!--   -->
 </a><a name="updateCurrentAndBestSolution-SolutionType-double-boolean-">
 <!--   -->

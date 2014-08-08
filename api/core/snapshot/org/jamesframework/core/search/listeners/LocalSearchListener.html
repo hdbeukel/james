@@ -18,8 +18,8 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
+var methods = {"i0":18};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../org/jamesframework/core/search/listeners/EmptySearchListener.html" title="class in org.jamesframework.core.search.listeners"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li>Prev&nbsp;Class</li>
 <li><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -94,7 +94,7 @@ var activeTableTab = "activeTableTab";
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">org.jamesframework.core.search.listeners</div>
-<h2 title="Interface LocalSearchListener" class="title">Interface LocalSearchListener&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</h2>
+<h2 title="Interface LocalSearchListener" class="title">Interface LocalSearchListener&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</h2>
 </div>
 <div class="contentContainer">
 <div class="description">
@@ -102,24 +102,25 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
-<dd><code>SolutionType</code> - solution type of the search to which the listener may be attached, required to extend <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions"><code>Solution</code></a></dd>
+<dd><code>SolutionType</code> - solution type, required to extend <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems"><code>Solution</code></a></dd>
 </dl>
 <dl>
 <dt>All Superinterfaces:</dt>
 <dd><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;SolutionType&gt;</dd>
 </dl>
-<dl>
-<dt>All Known Implementing Classes:</dt>
-<dd><a href="../../../../../org/jamesframework/core/search/listeners/EmptyLocalSearchListener.html" title="class in org.jamesframework.core.search.listeners">EmptyLocalSearchListener</a></dd>
-</dl>
 <hr>
 <br>
-<pre>public interface <span class="typeNameLabel">LocalSearchListener&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span>
+<pre>public interface <span class="typeNameLabel">LocalSearchListener&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span>
 extends <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;SolutionType&gt;</pre>
-<div class="block">Extends the general search listener interface with a local search specific callback, fired when the current solution
+<div class="block"><p>
+ Extends the general search listener interface with a local search specific callback, fired when the current solution
  has been modified. A listener implementing this interface may still be attached to a general search, in which case the
  specific callback will simply never be fired. If attached to a local search, it will be fired whenever a new current
- solution has been adopted.</div>
+ solution has been adopted.
+ </p>
+ <p>
+ The additional callback also has a default empty implementation.
+ </p></div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a></dd>
@@ -137,13 +138,13 @@ extends <a href="../../../../../org/jamesframework/core/search/listeners/SearchL
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t5" class="tableTab"><span><a href="javascript:show(16);">Default Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>void</code></td>
+<td class="colFirst"><code>default void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/listeners/LocalSearchListener.html#modifiedCurrentSolution-org.jamesframework.core.search.LocalSearch-SolutionType-double-">modifiedCurrentSolution</a></span>(<a href="../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/LocalSearchListener.html" title="type parameter in LocalSearchListener">SolutionType</a>&gt;&nbsp;search,
                        <a href="../../../../../org/jamesframework/core/search/listeners/LocalSearchListener.html" title="type parameter in LocalSearchListener">SolutionType</a>&nbsp;newCurrentSolution,
                        double&nbsp;newCurrentSolutionEvaluation)</code>
@@ -156,7 +157,7 @@ extends <a href="../../../../../org/jamesframework/core/search/listeners/SearchL
 <!--   -->
 </a>
 <h3>Methods inherited from interface&nbsp;org.jamesframework.core.search.listeners.<a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a></h3>
-<code><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#newBestSolution-org.jamesframework.core.search.Search-SolutionType-double-">newBestSolution</a>, <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#searchStarted-org.jamesframework.core.search.Search-">searchStarted</a>, <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#searchStopped-org.jamesframework.core.search.Search-">searchStopped</a>, <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#statusChanged-org.jamesframework.core.search.Search-org.jamesframework.core.search.SearchStatus-">statusChanged</a>, <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#stepCompleted-org.jamesframework.core.search.Search-long-">stepCompleted</a></code></li>
+<code><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#newBestSolution-org.jamesframework.core.search.Search-SolutionType-double-">newBestSolution</a>, <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#searchStarted-org.jamesframework.core.search.Search-">searchStarted</a>, <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#searchStopped-org.jamesframework.core.search.Search-">searchStopped</a>, <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#statusChanged-org.jamesframework.core.search.Search-org.jamesframework.core.search.status.SearchStatus-">statusChanged</a>, <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#stepCompleted-org.jamesframework.core.search.Search-long-">stepCompleted</a></code></li>
 </ul>
 </li>
 </ul>
@@ -172,7 +173,7 @@ extends <a href="../../../../../org/jamesframework/core/search/listeners/SearchL
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="modifiedCurrentSolution-org.jamesframework.core.search.LocalSearch-org.jamesframework.core.problems.solutions.Solution-double-">
+<a name="modifiedCurrentSolution-org.jamesframework.core.search.LocalSearch-org.jamesframework.core.problems.Solution-double-">
 <!--   -->
 </a><a name="modifiedCurrentSolution-org.jamesframework.core.search.LocalSearch-SolutionType-double-">
 <!--   -->
@@ -180,9 +181,9 @@ extends <a href="../../../../../org/jamesframework/core/search/listeners/SearchL
 <ul class="blockListLast">
 <li class="blockList">
 <h4>modifiedCurrentSolution</h4>
-<pre>void&nbsp;modifiedCurrentSolution(<a href="../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/LocalSearchListener.html" title="type parameter in LocalSearchListener">SolutionType</a>&gt;&nbsp;search,
-                             <a href="../../../../../org/jamesframework/core/search/listeners/LocalSearchListener.html" title="type parameter in LocalSearchListener">SolutionType</a>&nbsp;newCurrentSolution,
-                             double&nbsp;newCurrentSolutionEvaluation)</pre>
+<pre>default&nbsp;void&nbsp;modifiedCurrentSolution(<a href="../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/LocalSearchListener.html" title="type parameter in LocalSearchListener">SolutionType</a>&gt;&nbsp;search,
+                                     <a href="../../../../../org/jamesframework/core/search/listeners/LocalSearchListener.html" title="type parameter in LocalSearchListener">SolutionType</a>&nbsp;newCurrentSolution,
+                                     double&nbsp;newCurrentSolutionEvaluation)</pre>
 <div class="block">Fired whenever a new current solution has been adopted. Called exactly once for every modification to the
  current solution.</div>
 <dl>
@@ -224,7 +225,7 @@ extends <a href="../../../../../org/jamesframework/core/search/listeners/SearchL
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../org/jamesframework/core/search/listeners/EmptySearchListener.html" title="class in org.jamesframework.core.search.listeners"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li>Prev&nbsp;Class</li>
 <li><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">

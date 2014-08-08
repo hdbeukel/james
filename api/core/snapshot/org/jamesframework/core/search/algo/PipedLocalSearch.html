@@ -94,7 +94,7 @@ var activeTableTab = "activeTableTab";
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">org.jamesframework.core.search.algo</div>
-<h2 title="Class PipedLocalSearch" class="title">Class PipedLocalSearch&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</h2>
+<h2 title="Class PipedLocalSearch" class="title">Class PipedLocalSearch&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</h2>
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
@@ -120,7 +120,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
-<dd><code>SolutionType</code> - solution type of the problems that may be solved using this search, required to extend <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions"><code>Solution</code></a></dd>
+<dd><code>SolutionType</code> - solution type of the problems that may be solved using this search, required to extend <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems"><code>Solution</code></a></dd>
 </dl>
 <dl>
 <dt>All Implemented Interfaces:</dt>
@@ -128,7 +128,7 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public class <span class="typeNameLabel">PipedLocalSearch&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</span>
+<pre>public class <span class="typeNameLabel">PipedLocalSearch&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span>
 extends <a href="../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a>&lt;SolutionType&gt;</pre>
 <div class="block"><p>
  A piped local search consists of a composition of other local search \(S_1, ..., S_n\). These local searches
@@ -335,7 +335,7 @@ extends <a href="../../../../../org/jamesframework/core/search/LocalSearch.html"
 <div class="block">When requesting to stop a piped local search, this request is propagated to each search in the pipeline.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../../org/jamesframework/core/search/Search.html#stop--">stop</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/PipedLocalSearch.html" title="type parameter in PipedLocalSearch">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</code></dd>
+<dd><code><a href="../../../../../org/jamesframework/core/search/Search.html#stop--">stop</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/PipedLocalSearch.html" title="type parameter in PipedLocalSearch">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</code></dd>
 </dl>
 </li>
 </ul>
@@ -349,7 +349,7 @@ extends <a href="../../../../../org/jamesframework/core/search/LocalSearch.html"
 <div class="block">When disposing a piped local search, all searches in the pipeline are also disposed.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../../org/jamesframework/core/search/Search.html#searchDisposed--">searchDisposed</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/PipedLocalSearch.html" title="type parameter in PipedLocalSearch">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</code></dd>
+<dd><code><a href="../../../../../org/jamesframework/core/search/Search.html#searchDisposed--">searchDisposed</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/PipedLocalSearch.html" title="type parameter in PipedLocalSearch">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</code></dd>
 </dl>
 </li>
 </ul>
@@ -363,7 +363,7 @@ extends <a href="../../../../../org/jamesframework/core/search/LocalSearch.html"
 <div class="block">General start method is overriden so that search is automatically disposed when <a href="../../../../../org/jamesframework/core/search/Search.html#start--"><code>Search.start()</code></a> returns.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../../org/jamesframework/core/search/Search.html#start--">start</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/PipedLocalSearch.html" title="type parameter in PipedLocalSearch">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</code></dd>
+<dd><code><a href="../../../../../org/jamesframework/core/search/Search.html#start--">start</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/PipedLocalSearch.html" title="type parameter in PipedLocalSearch">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</code></dd>
 </dl>
 </li>
 </ul>
@@ -379,7 +379,7 @@ extends <a href="../../../../../org/jamesframework/core/search/LocalSearch.html"
  search terminates.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/jamesframework/core/search/Search.html#searchStep--">searchStep</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/PipedLocalSearch.html" title="type parameter in PipedLocalSearch">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/solutions/Solution.html" title="class in org.jamesframework.core.problems.solutions">Solution</a>&gt;</code></dd>
+<dd><code><a href="../../../../../org/jamesframework/core/search/Search.html#searchStep--">searchStep</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/PipedLocalSearch.html" title="type parameter in PipedLocalSearch">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</code></dd>
 </dl>
 </li>
 </ul>

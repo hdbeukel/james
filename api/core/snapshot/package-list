@@ -3,7 +3,6 @@ org.jamesframework.core.problems
 org.jamesframework.core.problems.constraints
 org.jamesframework.core.problems.datatypes
 org.jamesframework.core.problems.objectives
-org.jamesframework.core.problems.solutions
 org.jamesframework.core.search
 org.jamesframework.core.search.algo
 org.jamesframework.core.search.algo.exh
@@ -12,7 +11,12 @@ org.jamesframework.core.search.algo.vns
 org.jamesframework.core.search.cache
 org.jamesframework.core.search.listeners
 org.jamesframework.core.search.neigh
-org.jamesframework.core.search.neigh.subset
-org.jamesframework.core.search.neigh.subset.adv
+org.jamesframework.core.search.status
 org.jamesframework.core.search.stopcriteria
+org.jamesframework.core.subset
+org.jamesframework.core.subset.algo
+org.jamesframework.core.subset.algo.exh
+org.jamesframework.core.subset.algo.tabu
+org.jamesframework.core.subset.neigh
+org.jamesframework.core.subset.neigh.adv
 org.jamesframework.core.util

@@ -84,46 +84,98 @@
 </tr>
 <tbody>
 <tr class="altColor">
+<td class="colFirst"><a href="#org.jamesframework.core.exceptions">org.jamesframework.core.exceptions</a></td>
+<td class="colLast">
+<div class="block">Custom James runtime exceptions.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.problems">org.jamesframework.core.problems</a></td>
 <td class="colLast">
-<div class="block">Problem specification.</div>
+<div class="block">High-level problem specification.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#org.jamesframework.core.problems.constraints">org.jamesframework.core.problems.constraints</a></td>
+<td class="colLast">
+<div class="block">Constraint interfaces.</div>
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><a href="#org.jamesframework.core.problems.objectives">org.jamesframework.core.problems.objectives</a></td>
+<td class="colLast">
+<div class="block">Objective interfaces.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search">org.jamesframework.core.search</a></td>
 <td class="colLast">
-<div class="block">Abstract search templates, including both general searches and neighbourhood searches.</div>
+<div class="block">High-level search templates.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo">org.jamesframework.core.search.algo</a></td>
 <td class="colLast">
-<div class="block">Actual search implementations (non self-contained searches and their related components
- are implemented in separate subpackages).</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="#org.jamesframework.core.search.algo.exh">org.jamesframework.core.search.algo.exh</a></td>
-<td class="colLast">
-<div class="block">Exhaustive search and related components.</div>
+<div class="block">Algorithm implementations.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><a href="#org.jamesframework.core.search.algo.tabu">org.jamesframework.core.search.algo.tabu</a></td>
+<td class="colFirst"><a href="#org.jamesframework.core.search.algo.exh">org.jamesframework.core.search.algo.exh</a></td>
 <td class="colLast">
-<div class="block">Tabu search and related components, including tabu memory specification.</div>
+<div class="block">Exhaustive search and components.</div>
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><a href="#org.jamesframework.core.search.algo.tabu">org.jamesframework.core.search.algo.tabu</a></td>
+<td class="colLast">
+<div class="block">Tabu search and components (including tabu memory specification).</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo.vns">org.jamesframework.core.search.algo.vns</a></td>
 <td class="colLast">
-<div class="block">Variable neighbourhood searches.</div>
+<div class="block">Variable neighbourhood searches and components.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="#org.jamesframework.core.search.listeners">org.jamesframework.core.search.listeners</a></td>
+<td class="colLast">
+<div class="block">Search listeners.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#org.jamesframework.core.search.neigh">org.jamesframework.core.search.neigh</a></td>
+<td class="colLast">
+<div class="block">Neighbourhoods and components.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="#org.jamesframework.core.subset">org.jamesframework.core.subset</a></td>
+<td class="colLast">
+<div class="block">Predefined subset problem.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.util">org.jamesframework.core.util</a></td>
 <td class="colLast">
 <div class="block">General utilities.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.exceptions">
+<!--   -->
+</a>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../org/jamesframework/core/problems/package-summary.html">org.jamesframework.core.problems</a> used by <a href="../../../../org/jamesframework/core/exceptions/package-summary.html">org.jamesframework.core.exceptions</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../org/jamesframework/core/problems/class-use/Solution.html#org.jamesframework.core.exceptions">Solution</a>
+<div class="block">Represents an abstract solution.</div>
 </td>
 </tr>
 </tbody>
@@ -144,14 +196,42 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><a href="../../../../org/jamesframework/core/problems/class-use/ProblemWithData.html#org.jamesframework.core.problems">ProblemWithData</a>
-<div class="block">
- Represents an abstract problem that separates data from the objective and possible constraints.</div>
+<td class="colOne"><a href="../../../../org/jamesframework/core/problems/class-use/Solution.html#org.jamesframework.core.problems">Solution</a>
+<div class="block">Represents an abstract solution.</div>
 </td>
 </tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.problems.constraints">
+<!--   -->
+</a>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../org/jamesframework/core/problems/package-summary.html">org.jamesframework.core.problems</a> used by <a href="../../../../org/jamesframework/core/problems/constraints/package-summary.html">org.jamesframework.core.problems.constraints</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Class and Description</th>
+</tr>
+<tbody>
 <tr class="altColor">
-<td class="colOne"><a href="../../../../org/jamesframework/core/problems/class-use/SubsetProblem.html#org.jamesframework.core.problems">SubsetProblem</a>
-<div class="block">Interface of a subset problem with solution type <a href="../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions"><code>SubsetSolution</code></a>, extending the general <a href="../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems"><code>Problem</code></a> interface.</div>
+<td class="colOne"><a href="../../../../org/jamesframework/core/problems/class-use/Solution.html#org.jamesframework.core.problems.constraints">Solution</a>
+<div class="block">Represents an abstract solution.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.problems.objectives">
+<!--   -->
+</a>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../org/jamesframework/core/problems/package-summary.html">org.jamesframework.core.problems</a> used by <a href="../../../../org/jamesframework/core/problems/objectives/package-summary.html">org.jamesframework.core.problems.objectives</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../org/jamesframework/core/problems/class-use/Solution.html#org.jamesframework.core.problems.objectives">Solution</a>
+<div class="block">Represents an abstract solution.</div>
 </td>
 </tr>
 </tbody>
@@ -169,6 +249,11 @@
 <tr class="altColor">
 <td class="colOne"><a href="../../../../org/jamesframework/core/problems/class-use/Problem.html#org.jamesframework.core.search">Problem</a>
 <div class="block">Interface of a problem with a generic solution type.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../../org/jamesframework/core/problems/class-use/Solution.html#org.jamesframework.core.search">Solution</a>
+<div class="block">Represents an abstract solution.</div>
 </td>
 </tr>
 </tbody>
@@ -189,8 +274,8 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><a href="../../../../org/jamesframework/core/problems/class-use/SubsetProblem.html#org.jamesframework.core.search.algo">SubsetProblem</a>
-<div class="block">Interface of a subset problem with solution type <a href="../../../../org/jamesframework/core/problems/solutions/SubsetSolution.html" title="class in org.jamesframework.core.problems.solutions"><code>SubsetSolution</code></a>, extending the general <a href="../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems"><code>Problem</code></a> interface.</div>
+<td class="colOne"><a href="../../../../org/jamesframework/core/problems/class-use/Solution.html#org.jamesframework.core.search.algo">Solution</a>
+<div class="block">Represents an abstract solution.</div>
 </td>
 </tr>
 </tbody>
@@ -210,6 +295,11 @@
 <div class="block">Interface of a problem with a generic solution type.</div>
 </td>
 </tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../../org/jamesframework/core/problems/class-use/Solution.html#org.jamesframework.core.search.algo.exh">Solution</a>
+<div class="block">Represents an abstract solution.</div>
+</td>
+</tr>
 </tbody>
 </table>
 </li>
@@ -225,6 +315,11 @@
 <tr class="altColor">
 <td class="colOne"><a href="../../../../org/jamesframework/core/problems/class-use/Problem.html#org.jamesframework.core.search.algo.tabu">Problem</a>
 <div class="block">Interface of a problem with a generic solution type.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../../org/jamesframework/core/problems/class-use/Solution.html#org.jamesframework.core.search.algo.tabu">Solution</a>
+<div class="block">Represents an abstract solution.</div>
 </td>
 </tr>
 </tbody>
@@ -244,6 +339,73 @@
 <div class="block">Interface of a problem with a generic solution type.</div>
 </td>
 </tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../../org/jamesframework/core/problems/class-use/Solution.html#org.jamesframework.core.search.algo.vns">Solution</a>
+<div class="block">Represents an abstract solution.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.search.listeners">
+<!--   -->
+</a>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../org/jamesframework/core/problems/package-summary.html">org.jamesframework.core.problems</a> used by <a href="../../../../org/jamesframework/core/search/listeners/package-summary.html">org.jamesframework.core.search.listeners</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../org/jamesframework/core/problems/class-use/Solution.html#org.jamesframework.core.search.listeners">Solution</a>
+<div class="block">Represents an abstract solution.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.search.neigh">
+<!--   -->
+</a>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../org/jamesframework/core/problems/package-summary.html">org.jamesframework.core.problems</a> used by <a href="../../../../org/jamesframework/core/search/neigh/package-summary.html">org.jamesframework.core.search.neigh</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../org/jamesframework/core/problems/class-use/Solution.html#org.jamesframework.core.search.neigh">Solution</a>
+<div class="block">Represents an abstract solution.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.subset">
+<!--   -->
+</a>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../org/jamesframework/core/problems/package-summary.html">org.jamesframework.core.problems</a> used by <a href="../../../../org/jamesframework/core/subset/package-summary.html">org.jamesframework.core.subset</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../org/jamesframework/core/problems/class-use/AbstractProblem.html#org.jamesframework.core.subset">AbstractProblem</a>
+<div class="block">
+ Represents an abstract problem that separates data from the objective and constraints (if any).</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../../org/jamesframework/core/problems/class-use/Problem.html#org.jamesframework.core.subset">Problem</a>
+<div class="block">Interface of a problem with a generic solution type.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../org/jamesframework/core/problems/class-use/Solution.html#org.jamesframework.core.subset">Solution</a>
+<div class="block">Represents an abstract solution.</div>
+</td>
+</tr>
 </tbody>
 </table>
 </li>
@@ -259,6 +421,11 @@
 <tr class="altColor">
 <td class="colOne"><a href="../../../../org/jamesframework/core/problems/class-use/Problem.html#org.jamesframework.core.util">Problem</a>
 <div class="block">Interface of a problem with a generic solution type.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../../org/jamesframework/core/problems/class-use/Solution.html#org.jamesframework.core.util">Solution</a>
+<div class="block">Represents an abstract solution.</div>
 </td>
 </tr>
 </tbody>

@@ -86,32 +86,31 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search">org.jamesframework.core.search</a></td>
 <td class="colLast">
-<div class="block">Abstract search templates, including both general searches and neighbourhood searches.</div>
+<div class="block">High-level search templates.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo">org.jamesframework.core.search.algo</a></td>
 <td class="colLast">
-<div class="block">Actual search implementations (non self-contained searches and their related components
- are implemented in separate subpackages).</div>
+<div class="block">Algorithm implementations.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo.exh">org.jamesframework.core.search.algo.exh</a></td>
 <td class="colLast">
-<div class="block">Exhaustive search and related components.</div>
+<div class="block">Exhaustive search and components.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo.tabu">org.jamesframework.core.search.algo.tabu</a></td>
 <td class="colLast">
-<div class="block">Tabu search and related components, including tabu memory specification.</div>
+<div class="block">Tabu search and components (including tabu memory specification).</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo.vns">org.jamesframework.core.search.algo.vns</a></td>
 <td class="colLast">
-<div class="block">Variable neighbourhood searches.</div>
+<div class="block">Variable neighbourhood searches and components.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -123,10 +122,16 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.stopcriteria">org.jamesframework.core.search.stopcriteria</a></td>
 <td class="colLast">
-<div class="block">Stop criteria used by searches.</div>
+<div class="block">Stop criteria.</div>
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><a href="#org.jamesframework.core.subset.algo">org.jamesframework.core.subset.algo</a></td>
+<td class="colLast">
+<div class="block">Specific subset sampling algorithms.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.util">org.jamesframework.core.util</a></td>
 <td class="colLast">
 <div class="block">General utilities.</div>
@@ -161,11 +166,6 @@
 <td class="colOne"><a href="../../../../org/jamesframework/core/search/class-use/Search.html#org.jamesframework.core.search">Search</a>
 <div class="block">
  General abstract search used to solve a problem with the specified solution type.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colOne"><a href="../../../../org/jamesframework/core/search/class-use/SearchStatus.html#org.jamesframework.core.search">SearchStatus</a>
-<div class="block">Enumeration of possible search statuses.</div>
 </td>
 </tr>
 </tbody>
@@ -318,11 +318,6 @@
  General abstract search used to solve a problem with the specified solution type.</div>
 </td>
 </tr>
-<tr class="altColor">
-<td class="colOne"><a href="../../../../org/jamesframework/core/search/class-use/SearchStatus.html#org.jamesframework.core.search.listeners">SearchStatus</a>
-<div class="block">Enumeration of possible search statuses.</div>
-</td>
-</tr>
 </tbody>
 </table>
 </li>
@@ -337,6 +332,30 @@
 <tbody>
 <tr class="altColor">
 <td class="colOne"><a href="../../../../org/jamesframework/core/search/class-use/Search.html#org.jamesframework.core.search.stopcriteria">Search</a>
+<div class="block">
+ General abstract search used to solve a problem with the specified solution type.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.subset.algo">
+<!--   -->
+</a>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../org/jamesframework/core/search/package-summary.html">org.jamesframework.core.search</a> used by <a href="../../../../org/jamesframework/core/subset/algo/package-summary.html">org.jamesframework.core.subset.algo</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../org/jamesframework/core/search/class-use/LocalSearch.html#org.jamesframework.core.subset.algo">LocalSearch</a>
+<div class="block">Local searches are searches that start with some initial solution and modify this solution in an attempt to improve
+ it.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../../org/jamesframework/core/search/class-use/Search.html#org.jamesframework.core.subset.algo">Search</a>
 <div class="block">
  General abstract search used to solve a problem with the specified solution type.</div>
 </td>

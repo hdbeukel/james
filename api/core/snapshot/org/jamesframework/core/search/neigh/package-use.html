@@ -86,48 +86,53 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search">org.jamesframework.core.search</a></td>
 <td class="colLast">
-<div class="block">Abstract search templates, including both general searches and neighbourhood searches.</div>
+<div class="block">High-level search templates.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo">org.jamesframework.core.search.algo</a></td>
 <td class="colLast">
-<div class="block">Actual search implementations (non self-contained searches and their related components
- are implemented in separate subpackages).</div>
+<div class="block">Algorithm implementations.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo.tabu">org.jamesframework.core.search.algo.tabu</a></td>
 <td class="colLast">
-<div class="block">Tabu search and related components, including tabu memory specification.</div>
+<div class="block">Tabu search and components (including tabu memory specification).</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo.vns">org.jamesframework.core.search.algo.vns</a></td>
 <td class="colLast">
-<div class="block">Variable neighbourhood searches.</div>
+<div class="block">Variable neighbourhood searches and components.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.cache">org.jamesframework.core.search.cache</a></td>
 <td class="colLast">
-<div class="block">Caches used by searches for efficient solution evaluation and validation.</div>
+<div class="block">Caches used by searches for efficient move evaluation and validation.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.neigh">org.jamesframework.core.search.neigh</a></td>
 <td class="colLast">
-<div class="block">General neighbourhood and move specification.</div>
+<div class="block">Neighbourhoods and components.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><a href="#org.jamesframework.core.search.neigh.subset">org.jamesframework.core.search.neigh.subset</a></td>
+<td class="colFirst"><a href="#org.jamesframework.core.subset.algo.tabu">org.jamesframework.core.subset.algo.tabu</a></td>
 <td class="colLast">
-<div class="block">Neighbourhoods and moves for subset selection.</div>
+<div class="block">Tabu search components for subset selection.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="#org.jamesframework.core.search.neigh.subset.adv">org.jamesframework.core.search.neigh.subset.adv</a></td>
+<td class="colFirst"><a href="#org.jamesframework.core.subset.neigh">org.jamesframework.core.subset.neigh</a></td>
+<td class="colLast">
+<div class="block">Subset selection neighbourhoods.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#org.jamesframework.core.subset.neigh.adv">org.jamesframework.core.subset.neigh.adv</a></td>
 <td class="colLast">
 <div class="block">Advanced subset selection neighbourhoods.</div>
 </td>
@@ -247,44 +252,61 @@
 </tbody>
 </table>
 </li>
-<li class="blockList"><a name="org.jamesframework.core.search.neigh.subset">
+<li class="blockList"><a name="org.jamesframework.core.subset.algo.tabu">
 <!--   -->
 </a>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
-<caption><span>Classes in <a href="../../../../../org/jamesframework/core/search/neigh/package-summary.html">org.jamesframework.core.search.neigh</a> used by <a href="../../../../../org/jamesframework/core/search/neigh/subset/package-summary.html">org.jamesframework.core.search.neigh.subset</a></span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span>Classes in <a href="../../../../../org/jamesframework/core/search/neigh/package-summary.html">org.jamesframework.core.search.neigh</a> used by <a href="../../../../../org/jamesframework/core/subset/algo/tabu/package-summary.html">org.jamesframework.core.subset.algo.tabu</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colOne" scope="col">Class and Description</th>
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colOne"><a href="../../../../../org/jamesframework/core/search/neigh/class-use/Move.html#org.jamesframework.core.search.neigh.subset">Move</a>
+<td class="colOne"><a href="../../../../../org/jamesframework/core/search/neigh/class-use/Move.html#org.jamesframework.core.subset.algo.tabu">Move</a>
+<div class="block">Interface of a move that can be applied to a generic solution type.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.subset.neigh">
+<!--   -->
+</a>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../../org/jamesframework/core/search/neigh/package-summary.html">org.jamesframework.core.search.neigh</a> used by <a href="../../../../../org/jamesframework/core/subset/neigh/package-summary.html">org.jamesframework.core.subset.neigh</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../../org/jamesframework/core/search/neigh/class-use/Move.html#org.jamesframework.core.subset.neigh">Move</a>
 <div class="block">Interface of a move that can be applied to a generic solution type.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><a href="../../../../../org/jamesframework/core/search/neigh/class-use/Neighbourhood.html#org.jamesframework.core.search.neigh.subset">Neighbourhood</a>
+<td class="colOne"><a href="../../../../../org/jamesframework/core/search/neigh/class-use/Neighbourhood.html#org.jamesframework.core.subset.neigh">Neighbourhood</a>
 <div class="block">Interface of a neighbourhood that generates moves to transform a given solution into a neighbouring solution.</div>
 </td>
 </tr>
 </tbody>
 </table>
 </li>
-<li class="blockList"><a name="org.jamesframework.core.search.neigh.subset.adv">
+<li class="blockList"><a name="org.jamesframework.core.subset.neigh.adv">
 <!--   -->
 </a>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
-<caption><span>Classes in <a href="../../../../../org/jamesframework/core/search/neigh/package-summary.html">org.jamesframework.core.search.neigh</a> used by <a href="../../../../../org/jamesframework/core/search/neigh/subset/adv/package-summary.html">org.jamesframework.core.search.neigh.subset.adv</a></span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span>Classes in <a href="../../../../../org/jamesframework/core/search/neigh/package-summary.html">org.jamesframework.core.search.neigh</a> used by <a href="../../../../../org/jamesframework/core/subset/neigh/adv/package-summary.html">org.jamesframework.core.subset.neigh.adv</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colOne" scope="col">Class and Description</th>
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colOne"><a href="../../../../../org/jamesframework/core/search/neigh/class-use/Move.html#org.jamesframework.core.search.neigh.subset.adv">Move</a>
+<td class="colOne"><a href="../../../../../org/jamesframework/core/search/neigh/class-use/Move.html#org.jamesframework.core.subset.neigh.adv">Move</a>
 <div class="block">Interface of a move that can be applied to a generic solution type.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><a href="../../../../../org/jamesframework/core/search/neigh/class-use/Neighbourhood.html#org.jamesframework.core.search.neigh.subset.adv">Neighbourhood</a>
+<td class="colOne"><a href="../../../../../org/jamesframework/core/search/neigh/class-use/Neighbourhood.html#org.jamesframework.core.subset.neigh.adv">Neighbourhood</a>
 <div class="block">Interface of a neighbourhood that generates moves to transform a given solution into a neighbouring solution.</div>
 </td>
 </tr>
