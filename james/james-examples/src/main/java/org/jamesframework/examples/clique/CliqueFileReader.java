@@ -38,12 +38,8 @@ public class CliqueFileReader {
         while(sc.hasNext()){
             int v1 = sc.nextInt();
             int v2 = sc.nextInt();
-            if(!adj.containsKey(v1)){
-                adj.put(v1, new HashSet<Integer>());
-            }
-            if(!adj.containsKey(v2)){
-                adj.put(v2, new HashSet<Integer>());
-            }
+            adj.putIfAbsent(v1, new HashSet<>());
+            adj.putIfAbsent(v2, new HashSet<>());
             adj.get(v1).add(v2);
             adj.get(v2).add(v1);
         }

@@ -35,13 +35,15 @@ public class KnapsackConstraint implements Constraint<SubsetSolution, KnapsackDa
 
     @Override
     public boolean isSatisfied(SubsetSolution solution, KnapsackData data) {
-        // compute total weight of currently selected items
-        double curWeight = 0.0;
-        for(int id : solution.getSelectedIDs()){
-            curWeight += data.getWeight(id);
-        }
         // check: maximum weight not exceeded
-        return curWeight <= maxWeight;
+        double sum = 0.0;
+        for(int id : solution.getSelectedIDs()){
+            sum += data.getWeight(id);
+            if(sum > maxWeight){
+                return false;
+            }
+        }
+        return true;
     }
     
 }

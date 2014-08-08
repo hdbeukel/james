@@ -17,9 +17,8 @@
 package org.jamesframework.examples.coresubset;
 
 import java.io.FileNotFoundException;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 import org.jamesframework.core.subset.SubsetProblem;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.algo.RandomDescent;
@@ -98,9 +97,15 @@ public class CoreSubset {
 
             // print best solution and evaluation
             if(search.getBestSolution() != null){
-                System.out.println("Best solution (IDs): " + search.getBestSolution().getSelectedIDs());
-                System.out.println("Best solution (names): " + mapNames(search.getBestSolution().getSelectedIDs(), data));
-                System.out.println("Best solution evaluation: " + search.getBestSolutionEvaluation());
+                System.out.println("Best solution (IDs): "
+                                        + search.getBestSolution().getSelectedIDs());
+                System.out.println("Best solution (names): "
+                                        + search.getBestSolution().getSelectedIDs()
+                                                                  .stream()
+                                                                  .map(id -> data.getName(id))
+                                                                  .collect(Collectors.toSet()));
+                System.out.println("Best solution evaluation: "
+                                        + search.getBestSolutionEvaluation());
             } else {
                 System.out.println("No valid solution found...");
             }
@@ -113,14 +118,6 @@ public class CoreSubset {
             System.exit(2);
         }
         
-    }
-    
-    private static Set<String> mapNames(Set<Integer> selected, CoreSubsetData data){
-        Set<String> names = new HashSet<>();
-        for(int ID : selected){
-            names.add(data.getName(ID));
-        }
-        return names;
     }
     
 }

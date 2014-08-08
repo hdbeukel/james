@@ -19,6 +19,7 @@ package org.jamesframework.examples.clique;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.search.neigh.Neighbourhood;
@@ -56,16 +57,13 @@ public class GreedyCliqueNeighbourhood implements Neighbourhood<SubsetSolution> 
         // get current clique
         Set<Integer> clique = solution.getSelectedIDs();
         // construct set of possible additions
-        Set<Integer> possibleAdds = new HashSet<>();
-        for(int v : solution.getUnselectedIDs()){
-            if(isPossibleAdd(v, clique)){
-                possibleAdds.add(v);
-            }
-        }
+        Set<Integer> possibleAdds = solution.getUnselectedIDs().stream()
+                                                               .filter(v -> isPossibleAdd(v, clique))
+                                                               .collect(Collectors.toSet());
         // retain only additions of candidate vertices
         // with maximum degree within induced subgraph
         Set<Move<SubsetSolution>> moves = new HashSet<>();
-        int degree, maxDegree = -1;
+        long degree, maxDegree = -1;
         for(int v : possibleAdds){
             // get degree within subgraph
             degree = data.degree(v, possibleAdds);
@@ -84,12 +82,7 @@ public class GreedyCliqueNeighbourhood implements Neighbourhood<SubsetSolution> 
     
     // check if given vertex is connected to all vertices in the current clique
     private boolean isPossibleAdd(int vertex, Set<Integer> clique){
-        for(int vc : clique){
-            if(!data.connected(vertex, vc)){
-                return false;
-            }
-        }
-        return true;
+        return clique.stream().allMatch(vc -> data.connected(vertex, vc));
     }
 
 }

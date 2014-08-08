@@ -17,9 +17,10 @@
 package org.jamesframework.core.problems;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.jamesframework.core.problems.constraints.Constraint;
 import org.jamesframework.core.problems.constraints.PenalizingConstraint;
 import org.jamesframework.core.problems.objectives.Objective;
@@ -169,22 +170,14 @@ public abstract class AbstractProblem<SolutionType extends Solution, DataType> i
     }
     
     /**
-     * Checks whether any of the specified rejecting constraints are violated. If so, this method returns
-     * <code>true</code>.
+     * Checks whether any of the specified rejecting constraints are violated. If so, this method returns <code>true</code>.
      * 
      * @param solution solution to check against the rejecting constraints
      * @return <code>true</code> if any rejecting constraint is violated
      */
     @Override
     public boolean rejectSolution(SolutionType solution){
-        // check rejecting constraints
-        for(Constraint<? super SolutionType, ? super DataType> c : rejectingConstraints){
-            if(!c.isSatisfied(solution, data)){
-                return true;
-            }
-        }
-        // all satisfied
-        return false;
+        return rejectingConstraints.stream().anyMatch(c -> !c.isSatisfied(solution, data));
     }
     
     /**
@@ -195,22 +188,10 @@ public abstract class AbstractProblem<SolutionType extends Solution, DataType> i
      * @return set of all violated constraints (rejecting and penalizing)
      */
     public Set<Constraint<? super SolutionType, ? super DataType>> getViolatedConstraints(SolutionType solution){
-        // create set with all violated constraints
-        Set<Constraint<? super SolutionType, ? super DataType>> violated = new HashSet<>();
-        // rejecting constraints
-        for(Constraint<? super SolutionType, ? super DataType> c : rejectingConstraints){
-            if(!c.isSatisfied(solution, data)){
-                violated.add(c);
-            }
-        }
-        // penalizing
-        for(Constraint<? super SolutionType, ? super DataType> c : penalizingConstraints){
-            if(!c.isSatisfied(solution, data)){
-                violated.add(c);
-            }
-        }
-        // return violated constraints
-        return violated;
+        // return set with all violated constraints
+        return Stream.concat(rejectingConstraints.stream(), penalizingConstraints.stream())
+                     .filter(c -> !c.isSatisfied(solution, data))
+                     .collect(Collectors.toSet());
     }
 
     /**
@@ -227,13 +208,9 @@ public abstract class AbstractProblem<SolutionType extends Solution, DataType> i
         // evaluate objective function
         double eval = objective.evaluate(solution, data);
         // compute penalties
-        double penalty = 0.0;
-        for(PenalizingConstraint<? super SolutionType, ? super DataType> pc : penalizingConstraints){
-            // take into account penalty of penalizing constraint pc -- according to the general contract
-            // of a penalizing constraint, no penalty (zero) will be assigned if the constraint is satisfied
-            // so this is not explicitely checked to avoid unnecessary computations
-            penalty += pc.computePenalty(solution, data);
-        }
+        double penalty = penalizingConstraints.stream()
+                                              .mapToDouble(pc -> pc.computePenalty(solution, data))
+                                              .sum();
         // assign penalty to evaluation
         if(objective.isMinimizing()){
             // minimizing: add penalty

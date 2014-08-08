@@ -184,9 +184,7 @@ public class BasicParallelSearch<SolutionType extends Solution> extends Search<S
         // stop this search (if running)
         super.stop();
         // propagate request to subsearches
-        for (Search<?> s : searches) {
-            s.stop();
-        }
+        searches.stream().forEach(s -> s.stop());
     }
 
     /**
@@ -199,9 +197,7 @@ public class BasicParallelSearch<SolutionType extends Solution> extends Search<S
         // release thread pool
         pool.shutdown();
         // dispose contained searches
-        for (Search<?> s : searches) {
-            s.dispose();
-        }
+        searches.stream().forEach(s -> s.dispose());
     }
 
     /**
@@ -213,9 +209,7 @@ public class BasicParallelSearch<SolutionType extends Solution> extends Search<S
     @Override
     protected void searchStep() {
         // (1) execute subsearches in parallel
-        for (Search<?> s : searches) {
-            futures.add(pool.submit(s));
-        }
+        searches.stream().forEach(s -> futures.add(pool.submit(s)));
         // (2) wait for termination of subsearches
         while (!futures.isEmpty()) {
             try {

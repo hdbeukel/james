@@ -18,6 +18,7 @@ package org.jamesframework.examples.clique;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 import org.jamesframework.core.subset.SubsetSolution;
 
 /**
@@ -60,13 +61,9 @@ public class CliqueSolution extends SubsetSolution {
         if(possibleAdds.contains(vertex) && super.select(vertex)){
             // new vertex included in clique
             possibleAdds.remove(vertex);
-            Set<Integer> eliminated = new HashSet<>();
-            for(int v : possibleAdds){
-                if(!data.connected(v, vertex)){
-                    // v is no longer a possible add
-                    eliminated.add(v);
-                }
-            }
+            Set<Integer> eliminated = possibleAdds.stream()
+                                                  .filter(v -> !data.connected(v, vertex))
+                                                  .collect(Collectors.toSet());
             // update (im)possible adds
             possibleAdds.removeAll(eliminated);
             impossibleAdds.addAll(eliminated);
@@ -82,12 +79,9 @@ public class CliqueSolution extends SubsetSolution {
             // vertex removed from clique (goes back to possible adds)
             possibleAdds.add(vertex);
             // check for new possible adds (connected to remaining clique)
-            Set<Integer> newPossibleAdds = new HashSet<>();
-            for(int v : impossibleAdds){
-                if(connectedToClique(v)){
-                    newPossibleAdds.add(v);
-                }
-            }
+            Set<Integer> newPossibleAdds = impossibleAdds.stream()
+                                                         .filter(v -> connectedToClique(v))
+                                                         .collect(Collectors.toSet());
             // update (im)possible adds
             possibleAdds.addAll(newPossibleAdds);
             impossibleAdds.removeAll(newPossibleAdds);
@@ -103,12 +97,7 @@ public class CliqueSolution extends SubsetSolution {
     
     // checks whether a given vertex is conected to the entire current clique
     private boolean connectedToClique(int vertex){
-        for(int v : getSelectedIDs()){
-            if(!data.connected(vertex, v)){
-                return false;
-            }
-        }
-        return true;
+        return getSelectedIDs().stream().allMatch(v -> data.connected(vertex, v));
     }
     
 }

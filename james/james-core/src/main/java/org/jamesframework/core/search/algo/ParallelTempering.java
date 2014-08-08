@@ -195,9 +195,7 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
         swapBase = 0;
         // listen to events fired by replicas
         ReplicaListener listener = new ReplicaListener();
-        for(MetropolisSearch<SolutionType> r : replicas){
-            r.addSearchListener(listener);
-        }
+        replicas.stream().forEach(r -> r.addSearchListener(listener));
     }
     
     /**
@@ -249,9 +247,7 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
      */
     public void setTemperatureScaleFactor(double scale){
         // update scale factor in every replica
-        for(MetropolisSearch<SolutionType> r : replicas){
-            r.setTemperatureScaleFactor(scale);
-        }
+        replicas.stream().forEach(r -> r.setTemperatureScaleFactor(scale));
     }
     
     /**
@@ -269,9 +265,7 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
             // call super
             super.setNeighbourhood(neighbourhood);
             // set neighbourhood in every replica
-            for(MetropolisSearch<SolutionType> r : replicas){
-                r.setNeighbourhood(neighbourhood);
-            }
+            replicas.stream().forEach(r -> r.setNeighbourhood(neighbourhood));
         }
     }
     
@@ -290,9 +284,7 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
             // call super (also verifies status)
             super.setCurrentSolution(solution);
             // pass current solution to every replica (copy!)
-            for(MetropolisSearch<SolutionType> r : replicas){
-                r.setCurrentSolution(Solution.checkedCopy(solution));
-            }
+            replicas.stream().forEach(r -> r.setCurrentSolution(Solution.checkedCopy(solution)));
         }
     }
     
@@ -306,9 +298,7 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
     @Override
     protected void searchStep() {
         // submit replicas for execution in thread pool
-        for(MetropolisSearch<SolutionType> r : replicas){
-            futures.add(pool.submit(r));
-        }
+        replicas.stream().forEach(r -> futures.add(pool.submit(r)));
         logger.trace("{}: started {} Metropolis replicas", this, futures.size());
         // wait for completion of all replicas and remove corresponding future
         logger.trace("{}: waiting for replicas to finish", this);
@@ -371,9 +361,7 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
     protected void searchDisposed(){
         super.searchDisposed();
         // dispose replicas
-        for(MetropolisSearch<SolutionType> r : replicas){
-            r.dispose();
-        }
+        replicas.stream().forEach(r -> r.dispose());
         // shut down thread pool
         pool.shutdown();
     }

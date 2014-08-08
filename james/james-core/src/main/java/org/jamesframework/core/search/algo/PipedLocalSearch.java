@@ -112,9 +112,8 @@ public class PipedLocalSearch<SolutionType extends Solution> extends LocalSearch
         this.pipeline = pipeline;
         // listen to events fired by searches in pipeline (to abort
         // searches starting when piped search is terminating)
-        for(LocalSearch<SolutionType> l : pipeline){
-            l.addSearchListener(new AbortWhenTerminatingListener());
-        }
+        AbortWhenTerminatingListener listener = new AbortWhenTerminatingListener();
+        pipeline.stream().forEach(s -> s.addSearchListener(listener));
     }
     
     /**
@@ -125,9 +124,7 @@ public class PipedLocalSearch<SolutionType extends Solution> extends LocalSearch
         // stop this search (if running)
         super.stop();
         // propagate request to searches in pipeline
-        for (Search<?> s : pipeline) {
-            s.stop();
-        }
+        pipeline.stream().forEach(s -> s.stop());
     }
     
     /**
@@ -137,9 +134,7 @@ public class PipedLocalSearch<SolutionType extends Solution> extends LocalSearch
     protected void searchDisposed() {
         super.searchDisposed();
         // dispose searches in pipeline
-        for (Search<?> s : pipeline) {
-            s.dispose();
-        }
+        pipeline.stream().forEach(s -> s.dispose());
     }
     
     /**

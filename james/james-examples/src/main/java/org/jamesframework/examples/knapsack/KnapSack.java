@@ -232,19 +232,16 @@ public class KnapSack {
     }
     
     private static double computeSelectionWeight(SubsetSolution solution, KnapsackData data){
-        double totalWeight = 0.0;
-        for(int id : solution.getSelectedIDs()){
-            totalWeight += data.getWeight(id);
-        }
-        return totalWeight;
+        return solution.getSelectedIDs().stream()
+                                        .mapToDouble(id -> data.getWeight(id))
+                                        .sum();
     }
     
     private static double computeAverageProfit(KnapsackData data){
-        double totalProfit = 0.0;
-        for(int id : data.getIDs()){
-            totalProfit += data.getProfit(id);
-        }
-        return totalProfit / data.getIDs().size();
+        return data.getIDs().stream()
+                            .mapToDouble(id -> data.getProfit(id))
+                            .average()
+                            .getAsDouble();
     }
     
 }

@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.exceptions.IncompatibleStopCriterionException;
 import org.jamesframework.core.search.Search;
@@ -46,13 +45,10 @@ public class StopCriterionChecker {
 
     // scheduled executor service, shared by all checkers
     // (single thread as stop criterion checking is not intensive)
-    private static final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor(new ThreadFactory() {
-        @Override
-        public Thread newThread(Runnable r) {
-            Thread t = new Thread(r, "stop-crit-checker");
-            t.setDaemon(true);
-            return t;
-        }
+    private static final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor(runnable -> {
+        Thread t = new Thread(runnable, "stop-crit-checker");
+        t.setDaemon(true);
+        return t;
     });
     
     // currently scheduled check task, null if not running

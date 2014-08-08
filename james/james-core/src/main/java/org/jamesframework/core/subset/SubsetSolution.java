@@ -22,6 +22,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 import org.jamesframework.core.exceptions.SolutionModificationException;
 import org.jamesframework.core.problems.Solution;
 
@@ -341,16 +342,9 @@ public class SubsetSolution extends Solution {
         }
         // cast to subset solution
         final SubsetSolution other = (SubsetSolution) sol;
-        // check selected IDs
-        if (!Objects.equals(getSelectedIDs(), other.getSelectedIDs())) {
-            return false;
-        }
-        // check unselected IDs
-        if (!Objects.equals(getUnselectedIDs(), other.getUnselectedIDs())) {
-            return false;
-        }
-        // all checks passed: equal
-        return true;
+        // check selected and unselected IDs
+        return Objects.equals(getSelectedIDs(), other.getSelectedIDs())
+                && Objects.equals(getUnselectedIDs(), other.getUnselectedIDs());
     }
 
     /**
@@ -377,20 +371,9 @@ public class SubsetSolution extends Solution {
      */
     @Override
     public String toString(){
-        StringBuilder str = new StringBuilder();
-        str.append("SubsetSolution: {");
-        // add selected IDs, if any
-        if(getNumSelectedIDs() > 0){
-            for(int ID : getSelectedIDs()){
-                str.append(ID).append(", ");
-            }
-            // remove final comma and space
-            str.delete(str.length()-2, str.length());
-        }
-        // close brackets
-        str.append("}");
-        // return string
-        return str.toString();
+        return getSelectedIDs().stream()
+                               .map(Object::toString)
+                               .collect(Collectors.joining(", ", "SubsetSolution: {", "}"));
     }
 
 }

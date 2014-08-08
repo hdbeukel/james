@@ -89,12 +89,7 @@ public class IDBasedSubsetTabuMemory implements TabuMemory<SubsetSolution> {
      * @return <code>true</code> if <code>ids</code> contains any ID which is currently tabu
      */
     private boolean containsTabuID(Collection<Integer> ids){
-        for(int  ID : ids){
-            if(memory.contains(ID)){
-                return true;
-            }
-        }
-        return false;
+        return ids.stream().anyMatch(id -> memory.contains(id));   
     }
 
     /**

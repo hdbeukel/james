@@ -22,11 +22,9 @@ import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.search.LocalSearch;
 import org.jamesframework.core.search.MultiNeighbourhoodSearch;
-import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.status.SearchStatus;
 import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.search.neigh.Neighbourhood;
-import org.jamesframework.core.search.stopcriteria.StopCriterion;
 import org.jamesframework.core.util.LocalSearchFactory;
 
 /**
@@ -227,12 +225,7 @@ public class VariableNeighbourhoodSearch<SolutionType extends Solution> extends 
             // set initial solution to be modified
             localSearch.setCurrentSolution(shakedSolution);
             // interrupt local search algorithm when main VNS search wants to terminate
-            localSearch.addStopCriterion(new StopCriterion() {
-                @Override
-                public boolean searchShouldStop(Search<?> search) {
-                    return VariableNeighbourhoodSearch.this.getStatus() == SearchStatus.TERMINATING;
-                }
-            });
+            localSearch.addStopCriterion(search -> this.getStatus() == SearchStatus.TERMINATING);
             // run local search
             localSearch.start();
             // dispose local search when completed

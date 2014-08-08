@@ -16,11 +16,11 @@
 
 package org.jamesframework.ext.search.neigh;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.search.neigh.Neighbourhood;
@@ -119,11 +119,9 @@ public class CompositeNeighbourhood<SolutionType extends Solution> implements Ne
      */
     @Override
     public Set<Move<? super SolutionType>> getAllMoves(SolutionType solution) {
-        Set<Move<? super SolutionType>> moves = new HashSet<>();
-        for(Neighbourhood<SolutionType> neigh : neighs){
-            moves.addAll(neigh.getAllMoves(solution));
-        }
-        return moves;
+        return neighs.stream()
+                     .flatMap(n -> n.getAllMoves(solution).stream()) // flatten to one stream of all moves
+                     .collect(Collectors.toSet());                   // collect in one set
     }
 
 }

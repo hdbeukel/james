@@ -35,12 +35,11 @@ public class CliqueData implements IntegerIdentifiedData {
     public CliqueData(Map<Integer, Set<Integer>> adjacencyMap) {
         this.adjacencyMap = adjacencyMap;
         // count number of edges
-        int edges = 0;
-        for(int v : adjacencyMap.keySet()){
-            edges += adjacencyMap.get(v).size();
-        }
-        // edges have been counted twice
-        this.numEdges = edges/2;
+        numEdges = adjacencyMap.values()                
+                               .stream()                // stream of neighbour sets
+                               .mapToInt(n -> n.size()) // map to number of neighbours
+                               .sum()                   // sum neighbour counts of all vertices
+                               /2;                      // all edges have been counted twice
     }
     
     @Override
@@ -62,17 +61,13 @@ public class CliqueData implements IntegerIdentifiedData {
     
     // computes the degree of a given vertex in a subgraph
     // (edges to vertices outside the subgraph are not counted)
-    public int degree(int v, Set<Integer> subGraph){
+    public long degree(int v, Set<Integer> subGraph){
         // get neighbours of v
         Set<Integer> neighbours = adjacencyMap.get(v);
-        // count degree within subgraph
-        int degree = 0;
-        for(int n : neighbours){
-            if(subGraph.contains(n)){
-                degree++;
-            }
-        }
-        return degree;
+        // count and return degree within subgraph
+        return neighbours.stream()
+                         .filter(n -> subGraph.contains(n))
+                         .count();
     }
     
     public int numVertices(){

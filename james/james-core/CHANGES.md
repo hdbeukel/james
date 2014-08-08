@@ -5,6 +5,7 @@ James Core Module Changes
 Version 0.2 (under development)
 -------------------------------
 
+ - Simplified code using functional operations.
  - Renamed SubsetData to IntegerIdentifiedData.
  - Renamed ProblemWithData to AbstractProblem.
  - Removed SubsetProblem interface and renamed SubsetProblemWithData to SubsetProblem.

@@ -56,7 +56,7 @@ public class GreedyCliqueNeighbourhood2 implements Neighbourhood<CliqueSolution>
         // retain only additions of candidate vertices
         // with maximum degree within induced subgraph
         Set<Move<SubsetSolution>> moves = new HashSet<>();
-        int degree, maxDegree = -1;
+        long degree, maxDegree = -1;
         for(int v : possibleAdds){
             // get degree within subgraph
             degree = data.degree(v, possibleAdds);
