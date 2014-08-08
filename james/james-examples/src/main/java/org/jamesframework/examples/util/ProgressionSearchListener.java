@@ -18,14 +18,14 @@ package org.jamesframework.examples.util;
 
 import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.search.Search;
-import org.jamesframework.core.search.listeners.EmptySearchListener;
+import org.jamesframework.core.search.listeners.SearchListener;
 
 /**
  * Search listener that prints progression to standard output.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class ProgressionSearchListener extends EmptySearchListener<Solution> {
+public class ProgressionSearchListener implements SearchListener<Solution> {
 
     @Override
     public void searchStarted(Search<? extends Solution> search) {

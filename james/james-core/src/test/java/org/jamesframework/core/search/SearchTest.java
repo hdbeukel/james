@@ -16,8 +16,8 @@
 
 package org.jamesframework.core.search;
 
+import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.search.status.SearchStatus;
-import org.jamesframework.core.search.listeners.EmptySearchListener;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.util.JamesConstants;
 import org.jamesframework.test.util.DoubleComparatorWithPrecision;
@@ -305,7 +305,7 @@ public class SearchTest extends SearchTestTemplate {
     /**
      * Search listener stub used for general callback testing. IMPORTANT: suited for single run only (checks assume this).
      */
-    private class SearchListenerStub extends EmptySearchListener<SubsetSolution>{
+    private class SearchListenerStub implements SearchListener<SubsetSolution>{
 
         // flags
         private boolean started = false, stopped = false;
@@ -362,7 +362,7 @@ public class SearchTest extends SearchTestTemplate {
     /**
      * Search listener stub used to track total number of steps over all runs.
      */
-    private class SearchListenerStub2 extends EmptySearchListener<SubsetSolution> {
+    private class SearchListenerStub2 implements SearchListener<SubsetSolution> {
         
         // total steps completed
         private long steps = 0;

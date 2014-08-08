@@ -22,13 +22,17 @@ import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.status.SearchStatus;
 
 /**
- * Interface of a listener which may be attached to a search with the specified solution type (or a more specific solution type).
- * It will be informed whenever the search has started, stopped, found a new best solution or completed a step.
- * Every callback receives a reference to the search that called it, which may be cast to a specific search type if required; when
- * this cast fails because a listener has been attached to an incompatible search, an {@link IncompatibleSearchListenerException}
- * may be thrown.
+ * <p>
+ * Interface of a search listener that can be attached to any search with the specified (or more specific) solution type.
+ * A listener is informed when certain events occur, e.g. when the search has started, stopped or found a new best solution.
+ * Every callback receives a reference to the search that called it, which may be cast to a specific search type if required;
+ * if an incompatible search type is received, an {@link IncompatibleSearchListenerException} may be thrown.
+ * </p>
+ * <p>
+ * All callbacks have a default empty implementation.
+ * </p>
  * 
- * @param <SolutionType> solution type of the search to which the listener may be attached, required to extend {@link Solution}
+ * @param <SolutionType> solution type, required to extend {@link Solution}
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public interface SearchListener<SolutionType extends Solution> {
@@ -39,7 +43,7 @@ public interface SearchListener<SolutionType extends Solution> {
      * @param search search which has started
      * @throws IncompatibleSearchListenerException if the listener is not compatible with the search
      */
-    public void searchStarted(Search<? extends SolutionType> search);
+    default public void searchStarted(Search<? extends SolutionType> search){}
     
     /**
      * Fired when the search has stopped. Called only once during a search run.
@@ -47,7 +51,7 @@ public interface SearchListener<SolutionType extends Solution> {
      * @param search search which has stopped
      * @throws IncompatibleSearchListenerException if the listener is not compatible with the search
      */
-    public void searchStopped(Search<? extends SolutionType> search);
+    default public void searchStopped(Search<? extends SolutionType> search){}
     
     /**
      * Fired when the search has found a new best solution. Called exactly once for every improvement.
@@ -57,7 +61,7 @@ public interface SearchListener<SolutionType extends Solution> {
      * @param newBestSolutionEvaluation evaluation of the new best solution
      * @throws IncompatibleSearchListenerException if the listener is not compatible with the search
      */
-    public void newBestSolution(Search<? extends SolutionType> search, SolutionType newBestSolution, double newBestSolutionEvaluation);
+    default public void newBestSolution(Search<? extends SolutionType> search, SolutionType newBestSolution, double newBestSolutionEvaluation){}
     
     /**
      * Fired when the search has completed a step. Called exactly once for every completed step.
@@ -66,7 +70,7 @@ public interface SearchListener<SolutionType extends Solution> {
      * @param numSteps number of steps completed so far (during the current search run)
      * @throws IncompatibleSearchListenerException if the listener is not compatible with the search
      */
-    public void stepCompleted(Search<? extends SolutionType> search, long numSteps);
+    default public void stepCompleted(Search<? extends SolutionType> search, long numSteps){}
     
     /**
      * Fired when the search enters a new status. Called exactly once for every status update.
@@ -74,6 +78,6 @@ public interface SearchListener<SolutionType extends Solution> {
      * @param search search which has changed status
      * @param newStatus new status of the search
      */
-    public void statusChanged(Search<? extends SolutionType> search, SearchStatus newStatus);
+    default public void statusChanged(Search<? extends SolutionType> search, SearchStatus newStatus){}
 
 }

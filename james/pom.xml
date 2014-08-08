@@ -65,7 +65,7 @@
     </dependencies>
     <build>
         <plugins>
-            <!-- Sonatyp OSSRH plugin -->
+            <!-- Sonatype OSSRH plugin -->
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
@@ -77,14 +77,14 @@
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
             </plugin>
-            <!-- set compiler to use java 1.7 and to compile with -Xlint:unchecked -->
+            <!-- set compiler to use java 1.8 and to compile with -Xlint:unchecked -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>8</source>
+                    <target>8</target>
                     <!-- warn for unchecked or unsafe operations -->
                     <compilerArgument>-Xlint:unchecked</compilerArgument>
                 </configuration>

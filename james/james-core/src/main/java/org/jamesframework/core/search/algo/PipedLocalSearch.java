@@ -21,8 +21,8 @@ import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.search.LocalSearch;
 import org.jamesframework.core.search.Search;
+import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.search.status.SearchStatus;
-import org.jamesframework.core.search.listeners.EmptySearchListener;
 
 /**
  * <p>
@@ -185,7 +185,7 @@ public class PipedLocalSearch<SolutionType extends Solution> extends LocalSearch
      * Private listener attached to each search in the pipeline, to abort searches that attempt to start when
      * the main search is already terminating.
      */
-    private class AbortWhenTerminatingListener extends EmptySearchListener<SolutionType>{
+    private class AbortWhenTerminatingListener implements SearchListener<SolutionType>{
 
         /**
          * When a search from the pipeline has started, the main search verifies that it has not yet been

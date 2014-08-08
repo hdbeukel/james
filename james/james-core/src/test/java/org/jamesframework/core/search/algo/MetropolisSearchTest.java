@@ -21,7 +21,7 @@ import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.NeighbourhoodSearch;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.SearchTestTemplate;
-import org.jamesframework.core.search.listeners.EmptyLocalSearchListener;
+import org.jamesframework.core.search.listeners.LocalSearchListener;
 import org.jamesframework.test.stubs.NeverSatisfiedConstraintStub;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -255,7 +255,7 @@ public class MetropolisSearchTest extends SearchTestTemplate {
         }
     }
     
-    private class AcceptedMovesListener extends EmptyLocalSearchListener<SubsetSolution>{
+    private class AcceptedMovesListener implements LocalSearchListener<SubsetSolution>{
         // accepted/rejected moves over ALL runs
         private int accepted = 0, rejected = 0;
         

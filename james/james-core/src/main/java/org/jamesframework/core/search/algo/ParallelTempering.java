@@ -32,7 +32,7 @@ import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.search.NeighbourhoodSearch;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.SingleNeighbourhoodSearch;
-import org.jamesframework.core.search.listeners.EmptySearchListener;
+import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.search.stopcriteria.MaxSteps;
 import org.slf4j.Logger;
@@ -382,7 +382,7 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
      * Private listener attached to each replica, to keep track of the global best solution and aggregated number of
      * accepted and rejected moves, and to terminate a replica when it has performed the desired number of steps.
      */
-    private class ReplicaListener extends EmptySearchListener<SolutionType>{
+    private class ReplicaListener implements SearchListener<SolutionType>{
     
         /*******************************/
         /* CALLBACKS FIRED BY REPLICAS */

@@ -21,12 +21,17 @@ import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.search.LocalSearch;
 
 /**
+ * <p>
  * Extends the general search listener interface with a local search specific callback, fired when the current solution
  * has been modified. A listener implementing this interface may still be attached to a general search, in which case the
  * specific callback will simply never be fired. If attached to a local search, it will be fired whenever a new current
  * solution has been adopted.
+ * </p>
+ * <p>
+ * The additional callback also has a default empty implementation.
+ * </p>
  * 
- * @param <SolutionType> solution type of the search to which the listener may be attached, required to extend {@link Solution} 
+ * @param <SolutionType> solution type, required to extend {@link Solution} 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public interface LocalSearchListener<SolutionType extends Solution> extends SearchListener<SolutionType> {
@@ -40,8 +45,8 @@ public interface LocalSearchListener<SolutionType extends Solution> extends Sear
      * @param newCurrentSolutionEvaluation corresponding evaluation
      * @throws IncompatibleSearchListenerException if the listener is not compatible with the search
      */
-    public void modifiedCurrentSolution(LocalSearch<? extends SolutionType> search,
+    default public void modifiedCurrentSolution(LocalSearch<? extends SolutionType> search,
                                         SolutionType newCurrentSolution,
-                                        double newCurrentSolutionEvaluation);
+                                        double newCurrentSolutionEvaluation){}
     
 }

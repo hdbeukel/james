@@ -25,7 +25,7 @@ import org.jamesframework.core.search.NeighbourhoodSearch;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.SearchTestTemplate;
 import org.jamesframework.core.search.algo.RandomDescent;
-import org.jamesframework.core.search.listeners.EmptyLocalSearchListener;
+import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.subset.neigh.SingleSwapNeighbourhood;
 import org.jamesframework.core.subset.neigh.adv.DisjointMultiSwapNeighbourhood;
@@ -236,10 +236,9 @@ public class VariableNeighbourhoodSearchTest extends SearchTestTemplate {
     }
     
     /**
-     * Listener (private).
+     * Listener.
      */
-    
-    private class Listener extends EmptyLocalSearchListener<SubsetSolution>{
+    private class Listener implements SearchListener<SubsetSolution>{
         // accepted moves counter
         private int acceptedMoves = 0;
         // rejected moves counter

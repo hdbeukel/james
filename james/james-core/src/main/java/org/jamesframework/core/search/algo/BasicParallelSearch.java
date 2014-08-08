@@ -29,7 +29,6 @@ import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.status.SearchStatus;
-import org.jamesframework.core.search.listeners.EmptySearchListener;
 import org.jamesframework.core.search.listeners.SearchListener;
 
 /**
@@ -234,7 +233,7 @@ public class BasicParallelSearch<SolutionType extends Solution> extends Search<S
      * Private listener attached to each contained subsearch, to keep track of the global best solution and to abort
      * a search that attempts to start when the main search is already terminating.
      */
-    private class SubsearchListener extends EmptySearchListener<SolutionType> {
+    private class SubsearchListener implements SearchListener<SolutionType> {
     
         /*****************************************/
         /* CALLBACKS FIRED BY CONTAINED SEARCHES */

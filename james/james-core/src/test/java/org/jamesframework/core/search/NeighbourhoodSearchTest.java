@@ -20,8 +20,8 @@ import java.util.Set;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.subset.SubsetProblem;
 import org.jamesframework.core.problems.Solution;
+import org.jamesframework.core.search.listeners.LocalSearchListener;
 import org.jamesframework.core.subset.SubsetSolution;
-import org.jamesframework.core.search.listeners.EmptyLocalSearchListener;
 import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.subset.neigh.AdditionMove;
 import org.jamesframework.core.subset.neigh.DeletionMove;
@@ -412,7 +412,7 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
      * 
      * @param <SolutionType> solution type
      */
-    private class LocalSearchListenerStub<SolutionType extends Solution> extends EmptyLocalSearchListener<SolutionType>{
+    private class LocalSearchListenerStub<SolutionType extends Solution> implements LocalSearchListener<SolutionType>{
         
         // number of calls of callback
         private int numCalls = 0;

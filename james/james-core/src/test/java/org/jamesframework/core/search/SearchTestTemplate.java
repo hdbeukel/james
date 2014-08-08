@@ -20,9 +20,9 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.problems.Problem;
+import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.subset.SubsetProblem;
 import org.jamesframework.core.subset.SubsetSolution;
-import org.jamesframework.core.search.listeners.EmptySearchListener;
 import org.jamesframework.core.subset.neigh.SingleSwapNeighbourhood;
 import org.jamesframework.core.search.stopcriteria.MaxRuntime;
 import org.jamesframework.test.util.DoubleComparatorWithPrecision;
@@ -187,7 +187,7 @@ public class SearchTestTemplate {
     }
     
     // listener that verifies whether every new best solution is indeed an improvement over the previous best solution
-    private class BestSolutionListener extends EmptySearchListener<SubsetSolution>{
+    private class BestSolutionListener implements SearchListener<SubsetSolution>{
         private Double prevBestEval = null;
         private double delta = 1e-12;
         private boolean ok = true;
