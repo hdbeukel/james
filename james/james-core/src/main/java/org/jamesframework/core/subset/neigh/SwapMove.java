@@ -175,10 +175,8 @@ public class SwapMove implements SubsetMove{
             return false;
         }
         final SwapMove other = (SwapMove) obj;
-        if (this.add != other.add) {
-            return false;
-        }
-        return this.delete == other.delete;
+        // compare added and deleted IDs
+        return this.add == other.add && this.delete == other.delete;
     }
 
 }

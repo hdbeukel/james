@@ -26,7 +26,7 @@ import java.util.Set;
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class SetUtilities {
+public final class SetUtilities {
     
     /**
      * Select a random element from a given set (uniformly distributed). This implementation generates
@@ -39,7 +39,7 @@ public class SetUtilities {
      * @param rg random generator
      * @return random element (uniformly distributed)
      */
-    public static final <T> T getRandomElement(Set<? extends T> set, Random rg){
+    public static <T> T getRandomElement(Set<? extends T> set, Random rg){
         Iterator<? extends T> it = set.iterator();
         int r = rg.nextInt(set.size());
         T selected = it.next();
@@ -64,7 +64,7 @@ public class SetUtilities {
      * @throws IllegalArgumentException if an invalid subset size outside [0,|set|] is specified
      * @return random subset (uniformly distributed) 
      */
-    public static final <T> Set<T> getRandomSubset(Set<? extends T> set, int size, Random rg) {
+    public static <T> Set<T> getRandomSubset(Set<? extends T> set, int size, Random rg) {
         // check size
         if(size < 0 || size > set.size()){
             throw new IllegalArgumentException("Error in SetUtilities: desired subset size should be a number in [0,|set|].");

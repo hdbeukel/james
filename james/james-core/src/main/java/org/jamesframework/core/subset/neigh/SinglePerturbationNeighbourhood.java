@@ -54,7 +54,7 @@ public class SinglePerturbationNeighbourhood implements Neighbourhood<SubsetSolu
 
     // move type enum used for randomly picking a move type
     private enum MoveType {
-        ADDITION, DELETION, SWAP;
+        ADDITION, DELETION, SWAP
     }
     
     // minimum and maximum subset size

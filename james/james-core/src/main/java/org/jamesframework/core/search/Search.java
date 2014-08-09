@@ -457,13 +457,8 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
         synchronized(statusLock){
             // assert idle
             assertIdle("Cannot add stop criterion.");
-            // check compatibility by performing a dummy call
-            try {
-                stopCriterion.searchShouldStop(this);
-            } catch (IncompatibleStopCriterionException ex){
-                // incompatible stop criterion: throw same exception to caller
-                throw ex;
-            }
+            // check compatibility by performing a dummy call (throws error if incompatible)
+            stopCriterion.searchShouldStop(this);
             // pass stop criterion to checker
             stopCriterionChecker.add(stopCriterion);
             // log

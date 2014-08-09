@@ -318,25 +318,24 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
         double bestMoveDelta = -Double.MAX_VALUE, curMoveDelta, curMoveEval;
         Double bestMoveEval = null;
         // go through all moves
-        Iterator<? extends Move<? super SolutionType>> it = moves.iterator();
-        while(it.hasNext()){
-            curMove = it.next();
+        for (Move<? super SolutionType> move : moves) {
+            curMove = move;
             // validate move
-            if(validateMove(curMove)){
+            if (validateMove(curMove)) {
                 // evaluate move
                 curMoveEval = evaluateMove(curMove);
                 // compute delta
                 curMoveDelta = computeDelta(curMoveEval, getCurrentSolutionEvaluation());
                 // compare with current best move
-                if(curMoveDelta > bestMoveDelta                             // higher delta
-                        && (!positiveDeltasOnly || curMoveDelta > 0)){      // ensure positive delta, if required
+                if (curMoveDelta > bestMoveDelta                             // higher delta
+                        && (!positiveDeltasOnly || curMoveDelta > 0)) {      // ensure positive delta, if required
                     bestMove = curMove;
                     bestMoveDelta = curMoveDelta;
                     bestMoveEval = curMoveEval;
                 }
             }
         }
-        // recache best move, if any
+        // re-cache best move, if any
         if(bestMove != null && cache != null){
             cache.cacheMoveRejection(bestMove, false);              // best move is surely not rejected
             cache.cacheMoveEvaluation(bestMove, bestMoveEval);      // cache best move evaluation 

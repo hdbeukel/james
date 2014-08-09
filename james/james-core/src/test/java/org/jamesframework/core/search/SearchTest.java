@@ -145,7 +145,7 @@ public class SearchTest extends SearchTestTemplate {
         // remove l
         assertTrue(search.removeSearchListener(l));
         
-        // readd l
+        // re-add l
         search.addSearchListener(l);
         
         // run search (checks asserts inside listener)
@@ -161,7 +161,7 @@ public class SearchTest extends SearchTestTemplate {
         
         System.out.println(" - test getStatus");
         
-        // check that search is initialy idle
+        // check that search is initially idle
         assertEquals(SearchStatus.IDLE, search.getStatus());
         
         // start search
