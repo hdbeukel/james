@@ -23,7 +23,6 @@ import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.neigh.Move;
-import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.util.RouletteSelector;
 import org.jamesframework.core.util.SetUtilities;
 
@@ -32,7 +31,7 @@ import org.jamesframework.core.util.SetUtilities;
  * A subset neighbourhood that generates swap moves (see {@link SwapMove}), addition moves (see {@link AdditionMove}) and deletion
  * moves (see {@link DeletionMove}). Applying an addition or deletion move to a given subset solution will increase, respectively
  * decrease, the number of selected items. Therefore, this neighbourhood is also suited for variable size subset selection problems,
- * in contrast to {@link SingleSwapNeighbourhood}, which can only handle fixed size subset problems.
+ * in contrast to {@link SingleSwapNeighbourhood} which can only handle fixed size subset problems.
  * </p>
  * <p>
  * A single perturbation neighbourhood respects the minimum and maximum subset size specified at construction. When the given
@@ -50,7 +49,7 @@ import org.jamesframework.core.util.SetUtilities;
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class SinglePerturbationNeighbourhood implements Neighbourhood<SubsetSolution> {
+public class SinglePerturbationNeighbourhood extends SubsetNeighbourhood {
 
     // move type enum used for randomly picking a move type
     private enum MoveType {
@@ -60,9 +59,6 @@ public class SinglePerturbationNeighbourhood implements Neighbourhood<SubsetSolu
     // minimum and maximum subset size
     private final int minSubsetSize;
     private final int maxSubsetSize;
-    
-    // set of fixed IDs
-    private final Set<Integer> fixedIDs;
     
     /**
      * Creates a new single perturbation neighbourhood with given minimum and maximum subset size.
@@ -91,6 +87,7 @@ public class SinglePerturbationNeighbourhood implements Neighbourhood<SubsetSolu
      * @param fixedIDs set of fixed IDs
      */
     public SinglePerturbationNeighbourhood(int minSubsetSize, int maxSubsetSize, Set<Integer> fixedIDs){
+        super(fixedIDs);
         // validate sizes
         if(minSubsetSize < 0){
             throw new IllegalArgumentException("Error while creating single perturbation neighbourhood: minimum subset size should be non-negative.");
@@ -104,7 +101,6 @@ public class SinglePerturbationNeighbourhood implements Neighbourhood<SubsetSolu
         }
         this.minSubsetSize = minSubsetSize;
         this.maxSubsetSize = maxSubsetSize;
-        this.fixedIDs = fixedIDs;
     }
     
     /**
@@ -115,7 +111,7 @@ public class SinglePerturbationNeighbourhood implements Neighbourhood<SubsetSolu
      * for deletion nor addition.
      * </p>
      * <p>
-     * Note that every individual move is generated with equal probability, taking into account the possibly
+     * Note that every individual move is generated with equal probability, taking into account the
      * different number of possible moves of each type.
      * </p>
      * 
@@ -126,20 +122,13 @@ public class SinglePerturbationNeighbourhood implements Neighbourhood<SubsetSolu
     public Move<SubsetSolution> getRandomMove(SubsetSolution solution) {
         // use thread local random for concurrent performance
         Random rg = ThreadLocalRandom.current();
-        // get set of candidate IDs for deletion and addition
-        Set<Integer> deleteCandidates = solution.getSelectedIDs();
-        Set<Integer> addCandidates = solution.getUnselectedIDs();
-        // remove fixed IDs, if any, from candidates
-        if(fixedIDs != null && !fixedIDs.isEmpty()){
-            deleteCandidates = new HashSet<>(deleteCandidates);
-            addCandidates = new HashSet<>(addCandidates);
-            deleteCandidates.removeAll(fixedIDs);
-            addCandidates.removeAll(fixedIDs);
-        }
+        // get set of candidate IDs for deletion and addition (fixed IDs are discarded)
+        Set<Integer> removeCandidates = getRemoveCandidates(solution);
+        Set<Integer> addCandidates = getAddCandidates(solution);
         // compute number of possible moves of each type (addition, deletion, swap)
-        int numAdd = numValidAdditionMoves(solution, addCandidates);
-        int numDel = numValidDeletionMoves(solution, deleteCandidates);
-        int numSwap = numValidSwapMoves(solution, addCandidates, deleteCandidates);
+        int numAdd = canAdd(solution, addCandidates) ? addCandidates.size() : 0;
+        int numDel = canRemove(solution, removeCandidates) ? removeCandidates.size(): 0;
+        int numSwap = canSwap(solution, addCandidates, removeCandidates) ? addCandidates.size()*removeCandidates.size() : 0;
         // pick move type using roulette selector
         MoveType selectedMoveType = new RouletteSelector<MoveType>(rg).select(
                                         Arrays.asList(MoveType.ADDITION, MoveType.DELETION, MoveType.SWAP),
@@ -152,10 +141,10 @@ public class SinglePerturbationNeighbourhood implements Neighbourhood<SubsetSolu
             // generate random move of chosen type
             switch(selectedMoveType){
                 case ADDITION : return new AdditionMove(SetUtilities.getRandomElement(addCandidates, rg));
-                case DELETION : return new DeletionMove(SetUtilities.getRandomElement(deleteCandidates, rg));
+                case DELETION : return new DeletionMove(SetUtilities.getRandomElement(removeCandidates, rg));
                 case SWAP     : return new SwapMove(
                                                     SetUtilities.getRandomElement(addCandidates, rg),
-                                                    SetUtilities.getRandomElement(deleteCandidates, rg)
+                                                    SetUtilities.getRandomElement(removeCandidates, rg)
                                                 );
                 default : throw new Error("This should never happen. If this exception is thrown, "
                                             + "there is a serious bug in SinglePerturbationNeighbourhood.");
@@ -174,84 +163,70 @@ public class SinglePerturbationNeighbourhood implements Neighbourhood<SubsetSolu
      */
     @Override
     public Set<Move<SubsetSolution>> getAllMoves(SubsetSolution solution) {
-        // get set of candidate IDs for deletion and addition
-        Set<Integer> deleteCandidates = solution.getSelectedIDs();
-        Set<Integer> addCandidates = solution.getUnselectedIDs();
-        // remove fixed IDs, if any, from candidates
-        if(fixedIDs != null && !fixedIDs.isEmpty()){
-            deleteCandidates = new HashSet<>(deleteCandidates);
-            addCandidates = new HashSet<>(addCandidates);
-            deleteCandidates.removeAll(fixedIDs);
-            addCandidates.removeAll(fixedIDs);
-        }
+        // get set of candidate IDs for deletion and addition (fixed IDs are discarded)
+        Set<Integer> removeCandidates = getRemoveCandidates(solution);
+        Set<Integer> addCandidates = getAddCandidates(solution);
         // create empty set of moves
         Set<Move<SubsetSolution>> moves = new HashSet<>();
         // generate all addition moves, if valid
-        if(numValidAdditionMoves(solution, addCandidates) > 0){
-            // go through candidate IDs for addition
-            for(int ID : addCandidates){
-                // create addition move that adds this ID
-                moves.add(new AdditionMove(ID));
-            }
+        if(canAdd(solution, addCandidates)){
+            // create addition move for each add candidate
+            addCandidates.forEach(add -> moves.add(new AdditionMove(add)));
         }
         // generate all deletion moves, if valid
-        if(numValidDeletionMoves(solution, deleteCandidates) > 0){
-            // go through candidate IDs for deletion
-            for(int ID : deleteCandidates){
-                // create deletion move that deletes this ID
-                moves.add(new DeletionMove(ID));
-            }
+        if(canRemove(solution, removeCandidates)){
+            // create deletion move for each remove candidate
+            removeCandidates.forEach(remove -> moves.add(new DeletionMove(remove)));
         }
         // generate all swap moves, if valid
-        if(numValidSwapMoves(solution, addCandidates, deleteCandidates) > 0){
-            // go through candidates for addition
-            for(int add : addCandidates){
-                // go through candidates for deletion
-                for(int del : deleteCandidates){
-                    // create corresponding swap move
-                    moves.add(new SwapMove(add, del));
-                }
-            }
+        if(canSwap(solution, addCandidates, removeCandidates)){
+            // create swap move for each combination of add and remove candidate
+            addCandidates.forEach(add -> {
+                removeCandidates.forEach(remove -> {
+                    moves.add(new SwapMove(add, remove));
+                });
+            });
         }
         // return generated moves
         return moves;
     }
     
     /**
-     * Compute the number of possible addition moves that yield a neighbour
-     * within the valid subset size range, for the given solution.
+     * Check if it is allowed to add one more item to the selection.
      * 
      * @param solution solution for which moves are generated
      * @param addCandidates set of candidate IDs to be added
-     * @return number of possible addition moves
+     * @return <code>true</code> if it is allowed to add an item to the selection
      */
-    private int numValidAdditionMoves(SubsetSolution solution, Set<Integer> addCandidates){
-        return isValidSubsetSize(solution.getNumSelectedIDs()+1) ? addCandidates.size() : 0;
+    private boolean canAdd(SubsetSolution solution, Set<Integer> addCandidates){
+        return !addCandidates.isEmpty()
+                    && isValidSubsetSize(solution.getNumSelectedIDs()+1);
     }
     
     /**
-     * Compute the number of possible deletion moves that yield a neighbour
-     * within the valid subset size range, for the given solution.
+     * Check if it is allowed to remove one more item from the selection.
      * 
      * @param solution solution for which moves are generated
      * @param deleteCandidates set of candidate IDs to be deleted
-     * @return number of possible deletion moves
+     * @return <code>true</code> if it is allowed to remove an item from the selection
      */
-    private int numValidDeletionMoves(SubsetSolution solution, Set<Integer> deleteCandidates){
-        return isValidSubsetSize(solution.getNumSelectedIDs()-1) ? deleteCandidates.size() : 0;
+    private boolean canRemove(SubsetSolution solution, Set<Integer> deleteCandidates){
+        return !deleteCandidates.isEmpty()
+                    && isValidSubsetSize(solution.getNumSelectedIDs()-1);
     }
     
     /**
-     * Compute the number of possible swap moves that yield a neighbour
-     * within the valid subset size range, for the given solution.
+     * Check if it is possible to swap a selected and unselected item.
      * 
      * @param solution solution for which moves are generated
      * @param addCandidates set of candidate IDs to be added
      * @param deleteCandidates set of candidate IDs to be deleted
-     * @return number of possible swap moves
+     * @return <code>true</code> if it is possible to perform a swap
      */
-    private int numValidSwapMoves(SubsetSolution solution, Set<Integer> addCandidates, Set<Integer> deleteCandidates){
-        return isValidSubsetSize(solution.getNumSelectedIDs()) ? addCandidates.size()*deleteCandidates.size() : 0;
+    private boolean canSwap(SubsetSolution solution, Set<Integer> addCandidates, Set<Integer> deleteCandidates){
+        return !addCandidates.isEmpty()
+                    && !deleteCandidates.isEmpty()
+                    && isValidSubsetSize(solution.getNumSelectedIDs());
     }
     
     /**

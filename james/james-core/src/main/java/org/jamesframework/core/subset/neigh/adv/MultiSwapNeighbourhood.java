@@ -23,8 +23,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.subset.algo.exh.SubsetSolutionIterator;
 import org.jamesframework.core.search.neigh.Move;
-import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.subset.neigh.SingleSwapNeighbourhood;
+import org.jamesframework.core.subset.neigh.SubsetNeighbourhood;
 import org.jamesframework.core.util.SetUtilities;
 
 /**
@@ -54,13 +54,10 @@ import org.jamesframework.core.util.SetUtilities;
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class MultiSwapNeighbourhood implements Neighbourhood<SubsetSolution> {
+public class MultiSwapNeighbourhood extends SubsetNeighbourhood {
 
     // maximum number of simultaneous swaps
     private final int maxSwaps;
-    
-    // set of fixed IDs (may be null or empty if no IDs are fixed)
-    private final Set<Integer> fixedIDs;
     
     /**
      * Creates a multi swap neighbourhood without fixed IDs, indicating the desired maximum number
@@ -88,11 +85,12 @@ public class MultiSwapNeighbourhood implements Neighbourhood<SubsetSolution> {
      * @throws IllegalArgumentException if <code>maxSwaps</code> is not strictly positive
      */
     public MultiSwapNeighbourhood(int maxSwaps, Set<Integer> fixedIDs){
+        super(fixedIDs);
+        // check maximum number of swaps
         if(maxSwaps <= 0){
             throw new IllegalArgumentException("The maximum number of swaps should be strictly positive.");
         }
         this.maxSwaps = maxSwaps;
-        this.fixedIDs = fixedIDs;
     }
     
     /**
@@ -118,18 +116,11 @@ public class MultiSwapNeighbourhood implements Neighbourhood<SubsetSolution> {
      */
     @Override
     public Move<SubsetSolution> getRandomMove(SubsetSolution solution) {
-        // get set of candidate IDs for deletion and addition
-        Set<Integer> deleteCandidates = solution.getSelectedIDs();
-        Set<Integer> addCandidates = solution.getUnselectedIDs();
-        // remove fixed IDs, if any, from candidates
-        if(fixedIDs != null && !fixedIDs.isEmpty()){
-            deleteCandidates = new HashSet<>(deleteCandidates);
-            addCandidates = new HashSet<>(addCandidates);
-            deleteCandidates.removeAll(fixedIDs);
-            addCandidates.removeAll(fixedIDs);
-        }
+        // get set of candidate IDs for deletion and addition (fixed IDs are discarded)
+        Set<Integer> removeCandidates = getRemoveCandidates(solution);
+        Set<Integer> addCandidates = getAddCandidates(solution);
         // compute maximum number of swaps
-        int curMaxSwaps = maxSwaps(addCandidates, deleteCandidates);
+        int curMaxSwaps = maxSwaps(addCandidates, removeCandidates);
         // return null if no swaps are possible
         if(curMaxSwaps == 0){
             // impossible to perform a swap
@@ -137,10 +128,10 @@ public class MultiSwapNeighbourhood implements Neighbourhood<SubsetSolution> {
         }
         // use thread local random for better concurrent performance
         Random rg = ThreadLocalRandom.current();
-        // pick number of swaps (at least 1)
+        // pick number of swaps (in [1, curMaxSwaps])
         int numSwaps = rg.nextInt(curMaxSwaps) + 1;
         // pick random IDs to remove from selection
-        Set<Integer> del = SetUtilities.getRandomSubset(deleteCandidates, numSwaps, rg);
+        Set<Integer> del = SetUtilities.getRandomSubset(removeCandidates, numSwaps, rg);
         // pick random IDs to add to selection
         Set<Integer> add = SetUtilities.getRandomSubset(addCandidates, numSwaps, rg);
         // create and return move
@@ -165,24 +156,17 @@ public class MultiSwapNeighbourhood implements Neighbourhood<SubsetSolution> {
     public Set<Move<SubsetSolution>> getAllMoves(SubsetSolution solution) {
         // create empty set to store generated moves
         Set<Move<SubsetSolution>> moves = new HashSet<>();
-        // get set of candidate IDs for deletion and addition
-        Set<Integer> deleteCandidates = solution.getSelectedIDs();
-        Set<Integer> addCandidates = solution.getUnselectedIDs();
-        // remove fixed IDs, if any, from candidates
-        if(fixedIDs != null && !fixedIDs.isEmpty()){
-            deleteCandidates = new HashSet<>(deleteCandidates);
-            addCandidates = new HashSet<>(addCandidates);
-            deleteCandidates.removeAll(fixedIDs);
-            addCandidates.removeAll(fixedIDs);
-        }
+        // get set of candidate IDs for deletion and addition (fixed IDs are discarded)
+        Set<Integer> removeCandidates = getRemoveCandidates(solution);
+        Set<Integer> addCandidates = getAddCandidates(solution);
         // compute maximum number of swaps
-        int curMaxSwaps = maxSwaps(addCandidates, deleteCandidates);
-        // create all moves for each considered amount of swaps (1 up to curMaxSwaps)
+        int curMaxSwaps = maxSwaps(addCandidates, removeCandidates);
+        // create all moves for each considered amount of swaps (in [1,curMaxSwaps])
         SubsetSolutionIterator itDel, itAdd;
         Set<Integer> del, add;
         for(int s=1; s <= curMaxSwaps; s++){
             // create all moves that perform s swaps
-            itDel = new SubsetSolutionIterator(deleteCandidates, s);
+            itDel = new SubsetSolutionIterator(removeCandidates, s);
             while(itDel.hasNext()){
                 del = itDel.next().getSelectedIDs();
                 itAdd = new SubsetSolutionIterator(addCandidates, s);

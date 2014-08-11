@@ -16,13 +16,14 @@
 
 package org.jamesframework.core.subset.neigh;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.neigh.Move;
-import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.util.SetUtilities;
 
 /**
@@ -39,10 +40,7 @@ import org.jamesframework.core.util.SetUtilities;
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class SingleSwapNeighbourhood implements Neighbourhood<SubsetSolution> {
-
-    // set of fixed IDs
-    private final Set<Integer> fixedIDs;
+public class SingleSwapNeighbourhood extends SubsetNeighbourhood {
     
     /**
      * Creates a basic single swap neighbourhood.
@@ -58,7 +56,7 @@ public class SingleSwapNeighbourhood implements Neighbourhood<SubsetSolution> {
      * @param fixedIDs set of fixed IDs which are not allowed to be swapped
      */
     public SingleSwapNeighbourhood(Set<Integer> fixedIDs){
-        this.fixedIDs = fixedIDs;
+        super(fixedIDs);
     }
     
     /**
@@ -71,25 +69,18 @@ public class SingleSwapNeighbourhood implements Neighbourhood<SubsetSolution> {
      */
     @Override
     public Move<SubsetSolution> getRandomMove(SubsetSolution solution) {
-        // get set of candidate IDs for deletion and addition
-        Set<Integer> deleteCandidates = solution.getSelectedIDs();
-        Set<Integer> addCandidates = solution.getUnselectedIDs();
-        // remove fixed IDs, if any, from candidates
-        if(fixedIDs != null && !fixedIDs.isEmpty()){
-            deleteCandidates = new HashSet<>(deleteCandidates);
-            addCandidates = new HashSet<>(addCandidates);
-            deleteCandidates.removeAll(fixedIDs);
-            addCandidates.removeAll(fixedIDs);
-        }
+        // get set of candidate IDs for removal and addition (possibly fixed IDs are discarded)
+        Set<Integer> removeCandidates = getRemoveCandidates(solution);
+        Set<Integer> addCandidates = getAddCandidates(solution);
         // check if swap is possible
-        if(deleteCandidates.isEmpty() || addCandidates.isEmpty()){
+        if(removeCandidates.isEmpty() || addCandidates.isEmpty()){
             // impossible to perform a swap
             return null;
         }
         // use thread local random for better concurrent performance
         Random rg = ThreadLocalRandom.current();
         // select random ID to remove from selection
-        int del = SetUtilities.getRandomElement(deleteCandidates, rg);
+        int del = SetUtilities.getRandomElement(removeCandidates, rg);
         // select random ID to add to selection
         int add = SetUtilities.getRandomElement(addCandidates, rg);
         // create and return swap move
@@ -106,33 +97,18 @@ public class SingleSwapNeighbourhood implements Neighbourhood<SubsetSolution> {
      */
     @Override
     public Set<Move<SubsetSolution>> getAllMoves(SubsetSolution solution) {
-        // create empty set to store generated moves
-        Set<Move<SubsetSolution>> moves = new HashSet<>();
-        // get set of candidate IDs for deletion and addition
-        Set<Integer> deleteCandidates = solution.getSelectedIDs();
-        Set<Integer> addCandidates = solution.getUnselectedIDs();
-        // remove fixed IDs, if any, from candidates
-        if(fixedIDs != null && !fixedIDs.isEmpty()){
-            deleteCandidates = new HashSet<>(deleteCandidates);
-            addCandidates = new HashSet<>(addCandidates);
-            deleteCandidates.removeAll(fixedIDs);
-            addCandidates.removeAll(fixedIDs);
-        }
-        // first check if swaps are possible, for efficiency (avoids unnecessary loops)
-        if(deleteCandidates.isEmpty() || addCandidates.isEmpty()){
+        // get set of candidate IDs for removal and addition (possibly fixed IDs are discarded)
+        Set<Integer> removeCandidates = getRemoveCandidates(solution);
+        Set<Integer> addCandidates = getAddCandidates(solution);
+        // first check if swaps are possible, for efficiency (avoids superfluous loop iterations)
+        if(removeCandidates.isEmpty() || addCandidates.isEmpty()){
             // no swap moves can be applied, return empty set
-            return moves;
+            return Collections.emptySet();
         }
-        // go through all possible IDs to delete
-        for(int del : deleteCandidates){
-            // go through all possible IDs to add
-            for(int add : addCandidates){
-                // add corresponding swap move
-                moves.add(new SwapMove(add, del));
-            }
-        }
-        // return swap moves
-        return moves;
+        // create swap move for all combinations of add and remove candidates
+        return addCandidates.stream()
+                            .flatMap(add -> removeCandidates.stream().map(remove -> new SwapMove(add, remove)))
+                            .collect(Collectors.toSet());
     }
 
 }

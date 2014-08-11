@@ -16,9 +16,6 @@
 
 package org.jamesframework.core.subset.neigh;
 
-import org.jamesframework.core.subset.neigh.SubsetMove;
-import org.jamesframework.core.subset.neigh.SwapMove;
-import org.jamesframework.core.subset.neigh.SingleSwapNeighbourhood;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
