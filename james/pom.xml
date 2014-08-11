@@ -85,8 +85,12 @@
                 <configuration>
                     <source>8</source>
                     <target>8</target>
-                    <!-- warn for unchecked or unsafe operations -->
-                    <compilerArgument>-Xlint:unchecked</compilerArgument>
+                    <compilerArguments>
+                        <!-- warn for unchecked or unsafe operations -->
+                        <Xlint:unchecked />
+                        <!-- fail on warnings -->
+                        <Werror />
+                    </compilerArguments>
                 </configuration>
             </plugin>
             <!-- create test jars -->
