@@ -123,7 +123,7 @@ public class PipedLocalSearch<SolutionType extends Solution> extends LocalSearch
         // stop this search (if running)
         super.stop();
         // propagate request to searches in pipeline
-        pipeline.stream().forEach(s -> s.stop());
+        pipeline.forEach(s -> s.stop());
     }
     
     /**
@@ -133,7 +133,7 @@ public class PipedLocalSearch<SolutionType extends Solution> extends LocalSearch
     protected void searchDisposed() {
         super.searchDisposed();
         // dispose searches in pipeline
-        pipeline.stream().forEach(s -> s.dispose());
+        pipeline.forEach(s -> s.dispose());
     }
     
     /**

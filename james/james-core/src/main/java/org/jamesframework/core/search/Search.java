@@ -571,9 +571,7 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
      * Should only be executed when search is active (initializing, running or terminating).
      */
     private void fireSearchStarted(){
-        searchListeners.stream().forEach(listener -> {
-            listener.searchStarted(this);
-        });
+        searchListeners.forEach(l -> l.searchStarted(this));
     }
     
     /**
@@ -581,9 +579,7 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
      * Should only be executed when search is active (initializing, running or terminating).
      */
     private void fireSearchStopped(){
-        searchListeners.stream().forEach(listener -> {
-            listener.searchStopped(this);
-        });
+        searchListeners.forEach(l -> l.searchStopped(this));
     }
     
     /**
@@ -594,9 +590,7 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
      * @param newBestSolutionEvaluation evaluation of new best solution
      */
     private void fireNewBestSolution(SolutionType newBestSolution, double newBestSolutionEvaluation){
-        searchListeners.stream().forEach(listener -> {
-            listener.newBestSolution(this, newBestSolution, newBestSolutionEvaluation);
-        });
+        searchListeners.forEach(l -> l.newBestSolution(this, newBestSolution, newBestSolutionEvaluation));
     }
     
     /**
@@ -606,9 +600,7 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
      * @param numSteps number of steps completed so far (during the current run)
      */
     private void fireStepCompleted(long numSteps){
-        searchListeners.stream().forEach(listener -> {
-            listener.stepCompleted(this, numSteps);
-        });
+        searchListeners.forEach(l -> l.stepCompleted(this, numSteps));
     }
     
     /**
@@ -618,9 +610,7 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
      * @param newStatus new search status
      */
     private void fireStatusChanged(SearchStatus newStatus){
-        searchListeners.stream().forEach(listener -> {
-            listener.statusChanged(this, newStatus);
-        });
+        searchListeners.forEach(l -> l.statusChanged(this, newStatus));
     }
     
     /*****************/

@@ -195,7 +195,7 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
         swapBase = 0;
         // listen to events fired by replicas
         ReplicaListener listener = new ReplicaListener();
-        replicas.stream().forEach(r -> r.addSearchListener(listener));
+        replicas.forEach(r -> r.addSearchListener(listener));
     }
     
     /**
@@ -247,7 +247,7 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
      */
     public void setTemperatureScaleFactor(double scale){
         // update scale factor in every replica
-        replicas.stream().forEach(r -> r.setTemperatureScaleFactor(scale));
+        replicas.forEach(r -> r.setTemperatureScaleFactor(scale));
     }
     
     /**
@@ -265,7 +265,7 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
             // call super
             super.setNeighbourhood(neighbourhood);
             // set neighbourhood in every replica
-            replicas.stream().forEach(r -> r.setNeighbourhood(neighbourhood));
+            replicas.forEach(r -> r.setNeighbourhood(neighbourhood));
         }
     }
     
@@ -284,7 +284,7 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
             // call super (also verifies status)
             super.setCurrentSolution(solution);
             // pass current solution to every replica (copy!)
-            replicas.stream().forEach(r -> r.setCurrentSolution(Solution.checkedCopy(solution)));
+            replicas.forEach(r -> r.setCurrentSolution(Solution.checkedCopy(solution)));
         }
     }
     
@@ -298,7 +298,7 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
     @Override
     protected void searchStep() {
         // submit replicas for execution in thread pool
-        replicas.stream().forEach(r -> futures.add(pool.submit(r)));
+        replicas.forEach(r -> futures.add(pool.submit(r)));
         logger.trace("{}: started {} Metropolis replicas", this, futures.size());
         // wait for completion of all replicas and remove corresponding future
         logger.trace("{}: waiting for replicas to finish", this);
@@ -361,7 +361,7 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
     protected void searchDisposed(){
         super.searchDisposed();
         // dispose replicas
-        replicas.stream().forEach(r -> r.dispose());
+        replicas.forEach(r -> r.dispose());
         // shut down thread pool
         pool.shutdown();
     }

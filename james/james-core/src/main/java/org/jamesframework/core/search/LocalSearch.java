@@ -160,7 +160,7 @@ public abstract class LocalSearch<SolutionType extends Solution> extends Search<
      * Also, the callback should only be fired exactly once for each update of the current solution.
      */
     private void fireModifiedCurrentSolution(SolutionType newCurrentSolution, double newCurrentSolutionEvaluation){
-        localSearchListeners.stream().forEach(l -> {
+        localSearchListeners.forEach(l -> {
                                 l.modifiedCurrentSolution(this, newCurrentSolution, newCurrentSolutionEvaluation);
                             });
     }
