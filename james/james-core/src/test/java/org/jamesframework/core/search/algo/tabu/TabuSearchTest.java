@@ -51,22 +51,12 @@ public class TabuSearchTest extends SearchTestTemplate {
         // first run: full tabu memory of size 10000
         Object[] run1 = new Object[2];
         run1[0] = "Full Tabu Memory (10000)";
-        run1[1] = new TabuMemoryFactory() {
-            @Override
-            public TabuMemory<SubsetSolution> createTabuMemory() {
-                return new FullTabuMemory<>(10000);
-            }
-        };
+        run1[1] = (TabuMemoryFactory) () -> new FullTabuMemory<>(10000);
         params.add(run1);
         // second run: ID based tabu memory of size 20
         Object[] run2 = new Object[2];
         run2[0] = "ID Based Tabu Memory (20)";
-        run2[1] = new TabuMemoryFactory() {
-            @Override
-            public TabuMemory<SubsetSolution> createTabuMemory() {
-                return new IDBasedSubsetTabuMemory(20);
-            }
-        };
+        run2[1] = (TabuMemoryFactory) () -> new IDBasedSubsetTabuMemory(20);
         params.add(run2);
         // return params
         return params;

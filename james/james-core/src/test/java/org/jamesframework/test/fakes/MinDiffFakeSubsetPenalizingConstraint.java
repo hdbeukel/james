@@ -19,6 +19,7 @@ package org.jamesframework.test.fakes;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 import org.jamesframework.core.problems.constraints.PenalizingConstraint;
 import org.jamesframework.core.subset.SubsetSolution;
 
@@ -47,10 +48,9 @@ public class MinDiffFakeSubsetPenalizingConstraint extends MinDiffFakeSubsetCons
     @Override
     public double computePenalty(SubsetSolution solution, ScoredFakeSubsetData data) {
         // store scores in sorted set
-        TreeSet<Double> scores  = new TreeSet<>();
-        for(int ID : solution.getSelectedIDs()){
-            scores.add(data.getScore(ID));
-        }
+        TreeSet<Double> scores = solution.getSelectedIDs().stream()
+                                                          .map(ID -> data.getScore(ID))
+                                                          .collect(Collectors.toCollection(TreeSet::new));
         // go through sorted scores, keeping track of set of previous scores,
         // sorted in reversed order to enable early breaks
         TreeSet<Double> prevScores = new TreeSet<>(Collections.reverseOrder());

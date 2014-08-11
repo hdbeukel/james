@@ -137,7 +137,7 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
         neighSearch.addSearchListener(l);
         
         // try to remove non added listener
-        assertFalse(neighSearch.removeSearchListener(new LocalSearchListenerStub<SubsetSolution>()));
+        assertFalse(neighSearch.removeSearchListener(new LocalSearchListenerStub<>()));
         // remove added listener
         assertTrue(neighSearch.removeSearchListener(l));
         

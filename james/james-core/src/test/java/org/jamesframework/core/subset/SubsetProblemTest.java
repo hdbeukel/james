@@ -16,10 +16,8 @@
 
 package org.jamesframework.core.subset;
 
-import org.jamesframework.core.subset.SubsetProblem;
 import java.util.Random;
 import org.jamesframework.core.problems.Solution;
-import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.util.SetUtilities;
 import org.jamesframework.test.fakes.ScoredFakeSubsetData;
 import org.jamesframework.test.fakes.SumOfScoresFakeSubsetObjective;

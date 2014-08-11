@@ -16,7 +16,6 @@
 
 package org.jamesframework.core.subset.algo.exh;
 
-import org.jamesframework.core.subset.algo.exh.SubsetSolutionIterator;
 import java.util.HashSet;
 import java.util.Set;
 import org.jamesframework.core.search.algo.exh.SolutionIterator;

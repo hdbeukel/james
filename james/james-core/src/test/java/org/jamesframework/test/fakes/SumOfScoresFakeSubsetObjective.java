@@ -36,11 +36,7 @@ public class SumOfScoresFakeSubsetObjective extends MinMaxObjective<SubsetSoluti
      */
     @Override
     public double evaluate(SubsetSolution solution, ScoredFakeSubsetData data) {
-        double sum = 0.0;
-        for(int ID : solution.getSelectedIDs()){
-            sum += data.getScore(ID);
-        }
-        return sum;
+        return solution.getSelectedIDs().stream().mapToDouble(data::getScore).sum();
     }
 
 }

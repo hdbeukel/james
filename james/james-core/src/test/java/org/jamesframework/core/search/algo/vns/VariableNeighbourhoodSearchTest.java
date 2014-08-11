@@ -53,23 +53,19 @@ public class VariableNeighbourhoodSearchTest extends SearchTestTemplate {
     @Parameterized.Parameters
     public static List<Object[]> data(){
         List<Object[]> params = new ArrayList<>();
-        // first run: default VND modification algorithm
+        // first run: default VND local search algorithm
         Object[] run1 = new Object[2];
         run1[0] = "VND (default)";
         run1[1] = null;
         params.add(run1);
-        // second run: custom random descent modification algorithm
+        // second run: custom random descent local search algorithm
         Object[] run2 = new Object[2];
         run2[0] = "Random Descent (custom)";
-        run2[1] = new LocalSearchFactory<SubsetSolution>() {
-            @Override
-            public NeighbourhoodSearch<SubsetSolution> create(Problem<SubsetSolution> problem) {
-                NeighbourhoodSearch<SubsetSolution> search = new RandomDescent<>(problem, new SingleSwapNeighbourhood());
-                // max runtime of 50 ms
-                search.addStopCriterion(new MaxRuntime(50, TimeUnit.MILLISECONDS));
-                search.setStopCriterionCheckPeriod(50, TimeUnit.MILLISECONDS);
-                return search;
-            }
+        run2[1] = (LocalSearchFactory<SubsetSolution>) (p) -> {
+            NeighbourhoodSearch<SubsetSolution> ls = new RandomDescent<>(p, new SingleSwapNeighbourhood());
+            ls.addStopCriterion(new MaxRuntime(50, TimeUnit.MILLISECONDS));
+            ls.setStopCriterionCheckPeriod(50, TimeUnit.MILLISECONDS);
+            return ls;
         };
         params.add(run2);
         // return params

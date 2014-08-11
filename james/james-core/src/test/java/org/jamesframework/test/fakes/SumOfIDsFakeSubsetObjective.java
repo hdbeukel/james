@@ -36,11 +36,7 @@ public class SumOfIDsFakeSubsetObjective extends MinMaxObjective<SubsetSolution,
      */
     @Override
     public double evaluate(SubsetSolution solution, Object data) {
-        int idsum = 0;
-        for(int id : solution.getSelectedIDs()){
-            idsum += id;
-        }
-        return (double) idsum;
+        return solution.getSelectedIDs().stream().mapToInt(Integer::intValue).sum();
     }
 
 }

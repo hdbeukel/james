@@ -303,22 +303,22 @@ public class SinglePerturbationNeighbourhoodTest {
             SubsetMove move = (SubsetMove) neighVarSize.getRandomMove(sol);
             if(move != null){
                 // verify
-                for(int ID : fixedIDs){
+                fixedIDs.forEach(ID -> {
                     assertFalse(move.getAddedIDs().contains(ID));
                     assertFalse(move.getDeletedIDs().contains(ID));
-                }
+                });
             }
         }
         
         // generate all moves and verify that no fixed IDs are swapped
-        for(Move move : neighVarSize.getAllMoves(sol)){
-            SubsetMove sm = (SubsetMove) move;
-            // verify
-            for(int ID : fixedIDs){
-                assertFalse(sm.getAddedIDs().contains(ID));
-                assertFalse(sm.getDeletedIDs().contains(ID));
-            }
-        }
+        neighVarSize.getAllMoves(sol).stream()
+                                     .map(m -> (SubsetMove) m)
+                                     .forEach(m -> {
+                                        fixedIDs.forEach(ID -> {
+                                            assertFalse(m.getAddedIDs().contains(ID));
+                                            assertFalse(m.getDeletedIDs().contains(ID));
+                                        });
+                                     });
         
         // now fix ALL IDs
         neighVarSize = new SinglePerturbationNeighbourhood(10, 20, sol.getAllIDs());

@@ -16,7 +16,6 @@
 
 package org.jamesframework.core.subset.neigh.adv;
 
-import org.jamesframework.core.subset.neigh.adv.MultiSwapNeighbourhood;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -122,12 +121,12 @@ public class MultiSwapNeighbourhoodTest {
         assertEquals(sol.getNumSelectedIDs()*sol.getNumUnselectedIDs(), moves2.size());
         assertEquals(moves1.size(), moves2.size());
         temp = new HashSet<>();
-        for(Move<SubsetSolution> m : moves2){
+        moves2.forEach(m -> {
             SubsetMove sm = (SubsetMove) m;
             assertEquals(1, sm.getNumAdded());
             assertEquals(1, sm.getNumDeleted());
             temp.add(new SwapMove(sm.getAddedIDs().iterator().next(), sm.getDeletedIDs().iterator().next()));
-        }
+        });
         assertEquals(temp, moves1);
         
         // 2) test with maxSwaps 2 up to 5
@@ -184,22 +183,22 @@ public class MultiSwapNeighbourhoodTest {
             SubsetMove move = (SubsetMove) neigh.getRandomMove(sol);
             if(move != null){
                 // verify
-                for(int ID : fixedIDs){
+                fixedIDs.forEach(ID -> {
                     assertFalse(move.getAddedIDs().contains(ID));
                     assertFalse(move.getDeletedIDs().contains(ID));
-                }
+                });
             }
         }
         
         // generate all moves and verify that no fixed IDs are swapped
-        for(Move move : neigh.getAllMoves(sol)){
-            SubsetMove sm = (SubsetMove) move;
-            // verify
-            for(int ID : fixedIDs){
-                assertFalse(sm.getAddedIDs().contains(ID));
-                assertFalse(sm.getDeletedIDs().contains(ID));
-            }
-        }
+        neigh.getAllMoves(sol).stream()
+                              .map(m -> (SubsetMove) m)
+                              .forEach(m -> {
+                                  fixedIDs.forEach(ID -> {
+                                    assertFalse(m.getAddedIDs().contains(ID));
+                                    assertFalse(m.getDeletedIDs().contains(ID));
+                                  });
+                              });
         
         // now fix ALL IDs
         neigh = new SingleSwapNeighbourhood(sol.getAllIDs());

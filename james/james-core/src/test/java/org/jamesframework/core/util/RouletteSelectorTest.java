@@ -60,7 +60,7 @@ public class RouletteSelectorTest {
         System.out.println(" - testing select");
         
         // empty lists
-        assertNull(roulette.select(new ArrayList<String>(), new ArrayList<Double>()));
+        assertNull(roulette.select(new ArrayList<>(), new ArrayList<>()));
         
         // create item list
         List<String> items = Arrays.asList("Banana", "Peach", "Strawberry", "Mango");

@@ -16,8 +16,6 @@
 
 package org.jamesframework.core.subset.neigh;
 
-import org.jamesframework.core.subset.neigh.AdditionMove;
-import org.jamesframework.core.subset.neigh.SubsetMove;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;

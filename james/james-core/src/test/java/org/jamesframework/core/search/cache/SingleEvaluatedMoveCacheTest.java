@@ -162,10 +162,10 @@ public class SingleEvaluatedMoveCacheTest {
         cache.clear();
         
         // verify: no values available after clearing cache
-        for(Move<?> m : moves){
+        moves.forEach(m -> {
             assertNull(cache.getCachedMoveEvaluation(m));
             assertNull(cache.getCachedMoveRejection(m));
-        }
+        });
         
     }
 

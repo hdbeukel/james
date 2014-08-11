@@ -16,7 +16,10 @@
 
 package org.jamesframework.test.fakes;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 import org.jamesframework.core.problems.constraints.Constraint;
 import org.jamesframework.core.subset.SubsetSolution;
 
@@ -54,10 +57,9 @@ public class MinDiffFakeSubsetConstraint implements Constraint<SubsetSolution, S
     @Override
     public boolean isSatisfied(SubsetSolution solution, ScoredFakeSubsetData data) {
         // store scores in sorted set
-        TreeSet<Double> scores  = new TreeSet<>();
-        for(int ID : solution.getSelectedIDs()){
-            scores.add(data.getScore(ID));
-        }
+        TreeSet<Double> scores = solution.getSelectedIDs().stream()
+                                                          .map(ID -> data.getScore(ID))
+                                                          .collect(Collectors.toCollection(TreeSet::new));
         // compute difference between consecutive sorted scores, break if minimum violated
         Double prevScore = null;
         for(double score : scores){

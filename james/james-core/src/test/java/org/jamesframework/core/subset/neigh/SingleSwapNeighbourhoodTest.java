@@ -19,6 +19,7 @@ package org.jamesframework.core.subset.neigh;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
+import java.util.stream.Collectors;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.util.SetUtilities;
@@ -144,12 +145,14 @@ public class SingleSwapNeighbourhoodTest {
         
         // verify that all selected IDs where considered for deletion, and
         // that all unselected IDs where considered for addition
-        Set<Integer> delCandidates = new HashSet<>();
-        Set<Integer> addCandidates = new HashSet<>();
-        for(Move<SubsetSolution> move : moves){
-            delCandidates.add(((SwapMove)move).getDeletedID());
-            addCandidates.add(((SwapMove)move).getAddedID());
-        }
+        Set<Integer> delCandidates = moves.stream()
+                                          .map(m -> (SwapMove) m)
+                                          .map(m -> m.getDeletedID())
+                                          .collect(Collectors.toSet());
+        Set<Integer> addCandidates = moves.stream()
+                                          .map(m -> (SwapMove) m)
+                                          .map(m -> m.getAddedID())
+                                          .collect(Collectors.toSet());
         // verify
         assertEquals(delCandidates, sol.getSelectedIDs());
         assertEquals(addCandidates, sol.getUnselectedIDs());
@@ -177,22 +180,22 @@ public class SingleSwapNeighbourhoodTest {
             SubsetMove move = (SubsetMove) neigh.getRandomMove(sol);
             if(move != null){
                 // verify
-                for(int ID : fixedIDs){
+                fixedIDs.forEach(ID -> {
                     assertFalse(move.getAddedIDs().contains(ID));
                     assertFalse(move.getDeletedIDs().contains(ID));
-                }
+                });
             }
         }
         
         // generate all moves and verify that no fixed IDs are swapped
-        for(Move move : neigh.getAllMoves(sol)){
-            SubsetMove sm = (SubsetMove) move;
-            // verify
-            for(int ID : fixedIDs){
-                assertFalse(sm.getAddedIDs().contains(ID));
-                assertFalse(sm.getDeletedIDs().contains(ID));
-            }
-        }
+        neigh.getAllMoves(sol).stream()
+                              .map(m -> (SubsetMove) m)
+                              .forEach(m -> {
+                                fixedIDs.forEach(ID -> {
+                                    assertFalse(m.getAddedIDs().contains(ID));
+                                    assertFalse(m.getDeletedIDs().contains(ID));
+                                });
+                              });
         
         // now fix ALL IDs
         neigh = new SingleSwapNeighbourhood(sol.getAllIDs());
