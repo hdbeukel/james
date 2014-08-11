@@ -119,8 +119,6 @@ public class BasicParallelSearch<SolutionType extends Solution> extends Search<S
             // assert idle
             assertIdle("Cannot add search to basic parallel search algorithm.");
             if (search.getProblem() == getProblem()) {
-                // listen to events fired by subsearch
-                search.addSearchListener(subsearchListener);
                 // add search
                 searches.add(search);
             } else {
@@ -144,8 +142,6 @@ public class BasicParallelSearch<SolutionType extends Solution> extends Search<S
         synchronized (getStatusLock()) {
             // assert idle
             assertIdle("Cannot remove search from basic parallel search algorithm.");
-            // stop listening to this search
-            search.removeSearchListener(subsearchListener);
             // remove search
             return searches.remove(search);
         }
@@ -208,8 +204,13 @@ public class BasicParallelSearch<SolutionType extends Solution> extends Search<S
      */
     @Override
     protected void searchStep() {
-        // (1) execute subsearches in parallel
-        searches.stream().forEach(s -> futures.add(pool.submit(s)));
+        // (1) execute subsearches in parallel (+ add listener)
+        searches.stream().forEach(s -> {
+            // listen to events fired by subsearch
+            s.addSearchListener(subsearchListener);
+            // submit to thread pool
+            futures.add(pool.submit(s));
+        });
         // (2) wait for termination of subsearches
         while (!futures.isEmpty()) {
             try {
@@ -219,7 +220,9 @@ public class BasicParallelSearch<SolutionType extends Solution> extends Search<S
                         + "in basic parallel search.", ex);
             }
         }
-        // (3) stop main search
+        // (3) stop listening to subsearches
+        searches.stream().forEach(s -> s.removeSearchListener(subsearchListener));
+        // (4) stop main search
         stop();
     }
 

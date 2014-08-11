@@ -204,7 +204,6 @@ public class VariableNeighbourhoodSearch<SolutionType extends Solution> extends 
         }
         
         // create copy of current solution to shake and modify by applying local search procedure
-        
         SolutionType shakedSolution = Solution.checkedCopy(getCurrentSolution());
         
         // 1) SHAKING
@@ -225,7 +224,7 @@ public class VariableNeighbourhoodSearch<SolutionType extends Solution> extends 
             // set initial solution to be modified
             localSearch.setCurrentSolution(shakedSolution);
             // interrupt local search algorithm when main VNS search wants to terminate
-            localSearch.addStopCriterion(search -> this.getStatus() == SearchStatus.TERMINATING);
+            localSearch.addStopCriterion(_search -> this.getStatus() == SearchStatus.TERMINATING);
             // run local search
             localSearch.start();
             // dispose local search when completed

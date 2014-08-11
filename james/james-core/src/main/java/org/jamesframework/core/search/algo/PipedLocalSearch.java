@@ -35,9 +35,9 @@ import org.jamesframework.core.search.status.SearchStatus;
  * </p>
  * <p>
  * This search is a single step search, meaning that execution of the entire pipeline is considered to be one
- * step of the piped search, and that the global algorithm terminates when this step has completed. Moreover,
- * a piped local search can only be started once. After its single step has completed, the search will automatically
- * dispose itself together with all contained local searches, so that it can not be restarted.
+ * step of the piped search and that the global algorithm terminates when this step has completed. Moreover, a
+ * piped local search can be started only once. After its single step has completed, the search will automatically
+ * dispose itself together with all contained local searches.
  * </p>
  * <p>
  * Only searches solving the same problem as the one specified when creating the piped local search can be included
@@ -45,9 +45,7 @@ import org.jamesframework.core.search.status.SearchStatus;
  * </p>
  * <p>
  * When a piped local search is requested to stop, this request is propagated to the searches included in the pipeline.
- * Similarly, when a piped local search is disposed, all searches in the pipeline are also disposed. Note that a piped
- * local search is automatically disposed when its single step has completed, i.e. when the entire pipeline has been
- * executed.
+ * Similarly, when a piped local search is disposed, all searches in the pipeline are also disposed.
  * </p>
  * 
  * @param <SolutionType> solution type of the problems that may be solved using this search, required to extend {@link Solution}
@@ -56,7 +54,10 @@ import org.jamesframework.core.search.status.SearchStatus;
 public class PipedLocalSearch<SolutionType extends Solution> extends LocalSearch<SolutionType>{
     
     // pipeline of local searches to be executed
-    private List<LocalSearch<SolutionType>> pipeline;
+    private final List<LocalSearch<SolutionType>> pipeline;
+    
+    // listener attached to each search in the pipeline
+    private final PipelineListener pipelineListener;
     
     /**
      * Creates a new piped local search, specifying the problem to solve and a list of local searches to
@@ -110,10 +111,8 @@ public class PipedLocalSearch<SolutionType extends Solution> extends LocalSearch
         }
         // store pipeline
         this.pipeline = pipeline;
-        // listen to events fired by searches in pipeline (to abort
-        // searches starting when piped search is terminating)
-        AbortWhenTerminatingListener listener = new AbortWhenTerminatingListener();
-        pipeline.stream().forEach(s -> s.addSearchListener(listener));
+        // create and store listener
+        this.pipelineListener = new PipelineListener();
     }
     
     /**
@@ -144,7 +143,7 @@ public class PipedLocalSearch<SolutionType extends Solution> extends LocalSearch
     public void start(){
         // perform search
         super.start();
-        // automatical disposal after single run
+        // automatic disposal after single run (search is now idle)
         dispose();
     }
 
@@ -156,7 +155,9 @@ public class PipedLocalSearch<SolutionType extends Solution> extends LocalSearch
     @Override
     protected void searchStep() {
         // execute pipeline
-        for(LocalSearch<SolutionType> l : pipeline){
+        pipeline.stream().forEachOrdered(l -> {
+            // attach listener
+            l.addSearchListener(pipelineListener);
             // set initial solution (copy!)
             l.setCurrentSolution(Solution.checkedCopy(getCurrentSolution()));
             // run local search
@@ -164,26 +165,28 @@ public class PipedLocalSearch<SolutionType extends Solution> extends LocalSearch
             // get best solution found by search l
             SolutionType bestSol = l.getBestSolution();
             double bestSolEval = l.getBestSolutionEvaluation();
-            // if not null and different from current solution: set as new
-            // current solution and update global best solution accordingly
+            // if not null and different from current solution:
+            // update current and best solution accordingly
             if(bestSol != null && !bestSol.equals(getCurrentSolution())){
                 // skip validation (already known to be valid if
                 // reported as best solution of executed search)
                 updateCurrentAndBestSolution(bestSol, bestSolEval, true);
             }
-        }
+            // remove listener
+            l.removeSearchListener(pipelineListener);
+        });
         // pipeline complete: stop search
         stop();
     }
 
     /**
-     * Private listener attached to each search in the pipeline, to abort searches that attempt to start when
+     * Listener attached to each search in the pipeline. Aborts searches that attempt to start when
      * the main search is already terminating.
      */
-    private class AbortWhenTerminatingListener implements SearchListener<SolutionType>{
+    private class PipelineListener implements SearchListener<SolutionType>{
 
         /**
-         * When a search from the pipeline has started, the main search verifies that it has not yet been
+         * When a search from the pipeline has started, it is verified that the main search has not yet been
          * requested to stop in the meantime. Else, the search is stopped before executing any search steps.
          *
          * @param search search from the pipeline which is starting
