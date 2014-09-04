@@ -441,6 +441,10 @@
 <div class="block">Creates a general subset move, indicating which IDs are to be added to and removed from
  the current selection when being applied to a given subset solution.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SubsetNeighbourhood.html#getAddCandidates-org.jamesframework.core.subset.SubsetSolution-">getAddCandidates(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SubsetNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SubsetNeighbourhood</a></dt>
+<dd>
+<div class="block">Infer the set of IDs that may be added to the selection in the given subset solution.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/AdditionMove.html#getAddedID--">getAddedID()</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh">AdditionMove</a></dt>
 <dd>
 <div class="block">Returns the added ID.</div>
@@ -734,6 +738,10 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/util/SetUtilities.html#getRandomSubset-java.util.Set-int-java.util.Random-">getRandomSubset(Set&lt;? extends T&gt;, int, Random)</a></span> - Static method in class org.jamesframework.core.util.<a href="org/jamesframework/core/util/SetUtilities.html" title="class in org.jamesframework.core.util">SetUtilities</a></dt>
 <dd>
 <div class="block">Selects a random subset of a specific size from a given set (uniformly distributed).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SubsetNeighbourhood.html#getRemoveCandidates-org.jamesframework.core.subset.SubsetSolution-">getRemoveCandidates(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SubsetNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SubsetNeighbourhood</a></dt>
+<dd>
+<div class="block">Infer the set of IDs that may be removed from the selection in the given subset solution.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#getReplicas--">getReplicas()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
@@ -1964,6 +1972,15 @@
 <dd>
 <div class="block">General interface of a subset move that adds a number of IDs to the selection and/or
  removes a number of IDs.</div>
+</dd>
+<dt><a href="org/jamesframework/core/subset/neigh/SubsetNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh"><span class="typeNameLink">SubsetNeighbourhood</span></a> - Class in <a href="org/jamesframework/core/subset/neigh/package-summary.html">org.jamesframework.core.subset.neigh</a></dt>
+<dd>
+<div class="block">Abstract subset neighbourhood.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SubsetNeighbourhood.html#SubsetNeighbourhood-java.util.Set-">SubsetNeighbourhood(Set&lt;Integer&gt;)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SubsetNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SubsetNeighbourhood</a></dt>
+<dd>
+<div class="block">Initialize abstract subset neighbourhood with a given set of fixed IDs that are not allowed to
+ be selected or deselected.</div>
 </dd>
 <dt><a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset"><span class="typeNameLink">SubsetProblem</span></a>&lt;<a href="org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a> extends <a href="org/jamesframework/core/problems/datatypes/IntegerIdentifiedData.html" title="interface in org.jamesframework.core.problems.datatypes">IntegerIdentifiedData</a>&gt; - Class in <a href="org/jamesframework/core/subset/package-summary.html">org.jamesframework.core.subset</a></dt>
 <dd>

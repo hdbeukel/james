@@ -110,7 +110,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <hr>
 <br>
-<pre>public class <span class="typeNameLabel">SetUtilities</span>
+<pre>public final class <span class="typeNameLabel">SetUtilities</span>
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
 <div class="block">Contains some utility functions for manipulating sets.</div>
 <dl>
@@ -212,8 +212,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>getRandomElement</h4>
-<pre>public static final&nbsp;&lt;T&gt;&nbsp;T&nbsp;getRandomElement(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;? extends T&gt;&nbsp;set,
-                                           <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rg)</pre>
+<pre>public static&nbsp;&lt;T&gt;&nbsp;T&nbsp;getRandomElement(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;? extends T&gt;&nbsp;set,
+                                     <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rg)</pre>
 <div class="block">Select a random element from a given set (uniformly distributed). This implementation generates
  a random number r in [0,|set|-1] and traverses the set using an iterator, where the element obtained
  after r+1 applications of <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Iterator.html?is-external=true#next--" title="class or interface in java.util"><code>Iterator.next()</code></a> is returned. In the worst case, this algorithm has
@@ -235,9 +235,9 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getRandomSubset</h4>
-<pre>public static final&nbsp;&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;T&gt;&nbsp;getRandomSubset(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;? extends T&gt;&nbsp;set,
-                                               int&nbsp;size,
-                                               <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rg)</pre>
+<pre>public static&nbsp;&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;T&gt;&nbsp;getRandomSubset(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;? extends T&gt;&nbsp;set,
+                                         int&nbsp;size,
+                                         <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rg)</pre>
 <div class="block">Selects a random subset of a specific size from a given set (uniformly distributed). This implementation
  applies a full scan algorithm that iterates once through the given set and selects each item with probability
  (#remaining to select)/(#remaining to scan). It can be proven that this algorithm creates uniformly distributed

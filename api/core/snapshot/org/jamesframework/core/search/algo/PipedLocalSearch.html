@@ -140,9 +140,9 @@ extends <a href="../../../../../org/jamesframework/core/search/LocalSearch.html"
  </p>
  <p>
  This search is a single step search, meaning that execution of the entire pipeline is considered to be one
- step of the piped search, and that the global algorithm terminates when this step has completed. Moreover,
- a piped local search can only be started once. After its single step has completed, the search will automatically
- dispose itself together with all contained local searches, so that it can not be restarted.
+ step of the piped search and that the global algorithm terminates when this step has completed. Moreover, a
+ piped local search can be started only once. After its single step has completed, the search will automatically
+ dispose itself together with all contained local searches.
  </p>
  <p>
  Only searches solving the same problem as the one specified when creating the piped local search can be included
@@ -150,9 +150,7 @@ extends <a href="../../../../../org/jamesframework/core/search/LocalSearch.html"
  </p>
  <p>
  When a piped local search is requested to stop, this request is propagated to the searches included in the pipeline.
- Similarly, when a piped local search is disposed, all searches in the pipeline are also disposed. Note that a piped
- local search is automatically disposed when its single step has completed, i.e. when the entire pipeline has been
- executed.
+ Similarly, when a piped local search is disposed, all searches in the pipeline are also disposed.
  </p></div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
