@@ -89,44 +89,56 @@ body {
 /* Side notes for calling out things
 -------------------------------------------------- */
  
-/* Base styles (regardless of theme) */
+/* Common styles for all types */
 .bs-callout {
-  margin: 20px 0;
-  padding: 15px 30px 15px 15px;
-  border-left: 5px solid #eee;
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
 }
+
 .bs-callout h4 {
-  margin-top: 0;
+    margin-top: 0;
+    margin-bottom: 5px;
 }
+
 .bs-callout p:last-child {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
-.bs-callout code,
-.bs-callout .highlight {
-  background-color: #fff;
+
+.bs-callout code {
+    border-radius: 3px;
 }
- 
-/* Themes for different contexts */
+
+/* Tighten up space between multiple callouts */
+.bs-callout + .bs-callout {
+    margin-top: -5px;
+}
+
+/* Variations */
 .bs-callout-danger {
-  background-color: #fcf2f2;
-  border-color: #dFb5b4;
+    border-left-color: #d9534f;
 }
-.bs-callout-warning {
-  background-color: #fefbed;
-  border-color: #f1e7bc;
-}
-.bs-callout-info {
-  background-color: #f0f7fd;
-  border-color: #d0e3f0;
-}
+
 .bs-callout-danger h4 {
-color: #B94A48;
+    color: #d9534f;
 }
+
+.bs-callout-warning {
+    border-left-color: #f0ad4e;
+}
+
 .bs-callout-warning h4 {
-color: #C09853;
+    color: #f0ad4e;
 }
+
+.bs-callout-info {
+    border-left-color: #5bc0de;
+}
+
 .bs-callout-info h4 {
-color: #3A87AD;
+    color: #5bc0de;
 }
 
 /* Alternative styles for elements contained in callout */
