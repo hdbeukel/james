@@ -1,3 +1,6 @@
+// import bootstrap variables (theme colors etc.)
+@import "../../_bootstrap/less/variables.less";
+
 /* Sticky footer styles
 -------------------------------------------------- */
 
@@ -96,11 +99,14 @@ body {
     border: 1px solid #eee;
     border-left-width: 5px;
     border-radius: 3px;
+    border-left-color: @brand-info;
+    background: inherit;
 }
 
 .bs-callout h4 {
     margin-top: 0;
     margin-bottom: 5px;
+    color: @brand-info;
 }
 
 .bs-callout p:last-child {
@@ -142,6 +148,7 @@ body {
 }
 
 /* Alternative styles for elements contained in callout */
+
 .bs-callout dl {
     margin: 0;
 }
@@ -188,15 +195,32 @@ body {
 
 pre,
 pre.prettyprint {
+    .bs-callout();
     overflow: auto;
     word-wrap: normal;
     white-space: pre;
-    padding: 9px 14px;
-    margin-bottom: 14px;
-    background-color: #f7f7f9;
-    border: 1px solid #e1e1e8;
-    border-radius: 4px;
+    background: #fbfbfb;
+    position: relative;
 }
+
+/*
+pre .copy-btn {
+    position: relative;
+    right: 0;
+    top: 0;
+    background: #fff;
+    padding: 5px 8px;
+    border: 1px solid #eee;
+    border-top: 0;
+    border-right: 0;
+    border-radius: 0 0 0 8px;
+}
+pre .copy-btn:hover {
+    cursor: pointer;
+    color: #fff;
+    background: @brand-info;
+}
+*/
 
 /* HOME PAGE */
 

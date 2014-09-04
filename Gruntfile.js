@@ -47,6 +47,11 @@ module.exports = function(grunt) {
         }]
       }
     },
+    autoprefixer: {
+        files: {
+          src: 'css/*.css'
+        },
+    },
     watch: {
       less: {
         files: [
@@ -76,11 +81,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-recess');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
+  grunt.loadNpmTasks('grunt-autoprefixer');
 
   // Register tasks
   grunt.registerTask('default', [
     'clean',
     'recess',
+    'autoprefixer',
     'uglify',
     'imagemin'
   ]);
