@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":6,"i2":6,"i3":10,"i4":10,"i5":6};
+var methods = {"i0":9,"i1":6,"i2":6,"i3":6};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -116,16 +116,16 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public abstract class <span class="typeNameLabel">Solution</span>
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
-<div class="block">Represents an abstract solution. Every extending solution class should provide methods to check for equality
- with a given other solution and to compute a corresponding hash code. Two solutions which are deemed equal
- should always produce the same hash code, while different solutions may (and preferably should) produce
- different hash codes (according to the general contract of <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang"><code>Object.hashCode()</code></a>).
+<div class="block">Represents an abstract solution. Every extending solution type is required to provide appropriate implementations
+ of <a href="../../../../org/jamesframework/core/problems/Solution.html#equals-java.lang.Object-"><code>equals(Object)</code></a> and <a href="../../../../org/jamesframework/core/problems/Solution.html#hashCode--"><code>hashCode()</code></a> that compare solutions by value (instead of reference) and
+ compute consistent hash codes, respectively. The default implementations inherited from <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang"><code>Object</code></a> have been
+ erased and replaced with abstract methods without implementation.
  <p>
  Every solution class should also implement the abstract method <a href="../../../../org/jamesframework/core/problems/Solution.html#copy--"><code>copy()</code></a> which is used to create a deep
  copy of a solution. The returned deep copy should <b>always</b> have the exact same type as the solution on which
  the method was called. A static method <a href="../../../../org/jamesframework/core/problems/Solution.html#checkedCopy-T-"><code>checkedCopy(Solution)</code></a> is provided to create type safe copies of
- any solution class: it returns a deep copy of the exact same type as its argument, given that the general contract
- of <a href="../../../../org/jamesframework/core/problems/Solution.html#copy--"><code>copy()</code></a> is followed in every solution class implementation. If this contract is violated, calling
+ any solution: it returns a deep copy of the exact same type as its argument, given that the general contract
+ of <a href="../../../../org/jamesframework/core/problems/Solution.html#copy--"><code>copy()</code></a> is followed in every solution type implementation. If this contract is violated, calling
  <a href="../../../../org/jamesframework/core/problems/Solution.html#checkedCopy-T-"><code>checkedCopy(Solution)</code></a> will throw a detailed exception that precisely indicates the cause of the
  occurred type mismatch.</div>
 <dl>
@@ -174,34 +174,23 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>abstract int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Solution.html#computeHashCode--">computeHashCode</a></span>()</code>
-<div class="block">Compute a hash code for this solution.</div>
-</td>
-</tr>
-<tr id="i2" class="altColor">
 <td class="colFirst"><code>abstract <a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Solution.html#copy--">copy</a></span>()</code>
 <div class="block">Creates a deep copy of this solution.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Solution.html#equals-java.lang.Object-">equals</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;obj)</code>
-<div class="block">Overrides the default equality check by first verifying whether the given object is also of type
- <a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems"><code>Solution</code></a> and subsequently calling the specific equality check <a href="../../../../org/jamesframework/core/problems/Solution.html#isSameSolution-org.jamesframework.core.problems.Solution-"><code>isSameSolution(Solution)</code></a>.</div>
-</td>
-</tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Solution.html#hashCode--">hashCode</a></span>()</code>
-<div class="block">Overrides default hash code computation by calling <a href="../../../../org/jamesframework/core/problems/Solution.html#computeHashCode--"><code>computeHashCode()</code></a>.</div>
-</td>
-</tr>
-<tr id="i5" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>abstract boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Solution.html#isSameSolution-org.jamesframework.core.problems.Solution-">isSameSolution</a></span>(<a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&nbsp;sol)</code>
-<div class="block">Checks whether this solution is equal to an other, given solution.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Solution.html#equals-java.lang.Object-">equals</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;other)</code>
+<div class="block">Overrides default <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang"><code>Object.equals(Object)</code></a> to be abstract so that all extending solution types are
+ required to provide an appropriate implemenation that compares solutions by value instead of by reference.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>abstract int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Solution.html#hashCode--">hashCode</a></span>()</code>
+<div class="block">Overrides default <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang"><code>Object.hashCode()</code></a> to be abstract so that all extending solution types are required
+ to provide a hash code computation that is consistent with the implementation of <a href="../../../../org/jamesframework/core/problems/Solution.html#equals-java.lang.Object-"><code>equals(Object)</code></a>.</div>
 </td>
 </tr>
 </table>
@@ -292,57 +281,23 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </dl>
 </li>
 </ul>
-<a name="isSameSolution-org.jamesframework.core.problems.Solution-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>isSameSolution</h4>
-<pre>public abstract&nbsp;boolean&nbsp;isSameSolution(<a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&nbsp;sol)</pre>
-<div class="block">Checks whether this solution is equal to an other, given solution.
- The implementation should be consistent with <a href="../../../../org/jamesframework/core/problems/Solution.html#computeHashCode--"><code>computeHashCode()</code></a>,
- i.e. if it returns <code>true</code>, both solutions should always yield
- the same hash code.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>sol</code> - other solution to check for equality</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd><code>true</code> if both solutions are equal</dd>
-</dl>
-</li>
-</ul>
-<a name="computeHashCode--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>computeHashCode</h4>
-<pre>public abstract&nbsp;int&nbsp;computeHashCode()</pre>
-<div class="block">Compute a hash code for this solution. The implementation should be consistent with
- <a href="../../../../org/jamesframework/core/problems/Solution.html#isSameSolution-org.jamesframework.core.problems.Solution-"><code>isSameSolution(Solution)</code></a>, i.e. it should return exactly the same hash code
- for any solution which is deemed equal.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>computed hash code</dd>
-</dl>
-</li>
-</ul>
 <a name="equals-java.lang.Object-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>equals</h4>
-<pre>public final&nbsp;boolean&nbsp;equals(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;obj)</pre>
-<div class="block">Overrides the default equality check by first verifying whether the given object is also of type
- <a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems"><code>Solution</code></a> and subsequently calling the specific equality check <a href="../../../../org/jamesframework/core/problems/Solution.html#isSameSolution-org.jamesframework.core.problems.Solution-"><code>isSameSolution(Solution)</code></a>.</div>
+<pre>public abstract&nbsp;boolean&nbsp;equals(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;other)</pre>
+<div class="block">Overrides default <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang"><code>Object.equals(Object)</code></a> to be abstract so that all extending solution types are
+ required to provide an appropriate implemenation that compares solutions by value instead of by reference.
+ A consistent implementation of <a href="../../../../org/jamesframework/core/problems/Solution.html#hashCode--"><code>hashCode()</code></a> should also be provided.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>obj</code> - object to check for equality</dd>
+<dd><code>other</code> - other object to compare for equality</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd><code>true</code> if the given object is an equal solution</dd>
+<dd><code>true</code> if the given object represents the same solution</dd>
 </dl>
 </li>
 </ul>
@@ -352,13 +307,15 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockListLast">
 <li class="blockList">
 <h4>hashCode</h4>
-<pre>public final&nbsp;int&nbsp;hashCode()</pre>
-<div class="block">Overrides default hash code computation by calling <a href="../../../../org/jamesframework/core/problems/Solution.html#computeHashCode--"><code>computeHashCode()</code></a>.</div>
+<pre>public abstract&nbsp;int&nbsp;hashCode()</pre>
+<div class="block">Overrides default <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang"><code>Object.hashCode()</code></a> to be abstract so that all extending solution types are required
+ to provide a hash code computation that is consistent with the implementation of <a href="../../../../org/jamesframework/core/problems/Solution.html#equals-java.lang.Object-"><code>equals(Object)</code></a>.
+ If two solutions are equal according to <a href="../../../../org/jamesframework/core/problems/Solution.html#equals-java.lang.Object-"><code>equals(Object)</code></a> they should have the same hash code.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>computed hash code</dd>
+<dd>hash code of this solution</dd>
 </dl>
 </li>
 </ul>

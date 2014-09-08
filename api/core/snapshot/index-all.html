@@ -243,15 +243,6 @@
 <div class="block">Computes the amount of improvement of <code>currentEvaluation</code> over <code>previousEvaluation</code>, taking into
  account whether a maximization or minimization problem is being solved, where positive deltas indicate improvement.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/Solution.html#computeHashCode--">computeHashCode()</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a></dt>
-<dd>
-<div class="block">Compute a hash code for this solution.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetSolution.html#computeHashCode--">computeHashCode()</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a></dt>
-<dd>
-<div class="block">Computes a hash code in compliance with the implementation of <a href="org/jamesframework/core/subset/SubsetSolution.html#isSameSolution-org.jamesframework.core.problems.Solution-"><code>SubsetSolution.isSameSolution(Solution)</code></a>, meaning that
- the same hash code is returned for equal subset solutions.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/PenalizingConstraint.html#computePenalty-SolutionType-DataType-">computePenalty(SolutionType, DataType)</a></span> - Method in interface org.jamesframework.core.problems.constraints.<a href="org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="interface in org.jamesframework.core.problems.constraints">PenalizingConstraint</a></dt>
 <dd>
 <div class="block">Computes the penalty which is assigned to a solution.</div>
@@ -348,8 +339,8 @@
 <dl>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/Solution.html#equals-java.lang.Object-">equals(Object)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a></dt>
 <dd>
-<div class="block">Overrides the default equality check by first verifying whether the given object is also of type
- <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems"><code>Solution</code></a> and subsequently calling the specific equality check <a href="org/jamesframework/core/problems/Solution.html#isSameSolution-org.jamesframework.core.problems.Solution-"><code>Solution.isSameSolution(Solution)</code></a>.</div>
+<div class="block">Overrides default <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang"><code>Object.equals(Object)</code></a> to be abstract so that all extending solution types are
+ required to provide an appropriate implemenation that compares solutions by value instead of by reference.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/AdditionMove.html#equals-java.lang.Object-">equals(Object)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh">AdditionMove</a></dt>
 <dd>
@@ -362,6 +353,10 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SwapMove.html#equals-java.lang.Object-">equals(Object)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SwapMove.html" title="class in org.jamesframework.core.subset.neigh">SwapMove</a></dt>
 <dd>
 <div class="block">Two swap moves are considered equal if they swap the same IDs.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetSolution.html#equals-java.lang.Object-">equals(Object)</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a></dt>
+<dd>
+<div class="block">Checks whether the given other object represents the same subset solution.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/AbstractProblem.html#evaluate-SolutionType-">evaluate(SolutionType)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a></dt>
 <dd>
@@ -822,7 +817,8 @@
 <dl>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/Solution.html#hashCode--">hashCode()</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a></dt>
 <dd>
-<div class="block">Overrides default hash code computation by calling <a href="org/jamesframework/core/problems/Solution.html#computeHashCode--"><code>Solution.computeHashCode()</code></a>.</div>
+<div class="block">Overrides default <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang"><code>Object.hashCode()</code></a> to be abstract so that all extending solution types are required
+ to provide a hash code computation that is consistent with the implementation of <a href="org/jamesframework/core/problems/Solution.html#equals-java.lang.Object-"><code>Solution.equals(Object)</code></a>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/AdditionMove.html#hashCode--">hashCode()</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh">AdditionMove</a></dt>
 <dd>
@@ -835,6 +831,11 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SwapMove.html#hashCode--">hashCode()</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SwapMove.html" title="class in org.jamesframework.core.subset.neigh">SwapMove</a></dt>
 <dd>
 <div class="block">Hash code corresponding to implementation of <a href="org/jamesframework/core/subset/neigh/SwapMove.html#equals-java.lang.Object-"><code>SwapMove.equals(Object)</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetSolution.html#hashCode--">hashCode()</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a></dt>
+<dd>
+<div class="block">Computes a hash code that is consistent with the implementation of <a href="org/jamesframework/core/subset/SubsetSolution.html#equals-java.lang.Object-"><code>SubsetSolution.equals(Object)</code></a> meaning that
+ the same hash code is returned for equal subset solutions.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/exh/SolutionIterator.html#hasNext--">hasNext()</a></span> - Method in interface org.jamesframework.core.search.algo.exh.<a href="org/jamesframework/core/search/algo/exh/SolutionIterator.html" title="interface in org.jamesframework.core.search.algo.exh">SolutionIterator</a></dt>
 <dd>
@@ -967,14 +968,6 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/Problem.html#isMinimizing--">isMinimizing()</a></span> - Method in interface org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a></dt>
 <dd>
 <div class="block">Indicates whether scores are being minimized or maximized.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/Solution.html#isSameSolution-org.jamesframework.core.problems.Solution-">isSameSolution(Solution)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a></dt>
-<dd>
-<div class="block">Checks whether this solution is equal to an other, given solution.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetSolution.html#isSameSolution-org.jamesframework.core.problems.Solution-">isSameSolution(Solution)</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a></dt>
-<dd>
-<div class="block">Checks whether the given other solution represents the same subset solution.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/Constraint.html#isSatisfied-SolutionType-DataType-">isSatisfied(SolutionType, DataType)</a></span> - Method in interface org.jamesframework.core.problems.constraints.<a href="org/jamesframework/core/problems/constraints/Constraint.html" title="interface in org.jamesframework.core.problems.constraints">Constraint</a></dt>
 <dd>
@@ -2095,7 +2088,7 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetSolution.html#toString--">toString()</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a></dt>
 <dd>
-<div class="block">Creates a nicely formatted, human readable string containing the selected IDs.</div>
+<div class="block">Creates a formatted string containing the selected IDs.</div>
 </dd>
 </dl>
 <a name="I:U">
