@@ -91,9 +91,9 @@ public class SolutionTest {
 
         // not used
         @Override
-        public boolean isSameSolution(Solution sol) { return true; }
+        public boolean equals(Object sol) { return false; }
         @Override
-        public int computeHashCode() { return 0; }
+        public int hashCode() { return 0; }
         
     }
     
@@ -107,9 +107,9 @@ public class SolutionTest {
         
         // not used
         @Override
-        public boolean isSameSolution(Solution sol) { return true; }
+        public boolean equals(Object sol) { return false; }
         @Override
-        public int computeHashCode() { return 0; }
+        public int hashCode() { return 0; }
         
     }
     

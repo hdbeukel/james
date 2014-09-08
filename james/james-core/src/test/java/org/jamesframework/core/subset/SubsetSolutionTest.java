@@ -598,12 +598,12 @@ public class SubsetSolutionTest {
     }
 
     /**
-     * Test of isSameSolution method, of class SubsetSolution.
+     * Test of equals method, of class SubsetSolution.
      */
     @Test
     public void testIsSameSolution() {
         
-        System.out.println(" - test isSameSolution");
+        System.out.println(" - test equals");
         
         final int repeats = 100;
         Set<Integer> s;
@@ -627,12 +627,12 @@ public class SubsetSolutionTest {
     }
 
     /**
-     * Test of computeHashCode method, of class SubsetSolution.
+     * Test of hashCode method, of class SubsetSolution.
      */
     @Test
-    public void testComputeHashCode() {
+    public void testHashCode() {
         
-        System.out.println(" - test computeHashCode");
+        System.out.println(" - test hashCode");
         
         final int repeats = 100;
         Set<Integer> s;
@@ -646,7 +646,7 @@ public class SubsetSolutionTest {
             other = new SubsetSolution(subsetSolution.getAllIDs());
             other.selectAll(subsetSolution.getSelectedIDs());
             // check same hash code
-            assertEquals(subsetSolution.computeHashCode(), other.computeHashCode());
+            assertEquals(subsetSolution.hashCode(), other.hashCode());
             // deselect all
             subsetSolution.deselectAll();
         }

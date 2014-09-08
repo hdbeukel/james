@@ -26,7 +26,7 @@ import org.jamesframework.core.problems.Solution;
 public class EmptySolutionStub extends Solution {
 
     @Override
-    public boolean isSameSolution(Solution sol) {
+    public boolean equals(Object sol) {
         if(sol == null){
             return false;
         }
@@ -35,7 +35,7 @@ public class EmptySolutionStub extends Solution {
     }
 
     @Override
-    public int computeHashCode() {
+    public int hashCode() {
         // return fixed hash code
         return 5;
     }

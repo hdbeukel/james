@@ -322,40 +322,40 @@ public class SubsetSolution extends Solution {
     }
 
     /**
-     * Checks whether the given other solution represents the same subset solution.
-     * Subset solutions are considered equal if and only if they contain exactly the same
-     * selected and unselected IDs.
+     * Checks whether the given other object represents the same subset solution.
+     * Subset solutions are considered equal if and only if they contain exactly
+     * the same selected and unselected IDs.
      * 
-     * @param sol other solution to check for equality
-     * @return <code>true</code> if the other solution is also a subset solution and contains exactly the same
+     * @param other other object to check for equality
+     * @return <code>true</code> if the other object is also a subset solution and contains exactly the same
      *         selected and unselected IDs as this solution
      */
     @Override
-    public boolean isSameSolution(Solution sol) {
+    public boolean equals(Object other) {
         // check null
-        if (sol == null) {
+        if (other == null) {
             return false;
         }
         // check type
-        if (getClass() != sol.getClass()) {
+        if (getClass() != other.getClass()) {
             return false;
         }
         // cast to subset solution
-        final SubsetSolution other = (SubsetSolution) sol;
+        final SubsetSolution otherSubsetSolution = (SubsetSolution) other;
         // check selected and unselected IDs
-        return Objects.equals(getSelectedIDs(), other.getSelectedIDs())
-                && Objects.equals(getUnselectedIDs(), other.getUnselectedIDs());
+        return Objects.equals(getSelectedIDs(), otherSubsetSolution.getSelectedIDs())
+                && Objects.equals(getUnselectedIDs(), otherSubsetSolution.getUnselectedIDs());
     }
 
     /**
-     * Computes a hash code in compliance with the implementation of {@link #isSameSolution(Solution)}, meaning that
-     * the same hash code is returned for equal subset solutions. The computed hash code is a linear combination of
-     * the hash codes of the underlying sets of selected and unselected IDs, added to a constant term.
+     * Computes a hash code that is consistent with the implementation of {@link #equals(Object)} meaning that
+     * the same hash code is returned for equal subset solutions. The computed hash code is a linear combination
+     * of the hash codes of both the set of selected and unselected IDs, added to a constant.
      * 
      * @return hash code of this subset solution
      */
     @Override
-    public int computeHashCode() {
+    public int hashCode() {
         int hash = 7;
         // account for selected IDs
         hash = 23 * hash + Objects.hashCode(getSelectedIDs());
@@ -365,7 +365,7 @@ public class SubsetSolution extends Solution {
     }
     
     /**
-     * Creates a nicely formatted, human readable string containing the selected IDs.
+     * Creates a formatted string containing the selected IDs.
      * 
      * @return formatted string
      */

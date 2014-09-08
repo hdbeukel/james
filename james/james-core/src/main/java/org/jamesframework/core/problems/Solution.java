@@ -19,16 +19,16 @@ package org.jamesframework.core.problems;
 import org.jamesframework.core.exceptions.SolutionCopyException;
 
 /**
- * Represents an abstract solution. Every extending solution class should provide methods to check for equality
- * with a given other solution and to compute a corresponding hash code. Two solutions which are deemed equal
- * should always produce the same hash code, while different solutions may (and preferably should) produce
- * different hash codes (according to the general contract of {@link Object#hashCode()}).
+ * Represents an abstract solution. Every extending solution type is required to provide appropriate implementations
+ * of {@link #equals(Object)} and {@link #hashCode()} that compare solutions by value (instead of reference) and
+ * compute consistent hash codes, respectively. The default implementations inherited from {@link Object} have been
+ * erased and replaced with abstract methods without implementation.
  * <p>
  * Every solution class should also implement the abstract method {@link #copy()} which is used to create a deep
  * copy of a solution. The returned deep copy should <b>always</b> have the exact same type as the solution on which
  * the method was called. A static method {@link #checkedCopy(Solution)} is provided to create type safe copies of
- * any solution class: it returns a deep copy of the exact same type as its argument, given that the general contract
- * of {@link #copy()} is followed in every solution class implementation. If this contract is violated, calling
+ * any solution: it returns a deep copy of the exact same type as its argument, given that the general contract
+ * of {@link #copy()} is followed in every solution type implementation. If this contract is violated, calling
  * {@link #checkedCopy(Solution)} will throw a detailed exception that precisely indicates the cause of the
  * occurred type mismatch.
  * 
@@ -66,19 +66,19 @@ public abstract class Solution {
                 Class<?> declaringClassOfCopy = origClass.getMethod("copy").getDeclaringClass();
                 if(declaringClassOfCopy != origClass){
                     // method copy() not directly implemented in T
-                    throw new SolutionCopyException("Deep copy of solution of type " + simpleClassName(origClass) + " failed. "
-                                                            + "Calling copy() yields a solution of type " + simpleClassName(copyClass) + ", not "
-                                                            + simpleClassName(origClass) + ". Expected cause of this type mismatch: "
-                                                            + simpleClassName(origClass) + " does not directly implement method copy() but "
+                    throw new SolutionCopyException("Deep copy of solution of type " + origClass.getSimpleName() + " failed. "
+                                                            + "Calling copy() yields a solution of type " + copyClass.getSimpleName() + ", not "
+                                                            + origClass.getSimpleName() + ". Expected cause of this type mismatch: "
+                                                            + origClass.getSimpleName() + " does not directly implement method copy() but "
                                                             + "inherits an undesired implementation from super class "
-                                                            + simpleClassName(declaringClassOfCopy) + ".");
+                                                            + declaringClassOfCopy.getSimpleName() + ".");
                 } else {
                     // copy() implemented in T but does not return correct type
-                    throw new SolutionCopyException("Deep copy of solution of type " + simpleClassName(origClass) + " failed. "
-                                                            + "Calling copy() yields a solution of type " + simpleClassName(copyClass) + ", not "
-                                                            + simpleClassName(origClass) + ". Expected cause of this type mismatch: "
-                                                            + "faulty implementation of copy() in " + simpleClassName(origClass) + ", "
-                                                            + "does not return solution of type " + simpleClassName(origClass) + ".");
+                    throw new SolutionCopyException("Deep copy of solution of type " + origClass.getSimpleName() + " failed. "
+                                                            + "Calling copy() yields a solution of type " + copyClass.getSimpleName() + ", not "
+                                                            + origClass.getSimpleName() + ". Expected cause of this type mismatch: "
+                                                            + "faulty implementation of copy() in " + origClass.getSimpleName() + ", "
+                                                            + "does not return solution of type " + origClass.getSimpleName() + ".");
                 }
             } catch (NoSuchMethodException noSuchMethodEx){
                 // this should never happen, all subclasses of Solution have a method copy() somewhere in the class hierarchy
@@ -86,18 +86,6 @@ public abstract class Solution {
                                 + "there is a serious bug in Solution.", noSuchMethodEx);
             }
         }
-    }
-    
-    /**
-     * Get simple class name by stripping anything before the last dot (".") from the canonical class name.
-     * 
-     * @param clazz class object
-     * @return simple class name
-     */
-    static private String simpleClassName(Class<?> clazz){
-        String canonicalClassName = clazz.getCanonicalName();
-        int lastDotIndex = canonicalClassName.lastIndexOf(".");
-        return canonicalClassName.substring(lastDotIndex+1);
     }
     
     /**
@@ -114,57 +102,24 @@ public abstract class Solution {
     public abstract Solution copy();
     
     /**
-     * Checks whether this solution is equal to an other, given solution.
-     * The implementation should be consistent with {@link #computeHashCode()},
-     * i.e. if it returns <code>true</code>, both solutions should always yield
-     * the same hash code.
+     * Overrides default {@link Object#equals(Object)} to be abstract so that all extending solution types are
+     * required to provide an appropriate implemenation that compares solutions by value instead of by reference.
+     * A consistent implementation of {@link #hashCode()} should also be provided.
      * 
-     * @param sol other solution to check for equality
-     * @return <code>true</code> if both solutions are equal
-     */
-    public abstract boolean isSameSolution(Solution sol);
-    
-    /**
-     * Compute a hash code for this solution. The implementation should be consistent with
-     * {@link #isSameSolution(Solution)}, i.e. it should return exactly the same hash code
-     * for any solution which is deemed equal.
-     * 
-     * @return computed hash code
-     */
-    public abstract int computeHashCode();
-
-    /**
-     * Overrides the default equality check by first verifying whether the given object is also of type
-     * {@link Solution} and subsequently calling the specific equality check {@link #isSameSolution(Solution)}.
-     * 
-     * @param obj object to check for equality
-     * @return <code>true</code> if the given object is an equal solution
+     * @param other other object to compare for equality
+     * @return <code>true</code> if the given object represents the same solution
      */
     @Override
-    public final boolean equals(Object obj) {
-        // check not null
-        if (obj == null) {
-            return false;
-        }
-        // check same type
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        // cast to type Solution
-        final Solution other = (Solution) obj;
-        // call equality check for specific subtype
-        return isSameSolution(other);
-    }
+    public abstract boolean equals(Object other);
     
     /**
-     * Overrides default hash code computation by calling {@link #computeHashCode()}.
+     * Overrides default {@link Object#hashCode()} to be abstract so that all extending solution types are required
+     * to provide a hash code computation that is consistent with the implementation of {@link #equals(Object)}.
+     * If two solutions are equal according to {@link #equals(Object)} they should have the same hash code.
      * 
-     * @return computed hash code
+     * @return hash code of this solution
      */
     @Override
-    public final int hashCode() {
-        // compute and return hash code
-        return computeHashCode();
-    }
+    public abstract int hashCode();
     
 }
