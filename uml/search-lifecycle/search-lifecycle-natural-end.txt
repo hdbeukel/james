@@ -1,0 +1,67 @@
+Actor -> Search : new
+note over Search : status = IDLE
+
+Search -> StopCriterionChecker : new(Search)
+
+Actor ->+ Search : start()
+note over Search : status = INITIALIZING
+Search -> Search : searchStarted()
+
+Search --> StopCriterionChecker : startChecking()
+
+note right of StopCriterionChecker
+ as no stop criteria have been added,
+ calling startChecking() does not have
+ any effect (no timer is started)
+end note
+
+note over Search : status = RUNNING
+
+Search -> Search : continueSearch()
+Search -> Search : searchStep()
+Search -> Search : continueSearch()
+Search -> Search : searchStep()
+
+note right of Search
+ at some point, the search calls
+ stop() inside searchStep() and
+ goes to status TERMINATING
+end note
+
+Search -> Search : continueSearch()
+Search ->+ Search : searchStep()
+Search ->- Search : stop()
+
+note over Search : status = TERMINATING
+
+Search -> Search : continueSearch()
+note right of Search
+ continueSearch() returns false
+end note
+
+Search -> Search : searchStopped()
+
+Search -> StopCriterionChecker : stopChecking()
+note right of StopCriterionChecker
+ the search informs the checker that
+ it may stop checking, as the search
+ terminated internally; in the current
+ example scenario, this has no effect
+ because the checker was not active
+ (but in general it might be)
+end note
+
+note over Search : status = IDLE
+
+Search ->- Actor : returns void
+
+Actor -> Search : getBestSolution()
+
+note right of Search
+ getBestSolution() returns the best
+ solution found during search
+end note
+
+Actor -> Search : dispose()
+
+note over Search : status = DISPOSED
