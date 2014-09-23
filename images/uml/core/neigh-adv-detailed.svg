@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg height="572" version="1.1" width="556" xmlns="http://www.w3.org/2000/svg">
+<polygon fill="#ffffff" points="14,14 492,14 492,38 541,38 541,157 14,157 14,14" stroke="#ffffff" stroke-width="1"/>
+<rect fill="none" height="24" stroke="#000000" stroke-width="1" width="478" x="14" y="14"/>
+<text font-family="Lucida Grande" font-size="13" x="19" y="28">
+search.neigh</text>
+<rect fill="none" height="119" stroke="#000000" stroke-width="1" width="527" x="14" y="38"/>
+<polygon fill="#ffffff" points="14,182 492,182 492,206 541,206 541,557 14,557 14,182" stroke="#ffffff" stroke-width="1"/>
+<rect fill="none" height="24" stroke="#000000" stroke-width="1" width="478" x="14" y="182"/>
+<text font-family="Lucida Grande" font-size="13" x="19" y="196">
+subset.neigh</text>
+<rect fill="none" height="351" stroke="#000000" stroke-width="1" width="527" x="14" y="206"/>
+<rect fill="#ffffff" height="66" stroke="#ffffff" stroke-width="1" width="104" x="66" y="62"/>
+<rect fill="none" height="66" stroke="#000000" stroke-width="1" width="104" x="66" y="62"/>
+<text font-family="Lucida Grande" font-size="13" x="94" y="96">
++ Move</text>
+<text font-family="Lucida Grande" font-size="13" x="70" y="77">
+&lt;&lt;interface&gt;&gt;</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="104" x="66" y="106"/>
+<rect fill="#ffffff" height="66" stroke="#ffffff" stroke-width="1" width="168" x="318" y="62"/>
+<rect fill="none" height="66" stroke="#000000" stroke-width="1" width="168" x="318" y="62"/>
+<text font-family="Lucida Grande" font-size="13" x="346" y="96">
++ Neighbourhood</text>
+<text font-family="Lucida Grande" font-size="13" x="354" y="77">
+&lt;&lt;interface&gt;&gt;</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="168" x="318" y="106"/>
+<rect fill="#ffffff" height="66" stroke="#ffffff" stroke-width="1" width="104" x="66" y="230"/>
+<rect fill="none" height="66" stroke="#000000" stroke-width="1" width="104" x="66" y="230"/>
+<text font-family="Lucida Grande" font-size="13" x="73" y="264">
++ SubsetMove</text>
+<text font-family="Lucida Grande" font-size="13" x="70" y="245">
+&lt;&lt;interface&gt;&gt;</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="104" x="66" y="274"/>
+<polyline fill="none" points="119,230 119,127" stroke="#000000" stroke-width="1"/>
+<polygon fill="#ffffff" points="119,127 126,139 112,139" stroke="#ffffff" stroke-width="1"/>
+<polygon fill="none" points="119,127 126,139 112,139" stroke="#000000" stroke-width="1"/>
+<polyline fill="none" points="318,86 169,86" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="181" x2="169" y1="79" y2="86"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="181" x2="169" y1="93" y2="86"/>
+<text font-family="Lucida Grande" font-size="13" x="213" y="66">
+ </text>
+<polygon fill="#ffffff" points="30,326 476,326 476,350 525,350 525,541 30,541 30,326" stroke="#ffffff" stroke-width="1"/>
+<rect fill="none" height="24" stroke="#000000" stroke-width="1" width="446" x="30" y="326"/>
+<text font-family="Lucida Grande" font-size="13" x="35" y="340">
+adv</text>
+<rect fill="none" height="191" stroke="#000000" stroke-width="1" width="495" x="30" y="350"/>
+<rect fill="#ffffff" height="88" stroke="#ffffff" stroke-width="1" width="148" x="46" y="413"/>
+<rect fill="none" height="88" stroke="#000000" stroke-width="1" width="148" x="46" y="413"/>
+<text font-family="Lucida Grande" font-size="13" x="52" y="427">
++ GeneralSubsetMove</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="148" x="46" y="437"/>
+<text font-family="Lucida Grande" font-size="13" x="50" y="452">
++add : Set</text>
+<text font-family="Lucida Grande" font-size="13" x="50" y="469">
++delete : Set</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="148" x="46" y="479"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="413" y2="408"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="403" y2="398"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="393" y2="388"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="383" y2="378"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="373" y2="368"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="363" y2="358"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="353" y2="348"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="343" y2="338"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="333" y2="328"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="323" y2="318"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="313" y2="308"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="118" x2="118" y1="303" y2="298"/>
+<polygon fill="#ffffff" points="118,295 125,307 111,307" stroke="#ffffff" stroke-width="1"/>
+<polygon fill="none" points="118,295 125,307 111,307" stroke="#000000" stroke-width="1"/>
+<rect fill="#ffffff" height="71" stroke="#ffffff" stroke-width="1" width="187" x="240" y="368"/>
+<rect fill="none" height="71" stroke="#000000" stroke-width="1" width="187" x="240" y="368"/>
+<text font-family="Lucida Grande" font-size="13" x="245" y="382">
++ MultiSwapNeighbourhood</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="187" x="240" y="392"/>
+<text font-family="Lucida Grande" font-size="13" x="244" y="407">
++maxSwaps : int</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="187" x="240" y="417"/>
+<polyline fill="none" points="240,425 193,425" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="205" x2="193" y1="418" y2="425"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="205" x2="193" y1="432" y2="425"/>
+<text font-family="Lucida Grande" font-size="13" x="186" y="405">
+ </text>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="366" x2="366" y1="368" y2="363"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="366" x2="366" y1="358" y2="353"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="366" x2="366" y1="348" y2="343"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="366" x2="366" y1="338" y2="333"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="366" x2="366" y1="328" y2="323"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="366" x2="366" y1="318" y2="313"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="366" x2="366" y1="308" y2="303"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="366" x2="366" y1="298" y2="293"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="366" x2="366" y1="288" y2="283"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="366" x2="366" y1="278" y2="273"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="366" x2="366" y1="268" y2="263"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="366" x2="366" y1="258" y2="253"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="366" x2="366" y1="248" y2="243"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="366" x2="366" y1="238" y2="233"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="366" x2="366" y1="228" y2="223"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="366" x2="366" y1="218" y2="213"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="366" x2="366" y1="208" y2="203"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="366" x2="366" y1="198" y2="193"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="366" x2="366" y1="188" y2="183"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="366" x2="366" y1="178" y2="173"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="366" x2="366" y1="168" y2="163"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="366" x2="366" y1="158" y2="153"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="366" x2="366" y1="148" y2="143"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="366" x2="366" y1="138" y2="133"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="366" x2="366" y1="128" y2="127"/>
+<polygon fill="#ffffff" points="366,127 373,139 359,139" stroke="#ffffff" stroke-width="1"/>
+<polygon fill="none" points="366,127 373,139 359,139" stroke="#000000" stroke-width="1"/>
+<rect fill="#ffffff" height="71" stroke="#ffffff" stroke-width="1" width="236" x="272" y="452"/>
+<rect fill="none" height="71" stroke="#000000" stroke-width="1" width="236" x="272" y="452"/>
+<text font-family="Lucida Grande" font-size="13" x="277" y="466">
++ DisjointMultiSwapNeighbourhood</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="236" x="272" y="476"/>
+<text font-family="Lucida Grande" font-size="13" x="276" y="491">
++numSwaps : int</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="236" x="272" y="501"/>
+<polyline fill="none" points="272,462 193,462" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="205" x2="193" y1="455" y2="462"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="205" x2="193" y1="469" y2="462"/>
+<text font-family="Lucida Grande" font-size="13" x="203" y="452">
+ </text>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="452" y2="447"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="442" y2="437"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="432" y2="427"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="422" y2="417"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="412" y2="407"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="402" y2="397"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="392" y2="387"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="382" y2="377"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="372" y2="367"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="362" y2="357"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="352" y2="347"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="342" y2="337"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="332" y2="327"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="322" y2="317"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="312" y2="307"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="302" y2="297"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="292" y2="287"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="282" y2="277"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="272" y2="267"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="262" y2="257"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="252" y2="247"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="242" y2="237"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="232" y2="227"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="222" y2="217"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="212" y2="207"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="202" y2="197"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="192" y2="187"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="182" y2="177"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="172" y2="167"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="162" y2="157"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="152" y2="147"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="142" y2="137"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="448" x2="448" y1="132" y2="127"/>
+<polygon fill="#ffffff" points="448,127 455,139 441,139" stroke="#ffffff" stroke-width="1"/>
+<polygon fill="none" points="448,127 455,139 441,139" stroke="#000000" stroke-width="1"/>
+</svg>
