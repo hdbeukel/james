@@ -1,0 +1,20 @@
+digraph g{
+  create [width=0, height=0, fixedsize=true, style=invis]
+  IDLE [shape=box, style=filled, fillcolor=lightsteelblue1];
+  INITIALIZING [shape=box, style=filled, fillcolor=lightsteelblue1];
+  RUNNING [shape=box, style=filled, fillcolor=lightsteelblue1];
+  TERMINATING [shape=box, style=filled, fillcolor=lightsteelblue1];
+  DISPOSED [shape=box, style=filled, fillcolor=lightsteelblue1];
+
+  create -> IDLE [headlabel="create search", minlen=6, labeldistance=6, labelangle=-11]
+
+  IDLE -> INITIALIZING [headlabel="start()", labeldistance=3, labelangle=65];
+  INITIALIZING -> RUNNING [headlabel="initialization\ncomplete", labeldistance=6, labelangle=45, minlen=2];
+  RUNNING -> TERMINATING [headlabel="stop()", labeldistance=4, labelangle=35];
+  TERMINATING -> IDLE [headlabel="run complete", labeldistance=12, labelangle=10];
+
+  IDLE -> DISPOSED [headlabel="dispose()", minlen=5, labeldistance=4.5, labelangle=-15];  
+
+  { rank=same; IDLE DISPOSED create }
+
+}
