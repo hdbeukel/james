@@ -16,8 +16,7 @@
     <description>
         The James extensions module is part of the James framework for discrete optimization
         using local search metaheuristics in Java. It extends the core with additional components
-        for advanced problem specification and search customization, including utilities for weighted
-        multi-objective functions and composite neighbourhoods.
+        for advanced problem specification and search customization.
     </description>
     <scm>
       <url>https://github.com/hdbeukel/james/tree/master/james/james-extensions</url>

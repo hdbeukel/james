@@ -13,7 +13,7 @@
     <version>0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>james</name>
-    <description>James is an extensive Java framework for optimization using local search metaheuristics.</description>
+    <description>James is a modern Java framework for discrete optimization using local search metaheuristics.</description>
     <url>http://www.jamesframework.org</url>
     <licenses>
         <license>
