@@ -74,7 +74,7 @@ layout: default
             <div id="dependencies">
                 <h3 class="page-header">Dependencies</h3>
                 <p>
-                    The James framework requires Java 7 or later. 
+                    The James framework requires Java 8 or later.
                 </p>
                 <p>
                     To perform logging, James depends on the <a href="http://www.slf4j.org/">Simple Logging Facade for Java (SLF4J)</a>
@@ -229,7 +229,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
                         snapshots of different modules are fully compatible.
                     </p>
                     <p>
-                        We strongly recommend to use stable releases instead whenever possible.
+                        We strongly recommend to use stable releases whenever possible.
                     </p>
                 </div>
                 <div class="bs-callout bs-callout-info">
@@ -252,7 +252,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 
                 <p>
                     To use the snapshots you will have to add the Sonatype snapshots repository
-                    to your project's POM file or settings.xml:
+                    to your project's POM file or <code>settings.xml</code>:
                 </p>
 <pre class="prettyprint">
 &lt;repositories&gt;
@@ -263,7 +263,7 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 &lt;/repositories&gt;
 </pre>      
                 <p>
-                    Then again simply include the appropriate dependencies:
+                    Then simply include the appropriate dependencies:
                 </p>
 <pre class="prettyprint">
 &lt;dependency&gt;

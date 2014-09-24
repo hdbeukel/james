@@ -97,7 +97,7 @@ layout: default
             </p>
             <ol>
                 <li>
-                    Create a custom data class (e.g. <code>MySubsetData</code>) by implementing the <code>SubsetData</code> interface.
+                    Create a custom data class (e.g. <code>MyData</code>) by implementing the <code>IntegerIdentifiedData</code> interface.
                     This interface defines a single method <code>getIDs()</code> that should return the set of all IDs that are
                     assigned to an item. Custom methods may be added as well, for example to access data corresponding
                     to specific items based on their IDs.
@@ -105,21 +105,22 @@ layout: default
                 <li>
                     Provide an objective function by implementing the <code>Objective</code> interface. This is a generic interface
                     with two type parameters: the solution and data type.
-                    Set the solution and data type to <code>SubsetSolution</code> and <code>MySubsetData</code>, respectively, and
-                    implement the necessary methods to evaluate solutions using the underlying data and to inform the
+                    Set the solution type to <code>SubsetSolution</code> and the data type to <code>MyData</code>.
+                    Now implement the necessary methods to evaluate solutions using the underlying data and to inform the
                     search whether evaluations are to be minimized or maximized.
                 </li>
                 <li>
                     If there are any constraints, these can be specified by implementing the <code>Constraint</code> or
                     <code>PenalizingConstraint</code> interfaces. The former rejects all invalid solutions, while the latter
                     assigns a penalty to the evaluation that usually corresponds to the severity of the constraint violation.
-                    Both interfaces again have a generic solution and data type.
+                    Both interfaces again have a generic solution and data type which should be set to <code>SubsetSolution</code>
+                    and <code>MyData</code>, respectively.
                 </li>
                 <li>
-                    Combine the data, objective and constraints (if any) in a <code>SubsetProblemWithData</code> class, where
-                    the desired minimum and maximum subset size are also specified. The data and objective are required and
+                    Combine the data, objective and constraints (if any) in a <code>SubsetProblem</code>, specifying
+                    the desired minimum and maximum subset size. The data and objective are required and
                     set at construction while constraints can be added later using <code>addRejectingConstraint(c)</code>
-                    and <code>addPenalizingConstraint(c)</code>.
+                    or <code>addPenalizingConstraint(c)</code>.
                 </li>
             </ol>
             <p>
@@ -139,11 +140,12 @@ layout: default
                     Define a custom solution type (e.g. <code>MySolution</code>) by extending the abstract <code>Solution</code> class.
                 </li>
                 <li>
-                    Either directly implement the <code>Problem</code> interface or extend the abstract <code>ProblemWithData</code>
-                    class. The latter option offers the same separation between data, objectives and constraints as for subset
+                    Either directly implement the <code>Problem</code> interface or extend <code>AbstractProblem</code>.
+                    The latter option offers the same separation between data, objectives and constraints as for subset
                     selection problems but requires to specify a data type (any class or interface is allowed).
-                    The solution type of the problem should be set to <code>MySolution</code>. If extending <code>ProblemWithData</code>,
-                    implement the data, objective and constraints (if any) by following the same steps as for a subset selection problem (see above).
+                    The solution type of the problem should be set to <code>MySolution</code>. If extending <code>AbstractProblem</code>,
+                    implement the data, objective and constraints (if any) by following the same steps as for a subset selection problem (see above)
+                    but with the appropriate solution and data types.
                 </li>
                 <li>
                     Provide at least one implementation of the <code>Neighbourhood</code> interface with solution type <code>MySolution</code>.
