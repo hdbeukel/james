@@ -15,11 +15,9 @@ A wide range of local search algorithms are provided out-of-the-box, including
 6. Parallel tempering
 7. ...
 
-In addition, a greedy subset sampling heuristic is available (LR subset search) as well as exhaustive search,
-which is of course only feasible for problems with a reasonably small search space.
+In addition, a greedy subset sampling heuristic is available (LR subset search) as well as exhaustive search, which is of course only feasible for problems with a reasonably small search space.
 
-The core also contains specific components for subset selection such as a predefined solution type, an abstract
-problem specification and various subset neighbourhoods.
+The core also contains specific components for subset selection such as a predefined solution type, a generic problem specification and various subset neighbourhoods.
 
   
 Documentation

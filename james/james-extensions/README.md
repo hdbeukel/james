@@ -3,11 +3,9 @@ James Extensions Module
 
 The James extensions module is part of the [James framework][james-github].
 
-This module provides additional components for advanced problem specification and search customization,
-including utilities for weighted multi-objective functions and composite neighbourhoods.
+This module provides additional components for advanced problem specification and search customization.
 
-For later versions it is also planned to add components that reduce the effort to model and solve other
-types of problems besides subset selection (e.g. permutation problems).
+For later versions it is planned to also add specific components for other frequent problem types besides subset selection (e.g. permutation problems).
   
 Documentation
 =============  

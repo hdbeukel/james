@@ -1,10 +1,10 @@
 James
 =====
 
-James is an extensive Java framework for discrete optimization using local search metaheuristics.
+James is a modern Java framework for discrete optimization using local search metaheuristics.
 A wide range of generic optimization algorithms are provided that can be applied to any user-defined
 problem by plugging in a custom solution type and corresponding neighbourhood. Predefined components
-are included for subset selection, which is the main focus of the framework.
+are included for subset selection.
 
 ### Modules
 
@@ -17,11 +17,12 @@ The James framework consists of several modules:
      components for subset selection as well as some specific subset sampling heuristics.
    
  - [James Extensions Module][extensions-module]: this module provides additional components for advanced problem
-     specification and search customization, including utilities for weighted multi-objective functions and composite neighbourhoods.
-     For later versions it is also planned to add components that reduce the effort to model and solve other types of problems besides
+     specification and search customization.
+     For later versions it is planned to also add specific components for other frequent problem types besides
      subset selection (e.g. permutation problems).
  
- - [James Examples Module][examples-module]: this module provides a series of example problem implementations as described at the [James website][examples-website].
+ - [James Examples Module][examples-module]: this module provides a series of example problem implementations
+ 	 as described on the [James website][examples-website].
 
 Dependencies
 ============
