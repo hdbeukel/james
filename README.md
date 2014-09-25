@@ -27,7 +27,7 @@ The James framework consists of several modules:
 Dependencies
 ============
 
-James requires Java 7 or later. **Note:** as of version 0.2 (currently in development) Java 8 will be required.
+James requires Java 7 or later. **Note:** as of v0.2 (currently in development) Java 8 will be required.
 
 To perform logging, James depends on the [Simple Logging Facade for Java (SLF4J)][slf4j], which is a general
 logging API that provides bindings for several popular Java logging frameworks including log4j, JDK 1.4 logging
