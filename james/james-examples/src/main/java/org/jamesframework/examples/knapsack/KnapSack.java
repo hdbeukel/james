@@ -27,7 +27,7 @@ import org.jamesframework.core.search.algo.RandomDescent;
 import org.jamesframework.core.subset.neigh.SinglePerturbationNeighbourhood;
 import org.jamesframework.core.search.stopcriteria.MaxRuntime;
 import org.jamesframework.core.util.SetUtilities;
-import org.jamesframework.examples.util.ProgressionSearchListener;
+import org.jamesframework.examples.util.ProgressSearchListener;
 
 /**
  * Main class for the knapsack example.
@@ -106,7 +106,7 @@ public class KnapSack {
             // set maximum runtime
             randomDescent.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
             // attach listener
-            randomDescent.addSearchListener(new ProgressionSearchListener());
+            randomDescent.addSearchListener(new ProgressSearchListener());
             // IMPORTANT: set valid initial solution
             SubsetSolution initialSolution = createInitalSolution(problem, data, capacity);
             System.out.println("Initial solution size: " + initialSolution.getNumSelectedIDs());
@@ -153,7 +153,7 @@ public class KnapSack {
             // set maximum runtime
             parallelTempering.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
             // attach listener
-            parallelTempering.addSearchListener(new ProgressionSearchListener());
+            parallelTempering.addSearchListener(new ProgressSearchListener());
             // IMPORTANT: set valid initial solution
             initialSolution = createInitalSolution(problem, data, capacity);
             System.out.println("Initial solution size: " + initialSolution.getNumSelectedIDs());

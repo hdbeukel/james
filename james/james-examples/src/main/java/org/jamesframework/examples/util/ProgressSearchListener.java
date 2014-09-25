@@ -21,11 +21,11 @@ import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.listeners.SearchListener;
 
 /**
- * Search listener that prints progression to standard output.
+ * Search listener that prints search progress to standard output.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class ProgressionSearchListener implements SearchListener<Solution> {
+public class ProgressSearchListener implements SearchListener<Solution> {
 
     @Override
     public void searchStarted(Search<? extends Solution> search) {

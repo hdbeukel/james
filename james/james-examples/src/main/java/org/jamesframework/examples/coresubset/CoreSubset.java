@@ -24,7 +24,7 @@ import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.algo.RandomDescent;
 import org.jamesframework.core.subset.neigh.SingleSwapNeighbourhood;
 import org.jamesframework.core.search.stopcriteria.MaxRuntime;
-import org.jamesframework.examples.util.ProgressionSearchListener;
+import org.jamesframework.examples.util.ProgressSearchListener;
 
 /**
  * Main class for the core subset selection example.
@@ -90,7 +90,7 @@ public class CoreSubset {
             // set maximum runtime
             search.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
             // attach listener
-            search.addSearchListener(new ProgressionSearchListener());
+            search.addSearchListener(new ProgressSearchListener());
 
             // start search
             search.start();

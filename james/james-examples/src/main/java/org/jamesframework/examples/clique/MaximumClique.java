@@ -26,7 +26,7 @@ import org.jamesframework.core.search.algo.RandomDescent;
 import org.jamesframework.core.search.algo.vns.VariableNeighbourhoodSearch;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.search.stopcriteria.MaxRuntime;
-import org.jamesframework.examples.util.ProgressionSearchListener;
+import org.jamesframework.examples.util.ProgressSearchListener;
 
 /**
  * Main class for the maximum clique example.
@@ -98,7 +98,7 @@ public class MaximumClique {
             // set maximum runtime
             randomDescent.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
             // attach listener
-            randomDescent.addSearchListener(new ProgressionSearchListener());
+            randomDescent.addSearchListener(new ProgressSearchListener());
             
             // IMPORTANT: start with empty clique
             randomDescent.setCurrentSolution(new CliqueSolution(data.getIDs(), data));
@@ -132,7 +132,7 @@ public class MaximumClique {
             // set maximum runtime
             vns.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
             // attach listener
-            vns.addSearchListener(new ProgressionSearchListener());
+            vns.addSearchListener(new ProgressSearchListener());
             // IMPORTANT: start with empty clique
             vns.setCurrentSolution(new CliqueSolution(data.getIDs(), data));
 
