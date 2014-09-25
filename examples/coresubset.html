@@ -18,13 +18,13 @@ layout: default
             <i class="fa fa-info-circle"></i>
             Info
         </h4>
-        In this example, the random descent metaheuristic is applied to sample a good core subset. Don't know what random descent is?
+        In this example the random descent metaheuristic is applied to sample a good core subset. Don't know what random descent is?
         Read <a href="/docs/#random-descent">this</a>.
     </div>
     <p>
-        This example demonstrates the implementation of a simplified core subset selection problem in James. Given a distance matrix, the goal
-        is to select a subset of items so that the average distance between all pairs of selected items is maximized. In this example,
-        every item also has a name. Therefore, the input consists of the combination of an N &times; N distance matrix and an array of N
+        This example demonstrates the implementation of a simple core subset selection problem in James. Given a distance matrix, the goal
+        is to select a subset of items so that the average distance between all pairs of selected items is maximized. 
+        Every item also has a name. Therefore, the input consists of the combination of an N &times; N distance matrix and an array of N
         item names (in corresponding order).
     </p>
     
@@ -33,11 +33,11 @@ layout: default
     </h4>
     <p>
         First create a data class <code>CoreSubsetData</code> that contains the distance matrix and item names. The data class implements the
-        <code>SubsetData</code> interface which has a single method <code>getIDs()</code>. This method returns the set of integer IDs that have been
-        assigned to the items. In this example, the IDs correspond to indices in the distance matrix and name array.
+        <code>IntegerIdentifiedData</code> interface which has a single method <code>getIDs()</code>. This method returns the set of integer IDs that have been
+        assigned to the items. In this example, the IDs are indices in the distance matrix and name array.
     </p>
 <pre class="prettyprint">
-public class CoreSubsetData implements SubsetData {
+public class CoreSubsetData implements IntegerIdentifiedData {
 
     // item names
     private final String[] names;
@@ -68,7 +68,7 @@ public class CoreSubsetData implements SubsetData {
     <p>
         Now add two custom methods to access the underlying data based on IDs of selected items.
         The method <code>getName(int id)</code> returns the name of an item with a given ID and <code>getDistance(int id1, int id2)</code>
-        yields the distance between two items with given IDs.
+        yields the distance between two items.
     </p>
 <pre class="prettyprint">
 public String getName(int id){
@@ -85,7 +85,7 @@ public double getDistance(int id1, int id2){
     </h4>
     <p>
         Now create a class <code>CoreSubsetObjective</code> that implements the <code>Objective</code> interface. This interface has two
-        type parameters: the solution type and data type. Here, the solution type should be set to <code>SubsetSolution</code>
+        type parameters: the solution and data type. Here, the solution type should be set to <code>SubsetSolution</code>
         and the data type to <code>CoreSubsetData</code>. The objective can then use our custom data class to evaluate any given subset
         solution by inspecting the set of selected IDs and computing the average distance between all pairs of selected items.
         The method <code>isMinimizing()</code> returns <code>false</code> as the average distance is to be maximized.
@@ -130,12 +130,12 @@ public class CoreSubsetObjective implements Objective&lt;SubsetSolution, CoreSub
     </h4>
     <p>
         We are now ready to apply an optimization algorithm to sample a good core subset. Here we will use the
-        <a href="/docs/#random-descent">random descent</a> algorithm, starting from a random initial solution (default),
-        with the predefined <code>SingleSwapNeighbourhood</code>
-        which generates moves that swap a single selected and unselected ID.
+        <a href="/docs/#random-descent">random descent</a> algorithm, starting from a random initial solution (default)
+        with the predefined <code>SingleSwapNeighbourhood</code>.
+        This neighbourhood generates moves that swap a single selected and unselected ID.
         The data and objective are wrapped in a
-        <code>SubsetProblemWithData</code> with data type <code>CoreSubsetData</code>. When creating the problem,
-        the desired subset size is also specified.
+        <code>SubsetProblem</code> with data type <code>CoreSubsetData</code>.
+        When creating the problem, the desired subset size is also specified.
         The problem is then given to the search.
         Note that searches are parameterized on the solution type
         of the problem that is being solved, which should be set to <code>SubsetSolution</code> for this example.
@@ -160,7 +160,7 @@ public static void main(String[] args) {
 
     // wrap data and objective in a subset problem, specify desired subset size
     int subsetSize = ...
-    SubsetProblemWithData&lt;CoreSubsetData&gt; problem = new SubsetProblemWithData&lt;&gt;(obj, data, subsetSize);
+    SubsetProblem&lt;CoreSubsetData&gt; problem = new SubsetProblem&lt;&gt;(obj, data, subsetSize);
 
     // create random descent search with single swap neighbourhood
     RandomDescent&lt;SubsetSolution&gt; search = new RandomDescent&lt;&gt;(problem, new SingleSwapNeighbourhood());
@@ -173,19 +173,14 @@ public static void main(String[] args) {
 
     // print best solution and evaluation
     System.out.println("Best solution (IDs): " + search.getBestSolution().getSelectedIDs());
-    System.out.println("Best solution (names): " + mapNames(search.getBestSolution().getSelectedIDs(), data));
+    System.out.println("Best solution (names): " + search.getBestSolution().getSelectedIDs()
+                                                                           .stream()
+                                                                           .map(id -> data.getName(id))
+                                                                           .collect(Collectors.toSet()));
     System.out.println("Best solution evaluation: " + search.getBestSolutionEvaluation());
 
     // dispose search
     search.dispose();
-}
-
-private static Set&lt;String&gt; mapNames(Set&lt;Integer&gt; selected, CoreSubsetData data){
-    Set&lt;String&gt; names = new HashSet&lt;&gt;();
-    for(int ID : selected){
-        names.add(data.getName(ID));
-    }
-    return names;
 }
 </pre>
 
@@ -193,13 +188,13 @@ private static Set&lt;String&gt; mapNames(Set&lt;Integer&gt; selected, CoreSubse
         Attaching a search listener
     </h4>
     <p>
-        It is possible to attach a search listener to any optimization algorithm, which is informed by the algorithm when certain
+        It is possible to attach one or more search listeners to any optimization algorithm, which are informed by the algorithm when certain
         events occur. For example, an event is fired when the search has started, stopped or found a new best solution. We will now
-        create a <code>ProgressionSearchListener</code> that prints messages to the console to stay informed about the progression
+        create a <code>ProgressSearchListener</code> that prints messages to the console to stay informed about the progress
         of an active search.
     </p>
 <pre class="prettyprint">
-public class ProgressionSearchListener extends EmptySearchListener&lt;Solution&gt; {
+public class ProgressSearchListener implements SearchListener&lt;Solution&gt; {
 
     @Override
     public void searchStarted(Search&lt;? extends Solution&gt; search) {
@@ -220,9 +215,9 @@ public class ProgressionSearchListener extends EmptySearchListener&lt;Solution&g
 </pre>
     <p>
         Search listeners are parameterized on the solution type of the searches to which they can be attached. However, the solution
-        type of a listener is allowed to be more general than the solution type of the search. As the implemented progression listener
+        type of a listener is allowed to be more general than the solution type of the search. As the implemented progress listener
         does not perform any solution type specific actions, its solution type is set to the top-level class <code>Solution</code>.
-        It can then be attached to track the progression of any search with any solution type as all solution types are subclasses of
+        It can then be attached to track the progress of any search with any solution type as all solution types are subclasses of
         <code>Solution</code>.
     </p>
     <div class="bs-callout bs-callout-info">
@@ -230,17 +225,15 @@ public class ProgressionSearchListener extends EmptySearchListener&lt;Solution&g
             <i class="fa fa-lightbulb-o"></i>
             Good to know
         </h4>
-        Here, the <code>EmptySearchListener</code> class has been extended to create the <code>ProgressionSearchListener</code>. This
-        dummy class contains an empty implementation of all callbacks defined in the <code>SearchListener</code> interface. Extending
-        it provides an easy way to create a listener that responds to a selection of callbacks only by overriding their empty implementation.
-        Alternatively, the <code>SearchListener</code> interface can be directly implemented in which case a (possibly empty) implementation
-        has to be given to all callbacks.
+        All callbacks defined in the <code>SearchListener</code> interface have a default empty implementation.
+        Listeners can therefore simply ignore callbacks for which no action is to be taken. An additional interface
+        <code>LocalSearchListener</code> is also provided that adds local search specific callbacks.
     </div>
     <p>
-        To track the progression of the applied random descent algorithm, simply add the listener before starting the search.
+        To track the progress of the applied random descent algorithm, simply add the listener before starting the search.
     </p>
 <pre class="prettyprint">
-search.addSearchListener(new ProgressionSearchListener());
+search.addSearchListener(new ProgressSearchListener());
 </pre>
 
     <h4 class="page-header">
