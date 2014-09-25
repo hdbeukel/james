@@ -375,10 +375,10 @@ public class CliqueSolution extends SubsetSolution {
     private final CliqueData data;
     
     // single constructor (empty clique)
-    public CliqueSolution(Set&lt;Integer&gt; vertexIDs, CliqueData data){
-        super(vertexIDs);
+    public CliqueSolution(CliqueData data){
+        super(data.getIDs());
         // initialize possible adds (all vertices)
-        possibleAdds = new HashSet&lt;&gt;(vertexIDs);
+        possibleAdds = new HashSet&lt;&gt;(data.getIDs());
         // initialize impossible adds (empty)
         impossibleAdds = new HashSet&lt;&gt;();
         // store data reference
@@ -387,7 +387,7 @@ public class CliqueSolution extends SubsetSolution {
     
     @Override
     public CliqueSolution copy() {
-        CliqueSolution copy = new CliqueSolution(getAllIDs(), data);
+        CliqueSolution copy = new CliqueSolution(data);
         copy.selectAll(getSelectedIDs());
         return copy;
     }
@@ -511,7 +511,7 @@ CliqueProblem problem = new CliqueProblem(obj, data);
 // use neighbourhood defined for clique solution type
 RandomDescent&lt;CliqueSolution&gt; randomDescent = new RandomDescent&lt;&gt;(problem, new GreedyCliqueNeighbourhood2(data));
 // start with empty clique
-randomDescent.setCurrentSolution(new CliqueSolution(data.getIDs(), data));
+randomDescent.setCurrentSolution(new CliqueSolution(data));
 
 // ... (same as before)
 
@@ -527,7 +527,7 @@ VariableNeighbourhoodSearch&lt;CliqueSolution&gt; vns = new VariableNeighbourhoo
                                                         problem -> new RandomDescent&lt;&gt;(problem, new GreedyCliqueNeighbourhood2(data))
                                                   );
 // start with empty clique
-vns.setCurrentSolution(new CliqueSolution(data.getIDs(), data));
+vns.setCurrentSolution(new CliqueSolution(data));
 
 // ... (same as before)
 </pre>
