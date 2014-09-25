@@ -34,16 +34,16 @@ layout: default
         Providing the data
     </h4>
     <p>
-        First we provide the data by implementing the <code>SubsetData</code> interface in <code>KnapsackData</code>.
-        Every item is assigned an ID in [0, N-1]. The data then stores two arrays <code>weights</code>
-        and <code>profits</code> of length N where <code>weights[i]</code> and <code>profits[i]</code> contain
+        First provide the data by implementing the <code>IntegerIdentifiedData</code> interface in <code>KnapsackData</code>.
+        Every item is assigned an ID in [0, N-1]. The data stores two arrays
+        of length N where <code>weights[i]</code> and <code>profits[i]</code> contain
         the weight and profit, respectively, of the item with ID i. These two arrays are specified when
         creating the data and the IDs are automatically inferred. Methods are provided to get all IDs
-        (as required by the <code>SubsetData</code> interface) as well as to get the weight or profit
+        (as required by the <code>IntegerIdentifiedData</code> interface) as well as to get the weight or profit
         of an item with a given ID.
     </p>
 <pre class="prettyprint">
-public class KnapsackData implements SubsetData {
+public class KnapsackData implements IntegerIdentifiedData {
 
     // weights
     private final double[] weights;
@@ -95,11 +95,9 @@ public class KnapsackObjective implements Objective&lt;SubsetSolution, KnapsackD
     @Override
     public double evaluate(SubsetSolution solution, KnapsackData data) {
         // compute sum of profits of selected items
-        double profit = 0.0;
-        for(int id : solution.getSelectedIDs()){
-            profit += data.getProfit(id);
-        }
-        return profit;
+        return solution.getSelectedIDs().stream()
+                                        .mapToDouble(id -> data.getProfit(id))
+                                        .sum();
     }
 
     @Override
@@ -114,7 +112,7 @@ public class KnapsackObjective implements Objective&lt;SubsetSolution, KnapsackD
         Implementing the constraint
     </h4>
     <p>
-        To impose that the knapsack capacity is never exceeded we will add a constraint to our problem. Therefore, we provide
+        To ensure that the knapsack capacity is never exceeded we will add a constraint to our problem. Therefore, we provide
         a <code>KnapsackConstraint</code> that implements the <code>Constraint</code> interface with solution and
         data type <code>SubsetSolution</code> and <code>KnapsackData</code>, respectively (just like we did for the
         objective). Given a subset solution, the constraint computes the total weight of all selected items and verifies
@@ -132,13 +130,15 @@ public class KnapsackConstraint implements Constraint&lt;SubsetSolution, Knapsac
 
     @Override
     public boolean isSatisfied(SubsetSolution solution, KnapsackData data) {
-        // compute total weight of currently selected items
-        double curWeight = 0.0;
-        for(int id : solution.getSelectedIDs()){
-            curWeight += data.getWeight(id);
-        }
         // check: maximum weight not exceeded
-        return curWeight &lt;= maxWeight;
+        double sum = 0.0;
+        for(int id : solution.getSelectedIDs()){
+            sum += data.getWeight(id);
+            if(sum > maxWeight){
+                return false;
+            }
+        }
+        return true;
     }
     
 }
@@ -148,8 +148,8 @@ public class KnapsackConstraint implements Constraint&lt;SubsetSolution, Knapsac
         Finalizing the problem specification
     </h4>
     <p>
-        We are now ready to combine the data, objective and constraint in a <code>SubsetProblemWithData</code>.
-        As all subset sizes are allowed the minimum and maximum size are set to 0 and the total number of items,
+        We are now ready to combine the data, objective and constraint in a <code>SubsetProblem</code>.
+        As all subset sizes are allowed, the minimum and maximum size are set to 0 and the total number of items,
         respectively. The data and objective are passed to the problem upon construction and the constraint is
         added afterwards by calling <code>addRejectingConstraint(...)</code>. By adding a <i>rejecting</i> constraint,
         solutions that violate this constraint are rejected so that no modification that yields such
@@ -170,7 +170,7 @@ KnapsackObjective obj = new KnapsackObjective();
 KnapsackConstraint constraint = new KnapsackConstraint(capacity);
 
 // create subset problem (all sizes allowed)
-SubsetProblemWithData&lt;KnapsackData&gt; problem = new SubsetProblemWithData&lt;&gt;(obj, data, 0, data.getIDs().size());
+SubsetProblem&lt;KnapsackData&gt; problem = new SubsetProblem&lt;&gt;(obj, data, 0, data.getIDs().size());
 
 // add rejecting constraint
 problem.addRejectingConstraint(constraint);
@@ -185,12 +185,9 @@ problem.addRejectingConstraint(constraint);
             <code>PenalizingConstraint</code> interface and does not result in rejection of solutions that violate the constraint. Instead, a
             penalty is assigned to the solution's evaluation. This allows to cross invalid regions of the search space and may for example
             be useful in case of a tight constraint which is difficult to satisfy.
-        </p>
-        <p>
             However, the assigned penalties should be carefully
             chosen &ndash; usually reflecting the severeness of the constraint violation &ndash; and there is no guarantee that
-            the best found solution of a search will actually satisfy all penalizing constraints. It is therefore adviced to use rejecting
-            constraints whenever possible and only to switch to a penalizing constraint if necessary.
+            the best found solution of a search will actually satisfy all penalizing constraints.
         </p>
     </div>
     
@@ -214,7 +211,7 @@ problem.addRejectingConstraint(constraint);
         generates moves that add, delete or swap a single (pair of) ID(s) in the current selection. This neighbourhood allows selection
         of variable size subsets. For this example the minimum and maximum allowed size are set to 0 and the number of items, respectively.
         The solution type of the search is fixed to <code>SubsetSolution</code>. A maximum runtime is specified as stop criterion and a
-        <code>ProgressionSearchListener</code> is attached to track the progression of the search (see
+        <code>ProgressSearchListener</code> is attached to track the progress of the search (see
         <a href="/examples/coresubset/#search-listener">example 1: core subset selection</a>).
     </p>
 <pre class="prettyprint">
@@ -224,12 +221,12 @@ RandomDescent&lt;SubsetSolution&gt; randomDescent = new RandomDescent&lt;&gt;(pr
 long timeLimit = ...
 randomDescent.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
 // attach listener
-randomDescent.addSearchListener(new ProgressionSearchListener());
+randomDescent.addSearchListener(new ProgressSearchListener());
 </pre>
     <p>
         By default, random descent starts from a randomly generated initial solution. However, it may happen that none of the neighbours of such
         random solution satisfy the constraint on the total weight so that they are all rejected and the search immediately gets stuck. To avoid this
-        we specify a custom initial solution which is guaranteed to satisfy the constraint. We could simply always start from an empty solution
+        we specify a custom initial solution. We could simply always start from an empty solution
         but a different approach is taken here to increase the variability of initial solutions.
     </p>
     <div class="bs-callout bs-callout-info">
@@ -238,7 +235,9 @@ randomDescent.addSearchListener(new ProgressionSearchListener());
             Rejecting versus penalizing constraints (revisited)
         </h4>
         When using a penalizing instead of a rejecting constraint (see above) it is not necessary to set an initial solution that satisfies
-        the constraint, as then the search is allowed to move through invalid regions of the search space.
+        the constraint, as then the search is allowed to move through invalid regions of the search space so that it can escape from this
+        invalid initial solution. However, penalizing constraints are more difficult to design as the penalties should be chosen
+        very carefully.
     </div>
 <pre class="prettyprint">
 // random generator
@@ -268,11 +267,9 @@ private static SubsetSolution createInitalSolution(Problem&lt;SubsetSolution&gt;
 
 // computes the total weight of items selected in the given subset solution
 private static double computeSelectionWeight(SubsetSolution solution, KnapsackData data){
-    double totalWeight = 0.0;
-    for(int id : solution.getSelectedIDs()){
-        totalWeight += data.getWeight(id);
-    }
-    return totalWeight;
+    return solution.getSelectedIDs().stream()
+                                    .mapToDouble(id -> data.getWeight(id))
+                                    .sum();
 }
 </pre>
     <div class="bs-callout bs-callout-info">
@@ -312,7 +309,7 @@ randomDescent.dispose();
     </h5>
     <p>
         The parallel tempering algorithm uses several <a href="/docs/#metropolis-search">Metropolis searches</a> with different
-        temperatures where higher temperatures yield higher probabilities to accept inferior moves. When applying parallel tempering
+        temperatures where higher temperatures yield higher probabilities to accept inferior moves. When applying parallel tempering,
         the number of underlying Metropolis replicas and the minimum and maximum temperature have to be specified. It is very important
         to set appropriate temperatures, taking into account the scale of the objective function. For example, whether a temperature
         of 0.001 is considered high or low strongly depends on whether evaluations range from e.g. zero to one or from ten thousand
@@ -351,11 +348,10 @@ parallelTempering.setTemperatureScaleFactor(scale);
     </p>
 <pre class="prettyprint">
 private static double computeAverageProfit(KnapsackData data){
-    double totalProfit = 0.0;
-    for(int id : data.getIDs()){
-        totalProfit += data.getProfit(id);
-    }
-    return totalProfit / data.getIDs().size();
+    return data.getIDs().stream()
+                        .mapToDouble(id -> data.getProfit(id))
+                        .average()
+                        .getAsDouble();
 }
 </pre>
     <p>
@@ -368,7 +364,7 @@ private static double computeAverageProfit(KnapsackData data){
 long timeLimit = ...
 parallelTempering.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
 // attach listener
-parallelTempering.addSearchListener(new ProgressionSearchListener());
+parallelTempering.addSearchListener(new ProgressSearchListener());
 // set valid initial solution
 parallelTempering.setCurrentSolution(createInitalSolution(problem, data, capacity));
 
