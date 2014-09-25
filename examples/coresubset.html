@@ -225,9 +225,9 @@ public class ProgressSearchListener implements SearchListener&lt;Solution&gt; {
             <i class="fa fa-lightbulb-o"></i>
             Good to know
         </h4>
-        All callbacks defined in the <code>SearchListener</code> interface have a default empty implementation.
-        Listeners can therefore simply ignore callbacks for which no action is to be taken. An additional interface
-        <code>LocalSearchListener</code> is also provided that adds local search specific callbacks.
+        All methods defined in the <code>SearchListener</code> interface have a default empty implementation.
+        Listeners can therefore simply ignore any callbacks for which no action is to be taken. Moreover,
+        an additional interface <code>LocalSearchListener</code> is provided that adds local search specific callbacks.
     </div>
     <p>
         To track the progress of the applied random descent algorithm, simply add the listener before starting the search.
