@@ -39,10 +39,10 @@ public class CliqueSolution extends SubsetSolution {
     private final CliqueData data;
     
     // single constructor (empty clique)
-    public CliqueSolution(Set<Integer> vertexIDs, CliqueData data){
-        super(vertexIDs);
+    public CliqueSolution(CliqueData data){
+        super(data.getIDs());
         // initialize possible adds (all vertices)
-        possibleAdds = new HashSet<>(vertexIDs);
+        possibleAdds = new HashSet<>(data.getIDs());
         // initialize impossible adds (empty)
         impossibleAdds = new HashSet<>();
         // store data reference
@@ -51,7 +51,7 @@ public class CliqueSolution extends SubsetSolution {
     
     @Override
     public CliqueSolution copy() {
-        CliqueSolution copy = new CliqueSolution(getAllIDs(), data);
+        CliqueSolution copy = new CliqueSolution(data);
         copy.selectAll(getSelectedIDs());
         return copy;
     }

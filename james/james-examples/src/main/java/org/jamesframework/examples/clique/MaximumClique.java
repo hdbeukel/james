@@ -101,7 +101,7 @@ public class MaximumClique {
             randomDescent.addSearchListener(new ProgressSearchListener());
             
             // IMPORTANT: start with empty clique
-            randomDescent.setCurrentSolution(new CliqueSolution(data.getIDs(), data));
+            randomDescent.setCurrentSolution(new CliqueSolution(data));
 
             // start search
             randomDescent.start();
@@ -134,7 +134,7 @@ public class MaximumClique {
             // attach listener
             vns.addSearchListener(new ProgressSearchListener());
             // IMPORTANT: start with empty clique
-            vns.setCurrentSolution(new CliqueSolution(data.getIDs(), data));
+            vns.setCurrentSolution(new CliqueSolution(data));
 
             // start search
             vns.start();
