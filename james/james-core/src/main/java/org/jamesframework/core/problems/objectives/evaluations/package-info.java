@@ -15,6 +15,6 @@
  */
 
 /**
- * Interfaces of objectives and produced evaluations.
+ * Predefined evaluation objects.
  */
-package org.jamesframework.core.problems.objectives;
+package org.jamesframework.core.problems.objectives.evaluations;
