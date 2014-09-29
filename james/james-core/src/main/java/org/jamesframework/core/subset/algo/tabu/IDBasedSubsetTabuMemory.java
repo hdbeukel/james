@@ -78,7 +78,7 @@ public class IDBasedSubsetTabuMemory implements TabuMemory<SubsetSolution> {
             // wrong move type
             throw new IncompatibleTabuMemoryException("ID based subset tabu memory can only be used in combination with "
                                                     + "neighbourhoods that generate moves of type SubsetMove. Received: "
-                                                    + move.getClass().getName());
+                                                    + move.getClass().getSimpleName());
         }
     }
     
