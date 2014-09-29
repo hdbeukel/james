@@ -20,17 +20,17 @@ import org.jamesframework.core.problems.objectives.evaluations.SimpleEvaluation;
 
 /**
  * <p>
- * Interface of an evaluation produced by an objective function. The only requirement is that the
+ * Interface of a solution evaluation produced by a problem definition. The only requirement is that the
  * evaluation object can be converted into a double value that expresses the solution quality by
  * calling {@link #getValue()}. A predefined simple implementation is provided that merely wraps
  * a double value (see {@link SimpleEvaluation}).
  * </p>
  * <p>
- * When implementing custom delta evaluations, the evaluation of the current solution of a local search
- * is passed back to the objective to evaluate a move (see {@link Objective}).
- * Knowing only the double value of the current solution's evaluation might not be sufficient to efficiently
- * evaluate the modified solution. In such case, custom evaluation objects can be designed that keep track
- * of any additional metadata used for efficient delta evaluation.
+ * When implementing custom delta evaluations, the evaluation of the current solution of a neighbourhood
+ * search is passed back to the problem to evaluate a move. Knowing only the double value of the current
+ * solution's evaluation might not be sufficient to efficiently evaluate the modified solution. In such
+ * case, custom evaluation objects can be designed that keep track of any additional metadata used for
+ * efficient delta evaluation.
  * </p>
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>

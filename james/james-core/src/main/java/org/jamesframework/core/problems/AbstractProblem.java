@@ -48,7 +48,7 @@ import org.jamesframework.core.problems.objectives.Objective;
  *  </li>
  * </ul>
  * 
- * @param <SolutionType> solution type corresponding to this problem
+ * @param <SolutionType> type of solutions to the problem
  * @param <DataType> type of underlying data
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
