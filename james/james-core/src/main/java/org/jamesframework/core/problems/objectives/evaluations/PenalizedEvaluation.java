@@ -19,11 +19,11 @@ package org.jamesframework.core.problems.objectives.evaluations;
 import org.jamesframework.core.problems.objectives.Evaluation;
 
 /**
- * A simple evaluation object that wraps a double value.
+ * A simple evaluation that wraps a double value.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class SimpleEvaluation implements Evaluation {
+public class PenalizedEvaluation implements Evaluation {
 
     // contained double value
     private final double value;
@@ -33,7 +33,7 @@ public class SimpleEvaluation implements Evaluation {
      * 
      * @param value double value
      */
-    public SimpleEvaluation(double value) {
+    public PenalizedEvaluation(double value) {
         this.value = value;
     }
     
