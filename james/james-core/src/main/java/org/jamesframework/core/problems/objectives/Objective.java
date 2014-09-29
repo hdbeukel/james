@@ -57,11 +57,10 @@ public interface Objective<SolutionType extends Solution, DataType> {
     
     /**
      * <p>
-     * Evaluates a move to be applied to the current solution of a local search (delta evaluation).
+     * Evaluates a move that will be applied to the current solution of a local search (delta evaluation).
      * The result corresponds to the evaluation of the modified solution that would be obtained by applying
-     * the given move to the current solution. A default implementation is provided that (1) applies
-     * the move to the current solution, (2) computes a full evaluation of the modified solution by
-     * calling {@link #evaluate(Solution, Object)} and (3) undoes the applied move.
+     * the given move to the current solution. A default implementation is provided that (1) applies the move,
+     * (2) computes a full evaluation by calling {@link #evaluate(Solution, Object)} and (3) undoes the applied move.
      * </p>
      * <p>
      * It is often possible to provide a custom, much more efficient delta evaluation that computes
