@@ -16,35 +16,85 @@
 
 package org.jamesframework.core.problems.objectives.evaluations;
 
+import java.util.Map;
+import org.jamesframework.core.problems.constraints.PenalizingConstraint;
+import org.jamesframework.core.problems.constraints.PenalizingValidation;
 import org.jamesframework.core.problems.objectives.Evaluation;
 
 /**
- * A simple evaluation that wraps a double value.
+ * <p>
+ * A penalized evaluation consists of an original evaluation and a number of penalizing validations.
+ * The final double value is computed by subtracting or adding the assigned penalties from/to the
+ * original evaluation, depending on whether evaluations are being maximized or minimized, respectively.
+ * </p>
+ * <p>
+ * The object keeps track of which validations were produced by which penalizing constraints so that
+ * these validation objects can be retrieved to perform delta validations.
+ * </p>
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class PenalizedEvaluation implements Evaluation {
 
-    // contained double value
-    private final double value;
-
+    // original evaluation
+    private final Evaluation evaluation;
+    // penalizing validations
+    private final Map<PenalizingConstraint<?,?>, PenalizingValidation> penalties;
+    // indicates whether evaluations are maximized or minimized
+    private final boolean minimizing;
+    
+    // cached value
+    private Double cachedValue = null;
+    
     /**
-     * Create a simple evaluation with given double value.
+     * Create a new penalized evaluation. The penalties should be given as a map that maps
+     * each penalizing constraint on the produced validation object. If <code>minimizing</code>
+     * is <code>true</code>, penalties are added to the original evaluation, else they are
+     * subtracted from it.
      * 
-     * @param value double value
+     * @param evaluation original evaluation
+     * @param penalties validation objects produced by penalizing constraints
+     * @param minimizing <code>true</code> if evaluations are minimized
      */
-    public PenalizedEvaluation(double value) {
-        this.value = value;
+    public PenalizedEvaluation(Evaluation evaluation,
+                               Map<PenalizingConstraint<?,?>, PenalizingValidation> penalties,
+                               boolean minimizing){
+        this.evaluation = evaluation;
+        this.penalties = penalties;
+        this.minimizing = minimizing;
     }
     
     /**
-     * Get the double value specified at construction.
+     * Get the validation object that was produced by a specific penalizing constraint.
      * 
-     * @return double value
+     * @param constraint penalizing constraint
+     * @return produced validation object
+     */
+    public PenalizingValidation getValidation(PenalizingConstraint<?,?> constraint){
+        return penalties.get(constraint);
+    }
+
+    /**
+     * Compute the penalized evaluation. The result is cached so that it only needs
+     * to be computed when it is retrieved for the first time.
+     * 
+     * @return penalized evaluation
      */
     @Override
     public double getValue() {
-        return value;
+        if(cachedValue == null){
+            double e = evaluation.getValue();
+            double p = penalties.values().stream()
+                                .mapToDouble(val -> val.getPenalty())
+                                .sum();
+            if(minimizing){
+                e += p;
+            } else {
+                e -= p;
+            }
+            cachedValue = e;
+        }
+        return cachedValue;
     }
 
 }
