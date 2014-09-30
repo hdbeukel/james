@@ -38,14 +38,9 @@ import org.jamesframework.core.search.neigh.Move;
 public interface Constraint<SolutionType extends Solution, DataType> {
 
     /**
-     * <p>
      * Validates a solution given the underlying data. Returns an object of type {@link Validation}.
      * It can be checked wether the solution passed validation by calling {@link Validation#passed()}
      * on this validation object.
-     * </p>
-     * <p>
-     * Used for full validation of solutions during execution of a search algorithm.
-     * </p>
      * 
      * @param solution solution to validate
      * @param data underlying data used for validation

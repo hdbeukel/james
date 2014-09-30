@@ -40,14 +40,9 @@ import org.jamesframework.core.search.neigh.Move;
 public interface Objective<SolutionType extends Solution, DataType> {
     
     /**
-     * <p>
      * Evaluates a given solution using the given data. Returns an object of type {@link Evaluation}.
      * The corresponding double value can be obtained by calling {@link Evaluation#getValue()} on this
      * evaluation object.
-     * </p>
-     * <p>
-     * Used for full evaluation of solutions during execution of a search algorithm.
-     * </p>
      * 
      * @param solution solution to evaluate
      * @param data underlying data used for evaluation

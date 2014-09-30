@@ -40,13 +40,8 @@ import org.jamesframework.core.search.neigh.Move;
 public interface PenalizingConstraint<SolutionType extends Solution, DataType> extends Constraint<SolutionType, DataType> {
     
     /**
-     * <p>
      * Validates a solution given the underlying data. Returns an object of type {@link PenalizingValidation}.
      * The assigned penalty can be retrieved by calling {@link PenalizingValidation#getPenalty()} on this object.
-     * </p>
-     * <p>
-     * Used for full validation of solutions during execution of a search algorithm.
-     * </p>
      * 
      * @param solution solution to validate
      * @param data underlying data used for validation
