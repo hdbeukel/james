@@ -20,14 +20,15 @@ package org.jamesframework.core.problems.constraints;
  * <p>
  * Interface of a validation produced by a penalizing constraint. Extends the main {@link Validation}
  * interface with an additional method {@link #getPenalty()} to access the assigned penalty. A predefined
- * simple implementation is provided that wraps a double value (see {@link SimplePenalizingValidation}).
+ * simple implementation is provided that wraps a boolean and double value reflecting whether the solution
+ * passed validation and the assigned penalty (see {@link SimplePenalizingValidation}).
  * </p>
  * <p>
- * When implementing custom delta evaluations, the evaluation of the current solution of a neighbourhood
- * search is passed back to the problem to evaluate a move. Knowing only the double value of the current
- * solution's evaluation might not be sufficient to efficiently evaluate the modified solution. In such
- * case, custom evaluation objects can be designed that keep track of any additional metadata used for
- * efficient delta evaluation.
+ * When implementing custom delta validations, the validation of the current solution of a neighbourhood
+ * search is passed back to the problem to validate a move. Knowing only whether the current solution passed
+ * validation and which penalty had been assigned might not be sufficient to efficiently validate the modified
+ * solution. In such case, custom penalizing validation objects can be designed that keep track of any additional
+ * metadata used for efficient delta validation.
  * </p>
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>

@@ -17,31 +17,80 @@
 package org.jamesframework.core.problems.constraints;
 
 import org.jamesframework.core.problems.Solution;
+import org.jamesframework.core.search.neigh.Move;
 
 /**
- * Interface of a penalizing constraint, which assigns a certain penalty to a solution which does not
+ * <p>
+ * Interface of a penalizing constraint that assigns a penalty to a solution's evaluation if it does not
  * satisfy the constraint. This penalty is taken into account when evaluating the corresponding solution:
- * in case scores are maximized the penalty is subtracted from the solution's evaluation, in case of
+ * in case evaluations are maximized the penalty is subtracted from the solution's evaluation, in case of
  * minimization the penalty is added to the evaluation. When a solution satisfies the constraint, no
  * penalty (zero) should be assigned.
- * 
+ * </p>
+ * <p>
+ * It is required to provide a full validation by implementing {@link #validate(Solution, Object)}.
+ * If desired, an efficient delta validation can also be provided by overriding the default behaviour
+ * of {@link #validate(Move, Solution, Validation, Object)} which (1) applies the move, (2) performs
+ * a full validation and (3) undoes the move.
+ * </p>
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  * @param <SolutionType> solution type to which the constraint is applied, required to extend {@link Solution}
- * @param <DataType> underlying data type
+ * @param <DataType> underlying data type used for validation
  */
 public interface PenalizingConstraint<SolutionType extends Solution, DataType> extends Constraint<SolutionType, DataType> {
-
+    
     /**
-     * Computes the penalty which is assigned to a solution. The implementation should be consistent with that of
-     * {@link #isSatisfied}, meaning that no penalty (zero) should be assigned if the solution satisfies the constraint.
-     * If the solution does not satisfy the constraint, the computed penalty should be strictly positive; it will be subtracted
-     * from the solution's evaluation in case of maximization, or added in case of minimization. Usually, the magnitude of the
-     * penalty will reflect the severeness of the violation, to favour solutions which are closer to satisfaction.
+     * <p>
+     * Validates a solution given the underlying data. Returns an object of type {@link PenalizingValidation}.
+     * The assigned penalty can be retrieved by calling {@link PenalizingValidation#getPenalty()} on this object.
+     * </p>
+     * <p>
+     * Used for full validation of solutions during execution of a search algorithm.
+     * </p>
      * 
-     * @param solution solution for which the penalty is computed
-     * @param data underlying data
-     * @return penalty assigned to the solution (0.0 in case the solution satisfies the constraint, &gt; 0.0 if not)
+     * @param solution solution to validate
+     * @param data underlying data used for validation
+     * @return penalizing validation that indicates the assigned penalty
      */
-    public double computePenalty(SolutionType solution, DataType data);
+    @Override
+    public PenalizingValidation validate(SolutionType solution, DataType data);
+    
+    /**
+     * <p>
+     * Validates a move that will be applied to the current solution of a local search (delta validation).
+     * The result corresponds to the validation of the modified solution that would be obtained by applying
+     * the given move to the current solution. A default implementation is provided that (1) applies the move,
+     * (2) performs a full validation by calling {@link #validate(Solution, Object)} and (3) undoes the applied move.
+     * </p>
+     * <p>
+     * It is often possible to provide a custom, much more efficient delta validation based on the
+     * current validation and the changes that will be made when applying the move to the current
+     * solution. This can be done by overriding this method. It is usually required to cast the
+     * received move to a specific type so that this constraint can only be used in combination
+     * with neighbourhoods that generate moves of this type (or a subtype). If an incompatible
+     * move type is received, an {@link IncompatibleDeltaValidationException} may be thrown.
+     * </p>
+     * <p>
+     * Given that both this method and the full validation ({@link #validate(Solution, Object)}) return
+     * validations of the same type, it is guaranteed that <code>curValidation</code> will also be of
+     * this specific type and it is safe to perform a cast, if required.
+     * </p>
+     * 
+     * @param move move to validate
+     * @param curSolution current solution
+     * @param curValidation validation of current solution
+     * @param data underlying data used for validation
+     * @return penalizing validation of modified solution obtained when applying the move to the current solution
+     * @throws IncompatibleDeltaValidationException if the provided delta validation is not compatible
+     *                                              with the type of moves generated by the applied
+     *                                              neighbourhood(s) in a neighbourhood search
+     */
+    @Override
+    default public PenalizingValidation validate(Move<? super SolutionType> move,
+                                                 SolutionType curSolution,
+                                                 Validation curValidation,
+                                                 DataType data){
+        return (PenalizingValidation) Constraint.super.validate(move, curSolution, curValidation, data);
+    }
     
 }
