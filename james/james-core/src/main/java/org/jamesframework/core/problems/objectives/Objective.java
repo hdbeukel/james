@@ -42,7 +42,7 @@ public interface Objective<SolutionType extends Solution, DataType> {
     /**
      * <p>
      * Evaluates a given solution using the given data. Returns an object of type {@link Evaluation}.
-     * The corresponding double value can be obtained by calling {@link Evaluation#getValue()} on the
+     * The corresponding double value can be obtained by calling {@link Evaluation#getValue()} on this
      * evaluation object.
      * </p>
      * <p>
