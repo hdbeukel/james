@@ -21,7 +21,15 @@ import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.search.neigh.Move;
 
 /**
+ * <p>
  * Interface of a constraint that can be imposed on the solutions of a problem.
+ * </p>
+ * <p>
+ * It is required to provide a full validation by implementing {@link #validate(Solution, Object)}.
+ * If desired, an efficient delta validation can also be provided by overriding the default behaviour
+ * of {@link #validate(Move, Solution, Validation, Object)} which (1) applies the move, (2) performs
+ * a full validation and (3) undoes the move.
+ * </p>
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  * @param <SolutionType> solution type to which the constraint is applied, required to extend {@link Solution}
