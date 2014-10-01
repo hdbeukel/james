@@ -75,6 +75,15 @@ public class PenalizedEvaluation implements Evaluation {
     public PenalizingValidation getPenalizingValidation(Object key){
         return penalties.get(key);
     }
+    
+    /**
+     * Get the original unpenalized evaluation.
+     * 
+     * @return original evaluation
+     */
+    public Evaluation getEvaluation(){
+        return evaluation;
+    }
 
     /**
      * Compute the penalized evaluation. The result is cached so that it only needs

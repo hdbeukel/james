@@ -168,7 +168,7 @@ public class ExhaustiveSearchTest extends SearchTestTemplate {
     public void testSingleRunWithUnsatisfiableConstraintSmall() {
         System.out.println(" - test single run with unsatisfiable constraint (small problem)");
         // add constraint
-        problemSmall.addRejectingConstraint(new NeverSatisfiedConstraintStub());
+        problemSmall.addMandatoryConstraint(new NeverSatisfiedConstraintStub());
         // single run
         singleRunWithMaxRuntime(searchSmall, problemSmall, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
         // done ?
@@ -189,7 +189,7 @@ public class ExhaustiveSearchTest extends SearchTestTemplate {
     public void testSingleRunWithUnsatisfiableConstraintLarge() {
         System.out.println(" - test single run with unsatisfiable constraint (large problem)");
         // add constraint
-        problem.addRejectingConstraint(new NeverSatisfiedConstraintStub());
+        problem.addMandatoryConstraint(new NeverSatisfiedConstraintStub());
         // single run
         singleRunWithMaxRuntime(search, problem, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
         // done ?
@@ -278,7 +278,7 @@ public class ExhaustiveSearchTest extends SearchTestTemplate {
     public void testSubsequentRunsWithUnsatisfiableConstraintSmall() {
         System.out.println(" - test subsequent runs with unsatisfiable constraint (small problem)");
         // set constraint
-        problemSmall.addRejectingConstraint(new NeverSatisfiedConstraintStub());
+        problemSmall.addMandatoryConstraint(new NeverSatisfiedConstraintStub());
         // perform multiple runs (maximizing objective)
         multiRunWithMaximumRuntime(searchSmall, MULTI_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT, NUM_RUNS, true, true);
         // verify
@@ -298,7 +298,7 @@ public class ExhaustiveSearchTest extends SearchTestTemplate {
     public void testSubsequentRunsWithUnsatisfiableConstraintLarge() {
         System.out.println(" - test subsequent runs with unsatisfiable constraint (large problem)");
         // set constraint
-        problem.addRejectingConstraint(new NeverSatisfiedConstraintStub());
+        problem.addMandatoryConstraint(new NeverSatisfiedConstraintStub());
         // perform multiple runs (maximizing objective)
         multiRunWithMaximumRuntime(search, MULTI_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT, NUM_RUNS, true, true);
         // verify

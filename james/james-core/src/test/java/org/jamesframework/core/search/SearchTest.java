@@ -112,7 +112,7 @@ public class SearchTest extends SearchTestTemplate {
         System.out.println(" - test problem with constraint");
         
         // add constraint to problem
-        problem.addRejectingConstraint(constraint);
+        problem.addMandatoryConstraint(constraint);
         
         // run search
         search.start();

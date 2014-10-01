@@ -17,13 +17,19 @@
 package org.jamesframework.core.problems;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.jamesframework.core.problems.constraints.Constraint;
 import org.jamesframework.core.problems.constraints.PenalizingConstraint;
+import org.jamesframework.core.problems.constraints.PenalizingValidation;
+import org.jamesframework.core.problems.constraints.Validation;
+import org.jamesframework.core.problems.constraints.validations.UnanimousValidation;
+import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.problems.objectives.Objective;
+import org.jamesframework.core.problems.objectives.evaluations.PenalizedEvaluation;
+import org.jamesframework.core.search.neigh.Move;
 
 /**
  * <p>
@@ -34,21 +40,24 @@ import org.jamesframework.core.problems.objectives.Objective;
  * <ul>
  *  <li>
  *  <p>
- *      <b>Rejecting constraints</b>: any solution violating a rejecting constraint is immediately rejected, regardless
- *      of its evaluation. More precisely, for such solutions, {@link #rejectSolution(Solution)} returns <code>true</code>.
+ *      <b>Mandatory constraints</b>: a solution will only pass validation if it satisfies all mandatory constraints.
+ *      If not, it will be discarded regardless of its evaluation. It is guaranteed that the best solution found by
+ *      a search will always satisfy all mandatory constraints.
  *  </p>
  *  </li>
  *  <li>
  *  <p>
- *      <b>Penalizing constraints</b>: assign a penalty to the evaluation calculated by the objective, which is
- *      usually chosen to reflect the severeness of the violation. Solutions which are closer to satisfaction will
- *      then be favoured over solutions which violate the constraints more severely. In case of a maximizing objective,
- *      penalties are subtracted from the objective score, while they are added in case of a minimizing objective.
+ *      <b>Penalizing constraints</b>: assign penalties to the evaluation calculated by the objective, which are
+ *      usually chosen to reflect the severeness of the violation. Solutions closer to satisfaction are then
+ *      favoured over solutions that violate the constraints more severely. In case of maximization, penalties
+ *      are subtracted from the evaluation, while they are added to it in case of minimization. Depending
+ *      on the interaction between the evaluation and penalties, the best found solution might not satisfy
+ *      all penalizing constraints (which may or may not be desired).
  *  </p>
  *  </li>
  * </ul>
  * 
- * @param <SolutionType> type of solutions to the problem
+ * @param <SolutionType> type of solutions to the problem, required to extend {@link Solution}
  * @param <DataType> type of underlying data
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
@@ -59,8 +68,8 @@ public abstract class AbstractProblem<SolutionType extends Solution, DataType> i
     private Objective<? super SolutionType, ? super DataType> objective;
     // underlying data
     private DataType data;
-    // rejecting and penalizing constraints (may be more general than solution and data types of problem)
-    private final List<Constraint<? super SolutionType, ? super DataType>> rejectingConstraints;
+    // mandatory and penalizing constraints (may be more general than solution and data types of problem)
+    private final List<Constraint<? super SolutionType, ? super DataType>> mandatoryConstraints;
     private final List<PenalizingConstraint<? super SolutionType, ? super DataType>> penalizingConstraints;
     
     /**
@@ -81,7 +90,7 @@ public abstract class AbstractProblem<SolutionType extends Solution, DataType> i
         this.objective = objective;
         this.data = data;
         // initialize constraint lists
-        rejectingConstraints = new ArrayList<>();
+        mandatoryConstraints = new ArrayList<>();
         penalizingConstraints = new ArrayList<>();
     }
 
@@ -128,30 +137,32 @@ public abstract class AbstractProblem<SolutionType extends Solution, DataType> i
     }
     
     /**
-     * Add a rejecting constraint to the problem. For any solution that violates such constraint, <code>rejectSolution(...)</code>
-     * will return <code>true</code>. Only constraints designed for the solution and data types of the problem, or more general types,
-     * are accepted.
+     * Add a mandatory constraint to the problem. Only those solutions that satisfy all mandatory
+     * constraints will pass validation (see {@link #validate(Solution)}). Other solutions are discarded
+     * regardless of their evaluation.
+     * <p>
+     * Only constraints designed for the solution and data type of the problem (or more general) are accepted.
      * 
      * @param constraint rejecting constraint to add
      */
-    public void addRejectingConstraint(Constraint<? super SolutionType, ? super DataType> constraint){
-        rejectingConstraints.add(constraint);
+    public void addMandatoryConstraint(Constraint<? super SolutionType, ? super DataType> constraint){
+        mandatoryConstraints.add(constraint);
     }
     
     /**
-     * Remove a rejecting constraint. Returns <code>true</code> if the constraint has successfully been removed.
+     * Remove a mandatory constraint. Returns <code>true</code> if the constraint has been successfully removed.
      * 
-     * @param constraint rejecting constraint to be removed
-     * @return <code>true</code> if the problem contained the specified constraint
+     * @param constraint mandatory constraint to be removed
+     * @return <code>true</code> if the constraint is successfully removed
      */
-    public boolean removeRejectingConstraint(Constraint<? super SolutionType, ? super DataType> constraint){
-        return rejectingConstraints.remove(constraint);
+    public boolean removeMandatoryConstraint(Constraint<? super SolutionType, ? super DataType> constraint){
+        return mandatoryConstraints.remove(constraint);
     }
     
     /**
      * Add a penalizing constraint to the problem. For a solution that violates a penalizing constraint, a penalty will be
-     * assigned to the objective score. Only penalizing constraints designed for the solution and data types of the problem, or
-     * more general types, are accepted.
+     * assigned to the objective score. Only penalizing constraints designed for the solution and data type of the problem
+     * (or more general) are accepted.
      * 
      * @param constraint penalizing constraint to add
      */
@@ -163,64 +174,137 @@ public abstract class AbstractProblem<SolutionType extends Solution, DataType> i
      * Remove a penalizing constraint. True is returned if the constraint has successfully been removed.
      * 
      * @param constraint penalizing constraint to be removed
-     * @return true if the problem contained the specified constraint
+     * @return <code>true</code> if the constraint is successfully removed
      */
     public boolean removePenalizingConstraint(PenalizingConstraint<? super SolutionType, ? super DataType> constraint){
         return penalizingConstraints.remove(constraint);
     }
     
     /**
-     * Checks whether any of the specified rejecting constraints are violated. If so, this method returns <code>true</code>.
+     * <p>
+     * Validate a solution by checking all mandatory constraints. The solution
+     * will only pass validation if all mandatory constraints are satisfied.
+     * </p>
+     * <p>
+     * This is a short-circuiting operation: as soon as one violated constraint
+     * is found the remaining constraints are not checked.
+     * </p>
      * 
-     * @param solution solution to check against the rejecting constraints
-     * @return <code>true</code> if any rejecting constraint is violated
+     * @param solution solution to validate
+     * @return unanimous validation indicating whether all mandatory constraints are satisfied
      */
     @Override
-    public boolean rejectSolution(SolutionType solution){
-        return rejectingConstraints.stream().anyMatch(c -> !c.isSatisfied(solution, data));
+    public UnanimousValidation validate(SolutionType solution){
+        UnanimousValidation val = new UnanimousValidation();
+        mandatoryConstraints.stream()
+                            .allMatch(c -> {
+                                // validate solution against constraint c
+                                Validation cval = c.validate(solution, data);
+                                // add to unanimous validation
+                                val.addValidation(c, cval);
+                                // continue until one constraint is not satisfied
+                                return cval.passed();
+                            });
+        return val;
     }
     
     /**
-     * Returns a set of all violated constraints (both rejecting and penalizing constraints). If the given solution
-     * satisfies all constraints, the returned set will be empty.
+     * <p>
+     * Validate a move by checking all mandatory constraints. The move will
+     * only pass validation if all mandatory constraints are satisfied.
+     * </p>
+     * <p>
+     * This is a short-circuiting operation: as soon as one violated constraint
+     * is found the remaining constraints are not checked.
+     * </p>
      * 
-     * @param solution solution for which violated constraints are determined
-     * @return set of all violated constraints (rejecting and penalizing)
+     * @param move move to validate
+     * @param curSolution current solution of a local search
+     * @param curValidation validation of current solution
+     * @return unanimous validation indicating whether all mandatory constraints are satisfied
      */
-    public Set<Constraint<? super SolutionType, ? super DataType>> getViolatedConstraints(SolutionType solution){
+    @Override
+    public UnanimousValidation validate(Move<? super SolutionType> move,
+                                        SolutionType curSolution,
+                                        Validation curValidation){
+        UnanimousValidation curUnanimousVal = (UnanimousValidation) curValidation;
+        UnanimousValidation newUnanimousVal = new UnanimousValidation();
+        mandatoryConstraints.stream()
+                            .allMatch(c -> {
+                                // retrieve original validation produced by constraint c
+                                Validation curval = curUnanimousVal.getValidation(c);
+                                // validate move against constraint c
+                                Validation newval;
+                                if(curval != null){
+                                    // current validation known: delta validation
+                                    newval = c.validate(move, curSolution, curval, data);
+                                } else {
+                                    // current validation unknown: full validation
+                                    // (can happen due to short-circuiting behaviour)
+                                    newval = c.validate(curSolution, data);
+                                }
+                                // add to unanimous validation
+                                newUnanimousVal.addValidation(c, newval);
+                                // continue until one constraint is not satisfied
+                                return newval.passed();
+                            });
+        return newUnanimousVal;
+    }
+    
+    /**
+     * Returns a collection of all violated constraints (both mandatory and penalizing).
+     * 
+     * @param solution solution for which all violated constraints are determined
+     * @return collection of all violated constraints (mandatory and penalizing); possibly empty
+     */
+    public Collection<Constraint<? super SolutionType, ? super DataType>> getViolatedConstraints(SolutionType solution){
         // return set with all violated constraints
-        return Stream.concat(rejectingConstraints.stream(), penalizingConstraints.stream())
-                     .filter(c -> !c.isSatisfied(solution, data))
+        return Stream.concat(mandatoryConstraints.stream(), penalizingConstraints.stream())
+                     .filter(c -> !c.validate(solution, data).passed())
                      .collect(Collectors.toSet());
     }
 
     /**
-     * Evaluates a solution by taking into account both the score calculated by the objective function and the
-     * penalizing constraints (if any). First, the objective function is calculated for the given solution.
-     * Then, penalties are assigned for any violated penalizing constraint. Penalties are subtracted in case
-     * of maximization, and added in case of minimization. The resulting score is returned.
+     * Evaluates a solution by taking into account both the evaluation calculated by the objective function and the
+     * penalizing constraints (if any). Penalties are assigned for any violated penalizing constraint, which are
+     * subtracted from the evaluation in case of maximization, and added to it in case of minimization.
      * 
      * @param solution solution to be evaluated
      * @return aggregated evaluation taking into account both the objective function and penalizing constraints
      */
     @Override
-    public double evaluate(SolutionType solution) {
+    public PenalizedEvaluation evaluate(SolutionType solution) {
         // evaluate objective function
-        double eval = objective.evaluate(solution, data);
-        // compute penalties
-        double penalty = penalizingConstraints.stream()
-                                              .mapToDouble(pc -> pc.computePenalty(solution, data))
-                                              .sum();
-        // assign penalty to evaluation
-        if(objective.isMinimizing()){
-            // minimizing: add penalty
-            eval += penalty;
-        } else {
-            // maximizing: subtract penalty
-            eval -= penalty;
-        }
+        Evaluation eval = objective.evaluate(solution, data);
+        // initialize penalized evaluation object
+        PenalizedEvaluation penEval = new PenalizedEvaluation(eval, isMinimizing());
+        // add penalties
+        penalizingConstraints.forEach(pc -> penEval.addPenalizingValidation(pc, pc.validate(solution, data)));
         // return aggregated evaluation
-        return eval;
+        return penEval;
+    }
+    
+    @Override
+    public PenalizedEvaluation evaluate(Move<? super SolutionType> move,
+                                        SolutionType curSolution,
+                                        Evaluation curEvaluation){
+        PenalizedEvaluation curPenalizedEval = (PenalizedEvaluation) curEvaluation;
+        // retrieve current evaluation without penalties
+        Evaluation curEval = curPenalizedEval.getEvaluation();
+        // perform delta evaluation
+        Evaluation newEval = objective.evaluate(move, curSolution, curEval, data);
+        // initialize new penalized evaluation
+        PenalizedEvaluation newPenalizedEval = new PenalizedEvaluation(newEval, isMinimizing());
+        // perform delta validation for each penalizing constraint
+        penalizingConstraints.forEach(pc -> {
+            // retrieve current penalizing validation
+            PenalizingValidation curVal = curPenalizedEval.getPenalizingValidation(pc);
+            // delta validation
+            PenalizingValidation newVal = pc.validate(move, curSolution, curVal, data);
+            // add penalty
+            newPenalizedEval.addPenalizingValidation(pc, newVal);
+        });
+        return newPenalizedEval;
     }
 
     /**

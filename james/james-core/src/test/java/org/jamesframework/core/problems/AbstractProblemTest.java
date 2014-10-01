@@ -139,7 +139,7 @@ public class AbstractProblemTest {
     }
     
     /**
-     * Test of addRejectingConstraint method, of class AbstractProblem.
+     * Test of addMandatoryConstraint method, of class AbstractProblem.
      */
     @Test
     public void testAddRejectingConstraintConstraint() {
@@ -148,15 +148,15 @@ public class AbstractProblemTest {
         
         // check that both general constraints as well as constraints
         // with penalty definitions can be added as a rejecting constraint
-        problem.addRejectingConstraint(new AlwaysSatisfiedConstraintStub());
-        problem.addRejectingConstraint(new NeverSatisfiedConstraintStub());
-        problem.addRejectingConstraint(new AlwaysSatisfiedPenalizingConstraintStub());
-        problem.addRejectingConstraint(new NeverSatisfiedPenalizingConstraintStub(123.0));
+        problem.addMandatoryConstraint(new AlwaysSatisfiedConstraintStub());
+        problem.addMandatoryConstraint(new NeverSatisfiedConstraintStub());
+        problem.addMandatoryConstraint(new AlwaysSatisfiedPenalizingConstraintStub());
+        problem.addMandatoryConstraint(new NeverSatisfiedPenalizingConstraintStub(123.0));
         
     }
 
     /**
-     * Test of removeRejectingConstraint method, of class AbstractProblem.
+     * Test of removeMandatoryConstraint method, of class AbstractProblem.
      */
     @Test
     public void testRemoveRejectingConstraint() {
@@ -170,16 +170,16 @@ public class AbstractProblemTest {
         
         
         // add constraint c0 and c1 as rejecting constraint
-        problem.addRejectingConstraint(c0);
-        problem.addRejectingConstraint(c1);
+        problem.addMandatoryConstraint(c0);
+        problem.addMandatoryConstraint(c1);
         // try to remove c2 which was never added
-        assertFalse(problem.removeRejectingConstraint(c2));
+        assertFalse(problem.removeMandatoryConstraint(c2));
         // remove constraints that were added
-        assertTrue(problem.removeRejectingConstraint(c0));
-        assertTrue(problem.removeRejectingConstraint(c1));
+        assertTrue(problem.removeMandatoryConstraint(c0));
+        assertTrue(problem.removeMandatoryConstraint(c1));
         // try to remove again
-        assertFalse(problem.removeRejectingConstraint(c0));
-        assertFalse(problem.removeRejectingConstraint(c1));
+        assertFalse(problem.removeMandatoryConstraint(c0));
+        assertFalse(problem.removeMandatoryConstraint(c1));
         
     }
 
@@ -215,7 +215,7 @@ public class AbstractProblemTest {
         // try to remove c1 which was never added
         assertFalse(problem.removePenalizingConstraint(c1));
         // try to remove c0 as REJECTING constraint -- NEVER added with this role
-        assertFalse(problem.removeRejectingConstraint(c0));
+        assertFalse(problem.removeMandatoryConstraint(c0));
         // remove c0 as PENALIZING constraint
         assertTrue(problem.removePenalizingConstraint(c0));
         // try again
@@ -237,17 +237,17 @@ public class AbstractProblemTest {
         assertFalse(problem.rejectSolution(sol));
         
         // add constraints which are always satisfied
-        problem.addRejectingConstraint(new AlwaysSatisfiedConstraintStub());
+        problem.addMandatoryConstraint(new AlwaysSatisfiedConstraintStub());
         problem.addPenalizingConstraint(new AlwaysSatisfiedPenalizingConstraintStub());
         // verify
         assertFalse(problem.rejectSolution(sol));
         
         // add unsatisfiable rejecting constraint
         Constraint<Solution,Object> unsatisfiable = new NeverSatisfiedConstraintStub();
-        problem.addRejectingConstraint(unsatisfiable);
+        problem.addMandatoryConstraint(unsatisfiable);
         assertTrue(problem.rejectSolution(sol));
         // remove the constraint
-        problem.removeRejectingConstraint(unsatisfiable);
+        problem.removeMandatoryConstraint(unsatisfiable);
         
         // same thing with unsatisfiable penalizing constraint
         PenalizingConstraint<Solution,Object> unsatisfiable2 = new NeverSatisfiedPenalizingConstraintStub(123.0);
@@ -272,18 +272,18 @@ public class AbstractProblemTest {
         assertTrue(problem.getViolatedConstraints(sol).isEmpty());
         
         // add constraints which are always satisfied
-        problem.addRejectingConstraint(new AlwaysSatisfiedConstraintStub());
+        problem.addMandatoryConstraint(new AlwaysSatisfiedConstraintStub());
         problem.addPenalizingConstraint(new AlwaysSatisfiedPenalizingConstraintStub());
         // verify
         assertTrue(problem.getViolatedConstraints(sol).isEmpty());
         
         // add unsatisfiable rejecting constraint
         Constraint<Solution,Object> unsatisfiable = new NeverSatisfiedConstraintStub();
-        problem.addRejectingConstraint(unsatisfiable);
+        problem.addMandatoryConstraint(unsatisfiable);
         assertEquals(1, problem.getViolatedConstraints(sol).size());
         assertTrue(problem.getViolatedConstraints(sol).contains(unsatisfiable));
         // remove the constraint
-        problem.removeRejectingConstraint(unsatisfiable);
+        problem.removeMandatoryConstraint(unsatisfiable);
         
         // same thing with unsatisfiable penalizing constraint
         PenalizingConstraint<Solution,Object> unsatisfiable2 = new NeverSatisfiedPenalizingConstraintStub(123.0);

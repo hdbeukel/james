@@ -167,7 +167,7 @@ public class LRSubsetSearchTest extends SearchTestTemplate {
     public void testSingleRunWithUnsatisfiableConstraint() {
         System.out.println(" - test single run with unsatisfiable constraint (L=" + DEFAULT_L + ", R=" + DEFAULT_R + ")");
         // add constraint
-        problem.addRejectingConstraint(new NeverSatisfiedConstraintStub());
+        problem.addMandatoryConstraint(new NeverSatisfiedConstraintStub());
         // single run
         singleRunWithMaxRuntime(search, problem, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
         // verify
@@ -203,7 +203,7 @@ public class LRSubsetSearchTest extends SearchTestTemplate {
     public void testSubsequentRunsWithUnsatisfiableConstraint() {
         System.out.println(" - test subsequent runs with unsatisfiable constraint (L=" + DEFAULT_L + ", R=" + DEFAULT_R + ")");
         // set constraint
-        problem.addRejectingConstraint(new NeverSatisfiedConstraintStub());
+        problem.addMandatoryConstraint(new NeverSatisfiedConstraintStub());
         // perform multiple runs (maximizing objective)
         multiRunWithMaximumRuntime(search, MULTI_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT, NUM_RUNS, true, true);
         // verify

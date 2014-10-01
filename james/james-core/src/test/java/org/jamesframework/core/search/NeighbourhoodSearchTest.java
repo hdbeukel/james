@@ -258,7 +258,7 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
 
             // repeat with always rejecting constraint and random initial solution
             NeverSatisfiedConstraintStub c = new NeverSatisfiedConstraintStub();
-            problem.addRejectingConstraint(c);
+            problem.addMandatoryConstraint(c);
             neighSearch.setCurrentSolution(problem.createRandomSolution());
             // create random addition, deletion and swap move
             m = new AdditionMove(SetUtilities.getRandomElement(neighSearch.getCurrentSolution().getUnselectedIDs(), RG));
@@ -270,7 +270,7 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
             assertFalse(neighSearch.isImprovement(m2));
             assertFalse(neighSearch.isImprovement(m3));
             // remove constraint
-            problem.removeRejectingConstraint(c);
+            problem.removeMandatoryConstraint(c);
         
         }
         
@@ -305,7 +305,7 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
         }
         
         // add always rejecting constraint
-        problem.addRejectingConstraint(new NeverSatisfiedConstraintStub());
+        problem.addMandatoryConstraint(new NeverSatisfiedConstraintStub());
         // set new random current solution
         neighSearch.setCurrentSolution(problem.createRandomSolution());
         // verify that all moves are rejected

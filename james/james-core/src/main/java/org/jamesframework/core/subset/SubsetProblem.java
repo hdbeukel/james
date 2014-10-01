@@ -171,7 +171,7 @@ public class SubsetProblem<DataType extends IntegerIdentifiedData> extends Abstr
     
     /**
      * Checks whether the given subset solution is rejected. A subset solution is rejected if any of the
-     * rejecting constraints is violated (see {@link #addRejectingConstraint(Constraint)}) or if it has
+     * rejecting constraints is violated (see {@link #addMandatoryConstraint(Constraint)}) or if it has
      * an invalid size (number of selected IDs).
      * 
      * @param solution subset solution to verify
@@ -184,7 +184,7 @@ public class SubsetProblem<DataType extends IntegerIdentifiedData> extends Abstr
     
     /**
      * Checks whether the given subset solution is rejected. A subset solution is rejected if any of
-     * the rejecting constraints is violated (see {@link #addRejectingConstraint(Constraint)}). Only
+     * the rejecting constraints is violated (see {@link #addMandatoryConstraint(Constraint)}). Only
      * when <code>checkSubsetSize</code> is <code>true</code> the solution is also rejected if it has
      * an invalid size.
      * 

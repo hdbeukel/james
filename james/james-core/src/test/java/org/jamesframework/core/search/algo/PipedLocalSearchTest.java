@@ -177,7 +177,7 @@ public class PipedLocalSearchTest extends SearchTestTemplate {
     public void testSingleRunWithUnsatisfiableConstraint() {
         System.out.println(" - test single run with unsatisfiable constraint");
         // add constraint
-        problem.addRejectingConstraint(new NeverSatisfiedConstraintStub());
+        problem.addMandatoryConstraint(new NeverSatisfiedConstraintStub());
         // single run
         singleRunWithMaxRuntime(pipedLocalSearch, problem, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
         // verify
