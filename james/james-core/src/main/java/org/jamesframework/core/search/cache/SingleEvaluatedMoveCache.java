@@ -16,15 +16,19 @@
 
 package org.jamesframework.core.search.cache;
 
+import org.jamesframework.core.problems.constraints.Validation;
+import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.search.neigh.Move;
 
 /**
- * A single move cache only stores the last evaluation and validity that were offered to the cache.
+ * A single move cache only stores the last evaluation and validation that were offered to the cache.
  * Any previously cached value is immediately discarded and replaced with the new value. In general,
  * most neighbourhood searches select a single candidate move (random, best, ...) from the neighbourhood
- * in every step and then merely decide whether or not to apply it to the current solution. Therefore, a
- * single move cache can be used to appropriately cache the validity and evaluation of this candidate move,
- * with minor memory overhead.
+ * in every step and then just decide whether or not to apply it to the current solution. Therefore, a
+ * single move cache can be used to effectively cache the evaluation and validation of this candidate
+ * move with minor memory overhead.
+ * <p>
+ * This is the default cache of any neighbourhood search.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
@@ -32,11 +36,11 @@ public class SingleEvaluatedMoveCache implements EvaluatedMoveCache {
     
     // single cached move evaluation
     private Move<?> evaluatedMove;
-    private Double evaluation;
+    private Evaluation evaluation;
     
-    // single cached move validity
+    // single cached move validation
     private Move<?> validatedMove;
-    private Boolean rejected;
+    private Validation rejected;
     
     /**
      * Create an empty single evaluated move cache.
@@ -52,21 +56,21 @@ public class SingleEvaluatedMoveCache implements EvaluatedMoveCache {
      * @param evaluation evaluation of obtained neighbour
      */
     @Override
-    public final void cacheMoveEvaluation(Move<?> move, double evaluation) {
+    public final void cacheMoveEvaluation(Move<?> move, Evaluation evaluation) {
         evaluatedMove = move;
         this.evaluation = evaluation;
     }
 
     /**
      * Retrieve a cached evaluation, if still available. If the evaluation of any
-     * other move has been cached at a later point in time, it will have overwritten
-     * the evaluation of this move.
+     * other move has been cached at a later point in time, the value for this move
+     * will have been overwritten.
      * 
      * @param move move applied to the current solution
      * @return cached evaluation of the obtained neighbour, if available, <code>null</code> if not
      */
     @Override
-    public final Double getCachedMoveEvaluation(Move<?> move) {
+    public final Evaluation getCachedMoveEvaluation(Move<?> move) {
         if(evaluatedMove == null || !evaluatedMove.equals(move)){
             // cache miss
             return null;
@@ -77,27 +81,26 @@ public class SingleEvaluatedMoveCache implements EvaluatedMoveCache {
     }
 
     /**
-     * Cache rejection of the given move, discarding any previously cached value.
+     * Cache validation of the given move, discarding any previously cached value.
      * 
      * @param move move applied to the current solution
-     * @param isRejected indicates whether the obtained neighbour is rejected
+     * @param validation validation of obtained neighbour
      */
     @Override
-    public final void cacheMoveRejection(Move<?> move, boolean isRejected) {
+    public final void cacheMoveValidation(Move<?> move, Validation validation) {
         validatedMove = move;
-        rejected = isRejected;
+        rejected = validation;
     }
 
     /**
-     * Retrieve cached rejection, if still available. If rejection of any other move has
+     * Retrieve a cached validation, if still available. If the validation of any other move has
      * been cached at a later point in time, the value for this move will have been overwritten.
      * 
      * @param move move applied to the current solution
-     * @return <code>true</code> if the obtained neighbour is known to be rejected,
-     *         <code>null</code> if the requested value is not available in the cache
+     * @return cached validation of the obtained neighbour, if available, <code>null</code> if not
      */
     @Override
-    public final Boolean getCachedMoveRejection(Move<?> move) {
+    public final Validation getCachedMoveRejection(Move<?> move) {
         if(validatedMove == null || !validatedMove.equals(move)){
             // cache miss
             return null;

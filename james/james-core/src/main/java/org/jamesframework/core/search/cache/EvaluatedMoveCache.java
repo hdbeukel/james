@@ -17,13 +17,16 @@
 package org.jamesframework.core.search.cache;
 
 import org.jamesframework.core.problems.Problem;
+import org.jamesframework.core.problems.Solution;
+import org.jamesframework.core.problems.constraints.Validation;
+import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.search.neigh.Move;
 
 /**
- * Interface of a cache that records rejections (see {@link Problem#rejectSolution(Solution)}) and
+ * Interface of a cache that stores validations (see {@link Problem#validate(Solution)}) and
  * evaluations (see {@link Problem#evaluate(Solution)}) of neighbours obtained by applying moves
  * to the current solution in a neighbourhood search. Whenever a move is validated and evaluated, the
- * computed values may be offered to the cache. They can be retrieved later, when the same move is
+ * computed values may be presented to the cache. They can be retrieved later, when the same move is
  * validated or evaluated again for the same current solution, if these value are still contained
  * in the cache at that time.
  * <p>
@@ -33,11 +36,11 @@ import org.jamesframework.core.search.neigh.Move;
  * value is retrieved from the cache, it will be correct.
  * <p>
  * When the current solution of a neighbourhood search is modified, any move cache used by this
- * search should be cleared using {@link #clear()}, as then it is no longer valid.
+ * search should be cleared using {@link #clear()} as then the cache is no longer valid.
  * <p>
  * Note that when using a cache implementation that stores multiple values, it may be beneficial
  * to override {@link Object#equals(Object)} and {@link Object#hashCode()} in the moves generated
- * by the applied neighbourhood, to increase the number of cache hits.
+ * by the applied neighbourhood, to increase the probability of a cache hit.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
@@ -51,44 +54,40 @@ public interface EvaluatedMoveCache {
      * @param move move applied to the current solution
      * @param evaluation evaluation of the obtained neighbour
      */
-    public void cacheMoveEvaluation(Move<?> move, double evaluation);
+    public void cacheMoveEvaluation(Move<?> move, Evaluation evaluation);
     
     /**
      * Retrieve the cached evaluation (see {@link Problem#evaluate(Solution)}) of the neighbouring
      * solution which is obtained by applying the given move to the current solution, if available.
      * If this evaluation is not (or no longer) available in the cache, <code>null</code> is returned.
-     * Else, the returned value is guaranteed to be correct.
      * 
      * @param move move applied to the current solution
      * @return evaluation of the obtained neighbour, <code>null</code> if not available in the cache
      */
-    public Double getCachedMoveEvaluation(Move<?> move);
+    public Evaluation getCachedMoveEvaluation(Move<?> move);
     
     /**
-     * Request to cache rejection (see {@link Problem#rejectSolution(Solution)}) of the neighbouring
+     * Request to cache the validation (see {@link Problem#validate(Solution)}) of the neighbouring
      * solution which is obtained by applying the given move to the current solution. The specific cache
      * implementation may decide whether to store the given value and/or discard previously cached values.
      * 
      * @param move move applied to the current solution
-     * @param isRejected indicates whether the obtained neighbour is rejected
+     * @param validation validation of the obtained neighbour
      */
-    public void cacheMoveRejection(Move<?> move, boolean isRejected);
+    public void cacheMoveValidation(Move<?> move, Validation validation);
     
     /**
-     * Retrieve cached rejection (see {@link Problem#evaluate(Solution)}) of the neighbouring
+     * Retrieve the cached validation (see {@link Problem#validate(Solution)}) of the neighbouring
      * solution which is obtained by applying the given move to the current solution, if available.
-     * If this evaluation is not (or no longer) available in the cache, <code>null</code> is returned.
-     * Else, <code>true</code> is returned if the obtained neighbour is rejected, and <code>false</code>
-     * is returned in case of a valid neighbour.
+     * If this validation is not (or no longer) available in the cache, <code>null</code> is returned.
      * 
      * @param move move applied to the current solution
-     * @return <code>true</code> if obtained neighbour is rejected, <code>null</code> if not available in the cache
+     * @return validation of the obtained neighbour, <code>null</code> if not available in the cache
      */
-    public Boolean getCachedMoveRejection(Move<?> move);
+    public Validation getCachedMoveRejection(Move<?> move);
     
     /**
-     * Clears all cached values. This method should at least be called whenever the current solution
-     * has been modified, as then the cached values are no longer valid.
+     * Clears all cached values.
      */
     public void clear();
     
