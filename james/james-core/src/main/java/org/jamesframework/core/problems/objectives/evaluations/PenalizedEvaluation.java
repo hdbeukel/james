@@ -16,21 +16,15 @@
 
 package org.jamesframework.core.problems.objectives.evaluations;
 
+import java.util.HashMap;
 import java.util.Map;
-import org.jamesframework.core.problems.constraints.PenalizingConstraint;
 import org.jamesframework.core.problems.constraints.PenalizingValidation;
 import org.jamesframework.core.problems.objectives.Evaluation;
 
 /**
- * <p>
  * A penalized evaluation consists of an original evaluation and a number of penalizing validations.
  * The final double value is computed by subtracting or adding the assigned penalties from/to the
  * original evaluation, depending on whether evaluations are being maximized or minimized, respectively.
- * </p>
- * <p>
- * The object keeps track of which validations were produced by which penalizing constraints so that
- * these validation objects can be retrieved to perform delta validations.
- * </p>
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
@@ -39,7 +33,7 @@ public class PenalizedEvaluation implements Evaluation {
     // original evaluation
     private final Evaluation evaluation;
     // penalizing validations
-    private final Map<PenalizingConstraint<?,?>, PenalizingValidation> penalties;
+    private final Map<Object, PenalizingValidation> penalties;
     // indicates whether evaluations are maximized or minimized
     private final boolean minimizing;
     
@@ -47,31 +41,39 @@ public class PenalizedEvaluation implements Evaluation {
     private Double cachedValue = null;
     
     /**
-     * Create a new penalized evaluation. The penalties should be given as a map that maps
-     * each penalizing constraint on the produced validation object. If <code>minimizing</code>
-     * is <code>true</code>, penalties are added to the original evaluation, else they are
-     * subtracted from it.
+     * Create a new penalized evaluation, given the original evaluation. Penalties can be added
+     * later by calling {@link #addPenalizingValidation(Object, PenalizingValidation)}. If
+     * <code>minimizing</code> is <code>true</code>, penalties are added to the original
+     * evaluation, else they are subtracted from it.
      * 
      * @param evaluation original evaluation
-     * @param penalties validation objects produced by penalizing constraints
      * @param minimizing <code>true</code> if evaluations are minimized
      */
-    public PenalizedEvaluation(Evaluation evaluation,
-                               Map<PenalizingConstraint<?,?>, PenalizingValidation> penalties,
-                               boolean minimizing){
+    public PenalizedEvaluation(Evaluation evaluation, boolean minimizing){
         this.evaluation = evaluation;
-        this.penalties = penalties;
         this.minimizing = minimizing;
+        this.penalties = new HashMap<>();
     }
     
     /**
-     * Get the validation object that was produced by a specific penalizing constraint.
+     * Add a penalty expressed by a penalizing validation object. A key is
+     * required that can be used to retrieve the validation object later.
      * 
-     * @param constraint penalizing constraint
-     * @return produced validation object
+     * @param key key used to retrieve the validation object later
+     * @param penalty penalizing validation that indicates the assigned penalty
      */
-    public PenalizingValidation getValidation(PenalizingConstraint<?,?> constraint){
-        return penalties.get(constraint);
+    public void addPenalizingValidation(Object key, PenalizingValidation penalty){
+        penalties.put(key, penalty);
+    }
+    
+    /**
+     * Retrieve the penalizing validation object corresponding to the given key.
+     * 
+     * @param key key specified when adding the penalizing validation
+     * @return retrieved validation object
+     */
+    public PenalizingValidation getPenalizingValidation(Object key){
+        return penalties.get(key);
     }
 
     /**
