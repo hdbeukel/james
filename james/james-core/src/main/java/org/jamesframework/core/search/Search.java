@@ -708,14 +708,14 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
      * @return <code>true</code> if the given solution is accepted as the new best solution
      */
     protected boolean updateBestSolution(SolutionType newSolution){
-        // check if new solution is not rejected
+        // check if new solution is valid
         if(!problem.rejectSolution(newSolution)){
             // evaluate solution
             double eval = problem.evaluate(newSolution);
             // update, if better
             return updateBestSolution(newSolution, eval);
         }
-        // solution is rejected
+        // solution is invalid
         return false;
     }
     

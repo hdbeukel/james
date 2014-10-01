@@ -24,10 +24,11 @@ import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 
 /**
- * Basic random descent algorithm. In every search step, a random neighbour is created by applying a random move to the current solution.
- * If this neighbour is an improvement over the current solution, it is accepted as the new current solution; else, it is rejected. The
- * random descent algorithm usually does not come to a natural end, and therefore fully depends on stop criteria for termination, except
- * in the unusual case when the current solution does not have any neighbours.
+ * Basic random descent algorithm. In every search step, a random neighbour is created by applying a random move to
+ * the current solution. If this neighbour is a valid improvement over the current solution, it is accepted as the
+ * new current solution; else, it is rejected. The random descent algorithm usually does not come to a natural end,
+ * and therefore fully depends on stop criteria for termination, except in the unusual case when the current solution
+ * does not have any valid neighbours.
  * 
  * @param <SolutionType> solution type of the problems that may be solved using this search, required to extend {@link Solution}
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>

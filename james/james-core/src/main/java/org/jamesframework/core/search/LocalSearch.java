@@ -282,7 +282,7 @@ public abstract class LocalSearch<SolutionType extends Solution> extends Search<
     protected void updateCurrentAndBestSolution(SolutionType solution, double evaluation, boolean skipBestSolutionValidation){
         // update current solution
         updateCurrentSolution(solution, evaluation);
-        // update best solution, if solution is not rejected (or if validation is skipped)
+        // update best solution, if solution is valid (or if validation is skipped)
         if(skipBestSolutionValidation || !getProblem().rejectSolution(solution)){
             updateBestSolution(solution, evaluation);
         }

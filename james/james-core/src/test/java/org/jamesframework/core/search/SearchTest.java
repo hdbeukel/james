@@ -104,7 +104,7 @@ public class SearchTest extends SearchTestTemplate {
     }
     
     /**
-     * Test with rejecting constraint.
+     * Test with mandatory constraint.
      */
     @Test
     public void testWithConstraint() {
@@ -332,7 +332,7 @@ public class SearchTest extends SearchTestTemplate {
 
         @Override
         public void newBestSolution(Search<? extends SubsetSolution> search, SubsetSolution newBestSolution, double newBestSolutionEvaluation) {
-            // assert that new best solution is not rejected by the problem
+            // assert that new best solution is valid
             assertFalse(problem.rejectSolution(newBestSolution));
             // assert that it is better than the previous best solution
             if(prevBestSolEval != null){

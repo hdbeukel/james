@@ -143,7 +143,7 @@ public abstract class AbstractProblem<SolutionType extends Solution, DataType> i
      * <p>
      * Only constraints designed for the solution and data type of the problem (or more general) are accepted.
      * 
-     * @param constraint rejecting constraint to add
+     * @param constraint mandatory constraint to add
      */
     public void addMandatoryConstraint(Constraint<? super SolutionType, ? super DataType> constraint){
         mandatoryConstraints.add(constraint);

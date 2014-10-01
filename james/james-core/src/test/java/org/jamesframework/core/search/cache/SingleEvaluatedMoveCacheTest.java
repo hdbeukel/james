@@ -106,9 +106,9 @@ public class SingleEvaluatedMoveCacheTest {
      * Test of cacheMoveValidation method, of class SingleEvaluatedMoveCache.
      */
     @Test
-    public void testCacheMoveRejection() {
+    public void testCacheMoveValidation() {
         
-        System.out.println(" - test cacheMoveRejection");
+        System.out.println(" - test cacheMoveValidation");
         
         // create dummy moves and validities
         SwapMove m1 = new SwapMove(-1, -2);
@@ -118,7 +118,7 @@ public class SingleEvaluatedMoveCacheTest {
         // check empty cache
         assertNull(cache.getCachedMoveRejection(m1));
         
-        // cache rejection of first move
+        // cache validation of first move
         cache.cacheMoveRejection(m1, m1rejected);
         // verify
         assertNotNull(cache.getCachedMoveRejection(m1));

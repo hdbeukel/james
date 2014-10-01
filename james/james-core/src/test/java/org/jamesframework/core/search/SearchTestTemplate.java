@@ -108,7 +108,7 @@ public class SearchTestTemplate {
     }
     
     /**
-     * Perform a single run of a search, with maximum runtime. It is verified that the best solution is not rejected, if any.
+     * Perform a single run of a search, with maximum runtime. It is verified that the best solution is valid, if any.
      */
     protected void singleRunWithMaxRuntime(Search<SubsetSolution> search, Problem<SubsetSolution> problem, long maxRuntime, TimeUnit maxRuntimeTimeUnit){
         if(maxRuntimeTimeUnit != null){

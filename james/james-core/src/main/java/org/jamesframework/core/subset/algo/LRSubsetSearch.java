@@ -30,10 +30,9 @@ import org.jamesframework.core.search.LocalSearch;
  * every step consists of performing the \(R\) best removals followed by the \(L\) best additions of a single item.
  * After every step, the subset size has changed with a value of \(\Delta = |L-R|\).
  * <p>
- * The search only considers additions and deletions that yield a solution which is not rejected by the problem,
- * without checking the current subset size as this size is actively brought into the valid range during search
- * (see {@link SubsetProblem#rejectSolution(SubsetSolution, boolean)}). By default, in case of an increasing subset
- * size, the search starts with an empty subset, and in case of a decreasing subset size all items are initially
+ * The search only considers additions and deletions that yield valid solutions without checking the current subset
+ * size as this size is actively brought into the valid range during search. By default, in case of an increasing
+ * subset size, the search starts with an empty subset, and in case of a decreasing subset size all items are initially
  * selected. Alternatively, a custom initial solution can be set by calling {@link #setCurrentSolution(Solution)}
  * before starting the search.
  * <p>

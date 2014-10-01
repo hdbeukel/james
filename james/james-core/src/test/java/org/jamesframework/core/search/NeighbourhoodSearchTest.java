@@ -256,7 +256,7 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
             // switch back to maximizing
             obj.setMaximizing();
 
-            // repeat with always rejecting constraint and random initial solution
+            // repeat with unsatisfiable constraint and random initial solution
             NeverSatisfiedConstraintStub c = new NeverSatisfiedConstraintStub();
             problem.addMandatoryConstraint(c);
             neighSearch.setCurrentSolution(problem.createRandomSolution());
@@ -265,7 +265,7 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
             m2 = new DeletionMove(SetUtilities.getRandomElement(neighSearch.getCurrentSolution().getSelectedIDs(), RG));
             SwapMove m3 = new SwapMove(SetUtilities.getRandomElement(neighSearch.getCurrentSolution().getUnselectedIDs(), RG),
                                        SetUtilities.getRandomElement(neighSearch.getCurrentSolution().getSelectedIDs(), RG));
-            // verify (no moves are considered improvements because of rejecting constraint)
+            // verify (no moves are considered improvements because of mandatory constraint)
             assertFalse(neighSearch.isImprovement(m));
             assertFalse(neighSearch.isImprovement(m2));
             assertFalse(neighSearch.isImprovement(m3));
@@ -304,7 +304,7 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
             bestMove = neighSearch.getBestMove(moves, true);
         }
         
-        // add always rejecting constraint
+        // add unsatisfiable constraint
         problem.addMandatoryConstraint(new NeverSatisfiedConstraintStub());
         // set new random current solution
         neighSearch.setCurrentSolution(problem.createRandomSolution());

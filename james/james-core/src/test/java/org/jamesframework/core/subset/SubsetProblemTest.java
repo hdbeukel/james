@@ -485,14 +485,14 @@ public class SubsetProblemTest {
     }
     
     /**
-     * Test of rejectSolution method, of class SubsetProblem.
+     * Test of validate method, of class SubsetProblem.
      */
     @Test
-    public void testRejectSolution(){
+    public void testValidate(){
         
-        System.out.println(" - test rejectSolution");
+        System.out.println(" - test validate");
         
-        // check whether solutions of invalid size are rejected
+        // check: solutions of invalid size should be invalid
         
         // too small
         SubsetSolution tooSmall = problem2.createEmptySubsetSolution();

@@ -45,19 +45,19 @@ import org.jamesframework.core.util.LocalSearchFactory;
  *   The best solution found by \(L\) is referred to as \(x''\).
  *  </li>
  *  <li>
- *   <b>Acceptance</b>: if \(x''\) is an improvement over \(x\) (i.e. \(x''\) is not rejected and has a better
- *   evaluation than \(x\)), it is accepted as the new current solution and \(s\) is reset to 0. Else, \(x\)
- *   remains the current solution and \(s\) is increased by one, so that the next shaking neighbourhood will be
- *   applied in the next step. If \(s\) becomes equal to the number of shaking neighbourhoods \(n_s\), it is
- *   cyclically reset to 0. Therefore, VNS never terminates internally but continues until a stop criterion is met.
+ *   <b>Acceptance</b>: if \(x''\) is a valid improvement over \(x\) it is accepted as the new current
+ *   solution and \(s\) is reset to 0. Else, \(x\) remains the current solution and \(s\) is increased
+ *   by one, so that the next shaking neighbourhood will be applied in the next step. If \(s\) becomes
+ *   equal to the number of shaking neighbourhoods \(n_s\), it is cyclically reset to 0. Therefore, VNS
+ *   never terminates internally but continues until a stop criterion is met.
  *  </li>
  * </ol>
  * <p>
  * By default, VNS applies variable neighbourhood descent (VND) as the local search algorithm L used to modify
- * \(x'\). The list of neighbourhoods of VND is not required to be related to the shaking neighbourhoods of VNS. As VND
- * is computationally intensive (it generates all neighbours in the current neighbourhood in every step), smaller
- * neighbourhoods are often applied for VND compared to the shaking neighbourhoods of VNS. The latter may grow larger
- * without computational concerns as they are only used for random sampling.
+ * \(x'\). The list of neighbourhoods of VND is not required to be related to the shaking neighbourhoods of VNS.
+ * As VND is computationally intensive (it generates all neighbours in the current neighbourhood in every step),
+ * smaller neighbourhoods are often applied for VND compared to the shaking neighbourhoods of VNS. The latter may
+ * grow larger without computational concerns as they are only used for random sampling.
  * </p>
  * <p>
  * It is possible to use any other local search algorithm \(L\), by specifying a custom neighbourhood search factory.

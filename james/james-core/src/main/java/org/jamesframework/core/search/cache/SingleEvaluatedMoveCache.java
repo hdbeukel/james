@@ -40,7 +40,7 @@ public class SingleEvaluatedMoveCache implements EvaluatedMoveCache {
     
     // single cached move validation
     private Move<?> validatedMove;
-    private Validation rejected;
+    private Validation validation;
     
     /**
      * Create an empty single evaluated move cache.
@@ -89,7 +89,7 @@ public class SingleEvaluatedMoveCache implements EvaluatedMoveCache {
     @Override
     public final void cacheMoveValidation(Move<?> move, Validation validation) {
         validatedMove = move;
-        rejected = validation;
+        this.validation = validation;
     }
 
     /**
@@ -106,7 +106,7 @@ public class SingleEvaluatedMoveCache implements EvaluatedMoveCache {
             return null;
         } else {
             // cache hit
-            return rejected;
+            return validation;
         }
     }
 
@@ -118,7 +118,7 @@ public class SingleEvaluatedMoveCache implements EvaluatedMoveCache {
         evaluatedMove = null;
         evaluation = null;
         validatedMove = null;
-        rejected = null;
+        validation = null;
     }
 
 }
