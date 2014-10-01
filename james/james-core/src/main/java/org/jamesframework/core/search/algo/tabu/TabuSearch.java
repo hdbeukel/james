@@ -166,7 +166,7 @@ public class TabuSearch<SolutionType extends Solution> extends SingleNeighbourho
     @Override
     protected void searchStep() {
         // get best valid, non tabu move (ensured by overriding move validation)
-        Move<? super SolutionType> move = getMoveWithLargestDelta(
+        Move<? super SolutionType> move = getBestMove(
                                             getNeighbourhood().getAllMoves(getCurrentSolution()), // inspect all moves
                                             false);                                               // not necessarily an improvement
         if(move != null){

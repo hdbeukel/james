@@ -280,7 +280,7 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
     /**
      * Checks whether the given move leads to an improvement when being applied to the current solution.
      * An improvement is made if and only if the given move is <b>not</b> <code>null</code>, the neighbour
-     * obtained by applying the move is <b>not</b> rejected (see {@link Problem#rejectSolution(Solution)})
+     * obtained by applying the move is a valid solution (see {@link Problem#validate(Solution)})
      * and this neighbour has a better evaluation than the current solution (i.e. a positive delta is
      * observed, see {@link #computeDelta(double, double)}).
      * <p>
@@ -296,22 +296,23 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
     }
     
     /**
-     * Given a collection of possible moves, get the move which yields the largest delta (see {@link #computeDelta(double, double)})
-     * when applying it to the current solution, where only those moves leading to a valid neighbour are considered (those moves for
-     * which {@link Problem#rejectSolution(Solution)} returns <code>false</code>). If <code>positiveDeltasOnly</code> is set to
-     * <code>true</code>, only moves yielding a (strictly) positive delta, i.e. an improvement, are considered. May return
-     * <code>null</code> if all moves lead to invalid solutions, or if no valid move with positive delta is found, in case
-     * <code>positiveDeltasOnly</code> is set to <code>true</code>.
+     * Get the best valid move among a collection of possible moves. The best move is the one yielding the
+     * largest delta (see {@link #computeDelta(double, double)}) when being applied to the current solution.
+     * If <code>positiveDeltasOnly</code> is set to <code>true</code>, only moves yielding a (strictly)
+     * positive delta, i.e. an improvement, are considered.
      * <p>
-     * Note that all computed values are cached to prevent multiple evaluations or validations of the same move. Before returning
-     * the selected "best" move, if any, its evaluation and validity are cached again to maximize the probability that these values
-     * will remain available in the cache.
+     * May return <code>null</code> if all moves lead to invalid solutions or if no valid move with positive
+     * delta is found, in case <code>positiveDeltasOnly</code> is set to <code>true</code>.
+     * <p>
+     * Note that all computed values are cached to prevent multiple evaluations or validations of the same move.
+     * Before returning the selected best move, if any, its evaluation and validity are cached again to maximize
+     * the probability that these values will remain available in the cache.
      * 
      * @param moves collection of possible moves
-     * @param positiveDeltasOnly if set to <code>true</code>, only moves with <code>delta &gt; 0</code> are considered
-     * @return valid move with largest delta, may be <code>null</code>
+     * @param positiveDeltasOnly if set to <code>true</code>, only moves with strictly positive are considered
+     * @return best valid move, may be <code>null</code>
      */
-    protected Move<? super SolutionType> getMoveWithLargestDelta(Collection<? extends Move<? super SolutionType>> moves, boolean positiveDeltasOnly){
+    protected Move<? super SolutionType> getBestMove(Collection<? extends Move<? super SolutionType>> moves, boolean positiveDeltasOnly){
         // track best move and corresponding delta
         Move<? super SolutionType> bestMove = null, curMove;
         double bestMoveDelta = -Double.MAX_VALUE, curMoveDelta, curMoveEval;
@@ -344,14 +345,13 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
     }
     
     /**
-     * Accept the given move by applying it to the current solution. Updates the evaluation of the current solution and compares
-     * it with the currently known best solution to check whether a new best solution has been found. Note that this method does
-     * <b>not</b> verify whether the given move yields a valid neighbour, but assumes that this has already been checked <i>prior</i>
-     * to deciding to accept the move. Therefore, it should <b>never</b> be called with a move that results in a solution for which
-     * {@link Problem#rejectSolution(Solution)} returns <code>true</code>.
+     * Accept the given move by applying it to the current solution. Updates the evaluation of the current solution
+     * and checks whether a new best solution has been found. Note that this method does <b>not</b> verify whether
+     * the given move yields a valid neighbour, but assumes that this has already been checked.
      * <p>
-     * After updating the current solution, the evaluated move cache is cleared as this cache is no longer valid for the new current
-     * solution. Furthermore, any local search listeners are informed and the number of accepted moves is updated.
+     * After updating the current solution, the evaluated move cache is cleared as this cache is no longer valid
+     * for the new current solution. Furthermore, any local search listeners are informed and the number of
+     * accepted moves is updated.
      * 
      * @param move accepted move to be applied to the current solution
      */

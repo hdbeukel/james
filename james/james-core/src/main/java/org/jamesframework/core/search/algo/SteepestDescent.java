@@ -71,7 +71,7 @@ public class SteepestDescent<SolutionType extends Solution> extends SingleNeighb
     @Override
     protected void searchStep() {
         // get best valid move with positive delta
-        Move<? super SolutionType> move = getMoveWithLargestDelta(
+        Move<? super SolutionType> move = getBestMove(
                                             getNeighbourhood().getAllMoves(getCurrentSolution()),   // generate all moves
                                             true);                                                  // only improvements
         // found improvement ?

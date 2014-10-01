@@ -16,6 +16,7 @@
 
 package org.jamesframework.core.problems.constraints;
 
+import org.jamesframework.core.exceptions.IncompatibleDeltaValidationException;
 import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.search.neigh.Move;
 

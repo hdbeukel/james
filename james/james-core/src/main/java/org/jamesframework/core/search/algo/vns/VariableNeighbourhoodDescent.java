@@ -98,7 +98,7 @@ public class VariableNeighbourhoodDescent<SolutionType extends Solution> extends
         } else {
             // use k-th neighbourhood to get best valid move with positive delta, if any
             Neighbourhood<? super SolutionType> neigh = getNeighbourhoods().get(k);
-            Move<? super SolutionType> move = getMoveWithLargestDelta(
+            Move<? super SolutionType> move = getBestMove(
                                                 neigh.getAllMoves(getCurrentSolution()),    // generate all moves
                                                 true);                                      // only improvements
             // found improvement ?

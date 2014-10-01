@@ -33,7 +33,7 @@ public class UnanimousValidation implements Validation {
 
     /**
      * Create an empty unanimous validation object. Actual underlying validations can be added
-     * later by calling {@link #addValidation(Validation)}.
+     * later by calling {@link #addValidation(Object, Validation)}.
      */
     public UnanimousValidation() {
         validations = new HashMap<>();

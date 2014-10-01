@@ -277,7 +277,7 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
     }
 
     /**
-     * Test of getMoveWithLargestDelta method, of class NeighbourhoodSearch.
+     * Test of getBestMove method, of class NeighbourhoodSearch.
      */
     @Test
     public void testGetMoveWithLargestDelta() {
@@ -288,7 +288,7 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
         neighSearch.setCurrentSolution(problem.createRandomSolution());
         
         Set<? extends Move<? super SubsetSolution>> moves  = neigh.getAllMoves(neighSearch.getCurrentSolution());
-        Move<? super SubsetSolution> bestMove = neighSearch.getMoveWithLargestDelta(moves, true);
+        Move<? super SubsetSolution> bestMove = neighSearch.getBestMove(moves, true);
         double prevSolutionEvaluation = neighSearch.getCurrentSolutionEvaluation();
         
         // apply best move until no more improvements found (important: only positive deltas allowed)
@@ -301,7 +301,7 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
             // get new moves
             moves = neigh.getAllMoves(neighSearch.getCurrentSolution());
             // get move with largest positive delta
-            bestMove = neighSearch.getMoveWithLargestDelta(moves, true);
+            bestMove = neighSearch.getBestMove(moves, true);
         }
         
         // add always rejecting constraint
@@ -309,7 +309,7 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
         // set new random current solution
         neighSearch.setCurrentSolution(problem.createRandomSolution());
         // verify that all moves are rejected
-        assertNull(neighSearch.getMoveWithLargestDelta(neigh.getAllMoves(neighSearch.getCurrentSolution()), false));
+        assertNull(neighSearch.getBestMove(neigh.getAllMoves(neighSearch.getCurrentSolution()), false));
         
     }
 

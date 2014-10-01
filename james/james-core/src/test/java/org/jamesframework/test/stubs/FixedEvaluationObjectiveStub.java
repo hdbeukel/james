@@ -16,7 +16,9 @@
 
 package org.jamesframework.test.stubs;
 
-import org.jamesframework.core.problems.Solution;
+import org.jamesframework.core.problems.objectives.Evaluation;
+import org.jamesframework.core.problems.objectives.evaluations.SimpleEvaluation;
+import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.test.util.MinMaxObjective;
 
 /**
@@ -25,7 +27,7 @@ import org.jamesframework.test.util.MinMaxObjective;
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class FixedEvaluationObjectiveStub extends MinMaxObjective<Solution, Object>{
+public class FixedEvaluationObjectiveStub extends MinMaxObjective<SubsetSolution, Object>{
 
     // fixed evaluation of any solution
     private final double fixedEvaluation;
@@ -47,8 +49,8 @@ public class FixedEvaluationObjectiveStub extends MinMaxObjective<Solution, Obje
      * @return returns a fixed score, regardless of the solution and data
      */
     @Override
-    public double evaluate(Solution solution, Object data) {
-        return fixedEvaluation;
+    public Evaluation evaluate(SubsetSolution solution, Object data) {
+        return new SimpleEvaluation(fixedEvaluation);
     }
 
 }

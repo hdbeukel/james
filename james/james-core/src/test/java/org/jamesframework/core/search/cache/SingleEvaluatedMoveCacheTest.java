@@ -103,7 +103,7 @@ public class SingleEvaluatedMoveCacheTest {
     }
 
     /**
-     * Test of cacheMoveRejection method, of class SingleEvaluatedMoveCache.
+     * Test of cacheMoveValidation method, of class SingleEvaluatedMoveCache.
      */
     @Test
     public void testCacheMoveRejection() {

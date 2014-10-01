@@ -16,6 +16,8 @@
 
 package org.jamesframework.core.problems.constraints;
 
+import org.jamesframework.core.problems.constraints.validations.SimplePenalizingValidation;
+
 /**
  * <p>
  * Interface of a validation produced by a penalizing constraint. Extends the main {@link Validation}

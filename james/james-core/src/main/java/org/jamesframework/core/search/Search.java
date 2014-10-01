@@ -663,10 +663,10 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
     /******************************************/
     
     /**
-     * Returns the best solution found so far. It is guaranteed that this solution is valid, in the sense that
-     * {@link Problem#rejectSolution(Solution)} returns <code>false</code>. The best solution is <b>retained</b>
-     * across subsequent runs of the same search. May return <code>null</code> if no solutions have been evaluated
-     * yet, for example when the search has just been created.
+     * Returns the best solution found so far. It is guaranteed that this solution is valid.
+     * The best solution is <b>retained</b> across subsequent runs of the same search. May
+     * return <code>null</code> if no valid solutions have been evaluated yet, for example
+     * when the search has just been created.
      * 
      * @return best solution found so far, if already defined; <code>null</code> otherwise
      */
@@ -692,16 +692,15 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
     /**
      * <p>
      * Checks whether a new best solution has been found and updates it accordingly.
-     * The best solution is updated only if the new solution is <b>not</b> rejected
-     * (see {@link Problem#rejectSolution(Solution)}) and
+     * The best solution is updated only if the new solution is valid and
      * </p>
      * <ul>
      *  <li>no best solution had been set before, or</li>
      *  <li>the new solution has a better evaluation</li>
      * </ul>
      * <p>
-     * If the new solution is rejected, or has a worse evaluation than the current best solution, this
-     * method has no effect. Note that the best solution is <b>retained</b> across subsequent runs of
+     * If the new solution is invalid or has a worse evaluation than the current best solution, calling
+     * this method has no effect. Note that the best solution is <b>retained</b> across subsequent runs of
      * the same search.
      * </p>
      * 
@@ -723,10 +722,9 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
     /**
      * <p>
      * Checks whether a new best solution has been found and updates it accordingly,
-     * assuming that the given solution is <b>not</b> rejected by the problem (see
-     * {@link Problem#rejectSolution(Solution)} and has already been evaluated.
-     * This method should only be called for solutions for which it has already been
-     * verified that they are not rejected, as this will <b>not</b> be checked here.
+     * assuming that the given solution is valid and has already been evaluated.
+     * This method should only be called for solutions that have already passed
+     * validation as this will <b>not</b> be checked here.
      * Else, {@link #updateBestSolution(Solution)} should be used. This alternative
      * method is specifically introduced to avoid unnecessary re-evaluation and
      * re-validation of already evaluated, valid solutions.
@@ -744,7 +742,7 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
      * runs of the same search.
      * </p>
      * 
-     * @param newSolution newly constructed solution, which is known <b>not</b> to be rejected
+     * @param newSolution newly constructed solution, which is known to be valid
      * @param newSolutionEvaluation already computed evaluation of the given solution
      * @return <code>true</code> if the given solution is accepted as the new best solution
      */

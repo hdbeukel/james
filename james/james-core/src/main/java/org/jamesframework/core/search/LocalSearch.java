@@ -227,9 +227,8 @@ public abstract class LocalSearch<SolutionType extends Solution> extends Search<
     
     /**
      * Update the current solution during search, given that it has already been evaluated. This method stores the
-     * new current solution and its evaluation, and informs any local search listeners about this update. It does
-     * <b>not</b> validate the new current solution, if it is required that {@link Problem#rejectSolution(Solution)}
-     * returns <code>false</code> this must be verified before updating the current solution.
+     * new current solution and its evaluation, and informs any local search listeners about this update. The new
+     * current solution is <b>not</b> validated.
      * 
      * @param solution new current solution
      * @param evaluation evaluation of new current solution
@@ -245,9 +244,8 @@ public abstract class LocalSearch<SolutionType extends Solution> extends Search<
     
     /**
      * Update the current and best solution during search. The current solution is first evaluated and then updated,
-     * also in case it is an invalid solution (see {@link Problem#rejectSolution(Solution)}). Conversely, the best
-     * solution is only updated if the new current solution is not rejected, to ensure that the best solution is
-     * always valid.
+     * also in case it is invalid. Conversely, the best solution is only updated if the new current solution is valid
+     * to ensure that the best solution is always a valid solution.
      * 
      * @param solution new current solution
      */
@@ -257,9 +255,9 @@ public abstract class LocalSearch<SolutionType extends Solution> extends Search<
     
     /**
      * Update the current and best solution during search, given that the new current solution has already
-     * been evaluated. The current solution is always updated, also in case it is an invalid solution (see
-     * {@link Problem#rejectSolution(Solution)}). Conversely, the best solution is only updated if the new
-     * current solution is not rejected, to ensure that the best solution is always valid.
+     * been evaluated. The current solution is always updated, also in case it is invalid. Conversely, the
+     * best solution is only updated if the new current solution is valid to ensure that the best solution
+     * is always a valid solution.
      * 
      * @param solution new current solution
      * @param evaluation evaluation of new current solution
@@ -270,12 +268,11 @@ public abstract class LocalSearch<SolutionType extends Solution> extends Search<
     
     /**
      * Update the current and best solution during search, given that the new current solution has already
-     * been evaluated. The current solution is always updated, also in case it is an invalid solution (see
-     * {@link Problem#rejectSolution(Solution)}). Conversely, the best solution is only updated if the new
-     * current solution is not rejected, to ensure that the best solution is always valid, unless
-     * <code>skipBestSolutionValidation</code> is <code>true</code>. In the latter case, it should
-     * have been verified that the given solution is valid before calling this method; revalidation
-     * is then ommitted.
+     * been evaluated. The current solution is always updated, also in case it is invalid. Conversely, the
+     * best solution is only updated if the new current solution is valid to ensure that the best solution
+     * is always valid, unless <code>skipBestSolutionValidation</code> is <code>true</code>. In the latter
+     * case, it should be verified that the given solution is valid before calling this method; revalidation
+     * is then ommitted to save computations.
      * 
      * @param solution new current solution
      * @param evaluation evaluation of new current solution

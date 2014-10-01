@@ -17,6 +17,7 @@
 package org.jamesframework.core.problems;
 
 import org.jamesframework.core.exceptions.IncompatibleDeltaEvaluationException;
+import org.jamesframework.core.exceptions.IncompatibleDeltaValidationException;
 import org.jamesframework.core.problems.constraints.Validation;
 import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.search.neigh.Move;
@@ -85,7 +86,8 @@ public interface Problem<SolutionType extends Solution> {
     /**
      * Validates a solution. Returns an object of type {@link Validation}. It can be checked wether the
      * solution passed validation by calling {@link Validation#passed()} on this validation object. When
-     * a solution does not pass validation it is discarded by any search.
+     * a solution does not pass validation it is discarded by any search so that the best found solution
+     * is guaranteed to be valid.
      * 
      * @param solution solution to validate
      * @return a validation object that indicates wether the solution passed validation
@@ -97,7 +99,7 @@ public interface Problem<SolutionType extends Solution> {
      * Validates a move that will be applied to the current solution of a local search (delta validation).
      * The result corresponds to the validation of the modified solution that would be obtained by applying
      * the given move to the current solution. A default implementation is provided that (1) applies the move,
-     * (2) performs a full validation by calling {@link #validate(Solution, Object)} and (3) undoes the applied move.
+     * (2) performs a full validation by calling {@link #validate(Solution)} and (3) undoes the applied move.
      * </p>
      * <p>
      * It is often possible to provide a custom, much more efficient delta validation based on the
