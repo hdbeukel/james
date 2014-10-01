@@ -22,7 +22,7 @@ import org.jamesframework.core.problems.constraints.Validation;
 
 /**
  * A unanimous validation object is used to combine validations produced by a number of constraints.
- * A solution passes unanimous validation if and only if it passes each contained validation.
+ * A solution passes a unanimous validation if and only if it passes each contained validation.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
@@ -32,8 +32,8 @@ public class UnanimousValidation implements Validation {
     private final Map<Object, Validation> validations;
 
     /**
-     * Create an empty unanimous validation object. Actual validations can be added
-     * later by calling {@link #}
+     * Create an empty unanimous validation object. Actual underlying validations can be added
+     * later by calling {@link #addValidation(Validation)}.
      */
     public UnanimousValidation() {
         validations = new HashMap<>();
