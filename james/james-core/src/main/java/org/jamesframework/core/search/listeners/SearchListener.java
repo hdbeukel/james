@@ -18,15 +18,18 @@ package org.jamesframework.core.search.listeners;
 
 import org.jamesframework.core.exceptions.IncompatibleSearchListenerException;
 import org.jamesframework.core.problems.Solution;
+import org.jamesframework.core.problems.constraints.Validation;
+import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.status.SearchStatus;
 
 /**
  * <p>
- * Interface of a search listener that can be attached to any search with the specified (or more specific) solution type.
- * A listener is informed when certain events occur, e.g. when the search has started, stopped or found a new best solution.
- * Every callback receives a reference to the search that called it, which may be cast to a specific search type if required;
- * if an incompatible search type is received, an {@link IncompatibleSearchListenerException} may be thrown.
+ * Interface of a search listener that can be attached to any search with the specified solution type (or a subtype).
+ * A listener is informed when certain events occur, e.g. when the search has started, stopped or found a new best
+ * solution. Every callback receives a reference to the search that called it, which may be cast to a specific search
+ * type if required; if an incompatible search type is received, an {@link IncompatibleSearchListenerException} may
+ * be thrown.
  * </p>
  * <p>
  * All callbacks have a default empty implementation.
@@ -57,11 +60,15 @@ public interface SearchListener<SolutionType extends Solution> {
      * Fired when the search has found a new best solution. Called exactly once for every improvement.
      * 
      * @param search search which has found a new best solution
-     * @param newBestSolution new best solution found
+     * @param newBestSolution new best solution
      * @param newBestSolutionEvaluation evaluation of the new best solution
+     * @param newBestSolutionValidation validation of the new best solution
      * @throws IncompatibleSearchListenerException if the listener is not compatible with the search
      */
-    default public void newBestSolution(Search<? extends SolutionType> search, SolutionType newBestSolution, double newBestSolutionEvaluation){}
+    default public void newBestSolution(Search<? extends SolutionType> search,
+                                        SolutionType newBestSolution,
+                                        Evaluation newBestSolutionEvaluation,
+                                        Validation newBestSolutionValidation){}
     
     /**
      * Fired when the search has completed a step. Called exactly once for every completed step.
