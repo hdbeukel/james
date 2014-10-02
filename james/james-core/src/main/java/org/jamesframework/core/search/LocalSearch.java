@@ -21,15 +21,16 @@ import java.util.List;
 import org.jamesframework.core.exceptions.SearchException;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.Solution;
+import org.jamesframework.core.problems.constraints.Validation;
+import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.search.listeners.LocalSearchListener;
 import org.jamesframework.core.search.listeners.SearchListener;
 
 /**
- * Local searches are searches that start with some initial solution and modify this solution in an attempt to improve
- * it. The initial solution can be specified using {@link #setCurrentSolution(Solution)} before running the search, else,
- * a random initial solution will be constructed. The current solution and corresponding evaluation are retained across
- * subsequent runs of a local search. This means that upon restarting a local search, it will continue from where it had
- * arrived in the previous run.
+ * Local searches are searches that start from an initial solution and modify this solution in an attempt to improve it.
+ * The initial solution can be specified using {@link #setCurrentSolution(Solution)} before running the search, else,
+ * a random initial solution is used. The current solution is retained across subsequent runs of a local search.
+ * This means that upon restarting a local search, it will continue from where it had arrived in the previous run.
  * 
  * @param <SolutionType> solution type of the problems that may be solved using this search, required to extend {@link Solution}
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
@@ -40,9 +41,10 @@ public abstract class LocalSearch<SolutionType extends Solution> extends Search<
     /* PRIVATE FIELDS */
     /******************/
     
-    // current solution and its corresponding evaluation
+    // current solution and its corresponding evaluation/validation
     private SolutionType curSolution;
-    private double curSolutionEvaluation;
+    private Evaluation curSolutionEvaluation;
+    private Validation curSolutionValidation;
     
     /************************/
     /* PRIVATE FINAL FIELDS */
@@ -75,10 +77,10 @@ public abstract class LocalSearch<SolutionType extends Solution> extends Search<
      */
     public LocalSearch(String name, Problem<SolutionType> problem){
         super(name != null ? name : "LocalSearch", problem);
-        // initially, current solution is null and its evaluation
-        // is arbitrary (as defined in getCurrentSolutionEvaluation())
+        // initially, current solution and its evaluation/validation are null
         curSolution = null;
-        curSolutionEvaluation = 0.0; // arbitrary value
+        curSolutionEvaluation = null;
+        curSolutionValidation = null;
         // initialize list for local search listeners
         localSearchListeners = new ArrayList<>();
     }
@@ -155,13 +157,18 @@ public abstract class LocalSearch<SolutionType extends Solution> extends Search<
     /**************************************************************/
     
     /**
-     * Calls {@link LocalSearchListener#modifiedCurrentSolution(LocalSearch, Solution, double)} on every attached
-     * local search listener. Should only be executed when the search is active (initializing, running or terminating).
-     * Also, the callback should only be fired exactly once for each update of the current solution.
+     * Calls {@link LocalSearchListener#modifiedCurrentSolution(LocalSearch, Solution, Evaluation, Validation)} on
+     * every attached local search listener. Should only be executed when the search is active (initializing, running
+     * or terminating) and only be fired exactly once for each update of the current solution.
      */
-    private void fireModifiedCurrentSolution(SolutionType newCurrentSolution, double newCurrentSolutionEvaluation){
+    private void fireModifiedCurrentSolution(SolutionType newCurrentSolution,
+                                             Evaluation newCurrentSolutionEvaluation,
+                                             Validation newCurrentSolutionValidation){
         localSearchListeners.forEach(l -> {
-                                l.modifiedCurrentSolution(this, newCurrentSolution, newCurrentSolutionEvaluation);
+                                l.modifiedCurrentSolution(this,
+                                                          newCurrentSolution,
+                                                          newCurrentSolutionEvaluation,
+                                                          newCurrentSolutionValidation);
                             });
     }
     
@@ -170,10 +177,9 @@ public abstract class LocalSearch<SolutionType extends Solution> extends Search<
     /******************************************/
     
     /**
-     * Returns the current solution. The current solution might be worse than the best solution found so far.
-     * Note that it is <b>retained</b> across subsequent runs of a local search. May return <code>null</code>
-     * if no current solution has been set yet, for example when the search has just been created or is still
-     * initializing the current run.
+     * Get the current solution. Might be worse than the best solution found so far. The current solution is
+     * <b>retained</b> across subsequent runs of a local search. May return <code>null</code> if no current
+     * solution has been set yet, for example when the search has just been created or is still initializing.
      * 
      * @return current solution, if set; <code>null</code> otherwise
      */
@@ -182,15 +188,25 @@ public abstract class LocalSearch<SolutionType extends Solution> extends Search<
     }
     
     /**
-     * Get the evaluation of the current solution. The current solution and its evaluation are <b>retained</b>
-     * across subsequent runs of a local search. If the current solution is not yet defined, i.e. when
-     * {@link #getCurrentSolution()} returns <code>null</code>, the result of this method is undefined;
-     * in such case it may return any arbitrary value.
+     * Get the evaluation of the current solution. The current solution is <b>retained</b> across subsequent
+     * runs of a local search. May return <code>null</code> if no current solution has been set yet, for example
+     * when the search has just been created or is still initializing.
      * 
-     * @return evaluation of current solution, if already defined; arbitrary value otherwise
+     * @return evaluation of current solution, if already defined; <code>null</code> otherwise
      */
-    public double getCurrentSolutionEvaluation(){
+    public Evaluation getCurrentSolutionEvaluation(){
         return curSolutionEvaluation;
+    }
+    
+    /**
+     * Get the validation of the current solution. The current solution is <b>retained</b> across subsequent
+     * runs of a local search. May return <code>null</code> if no current solution has been set yet, for example
+     * when the search has just been created or is still initializing.
+     * 
+     * @return validation of current solution, if already defined; <code>null</code> otherwise
+     */
+    public Validation getCurrentSolutionValidation(){
+        return curSolutionValidation;
     }
     
     /*************************/
@@ -198,10 +214,10 @@ public abstract class LocalSearch<SolutionType extends Solution> extends Search<
     /*************************/
     
     /**
-     * Sets the current solution. The given solution is automatically evaluated and compared with the
-     * currently known best solution, to check if it improves on this solution. This method may for
-     * example be used to specify a custom initial solution before starting the search. Note that it
-     * may only be called when the search is idle.
+     * Sets the current solution prior to execution or in between search runs. The given solution is evaluated and
+     * validated, and it is checked whether it is a valid first/new best solution. This method may for example be
+     * used to specify a custom initial solution before starting the search. Note that it may only be called when
+     * the search is idle.
      * 
      * @throws SearchException if the search is not idle
      * @throws NullPointerException if <code>solution</code> is <code>null</code>
@@ -226,66 +242,64 @@ public abstract class LocalSearch<SolutionType extends Solution> extends Search<
     /***********************/
     
     /**
-     * Update the current solution during search, given that it has already been evaluated. This method stores the
-     * new current solution and its evaluation, and informs any local search listeners about this update. The new
-     * current solution is <b>not</b> validated.
+     * Update the current solution during search. The solution is evaluated and validated but the update takes
+     * place regardless of the actual obtained evaluation and validation. More precisely, it is <b>not</b> required
+     * that the current solution is valid.
+     * 
+     * @param solution new current solution
+     */
+    protected void updateCurrentSolution(SolutionType solution){
+        updateCurrentSolution(solution, getProblem().evaluate(solution), getProblem().validate(solution));
+    }
+    
+    /**
+     * Update the current solution during search, given that it has already been evaluated and validated.
+     * The new current solution and its evaluation/validation are stored and attached local search listeners
+     * are informed about this update. The update always takes place, it is <b>not</b> required that the
+     * current solution is valid.
      * 
      * @param solution new current solution
      * @param evaluation evaluation of new current solution
+     * @param validation validation of new current solution
      */
-    protected void updateCurrentSolution(SolutionType solution, double evaluation){
+    protected void updateCurrentSolution(SolutionType solution, Evaluation evaluation, Validation validation){
         // store new current solution
         curSolution = solution;
-        // store evaluation
+        // store evaluation and validation
         curSolutionEvaluation = evaluation;
+        curSolutionValidation = validation;
         // inform listeners
-        fireModifiedCurrentSolution(curSolution, curSolutionEvaluation);
+        fireModifiedCurrentSolution(curSolution, curSolutionEvaluation, curSolutionValidation);
     }
-    
+
     /**
-     * Update the current and best solution during search. The current solution is first evaluated and then updated,
-     * also in case it is invalid. Conversely, the best solution is only updated if the new current solution is valid
-     * to ensure that the best solution is always a valid solution.
+     * Update the current and best solution during search. The given solution is evaluated and validated,
+     * followed by an update of the current solution (also if it is invalid). Conversely, the best solution
+     * is only updated if the given solution is valid and improves over the best solution found so far.
      * 
      * @param solution new current solution
+     * @return <code>true</code> if the best solution has been updated
      */
-    protected void updateCurrentAndBestSolution(SolutionType solution){
-        updateCurrentAndBestSolution(solution, getProblem().evaluate(solution));
+    protected boolean updateCurrentAndBestSolution(SolutionType solution){
+        return updateCurrentAndBestSolution(solution, getProblem().evaluate(solution), getProblem().validate(solution));
     }
     
     /**
-     * Update the current and best solution during search, given that the new current solution has already
-     * been evaluated. The current solution is always updated, also in case it is invalid. Conversely, the
-     * best solution is only updated if the new current solution is valid to ensure that the best solution
-     * is always a valid solution.
-     * 
-     * @param solution new current solution
-     * @param evaluation evaluation of new current solution
-     */
-    protected void updateCurrentAndBestSolution(SolutionType solution, double evaluation){
-        updateCurrentAndBestSolution(solution, evaluation, false);
-    }
-    
-    /**
-     * Update the current and best solution during search, given that the new current solution has already
-     * been evaluated. The current solution is always updated, also in case it is invalid. Conversely, the
-     * best solution is only updated if the new current solution is valid to ensure that the best solution
-     * is always valid, unless <code>skipBestSolutionValidation</code> is <code>true</code>. In the latter
-     * case, it should be verified that the given solution is valid before calling this method; revalidation
-     * is then ommitted to save computations.
+     * Update the current and best solution during search, given that the respective solution has already
+     * been evaluated and validated. The current solution is always updated, also if it is invalid. Conversely,
+     * the best solution is only updated if the given solution is valid and improves over the best solution
+     * found so far.
      * 
      * @param solution new current solution
      * @param evaluation evaluation of new current solution
-     * @param skipBestSolutionValidation if <code>true</code>, the best solution is always updated, without validating
-     *                                   the given solution (useful if this solution is already known to be valid)
+     * @param validation validation of new current solution
+     * @return <code>true</code> if the best solution has been updated
      */
-    protected void updateCurrentAndBestSolution(SolutionType solution, double evaluation, boolean skipBestSolutionValidation){
+    protected boolean updateCurrentAndBestSolution(SolutionType solution, Evaluation evaluation, Validation validation){
         // update current solution
-        updateCurrentSolution(solution, evaluation);
-        // update best solution, if solution is valid (or if validation is skipped)
-        if(skipBestSolutionValidation || !getProblem().rejectSolution(solution)){
-            updateBestSolution(solution, evaluation);
-        }
+        updateCurrentSolution(solution, evaluation, validation);
+        // update best solution (only updates if solution is valid)
+        return updateBestSolution(solution, evaluation, validation);
     }
     
 }

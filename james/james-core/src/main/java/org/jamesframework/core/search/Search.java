@@ -27,6 +27,8 @@ import org.jamesframework.core.exceptions.JamesRuntimeException;
 import org.jamesframework.core.exceptions.SearchException;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.Solution;
+import org.jamesframework.core.problems.constraints.Validation;
+import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.search.stopcriteria.StopCriterionChecker;
 import org.jamesframework.core.util.JamesConstants;
 import org.slf4j.Logger;
@@ -114,9 +116,10 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
     // over the previously known best solution, during the current (or last) run
     private double minDelta;
     
-    // best solution found so far and its corresponding evaluation
+    // best solution found so far and its corresponding evaluation/validation
     private SolutionType bestSolution;
-    private double bestSolutionEvaluation;
+    private Evaluation bestSolutionEvaluation;
+    private Validation bestSolutionValidation;
     
     // search status
     private SearchStatus status;
@@ -192,10 +195,10 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
         stopCriterionChecker = new StopCriterionChecker(this);
         // set initial status to idle
         status = SearchStatus.IDLE;
-        // initially, best solution is null and its evaluation
-        // is arbitrary (as defined in getBestSolutionEvaluation())
+        // initially, best solution and its evaluation/validation are null
         bestSolution = null;
-        bestSolutionEvaluation = 0.0; // arbitrary value
+        bestSolutionEvaluation = null;
+        bestSolutionValidation = null;
         // initialize per-run metadata
         startTime = JamesConstants.INVALID_TIMESTAMP;
         stopTime = JamesConstants.INVALID_TIMESTAMP;
@@ -583,14 +586,21 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
     }
     
     /**
-     * Calls {@link SearchListener#newBestSolution(Search, Solution, double)} on every attached search listener.
-     * Should only be executed when search is active (initializing, running or terminating).
+     * Calls {@link SearchListener#newBestSolution(Search, Solution, Evaluation, Validation)}
+     * on every attached search listener. Should only be executed when search is active
+     * (initializing, running or terminating).
      * 
      * @param newBestSolution new best solution
      * @param newBestSolutionEvaluation evaluation of new best solution
+     * @param newBestSolutionValidation validation of new best solution
      */
-    private void fireNewBestSolution(SolutionType newBestSolution, double newBestSolutionEvaluation){
-        searchListeners.forEach(l -> l.newBestSolution(this, newBestSolution, newBestSolutionEvaluation));
+    private void fireNewBestSolution(SolutionType newBestSolution,
+                                     Evaluation newBestSolutionEvaluation,
+                                     Validation newBestSolutionValidation){
+        searchListeners.forEach(l -> l.newBestSolution(this,
+                                                       newBestSolution,
+                                                       newBestSolutionEvaluation,
+                                                       newBestSolutionValidation));
     }
     
     /**
@@ -675,14 +685,25 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
     }
     
     /**
-     * Get the evaluation of the best solution found so far. The best solution and its evaluation are <b>retained</b>
-     * across subsequent runs of the same search. If the best solution is not yet defined, i.e. when {@link #getBestSolution()}
-     * return <code>null</code>, the result of this method is undefined; in such case it may return any arbitrary value.
+     * Get the evaluation of the best solution found so far. The best solution is <b>retained</b>
+     * across subsequent runs of the same search. May return <code>null</code> if no best solution
+     * has yet been set, for example when the search has just been created.
      * 
-     * @return evaluation of best solution, if already defined; arbitrary value otherwise
+     * @return evaluation of best solution, if already defined; <code>null</code> otherwise
      */
-    public double getBestSolutionEvaluation(){
+    public Evaluation getBestSolutionEvaluation(){
         return bestSolutionEvaluation;
+    }
+    
+    /**
+     * Get the validation of the best solution found so far. The best solution is <b>retained</b>
+     * across subsequent runs of the same search. May return <code>null</code> if no best solution
+     * has yet been set, for example when the search has just been created.
+     * 
+     * @return validation of best solution, if already defined; <code>null</code> otherwise
+     */
+    public Validation getBestSolutionValidation(){
+        return bestSolutionValidation;
     }
     
     /****************************/
@@ -692,88 +713,92 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
     /**
      * <p>
      * Checks whether a new best solution has been found and updates it accordingly.
-     * The best solution is updated only if the new solution is valid and
+     * The given solution is evaluated and validated, after which the best solution
+     * is updated only if the solution is valid and
      * </p>
      * <ul>
      *  <li>no best solution had been set before, or</li>
      *  <li>the new solution has a better evaluation</li>
      * </ul>
      * <p>
-     * If the new solution is invalid or has a worse evaluation than the current best solution, calling
-     * this method has no effect. Note that the best solution is <b>retained</b> across subsequent runs of
-     * the same search.
+     * If the new solution is invalid or has a worse evaluation than the current best
+     * solution, calling this method has no effect. Note that the best solution is
+     * <b>retained</b> across subsequent runs of the same search.
      * </p>
      * 
-     * @param newSolution newly constructed solution
+     * @param newSolution newly presented solution
      * @return <code>true</code> if the given solution is accepted as the new best solution
      */
     protected boolean updateBestSolution(SolutionType newSolution){
-        // check if new solution is valid
-        if(!problem.rejectSolution(newSolution)){
-            // evaluate solution
-            double eval = problem.evaluate(newSolution);
-            // update, if better
-            return updateBestSolution(newSolution, eval);
+        // validate solution
+        Validation validation = getProblem().validate(newSolution);
+        if(validation.passed()){
+            // passed validation: evaluate
+            Evaluation evaluation = getProblem().evaluate(newSolution);
+            // update if better
+            return updateBestSolution(newSolution, evaluation, validation);
+        } else {
+            // invalid solution
+            return false;
         }
-        // solution is invalid
-        return false;
     }
     
     /**
      * <p>
      * Checks whether a new best solution has been found and updates it accordingly,
-     * assuming that the given solution is valid and has already been evaluated.
-     * This method should only be called for solutions that have already passed
-     * validation as this will <b>not</b> be checked here.
-     * Else, {@link #updateBestSolution(Solution)} should be used. This alternative
-     * method is specifically introduced to avoid unnecessary re-evaluation and
-     * re-validation of already evaluated, valid solutions.
-     * </p>
-     * <p>
-     * The best solution is updated if and only if
+     * given that the solution has already been evaluated and validated. The best
+     * solution is updated only if the presented solution is valid and
      * </p>
      * <ul>
      *  <li>no best solution had been set before, or</li>
      *  <li>the new solution has a better evaluation</li>
      * </ul>
      * <p>
-     * If the new solution has a worse evaluation than the current best solution, calling this
-     * method has no effect. Note that the best solution is <b>retained</b> across subsequent
-     * runs of the same search.
+     * If the new solution is invalid or has a worse evaluation than the current best
+     * solution, calling this method has no effect. Note that the best solution is
+     * <b>retained</b> across subsequent runs of the same search.
      * </p>
      * 
-     * @param newSolution newly constructed solution, which is known to be valid
-     * @param newSolutionEvaluation already computed evaluation of the given solution
+     * @param newSolution newly presented solution
+     * @param newSolutionEvaluation evaluation of given solution
+     * @param newSolutionValidation validation of given solution
      * @return <code>true</code> if the given solution is accepted as the new best solution
      */
-    protected boolean updateBestSolution(SolutionType newSolution, double newSolutionEvaluation){
-        // check if new solution has better evaluation, or no best solution set
-        double delta = computeDelta(newSolutionEvaluation, getBestSolutionEvaluation());
-        if(bestSolution == null || delta > 0){
-            // flag improvement
-            improvementDuringCurrentStep = true;
-            // store last improvement time
-            lastImprovementTime = System.currentTimeMillis();
-            // update minimum delta (only in case previous best solution was set)
-            if(bestSolution != null){
-                // update if first delta, or smaller than previous minimum
-                if(minDelta == JamesConstants.INVALID_DELTA || delta < minDelta){
+    protected boolean updateBestSolution(SolutionType newSolution,
+                                         Evaluation newSolutionEvaluation,
+                                         Validation newSolutionValidation){
+        // check: valid solution
+        if(newSolutionValidation.passed()){
+            // check: improvement or no best solution set
+            Double delta = null;
+            if(bestSolution == null
+                    || (delta = computeDelta(newSolutionEvaluation, getBestSolutionEvaluation())) > 0){
+                // flag improvement
+                improvementDuringCurrentStep = true;
+                // store last improvement time
+                lastImprovementTime = System.currentTimeMillis();
+                // update minimum delta if applicable (only if first delta or smaller than current minimum delta)
+                if(delta != null && (minDelta == JamesConstants.INVALID_DELTA || delta < minDelta)){
                     minDelta = delta;
                 }
+                // update best solution (create copy!)
+                bestSolution = Solution.checkedCopy(newSolution);
+                bestSolutionEvaluation = newSolutionEvaluation;
+                bestSolutionValidation = newSolutionValidation;
+                // log
+                logger.debug("{}: new best solution: {}", this, bestSolutionEvaluation);
+                // fire callback
+                fireNewBestSolution(bestSolution, bestSolutionEvaluation, bestSolutionValidation);
+                // found improvement
+                return true;
+            } else {
+                // no improvement
+                return false;
             }
-            // update best solution: create copy because new solution
-            // might be further modified in subsequent search steps
-            bestSolution = Solution.checkedCopy(newSolution);
-            bestSolutionEvaluation = newSolutionEvaluation;
-            // log
-            logger.debug("{}: new best solution: {}", this, bestSolutionEvaluation);
-            // fire callback
-            fireNewBestSolution(bestSolution, bestSolutionEvaluation);
-            // found improvement
-            return true;
+        } else {
+            // invalid solution
+            return false;
         }
-        // no improvement
-        return false;
     }
 
     /*****************************************/
@@ -1021,25 +1046,25 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
     /***********************/
     
     /**
-     * Computes the amount of improvement of <code>currentEvaluation</code> over <code>previousEvaluation</code>, taking into
-     * account whether a maximization or minimization problem is being solved, where positive deltas indicate improvement.
-     * In case of a maximization problem, the amount of increase is returned, which is equal to
+     * Computes the amount of improvement of <code>currentEvaluation</code> over <code>previousEvaluation</code>,
+     * taking into account whether evaluations are being maximized or minimized. Positive deltas indicate improvment.
+     * In case of maximization the amount of increase is returned, which is equal to
      *  <pre> currentEvaluation - previousEvaluation </pre>
      * while the amount of decrease, equal to
      *  <pre> previousEvaluation - currentEvaluation </pre>
-     * is returned when solving a minimization problem.
+     * is returned in case of minimization.
      * 
      * @param currentEvaluation evaluation to be compared with previous evaluation
      * @param previousEvaluation previous evaluation
      * @return amount of improvement of current evaluation over previous evaluation
      */
-    protected double computeDelta(double currentEvaluation, double previousEvaluation){
+    protected double computeDelta(Evaluation currentEvaluation, Evaluation previousEvaluation){
         if(problem.isMinimizing()){
-            // minimization problem: return decrease
-            return previousEvaluation - currentEvaluation;
+            // minimization: return decrease
+            return previousEvaluation.getValue() - currentEvaluation.getValue();
         } else {
-            // maximization problem: return increase
-            return currentEvaluation - previousEvaluation;
+            // maximization: return increase
+            return currentEvaluation.getValue() - previousEvaluation.getValue();
         }
     }
         
