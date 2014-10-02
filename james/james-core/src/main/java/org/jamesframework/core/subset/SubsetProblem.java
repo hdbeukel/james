@@ -18,9 +18,16 @@ package org.jamesframework.core.subset;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+import org.jamesframework.core.exceptions.IncompatibleDeltaValidationException;
 import org.jamesframework.core.problems.AbstractProblem;
+import org.jamesframework.core.problems.constraints.Constraint;
+import org.jamesframework.core.problems.constraints.Validation;
+import org.jamesframework.core.problems.constraints.validations.SubsetValidation;
+import org.jamesframework.core.problems.constraints.validations.UnanimousValidation;
 import org.jamesframework.core.problems.datatypes.IntegerIdentifiedData;
 import org.jamesframework.core.problems.objectives.Objective;
+import org.jamesframework.core.search.neigh.Move;
+import org.jamesframework.core.subset.neigh.SubsetMove;
 import org.jamesframework.core.util.SetUtilities;
 
 /**
@@ -39,7 +46,7 @@ public class SubsetProblem<DataType extends IntegerIdentifiedData> extends Abstr
     // minimum and maximum subset size
     private int minSubsetSize, maxSubsetSize;
     
-    // indicates whether IDs in the created/copied subset solutions should be sorted
+    // indicates whether IDs in the generated subset solutions should be sorted
     private final boolean sortedIDs;
     
     /**
@@ -92,7 +99,8 @@ public class SubsetProblem<DataType extends IntegerIdentifiedData> extends Abstr
      * designed to evaluate subset solutions (or more general solutions) using the specified data type (or more general data)
      * is accepted. The minimum and maximum subset size should be contained in <code>[0,n]</code> where <code>n</code>
      * is the number of items in the given data from which a subset is to be selected. Also, the minimum size
-     * should be smaller than or equal to the maximum size. Generated subset solutions do not guarantee any order of IDs.
+     * should be smaller than or equal to the maximum size. Generated subset solutions do not guarantee any
+     * order of IDs.
      * 
      * @param objective objective function, can not be <code>null</code>
      * @param data underlying data, can not be <code>null</code>
@@ -170,39 +178,57 @@ public class SubsetProblem<DataType extends IntegerIdentifiedData> extends Abstr
     }
     
     /**
-     * Checks whether the given subset solution is rejected. A subset solution is rejected if any of the
-     * rejecting constraints is violated (see {@link #addMandatoryConstraint(Constraint)}) or if it has
-     * an invalid size (number of selected IDs).
+     * Validate a subset solution. The returned validation object indicates whether
+     * the solution passed constraint validation, possibly also requiring that it
+     * has a valid size.
      * 
-     * @param solution subset solution to verify
-     * @return <code>true</code> if the solution is rejected
+     * @param solution solution to validate
+     * @return subset validation
      */
     @Override
-    public boolean rejectSolution(SubsetSolution solution){
-        return rejectSolution(solution, true);
+    public SubsetValidation validate(SubsetSolution solution){
+        // validate constraints
+        UnanimousValidation uval = super.validate(solution);
+        // extend with size check
+        boolean validSize = solution.getNumSelectedIDs() >= getMinSubsetSize()
+                                && solution.getNumSelectedIDs() <= getMaxSubsetSize();
+        return new SubsetValidation(validSize, uval);
     }
     
     /**
-     * Checks whether the given subset solution is rejected. A subset solution is rejected if any of
-     * the rejecting constraints is violated (see {@link #addMandatoryConstraint(Constraint)}). Only
-     * when <code>checkSubsetSize</code> is <code>true</code> the solution is also rejected if it has
-     * an invalid size.
+     * Validate a move to be applied to the current subset solution of a local search (delta validation).
+     * A subset problem can only perform delta validation for moves of type {@link SubsetMove}. If the
+     * received move has a different type an {@link IncompatibleDeltaValidationException} is thrown.
      * 
-     * @param solution subset solution to verify
-     * @param checkSubsetSize indicates whether a solution should be rejected if it has an invalid size
-     * @return <code>true</code> if the solution is rejected
+     * @param move subset move to be validated
+     * @param curSolution current solution
+     * @param curValidation current validation
+     * @return validation of modified subset solution
+     * @throws IncompatibleDeltaValidationException if the received move is not of type {@link SubsetMove}
+     *                                              or if the delta validation of any mandatory constraint
+     *                                              is not compatible with the received move type
      */
-    public boolean rejectSolution(SubsetSolution solution, boolean checkSubsetSize){
-        if(checkSubsetSize){
-            return solution.getNumSelectedIDs() < getMinSubsetSize()        // too small
-                    || solution.getNumSelectedIDs() > getMaxSubsetSize()    // too large
-                    || super.rejectSolution(solution);                      // violates rejecting constraint
+    @Override
+    public SubsetValidation validate(Move<? super SubsetSolution> move,
+                                     SubsetSolution curSolution,
+                                     Validation curValidation){
+        // check type and cast
+        if(move instanceof SubsetMove){
+            SubsetMove subsetMove = (SubsetMove) move;
+            // check new size
+            int newSize = curSolution.getNumSelectedIDs() + subsetMove.getNumAdded() - subsetMove.getNumDeleted();
+            boolean validSize = newSize >= getMinSubsetSize() && newSize <= getMaxSubsetSize();
+            // delta validation of general constraints
+            UnanimousValidation deltaVal = super.validate(subsetMove, curSolution, curValidation);
+            // create and return new subset validation
+            return new SubsetValidation(validSize, deltaVal);
         } else {
-            // ignore size
-            return super.rejectSolution(solution);
+            throw new IncompatibleDeltaValidationException("Delta validation in subset problem expects moves "
+                                                            + "of type SubsetMove. Received: "
+                                                            + move.getClass().getSimpleName());
         }
     }
-
+    
     /**
      * Get the minimum subset size.
      * 
