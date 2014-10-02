@@ -45,7 +45,7 @@ public interface LocalSearchListener<SolutionType extends Solution> extends Sear
      * @param search local search which has updated its current solution
      * @param newCurrentSolution newly adopted current solution
      * @param newCurrentSolutionEvaluation evaluation of new current solution
-     * @param newCurrentSolutionEvaluation validation of new current solution
+     * @param newCurrentSolutionValidation validation of new current solution
      * @throws IncompatibleSearchListenerException if the listener is not compatible with the search
      */
     default public void modifiedCurrentSolution(LocalSearch<? extends SolutionType> search,

@@ -29,6 +29,7 @@ import org.jamesframework.core.exceptions.JamesRuntimeException;
 import org.jamesframework.core.exceptions.SearchException;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.Solution;
+import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.search.NeighbourhoodSearch;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.SingleNeighbourhoodSearch;
@@ -52,7 +53,7 @@ import org.slf4j.LoggerFactory;
  *      Solutions of adjacent replica (ordered by temperature) are considered to be swapped. Solutions of replicas
  *      \(R_1\) and \(R_2\) with temperatures \(T_1\) and \(T_2\) (\(T_1 &lt; T_2\)) and current solution evaluation
  *      \(E_1\) and \(E_2\), respectively, are always swapped if \(\Delta E \ge 0\), where \(\Delta E = computeDelta(E_2,E_1)\)
- *      (see {@link #computeDelta(double, double)}). If \(\Delta E &lt; 0\), solutions are swapped with probability
+ *      (see {@link #computeDelta(Evaluation, Evaluation)}). If \(\Delta E &lt; 0\), solutions are swapped with probability
  *      \[
  *          e^{(\frac{1}{k_1T_1}-\frac{1}{k_2T_2})\Delta E},
  *      \]

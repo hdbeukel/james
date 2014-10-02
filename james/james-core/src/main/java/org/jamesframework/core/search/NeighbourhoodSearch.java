@@ -21,6 +21,7 @@ import java.util.Collection;
 import org.jamesframework.core.exceptions.SearchException;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.Solution;
+import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.search.cache.EvaluatedMoveCache;
 import org.jamesframework.core.search.cache.SingleEvaluatedMoveCache;
 import org.jamesframework.core.search.neigh.Move;
@@ -282,7 +283,7 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
      * An improvement is made if and only if the given move is <b>not</b> <code>null</code>, the neighbour
      * obtained by applying the move is a valid solution (see {@link Problem#validate(Solution)})
      * and this neighbour has a better evaluation than the current solution (i.e. a positive delta is
-     * observed, see {@link #computeDelta(double, double)}).
+     * observed, see {@link #computeDelta(Evaluation, Evaluation)}).
      * <p>
      * Note that computed values are cached to prevent multiple evaluations or validations of the same move.
      * 
@@ -297,7 +298,7 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
     
     /**
      * Get the best valid move among a collection of possible moves. The best move is the one yielding the
-     * largest delta (see {@link #computeDelta(double, double)}) when being applied to the current solution.
+     * largest delta (see {@link #computeDelta(Evaluation, Evaluation)}) when being applied to the current solution.
      * If <code>positiveDeltasOnly</code> is set to <code>true</code>, only moves yielding a (strictly)
      * positive delta, i.e. an improvement, are considered.
      * <p>
