@@ -16,6 +16,7 @@
 
 package org.jamesframework.core.problems.objectives.evaluations;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import org.jamesframework.core.problems.constraints.PenalizingValidation;
@@ -33,7 +34,7 @@ public class PenalizedEvaluation implements Evaluation {
     // original evaluation
     private final Evaluation evaluation;
     // penalizing validations
-    private final Map<Object, PenalizingValidation> penalties;
+    private Map<Object, PenalizingValidation> penalties;
     // indicates whether evaluations are maximized or minimized
     private final boolean minimizing;
     
@@ -67,6 +68,16 @@ public class PenalizedEvaluation implements Evaluation {
     }
     
     /**
+     * Add a collections of penalties. Each corresponding penalizing
+     * validation object is assigned a key as indicated in the provided map.
+     * 
+     * @param penalties penalizing validations to add
+     */
+    public void addPenalizingValidations(Map<Object, PenalizingValidation> penalties){
+        penalties.keySet().forEach(k -> addPenalizingValidation(k, penalties.get(k)));
+    }
+    
+    /**
      * Retrieve the penalizing validation object corresponding to the given key.
      * 
      * @param key key specified when adding the penalizing validation
@@ -74,6 +85,33 @@ public class PenalizedEvaluation implements Evaluation {
      */
     public PenalizingValidation getPenalizingValidation(Object key){
         return penalties.get(key);
+    }
+    
+    /**
+     * Get the collection of all keys specified when adding a penalizing validation object.
+     * 
+     * @return collection of used keys
+     */
+    public Collection<Object> getKeys(){
+        return penalties.keySet();
+    }
+    
+    /**
+     * Get a map containing all added penalizing validation objects stored by the assigned keys.
+     * 
+     * @return map containing all penalizing validations
+     */
+    public Map<Object, PenalizingValidation> getValidations(){
+        return penalties;
+    }
+    
+    /**
+     * Set a new penalty map, discarding any previously added penalizing validation objects.
+     * 
+     * @param penalties map of penalizing validation objects
+     */
+    public void setValidations(Map<Object, PenalizingValidation> penalties){
+        this.penalties = penalties;
     }
     
     /**

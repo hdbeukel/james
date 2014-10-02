@@ -21,6 +21,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.jamesframework.core.exceptions.IncompatibleDeltaValidationException;
 import org.jamesframework.core.problems.constraints.Constraint;
 import org.jamesframework.core.problems.constraints.PenalizingConstraint;
 import org.jamesframework.core.problems.constraints.PenalizingValidation;
@@ -221,6 +222,8 @@ public abstract class AbstractProblem<SolutionType extends Solution, DataType> i
      * @param move move to validate
      * @param curSolution current solution of a local search
      * @param curValidation validation of current solution
+     * @throws IncompatibleDeltaValidationException if the provided delta validation of any mandatory
+     *                                              constraint is not compatible with the received move type
      * @return unanimous validation indicating whether all mandatory constraints are satisfied
      */
     @Override
@@ -284,6 +287,22 @@ public abstract class AbstractProblem<SolutionType extends Solution, DataType> i
         return penEval;
     }
     
+    /**
+     * Evaluate a move by taking into account both the evaluation of the modified solution and
+     * the penalizing constraints (if any). Penalties are assigned for any violated penalizing
+     * constraint, which are subtracted from the evaluation in case of maximization, and added
+     * to it in case of minimization.
+     * 
+     * @param move move to evaluate
+     * @param curSolution current solution
+     * @param curEvaluation current evaluation
+     * @throws IncompatibleDeltaEvaluationException if the provided delta evaluation of the objective
+     *                                              is not compatible with the received move type
+     * @throws IncompatibleDeltaValidationException if the provided delta validation of any penalizing
+     *                                              constraint is not compatible with the received move type
+     * @return aggregated evaluation of modified solution, taking into account both the objective
+     *         function and penalizing constraints
+     */
     @Override
     public PenalizedEvaluation evaluate(Move<? super SolutionType> move,
                                         SolutionType curSolution,
