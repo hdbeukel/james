@@ -25,21 +25,26 @@ import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 
 /**
- * Metropolis search with fixed temperature. Iteratively samples a random neighbour and accepts it based on a criterion that
- * depends on the difference in evaluation (\(\Delta E\)) and the temperature of the system (\(T\)). When \(\Delta E &gt; 0\),
- * which indicates improvement, the neighbour is always accepted as the new current solution. Else, it is accepted with
+ * Metropolis search with fixed temperature. Iteratively samples a random neighbour and accepts it based on a
+ * criterion that depends on the difference in evaluation (\(\Delta E\)) and the temperature of the system (\(T\)).
+ * When a valid neighbour is obtained with \(\Delta E &gt; 0\), which indicates improvement, it is always accepted
+ * as the new current solution. Else, it is accepted with
  * probability
  * \[
  *      e^{\frac{\Delta E}{kT}}
  * \]
- * where \(k\) is a constant temperature scale factor (by default, \(k = 1\)). The probability of acceptance increases when the
- * temperature \(T\) is higher or when (the negative) \(\Delta E\) is closer to zero.
+ * where \(k\) is a constant temperature scale factor (by default, \(k = 1\)). The probability of acceptance
+ * increases when the temperature \(T\) is higher or when (the negative) \(\Delta E\) is closer to zero.
  * <p>
- * Note that it is important to carefully choose the temperature, depending on the scale of the evaluations and expected deltas,
- * as well as the landscape of the objective function. Setting a high temperature decreases the probability of ending in a local
- * optimum, but also impedes convergence and generally slows down the search process. Vice versa, a low temperature aids convergence
- * but yields a system that is more sensitive to local optima. It is therefore strongly advised to experiment with different temperatures
- * for each specific problem so that an appropriate temperature can be selected.
+ * Note that it is important to carefully choose the temperature, depending on the scale of the evaluations
+ * and expected deltas, as well as the landscape of the objective function. Setting a high temperature decreases
+ * the probability of ending in a local optimum, but also impedes convergence and generally slows down the search
+ * process. Vice versa, a low temperature aids convergence but yields a search that is more sensitive to local
+ * optima. It is therefore strongly advised to experiment with different temperatures for each specific problem
+ * so that an appropriate temperature can be selected.
+ * <p>
+ * The search usually does not terminate internally except in the rare event that no random neighbour can
+ * be selected. It generally depends on external stop criteria for termination.
  * 
  * @param <SolutionType> solution type of the problems that may be solved using this search, required to extend {@link Solution}
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
@@ -116,8 +121,8 @@ public class MetropolisSearch<SolutionType extends Solution> extends SingleNeigh
     }
     
     /**
-     * Set the temperature scale factor \(k &gt; 0\). All temperatures are multiplied with this factor. By default,
-     * the scale factor is set to 1.
+     * Set the temperature scale factor \(k &gt; 0\). All temperatures are multiplied with this factor.
+     * By default, the scale factor is set to 1.
      * 
      * @param scale temperature scale factor
      * @throws IllegalArgumentException if <code>scale</code> is not strictly positive
@@ -132,7 +137,7 @@ public class MetropolisSearch<SolutionType extends Solution> extends SingleNeigh
     }
     
     /**
-     * Get the temperature scale factor \(k\) of the system.
+     * Get the temperature scale factor \(k\).
      * 
      * @return temperature scale factor
      */
@@ -141,14 +146,14 @@ public class MetropolisSearch<SolutionType extends Solution> extends SingleNeigh
     }
 
     /**
-     * Creates a random neighbour of the current solution and accepts it if it improves over the current solution,
-     * or if
+     * Creates a random neighbour of the current solution and accepts it as the new current solution
+     * if it is valid and either improves over the current solution or
      * \[
      *      e^{\frac{\Delta E}{kT}} &gt; R(0,1)
      * \]
-     * where \(\Delta E\) is the difference between the evaluation of the neighbour and that of the current solution,
-     * \(T\) is the temperature of the system, \(k\) is a constant scale factor, and \(R(0,1)\) is a random number
-     * in the interval \([0,1]\).
+     * where \(\Delta E\) is the difference between the evaluation of the neighbour and that of the
+     * current solution, \(T\) is the temperature, \(k\) is a constant scale factor, and \(R(0,1)\)
+     * is a random number sampled from a uniform distribution in the interval \([0,1]\).
      * 
      * @throws JamesRuntimeException if depending on malfunctioning components (problem, neighbourhood, ...)
      */
@@ -156,23 +161,23 @@ public class MetropolisSearch<SolutionType extends Solution> extends SingleNeigh
     protected void searchStep() {
         // get random move
         Move<? super SolutionType> move = getNeighbourhood().getRandomMove(getCurrentSolution());
-        // got move ?
+        // got move?
         if(move != null){
-            // valid move ?
-            if(validateMove(move)){
-                // valid move: improvement ?
-                if(isValidImprovement(move)){
+            // valid move?
+            if(validateMove(move).passed()){
+                // valid move: improvement?
+                if(isImprovement(move)){
                     // improvement: always accept
                     acceptMove(move);
                 } else {
-                    // no improvement: accept with probability based on temperature and (negative) delta
+                    // no improvement: accept with probability based on temperature and delta
                     double delta = computeDelta(evaluateMove(move), getCurrentSolutionEvaluation());
                     double r = ThreadLocalRandom.current().nextDouble();
                     if(Math.exp(delta/(scale*temperature)) > r){
-                        // accept non-improving move
+                        // accept inferior move
                         acceptMove(move);
                     } else {
-                        // reject non-improving move
+                        // reject inferior move
                         rejectMove();
                     }
                 }

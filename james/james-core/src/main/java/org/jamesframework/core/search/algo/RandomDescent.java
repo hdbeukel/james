@@ -75,7 +75,7 @@ public class RandomDescent<SolutionType extends Solution> extends SingleNeighbou
         // got move ?
         if(move != null){
             // accept if improvement
-            if(isValidImprovement(move)){
+            if(isImprovement(move)){
                 // accept move
                 acceptMove(move);
             } else {

@@ -286,7 +286,7 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
      * @param move move to be applied to the current solution
      * @return <code>true</code> if applying this move yields a valid improvement
      */
-    protected boolean isValidImprovement(Move<? super SolutionType> move){
+    protected boolean isImprovement(Move<? super SolutionType> move){
         return move != null
                 && validateMove(move).passed()
                 && computeDelta(evaluateMove(move), getCurrentSolutionEvaluation()) > 0;

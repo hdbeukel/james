@@ -29,6 +29,7 @@ import org.jamesframework.core.exceptions.JamesRuntimeException;
 import org.jamesframework.core.exceptions.SearchException;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.Solution;
+import org.jamesframework.core.problems.constraints.Validation;
 import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.search.NeighbourhoodSearch;
 import org.jamesframework.core.search.Search;
@@ -70,12 +71,12 @@ import org.slf4j.LoggerFactory;
  * The overall best solution found by all replicas is tracked and eventually returned by the parallel tempering algorithm.
  * The main algorithm does not actively generate nor apply any moves to its current solution, but simply updates it when a
  * replica has found a new global improvement, in which case the best solution is also updated. After setting a current
- * solution using {@link #setCurrentSolution(Solution)}, the main algorithm's current solution may differ from its best
+ * solution using {@link #setCurrentSolution(Solution)} the main algorithm's current solution may differ from its best
  * solution, until a new global improvement is found and both are again updated.
  * </p>
  * <p>
  * The reported number of accepted and rejected moves (see {@link #getNumAcceptedMoves()} and {@link #getNumRejectedMoves()})
- * corresponds to the sum of the number of accepted and rejected moves in all replicas, during the current run of the
+ * correspond to the sum of the number of accepted and rejected moves in all replicas, during the current run of the
  * parallel tempering search. These values are updated with some delay, whenever a Metropolis replica has completed
  * its current run.
  * </p>
@@ -378,28 +379,30 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
         /*******************************/
 
         /**
-         * Parallel tempering algorithm listens to its Metropolis replicas: whenever a new best solution is reported
-         * inside a replica, it is verified whether this is also a global improvement. If so, the main algorithm's current
-         * and best solution are both updated to refer to this new global best solution. This method is synchronized to
-         * avoid conflicting updates by replicas running in separate threads.
+         * Whenever a new best solution is reported inside a replica, it is verified whether this is also a global
+         * improvement. If so, the main algorithm's current and best solution are both updated to refer to this new
+         * global best solution. This method is synchronized to avoid conflicting updates by replicas running in
+         * separate threads.
          * 
          * @param replica Metropolis replica that has found a (local) best solution
          * @param newBestSolution new best solution found in replica
          * @param newBestSolutionEvaluation evaluation of new best solution
+         * @param newBestSolutionValidation validation of new best solution
          */
         @Override
-        public synchronized void newBestSolution(Search<? extends SolutionType> replica, final SolutionType newBestSolution,
-                                                                                     final double newBestSolutionEvaluation) {
-            // update main algorithm's current and best solution (skip validation,
-            // already known to be valid if reported as best solution by a replica)
-            updateCurrentAndBestSolution(newBestSolution, newBestSolutionEvaluation, true);
+        public synchronized void newBestSolution(Search<? extends SolutionType> replica,
+                                                 SolutionType newBestSolution,
+                                                 Evaluation newBestSolutionEvaluation,
+                                                 Validation newBestSolutionValidation) {
+            // update main algorithm's current and best solution
+            updateCurrentAndBestSolution(newBestSolution, newBestSolutionEvaluation, newBestSolutionValidation);
         }
 
         /**
-         * Parallel tempering algorithm listens to its Metropolis replicas: whenever a replica has completed a step, it is verified whether
-         * the desired number of steps have been performed and, if so, the replica is stopped. This approach is favoured here over attaching
-         * a generic maximum steps stop criterion (see {@link MaxSteps}) to each replica because of its finer granularity, i.e. because it is
-         * checked after every single step.
+         * Whenever a replica has completed a step it is verified whether the desired number of steps have been
+         * performed and, if so, the replica is stopped. This approach is favoured here over attaching a generic
+         * maximum steps stop criterion (see {@link MaxSteps}) to each replica because of its finer granularity,
+         * i.e. because the number of performed steps is checked after every single step.
          * 
          * @param replica Metropolis replica that completed a search step
          * @param numSteps number of steps completed so far
@@ -412,17 +415,16 @@ public class ParallelTempering<SolutionType extends Solution> extends SingleNeig
         }
 
         /**
-         * Parallel tempering algorithm listens to its Metropolis replicas: whenever a replica has finished its current run,
-         * the number of accepted and rejected moves during this run are accounted for by increase the global counters. This
-         * method is synchronized to avoid concurrent updates of the global number of accepted and rejected moves, as the
-         * replicas run in separate threads.
+         * Whenever a replica has finished its current run the number of accepted and rejected moves during this
+         * run are accounted for by increasing the global counters. This method is synchronized to avoid concurrent
+         * updates of the global number of accepted and rejected moves, as the replicas run in separate threads.
          * 
          * @param replica Metropolis replica that has finished its current run
          */
         @Override
         public synchronized void searchStopped(Search<? extends SolutionType> replica) {
             // cast to neighbourhood search (should never fail, as this callback is only fired by Metropolis searches)
-            NeighbourhoodSearch<?> nreplica = (NeighbourhoodSearch<?>) replica;
+            NeighbourhoodSearch nreplica = (NeighbourhoodSearch) replica;
             // update number of accepted moves
             incNumAcceptedMoves(nreplica.getNumAcceptedMoves());
             // update number of rejected moves

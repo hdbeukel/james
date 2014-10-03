@@ -19,6 +19,8 @@ package org.jamesframework.core.search.algo;
 import java.util.List;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.Solution;
+import org.jamesframework.core.problems.constraints.Validation;
+import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.search.LocalSearch;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.listeners.SearchListener;
@@ -68,7 +70,8 @@ public class PipedLocalSearch<SolutionType extends Solution> extends LocalSearch
      * 
      * @throws NullPointerException if <code>problem</code> or <code>pipeline</code> are <code>null</code>,
      *                              or if <code>pipeline</code> contains any <code>null</code> elements
-     * @throws IllegalArgumentException if <code>pipeline</code> is empty
+     * @throws IllegalArgumentException if <code>pipeline</code> is empty, or if it contains searches that
+     *                                  do not solve the specified problem
      * @param problem problem to solve
      * @param pipeline local searches to execute in the pipeline, in the given order
      */
@@ -78,10 +81,10 @@ public class PipedLocalSearch<SolutionType extends Solution> extends LocalSearch
     
     /**
      * Creates a new piped local search, specifying the problem to solve, a list of local searches to
-     * be executed in the pipeline, in the given order, and a custom search name. Only the search name
-     * can be <code>null</code>, in which case the default name "PipedLocalSearch" is assigned. The
-     * list of local searches can not be empty and can not contain any <code>null</code> elements. Moreover,
-     * only searches solving the specified problem can be included in the pipeline.
+     * be executed in the pipeline in the given order, and a custom search name. Only the search name
+     * can be <code>null</code> in which case the default name "PipedLocalSearch" is assigned. The
+     * list of local searches can not be empty and can not contain any <code>null</code> elements.
+     * Moreover, only searches solving the specified problem can be included in the pipeline.
      * 
      * @throws NullPointerException if <code>problem</code> or <code>pipeline</code> are <code>null</code>,
      *                              or if <code>pipeline</code> contains any <code>null</code> elements
@@ -164,13 +167,12 @@ public class PipedLocalSearch<SolutionType extends Solution> extends LocalSearch
             l.start();
             // get best solution found by search l
             SolutionType bestSol = l.getBestSolution();
-            double bestSolEval = l.getBestSolutionEvaluation();
+            Evaluation bestSolEvaluation = l.getBestSolutionEvaluation();
+            Validation bestSolValidation = l.getBestSolutionValidation();
             // if not null and different from current solution:
             // update current and best solution accordingly
             if(bestSol != null && !bestSol.equals(getCurrentSolution())){
-                // skip validation (already known to be valid if
-                // reported as best solution of executed search)
-                updateCurrentAndBestSolution(bestSol, bestSolEval, true);
+                updateCurrentAndBestSolution(bestSol, bestSolEvaluation, bestSolValidation);
             }
             // remove listener
             l.removeSearchListener(pipelineListener);
@@ -180,8 +182,8 @@ public class PipedLocalSearch<SolutionType extends Solution> extends LocalSearch
     }
 
     /**
-     * Listener attached to each search in the pipeline. Aborts searches that attempt to start when
-     * the main search is already terminating.
+     * Listener attached to each search in the pipeline.
+     * Aborts searches that attempt to start when the main search is already terminating.
      */
     private class PipelineListener implements SearchListener<SolutionType>{
 

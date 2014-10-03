@@ -27,6 +27,8 @@ import java.util.concurrent.Future;
 import org.jamesframework.core.exceptions.SearchException;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.Solution;
+import org.jamesframework.core.problems.constraints.Validation;
+import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.status.SearchStatus;
 import org.jamesframework.core.search.listeners.SearchListener;
@@ -39,17 +41,16 @@ import org.jamesframework.core.search.listeners.SearchListener;
  * main search itself terminates.
  * </p>
  * <p>
- * When the parallel search is requested to stop (see {@link Search#stop()}) it will propagate this request to its
- * subsearches and will wait for their termination. Similarly, when the parallel search is disposed (see
- * {@link Search#dispose()}), all subsearches will also be disposed.
+ * When a parallel search is requested to stop (see {@link Search#stop()}) it will propagate this request
+ * to its subsearches and will wait for their termination. Similarly, when a parallel search is disposed
+ * (see {@link Search#dispose()}) all subsearches are also disposed.
  * </p>
  * <p>
- * Because searches are executed in separate threads, it is important to ensure that any shared objects (problem,
- * objective, constraints, neighbourhood, ...) are thread-safe.
+ * Because searches are executed in separate threads, it is important to ensure that any shared objects
+ * (problem, objective, constraints, neighbourhood, ...) are thread-safe.
  * </p>
  *
- * @param <SolutionType> solution type of the problems that may be solved using this search, required to extend
- * {@link Solution}
+ * @param <SolutionType> solution type of the problems that may be solved using this search, required to extend {@link Solution}
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class BasicParallelSearch<SolutionType extends Solution> extends Search<SolutionType>{
@@ -98,19 +99,18 @@ public class BasicParallelSearch<SolutionType extends Solution> extends Search<S
 
     /**
      * <p>
-     * Add the given search to the parallel algorithm, to be executed in parallel with the other searches. Only searches
-     * that solve the same problem as the one specified when creating the parallel search can be added. An exception
-     * will be thrown when attempting to add a search that solves a different problem. The parallel search is attached
-     * as a listener to the given search, to keep track of all new best solutions found by this search. Note that this
+     * Add the given search, to be executed in parallel with the other searches. Only searches that solve
+     * the same problem as the one specified when creating the parallel search can be added. An exception
+     * will be thrown when attempting to add a search that solves a different problem. Note that this
      * method may only be called when the search is idle.
      * </p>
      * <p>
-     * Because searches are executed in separate threads, it is important to ensure that any shared objects (problem,
-     * objective, constraints, neighbourhood, ...) are thread-safe.
+     * Because searches are executed in separate threads, it is important to ensure that any shared objects
+     * (problem, objective, constraints, neighbourhood, ...) are thread-safe.
      * </p>
      *
-     * @throws SearchException if the parallel search is not idle, or if the given search does not solve the same
-     * problem as the parallel search
+     * @throws SearchException if the parallel search is not idle, or if the given search does not solve
+     *                         the same problem as the parallel search
      * @param search search to add for parallel execution
      */
     public void addSearch(Search<SolutionType> search) {
@@ -129,13 +129,12 @@ public class BasicParallelSearch<SolutionType extends Solution> extends Search<S
     }
 
     /**
-     * Remove the given search from the parallel algorithm, if it had been added before. If not, <code>false</code> is
-     * returned. The parallel search stops listening to the given search when it is removed. Note that this method may
-     * only be called when the search is idle.
+     * Remove the given search. If the search was never added, <code>false</code> is returned.
+     * Note that this method may only be called when the search is idle.
      *
      * @throws SearchException if the search is not idle
      * @param search search to be removed from parallel algorithm
-     * @return <code>true</code> if search was successfully removed
+     * @return <code>true</code> if search is successfully removed
      */
     public boolean removeSearch(Search<SolutionType> search) {
         // synchronize with status updates
@@ -168,7 +167,7 @@ public class BasicParallelSearch<SolutionType extends Solution> extends Search<S
         // check: at least one search added
         if (searches.isEmpty()) {
             throw new SearchException("Cannot start basic parallel search: "
-                    + "no subsearches added for concurrent execution.");
+                                    + "no subsearches added for concurrent execution.");
         }
     }
 
@@ -227,8 +226,8 @@ public class BasicParallelSearch<SolutionType extends Solution> extends Search<S
     }
 
     /**
-     * Private listener attached to each contained subsearch, to keep track of the global best solution and to abort
-     * a search that attempts to start when the main search is already terminating.
+     * Private listener attached to each subsearch, to keep track of the global best solution and
+     * to abort a search that attempts to start when the main search is already terminating.
      */
     private class SubsearchListener implements SearchListener<SolutionType> {
     
@@ -243,11 +242,15 @@ public class BasicParallelSearch<SolutionType extends Solution> extends Search<S
          *
          * @param search subsearch that found a new best solution
          * @param newBestSolution new best solution in subsearch
-         * @param newBestSolutionEvaluation new best solution evaluation
+         * @param newBestSolutionEvaluation evaluation of new best solution
+         * @param newBestSolutionValidation validation of new best solution
          */
         @Override
-        public synchronized void newBestSolution(Search<? extends SolutionType> search, SolutionType newBestSolution, double newBestSolutionEvaluation) {
-            updateBestSolution(newBestSolution, newBestSolutionEvaluation);
+        public synchronized void newBestSolution(Search<? extends SolutionType> search,
+                                                 SolutionType newBestSolution,
+                                                 Evaluation newBestSolutionEvaluation,
+                                                 Validation newBestSolutionValidation) {
+            updateBestSolution(newBestSolution, newBestSolutionEvaluation, newBestSolutionValidation);
         }
 
         /**
