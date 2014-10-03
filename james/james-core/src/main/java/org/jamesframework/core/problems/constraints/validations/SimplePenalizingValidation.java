@@ -47,7 +47,7 @@ public class SimplePenalizingValidation extends SimpleValidation implements Pena
     public SimplePenalizingValidation(boolean passed, double penalty) {
         super(passed);
         if(passed){
-            this.penalty = 0;
+            this.penalty = 0.0;
         } else {
             if(penalty > 0.0){
                 this.penalty = penalty;
@@ -66,6 +66,17 @@ public class SimplePenalizingValidation extends SimpleValidation implements Pena
     @Override
     public double getPenalty(){
         return penalty;
+    }
+    
+    /**
+     * Get a string representation of the validation object. Indicates
+     * whether the the solution passed validation and the assigned penalty.
+     * 
+     * @return string representation
+     */
+    @Override
+    public String toString(){
+        return (passed() ? "valid" : "invalid") + " (penalty: " + getPenalty() + ")";
     }
 
 }

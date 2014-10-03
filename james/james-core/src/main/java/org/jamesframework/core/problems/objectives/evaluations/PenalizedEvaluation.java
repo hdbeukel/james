@@ -145,5 +145,15 @@ public class PenalizedEvaluation implements Evaluation {
         }
         return cachedValue;
     }
+    
+    /**
+     * Get a string representation that contains both the penalized and original unpenalized evaluation.
+     * 
+     * @return string representation
+     */
+    @Override
+    public String toString(){
+        return getValue() + "(unpenalized: " + getEvaluation().getValue() + ")";
+    }
 
 }

@@ -42,6 +42,15 @@ public class SubsetValidation extends UnanimousValidation {
     }
     
     /**
+     * Check whether the subset solution has a valid size.
+     * 
+     * @return <code>true</code> if the subset has a valid size
+     */
+    public boolean validSize(){
+        return validSize;
+    }
+    
+    /**
      * Check whether the subset solution passed validation. If <code>checkSize</code>
      * is <code>false</code> the size of the subset is ignored and only the general
      * constraints are checked.
@@ -62,6 +71,31 @@ public class SubsetValidation extends UnanimousValidation {
     @Override
     public boolean passed(){
         return passed(true);
+    }
+    
+    /**
+     * Get a string representation of the validation object. Indicates whether
+     * the general constraints are satisfied and if the subset has a valid size.
+     * 
+     * @return string representation
+     */
+    @Override
+    public String toString(){
+        StringBuilder str = new StringBuilder(passed() ? "valid" : "invalid");
+        str.append(" (");
+        if(validSize()){
+            str.append("valid size");
+        } else {
+            str.append("invalid size");
+        }
+        str.append(", ");
+        if(super.passed()){
+            str.append("constraints satisfied");
+        } else {
+            str.append("constraints not satisfied");
+        }
+        str.append(")");
+        return str.toString();
     }
 
 }

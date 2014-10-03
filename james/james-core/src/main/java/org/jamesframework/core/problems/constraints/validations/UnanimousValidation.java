@@ -106,5 +106,17 @@ public class UnanimousValidation implements Validation {
     public boolean passed() {
         return validations.values().stream().allMatch(Validation::passed);
     }
+    
+    /**
+     * Get a string representation of the validation object.
+     * If validation passed, a string "valid" is returned,
+     * else "invalid" is returned.
+     * 
+     * @return string representation ("valid"/"invalid")
+     */
+    @Override
+    public String toString(){
+        return passed() ? "valid" : "invalid";
+    }
 
 }
