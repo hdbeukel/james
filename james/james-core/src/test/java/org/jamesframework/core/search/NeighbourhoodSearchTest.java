@@ -215,7 +215,7 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
     }
 
     /**
-     * Test of isImprovement method, of class NeighbourhoodSearch.
+     * Test of isValidImprovement method, of class NeighbourhoodSearch.
      */
     @Test
     public void testIsImprovement() {
@@ -231,14 +231,14 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
             // pick any addition move
             AdditionMove m = new AdditionMove(SetUtilities.getRandomElement(neighSearch.getCurrentSolution().getUnselectedIDs(), RG));
             // verify: addition should increase score
-            assertTrue(neighSearch.isImprovement(m));
+            assertTrue(neighSearch.isValidImprovement(m));
             // apply move
             neighSearch.acceptMove(m);
 
             // create corresponding deletion move
             DeletionMove m2 = new DeletionMove(m.getAddedID());
             // verify: deletion yields worse solution
-            assertFalse(neighSearch.isImprovement(m2));
+            assertFalse(neighSearch.isValidImprovement(m2));
 
             // repeat with minimizing objective
             obj.setMinimizing();
@@ -247,12 +247,12 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
             neighSearch.setCurrentSolution(initial);
             // verify: addition is no improvement
             m = new AdditionMove(SetUtilities.getRandomElement(neighSearch.getCurrentSolution().getUnselectedIDs(), RG));
-            assertFalse(neighSearch.isImprovement(m));
+            assertFalse(neighSearch.isValidImprovement(m));
             // apply addition
             neighSearch.acceptMove(m);
             // verify: deletion now is improvement
             m2 = new DeletionMove(m.getAddedID());
-            assertTrue(neighSearch.isImprovement(m2));
+            assertTrue(neighSearch.isValidImprovement(m2));
             // switch back to maximizing
             obj.setMaximizing();
 
@@ -266,9 +266,9 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
             SwapMove m3 = new SwapMove(SetUtilities.getRandomElement(neighSearch.getCurrentSolution().getUnselectedIDs(), RG),
                                        SetUtilities.getRandomElement(neighSearch.getCurrentSolution().getSelectedIDs(), RG));
             // verify (no moves are considered improvements because of mandatory constraint)
-            assertFalse(neighSearch.isImprovement(m));
-            assertFalse(neighSearch.isImprovement(m2));
-            assertFalse(neighSearch.isImprovement(m3));
+            assertFalse(neighSearch.isValidImprovement(m));
+            assertFalse(neighSearch.isValidImprovement(m2));
+            assertFalse(neighSearch.isValidImprovement(m3));
             // remove constraint
             problem.removeMandatoryConstraint(c);
         

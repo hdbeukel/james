@@ -84,7 +84,7 @@ public interface EvaluatedMoveCache {
      * @param move move applied to the current solution
      * @return validation of the obtained neighbour, <code>null</code> if not available in the cache
      */
-    public Validation getCachedMoveRejection(Move<?> move);
+    public Validation getCachedMoveValidation(Move<?> move);
     
     /**
      * Clears all cached values.

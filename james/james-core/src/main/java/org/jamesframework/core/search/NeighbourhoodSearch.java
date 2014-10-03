@@ -21,6 +21,7 @@ import java.util.Collection;
 import org.jamesframework.core.exceptions.SearchException;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.Solution;
+import org.jamesframework.core.problems.constraints.Validation;
 import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.search.cache.EvaluatedMoveCache;
 import org.jamesframework.core.search.cache.SingleEvaluatedMoveCache;
@@ -203,16 +204,17 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
     /***********************/
     
     /**
-     * When updating the current solution in a neighbourhood search, the evaluated move cache is cleared because
-     * it is no longer valid for the new current solution.
+     * When updating the current solution in a neighbourhood search, the evaluated move cache is
+     * cleared because it is no longer valid for the new current solution.
      * 
      * @param solution new current solution
      * @param evaluation evaluation of new current solution
+     * @param validation validation of new current solution
      */
     @Override
-    protected void updateCurrentSolution(SolutionType solution, double evaluation){
+    protected void updateCurrentSolution(SolutionType solution, Evaluation evaluation, Validation validation){
         // call super
-        super.updateCurrentSolution(solution, evaluation);
+        super.updateCurrentSolution(solution, evaluation, validation);
         // clear evaluated move cache
         if(cache != null){
             cache.clear();
@@ -220,15 +222,15 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
     }
     
     /**
-     * Evaluates the neighbour obtained by applying the given move to the current solution. If this
-     * move has been evaluated before and the computed value is still available in the cache, the
-     * cached value will be returned. Else, the evaluation will be computed and offered to the cache.
+     * Evaluates a move to be applied to the current solution. If this move has been evaluated
+     * before and the obtained evaluation is still available in the cache, the cached object will
+     * be returned. Else, the evaluation will be computed and offered to the cache.
      * 
-     * @param move move applied to the current solution
+     * @param move move to be applied to the current solution
      * @return evaluation of obtained neighbour, possibly retrieved from the evaluated move cache
      */
-    protected double evaluateMove(Move<? super SolutionType> move){
-        Double eval = null;
+    protected Evaluation evaluateMove(Move<? super SolutionType> move){
+        Evaluation eval = null;
         // check cache
         if(cache != null){
             eval = cache.getCachedMoveEvaluation(move);
@@ -238,133 +240,140 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
             return eval;
         } else {
             // cache miss: evaluate and cache
-            move.apply(getCurrentSolution());                       // apply move
-            eval = getProblem().evaluate(getCurrentSolution());     // evaluate neighbour
+            eval = getProblem().evaluate(move, getCurrentSolution(), getCurrentSolutionEvaluation());
             if(cache != null){
-                cache.cacheMoveEvaluation(move, eval);              // cache evaluation
+                cache.cacheMoveEvaluation(move, eval);
             }
-            move.undo(getCurrentSolution());                        // undo move
-            return eval;                                            // return evaluation
+            return eval;
         }
     }
     
     /**
-     * Validates the neighbour obtained by applying the given move to the current solution. If this
-     * move has been validated before and the result is still available in the cache, the cached result
-     * will be returned. Else, the neighbour will be validated and the result is offered to the cache.
+     * Validates a move to be applied to the current solution. If this move has been validated
+     * before and the obtained validation is still available in the cache, the cached object will
+     * be returned. Else, the validation will be computed and offered to the cache.
      * 
-     * @param move move applied to the current solution
-     * @return <code>true</code> if the obtained neighbour is valid,
-     *         possibly retrieved from the evaluated move cache
+     * @param move move to be applied to the current solution
+     * @return validation of obtained neighbour, possibly retrieved from the evaluated move cache
      */
-    protected boolean validateMove(Move<? super SolutionType> move){
-        Boolean reject = null;
+    protected Validation validateMove(Move<? super SolutionType> move){
+        Validation val = null;
         // check cache
         if(cache != null){
-            reject = cache.getCachedMoveRejection(move);
+            val = cache.getCachedMoveValidation(move);
         }
-        if(reject != null){
+        if(val != null){
             // cache hit: return cached value
-            return !reject;
+            return val;
         } else {
             // cache miss: validate and cache
-            move.apply(getCurrentSolution());                               // apply move
-            reject = getProblem().rejectSolution(getCurrentSolution());     // validate neighbour
+            val = getProblem().validate(move, getCurrentSolution(), getCurrentSolutionValidation());
             if(cache != null){
-                cache.cacheMoveRejection(move, reject);                     // cache validation
+                cache.cacheMoveValidation(move, val);
             }
-            move.undo(getCurrentSolution());                                // undo move
-            return !reject;                                                 // return validation
+            return val;
         }
     }
     
     /**
-     * Checks whether the given move leads to an improvement when being applied to the current solution.
-     * An improvement is made if and only if the given move is <b>not</b> <code>null</code>, the neighbour
-     * obtained by applying the move is a valid solution (see {@link Problem#validate(Solution)})
-     * and this neighbour has a better evaluation than the current solution (i.e. a positive delta is
-     * observed, see {@link #computeDelta(Evaluation, Evaluation)}).
+     * Checks whether applying the given move to the current solution yields a valid improvement.
+     * An improvement is made if and only if the given move is <b>not</b> <code>null</code> and
+     * the neighbour obtained by applying the move is a valid solution with a better evaluation
+     * than the current solution.
      * <p>
      * Note that computed values are cached to prevent multiple evaluations or validations of the same move.
      * 
      * @param move move to be applied to the current solution
-     * @return <code>true</code> if applying this move yields an improvement
+     * @return <code>true</code> if applying this move yields a valid improvement
      */
-    protected boolean isImprovement(Move<? super SolutionType> move){
+    protected boolean isValidImprovement(Move<? super SolutionType> move){
         return move != null
-                && validateMove(move)
+                && validateMove(move).passed()
                 && computeDelta(evaluateMove(move), getCurrentSolutionEvaluation()) > 0;
     }
     
     /**
-     * Get the best valid move among a collection of possible moves. The best move is the one yielding the
+     * Get the best valid move among a collection of possible moves. The best valid move is the one yielding the
      * largest delta (see {@link #computeDelta(Evaluation, Evaluation)}) when being applied to the current solution.
-     * If <code>positiveDeltasOnly</code> is set to <code>true</code>, only moves yielding a (strictly)
-     * positive delta, i.e. an improvement, are considered.
+     * If <code>requireImprovement</code> is set to <code>true</code>, only moves that yield an improvement are
+     * considered (i.e. moves with positive delta).
      * <p>
-     * May return <code>null</code> if all moves lead to invalid solutions or if no valid move with positive
-     * delta is found, in case <code>positiveDeltasOnly</code> is set to <code>true</code>.
+     * May return <code>null</code> if all moves yield invalid neighbours, or if no valid improving move
+     * is found in case <code>requireImprovement</code> is set to <code>true</code>.
      * <p>
      * Note that all computed values are cached to prevent multiple evaluations or validations of the same move.
      * Before returning the selected best move, if any, its evaluation and validity are cached again to maximize
      * the probability that these values will remain available in the cache.
      * 
      * @param moves collection of possible moves
-     * @param positiveDeltasOnly if set to <code>true</code>, only moves with strictly positive are considered
+     * @param requireImprovement if set to <code>true</code>, only improving moves are considered
      * @return best valid move, may be <code>null</code>
      */
-    protected Move<? super SolutionType> getBestMove(Collection<? extends Move<? super SolutionType>> moves, boolean positiveDeltasOnly){
-        // track best move and corresponding delta
-        Move<? super SolutionType> bestMove = null, curMove;
-        double bestMoveDelta = -Double.MAX_VALUE, curMoveDelta, curMoveEval;
-        Double bestMoveEval = null;
+    protected Move<? super SolutionType> getBestMove(Collection<? extends Move<? super SolutionType>> moves, boolean requireImprovement){
+        // track best valid move + corresponding evaluation, validation and delta
+        Move<? super SolutionType> bestMove = null;
+        double bestMoveDelta = -Double.MAX_VALUE, curMoveDelta;
+        Evaluation curMoveEvaluation, bestMoveEvaluation = null;
+        Validation curMoveValidation, bestMoveValidation = null;
         // go through all moves
         for (Move<? super SolutionType> move : moves) {
-            curMove = move;
             // validate move
-            if (validateMove(curMove)) {
+            curMoveValidation = validateMove(move);
+            if (curMoveValidation.passed()) {
                 // evaluate move
-                curMoveEval = evaluateMove(curMove);
+                curMoveEvaluation = evaluateMove(move);
                 // compute delta
-                curMoveDelta = computeDelta(curMoveEval, getCurrentSolutionEvaluation());
+                curMoveDelta = computeDelta(curMoveEvaluation, getCurrentSolutionEvaluation());
                 // compare with current best move
                 if (curMoveDelta > bestMoveDelta                             // higher delta
-                        && (!positiveDeltasOnly || curMoveDelta > 0)) {      // ensure positive delta, if required
-                    bestMove = curMove;
+                        && (!requireImprovement || curMoveDelta > 0)) {      // ensure improvement, if required
+                    bestMove = move;
                     bestMoveDelta = curMoveDelta;
-                    bestMoveEval = curMoveEval;
+                    bestMoveEvaluation = curMoveEvaluation;
                 }
             }
         }
         // re-cache best move, if any
         if(bestMove != null && cache != null){
-            cache.cacheMoveRejection(bestMove, false);              // best move is known to be valid
-            cache.cacheMoveEvaluation(bestMove, bestMoveEval);      // cache best move evaluation 
+            cache.cacheMoveEvaluation(bestMove, bestMoveEvaluation);
+            cache.cacheMoveValidation(bestMove, bestMoveValidation);
         }
         // return best move
         return bestMove;
     }
     
     /**
-     * Accept the given move by applying it to the current solution. Updates the evaluation of the current solution
-     * and checks whether a new best solution has been found. Note that this method does <b>not</b> verify whether
-     * the given move yields a valid neighbour, but assumes that this has already been checked.
+     * Accept the given move by applying it to the current solution. Updates the evaluation and validation of
+     * the current solution and checks whether a new best solution has been found. The updates only take place
+     * if the applied move yields a valid neighbour, else calling this method does not have any effect and
+     * <code>false</code> is returned.
      * <p>
      * After updating the current solution, the evaluated move cache is cleared as this cache is no longer valid
      * for the new current solution. Furthermore, any local search listeners are informed and the number of
      * accepted moves is updated.
      * 
      * @param move accepted move to be applied to the current solution
+     * @return <code>true</code> if the update has been successfully performed,
+     *         <code>false</code> if the update was cancelled because the obtained neighbour is invalid
      */
-    protected void acceptMove(Move<? super SolutionType> move){
-        // compute new evaluation (likely to be present in cache)
-        double newEval = evaluateMove(move); 
-        // apply move to current solution (IMPORTANT: after evaluating the move!)
-        move.apply(getCurrentSolution());
-        // update current solution (same object, modified in place) and best solution (no validation)
-        updateCurrentAndBestSolution(getCurrentSolution(), newEval, true);
-        // increase accepted move counter
-        numAcceptedMoves++;
+    protected boolean acceptMove(Move<? super SolutionType> move){
+        // validate move (often retrieved from cache)
+        Validation newValidation = validateMove(move);
+        if(newValidation.passed()){
+            // evaluate move (often retrieved from cache)
+            Evaluation newEvaluation = evaluateMove(move);
+            // apply move to current solution (IMPORTANT: after evaluation/validation of the move!)
+            move.apply(getCurrentSolution());
+            // update current solution and best solution
+            updateCurrentAndBestSolution(getCurrentSolution(), newEvaluation, newValidation);
+            // increase accepted move counter
+            numAcceptedMoves++;
+            // update successful
+            return true;
+        } else {
+            // update cancelled: invalid neighbour
+            return false;
+        }
     }
     
     /**

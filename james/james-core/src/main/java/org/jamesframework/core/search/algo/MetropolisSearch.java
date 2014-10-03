@@ -161,7 +161,7 @@ public class MetropolisSearch<SolutionType extends Solution> extends SingleNeigh
             // valid move ?
             if(validateMove(move)){
                 // valid move: improvement ?
-                if(isImprovement(move)){
+                if(isValidImprovement(move)){
                     // improvement: always accept
                     acceptMove(move);
                 } else {
