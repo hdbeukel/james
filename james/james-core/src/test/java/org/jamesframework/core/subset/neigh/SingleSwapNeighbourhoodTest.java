@@ -139,7 +139,7 @@ public class SingleSwapNeighbourhoodTest {
         sol.deselectAll(SetUtilities.getRandomSubset(sol.getSelectedIDs(), (int)(0.5*sol.getNumSelectedIDs()), RG));
         
         // generate all possible moves
-        Set<Move<SubsetSolution>> moves = neigh.getAllMoves(sol);
+        Set<? extends Move<SubsetSolution>> moves = neigh.getAllMoves(sol);
         // verify size
         assertEquals(sol.getNumSelectedIDs()*sol.getNumUnselectedIDs(), moves.size());
         

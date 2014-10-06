@@ -115,7 +115,7 @@ public class DisjointMultiSwapNeighbourhoodTest {
         // randomly select 10 IDs
         sol.selectAll(SetUtilities.getRandomSubset(sol.getUnselectedIDs(), 10, RG));
 
-        Set<Move<SubsetSolution>> moves1, moves2, moves3, temp2, temp3;
+        Set<SubsetMove> moves1, moves2, moves3, temp2, temp3;
         
         moves1 = ssn.getAllMoves(sol);
         moves2 = msn.getAllMoves(sol);

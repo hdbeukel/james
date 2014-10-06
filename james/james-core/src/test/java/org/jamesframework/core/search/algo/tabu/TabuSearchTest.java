@@ -191,7 +191,8 @@ public class TabuSearchTest extends SearchTestTemplate {
         if(problem.getViolatedConstraints(search.getBestSolution()).isEmpty()){
             System.out.println("   >>> constraint satisfied!");
         } else {
-            System.out.println("   >>> constraint not satisfied, penalty " + constraint.computePenalty(search.getBestSolution(), data));
+            System.out.println("   >>> constraint not satisfied, penalty "
+                    + constraint.validate(search.getBestSolution(), data).getPenalty());
         }
     }
 

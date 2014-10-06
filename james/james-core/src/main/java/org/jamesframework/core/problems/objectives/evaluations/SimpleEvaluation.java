@@ -46,5 +46,15 @@ public class SimpleEvaluation implements Evaluation {
     public double getValue() {
         return value;
     }
+    
+    /**
+     * Get a string representation of the assigned value.
+     * 
+     * @return value converted to a string
+     */
+    @Override
+    public String toString(){
+        return value + "";
+    }
 
 }

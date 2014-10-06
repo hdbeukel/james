@@ -369,7 +369,7 @@ public class SubsetProblemTest {
             for(int ID : sol.getSelectedIDs()){
                 expected += ID;
             }
-            assertEquals((double) expected, problem1.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
+            assertEquals((double) expected, problem1.evaluate(sol).getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
         }
         
         // 2) with fake subset constraint (uses underlying subset data)
@@ -389,7 +389,7 @@ public class SubsetProblemTest {
             expected += ID;
         }
         // verify
-        assertEquals((double) expected, problem1.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
+        assertEquals((double) expected, problem1.evaluate(sol).getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
 
         // modify solution to violate the constraint (selected = 0 1 3 8 9)
         sol.deselect(6);
@@ -402,7 +402,7 @@ public class SubsetProblemTest {
         // account for penalty (1 difference below minimum)
         expected -= 1;
         // verify
-        assertEquals((double) expected, problem1.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
+        assertEquals((double) expected, problem1.evaluate(sol).getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
         
         // modify solution to violate constraint more severely (selected = 1 2 3 7 8)
         sol.deselect(9);
@@ -417,7 +417,7 @@ public class SubsetProblemTest {
         // account for penalty (5 differences below minimum)
         expected -= 5;
         // verify
-        assertEquals((double) expected, problem1.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
+        assertEquals((double) expected, problem1.evaluate(sol).getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
         
         /**********************************************************************************************/
         /* test with problem 2 (using subset data -- objective is sum of scores of selected entities) */
@@ -432,7 +432,7 @@ public class SubsetProblemTest {
             for(int ID : sol.getSelectedIDs()){
                 expected2 += SCORES[ID];
             }
-            assertEquals(expected2, problem2.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
+            assertEquals(expected2, problem2.evaluate(sol).getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
         }
         
         // 2) with fake subset constraint (uses underlying subset data)
@@ -452,7 +452,7 @@ public class SubsetProblemTest {
             expected2 += SCORES[ID];
         }
         // verify
-        assertEquals(expected2, problem2.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
+        assertEquals(expected2, problem2.evaluate(sol).getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
 
         // modify solution to violate the constraint (selected = 0 1 3 8 9)
         sol.deselect(6);
@@ -465,7 +465,7 @@ public class SubsetProblemTest {
         // account for penalty (1 difference below minimum)
         expected2 -= 1.0;
         // verify
-        assertEquals(expected2, problem2.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
+        assertEquals(expected2, problem2.evaluate(sol).getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
         
         // modify solution to violate constraint more severely (selected = 1 2 3 7 8)
         sol.deselect(9);
@@ -480,7 +480,7 @@ public class SubsetProblemTest {
         // account for penalty (5 differences below minimum)
         expected2 -= 5.0;
         // verify
-        assertEquals(expected2, problem2.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
+        assertEquals(expected2, problem2.evaluate(sol).getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
         
     }
     
@@ -498,19 +498,19 @@ public class SubsetProblemTest {
         SubsetSolution tooSmall = problem2.createEmptySubsetSolution();
         tooSmall.selectAll(SetUtilities.getRandomSubset(tooSmall.getUnselectedIDs(), PROBLEM_2_MIN_SIZE-1, RG));
         // verify
-        assertTrue(problem2.rejectSolution(tooSmall));
+        assertFalse(problem2.validate(tooSmall).passed());
         
         // too large
         SubsetSolution tooLarge = problem2.createEmptySubsetSolution();
         tooLarge.selectAll(SetUtilities.getRandomSubset(tooLarge.getUnselectedIDs(), PROBLEM_2_MAX_SIZE+1, RG));
         // verify
-        assertTrue(problem2.rejectSolution(tooLarge));
+        assertFalse(problem2.validate(tooLarge).passed());
         
         // valid size
         SubsetSolution valid = problem2.createEmptySubsetSolution();
         valid.selectAll(SetUtilities.getRandomSubset(valid.getUnselectedIDs(), (PROBLEM_2_MIN_SIZE+PROBLEM_2_MAX_SIZE)/2, RG));
         // verify
-        assertFalse(problem2.rejectSolution(valid));
+        assertTrue(problem2.validate(valid).passed());
         
     }
     

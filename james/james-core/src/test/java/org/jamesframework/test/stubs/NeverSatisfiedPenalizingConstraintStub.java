@@ -18,6 +18,8 @@ package org.jamesframework.test.stubs;
 
 import org.jamesframework.core.problems.constraints.PenalizingConstraint;
 import org.jamesframework.core.problems.Solution;
+import org.jamesframework.core.problems.constraints.PenalizingValidation;
+import org.jamesframework.core.problems.constraints.validations.SimplePenalizingValidation;
 
 /**
  * Penalizing constraint stub that is never satisfied for any solution. A fixed penalty is returned for any solution.
@@ -29,7 +31,7 @@ public class NeverSatisfiedPenalizingConstraintStub
                                 extends NeverSatisfiedConstraintStub
                                 implements PenalizingConstraint<Solution, Object> {
 
-    private final double fixedPenalty;
+    private final PenalizingValidation fixedPenalty;
     
     /**
      * Create a penalizing constraint stub that is never satisfied and always returns the given fixed penalty.
@@ -41,7 +43,7 @@ public class NeverSatisfiedPenalizingConstraintStub
         if(fixedPenalty <= 0.0){
             throw new IllegalArgumentException("Fixed penalty should be > 0.0.");
         }
-        this.fixedPenalty = fixedPenalty;
+        this.fixedPenalty = new SimplePenalizingValidation(false, fixedPenalty);
     }
     
     /**
@@ -52,7 +54,7 @@ public class NeverSatisfiedPenalizingConstraintStub
      * @return fixed penalty (strictly positive)
      */
     @Override
-    public double computePenalty(Solution solution, Object data) {
+    public PenalizingValidation validate(Solution solution, Object data) {
         return fixedPenalty;
     }
 

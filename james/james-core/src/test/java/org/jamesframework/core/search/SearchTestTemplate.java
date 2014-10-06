@@ -20,6 +20,8 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.problems.Problem;
+import org.jamesframework.core.problems.constraints.Validation;
+import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.subset.SubsetProblem;
 import org.jamesframework.core.subset.SubsetSolution;
@@ -132,7 +134,7 @@ public class SearchTestTemplate {
             System.out.println("   >>> best solution: " + search.getBestSolutionEvaluation());
             // verify
             if(search.getBestSolution() != null){
-                assertFalse(problem.rejectSolution(search.getBestSolution()));
+                assertTrue(problem.validate(search.getBestSolution()).passed());
             }
         }
         // check best solution listener
@@ -159,7 +161,7 @@ public class SearchTestTemplate {
         BestSolutionListener bsl = new BestSolutionListener();
         search.addSearchListener(bsl);
         // perform subsequent runs
-        Double prevBestSolEval = null, bestSolEval = null;
+        Evaluation prevBestSolEval = null, bestSolEval = null;
         for(int i=0; i<numRuns; i++){
             // start search
             search.start();
@@ -171,10 +173,14 @@ public class SearchTestTemplate {
                 if(prevBestSolEval != null){
                     if(maximizing){
                         assertTrue(DoubleComparatorWithPrecision.greaterThanOrEqual(
-                                bestSolEval, prevBestSolEval, TestConstants.DOUBLE_COMPARISON_PRECISION));
+                                    bestSolEval.getValue(),
+                                    prevBestSolEval.getValue(),
+                                    TestConstants.DOUBLE_COMPARISON_PRECISION));
                     } else {
                         assertTrue(DoubleComparatorWithPrecision.smallerThanOrEqual(
-                                bestSolEval, prevBestSolEval, TestConstants.DOUBLE_COMPARISON_PRECISION));
+                                    bestSolEval.getValue(),
+                                    prevBestSolEval.getValue(),
+                                    TestConstants.DOUBLE_COMPARISON_PRECISION));
                     }
                 }
             } else if (printEvaluations) {
@@ -188,16 +194,25 @@ public class SearchTestTemplate {
     
     // listener that verifies whether every new best solution is indeed an improvement over the previous best solution
     private class BestSolutionListener implements SearchListener<SubsetSolution>{
-        private Double prevBestEval = null;
+        private Evaluation prevBestEval = null;
         private double delta = 1e-12;
         private boolean ok = true;
         @Override
-        public void newBestSolution(Search<? extends SubsetSolution> search, SubsetSolution newBestSolution, double newBestSolutionEvaluation) {
+        public void newBestSolution(Search<? extends SubsetSolution> search,
+                                    SubsetSolution newBestSolution,
+                                    Evaluation newBestSolutionEvaluation,
+                                    Validation newBestSolutionValidation) {
             if(prevBestEval != null){
                 if(search.getProblem().isMinimizing()){
-                    ok = ok && DoubleComparatorWithPrecision.smallerThanOrEqual(newBestSolutionEvaluation, prevBestEval, delta);
+                    ok = ok && DoubleComparatorWithPrecision.smallerThanOrEqual(
+                                    newBestSolutionEvaluation.getValue(),
+                                    prevBestEval.getValue(),
+                                    delta);
                 } else {
-                    ok = ok && DoubleComparatorWithPrecision.greaterThanOrEqual(newBestSolutionEvaluation, prevBestEval, delta);
+                    ok = ok && DoubleComparatorWithPrecision.greaterThanOrEqual(
+                                    newBestSolutionEvaluation.getValue(),
+                                    prevBestEval.getValue(),
+                                    delta);
                 }
                 /*if(!ok){
                     System.out.println("New: " + newBestSolutionEvaluation + "; prev: " + prevBestEval);

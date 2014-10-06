@@ -326,7 +326,8 @@ public class ExhaustiveSearchTest extends SearchTestTemplate {
         if(problemSmall.getViolatedConstraints(searchSmall.getBestSolution()).isEmpty()){
             System.out.println("   >>> constraint satisfied!");
         } else {
-            System.out.println("   >>> constraint not satisfied, penalty " + constraint.computePenalty(searchSmall.getBestSolution(), dataSmall));
+            System.out.println("   >>> constraint not satisfied, penalty "
+                    + constraint.validate(searchSmall.getBestSolution(), dataSmall).getPenalty());
         }
         // done ?
         if(!solutionIteratorSmall.hasNext()){
@@ -351,7 +352,8 @@ public class ExhaustiveSearchTest extends SearchTestTemplate {
         if(problem.getViolatedConstraints(search.getBestSolution()).isEmpty()){
             System.out.println("   >>> constraint satisfied!");
         } else {
-            System.out.println("   >>> constraint not satisfied, penalty " + constraint.computePenalty(search.getBestSolution(), data));
+            System.out.println("   >>> constraint not satisfied, penalty "
+                    + constraint.validate(search.getBestSolution(), data).getPenalty());
         }
         // done ?
         if(!solutionIterator.hasNext()){

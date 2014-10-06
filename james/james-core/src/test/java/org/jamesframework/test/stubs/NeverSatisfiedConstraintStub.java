@@ -18,6 +18,8 @@ package org.jamesframework.test.stubs;
 
 import org.jamesframework.core.problems.constraints.Constraint;
 import org.jamesframework.core.problems.Solution;
+import org.jamesframework.core.problems.constraints.Validation;
+import org.jamesframework.core.problems.constraints.validations.SimpleValidation;
 
 /**
  * Constraint stub which is never satisfied for any solution. Data is ignored. Only used for testing.
@@ -26,16 +28,18 @@ import org.jamesframework.core.problems.Solution;
  */
 public class NeverSatisfiedConstraintStub implements Constraint<Solution, Object>{
 
+    private static final Validation VIOLATED = new SimpleValidation(false);
+    
     /**
-     * Always returns false, regardless of the solution and data.
+     * All solutions are invalid.
      * 
      * @param solution ignored
      * @param data ignored
-     * @return false
+     * @return a simple validation that is never passed
      */
     @Override
-    public boolean isSatisfied(Solution solution, Object data) {
-        return false;
+    public Validation validate(Solution solution, Object data) {
+        return VIOLATED;
     }
 
 }

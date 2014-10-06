@@ -113,7 +113,7 @@ public class MultiSwapNeighbourhoodTest {
         // randomly select 10 IDs
         sol.selectAll(SetUtilities.getRandomSubset(sol.getUnselectedIDs(), 10, RG));
 
-        Set<Move<SubsetSolution>> moves1, moves2, temp;
+        Set<SubsetMove> moves1, moves2, temp;
         
         moves1 = ssn.getAllMoves(sol);
         moves2 = msn.getAllMoves(sol);

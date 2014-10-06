@@ -234,25 +234,25 @@ public class AbstractProblemTest {
         Solution sol = new EmptySolutionStub();
         
         // test without constraints
-        assertFalse(problem.rejectSolution(sol));
+        assertTrue(problem.validate(sol).passed());
         
         // add constraints which are always satisfied
         problem.addMandatoryConstraint(new AlwaysSatisfiedConstraintStub());
         problem.addPenalizingConstraint(new AlwaysSatisfiedPenalizingConstraintStub());
         // verify
-        assertFalse(problem.rejectSolution(sol));
+        assertTrue(problem.validate(sol).passed());
         
         // add unsatisfiable mandatory constraint
         Constraint<Solution,Object> unsatisfiable = new NeverSatisfiedConstraintStub();
         problem.addMandatoryConstraint(unsatisfiable);
-        assertTrue(problem.rejectSolution(sol));
+        assertFalse(problem.validate(sol).passed());
         // remove the constraint
         problem.removeMandatoryConstraint(unsatisfiable);
         
         // same thing with unsatisfiable penalizing constraint
         PenalizingConstraint<Solution,Object> unsatisfiable2 = new NeverSatisfiedPenalizingConstraintStub(123.0);
         problem.addPenalizingConstraint(unsatisfiable2);
-        assertFalse(problem.rejectSolution(sol));
+        assertTrue(problem.validate(sol).passed());
         // remove the constraint
         problem.removePenalizingConstraint(unsatisfiable2);
     
@@ -309,22 +309,22 @@ public class AbstractProblemTest {
         // test with a fixed objective only, no constraints
         FixedEvaluationObjectiveStub o = new FixedEvaluationObjectiveStub(fixedEval);
         problem.setObjective(o);
-        assertEquals(fixedEval, problem.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
+        assertEquals(fixedEval, problem.evaluate(sol).getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
         
         // throw in a penalizing constraint that is always satisfied
         PenalizingConstraint<Solution,Object> c1 = new AlwaysSatisfiedPenalizingConstraintStub();
         problem.addPenalizingConstraint(c1);
-        assertEquals(fixedEval, problem.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
+        assertEquals(fixedEval, problem.evaluate(sol).getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
         
         // add penalizing constraint which is never satisfied
         double c3penalty = 1234.0;
         PenalizingConstraint<Solution,Object> c3 = new NeverSatisfiedPenalizingConstraintStub(c3penalty);
         problem.addPenalizingConstraint(c3);
-        assertEquals(fixedEval-c3penalty, problem.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
+        assertEquals(fixedEval-c3penalty, problem.evaluate(sol).getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
         
         // switch to minimizing and repeat
         o.setMinimizing();
-        assertEquals(fixedEval+c3penalty, problem.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
+        assertEquals(fixedEval+c3penalty, problem.evaluate(sol).getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
         
         // switch back to maximizing
         o.setMaximizing();
@@ -333,11 +333,11 @@ public class AbstractProblemTest {
         double c4penalty = 12345.0;
         PenalizingConstraint<Solution,Object> c4 = new NeverSatisfiedPenalizingConstraintStub(c4penalty);
         problem.addPenalizingConstraint(c4);
-        assertEquals(fixedEval-c3penalty-c4penalty, problem.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
+        assertEquals(fixedEval-c3penalty-c4penalty, problem.evaluate(sol).getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
         
         // switch to minimizing and repeat
         o.setMinimizing();
-        assertEquals(fixedEval+c3penalty+c4penalty, problem.evaluate(sol), TestConstants.DOUBLE_COMPARISON_PRECISION);
+        assertEquals(fixedEval+c3penalty+c4penalty, problem.evaluate(sol).getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
         
     }
 

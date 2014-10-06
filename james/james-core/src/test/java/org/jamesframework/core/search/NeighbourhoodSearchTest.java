@@ -20,6 +20,8 @@ import java.util.Set;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.subset.SubsetProblem;
 import org.jamesframework.core.problems.Solution;
+import org.jamesframework.core.problems.constraints.Validation;
+import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.search.listeners.LocalSearchListener;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.neigh.Move;
@@ -282,21 +284,21 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
     @Test
     public void testGetMoveWithLargestDelta() {
         
-        System.out.println(" - test getMoveWithLargestDelta");
+        System.out.println(" - test getBestMove");
         
         // set random initial solution
         neighSearch.setCurrentSolution(problem.createRandomSolution());
         
         Set<? extends Move<? super SubsetSolution>> moves  = neigh.getAllMoves(neighSearch.getCurrentSolution());
         Move<? super SubsetSolution> bestMove = neighSearch.getBestMove(moves, true);
-        double prevSolutionEvaluation = neighSearch.getCurrentSolutionEvaluation();
+        Evaluation prevSolutionEvaluation = neighSearch.getCurrentSolutionEvaluation();
         
         // apply best move until no more improvements found (important: only positive deltas allowed)
         while(bestMove != null){
             // apply move
             neighSearch.acceptMove(bestMove);
             // verify: improvement?
-            assertTrue(neighSearch.getCurrentSolutionEvaluation() > prevSolutionEvaluation);
+            assertTrue(neighSearch.getCurrentSolutionEvaluation().getValue() > prevSolutionEvaluation.getValue());
             prevSolutionEvaluation = neighSearch.getCurrentSolutionEvaluation();
             // get new moves
             moves = neigh.getAllMoves(neighSearch.getCurrentSolution());
@@ -326,7 +328,7 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
         
         // copy initial solution
         SubsetSolution copy = Solution.checkedCopy(neighSearch.getCurrentSolution());
-        double copyEval;
+        Evaluation copyEval;
         Move<SubsetSolution> m;
         for(int i=0; i<1000; i++){
             // generate random move
@@ -339,9 +341,9 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
             copyEval = problem.evaluate(copy);
             // verify
             assertEquals(copy, neighSearch.getCurrentSolution());
-            assertEquals(copyEval, neighSearch.getCurrentSolutionEvaluation(), TestConstants.DOUBLE_COMPARISON_PRECISION);
+            assertEquals(copyEval.getValue(), neighSearch.getCurrentSolutionEvaluation().getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
             assertTrue(DoubleComparatorWithPrecision.greaterThanOrEqual(
-                    neighSearch.getBestSolutionEvaluation(), copyEval, TestConstants.DOUBLE_COMPARISON_PRECISION));
+                    neighSearch.getBestSolutionEvaluation().getValue(), copyEval.getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION));
         }
         
     }
@@ -362,7 +364,7 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
         
         // copy initial solution
         SubsetSolution copy = Solution.checkedCopy(neighSearch.getCurrentSolution());
-        double copyEval;
+        Evaluation copyEval;
         Move<SubsetSolution> m;
         for(int i=0; i<100; i++){
             // generate random move
@@ -375,9 +377,9 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
             copyEval = problem.evaluate(copy);
             // verify
             assertEquals(copy, neighSearch.getCurrentSolution());
-            assertEquals(copyEval, neighSearch.getCurrentSolutionEvaluation(), TestConstants.DOUBLE_COMPARISON_PRECISION);
+            assertEquals(copyEval.getValue(), neighSearch.getCurrentSolutionEvaluation().getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
             assertTrue(DoubleComparatorWithPrecision.smallerThanOrEqual(
-                    neighSearch.getBestSolutionEvaluation(), copyEval, TestConstants.DOUBLE_COMPARISON_PRECISION));
+                    neighSearch.getBestSolutionEvaluation().getValue(), copyEval.getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION));
         }
         
     }
@@ -423,7 +425,8 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
         @Override
         public void modifiedCurrentSolution(LocalSearch<? extends SolutionType> search,
                                             SolutionType newCurrentSolution,
-                                            double newCurrentSolutionEvaluation) {
+                                            Evaluation newCurrentSolutionEvaluation,
+                                            Validation newCurrentSolutionValidation) {
             numCalls++;
         }
         

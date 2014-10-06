@@ -153,7 +153,7 @@ public class PenalizedEvaluation implements Evaluation {
      */
     @Override
     public String toString(){
-        return getValue() + "(unpenalized: " + getEvaluation().getValue() + ")";
+        return getValue() + " (unpenalized: " + getEvaluation().getValue() + ")";
     }
 
 }

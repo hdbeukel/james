@@ -16,11 +16,11 @@
 
 package org.jamesframework.test.fakes;
 
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 import org.jamesframework.core.problems.constraints.Constraint;
+import org.jamesframework.core.problems.constraints.Validation;
+import org.jamesframework.core.problems.constraints.validations.SimpleValidation;
 import org.jamesframework.core.subset.SubsetSolution;
 
 /**
@@ -31,6 +31,9 @@ import org.jamesframework.core.subset.SubsetSolution;
  */
 public class MinDiffFakeSubsetConstraint implements Constraint<SubsetSolution, ScoredFakeSubsetData>{
 
+    private static final Validation SATISFIED = new SimpleValidation(true);
+    private static final Validation VIOLATED = new SimpleValidation(false);
+    
     // minimum required difference in score of selected entities
     private final double minDiff;
     
@@ -55,7 +58,7 @@ public class MinDiffFakeSubsetConstraint implements Constraint<SubsetSolution, S
      * @return true if minimum difference is satisfied
      */
     @Override
-    public boolean isSatisfied(SubsetSolution solution, ScoredFakeSubsetData data) {
+    public Validation validate(SubsetSolution solution, ScoredFakeSubsetData data) {
         // store scores in sorted set
         TreeSet<Double> scores = solution.getSelectedIDs().stream()
                                                           .map(ID -> data.getScore(ID))
@@ -64,12 +67,12 @@ public class MinDiffFakeSubsetConstraint implements Constraint<SubsetSolution, S
         Double prevScore = null;
         for(double score : scores){
             if(prevScore != null && score-prevScore < minDiff){
-                return false;
+                return VIOLATED;
             }
             prevScore = score;
         }
         // all ok
-        return true;
+        return SATISFIED;
     }
 
 }

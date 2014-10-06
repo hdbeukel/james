@@ -21,6 +21,8 @@ import java.util.Iterator;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 import org.jamesframework.core.problems.constraints.PenalizingConstraint;
+import org.jamesframework.core.problems.constraints.PenalizingValidation;
+import org.jamesframework.core.problems.constraints.validations.SimplePenalizingValidation;
 import org.jamesframework.core.subset.SubsetSolution;
 
 /**
@@ -38,15 +40,15 @@ public class MinDiffFakeSubsetPenalizingConstraint extends MinDiffFakeSubsetCons
     }
 
     /**
-     * Compute penalty of a solution. The penalty corresponds to the number of differences between scores of selected entities which
-     * are smaller than the required minimum difference.
+     * Compute penalizing validation. The penalty corresponds to the number of differences
+     * between scores of selected entities smaller than the required minimum difference.
      * 
      * @param solution solution to compute penalty for
      * @param data underlying (fake) subset data
      * @return penalty of solution
      */
     @Override
-    public double computePenalty(SubsetSolution solution, ScoredFakeSubsetData data) {
+    public PenalizingValidation validate(SubsetSolution solution, ScoredFakeSubsetData data) {
         // store scores in sorted set
         TreeSet<Double> scores = solution.getSelectedIDs().stream()
                                                           .map(ID -> data.getScore(ID))
@@ -75,6 +77,6 @@ public class MinDiffFakeSubsetPenalizingConstraint extends MinDiffFakeSubsetCons
             prevScores.add(score);
         }
         // return penalty (will be zero if all diffs are large enough)
-        return (double) numTooSmall;
+        return new SimplePenalizingValidation(numTooSmall > 0, (double) numTooSmall);
     }
 }

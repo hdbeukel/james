@@ -18,6 +18,8 @@ package org.jamesframework.test.stubs;
 
 import org.jamesframework.core.problems.constraints.PenalizingConstraint;
 import org.jamesframework.core.problems.Solution;
+import org.jamesframework.core.problems.constraints.PenalizingValidation;
+import org.jamesframework.core.problems.constraints.validations.SimplePenalizingValidation;
 
 /**
  * Penalizing constraint stub that is satisfied for any solution. Data is ignored. Only used for testing.
@@ -28,16 +30,18 @@ public class AlwaysSatisfiedPenalizingConstraintStub
                                 extends AlwaysSatisfiedConstraintStub
                                 implements PenalizingConstraint<Solution, Object> {
 
+    private static final PenalizingValidation NO_PENALTY = new SimplePenalizingValidation(true, 0.0);
+    
     /**
-     * Always return 0, regardless of the solution or data.
+     * A penalizing validation with penalty of zero.
      * 
      * @param solution ignored
      * @param data ignored
-     * @return 0.0
+     * @return penalty of zero
      */
     @Override
-    public double computePenalty(Solution solution, Object data) {
-        return 0.0;
+    public PenalizingValidation validate(Solution solution, Object data) {
+        return NO_PENALTY;
     }
 
 }

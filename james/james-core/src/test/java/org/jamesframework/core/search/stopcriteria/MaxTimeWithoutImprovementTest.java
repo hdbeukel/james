@@ -17,6 +17,7 @@
 package org.jamesframework.core.search.stopcriteria;
 
 import java.util.concurrent.TimeUnit;
+import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.SearchTestTemplate;
@@ -130,15 +131,17 @@ public class MaxTimeWithoutImprovementTest extends SearchTestTemplate {
         search.setStopCriterionCheckPeriod(LOW_MAX_TIME_WITHOUT_IMPR, TIME_UNIT);
         
         // perform 5 search runs
-        Double prevBestSolEval = null;
+        Evaluation prevBestSolEval = null;
         for(int i=0; i<5; i++){
             search.start();
             // check best solution evaluation
-            double bestSolEval = search.getBestSolutionEvaluation();
+            Evaluation bestSolEval = search.getBestSolutionEvaluation();
             System.out.println("   >>> best: " + bestSolEval);
             if(prevBestSolEval != null){
                 assertTrue(DoubleComparatorWithPrecision.greaterThanOrEqual(
-                                bestSolEval, prevBestSolEval, TestConstants.DOUBLE_COMPARISON_PRECISION));
+                                bestSolEval.getValue(),
+                                prevBestSolEval.getValue(),
+                                TestConstants.DOUBLE_COMPARISON_PRECISION));
             }
             prevBestSolEval = bestSolEval;
         }
@@ -162,15 +165,17 @@ public class MaxTimeWithoutImprovementTest extends SearchTestTemplate {
         search.setStopCriterionCheckPeriod(LOW_MAX_TIME_WITHOUT_IMPR, TIME_UNIT);
         
         // perform 5 search runs
-        Double prevBestSolEval = null;
+        Evaluation prevBestSolEval = null;
         for(int i=0; i<5; i++){
             search.start();
             // check best solution evaluation
-            double bestSolEval = search.getBestSolutionEvaluation();
+            Evaluation bestSolEval = search.getBestSolutionEvaluation();
             System.out.println("   >>> best: " + bestSolEval);
             if(prevBestSolEval != null){
                 assertTrue(DoubleComparatorWithPrecision.smallerThanOrEqual(
-                                bestSolEval, prevBestSolEval, TestConstants.DOUBLE_COMPARISON_PRECISION));
+                                bestSolEval.getValue(),
+                                prevBestSolEval.getValue(),
+                                TestConstants.DOUBLE_COMPARISON_PRECISION));
             }
             prevBestSolEval = bestSolEval;
         }

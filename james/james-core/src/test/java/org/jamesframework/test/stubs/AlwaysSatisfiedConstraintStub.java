@@ -18,6 +18,8 @@ package org.jamesframework.test.stubs;
 
 import org.jamesframework.core.problems.constraints.Constraint;
 import org.jamesframework.core.problems.Solution;
+import org.jamesframework.core.problems.constraints.Validation;
+import org.jamesframework.core.problems.constraints.validations.SimpleValidation;
 
 /**
  * Constraint stub which is satisfied for any solution. Data is ignored. Only used for testing.
@@ -26,16 +28,19 @@ import org.jamesframework.core.problems.Solution;
  */
 public class AlwaysSatisfiedConstraintStub implements Constraint<Solution, Object>{
 
+    private static final Validation SATISFIED = new SimpleValidation(true);
+    
     /**
-     * Always returns true, regardless of the solution and data.
+     * All so    private final Validation SATISFIED = new SimpleValidation(true);
+luations are valid.
      * 
      * @param solution ignored
      * @param data ignored
-     * @return true
+     * @return a simple validation that is always passed
      */
     @Override
-    public boolean isSatisfied(Solution solution, Object data) {
-        return true;
+    public Validation validate(Solution solution, Object data) {
+        return SATISFIED;
     }
 
 }

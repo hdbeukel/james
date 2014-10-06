@@ -16,6 +16,8 @@
 
 package org.jamesframework.core.search;
 
+import org.jamesframework.core.problems.constraints.Validation;
+import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.search.status.SearchStatus;
 import org.jamesframework.core.subset.SubsetSolution;
@@ -119,7 +121,7 @@ public class SearchTest extends SearchTestTemplate {
         
         // check best solution
         if(search.getBestSolution() != null){
-            assertFalse(problem.rejectSolution(search.getBestSolution()));
+            assertTrue(problem.validate(search.getBestSolution()).passed());
         }
         
     }
@@ -198,7 +200,9 @@ public class SearchTest extends SearchTestTemplate {
         
         // verify best solution evaluation
         if(search.getBestSolution() != null){
-            assertEquals(problem.evaluate(search.getBestSolution()), search.getBestSolutionEvaluation(), TestConstants.DOUBLE_COMPARISON_PRECISION);
+            assertEquals(problem.evaluate(search.getBestSolution()).getValue(),
+                         search.getBestSolutionEvaluation().getValue(),
+                         TestConstants.DOUBLE_COMPARISON_PRECISION);
         }
         
     }
@@ -244,7 +248,7 @@ public class SearchTest extends SearchTestTemplate {
         // validate number of steps (1 additional step in which search stopped itself)
         assertEquals(NUM_STEPS+1, search.getSteps());
         // store best solution evaluation
-        double bestSolEval = search.getBestSolutionEvaluation();
+        Evaluation bestSolEval = search.getBestSolutionEvaluation();
         
         // run again
         System.out.println("   >>> RUN 2 <<<");
@@ -256,7 +260,10 @@ public class SearchTest extends SearchTestTemplate {
         
         // validate new best solution evaluation
         assertTrue(DoubleComparatorWithPrecision.greaterThanOrEqual(
-                search.getBestSolutionEvaluation(), bestSolEval, TestConstants.DOUBLE_COMPARISON_PRECISION));
+                    search.getBestSolutionEvaluation().getValue(),
+                    bestSolEval.getValue(),
+                    TestConstants.DOUBLE_COMPARISON_PRECISION)
+                  );
         
     }
 
@@ -311,7 +318,8 @@ public class SearchTest extends SearchTestTemplate {
         private boolean started = false, stopped = false;
         
         // previous best solution evaluation
-        private Double prevBestSolEval = null;
+        private Evaluation prevBestSolEval = null;
+        private double delta = 1e-12;
         
         // number of times stepCompleted() was called
         private long numCallsStepCompleted = 0;
@@ -331,17 +339,24 @@ public class SearchTest extends SearchTestTemplate {
         }
 
         @Override
-        public void newBestSolution(Search<? extends SubsetSolution> search, SubsetSolution newBestSolution, double newBestSolutionEvaluation) {
+        public void newBestSolution(Search<? extends SubsetSolution> search,
+                                    SubsetSolution newBestSolution,
+                                    Evaluation newBestSolutionEvaluation,
+                                    Validation newBestSolutionValidation) {
             // assert that new best solution is valid
-            assertFalse(problem.rejectSolution(newBestSolution));
+            assertTrue(problem.validate(newBestSolution).passed());
             // assert that it is better than the previous best solution
             if(prevBestSolEval != null){
                 if(problem.isMinimizing()){
-                    // minimizing
-                    assertTrue(newBestSolutionEvaluation < prevBestSolEval);
+                    assertTrue(DoubleComparatorWithPrecision.smallerThanOrEqual(
+                                    newBestSolutionEvaluation.getValue(),
+                                    prevBestSolEval.getValue(),
+                                    delta));
                 } else {
-                    // maximizing
-                    assertTrue(newBestSolutionEvaluation > prevBestSolEval);
+                    assertTrue(DoubleComparatorWithPrecision.greaterThanOrEqual(
+                                    newBestSolutionEvaluation.getValue(),
+                                    prevBestSolEval.getValue(),
+                                    delta));
                 }
             }
             // update previous best solution evaluation
@@ -368,7 +383,10 @@ public class SearchTest extends SearchTestTemplate {
         private long steps = 0;
         
         @Override
-        public void newBestSolution(Search<? extends SubsetSolution> search, SubsetSolution newBestSolution, double newBestSolutionEvaluation) {
+        public void newBestSolution(Search<? extends SubsetSolution> search,
+                                    SubsetSolution newBestSolution,
+                                    Evaluation newBestSolutionEvaluation,
+                                    Validation newBestSolutionValidation) {
             System.out.println("   >>> new best solution: " + newBestSolutionEvaluation);
         }
         

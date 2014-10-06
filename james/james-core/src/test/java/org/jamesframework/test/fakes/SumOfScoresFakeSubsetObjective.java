@@ -16,6 +16,8 @@
 
 package org.jamesframework.test.fakes;
 
+import org.jamesframework.core.problems.objectives.Evaluation;
+import org.jamesframework.core.problems.objectives.evaluations.SimpleEvaluation;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.test.util.MinMaxObjective;
 
@@ -35,8 +37,10 @@ public class SumOfScoresFakeSubsetObjective extends MinMaxObjective<SubsetSoluti
      * @return sum of scores of selected entities
      */
     @Override
-    public double evaluate(SubsetSolution solution, ScoredFakeSubsetData data) {
-        return solution.getSelectedIDs().stream().mapToDouble(data::getScore).sum();
+    public Evaluation evaluate(SubsetSolution solution, ScoredFakeSubsetData data) {
+        return new SimpleEvaluation(
+                    solution.getSelectedIDs().stream().mapToDouble(data::getScore).sum()
+        );
     }
 
 }

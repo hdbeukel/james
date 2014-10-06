@@ -233,7 +233,8 @@ public class MetropolisSearchTest extends SearchTestTemplate {
         if(problem.getViolatedConstraints(searchLowTemp.getBestSolution()).isEmpty()){
             System.out.println("   >>> constraint satisfied!");
         } else {
-            System.out.println("   >>> constraint not satisfied, penalty " + constraint.computePenalty(searchLowTemp.getBestSolution(), data));
+            System.out.println("   >>> constraint not satisfied, penalty "
+                    + constraint.validate(searchLowTemp.getBestSolution(), data).getPenalty());
         }
         System.out.format("   - medium temperature (T = %.7f)\n", MED_TEMP);
         multiRunWithMaximumRuntime(searchMedTemp, MULTI_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT, 3*NUM_RUNS, true, true);
@@ -242,7 +243,8 @@ public class MetropolisSearchTest extends SearchTestTemplate {
         if(problem.getViolatedConstraints(searchMedTemp.getBestSolution()).isEmpty()){
             System.out.println("   >>> constraint satisfied!");
         } else {
-            System.out.println("   >>> constraint not satisfied, penalty " + constraint.computePenalty(searchMedTemp.getBestSolution(), data));
+            System.out.println("   >>> constraint not satisfied, penalty "
+                    + constraint.validate(searchMedTemp.getBestSolution(), data).getPenalty());
         }
         System.out.format("   - high temperature (T = %.7f)\n", HIGH_TEMP);
         multiRunWithMaximumRuntime(searchHighTemp, MULTI_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT, 3*NUM_RUNS, true, true);
@@ -251,7 +253,8 @@ public class MetropolisSearchTest extends SearchTestTemplate {
         if(problem.getViolatedConstraints(searchHighTemp.getBestSolution()).isEmpty()){
             System.out.println("   >>> constraint satisfied!");
         } else {
-            System.out.println("   >>> constraint not satisfied, penalty " + constraint.computePenalty(searchHighTemp.getBestSolution(), data));
+            System.out.println("   >>> constraint not satisfied, penalty "
+                    + constraint.validate(searchHighTemp.getBestSolution(), data).getPenalty());
         }
     }
     

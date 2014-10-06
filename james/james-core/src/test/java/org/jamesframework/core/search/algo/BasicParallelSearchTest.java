@@ -167,8 +167,8 @@ public class BasicParallelSearchTest extends SearchTestTemplate {
         for(Search<SubsetSolution> s : subsearches){
             if(s.getBestSolution() != null){
                 assertTrue(DoubleComparatorWithPrecision.smallerThanOrEqual(
-                        s.getBestSolutionEvaluation(), 
-                        parallelSearch.getBestSolutionEvaluation(), 
+                        s.getBestSolutionEvaluation().getValue(), 
+                        parallelSearch.getBestSolutionEvaluation().getValue(), 
                         1e-10)
                 );
             }
@@ -204,8 +204,8 @@ public class BasicParallelSearchTest extends SearchTestTemplate {
         for(Search<SubsetSolution> s : subsearches){
             if(s.getBestSolution() != null){
                 assertTrue(DoubleComparatorWithPrecision.smallerThanOrEqual(
-                        s.getBestSolutionEvaluation(), 
-                        parallelSearch.getBestSolutionEvaluation(), 
+                        s.getBestSolutionEvaluation().getValue(), 
+                        parallelSearch.getBestSolutionEvaluation().getValue(), 
                         1e-10)
                 );
             }
@@ -226,8 +226,8 @@ public class BasicParallelSearchTest extends SearchTestTemplate {
         for(Search<SubsetSolution> s : subsearches){
             if(s.getBestSolution() != null){
                 assertTrue(DoubleComparatorWithPrecision.greaterThanOrEqual(
-                        s.getBestSolutionEvaluation(), 
-                        parallelSearch.getBestSolutionEvaluation(), 
+                        s.getBestSolutionEvaluation().getValue(), 
+                        parallelSearch.getBestSolutionEvaluation().getValue(), 
                         1e-10)
                 );
             }
@@ -267,14 +267,15 @@ public class BasicParallelSearchTest extends SearchTestTemplate {
         if(problem.getViolatedConstraints(parallelSearch.getBestSolution()).isEmpty()){
             System.out.println("   >>> constraint satisfied!");
         } else {
-            System.out.println("   >>> constraint not satisfied, penalty " + constraint.computePenalty(parallelSearch.getBestSolution(), data));
+            System.out.println("   >>> constraint not satisfied, penalty "
+                    + constraint.validate(parallelSearch.getBestSolution(), data).getPenalty());
         }
         // verify
         for(Search<SubsetSolution> s : subsearches){
             if(s.getBestSolution() != null){
                 assertTrue(DoubleComparatorWithPrecision.smallerThanOrEqual(
-                        s.getBestSolutionEvaluation(), 
-                        parallelSearch.getBestSolutionEvaluation(), 
+                        s.getBestSolutionEvaluation().getValue(), 
+                        parallelSearch.getBestSolutionEvaluation().getValue(), 
                         1e-10)
                 );
             }

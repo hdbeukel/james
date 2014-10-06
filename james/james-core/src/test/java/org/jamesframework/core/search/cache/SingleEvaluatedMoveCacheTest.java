@@ -19,6 +19,10 @@ package org.jamesframework.core.search.cache;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Random;
+import org.jamesframework.core.problems.constraints.Validation;
+import org.jamesframework.core.problems.constraints.validations.SimpleValidation;
+import org.jamesframework.core.problems.objectives.Evaluation;
+import org.jamesframework.core.problems.objectives.evaluations.SimpleEvaluation;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.subset.neigh.SwapMove;
@@ -75,7 +79,8 @@ public class SingleEvaluatedMoveCacheTest {
         // create dummy moves and evaluations
         SwapMove m1 = new SwapMove(-1, -2);
         SwapMove m2 = new SwapMove(-3, -4);
-        double m1eval = 123, m2eval = 345;
+        Evaluation m1eval = new SimpleEvaluation(123.0),
+                   m2eval = new SimpleEvaluation(345.0);
         
         // check empty cache
         assertNull(cache.getCachedMoveEvaluation(m1));
@@ -84,7 +89,7 @@ public class SingleEvaluatedMoveCacheTest {
         cache.cacheMoveEvaluation(m1, m1eval);
         // verify
         assertNotNull(cache.getCachedMoveEvaluation(m1));
-        assertEquals(m1eval, cache.getCachedMoveEvaluation(m1), TestConstants.DOUBLE_COMPARISON_PRECISION);
+        assertEquals(m1eval.getValue(), cache.getCachedMoveEvaluation(m1).getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
         
         // cache an other evaluation
         cache.cacheMoveEvaluation(m2, m2eval);
@@ -92,13 +97,13 @@ public class SingleEvaluatedMoveCacheTest {
         assertNull(cache.getCachedMoveEvaluation(m1));
         // verify new value
         assertNotNull(cache.getCachedMoveEvaluation(m2));
-        assertEquals(m2eval, cache.getCachedMoveEvaluation(m2), TestConstants.DOUBLE_COMPARISON_PRECISION);
+        assertEquals(m2eval.getValue(), cache.getCachedMoveEvaluation(m2).getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
         
         // test cache hit for equal swap move (other object)
         SwapMove copy = new SwapMove(m2.getAddedID(), m2.getDeletedID());
         // verify
         assertNotNull(cache.getCachedMoveEvaluation(copy));
-        assertEquals(m2eval, cache.getCachedMoveEvaluation(copy), TestConstants.DOUBLE_COMPARISON_PRECISION);
+        assertEquals(m2eval.getValue(), cache.getCachedMoveEvaluation(copy).getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
         
     }
 
@@ -113,30 +118,31 @@ public class SingleEvaluatedMoveCacheTest {
         // create dummy moves and validities
         SwapMove m1 = new SwapMove(-1, -2);
         SwapMove m2 = new SwapMove(-3, -4);
-        boolean m1rejected = true, m2rejected = false;
+        Validation m1validation = new SimpleValidation(true),
+                   m2validation = new SimpleValidation(false);
         
         // check empty cache
-        assertNull(cache.getCachedMoveRejection(m1));
+        assertNull(cache.getCachedMoveValidation(m1));
         
         // cache validation of first move
-        cache.cacheMoveRejection(m1, m1rejected);
+        cache.cacheMoveValidation(m1, m1validation);
         // verify
-        assertNotNull(cache.getCachedMoveRejection(m1));
-        assertEquals(m1rejected, cache.getCachedMoveRejection(m1));
+        assertNotNull(cache.getCachedMoveValidation(m1));
+        assertEquals(m1validation.passed(), cache.getCachedMoveValidation(m1).passed());
         
         // cache validity of second move
-        cache.cacheMoveRejection(m2, m2rejected);
+        cache.cacheMoveValidation(m2, m2validation);
         // verify: first value overwritten
-        assertNull(cache.getCachedMoveRejection(m1));
+        assertNull(cache.getCachedMoveValidation(m1));
         // verify new value
-        assertNotNull(cache.getCachedMoveRejection(m2));
-        assertEquals(m2rejected, cache.getCachedMoveRejection(m2));
+        assertNotNull(cache.getCachedMoveValidation(m2));
+        assertEquals(m2validation.passed(), cache.getCachedMoveValidation(m2).passed());
         
         // test cache hit for equal swap move (other object)
         SwapMove copy = new SwapMove(m2.getAddedID(), m2.getDeletedID());
         // verify
-        assertNotNull(cache.getCachedMoveRejection(copy));
-        assertEquals(m2rejected, cache.getCachedMoveRejection(copy));
+        assertNotNull(cache.getCachedMoveValidation(copy));
+        assertEquals(m2validation.passed(), cache.getCachedMoveValidation(copy).passed());
         
     }
 
@@ -154,8 +160,8 @@ public class SingleEvaluatedMoveCacheTest {
             SwapMove m = new SwapMove(RG.nextInt(), RG.nextInt());
             moves.add(m);
             // cache random values
-            cache.cacheMoveEvaluation(m, RG.nextDouble());
-            cache.cacheMoveRejection(m, RG.nextBoolean());
+            cache.cacheMoveEvaluation(m, new SimpleEvaluation(RG.nextDouble()));
+            cache.cacheMoveValidation(m, new SimpleValidation(RG.nextBoolean()));
         }
         
         // clear cache
@@ -164,7 +170,7 @@ public class SingleEvaluatedMoveCacheTest {
         // verify: no values available after clearing cache
         moves.forEach(m -> {
             assertNull(cache.getCachedMoveEvaluation(m));
-            assertNull(cache.getCachedMoveRejection(m));
+            assertNull(cache.getCachedMoveValidation(m));
         });
         
     }
