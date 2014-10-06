@@ -20,6 +20,9 @@ import java.util.HashSet;
 import java.util.Set;
 import org.jamesframework.core.subset.SubsetProblem;
 import org.jamesframework.core.problems.Solution;
+import org.jamesframework.core.problems.constraints.Validation;
+import org.jamesframework.core.problems.constraints.validations.SubsetValidation;
+import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.LocalSearch;
 
@@ -224,23 +227,27 @@ public class LRSubsetSearch extends LocalSearch<SubsetSolution> {
             // consider all possible additions to find the best one (biggest improvement / smallest decrease)
             Set<Integer> possibleAdds = new HashSet<>(getCurrentSolution().getUnselectedIDs());
             Integer bestAdd = null;
-            double bestDelta = -Double.MAX_VALUE, delta, newEval, bestEval = 0.0;
+            double bestDelta = -Double.MAX_VALUE, delta;
+            Evaluation newEvaluation, bestEvaluation = null;
+            SubsetValidation newValidation, bestValidation = null;
             SubsetSolution updated;
             for(int add : possibleAdds){
                 // add item
                 updated = getCurrentSolution();
                 updated.select(add);
                 // validate (IMPORTANT: ignore current subset size)
-                if(!getProblem().rejectSolution(updated, false)){
+                newValidation = getProblem().validate(updated);
+                if(newValidation.passed(false)){
                     // evaluate
-                    newEval = getProblem().evaluate(updated);
+                    newEvaluation = getProblem().evaluate(updated);
                     // compute delta
-                    delta = computeDelta(newEval, getCurrentSolutionEvaluation());
+                    delta = computeDelta(newEvaluation, getCurrentSolutionEvaluation());
                     // new best addition?
                     if(delta > bestDelta){
                         bestDelta = delta;
                         bestAdd = add;
-                        bestEval = newEval;
+                        bestEvaluation = newEvaluation;
+                        bestValidation = newValidation;
                     }
                 }
                 // undo addition
@@ -250,9 +257,9 @@ public class LRSubsetSearch extends LocalSearch<SubsetSolution> {
             if(bestAdd != null){
                 // add item
                 getCurrentSolution().select(bestAdd);
-                // update current and best solution (IMPORTANT: best solution is
-                // validated, also taking into account the current subset size)
-                updateCurrentAndBestSolution(getCurrentSolution(), bestEval);
+                // update current and best solution (IMPORTANT: best solution will be
+                // fully validated, also taking into account the current subset size)
+                updateCurrentAndBestSolution(getCurrentSolution(), bestEvaluation, bestValidation);
                 // increase counter
                 added++;
             } else {
@@ -280,23 +287,28 @@ public class LRSubsetSearch extends LocalSearch<SubsetSolution> {
             // consider all possible deletions to find the best one (biggest improvement / smallest decrease)
             Set<Integer> possibleDels = new HashSet<>(getCurrentSolution().getSelectedIDs());
             Integer bestDel = null;
-            double bestDelDelta = -Double.MAX_VALUE, delta, newEval, bestEval = 0.0;
+            double bestDelDelta = -Double.MAX_VALUE, delta;
+            Evaluation newEvaluation, bestEvaluation = null;
+            SubsetValidation newValidation, bestValidation = null;
             SubsetSolution updated;
             for(int del : possibleDels){
                 // delete item
                 updated = getCurrentSolution();
                 updated.deselect(del);
                 // validate (IMPORTANT: ignore current subset size)
-                if(!getProblem().rejectSolution(updated, false)){
+                // validate (IMPORTANT: ignore current subset size)
+                newValidation = getProblem().validate(updated);
+                if(newValidation.passed(false)){
                     // evaluate
-                    newEval = getProblem().evaluate(updated);
+                    newEvaluation = getProblem().evaluate(updated);
                     // compute delta
-                    delta = computeDelta(newEval, getCurrentSolutionEvaluation());
+                    delta = computeDelta(newEvaluation, getCurrentSolutionEvaluation());
                     // new best deletion?
                     if(delta > bestDelDelta){
                         bestDelDelta = delta;
                         bestDel = del;
-                        bestEval = newEval;
+                        bestEvaluation = newEvaluation;
+                        bestValidation = newValidation;
                     }
                 }
                 // undo deletion
@@ -306,9 +318,9 @@ public class LRSubsetSearch extends LocalSearch<SubsetSolution> {
             if(bestDel != null){
                 // delete item
                 getCurrentSolution().deselect(bestDel);
-                // update current and best solution (IMPORTANT: best solution is
-                // validated, also taking into account the current subset size)
-                updateCurrentAndBestSolution(getCurrentSolution(), bestEval);
+                // update current and best solution (IMPORTANT: best solution will be
+                // fully validated, also taking into account the current subset size)
+                updateCurrentAndBestSolution(getCurrentSolution(), bestEvaluation, bestValidation);
                 // increase counter
                 removed++;
             } else {
