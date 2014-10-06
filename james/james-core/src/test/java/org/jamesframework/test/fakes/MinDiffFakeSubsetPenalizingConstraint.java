@@ -77,6 +77,6 @@ public class MinDiffFakeSubsetPenalizingConstraint extends MinDiffFakeSubsetCons
             prevScores.add(score);
         }
         // return penalty (will be zero if all diffs are large enough)
-        return new SimplePenalizingValidation(numTooSmall > 0, (double) numTooSmall);
+        return new SimplePenalizingValidation(numTooSmall == 0, (double) numTooSmall);
     }
 }
