@@ -169,7 +169,7 @@ public class PipedLocalSearch<SolutionType extends Solution> extends LocalSearch
             SolutionType bestSol = l.getBestSolution();
             Evaluation bestSolEvaluation = l.getBestSolutionEvaluation();
             Validation bestSolValidation = l.getBestSolutionValidation();
-            // if not null and different from current solution:
+            // if not null and different from current solution (i.e. improved):
             // update current and best solution accordingly
             if(bestSol != null && !bestSol.equals(getCurrentSolution())){
                 updateCurrentAndBestSolution(bestSol, bestSolEvaluation, bestSolValidation);

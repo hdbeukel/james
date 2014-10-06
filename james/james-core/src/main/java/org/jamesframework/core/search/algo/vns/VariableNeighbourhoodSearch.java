@@ -20,6 +20,8 @@ import java.util.List;
 import org.jamesframework.core.exceptions.JamesRuntimeException;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.Solution;
+import org.jamesframework.core.problems.constraints.Validation;
+import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.search.LocalSearch;
 import org.jamesframework.core.search.MultiNeighbourhoodSearch;
 import org.jamesframework.core.search.status.SearchStatus;
@@ -209,8 +211,7 @@ public class VariableNeighbourhoodSearch<SolutionType extends Solution> extends 
         // 1) SHAKING
         
         // get random move from current shaking neighbourhood
-        Neighbourhood<? super SolutionType> shakingNeigh = getNeighbourhoods().get(s);
-        Move<? super SolutionType> shakeMove = shakingNeigh.getRandomMove(shakedSolution);
+        Move<? super SolutionType> shakeMove = getNeighbourhoods().get(s).getRandomMove(shakedSolution);
         // assert that a shaking move is obtained
         if(shakeMove != null){
             
@@ -224,7 +225,7 @@ public class VariableNeighbourhoodSearch<SolutionType extends Solution> extends 
             // set initial solution to be modified
             localSearch.setCurrentSolution(shakedSolution);
             // interrupt local search algorithm when main VNS search wants to terminate
-            localSearch.addStopCriterion(_search -> this.getStatus() == SearchStatus.TERMINATING);
+            localSearch.addStopCriterion(_search -> getStatus() == SearchStatus.TERMINATING);
             // run local search
             localSearch.start();
             // dispose local search when completed
@@ -232,21 +233,21 @@ public class VariableNeighbourhoodSearch<SolutionType extends Solution> extends 
 
             // 3) ACCEPTANCE
 
-            SolutionType modifiedSolution = localSearch.getBestSolution();
-            double modifiedSolutionEval = localSearch.getBestSolutionEvaluation();
-            // check improvement (if best solution is not null, it is guaranteed
-            // to be a valid solution, so validation is not required here)
-            if(modifiedSolution != null
-                    && computeDelta(modifiedSolutionEval, getCurrentSolutionEvaluation()) > 0){
+            SolutionType lsBestSolution = localSearch.getBestSolution();
+            Evaluation lsBestSolutionEvaluation = localSearch.getBestSolutionEvaluation();
+            Validation lsBestSolutionValidation = localSearch.getBestSolutionValidation();
+            // check improvement
+            if(lsBestSolution != null
+                    && lsBestSolutionValidation.passed() // should always be true but it doesn't hurt to check
+                    && computeDelta(lsBestSolutionEvaluation, getCurrentSolutionEvaluation()) > 0){
                 // improvement: increase number of accepted moves
                 incNumAcceptedMoves(1);
-                // update current and best solution (skip validation, best solution
-                // reported by local search is already guaranteed to be valid)
-                updateCurrentAndBestSolution(modifiedSolution, modifiedSolutionEval, true);
+                // update current and best solution
+                updateCurrentAndBestSolution(lsBestSolution, lsBestSolutionEvaluation, lsBestSolutionValidation);
                 // reset shaking neighbourhood
                 s = 0;
             } else {
-                // no improvement: stick with current solution, move to next shaking neighbourhood
+                // no improvement: stick with current solution, adopt next shaking neighbourhood
                 incNumRejectedMoves(1);
                 s++;
             }
