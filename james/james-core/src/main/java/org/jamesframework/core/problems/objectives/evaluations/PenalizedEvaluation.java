@@ -147,13 +147,21 @@ public class PenalizedEvaluation implements Evaluation {
     }
     
     /**
-     * Get a string representation that contains both the penalized and original unpenalized evaluation.
+     * Get a string representation that contains both the penalized and unpenalized
+     * evaluation, where the latter is only included if penalties have actually been
+     * assigned.
      * 
      * @return string representation
      */
     @Override
     public String toString(){
-        return getValue() + " (unpenalized: " + getEvaluation().getValue() + ")";
+        if(penalties.values().stream().allMatch(pc -> pc.passed())){
+            // no penalties assigned
+            return getValue() + "";
+        } else {
+            // include original unpenalized evaluation
+            return getValue() + " (unpenalized: " + getEvaluation().getValue() + ")";
+        }
     }
 
 }
