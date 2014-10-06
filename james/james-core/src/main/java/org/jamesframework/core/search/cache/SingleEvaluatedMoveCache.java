@@ -100,7 +100,7 @@ public class SingleEvaluatedMoveCache implements EvaluatedMoveCache {
      * @return cached validation of the obtained neighbour, if available, <code>null</code> if not
      */
     @Override
-    public final Validation getCachedMoveRejection(Move<?> move) {
+    public final Validation getCachedMoveValidation(Move<?> move) {
         if(validatedMove == null || !validatedMove.equals(move)){
             // cache miss
             return null;
