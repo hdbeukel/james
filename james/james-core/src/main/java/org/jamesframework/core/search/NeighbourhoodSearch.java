@@ -299,7 +299,9 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
      * largest delta (see {@link #computeDelta(Evaluation, Evaluation)}) when being applied to the current solution.
      * If <code>requireImprovement</code> is set to <code>true</code>, only moves that yield an improvement are
      * considered (i.e. moves with positive delta). Any number of additional filters can be specified so that
-     * moves are only considered if they pass through all filters.
+     * moves are only considered if they pass through all filters. Each filter is a predicate that should return
+     * <code>true</code> if a given move is to be considered. If any filter returns <code>false</code> for a
+     * specific move, this move is discarded.
      * <p>
      * Returns <code>null</code> if no move is found that satisfies all conditions.
      * <p>
@@ -312,9 +314,10 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
      * @param filters additional move filters
      * @return best valid move, may be <code>null</code>
      */
-    protected Move<? super SolutionType> getBestMove(Collection<? extends Move<? super SolutionType>> moves,
-                                                     boolean requireImprovement,
-                                                     Predicate<? super Move<? super SolutionType>>... filters){
+    @SafeVarargs
+    protected final Move<? super SolutionType> getBestMove(Collection<? extends Move<? super SolutionType>> moves,
+                                                           boolean requireImprovement,
+                                                           Predicate<? super Move<? super SolutionType>>... filters){
         // track best valid move + corresponding evaluation, validation and delta
         Move<? super SolutionType> bestMove = null;
         double bestMoveDelta = -Double.MAX_VALUE, curMoveDelta;
