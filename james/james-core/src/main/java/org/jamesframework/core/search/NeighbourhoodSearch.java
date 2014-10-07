@@ -16,8 +16,10 @@
 
 package org.jamesframework.core.search;
 
+import java.util.Arrays;
 import org.jamesframework.core.search.status.SearchStatus;
 import java.util.Collection;
+import java.util.function.Predicate;
 import org.jamesframework.core.exceptions.SearchException;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.Solution;
@@ -296,10 +298,10 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
      * Get the best valid move among a collection of possible moves. The best valid move is the one yielding the
      * largest delta (see {@link #computeDelta(Evaluation, Evaluation)}) when being applied to the current solution.
      * If <code>requireImprovement</code> is set to <code>true</code>, only moves that yield an improvement are
-     * considered (i.e. moves with positive delta).
+     * considered (i.e. moves with positive delta). Any number of additional filters can be specified so that
+     * moves are only considered if they pass through all filters.
      * <p>
-     * May return <code>null</code> if all moves yield invalid neighbours, or if no valid improving move
-     * is found in case <code>requireImprovement</code> is set to <code>true</code>.
+     * Returns <code>null</code> if no move is found that satisfies all conditions.
      * <p>
      * Note that all computed values are cached to prevent multiple evaluations or validations of the same move.
      * Before returning the selected best move, if any, its evaluation and validity are cached again to maximize
@@ -307,9 +309,12 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
      * 
      * @param moves collection of possible moves
      * @param requireImprovement if set to <code>true</code>, only improving moves are considered
+     * @param filters additional move filters
      * @return best valid move, may be <code>null</code>
      */
-    protected Move<? super SolutionType> getBestMove(Collection<? extends Move<? super SolutionType>> moves, boolean requireImprovement){
+    protected Move<? super SolutionType> getBestMove(Collection<? extends Move<? super SolutionType>> moves,
+                                                     boolean requireImprovement,
+                                                     Predicate<? super Move<? super SolutionType>>... filters){
         // track best valid move + corresponding evaluation, validation and delta
         Move<? super SolutionType> bestMove = null;
         double bestMoveDelta = -Double.MAX_VALUE, curMoveDelta;
@@ -317,19 +322,22 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
         Validation curMoveValidation, bestMoveValidation = null;
         // go through all moves
         for (Move<? super SolutionType> move : moves) {
-            // validate move
-            curMoveValidation = validateMove(move);
-            if (curMoveValidation.passed()) {
-                // evaluate move
-                curMoveEvaluation = evaluateMove(move);
-                // compute delta
-                curMoveDelta = computeDelta(curMoveEvaluation, getCurrentSolutionEvaluation());
-                // compare with current best move
-                if (curMoveDelta > bestMoveDelta                             // higher delta
-                        && (!requireImprovement || curMoveDelta > 0)) {      // ensure improvement, if required
-                    bestMove = move;
-                    bestMoveDelta = curMoveDelta;
-                    bestMoveEvaluation = curMoveEvaluation;
+            // check filters
+            if(Arrays.stream(filters).allMatch(filter -> filter.test(move))){
+                // validate move
+                curMoveValidation = validateMove(move);
+                if (curMoveValidation.passed()) {
+                    // evaluate move
+                    curMoveEvaluation = evaluateMove(move);
+                    // compute delta
+                    curMoveDelta = computeDelta(curMoveEvaluation, getCurrentSolutionEvaluation());
+                    // compare with current best move
+                    if (curMoveDelta > bestMoveDelta                             // higher delta
+                            && (!requireImprovement || curMoveDelta > 0)) {      // ensure improvement, if required
+                        bestMove = move;
+                        bestMoveDelta = curMoveDelta;
+                        bestMoveEvaluation = curMoveEvaluation;
+                    }
                 }
             }
         }

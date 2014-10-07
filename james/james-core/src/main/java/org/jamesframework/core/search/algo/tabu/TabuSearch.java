@@ -21,8 +21,6 @@ import org.jamesframework.core.exceptions.JamesRuntimeException;
 import org.jamesframework.core.exceptions.SearchException;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.Solution;
-import org.jamesframework.core.problems.constraints.Validation;
-import org.jamesframework.core.problems.constraints.validations.TabuValidation;
 import org.jamesframework.core.search.SingleNeighbourhoodSearch;
 import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.search.neigh.Neighbourhood;
@@ -113,26 +111,6 @@ public class TabuSearch<SolutionType extends Solution> extends SingleNeighbourho
         // store
         this.tabuMemory = tabuMemory;
     }
-
-    /**
-     * Overrides validation of moves to verify that the move is not tabu. A basic aspiration criterion
-     * is applied so that moves which yield a new best solution are never tabu. Returns a tabu validation
-     * that indicates whether the solution is invalid and/or tabu. The solution passes validation only if
-     * it is valid and not tabu.
-     * 
-     * @param move applied move
-     * @return tabu validation, taking into account the general validation and the tabu memory
-     */
-    @Override
-    protected TabuValidation validateMove(Move<? super SolutionType> move){
-        // check if move is tabu (with aspiration criterion)
-        boolean tabu = tabuMemory.isTabu(move, getCurrentSolution())
-                        && !(computeDelta(evaluateMove(move), getBestSolutionEvaluation()) > 0);
-        // validate move
-        Validation val = super.validateMove(move);
-        // pack both in tabu validation
-        return new TabuValidation(tabu, val);
-    }
     
     /**
      * Overrides acceptance of a move to update the tabu memory by registering the newly visited solution.
@@ -178,10 +156,16 @@ public class TabuSearch<SolutionType extends Solution> extends SingleNeighbourho
      */
     @Override
     protected void searchStep() {
-        // get best valid, non tabu move (ensured by overriding move validation)
+        // get best valid, non tabu move
         Move<? super SolutionType> move = getBestMove(
-                                            getNeighbourhood().getAllMoves(getCurrentSolution()), // inspect all moves
-                                            false);                                               // not necessarily an improvement
+                                            // inspect all moves
+                                            getNeighbourhood().getAllMoves(getCurrentSolution()),
+                                            // not necessarily an improvement
+                                            false,
+                                            // filter tabu moves (with aspiration criterion)
+                                            m -> !tabuMemory.isTabu(m, getCurrentSolution())
+                                                    || computeDelta(evaluateMove(m), getBestSolutionEvaluation()) > 0
+        );                                               
         if(move != null){
             // accept move (also updates tabu memory by overriding move acceptance)
             acceptMove(move);

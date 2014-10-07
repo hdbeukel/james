@@ -64,7 +64,7 @@ public class TabuSearchTest2 extends SearchTestTemplate {
         // call super
         super.setUp();
         // create tabu search with all moves declared tabu
-        search = new TabuSearch<>(problem, neigh, new RejectAllTabuMemory<SubsetSolution>());
+        search = new TabuSearch<>(problem, neigh, new RejectAllTabuMemory<>());
     }
     
     @After
