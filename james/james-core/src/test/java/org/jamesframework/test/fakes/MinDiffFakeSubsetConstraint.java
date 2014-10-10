@@ -20,6 +20,7 @@ import org.jamesframework.core.exceptions.IncompatibleDeltaValidationException;
 import org.jamesframework.core.problems.constraints.PenalizingConstraint;
 import org.jamesframework.core.problems.constraints.PenalizingValidation;
 import org.jamesframework.core.problems.constraints.Validation;
+import org.jamesframework.core.problems.constraints.validations.SimplePenalizingValidation;
 import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.subset.neigh.SubsetMove;
@@ -56,7 +57,7 @@ public class MinDiffFakeSubsetConstraint implements PenalizingConstraint<SubsetS
      * @return true if minimum difference is satisfied
      */
     @Override
-    public MinDiffValidation validate(SubsetSolution solution, ScoredFakeSubsetData data) {
+    public PenalizingValidation validate(SubsetSolution solution, ScoredFakeSubsetData data) {
         // check all pairs of elements
         int numTooClose = 0;
         for(int id1 : solution.getSelectedIDs()){
@@ -67,7 +68,7 @@ public class MinDiffFakeSubsetConstraint implements PenalizingConstraint<SubsetS
                 }
             }
         }
-        return new MinDiffValidation(numTooClose);
+        return new SimplePenalizingValidation(numTooClose == 0, numTooClose);
     }
 
     /**
@@ -80,13 +81,13 @@ public class MinDiffFakeSubsetConstraint implements PenalizingConstraint<SubsetS
      * @return validation of modified solution (neighbour)
      */
     @Override
-    public MinDiffValidation validate(Move move, SubsetSolution curSolution, Validation curValidation, ScoredFakeSubsetData data) {
+    public PenalizingValidation validate(Move move, SubsetSolution curSolution, Validation curValidation, ScoredFakeSubsetData data) {
         if(!(move instanceof SubsetMove)){
             throw new IncompatibleDeltaValidationException("Expected move of type SubsetMove.");
         }
         SubsetMove subsetMove = (SubsetMove) move;
-        MinDiffValidation val = (MinDiffValidation) curValidation;
-        int n = val.getNumTooClose();
+        PenalizingValidation val = (PenalizingValidation) curValidation;
+        int n = (int) val.getPenalty();
         
         // account for removed elements
         for(int del : subsetMove.getDeletedIDs()){
@@ -127,33 +128,7 @@ public class MinDiffFakeSubsetConstraint implements PenalizingConstraint<SubsetS
             }
         }
         
-        return new MinDiffValidation(n);
-    }
-    
-    // specific validation object
-    public class MinDiffValidation implements PenalizingValidation {
-
-        private final int numTooClose;
-
-        public MinDiffValidation(int numTooClose) {
-            this.numTooClose = numTooClose;
-        }
-        
-        public int getNumTooClose() {
-            return numTooClose;
-        }
-        
-        // all good if no entries are too close to each other
-        @Override
-        public boolean passed() {
-            return numTooClose == 0;
-        }
-
-        @Override
-        public double getPenalty() {
-            return numTooClose;
-        }
-        
+        return new SimplePenalizingValidation(n == 0, n);
     }
 
 }
