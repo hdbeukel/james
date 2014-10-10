@@ -252,6 +252,7 @@ public class AbstractProblemTest {
         // same thing with unsatisfiable penalizing constraint
         PenalizingConstraint<Solution,Object> unsatisfiable2 = new NeverSatisfiedPenalizingConstraintStub(123.0);
         problem.addPenalizingConstraint(unsatisfiable2);
+        // penalizing constraint does not cause solution to be invalid!
         assertTrue(problem.validate(sol).passed());
         // remove the constraint
         problem.removePenalizingConstraint(unsatisfiable2);
