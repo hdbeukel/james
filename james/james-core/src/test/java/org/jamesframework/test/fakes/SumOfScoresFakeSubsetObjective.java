@@ -16,9 +16,12 @@
 
 package org.jamesframework.test.fakes;
 
+import org.jamesframework.core.exceptions.IncompatibleDeltaValidationException;
 import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.problems.objectives.evaluations.SimpleEvaluation;
+import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.subset.SubsetSolution;
+import org.jamesframework.core.subset.neigh.SubsetMove;
 import org.jamesframework.test.util.MinMaxObjective;
 
 /**
@@ -41,6 +44,30 @@ public class SumOfScoresFakeSubsetObjective extends MinMaxObjective<SubsetSoluti
         return new SimpleEvaluation(
                     solution.getSelectedIDs().stream().mapToDouble(data::getScore).sum()
         );
+    }
+    
+    /**
+     * Delta evaluation. Subtracts scores of removed IDs and adds scores of newly selected IDs.
+     * 
+     * @param move move to be applied
+     * @param curSol current solution
+     * @param curEval current evaluation
+     * @param data underlying data
+     * @return modified evaluation
+     */
+    @Override
+    public Evaluation evaluate(Move move, SubsetSolution curSol, Evaluation curEval, ScoredFakeSubsetData data){
+        if(!(move instanceof SubsetMove)){
+            throw new IncompatibleDeltaValidationException("Expected move of type SubsetMove.");
+        }
+        SubsetMove sMove = (SubsetMove) move;
+        
+        // update evaluation
+        double e = curEval.getValue();
+        e += sMove.getAddedIDs().stream().mapToDouble(data::getScore).sum();
+        e -= sMove.getDeletedIDs().stream().mapToDouble(data::getScore).sum();
+        
+        return new SimpleEvaluation(e);
     }
 
 }

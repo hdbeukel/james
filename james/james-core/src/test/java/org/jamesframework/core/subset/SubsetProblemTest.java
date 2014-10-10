@@ -19,10 +19,10 @@ package org.jamesframework.core.subset;
 import java.util.Random;
 import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.util.SetUtilities;
+import org.jamesframework.test.fakes.MinDiffFakeSubsetConstraint;
 import org.jamesframework.test.fakes.ScoredFakeSubsetData;
 import org.jamesframework.test.fakes.SumOfScoresFakeSubsetObjective;
 import org.jamesframework.test.fakes.SumOfIDsFakeSubsetObjective;
-import org.jamesframework.test.fakes.MinDiffFakeSubsetPenalizingConstraint;
 import org.jamesframework.test.util.TestConstants;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -53,7 +53,7 @@ public class SubsetProblemTest {
     private final int PROBLEM_2_MAX_SIZE = 8;
     
     // fake constraint
-    private MinDiffFakeSubsetPenalizingConstraint fakeConstraint;
+    private MinDiffFakeSubsetConstraint fakeConstraint;
     // minimum score diff imposed by fake constraint
     private final double MIN_SCORE_DIFF = 0.05;
     
@@ -87,7 +87,7 @@ public class SubsetProblemTest {
         fakeObjIgnoringData = new SumOfIDsFakeSubsetObjective();  // ignores the data
         fakeObjUsingData = new SumOfScoresFakeSubsetObjective();        // actually uses the data
         // create fake constraint
-        fakeConstraint = new MinDiffFakeSubsetPenalizingConstraint(MIN_SCORE_DIFF);
+        fakeConstraint = new MinDiffFakeSubsetConstraint(MIN_SCORE_DIFF);
         // create subset problems
         problem1 = new SubsetProblem<>(fakeObjIgnoringData, fakeData, PROBLEM_1_FIXED_SIZE);
         problem2 = new SubsetProblem<>(fakeObjUsingData, fakeData, PROBLEM_2_MIN_SIZE, PROBLEM_2_MAX_SIZE);

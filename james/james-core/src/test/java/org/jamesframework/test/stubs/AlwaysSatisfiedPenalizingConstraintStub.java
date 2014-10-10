@@ -26,14 +26,12 @@ import org.jamesframework.core.problems.constraints.validations.SimplePenalizing
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class AlwaysSatisfiedPenalizingConstraintStub
-                                extends AlwaysSatisfiedConstraintStub
-                                implements PenalizingConstraint<Solution, Object> {
+public class AlwaysSatisfiedPenalizingConstraintStub implements PenalizingConstraint<Solution, Object> {
 
     private static final PenalizingValidation NO_PENALTY = new SimplePenalizingValidation(true, 0.0);
     
     /**
-     * A penalizing validation with penalty of zero.
+     * A penalizing validation with penalty of zero for any solution.
      * 
      * @param solution ignored
      * @param data ignored

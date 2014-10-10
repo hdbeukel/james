@@ -16,12 +16,13 @@
 
 package org.jamesframework.test.fakes;
 
-import java.util.TreeSet;
-import java.util.stream.Collectors;
-import org.jamesframework.core.problems.constraints.Constraint;
+import org.jamesframework.core.exceptions.IncompatibleDeltaValidationException;
+import org.jamesframework.core.problems.constraints.PenalizingConstraint;
+import org.jamesframework.core.problems.constraints.PenalizingValidation;
 import org.jamesframework.core.problems.constraints.Validation;
-import org.jamesframework.core.problems.constraints.validations.SimpleValidation;
+import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.subset.SubsetSolution;
+import org.jamesframework.core.subset.neigh.SubsetMove;
 
 /**
  * Fake subset constraint based on fake subset data. Only accepts solutions where the minimum difference
@@ -29,10 +30,7 @@ import org.jamesframework.core.subset.SubsetSolution;
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class MinDiffFakeSubsetConstraint implements Constraint<SubsetSolution, ScoredFakeSubsetData>{
-
-    private static final Validation SATISFIED = new SimpleValidation(true);
-    private static final Validation VIOLATED = new SimpleValidation(false);
+public class MinDiffFakeSubsetConstraint implements PenalizingConstraint<SubsetSolution, ScoredFakeSubsetData>{
     
     // minimum required difference in score of selected entities
     private final double minDiff;
@@ -58,21 +56,104 @@ public class MinDiffFakeSubsetConstraint implements Constraint<SubsetSolution, S
      * @return true if minimum difference is satisfied
      */
     @Override
-    public Validation validate(SubsetSolution solution, ScoredFakeSubsetData data) {
-        // store scores in sorted set
-        TreeSet<Double> scores = solution.getSelectedIDs().stream()
-                                                          .map(ID -> data.getScore(ID))
-                                                          .collect(Collectors.toCollection(TreeSet::new));
-        // compute difference between consecutive sorted scores, break if minimum violated
-        Double prevScore = null;
-        for(double score : scores){
-            if(prevScore != null && score-prevScore < minDiff){
-                return VIOLATED;
+    public MinDiffValidation validate(SubsetSolution solution, ScoredFakeSubsetData data) {
+        // check all pairs of elements
+        int numTooClose = 0;
+        for(int id1 : solution.getSelectedIDs()){
+            for(int id2 : solution.getSelectedIDs()){
+                // careful: DO NOT count all pairs twice!
+                if(id2 > id1 && Math.abs(data.getScore(id1) - data.getScore(id2)) < minDiff){
+                    numTooClose++;
+                }
             }
-            prevScore = score;
         }
-        // all ok
-        return SATISFIED;
+        return new MinDiffValidation(numTooClose);
+    }
+
+    /**
+     * Delta validation
+     * 
+     * @param move move to be applied to the current solution
+     * @param curSolution current solution
+     * @param curValidation current solution validation
+     * @param data underlying data
+     * @return validation of modified solution (neighbour)
+     */
+    @Override
+    public MinDiffValidation validate(Move move, SubsetSolution curSolution, Validation curValidation, ScoredFakeSubsetData data) {
+        if(!(move instanceof SubsetMove)){
+            throw new IncompatibleDeltaValidationException("Expected move of type SubsetMove.");
+        }
+        SubsetMove subsetMove = (SubsetMove) move;
+        MinDiffValidation val = (MinDiffValidation) curValidation;
+        int n = val.getNumTooClose();
+        
+        // account for removed elements
+        for(int del : subsetMove.getDeletedIDs()){
+            for(int curSel : curSolution.getSelectedIDs()){
+                if(!subsetMove.getDeletedIDs().contains(curSel)){
+                    // distance to retained item
+                    if(Math.abs(data.getScore(del) - data.getScore(curSel)) < minDiff){
+                        n--;
+                    }
+                } else {
+                    // distance to other discarded item
+                    // careful: DO NOT remove these twice!
+                    if(curSel > del && Math.abs(data.getScore(del) - data.getScore(curSel)) < minDiff){
+                        n--;
+                    }
+                }
+            }
+        }
+        
+        // account for added elements
+        for(int add : subsetMove.getAddedIDs()){
+            // check distances to currently selected elements
+            for(int curSel : curSolution.getSelectedIDs()){
+                // check: retained
+                if(!subsetMove.getDeletedIDs().contains(curSel)){
+                    // check distance
+                    if(Math.abs(data.getScore(add) - data.getScore(curSel)) < minDiff){
+                        n++;
+                    }
+                }
+            }
+            // check distances within added elements
+            for(int add2 : subsetMove.getAddedIDs()){
+                // careful: DO NOT account for each pair twice!
+                if(add2 > add && Math.abs(data.getScore(add) - data.getScore(add2)) < minDiff){
+                    n++;
+                }
+            }
+        }
+        
+        return new MinDiffValidation(n);
+    }
+    
+    // specific validation object
+    public class MinDiffValidation implements PenalizingValidation {
+
+        private final int numTooClose;
+
+        public MinDiffValidation(int numTooClose) {
+            this.numTooClose = numTooClose;
+        }
+        
+        public int getNumTooClose() {
+            return numTooClose;
+        }
+        
+        // all good if no entries are too close to each other
+        @Override
+        public boolean passed() {
+            return numTooClose == 0;
+        }
+
+        @Override
+        public double getPenalty() {
+            return numTooClose;
+        }
+        
     }
 
 }

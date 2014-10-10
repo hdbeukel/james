@@ -27,12 +27,11 @@ import org.jamesframework.core.subset.SubsetProblem;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.subset.neigh.SingleSwapNeighbourhood;
 import org.jamesframework.core.search.stopcriteria.MaxRuntime;
+import org.jamesframework.test.fakes.MinDiffFakeSubsetConstraint;
 import org.jamesframework.test.util.DoubleComparatorWithPrecision;
 import org.jamesframework.test.fakes.ScoredFakeSubsetData;
 import org.jamesframework.test.fakes.SumOfScoresFakeSubsetObjective;
-import org.jamesframework.test.fakes.MinDiffFakeSubsetPenalizingConstraint;
 import org.jamesframework.test.util.TestConstants;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -60,7 +59,7 @@ public class SearchTestTemplate {
     protected static int SUBSET_SIZE = 20;
     
     // fake constraint (not assigned by default)
-    protected MinDiffFakeSubsetPenalizingConstraint constraint;
+    protected MinDiffFakeSubsetConstraint constraint;
     // minimum score diff imposed by fake constraint
     protected final double MIN_SCORE_DIFF = 0.02;
     
@@ -105,7 +104,7 @@ public class SearchTestTemplate {
         data = new ScoredFakeSubsetData(scores);
         obj = new SumOfScoresFakeSubsetObjective();
         problem = new SubsetProblem<>(obj, data, SUBSET_SIZE);
-        constraint = new MinDiffFakeSubsetPenalizingConstraint(MIN_SCORE_DIFF);
+        constraint = new MinDiffFakeSubsetConstraint(MIN_SCORE_DIFF);
         neigh = new SingleSwapNeighbourhood();
     }
     

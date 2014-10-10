@@ -27,9 +27,7 @@ import org.jamesframework.core.problems.constraints.validations.SimplePenalizing
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class NeverSatisfiedPenalizingConstraintStub
-                                extends NeverSatisfiedConstraintStub
-                                implements PenalizingConstraint<Solution, Object> {
+public class NeverSatisfiedPenalizingConstraintStub implements PenalizingConstraint<Solution, Object> {
 
     private final PenalizingValidation fixedPenalty;
     

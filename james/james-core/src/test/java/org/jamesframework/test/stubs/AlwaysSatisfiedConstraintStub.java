@@ -31,8 +31,7 @@ public class AlwaysSatisfiedConstraintStub implements Constraint<Solution, Objec
     private static final Validation SATISFIED = new SimpleValidation(true);
     
     /**
-     * All so    private final Validation SATISFIED = new SimpleValidation(true);
-luations are valid.
+     * All solutions are considered valid.
      * 
      * @param solution ignored
      * @param data ignored
