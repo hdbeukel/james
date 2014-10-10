@@ -6,6 +6,7 @@ Version 0.2 (under development)
 ---------------------------------
 
  - Compatible with core module v0.2.
+ - Renamed WeightedMultiObjective to WeightedIndex
  - Simplified code using functional operations.
  - Moved to SLF4J API 1.7.7.
  - Moved to Java 8.
