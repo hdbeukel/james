@@ -16,7 +16,14 @@
 
 package org.jamesframework.ext.problems.objectives;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import org.jamesframework.core.problems.Solution;
+import org.jamesframework.core.problems.objectives.Evaluation;
+import org.jamesframework.core.subset.SubsetSolution;
+import org.jamesframework.core.subset.neigh.SubsetMove;
+import org.jamesframework.core.subset.neigh.SwapMove;
+import org.jamesframework.test.fakes.SumOfIDsFakeSubsetObjective;
 import org.jamesframework.test.stubs.EmptySolutionStub;
 import org.jamesframework.test.stubs.FixedEvaluationObjectiveStub;
 import org.jamesframework.test.util.TestConstants;
@@ -26,18 +33,18 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Test WeightedMultiObjective.
+ * Test WeightedIndex.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class WeightedMultiObjectiveTest {
+public class WeightedIndexTest {
 
     /**
      * Print message before running tests.
      */
     @BeforeClass
     public static void setUpClass() {
-        System.out.println("# Testing WeightedMultiObjective ...");
+        System.out.println("# Testing WeightedIndex ...");
     }
 
     /**
@@ -45,11 +52,11 @@ public class WeightedMultiObjectiveTest {
      */
     @AfterClass
     public static void tearDownClass() {
-        System.out.println("# Done testing WeightedMultiObjective!");
+        System.out.println("# Done testing WeightedIndex!");
     }
 
     /**
-     * Test of addObjective method, of class WeightedMultiObjective.
+     * Test of addObjective method, of class WeightedIndex.
      */
     @Test
     public void testAddObjective() {
@@ -57,7 +64,7 @@ public class WeightedMultiObjectiveTest {
         System.out.println(" - test addObjective");
         
         // create weighted objective
-        WeightedMultiObjective<Solution, Object> weighted = new WeightedMultiObjective<>();
+        WeightedIndex<Solution, Object> weighted = new WeightedIndex<>();
         // create some fake objective with fixed evaluation
         FixedEvaluationObjectiveStub obj0 = new FixedEvaluationObjectiveStub(0.0);
         
@@ -85,7 +92,7 @@ public class WeightedMultiObjectiveTest {
         weighted.addObjective(obj0, 2.5);
         
         // create new weighted objective specific for empty solution
-        WeightedMultiObjective<EmptySolutionStub, ?> weighted2 = new WeightedMultiObjective<>();
+        WeightedIndex<EmptySolutionStub, ?> weighted2 = new WeightedIndex<>();
         
         // try to add a fake objective which can evaluate any solution,
         // should work fine (more general than EmptySolutionStub)
@@ -94,7 +101,7 @@ public class WeightedMultiObjectiveTest {
     }
     
     /**
-     * Test of removeObjective method, of class WeightedMultiObjective.
+     * Test of removeObjective method, of class WeightedIndex.
      */
     @Test
     public void testRemoveObjective() {
@@ -102,7 +109,7 @@ public class WeightedMultiObjectiveTest {
         System.out.println(" - test removeObjective");
         
         // create weighted objective
-        WeightedMultiObjective<Solution, Object> weighted = new WeightedMultiObjective<>();
+        WeightedIndex<Solution, Object> weighted = new WeightedIndex<>();
         // create some fake objectives with fixed evaluation
         FixedEvaluationObjectiveStub obj0 = new FixedEvaluationObjectiveStub(0.0);
         FixedEvaluationObjectiveStub obj1 = new FixedEvaluationObjectiveStub(1.0);
@@ -125,7 +132,7 @@ public class WeightedMultiObjectiveTest {
     }
 
     /**
-     * Test of isMinimizing method, of class WeightedMultiObjective.
+     * Test of isMinimizing method, of class WeightedIndex.
      */
     @Test
     public void testIsMinimizing() {
@@ -133,7 +140,7 @@ public class WeightedMultiObjectiveTest {
         System.out.println(" - test isMinimizing");        
         
         // create weighted objective
-        WeightedMultiObjective obj = new WeightedMultiObjective();
+        WeightedIndex obj = new WeightedIndex();
         // weighted objective should never be minimizing
         boolean expResult = false;
         boolean result = obj.isMinimizing();
@@ -141,7 +148,7 @@ public class WeightedMultiObjectiveTest {
     }
 
     /**
-     * Test of evaluate method, of class WeightedMultiObjective.
+     * Test of evaluate method, of class WeightedIndex.
      */
     @Test
     public void testEvaluate() {
@@ -149,7 +156,7 @@ public class WeightedMultiObjectiveTest {
         System.out.println(" - test evaluate");
         
         // create weighted objective
-        WeightedMultiObjective<Solution, Object> weighted = new WeightedMultiObjective<>();
+        WeightedIndex<Solution, Object> weighted = new WeightedIndex<>();
         // create some fake objectives with fixed evaluation
         FixedEvaluationObjectiveStub obj0 = new FixedEvaluationObjectiveStub(0.0);
         FixedEvaluationObjectiveStub obj1 = new FixedEvaluationObjectiveStub(1.0);
@@ -172,43 +179,95 @@ public class WeightedMultiObjectiveTest {
         // create fake empty solution and evaluate
         Solution emptySol = new EmptySolutionStub();
         double expectedEval = 21.0;
-        double eval = weighted.evaluate(emptySol, null);
+        Evaluation eval = weighted.evaluate(emptySol, null);
         
-        assertEquals(expectedEval, eval, TestConstants.DOUBLE_COMPARISON_PRECISION);
+        assertEquals(expectedEval, eval.getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
         
         // set objective 3 to minimizing and re-evaluate
         obj3.setMinimizing();
         expectedEval = 3.0;
         eval = weighted.evaluate(emptySol, null);
         
-        assertEquals(expectedEval, eval, TestConstants.DOUBLE_COMPARISON_PRECISION);
+        assertEquals(expectedEval, eval.getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
         
         // set objective 4 to minimizing as well and re-evaluate
         obj4.setMinimizing();
         expectedEval = -13.0;
         eval = weighted.evaluate(emptySol, null);
         
-        assertEquals(expectedEval, eval, TestConstants.DOUBLE_COMPARISON_PRECISION);
+        assertEquals(expectedEval, eval.getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
         
         // set objective 0 to minimizing and re-evaluate (should not make a difference)
         obj0.setMinimizing();
         eval = weighted.evaluate(emptySol, null);
 
-        assertEquals(expectedEval, eval, TestConstants.DOUBLE_COMPARISON_PRECISION);
+        assertEquals(expectedEval, eval.getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
         
         // remove objective 0 and re-evaluate (should not make a difference)
         weighted.removeObjective(obj0);
         eval = weighted.evaluate(emptySol, null);
 
-        assertEquals(expectedEval, eval, TestConstants.DOUBLE_COMPARISON_PRECISION);
+        assertEquals(expectedEval, eval.getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
         
         // remove objective 3 and re-evaluate
         weighted.removeObjective(obj3);
         expectedEval = -4.0;
         eval = weighted.evaluate(emptySol, null);
 
-        assertEquals(expectedEval, eval, TestConstants.DOUBLE_COMPARISON_PRECISION);
+        assertEquals(expectedEval, eval.getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
     
+    }
+    
+    /**
+     * Test delta evaluation.
+     */
+    @Test
+    public void testDeltaEvaluation() {
+        
+        System.out.println(" - test delta evaluation");
+        
+        // create weighted objective
+        WeightedIndex<SubsetSolution, Object> weighted = new WeightedIndex<>();
+        // create some fake objectives with fixed evaluation
+        FixedEvaluationObjectiveStub obj0 = new FixedEvaluationObjectiveStub(3.0);
+        SumOfIDsFakeSubsetObjective obj1 = new SumOfIDsFakeSubsetObjective();
+        
+        // add objectives with positive weights
+        double weight0 = 2.0;
+        double weight1 = 1.5;
+        weighted.addObjective(obj0, weight0);
+        weighted.addObjective(obj1, weight1);
+        
+        // create subset solution (ids: 0 - 4)
+        SubsetSolution sol = new SubsetSolution(new HashSet<>(Arrays.asList(0,1,2,3,4)));
+        // select ids 2 and 4
+        sol.select(2);
+        sol.select(4);
+        
+        // evaluate solution
+        Evaluation eval = weighted.evaluate(sol, null);
+        
+        // verify
+        double expectedEval = 2.0*3.0 + 1.5*(2 + 4);
+        assertEquals(expectedEval, eval.getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
+        
+        // create subset move (drop 2, add 1)
+        SubsetMove move = new SwapMove(1, 2);
+        
+        // evaluate move
+        eval = weighted.evaluate(move, sol, eval, null);
+        
+        // verify
+        expectedEval = 2.0*3.0 + 1.5*(1+4);
+        assertEquals(expectedEval, eval.getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
+        
+        // full evaluation
+        move.apply(sol);
+        Evaluation fullEval = weighted.evaluate(sol, null);
+        
+        // verify
+        assertEquals(eval.getValue(), fullEval.getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
+
     }
 
 }
