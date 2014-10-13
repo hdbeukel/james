@@ -27,6 +27,7 @@ import java.util.Random;
 import java.util.Set;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.neigh.Move;
+import org.jamesframework.core.util.JamesConstants;
 import org.jamesframework.core.util.SetUtilities;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -50,7 +51,7 @@ public class SinglePerturbationNeighbourhoodTest {
     // perturbation neighbourhoods to work with
     private SinglePerturbationNeighbourhood neighVarSize = new SinglePerturbationNeighbourhood(10, 20);
     private SinglePerturbationNeighbourhood neighFixedSize = new SinglePerturbationNeighbourhood(10, 10);
-    private SinglePerturbationNeighbourhood neighUnboundedSize = new SinglePerturbationNeighbourhood(0, NUM_IDS);
+    private SinglePerturbationNeighbourhood neighUnboundedSize = new SinglePerturbationNeighbourhood();
     
     // random generator
     private final Random RG = new Random();
@@ -98,14 +99,14 @@ public class SinglePerturbationNeighbourhoodTest {
         // try to create single perturbation neighbourhood with invalid min/max subset sizes
         thrown = false;
         try {
-            new SinglePerturbationNeighbourhood(-1, 10);
+            new SinglePerturbationNeighbourhood(-3, 10);
         } catch(IllegalArgumentException ex) {
             thrown = true;
         }
         assertTrue(thrown);
         thrown = false;
         try {
-            new SinglePerturbationNeighbourhood(0, -1);
+            new SinglePerturbationNeighbourhood(0, -2);
         } catch(IllegalArgumentException ex) {
             thrown = true;
         }
@@ -117,6 +118,34 @@ public class SinglePerturbationNeighbourhoodTest {
             thrown = true;
         }
         assertTrue(thrown);
+        thrown = false;
+        try {
+            new SinglePerturbationNeighbourhood(10, 11);
+        } catch(IllegalArgumentException ex) {
+            thrown = true;
+        }
+        assertFalse(thrown);
+        thrown = false;
+        try {
+            new SinglePerturbationNeighbourhood(JamesConstants.UNLIMITED_SIZE, 11);
+        } catch(IllegalArgumentException ex) {
+            thrown = true;
+        }
+        assertFalse(thrown);
+        thrown = false;
+        try {
+            new SinglePerturbationNeighbourhood(3, JamesConstants.UNLIMITED_SIZE);
+        } catch(IllegalArgumentException ex) {
+            thrown = true;
+        }
+        assertFalse(thrown);
+        thrown = false;
+        try {
+            new SinglePerturbationNeighbourhood(JamesConstants.UNLIMITED_SIZE, JamesConstants.UNLIMITED_SIZE);
+        } catch(IllegalArgumentException ex) {
+            thrown = true;
+        }
+        assertFalse(thrown);
         
     }
 
@@ -185,8 +214,12 @@ public class SinglePerturbationNeighbourhoodTest {
                 // reapply
                 move.apply(sol);
                 // verify that solution stays within size bounds
-                assertTrue(sol.getNumSelectedIDs() >= neigh.getMinSubsetSize());
-                assertTrue(sol.getNumSelectedIDs() <= neigh.getMaxSubsetSize());
+                if(neigh.getMinSubsetSize() != JamesConstants.UNLIMITED_SIZE){
+                    assertTrue(sol.getNumSelectedIDs() >= neigh.getMinSubsetSize());
+                }
+                if(neigh.getMaxSubsetSize() != JamesConstants.UNLIMITED_SIZE){
+                    assertTrue(sol.getNumSelectedIDs() <= neigh.getMaxSubsetSize());
+                }
             }
         }
         
@@ -268,7 +301,7 @@ public class SinglePerturbationNeighbourhoodTest {
         // verify different neighbourhoods
         assertEquals(10, neighFixedSize.getMinSubsetSize());
         assertEquals(10, neighVarSize.getMinSubsetSize());
-        assertEquals(0, neighUnboundedSize.getMinSubsetSize());
+        assertEquals(JamesConstants.UNLIMITED_SIZE, neighUnboundedSize.getMinSubsetSize());
         
     }
 
@@ -282,7 +315,7 @@ public class SinglePerturbationNeighbourhoodTest {
         
         assertEquals(10, neighFixedSize.getMaxSubsetSize());
         assertEquals(20, neighVarSize.getMaxSubsetSize());
-        assertEquals(NUM_IDS, neighUnboundedSize.getMaxSubsetSize());
+        assertEquals(JamesConstants.UNLIMITED_SIZE, neighUnboundedSize.getMaxSubsetSize());
         
     }
     
