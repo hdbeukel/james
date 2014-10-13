@@ -98,10 +98,11 @@ public class MultiSwapNeighbourhood extends SubsetNeighbourhood {
     /**
      * <p>
      * Generates a move for the given subset solution that removes a random subset of IDs from the current selection
-     * and replaces them with an equally large random subset of the currently unselected IDs. The maximum number of
-     * swaps specified at construction is respected, i.e. the returned move will swap at most this number of IDs.
-     * Possible fixed IDs are not considered to be swapped. If no swaps can be performed, <code>null</code>
-     * is returned.
+     * and replaces them with an equally large random subset of the currently unselected IDs. Possible fixed IDs are
+     * not considered to be swapped. The maximum number of swaps \(k\) specified at construction is respected. If
+     * \(m &lt; k\) IDs are currently selected or unselected (excluding any fixed IDs), generated moves will perform
+     * up to \(m\) swaps only, as it is impossible to perform more than this amount of swaps. If no swaps can be
+     * performed, <code>null</code> is returned.
      * </p>
      * <p>
      * Note that first, a random number of swaps is picked (uniformly distributed) from the valid range and then, a
