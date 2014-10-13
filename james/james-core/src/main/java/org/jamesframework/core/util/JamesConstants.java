@@ -47,5 +47,10 @@ public class JamesConstants {
      * Indicates an invalid delta (amount of improvement).
      */
     public static final double INVALID_DELTA = -1.0;
-        
+    
+    /**
+     * Indicates an unlimited size.
+     */
+    public static final int UNLIMITED_SIZE = -1;
+    
 }

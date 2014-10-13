@@ -24,6 +24,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.subset.neigh.moves.AdditionMove;
+import org.jamesframework.core.util.JamesConstants;
 import org.jamesframework.core.util.SetUtilities;
 
 /**
@@ -49,7 +50,7 @@ public class SingleAdditionNeighbourhood extends SubsetNeighbourhood {
      * selected items (subset size). All items are candidates to be selected.
      */
     public SingleAdditionNeighbourhood(){
-        this(0);
+        this(JamesConstants.UNLIMITED_SIZE);
     }
     
     /**
@@ -64,20 +65,31 @@ public class SingleAdditionNeighbourhood extends SubsetNeighbourhood {
     }
     
     /**
+     * <p>
      * Create a single addition neighbourhood with a limit on the number of selected
      * items (subset size) and a given set of fixed IDs which are not allowed to be
      * selected. None of the generated addition moves will add any of these IDs.
+     * </p>
+     * <p>
+     * The parameter <code>maxSubsetSize</code> may be set to {@link JamesConstants#UNLIMITED_SIZE}
+     * if no size limit is to be applied, else it should be a positive integer value.
+     * </p>
      * 
-     * @param maxSubsetSize maximum subset size
+     * @param maxSubsetSize maximum subset size (&ge; 0 or {@link JamesConstants#UNLIMITED_SIZE})
      * @param fixedIDs set of fixed IDs which are not allowed to be added to the selection
+     * @throws IllegalArgumentException if maximum subset size is negative
      */
     public SingleAdditionNeighbourhood(int maxSubsetSize, Set<Integer> fixedIDs){
         super(fixedIDs);
+        // check maximum subset size
+        if(maxSubsetSize != JamesConstants.UNLIMITED_SIZE && maxSubsetSize < 0){
+            throw new IllegalArgumentException("Error while creating single addition neighbourhood: maximum subset size should be non-negative.");
+        }
         this.maxSubsetSize = maxSubsetSize;
     }
     
     /**
-     * Get the maximum subset size.
+     * Get the maximum subset size. If no size limit is applied this method returns {@link JamesConstants#UNLIMITED_SIZE}.
      * 
      * @return maximum subset size
      */
@@ -96,7 +108,7 @@ public class SingleAdditionNeighbourhood extends SubsetNeighbourhood {
     @Override
     public SubsetMove getRandomMove(SubsetSolution solution) {
         // check size limit
-        if(solution.getNumSelectedIDs() >= maxSubsetSize){
+        if(maxSizeReached(solution)){
             // size limit would be exceeded
             return null;
         }
@@ -126,7 +138,7 @@ public class SingleAdditionNeighbourhood extends SubsetNeighbourhood {
     @Override
     public Set<SubsetMove> getAllMoves(SubsetSolution solution) {
         // check size limit
-        if(solution.getNumSelectedIDs() >= maxSubsetSize){
+        if(maxSizeReached(solution)){
             return Collections.emptySet();
         }
         // get set of candidate IDs for addition (possibly fixed IDs are discarded)
@@ -139,6 +151,16 @@ public class SingleAdditionNeighbourhood extends SubsetNeighbourhood {
         return addCandidates.stream()
                             .map(add -> new AdditionMove(add))
                             .collect(Collectors.toSet());
+    }
+    
+    /**
+     * Check whether the maximum subset size has been reached (or exceeded).
+     * 
+     * @param sol subset solution
+     * @return <code>true</code> if the maximum size has been reached
+     */
+    private boolean maxSizeReached(SubsetSolution sol){
+        return maxSubsetSize != JamesConstants.UNLIMITED_SIZE && sol.getNumSelectedIDs() >= maxSubsetSize;
     }
 
 }
