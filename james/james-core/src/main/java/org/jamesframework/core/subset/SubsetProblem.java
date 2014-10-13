@@ -20,7 +20,6 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import org.jamesframework.core.exceptions.IncompatibleDeltaValidationException;
 import org.jamesframework.core.problems.AbstractProblem;
-import org.jamesframework.core.problems.constraints.Constraint;
 import org.jamesframework.core.problems.constraints.Validation;
 import org.jamesframework.core.problems.constraints.validations.SubsetValidation;
 import org.jamesframework.core.problems.constraints.validations.UnanimousValidation;
