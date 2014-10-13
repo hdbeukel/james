@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jamesframework.core.subset.neigh;
+package org.jamesframework.core.subset.neigh.moves;
 
 import org.jamesframework.core.subset.neigh.moves.DeletionMove;
 import org.jamesframework.core.subset.neigh.moves.SubsetMove;
