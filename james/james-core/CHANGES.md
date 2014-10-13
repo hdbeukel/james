@@ -5,6 +5,7 @@ James Core Module Changes
 Version 0.2 (under development)
 -------------------------------
 
+ - Added support for efficient delta evaluations and validations.
  - Simplified code using functional operations.
  - Renamed SubsetData to IntegerIdentifiedData.
  - Renamed ProblemWithData to AbstractProblem.
