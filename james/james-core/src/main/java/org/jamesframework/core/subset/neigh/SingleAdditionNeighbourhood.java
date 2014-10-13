@@ -31,7 +31,8 @@ import org.jamesframework.core.util.SetUtilities;
  * <p>
  * A subset neighbourhood that generates addition moves only (see {@link AdditionMove}). An addition move is a subtype
  * of {@link SubsetMove} that adds a single ID to the selection of a subset solution. If desired, a set of fixed IDs
- * can be provided which are not allowed to be added to the selection.
+ * can be provided which are not allowed to be added to the selection. Also, a size limit can be imposed so that
+ * no moves are generated that would cause the subset solution to exceed this size limit.
  * </p>
  * <p>
  * Note that this neighbourhood is thread-safe: it can be safely used to concurrently generate moves in different
