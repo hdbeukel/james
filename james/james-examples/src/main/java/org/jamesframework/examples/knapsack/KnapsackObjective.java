@@ -16,7 +16,9 @@
 
 package org.jamesframework.examples.knapsack;
 
+import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.problems.objectives.Objective;
+import org.jamesframework.core.problems.objectives.evaluations.SimpleEvaluation;
 import org.jamesframework.core.subset.SubsetSolution;
 
 /**
@@ -27,11 +29,12 @@ import org.jamesframework.core.subset.SubsetSolution;
 public class KnapsackObjective implements Objective<SubsetSolution, KnapsackData>{
 
     @Override
-    public double evaluate(SubsetSolution solution, KnapsackData data) {
+    public Evaluation evaluate(SubsetSolution solution, KnapsackData data) {
         // compute sum of profits of selected items
-        return solution.getSelectedIDs().stream()
-                                        .mapToDouble(id -> data.getProfit(id))
-                                        .sum();
+        double value =  solution.getSelectedIDs().stream()
+                                                 .mapToDouble(id -> data.getProfit(id))
+                                                 .sum();
+        return new SimpleEvaluation(value);
     }
 
     @Override

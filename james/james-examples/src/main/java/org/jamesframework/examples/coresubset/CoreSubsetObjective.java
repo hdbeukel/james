@@ -18,7 +18,9 @@ package org.jamesframework.examples.coresubset;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.problems.objectives.Objective;
+import org.jamesframework.core.problems.objectives.evaluations.SimpleEvaluation;
 import org.jamesframework.core.subset.SubsetSolution;
 
 /**
@@ -37,10 +39,9 @@ public class CoreSubsetObjective implements Objective<SubsetSolution, CoreSubset
      * @return average distance between all pairs of selected items; 0 if less than 2 items are selected
      */
     @Override
-    public double evaluate(SubsetSolution solution, CoreSubsetData data) {
-        if(solution.getNumSelectedIDs() < 2){
-            return 0.0;
-        } else {
+    public Evaluation evaluate(SubsetSolution solution, CoreSubsetData data) {
+        double value = 0.0;
+        if(solution.getNumSelectedIDs() >= 2){
             // at least two items selected: compute average distance
             List<Integer> ids = new ArrayList<>(solution.getSelectedIDs());
             int id1, id2, numDist = 0;
@@ -53,8 +54,9 @@ public class CoreSubsetObjective implements Objective<SubsetSolution, CoreSubset
                     numDist++;
                 }
             }
-            return sumDist/numDist;
+            value = sumDist/numDist;
         }
+        return new SimpleEvaluation(value);
     }
 
     /**

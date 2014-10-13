@@ -17,6 +17,8 @@
 package org.jamesframework.examples.knapsack;
 
 import org.jamesframework.core.problems.constraints.Constraint;
+import org.jamesframework.core.problems.constraints.Validation;
+import org.jamesframework.core.problems.constraints.validations.SimpleValidation;
 import org.jamesframework.core.subset.SubsetSolution;
 
 /**
@@ -26,6 +28,9 @@ import org.jamesframework.core.subset.SubsetSolution;
  */
 public class KnapsackConstraint implements Constraint<SubsetSolution, KnapsackData> {
 
+    private static final Validation SATISFIED = new SimpleValidation(true);
+    private static final Validation VIOLATED = new SimpleValidation(false);
+    
     // maximum total weight
     private final double maxWeight;
     
@@ -34,16 +39,16 @@ public class KnapsackConstraint implements Constraint<SubsetSolution, KnapsackDa
     }
 
     @Override
-    public boolean isSatisfied(SubsetSolution solution, KnapsackData data) {
+    public Validation validate(SubsetSolution solution, KnapsackData data) {
         // check: maximum weight not exceeded
         double sum = 0.0;
         for(int id : solution.getSelectedIDs()){
             sum += data.getWeight(id);
             if(sum > maxWeight){
-                return false;
+                return VIOLATED;
             }
         }
-        return true;
+        return SATISFIED;
     }
     
 }

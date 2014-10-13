@@ -16,7 +16,9 @@
 
 package org.jamesframework.examples.clique;
 
+import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.problems.objectives.Objective;
+import org.jamesframework.core.problems.objectives.evaluations.SimpleEvaluation;
 import org.jamesframework.core.subset.SubsetSolution;
 
 /**
@@ -28,8 +30,8 @@ import org.jamesframework.core.subset.SubsetSolution;
 public class CliqueObjective implements Objective<SubsetSolution, Object>{
 
     @Override
-    public double evaluate(SubsetSolution solution, Object data) {
-        return solution.getNumSelectedIDs();
+    public Evaluation evaluate(SubsetSolution solution, Object data) {
+        return new SimpleEvaluation(solution.getNumSelectedIDs());
     }
 
     @Override

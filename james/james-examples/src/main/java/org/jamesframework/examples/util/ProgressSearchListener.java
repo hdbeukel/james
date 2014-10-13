@@ -17,6 +17,8 @@
 package org.jamesframework.examples.util;
 
 import org.jamesframework.core.problems.Solution;
+import org.jamesframework.core.problems.constraints.Validation;
+import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.listeners.SearchListener;
 
@@ -38,7 +40,10 @@ public class ProgressSearchListener implements SearchListener<Solution> {
     }
 
     @Override
-    public void newBestSolution(Search<? extends Solution> search, Solution newBestSolution, double newBestSolutionEvaluation) {
+    public void newBestSolution(Search<? extends Solution> search,
+                                Solution newBestSolution,
+                                Evaluation newBestSolutionEvaluation,
+                                Validation newBestSolutionValidation) {
         System.out.println(" >>> New best solution: " + newBestSolutionEvaluation);
     }
     

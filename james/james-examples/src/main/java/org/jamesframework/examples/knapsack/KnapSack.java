@@ -20,6 +20,7 @@ import java.io.FileNotFoundException;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.problems.Problem;
+import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.subset.SubsetProblem;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.algo.ParallelTempering;
@@ -116,7 +117,7 @@ public class KnapSack {
             randomDescent.start();
             // print results
             Integer randomDescentKnapsackSize = null;
-            Double randomDescentKnapsackProfit = null;
+            Evaluation randomDescentKnapsackProfit = null;
             Double randomDescentKnapsackWeight = null;
             if(randomDescent.getBestSolution() != null){
                 randomDescentKnapsackSize = randomDescent.getBestSolution().getNumSelectedIDs();
@@ -163,7 +164,7 @@ public class KnapSack {
             parallelTempering.start();
             // print results
             Integer parallelTemperingKnapsackSize = null;
-            Double parallelTemperingKnapsackProfit = null;
+            Evaluation parallelTemperingKnapsackProfit = null;
             Double parallelTemperingKnapsackWeight = null;
             if(parallelTempering.getBestSolution() != null){
                 parallelTemperingKnapsackSize = parallelTempering.getBestSolution().getNumSelectedIDs();
