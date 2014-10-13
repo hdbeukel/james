@@ -216,34 +216,35 @@ extends <a href="../../../../org/jamesframework/core/problems/AbstractProblem.ht
 </td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetProblem.html#rejectSolution-org.jamesframework.core.subset.SubsetSolution-">rejectSolution</a></span>(<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
-<div class="block">Checks whether the given subset solution is rejected.</div>
-</td>
-</tr>
-<tr id="i5" class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetProblem.html#rejectSolution-org.jamesframework.core.subset.SubsetSolution-boolean-">rejectSolution</a></span>(<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution,
-              boolean&nbsp;checkSubsetSize)</code>
-<div class="block">Checks whether the given subset solution is rejected.</div>
-</td>
-</tr>
-<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetProblem.html#setData-DataType-">setData</a></span>(<a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a>&nbsp;data)</code>
 <div class="block">Set new data.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetProblem.html#setMaxSubsetSize-int-">setMaxSubsetSize</a></span>(int&nbsp;maxSubsetSize)</code>
 <div class="block">Set the maximum subset size.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetProblem.html#setMinSubsetSize-int-">setMinSubsetSize</a></span>(int&nbsp;minSubsetSize)</code>
 <div class="block">Set the minimum subset size.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/constraints/validations/SubsetValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SubsetValidation</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetProblem.html#validate-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.subset.SubsetSolution-org.jamesframework.core.problems.constraints.Validation-">validate</a></span>(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&gt;&nbsp;move,
+        <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;curSolution,
+        <a href="../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;curValidation)</code>
+<div class="block">Validate a move to be applied to the current subset solution of a local search (delta validation).</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/constraints/validations/SubsetValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SubsetValidation</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetProblem.html#validate-org.jamesframework.core.subset.SubsetSolution-">validate</a></span>(<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
+<div class="block">Validate a subset solution.</div>
 </td>
 </tr>
 </table>
@@ -252,7 +253,7 @@ extends <a href="../../../../org/jamesframework/core/problems/AbstractProblem.ht
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.jamesframework.core.problems.<a href="../../../../org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a></h3>
-<code><a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#addPenalizingConstraint-org.jamesframework.core.problems.constraints.PenalizingConstraint-">addPenalizingConstraint</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#addRejectingConstraint-org.jamesframework.core.problems.constraints.Constraint-">addRejectingConstraint</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#evaluate-SolutionType-">evaluate</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#getData--">getData</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#getObjective--">getObjective</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#getViolatedConstraints-SolutionType-">getViolatedConstraints</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#isMinimizing--">isMinimizing</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#removePenalizingConstraint-org.jamesframework.core.problems.constraints.PenalizingConstraint-">removePenalizingConstraint</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#removeRejectingConstraint-org.jamesframework.core.problems.constraints.Constraint-">removeRejectingConstraint</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#setObjective-org.jamesframework.core.problems.objectives.Objective-">setObjective</a></code></li>
+<code><a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#addMandatoryConstraint-org.jamesframework.core.problems.constraints.Constraint-">addMandatoryConstraint</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#addPenalizingConstraint-org.jamesframework.core.problems.constraints.PenalizingConstraint-">addPenalizingConstraint</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#evaluate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-">evaluate</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#evaluate-SolutionType-">evaluate</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#getData--">getData</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#getObjective--">getObjective</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#getViolatedConstraints-SolutionType-">getViolatedConstraints</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#isMinimizing--">isMinimizing</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#removeMandatoryConstraint-org.jamesframework.core.problems.constraints.Constraint-">removeMandatoryConstraint</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#removePenalizingConstraint-org.jamesframework.core.problems.constraints.PenalizingConstraint-">removePenalizingConstraint</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#setObjective-org.jamesframework.core.problems.objectives.Objective-">setObjective</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -325,7 +326,8 @@ extends <a href="../../../../org/jamesframework/core/problems/AbstractProblem.ht
  designed to evaluate subset solutions (or more general solutions) using the specified data type (or more general data)
  is accepted. The minimum and maximum subset size should be contained in <code>[0,n]</code> where <code>n</code>
  is the number of items in the given data from which a subset is to be selected. Also, the minimum size
- should be smaller than or equal to the maximum size. Generated subset solutions do not guarantee any order of IDs.</div>
+ should be smaller than or equal to the maximum size. Generated subset solutions do not guarantee any
+ order of IDs.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>objective</code> - objective function, can not be <code>null</code></dd>
@@ -423,46 +425,55 @@ extends <a href="../../../../org/jamesframework/core/problems/AbstractProblem.ht
 </dl>
 </li>
 </ul>
-<a name="rejectSolution-org.jamesframework.core.subset.SubsetSolution-">
+<a name="validate-org.jamesframework.core.subset.SubsetSolution-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>rejectSolution</h4>
-<pre>public&nbsp;boolean&nbsp;rejectSolution(<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</pre>
-<div class="block">Checks whether the given subset solution is rejected. A subset solution is rejected if any of the
- rejecting constraints is violated (see <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#addRejectingConstraint-org.jamesframework.core.problems.constraints.Constraint-"><code>AbstractProblem.addRejectingConstraint(Constraint)</code></a>) or if it has
- an invalid size (number of selected IDs).</div>
+<h4>validate</h4>
+<pre>public&nbsp;<a href="../../../../org/jamesframework/core/problems/constraints/validations/SubsetValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SubsetValidation</a>&nbsp;validate(<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</pre>
+<div class="block">Validate a subset solution. The returned validation object indicates whether
+ the solution passed constraint validation, possibly also requiring that it
+ has a valid size.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../org/jamesframework/core/problems/Problem.html#rejectSolution-SolutionType-">rejectSolution</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&gt;</code></dd>
+<dd><code><a href="../../../../org/jamesframework/core/problems/Problem.html#validate-SolutionType-">validate</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&gt;</code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#rejectSolution-SolutionType-">rejectSolution</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a>&lt;<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>,<a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a> extends <a href="../../../../org/jamesframework/core/problems/datatypes/IntegerIdentifiedData.html" title="interface in org.jamesframework.core.problems.datatypes">IntegerIdentifiedData</a>&gt;</code></dd>
+<dd><code><a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#validate-SolutionType-">validate</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a>&lt;<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>,<a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a> extends <a href="../../../../org/jamesframework/core/problems/datatypes/IntegerIdentifiedData.html" title="interface in org.jamesframework.core.problems.datatypes">IntegerIdentifiedData</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>solution</code> - subset solution to verify</dd>
+<dd><code>solution</code> - solution to validate</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd><code>true</code> if the solution is rejected</dd>
+<dd>subset validation</dd>
 </dl>
 </li>
 </ul>
-<a name="rejectSolution-org.jamesframework.core.subset.SubsetSolution-boolean-">
+<a name="validate-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.subset.SubsetSolution-org.jamesframework.core.problems.constraints.Validation-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>rejectSolution</h4>
-<pre>public&nbsp;boolean&nbsp;rejectSolution(<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution,
-                              boolean&nbsp;checkSubsetSize)</pre>
-<div class="block">Checks whether the given subset solution is rejected. A subset solution is rejected if any of
- the rejecting constraints is violated (see <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#addRejectingConstraint-org.jamesframework.core.problems.constraints.Constraint-"><code>AbstractProblem.addRejectingConstraint(Constraint)</code></a>). Only
- when <code>checkSubsetSize</code> is <code>true</code> the solution is also rejected if it has
- an invalid size.</div>
+<h4>validate</h4>
+<pre>public&nbsp;<a href="../../../../org/jamesframework/core/problems/constraints/validations/SubsetValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SubsetValidation</a>&nbsp;validate(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&gt;&nbsp;move,
+                                 <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;curSolution,
+                                 <a href="../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;curValidation)</pre>
+<div class="block">Validate a move to be applied to the current subset solution of a local search (delta validation).
+ A subset problem can only perform delta validation for moves of type <a href="../../../../org/jamesframework/core/subset/neigh/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh"><code>SubsetMove</code></a>. If the
+ received move has a different type an <a href="../../../../org/jamesframework/core/exceptions/IncompatibleDeltaValidationException.html" title="class in org.jamesframework.core.exceptions"><code>IncompatibleDeltaValidationException</code></a> is thrown.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../org/jamesframework/core/problems/Problem.html#validate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.constraints.Validation-">validate</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&gt;</code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#validate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.constraints.Validation-">validate</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a>&lt;<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>,<a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a> extends <a href="../../../../org/jamesframework/core/problems/datatypes/IntegerIdentifiedData.html" title="interface in org.jamesframework.core.problems.datatypes">IntegerIdentifiedData</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>solution</code> - subset solution to verify</dd>
-<dd><code>checkSubsetSize</code> - indicates whether a solution should be rejected if it has an invalid size</dd>
+<dd><code>move</code> - subset move to be validated</dd>
+<dd><code>curSolution</code> - current solution</dd>
+<dd><code>curValidation</code> - current validation</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd><code>true</code> if the solution is rejected</dd>
+<dd>validation of modified subset solution</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="../../../../org/jamesframework/core/exceptions/IncompatibleDeltaValidationException.html" title="class in org.jamesframework.core.exceptions">IncompatibleDeltaValidationException</a></code> - if the received move is not of type <a href="../../../../org/jamesframework/core/subset/neigh/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh"><code>SubsetMove</code></a>
+                                              or if the delta validation of any mandatory constraint
+                                              is not compatible with the received move type</dd>
 </dl>
 </li>
 </ul>

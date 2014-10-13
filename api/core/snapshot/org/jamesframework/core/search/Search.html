@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":6,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":6,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -231,10 +231,10 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>protected double</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#computeDelta-double-double-">computeDelta</a></span>(double&nbsp;currentEvaluation,
-            double&nbsp;previousEvaluation)</code>
-<div class="block">Computes the amount of improvement of <code>currentEvaluation</code> over <code>previousEvaluation</code>, taking into
- account whether a maximization or minimization problem is being solved, where positive deltas indicate improvement.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#computeDelta-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.objectives.Evaluation-">computeDelta</a></span>(<a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;currentEvaluation,
+            <a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;previousEvaluation)</code>
+<div class="block">Computes the amount of improvement of <code>currentEvaluation</code> over <code>previousEvaluation</code>,
+ taking into account whether evaluations are being maximized or minimized.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
@@ -250,18 +250,24 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 </td>
 </tr>
 <tr id="i6" class="altColor">
-<td class="colFirst"><code>double</code></td>
+<td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getBestSolutionEvaluation--">getBestSolutionEvaluation</a></span>()</code>
 <div class="block">Get the evaluation of the best solution found so far.</div>
 </td>
 </tr>
 <tr id="i7" class="rowColor">
+<td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getBestSolutionValidation--">getBestSolutionValidation</a></span>()</code>
+<div class="block">Get the validation of the best solution found so far.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getID--">getID</a></span>()</code>
 <div class="block">Get the unique ID that has been assigned to this search.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getMinDelta--">getMinDelta</a></span>()</code>
 <div class="block">
@@ -269,45 +275,45 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
  found during the <i>current</i> (or last) run.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getName--">getName</a></span>()</code>
 <div class="block">Get the name that has been assigned to this search.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getProblem--">getProblem</a></span>()</code>
 <div class="block">Get the problem being solved, as specified at construction.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getRuntime--">getRuntime</a></span>()</code>
 <div class="block">
  Get the runtime of the <i>current</i> (or last) run, in milliseconds.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code><a href="../../../../org/jamesframework/core/search/status/SearchStatus.html" title="enum in org.jamesframework.core.search.status">SearchStatus</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getStatus--">getStatus</a></span>()</code>
 <div class="block">Get the current search status.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>protected <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getStatusLock--">getStatusLock</a></span>()</code>
 <div class="block">Returns a lock to be acquired when executing blocks of code that can not be interrupted by a status update.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getSteps--">getSteps</a></span>()</code>
 <div class="block">
  Get the number of completed steps during the <i>current</i> (or last) run.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getStepsWithoutImprovement--">getStepsWithoutImprovement</a></span>()</code>
 <div class="block">
@@ -315,7 +321,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
  any further improvement.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getTimeWithoutImprovement--">getTimeWithoutImprovement</a></span>()</code>
 <div class="block">
@@ -323,92 +329,92 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
  (in milliseconds).</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener</a></span>(<a href="../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;? super <a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&nbsp;listener)</code>
 <div class="block">Remove the given search listener.</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#removeStopCriterion-org.jamesframework.core.search.stopcriteria.StopCriterion-">removeStopCriterion</a></span>(<a href="../../../../org/jamesframework/core/search/stopcriteria/StopCriterion.html" title="interface in org.jamesframework.core.search.stopcriteria">StopCriterion</a>&nbsp;stopCriterion)</code>
 <div class="block">Removes a stop criterion.</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#run--">run</a></span>()</code>
 <div class="block">Equivalent to calling <a href="../../../../org/jamesframework/core/search/Search.html#start--"><code>start()</code></a>.</div>
 </td>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#searchDisposed--">searchDisposed</a></span>()</code>
 <div class="block">This method is called when a search is disposed, immediately before the search status is updated to DISPOSED.</div>
 </td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#searchStarted--">searchStarted</a></span>()</code>
 <div class="block">This method is called when a search run is started, to perform initialization and/or validation of the search
  configuration.</div>
 </td>
 </tr>
-<tr id="i22" class="altColor">
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code>protected abstract void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#searchStep--">searchStep</a></span>()</code>
 <div class="block">This method is iteratively called while the search is running and should be implemented in every specific
  search according to the corresponding search strategy.</div>
 </td>
 </tr>
-<tr id="i23" class="rowColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#searchStopped--">searchStopped</a></span>()</code>
 <div class="block">This method is called when a search run has completed and may be used to perform some finalization.</div>
 </td>
 </tr>
-<tr id="i24" class="altColor">
+<tr id="i25" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#setStopCriterionCheckPeriod-long-java.util.concurrent.TimeUnit-">setStopCriterionCheckPeriod</a></span>(long&nbsp;period,
                            <a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/TimeUnit.html?is-external=true" title="class or interface in java.util.concurrent">TimeUnit</a>&nbsp;timeUnit)</code>
 <div class="block">Instructs the search to check its stop criteria at regular intervals separated by the given period.</div>
 </td>
 </tr>
-<tr id="i25" class="rowColor">
+<tr id="i26" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#start--">start</a></span>()</code>
 <div class="block">
  Starts a search run and returns when this run has finished.</div>
 </td>
 </tr>
-<tr id="i26" class="altColor">
+<tr id="i27" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#stop--">stop</a></span>()</code>
 <div class="block">
  Requests the search to stop.</div>
 </td>
 </tr>
-<tr id="i27" class="rowColor">
+<tr id="i28" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#toString--">toString</a></span>()</code>
 <div class="block">Returns a string representation of the search, formatted as "%name(%id)".</div>
 </td>
 </tr>
-<tr id="i28" class="altColor">
+<tr id="i29" class="rowColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-">updateBestSolution</a></span>(<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&nbsp;newSolution)</code>
 <div class="block">
  Checks whether a new best solution has been found and updates it accordingly.</div>
 </td>
 </tr>
-<tr id="i29" class="rowColor">
+<tr id="i30" class="altColor">
 <td class="colFirst"><code>protected boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-double-">updateBestSolution</a></span>(<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&nbsp;newSolution,
-                  double&nbsp;newSolutionEvaluation)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">updateBestSolution</a></span>(<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&nbsp;newSolution,
+                  <a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;newSolutionEvaluation,
+                  <a href="../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;newSolutionValidation)</code>
 <div class="block">
  Checks whether a new best solution has been found and updates it accordingly,
- assuming that the given solution is <b>not</b> rejected by the problem (see
- <a href="../../../../org/jamesframework/core/problems/Problem.html#rejectSolution-SolutionType-"><code>Problem.rejectSolution(Solution)</code></a> and has already been evaluated.</div>
+ given that the solution has already been evaluated and validated.</div>
 </td>
 </tr>
 </table>
@@ -771,10 +777,10 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 <li class="blockList">
 <h4>getBestSolution</h4>
 <pre>public&nbsp;<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&nbsp;getBestSolution()</pre>
-<div class="block">Returns the best solution found so far. It is guaranteed that this solution is valid, in the sense that
- <a href="../../../../org/jamesframework/core/problems/Problem.html#rejectSolution-SolutionType-"><code>Problem.rejectSolution(Solution)</code></a> returns <code>false</code>. The best solution is <b>retained</b>
- across subsequent runs of the same search. May return <code>null</code> if no solutions have been evaluated
- yet, for example when the search has just been created.</div>
+<div class="block">Returns the best solution found so far. It is guaranteed that this solution is valid.
+ The best solution is <b>retained</b> across subsequent runs of the same search. May
+ return <code>null</code> if no valid solutions have been evaluated yet, for example
+ when the search has just been created.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>best solution found so far, if already defined; <code>null</code> otherwise</dd>
@@ -787,13 +793,29 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 <ul class="blockList">
 <li class="blockList">
 <h4>getBestSolutionEvaluation</h4>
-<pre>public&nbsp;double&nbsp;getBestSolutionEvaluation()</pre>
-<div class="block">Get the evaluation of the best solution found so far. The best solution and its evaluation are <b>retained</b>
- across subsequent runs of the same search. If the best solution is not yet defined, i.e. when <a href="../../../../org/jamesframework/core/search/Search.html#getBestSolution--"><code>getBestSolution()</code></a>
- return <code>null</code>, the result of this method is undefined; in such case it may return any arbitrary value.</div>
+<pre>public&nbsp;<a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;getBestSolutionEvaluation()</pre>
+<div class="block">Get the evaluation of the best solution found so far. The best solution is <b>retained</b>
+ across subsequent runs of the same search. May return <code>null</code> if no best solution
+ has yet been set, for example when the search has just been created.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>evaluation of best solution, if already defined; arbitrary value otherwise</dd>
+<dd>evaluation of best solution, if already defined; <code>null</code> otherwise</dd>
+</dl>
+</li>
+</ul>
+<a name="getBestSolutionValidation--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getBestSolutionValidation</h4>
+<pre>public&nbsp;<a href="../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;getBestSolutionValidation()</pre>
+<div class="block">Get the validation of the best solution found so far. The best solution is <b>retained</b>
+ across subsequent runs of the same search. May return <code>null</code> if no best solution
+ has yet been set, for example when the search has just been created.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>validation of best solution, if already defined; <code>null</code> otherwise</dd>
 </dl>
 </li>
 </ul>
@@ -808,62 +830,56 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 <pre>protected&nbsp;boolean&nbsp;updateBestSolution(<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&nbsp;newSolution)</pre>
 <div class="block"><p>
  Checks whether a new best solution has been found and updates it accordingly.
- The best solution is updated only if the new solution is <b>not</b> rejected
- (see <a href="../../../../org/jamesframework/core/problems/Problem.html#rejectSolution-SolutionType-"><code>Problem.rejectSolution(Solution)</code></a>) and
+ The given solution is evaluated and validated, after which the best solution
+ is updated only if the solution is valid and
  </p>
  <ul>
   <li>no best solution had been set before, or</li>
   <li>the new solution has a better evaluation</li>
  </ul>
  <p>
- If the new solution is rejected, or has a worse evaluation than the current best solution, this
- method has no effect. Note that the best solution is <b>retained</b> across subsequent runs of
- the same search.
+ If the new solution is invalid or has a worse evaluation than the current best
+ solution, calling this method has no effect. Note that the best solution is
+ <b>retained</b> across subsequent runs of the same search.
  </p></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>newSolution</code> - newly constructed solution</dd>
+<dd><code>newSolution</code> - newly presented solution</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd><code>true</code> if the given solution is accepted as the new best solution</dd>
 </dl>
 </li>
 </ul>
-<a name="updateBestSolution-org.jamesframework.core.problems.Solution-double-">
+<a name="updateBestSolution-org.jamesframework.core.problems.Solution-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">
 <!--   -->
-</a><a name="updateBestSolution-SolutionType-double-">
+</a><a name="updateBestSolution-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>updateBestSolution</h4>
 <pre>protected&nbsp;boolean&nbsp;updateBestSolution(<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&nbsp;newSolution,
-                                     double&nbsp;newSolutionEvaluation)</pre>
+                                     <a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;newSolutionEvaluation,
+                                     <a href="../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;newSolutionValidation)</pre>
 <div class="block"><p>
  Checks whether a new best solution has been found and updates it accordingly,
- assuming that the given solution is <b>not</b> rejected by the problem (see
- <a href="../../../../org/jamesframework/core/problems/Problem.html#rejectSolution-SolutionType-"><code>Problem.rejectSolution(Solution)</code></a> and has already been evaluated.
- This method should only be called for solutions for which it has already been
- verified that they are not rejected, as this will <b>not</b> be checked here.
- Else, <a href="../../../../org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-"><code>updateBestSolution(Solution)</code></a> should be used. This alternative
- method is specifically introduced to avoid unnecessary re-evaluation and
- re-validation of already evaluated, valid solutions.
- </p>
- <p>
- The best solution is updated if and only if
+ given that the solution has already been evaluated and validated. The best
+ solution is updated only if the presented solution is valid and
  </p>
  <ul>
   <li>no best solution had been set before, or</li>
   <li>the new solution has a better evaluation</li>
  </ul>
  <p>
- If the new solution has a worse evaluation than the current best solution, calling this
- method has no effect. Note that the best solution is <b>retained</b> across subsequent
- runs of the same search.
+ If the new solution is invalid or has a worse evaluation than the current best
+ solution, calling this method has no effect. Note that the best solution is
+ <b>retained</b> across subsequent runs of the same search.
  </p></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>newSolution</code> - newly constructed solution, which is known <b>not</b> to be rejected</dd>
-<dd><code>newSolutionEvaluation</code> - already computed evaluation of the given solution</dd>
+<dd><code>newSolution</code> - newly presented solution</dd>
+<dd><code>newSolutionEvaluation</code> - evaluation of given solution</dd>
+<dd><code>newSolutionValidation</code> - validation of given solution</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd><code>true</code> if the given solution is accepted as the new best solution</dd>
 </dl>
@@ -1043,21 +1059,21 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 </dl>
 </li>
 </ul>
-<a name="computeDelta-double-double-">
+<a name="computeDelta-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.objectives.Evaluation-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>computeDelta</h4>
-<pre>protected&nbsp;double&nbsp;computeDelta(double&nbsp;currentEvaluation,
-                              double&nbsp;previousEvaluation)</pre>
-<div class="block">Computes the amount of improvement of <code>currentEvaluation</code> over <code>previousEvaluation</code>, taking into
- account whether a maximization or minimization problem is being solved, where positive deltas indicate improvement.
- In case of a maximization problem, the amount of increase is returned, which is equal to
+<pre>protected&nbsp;double&nbsp;computeDelta(<a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;currentEvaluation,
+                              <a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;previousEvaluation)</pre>
+<div class="block">Computes the amount of improvement of <code>currentEvaluation</code> over <code>previousEvaluation</code>,
+ taking into account whether evaluations are being maximized or minimized. Positive deltas indicate improvment.
+ In case of maximization the amount of increase is returned, which is equal to
   <pre> currentEvaluation - previousEvaluation </pre>
  while the amount of decrease, equal to
   <pre> previousEvaluation - currentEvaluation </pre>
- is returned when solving a minimization problem.</div>
+ is returned in case of minimization.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>currentEvaluation</code> - evaluation to be compared with previous evaluation</dd>

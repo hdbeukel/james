@@ -112,10 +112,11 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public interface <span class="typeNameLabel">SearchListener&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></pre>
 <div class="block"><p>
- Interface of a search listener that can be attached to any search with the specified (or more specific) solution type.
- A listener is informed when certain events occur, e.g. when the search has started, stopped or found a new best solution.
- Every callback receives a reference to the search that called it, which may be cast to a specific search type if required;
- if an incompatible search type is received, an <a href="../../../../../org/jamesframework/core/exceptions/IncompatibleSearchListenerException.html" title="class in org.jamesframework.core.exceptions"><code>IncompatibleSearchListenerException</code></a> may be thrown.
+ Interface of a search listener that can be attached to any search with the specified solution type (or a subtype).
+ A listener is informed when certain events occur, e.g. when the search has started, stopped or found a new best
+ solution. Every callback receives a reference to the search that called it, which may be cast to a specific search
+ type if required; if an incompatible search type is received, an <a href="../../../../../org/jamesframework/core/exceptions/IncompatibleSearchListenerException.html" title="class in org.jamesframework.core.exceptions"><code>IncompatibleSearchListenerException</code></a> may
+ be thrown.
  </p>
  <p>
  All callbacks have a default empty implementation.
@@ -144,9 +145,10 @@ var activeTableTab = "activeTableTab";
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>default void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#newBestSolution-org.jamesframework.core.search.Search-SolutionType-double-">newBestSolution</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="type parameter in SearchListener">SolutionType</a>&gt;&nbsp;search,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#newBestSolution-org.jamesframework.core.search.Search-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">newBestSolution</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="type parameter in SearchListener">SolutionType</a>&gt;&nbsp;search,
                <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="type parameter in SearchListener">SolutionType</a>&nbsp;newBestSolution,
-               double&nbsp;newBestSolutionEvaluation)</code>
+               <a href="../../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;newBestSolutionEvaluation,
+               <a href="../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;newBestSolutionValidation)</code>
 <div class="block">Fired when the search has found a new best solution.</div>
 </td>
 </tr>
@@ -223,9 +225,9 @@ var activeTableTab = "activeTableTab";
 </dl>
 </li>
 </ul>
-<a name="newBestSolution-org.jamesframework.core.search.Search-org.jamesframework.core.problems.Solution-double-">
+<a name="newBestSolution-org.jamesframework.core.search.Search-org.jamesframework.core.problems.Solution-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">
 <!--   -->
-</a><a name="newBestSolution-org.jamesframework.core.search.Search-SolutionType-double-">
+</a><a name="newBestSolution-org.jamesframework.core.search.Search-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -233,13 +235,15 @@ var activeTableTab = "activeTableTab";
 <h4>newBestSolution</h4>
 <pre>default&nbsp;void&nbsp;newBestSolution(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="type parameter in SearchListener">SolutionType</a>&gt;&nbsp;search,
                              <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="type parameter in SearchListener">SolutionType</a>&nbsp;newBestSolution,
-                             double&nbsp;newBestSolutionEvaluation)</pre>
+                             <a href="../../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;newBestSolutionEvaluation,
+                             <a href="../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;newBestSolutionValidation)</pre>
 <div class="block">Fired when the search has found a new best solution. Called exactly once for every improvement.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>search</code> - search which has found a new best solution</dd>
-<dd><code>newBestSolution</code> - new best solution found</dd>
+<dd><code>newBestSolution</code> - new best solution</dd>
 <dd><code>newBestSolutionEvaluation</code> - evaluation of the new best solution</dd>
+<dd><code>newBestSolutionValidation</code> - validation of the new best solution</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../../../org/jamesframework/core/exceptions/IncompatibleSearchListenerException.html" title="class in org.jamesframework.core.exceptions">IncompatibleSearchListenerException</a></code> - if the listener is not compatible with the search</dd>
 </dl>

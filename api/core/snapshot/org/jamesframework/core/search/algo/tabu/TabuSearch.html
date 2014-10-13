@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -203,7 +203,7 @@ extends <a href="../../../../../../org/jamesframework/core/search/SingleNeighbou
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>protected void</code></td>
+<td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html#acceptMove-org.jamesframework.core.search.neigh.Move-">acceptMove</a></span>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="type parameter in TabuSearch">SolutionType</a>&gt;&nbsp;move)</code>
 <div class="block">Overrides acceptance of a move to update the tabu memory by registering the newly visited solution.</div>
 </td>
@@ -233,12 +233,6 @@ extends <a href="../../../../../../org/jamesframework/core/search/SingleNeighbou
 <div class="block">Set the tabu memory.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
-<td class="colFirst"><code>protected boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html#validateMove-org.jamesframework.core.search.neigh.Move-">validateMove</a></span>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="type parameter in TabuSearch">SolutionType</a>&gt;&nbsp;move)</code>
-<div class="block">Overrides validation of moves to verify that the move is not tabu.</div>
-</td>
-</tr>
 </table>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.org.jamesframework.core.search.SingleNeighbourhoodSearch">
@@ -252,21 +246,21 @@ extends <a href="../../../../../../org/jamesframework/core/search/SingleNeighbou
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.jamesframework.core.search.<a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></h3>
-<code><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#evaluateMove-org.jamesframework.core.search.neigh.Move-">evaluateMove</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getMoveWithLargestDelta-java.util.Collection-boolean-">getMoveWithLargestDelta</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumAcceptedMoves--">getNumAcceptedMoves</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumRejectedMoves--">getNumRejectedMoves</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#incNumAcceptedMoves-long-">incNumAcceptedMoves</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#incNumRejectedMoves-long-">incNumRejectedMoves</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#isImprovement-org.jamesframework.core.search.neigh.Move-">isImprovement</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#rejectMove--">rejectMove</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#searchStarted--">searchStarted</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#setEvaluatedMoveCache-org.jamesframework.core.search.cache.EvaluatedMoveCache-">setEvaluatedMoveCache</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#updateCurrentSolution-SolutionType-double-">updateCurrentSolution</a></code></li>
+<code><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#evaluateMove-org.jamesframework.core.search.neigh.Move-">evaluateMove</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getBestMove-java.util.Collection-boolean-java.util.function.Predicate...-">getBestMove</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumAcceptedMoves--">getNumAcceptedMoves</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumRejectedMoves--">getNumRejectedMoves</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#incNumAcceptedMoves-long-">incNumAcceptedMoves</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#incNumRejectedMoves-long-">incNumRejectedMoves</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#isImprovement-org.jamesframework.core.search.neigh.Move-">isImprovement</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#rejectMove--">rejectMove</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#searchStarted--">searchStarted</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#setEvaluatedMoveCache-org.jamesframework.core.search.cache.EvaluatedMoveCache-">setEvaluatedMoveCache</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#updateCurrentSolution-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">updateCurrentSolution</a>, <a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#validateMove-org.jamesframework.core.search.neigh.Move-">validateMove</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.org.jamesframework.core.search.LocalSearch">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.jamesframework.core.search.<a href="../../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></h3>
-<code><a href="../../../../../../org/jamesframework/core/search/LocalSearch.html#addSearchListener-org.jamesframework.core.search.listeners.SearchListener-">addSearchListener</a>, <a href="../../../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolution--">getCurrentSolution</a>, <a href="../../../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionEvaluation--">getCurrentSolutionEvaluation</a>, <a href="../../../../../../org/jamesframework/core/search/LocalSearch.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener</a>, <a href="../../../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-">updateCurrentAndBestSolution</a>, <a href="../../../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-double-">updateCurrentAndBestSolution</a>, <a href="../../../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-double-boolean-">updateCurrentAndBestSolution</a></code></li>
+<code><a href="../../../../../../org/jamesframework/core/search/LocalSearch.html#addSearchListener-org.jamesframework.core.search.listeners.SearchListener-">addSearchListener</a>, <a href="../../../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolution--">getCurrentSolution</a>, <a href="../../../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionEvaluation--">getCurrentSolutionEvaluation</a>, <a href="../../../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionValidation--">getCurrentSolutionValidation</a>, <a href="../../../../../../org/jamesframework/core/search/LocalSearch.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener</a>, <a href="../../../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-">updateCurrentAndBestSolution</a>, <a href="../../../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">updateCurrentAndBestSolution</a>, <a href="../../../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentSolution-SolutionType-">updateCurrentSolution</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.org.jamesframework.core.search.Search">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.jamesframework.core.search.<a href="../../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></h3>
-<code><a href="../../../../../../org/jamesframework/core/search/Search.html#addStopCriterion-org.jamesframework.core.search.stopcriteria.StopCriterion-">addStopCriterion</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#assertIdle-java.lang.String-">assertIdle</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#computeDelta-double-double-">computeDelta</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#dispose--">dispose</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#getBestSolution--">getBestSolution</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#getBestSolutionEvaluation--">getBestSolutionEvaluation</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#getID--">getID</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#getMinDelta--">getMinDelta</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#getName--">getName</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#getProblem--">getProblem</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#getRuntime--">getRuntime</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#getStatus--">getStatus</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#getStatusLock--">getStatusLock</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#getSteps--">getSteps</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#getStepsWithoutImprovement--">getStepsWithoutImprovement</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#getTimeWithoutImprovement--">getTimeWithoutImprovement</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#removeStopCriterion-org.jamesframework.core.search.stopcriteria.StopCriterion-">removeStopCriterion</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#run--">run</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#searchDisposed--">searchDisposed</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#searchStopped--">searchStopped</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#setStopCriterionCheckPeriod-long-java.util.concurrent.TimeUnit-">setStopCriterionCheckPeriod</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#start--">start</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#stop--">stop</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#toString--">toString</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-">updateBestSolution</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-double-">updateBestSolution</a></code></li>
+<code><a href="../../../../../../org/jamesframework/core/search/Search.html#addStopCriterion-org.jamesframework.core.search.stopcriteria.StopCriterion-">addStopCriterion</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#assertIdle-java.lang.String-">assertIdle</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#computeDelta-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.objectives.Evaluation-">computeDelta</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#dispose--">dispose</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#getBestSolution--">getBestSolution</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#getBestSolutionEvaluation--">getBestSolutionEvaluation</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#getBestSolutionValidation--">getBestSolutionValidation</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#getID--">getID</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#getMinDelta--">getMinDelta</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#getName--">getName</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#getProblem--">getProblem</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#getRuntime--">getRuntime</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#getStatus--">getStatus</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#getStatusLock--">getStatusLock</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#getSteps--">getSteps</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#getStepsWithoutImprovement--">getStepsWithoutImprovement</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#getTimeWithoutImprovement--">getTimeWithoutImprovement</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#removeStopCriterion-org.jamesframework.core.search.stopcriteria.StopCriterion-">removeStopCriterion</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#run--">run</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#searchDisposed--">searchDisposed</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#searchStopped--">searchStopped</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#setStopCriterionCheckPeriod-long-java.util.concurrent.TimeUnit-">setStopCriterionCheckPeriod</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#start--">start</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#stop--">stop</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#toString--">toString</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-">updateBestSolution</a>, <a href="../../../../../../org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">updateBestSolution</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -378,38 +372,21 @@ extends <a href="../../../../../../org/jamesframework/core/search/SingleNeighbou
 </dl>
 </li>
 </ul>
-<a name="validateMove-org.jamesframework.core.search.neigh.Move-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>validateMove</h4>
-<pre>protected&nbsp;boolean&nbsp;validateMove(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="type parameter in TabuSearch">SolutionType</a>&gt;&nbsp;move)</pre>
-<div class="block">Overrides validation of moves to verify that the move is not tabu. A basic aspiration criterion
- is applied so that moves which yield a new best solution are always considered, i.e. never tabu.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#validateMove-org.jamesframework.core.search.neigh.Move-">validateMove</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="type parameter in TabuSearch">SolutionType</a> extends <a href="../../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</code></dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>move</code> - applied move</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd><code>true</code> if the move is valid and not tabu</dd>
-</dl>
-</li>
-</ul>
 <a name="acceptMove-org.jamesframework.core.search.neigh.Move-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>acceptMove</h4>
-<pre>protected&nbsp;void&nbsp;acceptMove(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="type parameter in TabuSearch">SolutionType</a>&gt;&nbsp;move)</pre>
+<pre>protected&nbsp;boolean&nbsp;acceptMove(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="type parameter in TabuSearch">SolutionType</a>&gt;&nbsp;move)</pre>
 <div class="block">Overrides acceptance of a move to update the tabu memory by registering the newly visited solution.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#acceptMove-org.jamesframework.core.search.neigh.Move-">acceptMove</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="type parameter in TabuSearch">SolutionType</a> extends <a href="../../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>move</code> - accepted move</dd>
+<dd><code>move</code> - move to be accepted</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> if the update was successful, <code>false</code> if the move is invalid</dd>
 </dl>
 </li>
 </ul>

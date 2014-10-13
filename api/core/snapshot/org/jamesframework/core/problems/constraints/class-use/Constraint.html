@@ -112,9 +112,9 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../../../org/jamesframework/core/problems/constraints/Constraint.html" title="interface in org.jamesframework.core.problems.constraints">Constraint</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">SolutionType</a>,? super <a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">DataType</a>&gt;&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../../org/jamesframework/core/problems/constraints/Constraint.html" title="interface in org.jamesframework.core.problems.constraints">Constraint</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">SolutionType</a>,? super <a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">DataType</a>&gt;&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">AbstractProblem.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html#getViolatedConstraints-SolutionType-">getViolatedConstraints</a></span>(<a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">SolutionType</a>&nbsp;solution)</code>
-<div class="block">Returns a set of all violated constraints (both rejecting and penalizing constraints).</div>
+<div class="block">Returns a collection of all violated constraints (both mandatory and penalizing).</div>
 </td>
 </tr>
 </tbody>
@@ -128,14 +128,14 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">AbstractProblem.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html#addRejectingConstraint-org.jamesframework.core.problems.constraints.Constraint-">addRejectingConstraint</a></span>(<a href="../../../../../../org/jamesframework/core/problems/constraints/Constraint.html" title="interface in org.jamesframework.core.problems.constraints">Constraint</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">SolutionType</a>,? super <a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">DataType</a>&gt;&nbsp;constraint)</code>
-<div class="block">Add a rejecting constraint to the problem.</div>
+<td class="colLast"><span class="typeNameLabel">AbstractProblem.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html#addMandatoryConstraint-org.jamesframework.core.problems.constraints.Constraint-">addMandatoryConstraint</a></span>(<a href="../../../../../../org/jamesframework/core/problems/constraints/Constraint.html" title="interface in org.jamesframework.core.problems.constraints">Constraint</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">SolutionType</a>,? super <a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">DataType</a>&gt;&nbsp;constraint)</code>
+<div class="block">Add a mandatory constraint to the problem.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><span class="typeNameLabel">AbstractProblem.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html#removeRejectingConstraint-org.jamesframework.core.problems.constraints.Constraint-">removeRejectingConstraint</a></span>(<a href="../../../../../../org/jamesframework/core/problems/constraints/Constraint.html" title="interface in org.jamesframework.core.problems.constraints">Constraint</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">SolutionType</a>,? super <a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">DataType</a>&gt;&nbsp;constraint)</code>
-<div class="block">Remove a rejecting constraint.</div>
+<td class="colLast"><span class="typeNameLabel">AbstractProblem.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html#removeMandatoryConstraint-org.jamesframework.core.problems.constraints.Constraint-">removeMandatoryConstraint</a></span>(<a href="../../../../../../org/jamesframework/core/problems/constraints/Constraint.html" title="interface in org.jamesframework.core.problems.constraints">Constraint</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">SolutionType</a>,? super <a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">DataType</a>&gt;&nbsp;constraint)</code>
+<div class="block">Remove a mandatory constraint.</div>
 </td>
 </tr>
 </tbody>
@@ -155,7 +155,8 @@
 <tr class="altColor">
 <td class="colFirst"><code>interface&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="interface in org.jamesframework.core.problems.constraints">PenalizingConstraint</a>&lt;SolutionType extends <a href="../../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>,DataType&gt;</span></code>
-<div class="block">Interface of a penalizing constraint, which assigns a certain penalty to a solution which does not
+<div class="block">
+ Interface of a penalizing constraint that assigns a penalty to a solution's evaluation if it does not
  satisfy the constraint.</div>
 </td>
 </tr>

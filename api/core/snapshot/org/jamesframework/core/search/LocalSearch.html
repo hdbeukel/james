@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -129,11 +129,10 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public abstract class <span class="typeNameLabel">LocalSearch&lt;SolutionType extends <a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span>
 extends <a href="../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;SolutionType&gt;</pre>
-<div class="block">Local searches are searches that start with some initial solution and modify this solution in an attempt to improve
- it. The initial solution can be specified using <a href="../../../../org/jamesframework/core/search/LocalSearch.html#setCurrentSolution-SolutionType-"><code>setCurrentSolution(Solution)</code></a> before running the search, else,
- a random initial solution will be constructed. The current solution and corresponding evaluation are retained across
- subsequent runs of a local search. This means that upon restarting a local search, it will continue from where it had
- arrived in the previous run.</div>
+<div class="block">Local searches are searches that start from an initial solution and modify this solution in an attempt to improve it.
+ The initial solution can be specified using <a href="../../../../org/jamesframework/core/search/LocalSearch.html#setCurrentSolution-SolutionType-"><code>setCurrentSolution(Solution)</code></a> before running the search, else,
+ a random initial solution is used. The current solution is retained across subsequent runs of a local search.
+ This means that upon restarting a local search, it will continue from where it had arrived in the previous run.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a></dd>
@@ -190,61 +189,66 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolution--">getCurrentSolution</a></span>()</code>
-<div class="block">Returns the current solution.</div>
+<div class="block">Get the current solution.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>double</code></td>
+<td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionEvaluation--">getCurrentSolutionEvaluation</a></span>()</code>
 <div class="block">Get the evaluation of the current solution.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionValidation--">getCurrentSolutionValidation</a></span>()</code>
+<div class="block">Get the validation of the current solution.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/LocalSearch.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener</a></span>(<a href="../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;? super <a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&gt;&nbsp;listener)</code>
 <div class="block">Remove the given search listener.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/LocalSearch.html#searchStarted--">searchStarted</a></span>()</code>
 <div class="block">When the search is started, a random initial solution is generated if none has been specified.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/LocalSearch.html#setCurrentSolution-SolutionType-">setCurrentSolution</a></span>(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution)</code>
-<div class="block">Sets the current solution.</div>
+<div class="block">Sets the current solution prior to execution or in between search runs.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><code>protected void</code></td>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-">updateCurrentAndBestSolution</a></span>(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution)</code>
 <div class="block">Update the current and best solution during search.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
-<td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-double-">updateCurrentAndBestSolution</a></span>(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution,
-                            double&nbsp;evaluation)</code>
-<div class="block">Update the current and best solution during search, given that the new current solution has already
- been evaluated.</div>
-</td>
-</tr>
 <tr id="i8" class="altColor">
-<td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-double-boolean-">updateCurrentAndBestSolution</a></span>(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution,
-                            double&nbsp;evaluation,
-                            boolean&nbsp;skipBestSolutionValidation)</code>
-<div class="block">Update the current and best solution during search, given that the new current solution has already
- been evaluated.</div>
+<td class="colFirst"><code>protected boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">updateCurrentAndBestSolution</a></span>(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution,
+                            <a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;evaluation,
+                            <a href="../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;validation)</code>
+<div class="block">Update the current and best solution during search, given that the respective solution has already
+ been evaluated and validated.</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentSolution-SolutionType-double-">updateCurrentSolution</a></span>(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution,
-                     double&nbsp;evaluation)</code>
-<div class="block">Update the current solution during search, given that it has already been evaluated.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentSolution-SolutionType-">updateCurrentSolution</a></span>(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution)</code>
+<div class="block">Update the current solution during search.</div>
+</td>
+</tr>
+<tr id="i10" class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentSolution-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">updateCurrentSolution</a></span>(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution,
+                     <a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;evaluation,
+                     <a href="../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;validation)</code>
+<div class="block">Update the current solution during search, given that it has already been evaluated and validated.</div>
 </td>
 </tr>
 </table>
@@ -253,7 +257,7 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.jamesframework.core.search.<a href="../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></h3>
-<code><a href="../../../../org/jamesframework/core/search/Search.html#addStopCriterion-org.jamesframework.core.search.stopcriteria.StopCriterion-">addStopCriterion</a>, <a href="../../../../org/jamesframework/core/search/Search.html#assertIdle-java.lang.String-">assertIdle</a>, <a href="../../../../org/jamesframework/core/search/Search.html#computeDelta-double-double-">computeDelta</a>, <a href="../../../../org/jamesframework/core/search/Search.html#dispose--">dispose</a>, <a href="../../../../org/jamesframework/core/search/Search.html#getBestSolution--">getBestSolution</a>, <a href="../../../../org/jamesframework/core/search/Search.html#getBestSolutionEvaluation--">getBestSolutionEvaluation</a>, <a href="../../../../org/jamesframework/core/search/Search.html#getID--">getID</a>, <a href="../../../../org/jamesframework/core/search/Search.html#getMinDelta--">getMinDelta</a>, <a href="../../../../org/jamesframework/core/search/Search.html#getName--">getName</a>, <a href="../../../../org/jamesframework/core/search/Search.html#getProblem--">getProblem</a>, <a href="../../../../org/jamesframework/core/search/Search.html#getRuntime--">getRuntime</a>, <a href="../../../../org/jamesframework/core/search/Search.html#getStatus--">getStatus</a>, <a href="../../../../org/jamesframework/core/search/Search.html#getStatusLock--">getStatusLock</a>, <a href="../../../../org/jamesframework/core/search/Search.html#getSteps--">getSteps</a>, <a href="../../../../org/jamesframework/core/search/Search.html#getStepsWithoutImprovement--">getStepsWithoutImprovement</a>, <a href="../../../../org/jamesframework/core/search/Search.html#getTimeWithoutImprovement--">getTimeWithoutImprovement</a>, <a href="../../../../org/jamesframework/core/search/Search.html#removeStopCriterion-org.jamesframework.core.search.stopcriteria.StopCriterion-">removeStopCriterion</a>, <a href="../../../../org/jamesframework/core/search/Search.html#run--">run</a>, <a href="../../../../org/jamesframework/core/search/Search.html#searchDisposed--">searchDisposed</a>, <a href="../../../../org/jamesframework/core/search/Search.html#searchStep--">searchStep</a>, <a href="../../../../org/jamesframework/core/search/Search.html#searchStopped--">searchStopped</a>, <a href="../../../../org/jamesframework/core/search/Search.html#setStopCriterionCheckPeriod-long-java.util.concurrent.TimeUnit-">setStopCriterionCheckPeriod</a>, <a href="../../../../org/jamesframework/core/search/Search.html#start--">start</a>, <a href="../../../../org/jamesframework/core/search/Search.html#stop--">stop</a>, <a href="../../../../org/jamesframework/core/search/Search.html#toString--">toString</a>, <a href="../../../../org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-">updateBestSolution</a>, <a href="../../../../org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-double-">updateBestSolution</a></code></li>
+<code><a href="../../../../org/jamesframework/core/search/Search.html#addStopCriterion-org.jamesframework.core.search.stopcriteria.StopCriterion-">addStopCriterion</a>, <a href="../../../../org/jamesframework/core/search/Search.html#assertIdle-java.lang.String-">assertIdle</a>, <a href="../../../../org/jamesframework/core/search/Search.html#computeDelta-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.objectives.Evaluation-">computeDelta</a>, <a href="../../../../org/jamesframework/core/search/Search.html#dispose--">dispose</a>, <a href="../../../../org/jamesframework/core/search/Search.html#getBestSolution--">getBestSolution</a>, <a href="../../../../org/jamesframework/core/search/Search.html#getBestSolutionEvaluation--">getBestSolutionEvaluation</a>, <a href="../../../../org/jamesframework/core/search/Search.html#getBestSolutionValidation--">getBestSolutionValidation</a>, <a href="../../../../org/jamesframework/core/search/Search.html#getID--">getID</a>, <a href="../../../../org/jamesframework/core/search/Search.html#getMinDelta--">getMinDelta</a>, <a href="../../../../org/jamesframework/core/search/Search.html#getName--">getName</a>, <a href="../../../../org/jamesframework/core/search/Search.html#getProblem--">getProblem</a>, <a href="../../../../org/jamesframework/core/search/Search.html#getRuntime--">getRuntime</a>, <a href="../../../../org/jamesframework/core/search/Search.html#getStatus--">getStatus</a>, <a href="../../../../org/jamesframework/core/search/Search.html#getStatusLock--">getStatusLock</a>, <a href="../../../../org/jamesframework/core/search/Search.html#getSteps--">getSteps</a>, <a href="../../../../org/jamesframework/core/search/Search.html#getStepsWithoutImprovement--">getStepsWithoutImprovement</a>, <a href="../../../../org/jamesframework/core/search/Search.html#getTimeWithoutImprovement--">getTimeWithoutImprovement</a>, <a href="../../../../org/jamesframework/core/search/Search.html#removeStopCriterion-org.jamesframework.core.search.stopcriteria.StopCriterion-">removeStopCriterion</a>, <a href="../../../../org/jamesframework/core/search/Search.html#run--">run</a>, <a href="../../../../org/jamesframework/core/search/Search.html#searchDisposed--">searchDisposed</a>, <a href="../../../../org/jamesframework/core/search/Search.html#searchStep--">searchStep</a>, <a href="../../../../org/jamesframework/core/search/Search.html#searchStopped--">searchStopped</a>, <a href="../../../../org/jamesframework/core/search/Search.html#setStopCriterionCheckPeriod-long-java.util.concurrent.TimeUnit-">setStopCriterionCheckPeriod</a>, <a href="../../../../org/jamesframework/core/search/Search.html#start--">start</a>, <a href="../../../../org/jamesframework/core/search/Search.html#stop--">stop</a>, <a href="../../../../org/jamesframework/core/search/Search.html#toString--">toString</a>, <a href="../../../../org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-">updateBestSolution</a>, <a href="../../../../org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">updateBestSolution</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -384,10 +388,9 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 <li class="blockList">
 <h4>getCurrentSolution</h4>
 <pre>public&nbsp;<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;getCurrentSolution()</pre>
-<div class="block">Returns the current solution. The current solution might be worse than the best solution found so far.
- Note that it is <b>retained</b> across subsequent runs of a local search. May return <code>null</code>
- if no current solution has been set yet, for example when the search has just been created or is still
- initializing the current run.</div>
+<div class="block">Get the current solution. Might be worse than the best solution found so far. The current solution is
+ <b>retained</b> across subsequent runs of a local search. May return <code>null</code> if no current
+ solution has been set yet, for example when the search has just been created or is still initializing.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>current solution, if set; <code>null</code> otherwise</dd>
@@ -400,14 +403,29 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 <ul class="blockList">
 <li class="blockList">
 <h4>getCurrentSolutionEvaluation</h4>
-<pre>public&nbsp;double&nbsp;getCurrentSolutionEvaluation()</pre>
-<div class="block">Get the evaluation of the current solution. The current solution and its evaluation are <b>retained</b>
- across subsequent runs of a local search. If the current solution is not yet defined, i.e. when
- <a href="../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolution--"><code>getCurrentSolution()</code></a> returns <code>null</code>, the result of this method is undefined;
- in such case it may return any arbitrary value.</div>
+<pre>public&nbsp;<a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;getCurrentSolutionEvaluation()</pre>
+<div class="block">Get the evaluation of the current solution. The current solution is <b>retained</b> across subsequent
+ runs of a local search. May return <code>null</code> if no current solution has been set yet, for example
+ when the search has just been created or is still initializing.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>evaluation of current solution, if already defined; arbitrary value otherwise</dd>
+<dd>evaluation of current solution, if already defined; <code>null</code> otherwise</dd>
+</dl>
+</li>
+</ul>
+<a name="getCurrentSolutionValidation--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getCurrentSolutionValidation</h4>
+<pre>public&nbsp;<a href="../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;getCurrentSolutionValidation()</pre>
+<div class="block">Get the validation of the current solution. The current solution is <b>retained</b> across subsequent
+ runs of a local search. May return <code>null</code> if no current solution has been set yet, for example
+ when the search has just been created or is still initializing.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>validation of current solution, if already defined; <code>null</code> otherwise</dd>
 </dl>
 </li>
 </ul>
@@ -420,10 +438,10 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 <li class="blockList">
 <h4>setCurrentSolution</h4>
 <pre>public&nbsp;void&nbsp;setCurrentSolution(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution)</pre>
-<div class="block">Sets the current solution. The given solution is automatically evaluated and compared with the
- currently known best solution, to check if it improves on this solution. This method may for
- example be used to specify a custom initial solution before starting the search. Note that it
- may only be called when the search is idle.</div>
+<div class="block">Sets the current solution prior to execution or in between search runs. The given solution is evaluated and
+ validated, and it is checked whether it is a valid first/new best solution. This method may for example be
+ used to specify a custom initial solution before starting the search. Note that it may only be called when
+ the search is idle.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>solution</code> - current solution to be adopted</dd>
@@ -433,24 +451,44 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 </dl>
 </li>
 </ul>
-<a name="updateCurrentSolution-org.jamesframework.core.problems.Solution-double-">
+<a name="updateCurrentSolution-org.jamesframework.core.problems.Solution-">
 <!--   -->
-</a><a name="updateCurrentSolution-SolutionType-double-">
+</a><a name="updateCurrentSolution-SolutionType-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>updateCurrentSolution</h4>
+<pre>protected&nbsp;void&nbsp;updateCurrentSolution(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution)</pre>
+<div class="block">Update the current solution during search. The solution is evaluated and validated but the update takes
+ place regardless of the actual obtained evaluation and validation. More precisely, it is <b>not</b> required
+ that the current solution is valid.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>solution</code> - new current solution</dd>
+</dl>
+</li>
+</ul>
+<a name="updateCurrentSolution-org.jamesframework.core.problems.Solution-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">
+<!--   -->
+</a><a name="updateCurrentSolution-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>updateCurrentSolution</h4>
 <pre>protected&nbsp;void&nbsp;updateCurrentSolution(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution,
-                                     double&nbsp;evaluation)</pre>
-<div class="block">Update the current solution during search, given that it has already been evaluated. This method stores the
- new current solution and its evaluation, and informs any local search listeners about this update. It does
- <b>not</b> validate the new current solution, if it is required that <a href="../../../../org/jamesframework/core/problems/Problem.html#rejectSolution-SolutionType-"><code>Problem.rejectSolution(Solution)</code></a>
- returns <code>false</code> this must be verified before updating the current solution.</div>
+                                     <a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;evaluation,
+                                     <a href="../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;validation)</pre>
+<div class="block">Update the current solution during search, given that it has already been evaluated and validated.
+ The new current solution and its evaluation/validation are stored and attached local search listeners
+ are informed about this update. The update always takes place, it is <b>not</b> required that the
+ current solution is valid.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>solution</code> - new current solution</dd>
 <dd><code>evaluation</code> - evaluation of new current solution</dd>
+<dd><code>validation</code> - validation of new current solution</dd>
 </dl>
 </li>
 </ul>
@@ -462,62 +500,40 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 <ul class="blockList">
 <li class="blockList">
 <h4>updateCurrentAndBestSolution</h4>
-<pre>protected&nbsp;void&nbsp;updateCurrentAndBestSolution(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution)</pre>
-<div class="block">Update the current and best solution during search. The current solution is first evaluated and then updated,
- also in case it is an invalid solution (see <a href="../../../../org/jamesframework/core/problems/Problem.html#rejectSolution-SolutionType-"><code>Problem.rejectSolution(Solution)</code></a>). Conversely, the best
- solution is only updated if the new current solution is not rejected, to ensure that the best solution is
- always valid.</div>
+<pre>protected&nbsp;boolean&nbsp;updateCurrentAndBestSolution(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution)</pre>
+<div class="block">Update the current and best solution during search. The given solution is evaluated and validated,
+ followed by an update of the current solution (also if it is invalid). Conversely, the best solution
+ is only updated if the given solution is valid and improves over the best solution found so far.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>solution</code> - new current solution</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> if the best solution has been updated</dd>
 </dl>
 </li>
 </ul>
-<a name="updateCurrentAndBestSolution-org.jamesframework.core.problems.Solution-double-">
+<a name="updateCurrentAndBestSolution-org.jamesframework.core.problems.Solution-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">
 <!--   -->
-</a><a name="updateCurrentAndBestSolution-SolutionType-double-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>updateCurrentAndBestSolution</h4>
-<pre>protected&nbsp;void&nbsp;updateCurrentAndBestSolution(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution,
-                                            double&nbsp;evaluation)</pre>
-<div class="block">Update the current and best solution during search, given that the new current solution has already
- been evaluated. The current solution is always updated, also in case it is an invalid solution (see
- <a href="../../../../org/jamesframework/core/problems/Problem.html#rejectSolution-SolutionType-"><code>Problem.rejectSolution(Solution)</code></a>). Conversely, the best solution is only updated if the new
- current solution is not rejected, to ensure that the best solution is always valid.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>solution</code> - new current solution</dd>
-<dd><code>evaluation</code> - evaluation of new current solution</dd>
-</dl>
-</li>
-</ul>
-<a name="updateCurrentAndBestSolution-org.jamesframework.core.problems.Solution-double-boolean-">
-<!--   -->
-</a><a name="updateCurrentAndBestSolution-SolutionType-double-boolean-">
+</a><a name="updateCurrentAndBestSolution-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>updateCurrentAndBestSolution</h4>
-<pre>protected&nbsp;void&nbsp;updateCurrentAndBestSolution(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution,
-                                            double&nbsp;evaluation,
-                                            boolean&nbsp;skipBestSolutionValidation)</pre>
-<div class="block">Update the current and best solution during search, given that the new current solution has already
- been evaluated. The current solution is always updated, also in case it is an invalid solution (see
- <a href="../../../../org/jamesframework/core/problems/Problem.html#rejectSolution-SolutionType-"><code>Problem.rejectSolution(Solution)</code></a>). Conversely, the best solution is only updated if the new
- current solution is not rejected, to ensure that the best solution is always valid, unless
- <code>skipBestSolutionValidation</code> is <code>true</code>. In the latter case, it should
- have been verified that the given solution is valid before calling this method; revalidation
- is then ommitted.</div>
+<pre>protected&nbsp;boolean&nbsp;updateCurrentAndBestSolution(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution,
+                                               <a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;evaluation,
+                                               <a href="../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;validation)</pre>
+<div class="block">Update the current and best solution during search, given that the respective solution has already
+ been evaluated and validated. The current solution is always updated, also if it is invalid. Conversely,
+ the best solution is only updated if the given solution is valid and improves over the best solution
+ found so far.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>solution</code> - new current solution</dd>
 <dd><code>evaluation</code> - evaluation of new current solution</dd>
-<dd><code>skipBestSolutionValidation</code> - if <code>true</code>, the best solution is always updated, without validating
-                                   the given solution (useful if this solution is already known to be valid)</dd>
+<dd><code>validation</code> - validation of new current solution</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> if the best solution has been updated</dd>
 </dl>
 </li>
 </ul>

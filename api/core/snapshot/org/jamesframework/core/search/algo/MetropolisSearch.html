@@ -140,21 +140,26 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">MetropolisSearch&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span>
 extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourhoodSearch.html" title="class in org.jamesframework.core.search">SingleNeighbourhoodSearch</a>&lt;SolutionType&gt;</pre>
-<div class="block">Metropolis search with fixed temperature. Iteratively samples a random neighbour and accepts it based on a criterion that
- depends on the difference in evaluation (\(\Delta E\)) and the temperature of the system (\(T\)). When \(\Delta E &gt; 0\),
- which indicates improvement, the neighbour is always accepted as the new current solution. Else, it is accepted with
+<div class="block">Metropolis search with fixed temperature. Iteratively samples a random neighbour and accepts it based on a
+ criterion that depends on the difference in evaluation (\(\Delta E\)) and the temperature of the system (\(T\)).
+ When a valid neighbour is obtained with \(\Delta E &gt; 0\), which indicates improvement, it is always accepted
+ as the new current solution. Else, it is accepted with
  probability
  \[
       e^{\frac{\Delta E}{kT}}
  \]
- where \(k\) is a constant temperature scale factor (by default, \(k = 1\)). The probability of acceptance increases when the
- temperature \(T\) is higher or when (the negative) \(\Delta E\) is closer to zero.
+ where \(k\) is a constant temperature scale factor (by default, \(k = 1\)). The probability of acceptance
+ increases when the temperature \(T\) is higher or when (the negative) \(\Delta E\) is closer to zero.
  <p>
- Note that it is important to carefully choose the temperature, depending on the scale of the evaluations and expected deltas,
- as well as the landscape of the objective function. Setting a high temperature decreases the probability of ending in a local
- optimum, but also impedes convergence and generally slows down the search process. Vice versa, a low temperature aids convergence
- but yields a system that is more sensitive to local optima. It is therefore strongly advised to experiment with different temperatures
- for each specific problem so that an appropriate temperature can be selected.</div>
+ Note that it is important to carefully choose the temperature, depending on the scale of the evaluations
+ and expected deltas, as well as the landscape of the objective function. Setting a high temperature decreases
+ the probability of ending in a local optimum, but also impedes convergence and generally slows down the search
+ process. Vice versa, a low temperature aids convergence but yields a search that is more sensitive to local
+ optima. It is therefore strongly advised to experiment with different temperatures for each specific problem
+ so that an appropriate temperature can be selected.
+ <p>
+ The search usually does not terminate internally except in the rare event that no random neighbour can
+ be selected. It generally depends on external stop criteria for termination.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a></dd>
@@ -216,20 +221,20 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html#getTemperatureScaleFactor--">getTemperatureScaleFactor</a></span>()</code>
-<div class="block">Get the temperature scale factor \(k\) of the system.</div>
+<div class="block">Get the temperature scale factor \(k\).</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html#searchStep--">searchStep</a></span>()</code>
-<div class="block">Creates a random neighbour of the current solution and accepts it if it improves over the current solution,
- or if
+<div class="block">Creates a random neighbour of the current solution and accepts it as the new current solution
+ if it is valid and either improves over the current solution or
  \[
       e^{\frac{\Delta E}{kT}} &gt; R(0,1)
  \]
- where \(\Delta E\) is the difference between the evaluation of the neighbour and that of the current solution,
- \(T\) is the temperature of the system, \(k\) is a constant scale factor, and \(R(0,1)\) is a random number
- in the interval \([0,1]\).</div>
+ where \(\Delta E\) is the difference between the evaluation of the neighbour and that of the
+ current solution, \(T\) is the temperature, \(k\) is a constant scale factor, and \(R(0,1)\)
+ is a random number sampled from a uniform distribution in the interval \([0,1]\).</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
@@ -257,21 +262,21 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.jamesframework.core.search.<a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></h3>
-<code><a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#acceptMove-org.jamesframework.core.search.neigh.Move-">acceptMove</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#evaluateMove-org.jamesframework.core.search.neigh.Move-">evaluateMove</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getMoveWithLargestDelta-java.util.Collection-boolean-">getMoveWithLargestDelta</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumAcceptedMoves--">getNumAcceptedMoves</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumRejectedMoves--">getNumRejectedMoves</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#incNumAcceptedMoves-long-">incNumAcceptedMoves</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#incNumRejectedMoves-long-">incNumRejectedMoves</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#isImprovement-org.jamesframework.core.search.neigh.Move-">isImprovement</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#rejectMove--">rejectMove</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#searchStarted--">searchStarted</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#setEvaluatedMoveCache-org.jamesframework.core.search.cache.EvaluatedMoveCache-">setEvaluatedMoveCache</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#updateCurrentSolution-SolutionType-double-">updateCurrentSolution</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#validateMove-org.jamesframework.core.search.neigh.Move-">validateMove</a></code></li>
+<code><a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#acceptMove-org.jamesframework.core.search.neigh.Move-">acceptMove</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#evaluateMove-org.jamesframework.core.search.neigh.Move-">evaluateMove</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getBestMove-java.util.Collection-boolean-java.util.function.Predicate...-">getBestMove</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumAcceptedMoves--">getNumAcceptedMoves</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumRejectedMoves--">getNumRejectedMoves</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#incNumAcceptedMoves-long-">incNumAcceptedMoves</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#incNumRejectedMoves-long-">incNumRejectedMoves</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#isImprovement-org.jamesframework.core.search.neigh.Move-">isImprovement</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#rejectMove--">rejectMove</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#searchStarted--">searchStarted</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#setEvaluatedMoveCache-org.jamesframework.core.search.cache.EvaluatedMoveCache-">setEvaluatedMoveCache</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#updateCurrentSolution-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">updateCurrentSolution</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#validateMove-org.jamesframework.core.search.neigh.Move-">validateMove</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.org.jamesframework.core.search.LocalSearch">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.jamesframework.core.search.<a href="../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></h3>
-<code><a href="../../../../../org/jamesframework/core/search/LocalSearch.html#addSearchListener-org.jamesframework.core.search.listeners.SearchListener-">addSearchListener</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolution--">getCurrentSolution</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionEvaluation--">getCurrentSolutionEvaluation</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#setCurrentSolution-SolutionType-">setCurrentSolution</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-">updateCurrentAndBestSolution</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-double-">updateCurrentAndBestSolution</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-double-boolean-">updateCurrentAndBestSolution</a></code></li>
+<code><a href="../../../../../org/jamesframework/core/search/LocalSearch.html#addSearchListener-org.jamesframework.core.search.listeners.SearchListener-">addSearchListener</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolution--">getCurrentSolution</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionEvaluation--">getCurrentSolutionEvaluation</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionValidation--">getCurrentSolutionValidation</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#setCurrentSolution-SolutionType-">setCurrentSolution</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-">updateCurrentAndBestSolution</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">updateCurrentAndBestSolution</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentSolution-SolutionType-">updateCurrentSolution</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.org.jamesframework.core.search.Search">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.jamesframework.core.search.<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></h3>
-<code><a href="../../../../../org/jamesframework/core/search/Search.html#addStopCriterion-org.jamesframework.core.search.stopcriteria.StopCriterion-">addStopCriterion</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#assertIdle-java.lang.String-">assertIdle</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#computeDelta-double-double-">computeDelta</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#dispose--">dispose</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getBestSolution--">getBestSolution</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getBestSolutionEvaluation--">getBestSolutionEvaluation</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getID--">getID</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getMinDelta--">getMinDelta</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getName--">getName</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getProblem--">getProblem</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getRuntime--">getRuntime</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getStatus--">getStatus</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getStatusLock--">getStatusLock</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getSteps--">getSteps</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getStepsWithoutImprovement--">getStepsWithoutImprovement</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getTimeWithoutImprovement--">getTimeWithoutImprovement</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#removeStopCriterion-org.jamesframework.core.search.stopcriteria.StopCriterion-">removeStopCriterion</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#run--">run</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#searchDisposed--">searchDisposed</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#searchStopped--">searchStopped</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#setStopCriterionCheckPeriod-long-java.util.concurrent.TimeUnit-">setStopCriterionCheckPeriod</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#start--">start</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#stop--">stop</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#toString--">toString</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-">updateBestSolution</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-double-">updateBestSolution</a></code></li>
+<code><a href="../../../../../org/jamesframework/core/search/Search.html#addStopCriterion-org.jamesframework.core.search.stopcriteria.StopCriterion-">addStopCriterion</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#assertIdle-java.lang.String-">assertIdle</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#computeDelta-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.objectives.Evaluation-">computeDelta</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#dispose--">dispose</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getBestSolution--">getBestSolution</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getBestSolutionEvaluation--">getBestSolutionEvaluation</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getBestSolutionValidation--">getBestSolutionValidation</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getID--">getID</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getMinDelta--">getMinDelta</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getName--">getName</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getProblem--">getProblem</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getRuntime--">getRuntime</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getStatus--">getStatus</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getStatusLock--">getStatusLock</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getSteps--">getSteps</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getStepsWithoutImprovement--">getStepsWithoutImprovement</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getTimeWithoutImprovement--">getTimeWithoutImprovement</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#removeStopCriterion-org.jamesframework.core.search.stopcriteria.StopCriterion-">removeStopCriterion</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#run--">run</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#searchDisposed--">searchDisposed</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#searchStopped--">searchStopped</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#setStopCriterionCheckPeriod-long-java.util.concurrent.TimeUnit-">setStopCriterionCheckPeriod</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#start--">start</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#stop--">stop</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#toString--">toString</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-">updateBestSolution</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">updateBestSolution</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -388,8 +393,8 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <li class="blockList">
 <h4>setTemperatureScaleFactor</h4>
 <pre>public&nbsp;void&nbsp;setTemperatureScaleFactor(double&nbsp;scale)</pre>
-<div class="block">Set the temperature scale factor \(k &gt; 0\). All temperatures are multiplied with this factor. By default,
- the scale factor is set to 1.</div>
+<div class="block">Set the temperature scale factor \(k &gt; 0\). All temperatures are multiplied with this factor.
+ By default, the scale factor is set to 1.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>scale</code> - temperature scale factor</dd>
@@ -405,7 +410,7 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <li class="blockList">
 <h4>getTemperatureScaleFactor</h4>
 <pre>public&nbsp;double&nbsp;getTemperatureScaleFactor()</pre>
-<div class="block">Get the temperature scale factor \(k\) of the system.</div>
+<div class="block">Get the temperature scale factor \(k\).</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>temperature scale factor</dd>
@@ -419,14 +424,14 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <li class="blockList">
 <h4>searchStep</h4>
 <pre>protected&nbsp;void&nbsp;searchStep()</pre>
-<div class="block">Creates a random neighbour of the current solution and accepts it if it improves over the current solution,
- or if
+<div class="block">Creates a random neighbour of the current solution and accepts it as the new current solution
+ if it is valid and either improves over the current solution or
  \[
       e^{\frac{\Delta E}{kT}} &gt; R(0,1)
  \]
- where \(\Delta E\) is the difference between the evaluation of the neighbour and that of the current solution,
- \(T\) is the temperature of the system, \(k\) is a constant scale factor, and \(R(0,1)\) is a random number
- in the interval \([0,1]\).</div>
+ where \(\Delta E\) is the difference between the evaluation of the neighbour and that of the
+ current solution, \(T\) is the temperature, \(k\) is a constant scale factor, and \(R(0,1)\)
+ is a random number sampled from a uniform distribution in the interval \([0,1]\).</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../../../org/jamesframework/core/search/Search.html#searchStep--">searchStep</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html" title="type parameter in MetropolisSearch">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</code></dd>

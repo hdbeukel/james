@@ -114,9 +114,9 @@ var activeTableTab = "activeTableTab";
 extends <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;SolutionType&gt;</pre>
 <div class="block"><p>
  Extends the general search listener interface with a local search specific callback, fired when the current solution
- has been modified. A listener implementing this interface may still be attached to a general search, in which case the
- specific callback will simply never be fired. If attached to a local search, it will be fired whenever a new current
- solution has been adopted.
+ has been modified. A listener implementing this interface may still be attached to a general search, in which case
+ the specific callback will simply never be fired. If attached to a local search, it will be fired whenever a new
+ current solution has been adopted.
  </p>
  <p>
  The additional callback also has a default empty implementation.
@@ -145,9 +145,10 @@ extends <a href="../../../../../org/jamesframework/core/search/listeners/SearchL
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>default void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/listeners/LocalSearchListener.html#modifiedCurrentSolution-org.jamesframework.core.search.LocalSearch-SolutionType-double-">modifiedCurrentSolution</a></span>(<a href="../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/LocalSearchListener.html" title="type parameter in LocalSearchListener">SolutionType</a>&gt;&nbsp;search,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/listeners/LocalSearchListener.html#modifiedCurrentSolution-org.jamesframework.core.search.LocalSearch-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">modifiedCurrentSolution</a></span>(<a href="../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/LocalSearchListener.html" title="type parameter in LocalSearchListener">SolutionType</a>&gt;&nbsp;search,
                        <a href="../../../../../org/jamesframework/core/search/listeners/LocalSearchListener.html" title="type parameter in LocalSearchListener">SolutionType</a>&nbsp;newCurrentSolution,
-                       double&nbsp;newCurrentSolutionEvaluation)</code>
+                       <a href="../../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;newCurrentSolutionEvaluation,
+                       <a href="../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;newCurrentSolutionValidation)</code>
 <div class="block">Fired whenever a new current solution has been adopted.</div>
 </td>
 </tr>
@@ -157,7 +158,7 @@ extends <a href="../../../../../org/jamesframework/core/search/listeners/SearchL
 <!--   -->
 </a>
 <h3>Methods inherited from interface&nbsp;org.jamesframework.core.search.listeners.<a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a></h3>
-<code><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#newBestSolution-org.jamesframework.core.search.Search-SolutionType-double-">newBestSolution</a>, <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#searchStarted-org.jamesframework.core.search.Search-">searchStarted</a>, <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#searchStopped-org.jamesframework.core.search.Search-">searchStopped</a>, <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#statusChanged-org.jamesframework.core.search.Search-org.jamesframework.core.search.status.SearchStatus-">statusChanged</a>, <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#stepCompleted-org.jamesframework.core.search.Search-long-">stepCompleted</a></code></li>
+<code><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#newBestSolution-org.jamesframework.core.search.Search-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">newBestSolution</a>, <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#searchStarted-org.jamesframework.core.search.Search-">searchStarted</a>, <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#searchStopped-org.jamesframework.core.search.Search-">searchStopped</a>, <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#statusChanged-org.jamesframework.core.search.Search-org.jamesframework.core.search.status.SearchStatus-">statusChanged</a>, <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#stepCompleted-org.jamesframework.core.search.Search-long-">stepCompleted</a></code></li>
 </ul>
 </li>
 </ul>
@@ -173,9 +174,9 @@ extends <a href="../../../../../org/jamesframework/core/search/listeners/SearchL
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="modifiedCurrentSolution-org.jamesframework.core.search.LocalSearch-org.jamesframework.core.problems.Solution-double-">
+<a name="modifiedCurrentSolution-org.jamesframework.core.search.LocalSearch-org.jamesframework.core.problems.Solution-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">
 <!--   -->
-</a><a name="modifiedCurrentSolution-org.jamesframework.core.search.LocalSearch-SolutionType-double-">
+</a><a name="modifiedCurrentSolution-org.jamesframework.core.search.LocalSearch-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">
 <!--   -->
 </a>
 <ul class="blockListLast">
@@ -183,14 +184,16 @@ extends <a href="../../../../../org/jamesframework/core/search/listeners/SearchL
 <h4>modifiedCurrentSolution</h4>
 <pre>default&nbsp;void&nbsp;modifiedCurrentSolution(<a href="../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/LocalSearchListener.html" title="type parameter in LocalSearchListener">SolutionType</a>&gt;&nbsp;search,
                                      <a href="../../../../../org/jamesframework/core/search/listeners/LocalSearchListener.html" title="type parameter in LocalSearchListener">SolutionType</a>&nbsp;newCurrentSolution,
-                                     double&nbsp;newCurrentSolutionEvaluation)</pre>
+                                     <a href="../../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;newCurrentSolutionEvaluation,
+                                     <a href="../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;newCurrentSolutionValidation)</pre>
 <div class="block">Fired whenever a new current solution has been adopted. Called exactly once for every modification to the
  current solution.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>search</code> - local search which has updated its current solution</dd>
 <dd><code>newCurrentSolution</code> - newly adopted current solution</dd>
-<dd><code>newCurrentSolutionEvaluation</code> - corresponding evaluation</dd>
+<dd><code>newCurrentSolutionEvaluation</code> - evaluation of new current solution</dd>
+<dd><code>newCurrentSolutionValidation</code> - validation of new current solution</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../../../org/jamesframework/core/exceptions/IncompatibleSearchListenerException.html" title="class in org.jamesframework.core.exceptions">IncompatibleSearchListenerException</a></code> - if the listener is not compatible with the search</dd>
 </dl>
