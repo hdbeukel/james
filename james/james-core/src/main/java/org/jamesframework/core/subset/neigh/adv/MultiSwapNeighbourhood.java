@@ -94,6 +94,15 @@ public class MultiSwapNeighbourhood extends SubsetNeighbourhood {
         }
         this.maxSwaps = maxSwaps;
     }
+
+    /**
+     * Get the maximum number of swaps performed by generated moves.
+     * 
+     * @return maximum number of swaps
+     */
+    public int getMaxSwaps() {
+        return maxSwaps;
+    }
     
     /**
      * <p>
