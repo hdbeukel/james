@@ -22,7 +22,7 @@ import org.jamesframework.core.exceptions.IncompatibleTabuMemoryException;
 import org.jamesframework.core.search.algo.tabu.TabuMemory;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.neigh.Move;
-import org.jamesframework.core.subset.neigh.SubsetMove;
+import org.jamesframework.core.subset.neigh.moves.SubsetMove;
 
 /**
  * An ID based subset tabu memory keeps track of recently added and deleted IDs (recently applied moves) and does not

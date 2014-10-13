@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.search.neigh.Neighbourhood;
-import org.jamesframework.core.subset.neigh.AdditionMove;
+import org.jamesframework.core.subset.neigh.moves.AdditionMove;
 import org.jamesframework.core.util.SetUtilities;
 
 /**

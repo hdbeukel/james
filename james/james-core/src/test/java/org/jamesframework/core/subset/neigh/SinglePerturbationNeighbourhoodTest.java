@@ -16,6 +16,10 @@
 
 package org.jamesframework.core.subset.neigh;
 
+import org.jamesframework.core.subset.neigh.moves.SubsetMove;
+import org.jamesframework.core.subset.neigh.moves.DeletionMove;
+import org.jamesframework.core.subset.neigh.moves.SwapMove;
+import org.jamesframework.core.subset.neigh.moves.AdditionMove;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

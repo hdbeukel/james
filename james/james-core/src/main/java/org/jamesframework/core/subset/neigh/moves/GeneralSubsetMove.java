@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-package org.jamesframework.core.subset.neigh.adv;
+package org.jamesframework.core.subset.neigh.moves;
 
 import java.util.Collections;
 import java.util.Set;
 import org.jamesframework.core.exceptions.SolutionModificationException;
 import org.jamesframework.core.subset.SubsetSolution;
-import org.jamesframework.core.subset.neigh.SubsetMove;
 
 /**
  * A general subset move adds and/or removes several IDs at once to/from the current selection

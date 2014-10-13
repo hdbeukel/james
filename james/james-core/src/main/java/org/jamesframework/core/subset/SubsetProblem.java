@@ -26,7 +26,7 @@ import org.jamesframework.core.problems.constraints.validations.UnanimousValidat
 import org.jamesframework.core.problems.datatypes.IntegerIdentifiedData;
 import org.jamesframework.core.problems.objectives.Objective;
 import org.jamesframework.core.search.neigh.Move;
-import org.jamesframework.core.subset.neigh.SubsetMove;
+import org.jamesframework.core.subset.neigh.moves.SubsetMove;
 import org.jamesframework.core.util.SetUtilities;
 
 /**

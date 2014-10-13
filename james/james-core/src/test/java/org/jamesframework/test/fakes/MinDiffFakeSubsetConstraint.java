@@ -23,7 +23,7 @@ import org.jamesframework.core.problems.constraints.Validation;
 import org.jamesframework.core.problems.constraints.validations.SimplePenalizingValidation;
 import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.subset.SubsetSolution;
-import org.jamesframework.core.subset.neigh.SubsetMove;
+import org.jamesframework.core.subset.neigh.moves.SubsetMove;
 
 /**
  * Fake subset constraint based on fake subset data. Only accepts solutions where the minimum difference

@@ -16,15 +16,15 @@
 
 package org.jamesframework.core.subset.neigh.adv;
 
+import org.jamesframework.core.subset.neigh.moves.GeneralSubsetMove;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.subset.algo.exh.SubsetSolutionIterator;
-import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.subset.neigh.SingleSwapNeighbourhood;
-import org.jamesframework.core.subset.neigh.SubsetMove;
+import org.jamesframework.core.subset.neigh.moves.SubsetMove;
 import org.jamesframework.core.subset.neigh.SubsetNeighbourhood;
 import org.jamesframework.core.util.SetUtilities;
 

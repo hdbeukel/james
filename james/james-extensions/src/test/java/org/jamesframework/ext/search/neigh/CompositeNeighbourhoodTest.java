@@ -16,10 +16,10 @@
 
 package org.jamesframework.ext.search.neigh;
 
-import org.jamesframework.core.subset.neigh.SwapMove;
+import org.jamesframework.core.subset.neigh.moves.SwapMove;
 import org.jamesframework.core.subset.neigh.SingleSwapNeighbourhood;
-import org.jamesframework.core.subset.neigh.DeletionMove;
-import org.jamesframework.core.subset.neigh.AdditionMove;
+import org.jamesframework.core.subset.neigh.moves.DeletionMove;
+import org.jamesframework.core.subset.neigh.moves.AdditionMove;
 import org.jamesframework.core.subset.neigh.SinglePerturbationNeighbourhood;
 import java.util.ArrayList;
 import java.util.Arrays;

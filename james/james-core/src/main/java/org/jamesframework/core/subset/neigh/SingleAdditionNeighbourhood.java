@@ -40,12 +40,12 @@ import org.jamesframework.core.util.SetUtilities;
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class SingleSwapNeighbourhood extends SubsetNeighbourhood {
+public class SingleAdditionNeighbourhood extends SubsetNeighbourhood {
     
     /**
      * Creates a basic single swap neighbourhood.
      */
-    public SingleSwapNeighbourhood(){
+    public SingleAdditionNeighbourhood(){
         this(null);
     }
     
@@ -55,7 +55,7 @@ public class SingleSwapNeighbourhood extends SubsetNeighbourhood {
      * 
      * @param fixedIDs set of fixed IDs which are not allowed to be swapped
      */
-    public SingleSwapNeighbourhood(Set<Integer> fixedIDs){
+    public SingleAdditionNeighbourhood(Set<Integer> fixedIDs){
         super(fixedIDs);
     }
     
