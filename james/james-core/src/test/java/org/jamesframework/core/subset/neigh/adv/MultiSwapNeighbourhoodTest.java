@@ -20,7 +20,6 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 import org.jamesframework.core.subset.SubsetSolution;
-import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.subset.neigh.SingleSwapNeighbourhood;
 import org.jamesframework.core.subset.neigh.moves.SubsetMove;
