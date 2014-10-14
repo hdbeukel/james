@@ -24,7 +24,6 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.subset.neigh.moves.AdditionMove;
-import org.jamesframework.core.util.JamesConstants;
 import org.jamesframework.core.util.SetUtilities;
 
 /**
@@ -47,8 +46,8 @@ public class SingleAdditionNeighbourhood extends SubsetNeighbourhood {
     private final int maxSubsetSize;
     
     /**
-     * Create a single addition neighbourhood without any limit on the number of
-     * selected items (subset size). All items are candidates to be selected.
+     * Create a single addition neighbourhood without maximum subset size.
+     * All items are candidates to be selected.
      */
     public SingleAdditionNeighbourhood(){
         this(Integer.MAX_VALUE);
@@ -56,10 +55,11 @@ public class SingleAdditionNeighbourhood extends SubsetNeighbourhood {
     
     /**
      * Create a single addition neighbourhood with a given limit on the number of selected items
-     * (subset size). No moves will be generated if the maximum subset size would be exceeded.
+     * (maximum subset size). No moves will be generated if the maximum subset size would be exceeded.
      * All items are candidates to be selected.
      * 
      * @param maxSubsetSize maximum subset size (&ge; 0)
+     * @throws IllegalArgumentException if maximum subset size is negative
      */
     public SingleAdditionNeighbourhood(int maxSubsetSize){
         this(maxSubsetSize, null);
@@ -111,7 +111,6 @@ public class SingleAdditionNeighbourhood extends SubsetNeighbourhood {
         Set<Integer> addCandidates = getAddCandidates(solution);
         // check if addition is possible
         if(addCandidates.isEmpty()){
-            // impossible to perform a swap
             return null;
         }
         // use thread local random for better concurrent performance
