@@ -21,20 +21,21 @@ import java.util.Random;
 import java.util.Set;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.neigh.Neighbourhood;
+import org.jamesframework.core.subset.neigh.SingleAdditionNeighbourhood;
 import org.jamesframework.core.subset.neigh.SingleSwapNeighbourhood;
+import org.jamesframework.core.subset.neigh.moves.AdditionMove;
 import org.jamesframework.core.subset.neigh.moves.SubsetMove;
-import org.jamesframework.core.subset.neigh.moves.SwapMove;
 import org.jamesframework.core.util.SetUtilities;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Test multi swap neighbourhood.
+ * Test multi addition neighbourhood.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class MultiSwapNeighbourhoodTest {
+public class MultiAdditionNeighbourhoodTest {
 
     // random generator
     private static final Random RG = new Random();
@@ -53,90 +54,126 @@ public class MultiSwapNeighbourhoodTest {
     }
 
     /**
-     * Test of getRandomMove method, of class MultiSwapNeighbourhood.
+     * Test of getRandomMove method, of class MultiAdditionNeighbourhood.
      */
     @Test
     public void testGetRandomMove() {
         
         System.out.println(" - test getRandomMove");
         
-        // repeat for maximum of 1 up to 5 swaps
-        for(int s=1; s<=5; s++){
-            // create multi swap neighbourhood
-            Neighbourhood<SubsetSolution> neigh = new MultiSwapNeighbourhood(s);
+        // repeat for maximum of 1 up to 5 additions
+        for(int a=1; a<=5; a++){
+            // create multi addition neighbourhood
+            Neighbourhood<SubsetSolution> neigh = new MultiAdditionNeighbourhood(a);
 
-            // create empty subset solution
+            // create full subset solution
             SubsetSolution sol = new SubsetSolution(IDs);
+            sol.selectAll();
             // verify: no move generated
             assertNull(neigh.getRandomMove(sol));
 
-            // randomly select 10 IDs
-            sol.selectAll(SetUtilities.getRandomSubset(sol.getUnselectedIDs(), 10, RG));
+            // deselect all IDs
+            sol.deselectAll();
 
+            // apply moves until all IDs are selected
             SubsetMove move;
-            for(int i=0; i<1000; i++){
-                move = (SubsetMove) neigh.getRandomMove(sol);
+            while((move = (SubsetMove) neigh.getRandomMove(sol)) != null){
                 // verify
                 assertTrue(sol.getUnselectedIDs().containsAll(move.getAddedIDs()));
-                assertTrue(sol.getSelectedIDs().containsAll(move.getDeletedIDs()));
+                assertTrue(move.getDeletedIDs().isEmpty());
+                assertTrue(move.getNumDeleted() == 0);
                 assertTrue(move.getNumAdded() >= 1);
-                assertTrue(move.getNumAdded() <= s);
-                assertTrue(move.getNumDeleted()>= 1);
-                assertTrue(move.getNumDeleted() <= s);
+                assertTrue(move.getNumAdded() <= a);
+                assertTrue(move.getNumAdded() <= sol.getNumUnselectedIDs());
                 // apply move
                 move.apply(sol);
             }
+            
+            // check: no more moves to be generated
+            assertNull(neigh.getRandomMove(sol));
+            // check: all IDs selected
+            assertEquals(NUM_IDS, sol.getNumSelectedIDs());
+            
+            // deselect all
+            sol.deselectAll();
+            
+            // create new neighbourhood with size limit of 10
+            int limit = 10;
+            neigh = new MultiAdditionNeighbourhood(a, limit);
+            
+            // apply moves until maximum size is reached
+            while((move = (SubsetMove) neigh.getRandomMove(sol)) != null){
+                // verify
+                assertTrue(sol.getUnselectedIDs().containsAll(move.getAddedIDs()));
+                assertTrue(move.getDeletedIDs().isEmpty());
+                assertTrue(move.getNumDeleted() == 0);
+                assertTrue(move.getNumAdded() >= 1);
+                assertTrue(move.getNumAdded() <= a);
+                assertTrue(move.getNumAdded() <= sol.getNumUnselectedIDs());
+                // apply move
+                move.apply(sol);
+            }
+            
+            // check: no more moves to be generated
+            assertNull(neigh.getRandomMove(sol));
+            // check: maximum number of IDs selected
+            assertEquals(limit, sol.getNumSelectedIDs());
+            
         }
         
     }
 
     /**
-     * Test of getAllMoves method, of class MultiSwapNeighbourhood.
+     * Test of getAllMoves method, of class MultiAdditionNeighbourhood.
      */
     @Test
     public void testGetAllMoves() {
         
         System.out.println(" - test getAllMoves");
         
-        // 1) compare with single swap neighbourhood by setting maxSwaps to 1
+        // 1) compare with single addition neighbourhood by setting maxAdditions to 1
         
-        // create multi swap neighbourhood
-        SingleSwapNeighbourhood ssn = new SingleSwapNeighbourhood();
-        MultiSwapNeighbourhood msn = new MultiSwapNeighbourhood(1);
+        // create neighbourhoods
+        SingleAdditionNeighbourhood san = new SingleAdditionNeighbourhood();
+        MultiAdditionNeighbourhood man = new MultiAdditionNeighbourhood(1);
 
-        // create empty subset solution
+        // create full subset solution
         SubsetSolution sol = new SubsetSolution(IDs);
+        sol.selectAll();
         // verify: no moves generated
-        assertTrue(msn.getAllMoves(sol).isEmpty());
+        assertTrue(san.getAllMoves(sol).isEmpty());
+        assertTrue(man.getAllMoves(sol).isEmpty());
 
-        // randomly select 10 IDs
-        sol.selectAll(SetUtilities.getRandomSubset(sol.getUnselectedIDs(), 10, RG));
+        // deselct all IDs
+        sol.deselectAll();
 
         Set<SubsetMove> moves1, moves2, temp;
         
-        moves1 = ssn.getAllMoves(sol);
-        moves2 = msn.getAllMoves(sol);
+        moves1 = san.getAllMoves(sol);
+        moves2 = man.getAllMoves(sol);
         // verify
-        assertEquals(sol.getNumSelectedIDs()*sol.getNumUnselectedIDs(), moves2.size());
+        assertEquals(sol.getNumUnselectedIDs(), moves2.size());
         assertEquals(moves1.size(), moves2.size());
         temp = new HashSet<>();
         moves2.forEach(m -> {
             SubsetMove sm = (SubsetMove) m;
             assertEquals(1, sm.getNumAdded());
-            assertEquals(1, sm.getNumDeleted());
-            temp.add(new SwapMove(sm.getAddedIDs().iterator().next(), sm.getDeletedIDs().iterator().next()));
+            assertEquals(0, sm.getNumDeleted());
+            temp.add(new AdditionMove(sm.getAddedIDs().iterator().next()));
         });
         assertEquals(temp, moves1);
+        assertEquals(temp, moves2);
+        assertEquals(moves1, moves2);
         
-        // 2) test with maxSwaps 2 up to 5
+        // 2) test with maxAdditions 2 up to 5
         
-        for(int s=2; s<=5; s++){
-            // create multi swap neighbourhood
-            MultiSwapNeighbourhood neigh = new MultiSwapNeighbourhood(s);
+        for(int a=2; a<=5; a++){
+            // create multi addition neighbourhood
+            MultiAdditionNeighbourhood neigh = new MultiAdditionNeighbourhood(a);
             // compute number of expected moves
             int num = 0;
-            for(int j=1; j<=s; j++){
-                num += numSubsets(sol.getSelectedIDs().size(), j)*numSubsets(sol.getUnselectedIDs().size(), j);
+            for(int j=1; j<=a; j++){
+                num += numSubsets(sol.getUnselectedIDs().size(), j);
             }
             // generate all moves
             moves1 = neigh.getAllMoves(sol);
@@ -172,19 +209,19 @@ public class MultiSwapNeighbourhoodTest {
         
         // randomly fix 50% of all IDs
         Set<Integer> fixedIDs = SetUtilities.getRandomSubset(sol.getAllIDs(), (int) (0.5*NUM_IDS), RG);
-        // create new neighbourhood with fixed IDs (max 2 swaps)
-        Neighbourhood<SubsetSolution> neigh = new MultiSwapNeighbourhood(2, fixedIDs);
+        // create new neighbourhood with fixed IDs (max 2 additions)
+        Neighbourhood<SubsetSolution> neigh = new MultiAdditionNeighbourhood(2, NUM_IDS, fixedIDs);
         
         // generate random moves and check that fixed IDs are never swapped
-        for(int i=0; i<1000; i++){
-            SubsetMove move = (SubsetMove) neigh.getRandomMove(sol);
-            if(move != null){
-                // verify
-                fixedIDs.forEach(ID -> {
-                    assertFalse(move.getAddedIDs().contains(ID));
-                    assertFalse(move.getDeletedIDs().contains(ID));
-                });
+        SubsetMove move;
+        while((move = (SubsetMove) neigh.getRandomMove(sol)) != null){
+            // verify
+            for(int ID : fixedIDs){
+                assertFalse(move.getAddedIDs().contains(ID));
+                assertFalse(move.getDeletedIDs().contains(ID));
             }
+            // apply move
+            move.apply(sol);
         }
         
         // generate all moves and verify that no fixed IDs are swapped
@@ -197,6 +234,8 @@ public class MultiSwapNeighbourhoodTest {
                                   });
                               });
         
+        // deselect all
+        sol.deselectAll();
         // now fix ALL IDs
         neigh = new SingleSwapNeighbourhood(sol.getAllIDs());
         // check that no move can be generated
