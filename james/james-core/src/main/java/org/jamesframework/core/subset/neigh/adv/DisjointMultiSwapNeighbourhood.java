@@ -21,6 +21,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.IntStream;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.subset.algo.exh.SubsetSolutionIterator;
 import org.jamesframework.core.subset.neigh.SingleSwapNeighbourhood;
@@ -178,9 +179,7 @@ public class DisjointMultiSwapNeighbourhood extends SubsetNeighbourhood {
      * @return number of swaps to be performed: desired fixed number if possible, or less (as many as possible)
      */
     private int numSwaps(Set<Integer> addCandidates, Set<Integer> deleteCandidates){
-        int maxSwaps = Math.min(addCandidates.size(), deleteCandidates.size());
-        int swaps = Math.min(maxSwaps, numSwaps);
-        return swaps;
+        return IntStream.of(addCandidates.size(), deleteCandidates.size(), numSwaps).min().getAsInt();
     }
 
 }
