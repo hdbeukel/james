@@ -26,7 +26,6 @@ import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import org.jamesframework.core.subset.SubsetSolution;
-import org.jamesframework.core.util.JamesConstants;
 import org.jamesframework.core.util.RouletteSelector;
 import org.jamesframework.core.util.SetUtilities;
 
@@ -79,9 +78,9 @@ public class SinglePerturbationNeighbourhood extends SubsetNeighbourhood {
      * with minimum smaller than or equal to maximum; else, an exception is thrown.
      * 
      * @param minSubsetSize minimum subset size (&ge; 0)
-     * @param maxSubsetSize maximum subset size (&ge; 0)
-     * @throws IllegalArgumentException if minimum or maximum size are negative,
-     *                                  or minimum &gt; maximum
+     * @param maxSubsetSize maximum subset size (&gt; 0)
+     * @throws IllegalArgumentException if minimum size is not positive, maximum size is not strictly
+     *                                  positive, or minimum &gt; maximum
      */
     public SinglePerturbationNeighbourhood(int minSubsetSize, int maxSubsetSize){
         this(minSubsetSize, maxSubsetSize, null);
@@ -95,10 +94,10 @@ public class SinglePerturbationNeighbourhood extends SubsetNeighbourhood {
      * with minimum smaller than or equal to maximum; else, an exception is thrown.
      * 
      * @param minSubsetSize minimum subset size (&ge; 0)
-     * @param maxSubsetSize maximum subset size (&ge; 0)
+     * @param maxSubsetSize maximum subset size (&gt; 0)
      * @param fixedIDs set of fixed IDs
-     * @throws IllegalArgumentException if minimum or maximum size are negative,
-     *                                  or minimum &gt; maximum
+     * @throws IllegalArgumentException if minimum size is not positive, maximum size is not strictly
+     *                                  positive, or minimum &gt; maximum
      */
     public SinglePerturbationNeighbourhood(int minSubsetSize, int maxSubsetSize, Set<Integer> fixedIDs){
         super(fixedIDs);
@@ -106,8 +105,8 @@ public class SinglePerturbationNeighbourhood extends SubsetNeighbourhood {
         if(minSubsetSize < 0){
             throw new IllegalArgumentException("Error while creating single perturbation neighbourhood: minimum subset size should be non-negative.");
         }
-        if(maxSubsetSize < 0){
-            throw new IllegalArgumentException("Error while creating single perturbation neighbourhood: maximum subset size should be non-negative.");
+        if(maxSubsetSize <= 0){
+            throw new IllegalArgumentException("Error while creating single perturbation neighbourhood: maximum subset size should be strictly positive.");
         }
         if(minSubsetSize > maxSubsetSize){
             throw new IllegalArgumentException("Error while creating single perturbation neighbourhood: "

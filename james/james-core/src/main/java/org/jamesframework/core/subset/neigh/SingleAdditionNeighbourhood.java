@@ -58,8 +58,8 @@ public class SingleAdditionNeighbourhood extends SubsetNeighbourhood {
      * (maximum subset size). No moves will be generated if the maximum subset size would be exceeded.
      * All items are candidates to be selected.
      * 
-     * @param maxSubsetSize maximum subset size (&ge; 0)
-     * @throws IllegalArgumentException if maximum subset size is negative
+     * @param maxSubsetSize maximum subset size (&gt; 0)
+     * @throws IllegalArgumentException if maximum subset size is not strictly positive
      */
     public SingleAdditionNeighbourhood(int maxSubsetSize){
         this(maxSubsetSize, null);
@@ -70,15 +70,15 @@ public class SingleAdditionNeighbourhood extends SubsetNeighbourhood {
      * items (subset size) and a given set of fixed IDs which are not allowed to be
      * selected. None of the generated addition moves will add any of these IDs.
      * 
-     * @param maxSubsetSize maximum subset size (&ge; 0)
+     * @param maxSubsetSize maximum subset size (&gt; 0)
      * @param fixedIDs set of fixed IDs which are not allowed to be added to the selection
-     * @throws IllegalArgumentException if maximum subset size is negative
+     * @throws IllegalArgumentException if maximum subset size is not strictly positive
      */
     public SingleAdditionNeighbourhood(int maxSubsetSize, Set<Integer> fixedIDs){
         super(fixedIDs);
         // check maximum subset size
-        if(maxSubsetSize < 0){
-            throw new IllegalArgumentException("Error while creating single addition neighbourhood: maximum subset size should be non-negative.");
+        if(maxSubsetSize <= 0){
+            throw new IllegalArgumentException("Error while creating single addition neighbourhood: maximum subset size should be strictly positive.");
         }
         this.maxSubsetSize = maxSubsetSize;
     }
