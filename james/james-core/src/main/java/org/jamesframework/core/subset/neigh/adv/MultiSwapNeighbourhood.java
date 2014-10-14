@@ -45,7 +45,7 @@ import org.jamesframework.core.util.SetUtilities;
  * \]
  * possibilities, where \(n\) is the size of the full set and \(s\) is the desired subset size. When selecting e.g.
  * 30 out of 100 items, this value already exceeds one million. Because of the large number of possible moves,
- * this extended neighbourhood should be used with care, especially in combination with searches that inspect
+ * this advanced neighbourhood should be used with care, especially in combination with searches that inspect
  * all moves in every step. Furthermore, searches that inspect random moves may have few chances to find an
  * improvement in case of a huge amount of possible neighbours.
  * </p>
