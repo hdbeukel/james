@@ -17,19 +17,13 @@
 package org.jamesframework.core.subset.neigh.moves;
 
 import java.util.Collections;
-import java.util.Set;
-import org.jamesframework.core.exceptions.SolutionModificationException;
-import org.jamesframework.core.subset.SubsetSolution;
 
 /**
  * Simple subset move that removes a single ID from the current selection.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class DeletionMove implements SubsetMove {
-    
-    // deleted ID
-    private final int delete;
+public class DeletionMove extends GeneralSubsetMove {
     
     /**
      * Create a new deletion move, specifying the ID that will be removed from the selection
@@ -38,27 +32,7 @@ public class DeletionMove implements SubsetMove {
      * @param delete ID to be removed from the selection
      */
     public DeletionMove(int delete){
-        this.delete = delete;
-    }
-
-    /**
-     * Returns an unmodifiable empty set, as no IDs are added.
-     * 
-     * @return empty set
-     */
-    @Override
-    public Set<Integer> getAddedIDs() {
-        return Collections.emptySet();
-    }
-
-    /**
-     * Returns an unmodifiable singleton, containing the only deleted ID.
-     * 
-     * @return singleton containing deleted ID
-     */
-    @Override
-    public Set<Integer> getDeletedIDs() {
-        return Collections.singleton(delete);
+        super(Collections.emptySet(), Collections.singleton(delete));
     }
     
     /**
@@ -67,86 +41,7 @@ public class DeletionMove implements SubsetMove {
      * @return deleted ID
      */
     public int getDeletedID() {
-        return delete;
-    }
-
-    /**
-     * Always returns 0, as no IDs are added.
-     * 
-     * @return 0
-     */
-    @Override
-    public int getNumAdded() {
-        return 0;
-    }
-
-    /**
-     * Always returns 1, as a single ID is deleted.
-     * 
-     * @return 1
-     */
-    @Override
-    public int getNumDeleted() {
-        return 1;
-    }
-
-    /**
-     * Apply this deletion move to the given subset solution. The move can only be applied if the ID to
-     * be deleted from the selection is currently indeed selected. This guarantees that calling
-     * {@link #undo(SubsetSolution)} will correctly undo the move.
-     * 
-     * @throws SolutionModificationException if the deleted ID is currently not selected or does not correspond to an entity
-     * @param solution solution to which to move is applied
-     */
-    @Override
-    public void apply(SubsetSolution solution) {
-        // try to deselect ID
-        if(!solution.deselect(delete)){
-            // failed: ID currently not selected
-            throw new SolutionModificationException("Error while applying deletion move to subset solution: deleted ID currently not selected.", solution);
-        }
-    }
-
-    /**
-     * Undo this deletion move after it has been successfully applied to the given subset solution, by re-adding the
-     * deleted ID to the selection.
-     * 
-     * @param solution solution to which the move has been applied
-     */
-    @Override
-    public void undo(SubsetSolution solution) {
-        // re-add deleted ID
-        solution.select(delete);
-    }
-
-    /**
-     * Hash code corresponding to implementation of {@link #equals(Object)}.
-     * 
-     * @return hash code of this deletion move
-     */
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 79 * hash + delete;
-        return hash;
-    }
-
-    /**
-     * Two deletion moves are considered equal if they remove the same ID.
-     * 
-     * @param obj object to compare with this deletion move for equality
-     * @return <code>true</code> if the given object is also a deletion move and removes the same ID
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final DeletionMove other = (DeletionMove) obj;
-        return this.delete == other.delete;
+        return getDeletedIDs().iterator().next();
     }
     
 }
