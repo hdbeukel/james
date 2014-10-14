@@ -39,7 +39,7 @@ import org.jamesframework.core.util.SetUtilities;
  * contrast to a {@link SingleSwapNeighbourhood}.
  * </p>
  * <p>
- * A single perturbation neighbourhood respects the minimum and maximum subset size specified at construction (if any).
+ * A single perturbation neighbourhood respects the optional minimum and maximum subset size specified at construction.
  * When the given subset solution has minimal size, no deletion moves will be generated. Similarly, when the current
  * solution has maximum size, no addition moves will be generated.
  * </p>
@@ -69,65 +69,47 @@ public class SinglePerturbationNeighbourhood extends SubsetNeighbourhood {
      * Creates a new single perturbation neighbourhood without size limits.
      */
     public SinglePerturbationNeighbourhood(){
-        this(JamesConstants.UNLIMITED_SIZE, JamesConstants.UNLIMITED_SIZE);
+        this(0, Integer.MAX_VALUE);
     }
     
     /**
-     * <p>
      * Creates a new single perturbation neighbourhood with given minimum and maximum subset size.
      * Only moves that result in a valid solution size after application to the current solution
      * will ever be generated. Positive values are required for the minimum and maximum size,
      * with minimum smaller than or equal to maximum; else, an exception is thrown.
-     * </p>
-     * <p>
-     * The parameters <code>minSubsetSize</code> and/or <code>maxSubsetSize</code> may be set to
-     * {@link JamesConstants#UNLIMITED_SIZE} if no lower or upper size limit is to be applied.
-     * </p>
      * 
-     * @param minSubsetSize minimum subset size (&ge; 0 or {@link JamesConstants#UNLIMITED_SIZE})
-     * @param maxSubsetSize maximum subset size (&ge; 0 or {@link JamesConstants#UNLIMITED_SIZE})
-     * @throws IllegalArgumentException if minimum or maximum size are different from
-     *                                  {@link JamesConstants#UNLIMITED_SIZE} and negative,
-     *                                  or both are different from {@link JamesConstants#UNLIMITED_SIZE}
-     *                                  with minimum &gt; maximum
+     * @param minSubsetSize minimum subset size (&ge; 0)
+     * @param maxSubsetSize maximum subset size (&ge; 0)
+     * @throws IllegalArgumentException if minimum or maximum size are negative,
+     *                                  or minimum &gt; maximum
      */
     public SinglePerturbationNeighbourhood(int minSubsetSize, int maxSubsetSize){
         this(minSubsetSize, maxSubsetSize, null);
     }
     
     /**
-     * <p>
      * Creates a new single perturbation neighbourhood with given minimum and maximum subset size,
      * providing a set of fixed IDs which are not allowed to be added, deleted nor swapped.
      * Only moves that result in a valid solution size after application to the current solution
      * will ever be generated. Positive values are required for the minimum and maximum size,
      * with minimum smaller than or equal to maximum; else, an exception is thrown.
-     * </p>
-     * <p>
-     * The parameters <code>minSubsetSize</code> and/or <code>maxSubsetSize</code> may be set to
-     * {@link JamesConstants#UNLIMITED_SIZE} if no lower or upper size limit is to be applied.
-     * </p>
      * 
-     * @param minSubsetSize minimum subset size (&ge; 0 or {@link JamesConstants#UNLIMITED_SIZE})
-     * @param maxSubsetSize maximum subset size (&ge; 0 or {@link JamesConstants#UNLIMITED_SIZE})
+     * @param minSubsetSize minimum subset size (&ge; 0)
+     * @param maxSubsetSize maximum subset size (&ge; 0)
      * @param fixedIDs set of fixed IDs
-     * @throws IllegalArgumentException if minimum or maximum size are different from
-     *                                  {@link JamesConstants#UNLIMITED_SIZE} and negative,
-     *                                  or both are different from {@link JamesConstants#UNLIMITED_SIZE}
-     *                                  with minimum &gt; maximum
+     * @throws IllegalArgumentException if minimum or maximum size are negative,
+     *                                  or minimum &gt; maximum
      */
     public SinglePerturbationNeighbourhood(int minSubsetSize, int maxSubsetSize, Set<Integer> fixedIDs){
         super(fixedIDs);
         // validate sizes
-        if(minSubsetSize != JamesConstants.UNLIMITED_SIZE && minSubsetSize < 0){
+        if(minSubsetSize < 0){
             throw new IllegalArgumentException("Error while creating single perturbation neighbourhood: minimum subset size should be non-negative.");
         }
-        if(maxSubsetSize != JamesConstants.UNLIMITED_SIZE && maxSubsetSize < 0){
+        if(maxSubsetSize < 0){
             throw new IllegalArgumentException("Error while creating single perturbation neighbourhood: maximum subset size should be non-negative.");
         }
-        if(minSubsetSize != JamesConstants.UNLIMITED_SIZE
-                && maxSubsetSize != JamesConstants.UNLIMITED_SIZE
-                && minSubsetSize > maxSubsetSize){
+        if(minSubsetSize > maxSubsetSize){
             throw new IllegalArgumentException("Error while creating single perturbation neighbourhood: "
                                                 + "minimum subset size should be smaller than or equal to maximum subset size.");
         }
@@ -269,13 +251,12 @@ public class SinglePerturbationNeighbourhood extends SubsetNeighbourhood {
      * @return <code>true</code> if size falls within bounds
      */
     private boolean isValidSubsetSize(int size){
-        return (minSubsetSize == JamesConstants.UNLIMITED_SIZE || size >= minSubsetSize)
-                && (maxSubsetSize == JamesConstants.UNLIMITED_SIZE || size <= maxSubsetSize);
+        return size >= minSubsetSize && size <= maxSubsetSize;
     }
 
     /**
      * Get the minimum subset size specified at construction.
-     * If no minimum size is set this method returns {@link JamesConstants#UNLIMITED_SIZE}.
+     * If no minimum size has been set this method returns 0.
      * 
      * @return minimum subset size
      */
@@ -285,7 +266,7 @@ public class SinglePerturbationNeighbourhood extends SubsetNeighbourhood {
 
     /**
      * Get the maximum subset size specified at construction.
-     * If no maximum size is set this method returns {@link JamesConstants#UNLIMITED_SIZE}.
+     * If no maximum size has been set this method returns {@link Integer#MAX_VALUE}.
      * 
      * @return maximum subset size
      */

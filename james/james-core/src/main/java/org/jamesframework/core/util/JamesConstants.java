@@ -48,9 +48,4 @@ public class JamesConstants {
      */
     public static final double INVALID_DELTA = -1.0;
     
-    /**
-     * Indicates an unlimited size.
-     */
-    public static final int UNLIMITED_SIZE = -1;
-    
 }

@@ -18,9 +18,7 @@ package org.jamesframework.core.subset.neigh;
 
 import org.jamesframework.core.subset.neigh.moves.SubsetMove;
 import org.jamesframework.core.subset.neigh.moves.AdditionMove;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import org.jamesframework.core.subset.SubsetSolution;
@@ -96,18 +94,11 @@ public class SingleAdditionNeighbourhoodTest {
         // try to create single addition neighbourhood with invalid max subset sizes
         thrown = false;
         try {
-            new SingleAdditionNeighbourhood(-2);
+            new SingleAdditionNeighbourhood(-1);
         } catch(IllegalArgumentException ex) {
             thrown = true;
         }
         assertTrue(thrown);
-        thrown = false;
-        try {
-            new SingleAdditionNeighbourhood(JamesConstants.UNLIMITED_SIZE);
-        } catch(IllegalArgumentException ex) {
-            thrown = true;
-        }
-        assertFalse(thrown);
         thrown = false;
         try {
             new SingleAdditionNeighbourhood(10);
@@ -272,7 +263,7 @@ public class SingleAdditionNeighbourhoodTest {
         System.out.println(" - test getMaxSubsetSize");
         
         assertEquals(10, neighLimited.getMaxSubsetSize());
-        assertEquals(JamesConstants.UNLIMITED_SIZE, neighUnlimited.getMaxSubsetSize());
+        assertEquals(Integer.MAX_VALUE, neighUnlimited.getMaxSubsetSize());
         
     }
     
@@ -287,7 +278,7 @@ public class SingleAdditionNeighbourhoodTest {
         // randomly fix 50% of all IDs
         Set<Integer> fixedIDs = SetUtilities.getRandomSubset(sol.getAllIDs(), (int) (0.5*NUM_IDS), RG);
         // create new neighbourhood with fixed IDs
-        neighUnlimited = new SingleAdditionNeighbourhood(JamesConstants.UNLIMITED_SIZE, fixedIDs);
+        neighUnlimited = new SingleAdditionNeighbourhood(NUM_IDS, fixedIDs);
         
         // randomly select 50% of IDs
         sol.selectAll(SetUtilities.getRandomSubset(sol.getAllIDs(), (int) (0.5*NUM_IDS), RG));
@@ -309,7 +300,7 @@ public class SingleAdditionNeighbourhoodTest {
                                        });
         
         // now fix ALL IDs
-        neighUnlimited = new SingleAdditionNeighbourhood(JamesConstants.UNLIMITED_SIZE, sol.getAllIDs());
+        neighUnlimited = new SingleAdditionNeighbourhood(NUM_IDS, sol.getAllIDs());
         // check that no move can be generated
         assertNull(neighUnlimited.getRandomMove(sol));
         assertTrue(neighUnlimited.getAllMoves(sol).isEmpty());

@@ -99,14 +99,14 @@ public class SinglePerturbationNeighbourhoodTest {
         // try to create single perturbation neighbourhood with invalid min/max subset sizes
         thrown = false;
         try {
-            new SinglePerturbationNeighbourhood(-3, 10);
+            new SinglePerturbationNeighbourhood(-1, 10);
         } catch(IllegalArgumentException ex) {
             thrown = true;
         }
         assertTrue(thrown);
         thrown = false;
         try {
-            new SinglePerturbationNeighbourhood(0, -2);
+            new SinglePerturbationNeighbourhood(0, -1);
         } catch(IllegalArgumentException ex) {
             thrown = true;
         }
@@ -127,21 +127,21 @@ public class SinglePerturbationNeighbourhoodTest {
         assertFalse(thrown);
         thrown = false;
         try {
-            new SinglePerturbationNeighbourhood(JamesConstants.UNLIMITED_SIZE, 11);
+            new SinglePerturbationNeighbourhood(0, 11);
         } catch(IllegalArgumentException ex) {
             thrown = true;
         }
         assertFalse(thrown);
         thrown = false;
         try {
-            new SinglePerturbationNeighbourhood(3, JamesConstants.UNLIMITED_SIZE);
+            new SinglePerturbationNeighbourhood(3, Integer.MAX_VALUE);
         } catch(IllegalArgumentException ex) {
             thrown = true;
         }
         assertFalse(thrown);
         thrown = false;
         try {
-            new SinglePerturbationNeighbourhood(JamesConstants.UNLIMITED_SIZE, JamesConstants.UNLIMITED_SIZE);
+            new SinglePerturbationNeighbourhood(0, Integer.MAX_VALUE);
         } catch(IllegalArgumentException ex) {
             thrown = true;
         }
@@ -214,12 +214,8 @@ public class SinglePerturbationNeighbourhoodTest {
                 // reapply
                 move.apply(sol);
                 // verify that solution stays within size bounds
-                if(neigh.getMinSubsetSize() != JamesConstants.UNLIMITED_SIZE){
-                    assertTrue(sol.getNumSelectedIDs() >= neigh.getMinSubsetSize());
-                }
-                if(neigh.getMaxSubsetSize() != JamesConstants.UNLIMITED_SIZE){
-                    assertTrue(sol.getNumSelectedIDs() <= neigh.getMaxSubsetSize());
-                }
+                assertTrue(sol.getNumSelectedIDs() >= neigh.getMinSubsetSize());
+                assertTrue(sol.getNumSelectedIDs() <= neigh.getMaxSubsetSize());
             }
         }
         
@@ -301,7 +297,7 @@ public class SinglePerturbationNeighbourhoodTest {
         // verify different neighbourhoods
         assertEquals(10, neighFixedSize.getMinSubsetSize());
         assertEquals(10, neighVarSize.getMinSubsetSize());
-        assertEquals(JamesConstants.UNLIMITED_SIZE, neighUnboundedSize.getMinSubsetSize());
+        assertEquals(0, neighUnboundedSize.getMinSubsetSize());
         
     }
 
@@ -315,7 +311,7 @@ public class SinglePerturbationNeighbourhoodTest {
         
         assertEquals(10, neighFixedSize.getMaxSubsetSize());
         assertEquals(20, neighVarSize.getMaxSubsetSize());
-        assertEquals(JamesConstants.UNLIMITED_SIZE, neighUnboundedSize.getMaxSubsetSize());
+        assertEquals(Integer.MAX_VALUE, neighUnboundedSize.getMaxSubsetSize());
         
     }
     

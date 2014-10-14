@@ -51,53 +51,40 @@ public class SingleAdditionNeighbourhood extends SubsetNeighbourhood {
      * selected items (subset size). All items are candidates to be selected.
      */
     public SingleAdditionNeighbourhood(){
-        this(JamesConstants.UNLIMITED_SIZE);
+        this(Integer.MAX_VALUE);
     }
     
     /**
-     * <p>
      * Create a single addition neighbourhood with a given limit on the number of selected items
      * (subset size). No moves will be generated if the maximum subset size would be exceeded.
      * All items are candidates to be selected.
-     * </p>
-     * <p>
-     * The parameter <code>maxSubsetSize</code> may be set to {@link JamesConstants#UNLIMITED_SIZE}
-     * if no size limit is to be applied, else it should be a positive integer value.
-     * </p>
      * 
-     * @param maxSubsetSize maximum subset size (&ge; 0 or {@link JamesConstants#UNLIMITED_SIZE})
+     * @param maxSubsetSize maximum subset size (&ge; 0)
      */
     public SingleAdditionNeighbourhood(int maxSubsetSize){
         this(maxSubsetSize, null);
     }
     
     /**
-     * <p>
      * Create a single addition neighbourhood with a limit on the number of selected
      * items (subset size) and a given set of fixed IDs which are not allowed to be
      * selected. None of the generated addition moves will add any of these IDs.
-     * </p>
-     * <p>
-     * The parameter <code>maxSubsetSize</code> may be set to {@link JamesConstants#UNLIMITED_SIZE}
-     * if no size limit is to be applied, else it should be a positive integer value.
-     * </p>
      * 
-     * @param maxSubsetSize maximum subset size (&ge; 0 or {@link JamesConstants#UNLIMITED_SIZE})
+     * @param maxSubsetSize maximum subset size (&ge; 0)
      * @param fixedIDs set of fixed IDs which are not allowed to be added to the selection
-     * @throws IllegalArgumentException if maximum subset size is different from
-     *                                  {@link JamesConstants#UNLIMITED_SIZE} and negative
+     * @throws IllegalArgumentException if maximum subset size is negative
      */
     public SingleAdditionNeighbourhood(int maxSubsetSize, Set<Integer> fixedIDs){
         super(fixedIDs);
         // check maximum subset size
-        if(maxSubsetSize != JamesConstants.UNLIMITED_SIZE && maxSubsetSize < 0){
+        if(maxSubsetSize < 0){
             throw new IllegalArgumentException("Error while creating single addition neighbourhood: maximum subset size should be non-negative.");
         }
         this.maxSubsetSize = maxSubsetSize;
     }
     
     /**
-     * Get the maximum subset size. If no size limit is applied this method returns {@link JamesConstants#UNLIMITED_SIZE}.
+     * Get the maximum subset size. If no size limit has been applied this method returns {@link Integer#MAX_VALUE}.
      * 
      * @return maximum subset size
      */
@@ -168,7 +155,7 @@ public class SingleAdditionNeighbourhood extends SubsetNeighbourhood {
      * @return <code>true</code> if the maximum size has been reached
      */
     private boolean maxSizeReached(SubsetSolution sol){
-        return maxSubsetSize != JamesConstants.UNLIMITED_SIZE && sol.getNumSelectedIDs() >= maxSubsetSize;
+        return sol.getNumSelectedIDs() >= maxSubsetSize;
     }
 
 }
