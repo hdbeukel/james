@@ -16,7 +16,8 @@
 
 package org.jamesframework.core.subset.neigh.moves;
 
-import org.jamesframework.core.subset.neigh.moves.GeneralSubsetMove;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -201,6 +202,70 @@ public class GeneralSubsetMoveTest {
             assertTrue(sol.getUnselectedIDs().containsAll(add));
             assertTrue(sol.getSelectedIDs().containsAll(delete));
         }
+        
+    }
+    
+    /**
+     * Test of equals and hashCode methods, of class GeneralSubsetMove.
+     */
+    @Test
+    public void testEqualsAndHashCode() {
+        
+        System.out.println(" - test equals and hashCode");
+        
+        // create moves
+        Set<Integer> set1 = new HashSet<>(Arrays.asList(1,2,3));
+        Set<Integer> set1b = new HashSet<>(Arrays.asList(1,2,3));
+        Set<Integer> set2 = new HashSet<>(Arrays.asList(4,5,6));
+        
+        SubsetMove move1 = new GeneralSubsetMove(set1, set2);   // equal
+        SubsetMove move2 = new GeneralSubsetMove(set1, set2);   // equal
+        SubsetMove move2b = new GeneralSubsetMove(set1b, set2); // equal
+        SubsetMove move3 = new GeneralSubsetMove(set2, set1);   // different
+        
+        // verify
+        assertEquals(move1, move2);
+        assertEquals(move1.hashCode(), move2.hashCode());
+        assertFalse(move1 == move2);
+        
+        assertEquals(move1, move2b);
+        assertEquals(move1.hashCode(), move2b.hashCode());
+        assertFalse(move1 == move2b);
+        
+        assertEquals(move2, move2b);
+        assertEquals(move2.hashCode(), move2b.hashCode());
+        assertFalse(move2 == move2b);
+        
+        assertNotEquals(move2, move3);
+        assertNotEquals(move1, move3);
+        
+        // compare with addition, deletion and swap moves
+        int add = 6;
+        int del = 2;
+        Set<Integer> addset = Collections.singleton(add);
+        Set<Integer> delset = Collections.singleton(del);
+        Set<Integer> emptyset = Collections.emptySet();
+        
+        SubsetMove move4 = new GeneralSubsetMove(addset, emptyset);
+        SubsetMove move5 = new AdditionMove(add);
+        
+        assertEquals(move4, move5);
+        assertEquals(move4.hashCode(), move5.hashCode());
+        assertFalse(move4 == move5);
+        
+        move4 = new GeneralSubsetMove(emptyset, delset);
+        move5 = new DeletionMove(del);
+        
+        assertEquals(move4, move5);
+        assertEquals(move4.hashCode(), move5.hashCode());
+        assertFalse(move4 == move5);
+        
+        move4 = new GeneralSubsetMove(addset, delset);
+        move5 = new SwapMove(add, del);
+        
+        assertEquals(move4, move5);
+        assertEquals(move4.hashCode(), move5.hashCode());
+        assertFalse(move4 == move5);
         
     }
 

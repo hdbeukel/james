@@ -17,13 +17,14 @@
 package org.jamesframework.core.subset.neigh.moves;
 
 import java.util.Collections;
+import java.util.Objects;
 import java.util.Set;
 import org.jamesframework.core.exceptions.SolutionModificationException;
 import org.jamesframework.core.subset.SubsetSolution;
 
 /**
- * A general subset move adds and/or removes several IDs at once to/from the current selection
- * of a subset solution.
+ * A general subset move may simultaneously add and/or remove
+ * several IDs to/from the current selection of a subset solution.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
@@ -140,5 +141,39 @@ public class GeneralSubsetMove implements SubsetMove {
         // add all removed IDs
         solution.selectAll(delete);
     }
+
+    /**
+     * Hash code corresponding to implementation of {@link #equals(Object)}.
+     * 
+     * @return hash code of this move
+     */
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 71 * hash + Objects.hashCode(getAddedIDs());
+        hash = 71 * hash + Objects.hashCode(getDeletedIDs());
+        return hash;
+    }
+
+    /**
+     * Two subset moves are considered equal if they remove and add the same IDs.
+     * 
+     * @param obj object to compare with this move for equality
+     * @return <code>true</code> if the given object is also a subset move and removes and adds the same IDs
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof SubsetMove)) {
+            return false;
+        }
+        final SubsetMove other = (SubsetMove) obj;
+        return Objects.equals(getAddedIDs(), other.getAddedIDs())
+                && Objects.equals(getDeletedIDs(), other.getDeletedIDs());
+    }
+    
+    
 
 }
