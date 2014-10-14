@@ -20,7 +20,6 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 import org.jamesframework.core.subset.SubsetSolution;
-import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.subset.neigh.SingleSwapNeighbourhood;
 import org.jamesframework.core.subset.neigh.moves.SubsetMove;
@@ -71,8 +70,9 @@ public class DisjointMultiSwapNeighbourhoodTest {
             // verify: no move generated
             assertNull(neigh.getRandomMove(sol));
 
-            // randomly select 10 IDs
-            sol.selectAll(SetUtilities.getRandomSubset(sol.getUnselectedIDs(), 10, RG));
+            // randomly select some IDs
+            int selected = 4;
+            sol.selectAll(SetUtilities.getRandomSubset(sol.getUnselectedIDs(), selected, RG));
 
             SubsetMove move;
             for(int i=0; i<1000; i++){
@@ -80,8 +80,8 @@ public class DisjointMultiSwapNeighbourhoodTest {
                 // verify
                 assertTrue(sol.getUnselectedIDs().containsAll(move.getAddedIDs()));
                 assertTrue(sol.getSelectedIDs().containsAll(move.getDeletedIDs()));
-                assertEquals(s, move.getNumAdded());
-                assertEquals(s, move.getNumDeleted());
+                assertEquals(Math.min(selected, s), move.getNumAdded());
+                assertEquals(Math.min(selected, s), move.getNumDeleted());
                 // apply move
                 move.apply(sol);
             }
