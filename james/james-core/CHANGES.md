@@ -7,11 +7,11 @@ Version 0.2 (under development)
 
  - Added support for efficient delta evaluations and validations.
  - Provided additional subset neighbourhoods.
- - Simplified code using functional operations.
  - Renamed SubsetData to IntegerIdentifiedData.
  - Renamed ProblemWithData to AbstractProblem.
  - Refactored abstract Solution class.
  - Reorganized package structure.
+ - Various code simplifications and optimizations (e.g. using functional operations).
  - Removed SubsetProblem interface and renamed SubsetProblemWithData to SubsetProblem.
  - Removed MinMaxObjective.
  - Removed EmptySearchListener and EmptyLocalSearchListener. Default empty implementations of all callbacks are now directly provided in the corresponding interfaces.
