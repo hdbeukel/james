@@ -19,26 +19,23 @@ package org.jamesframework.core.subset.neigh.adv;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
-import java.util.stream.Collectors;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.neigh.Neighbourhood;
-import org.jamesframework.core.subset.neigh.SingleAdditionNeighbourhood;
 import org.jamesframework.core.subset.neigh.SingleDeletionNeighbourhood;
-import org.jamesframework.core.subset.neigh.SingleSwapNeighbourhood;
-import org.jamesframework.core.subset.neigh.moves.AdditionMove;
 import org.jamesframework.core.subset.neigh.moves.DeletionMove;
 import org.jamesframework.core.subset.neigh.moves.SubsetMove;
 import org.jamesframework.core.util.SetUtilities;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Test multi deletion neighbourhood.
+ * Test disjoint multi deletion neighbourhood.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class MultiDeletionNeighbourhoodTest {
+public class DisjointMultiDeletionNeighbourhoodTest {
 
     // random generator
     private static final Random RG = new Random();
@@ -49,6 +46,7 @@ public class MultiDeletionNeighbourhoodTest {
     
     @BeforeClass
     public static void setUpClass() {
+        System.out.println("# Testing DisjointMultiDeletionNeighbourhood ...");
         // create set of all IDs
         IDs = new HashSet<>();
         for(int i=0; i<NUM_IDS; i++){
@@ -57,17 +55,28 @@ public class MultiDeletionNeighbourhoodTest {
     }
 
     /**
-     * Test of getRandomMove method, of class MultiDeletionNeighbourhood.
+     * Print message when tests are complete.
+     */
+    @AfterClass
+    public static void tearDownClass() {
+        System.out.println("# Done testing DisjointMultiDeletionNeighbourhood!");
+    }
+
+    /**
+     * Test of getRandomMove method, of class DisjointMultiDeletionNeighbourhood.
      */
     @Test
     public void testGetRandomMove() {
         
         System.out.println(" - test getRandomMove");
         
-        // repeat for maximum of 1 up to 5 deletions
+        // repeat for 1 up to 5 deletions
         for(int d=1; d<=5; d++){
-            // create multi deletion neighbourhood
-            Neighbourhood<SubsetSolution> neigh = new MultiDeletionNeighbourhood(d);
+            System.out.println("---");
+            System.out.println("d = " + d);
+            System.out.println("---");
+            // create disjoint multi deletion neighbourhood
+            Neighbourhood<SubsetSolution> neigh = new DisjointMultiDeletionNeighbourhood(d);
 
             // create empty subset solution
             SubsetSolution sol = new SubsetSolution(IDs);
@@ -77,16 +86,25 @@ public class MultiDeletionNeighbourhoodTest {
             // select all IDs
             sol.selectAll();
 
-            // apply moves until no IDs are selected
+            // apply moves until fewer than d items are selected
             SubsetMove move;
-            while((move = (SubsetMove) neigh.getRandomMove(sol)) != null){
+            while(sol.getNumSelectedIDs() >= d){
+                move = (SubsetMove) neigh.getRandomMove(sol);
                 // verify
                 assertTrue(sol.getSelectedIDs().containsAll(move.getDeletedIDs()));
                 assertTrue(move.getAddedIDs().isEmpty());
                 assertTrue(move.getNumAdded() == 0);
-                assertTrue(move.getNumDeleted() >= 1);
-                assertTrue(move.getNumDeleted() <= d);
-                assertTrue(move.getNumDeleted() <= sol.getNumSelectedIDs());
+                assertTrue(move.getNumDeleted() == d);
+                // apply move
+                move.apply(sol);
+            }
+            
+            if(sol.getNumSelectedIDs() > 0){
+                // check: next (final) move deselects all remaining selected items
+                move = (SubsetMove) neigh.getRandomMove(sol);
+                assertEquals(sol.getNumSelectedIDs(), move.getNumDeleted());
+                assertTrue(move.getNumDeleted() < d);
+                assertEquals(0, move.getNumAdded());
                 // apply move
                 move.apply(sol);
             }
@@ -99,12 +117,13 @@ public class MultiDeletionNeighbourhoodTest {
             // select all
             sol.selectAll();
             
-            // create new neighbourhood with size limit of 10
-            int limit = 10;
-            neigh = new MultiDeletionNeighbourhood(d, limit);
+            // create new neighbourhood with minimum subset size of 10
+            int minSize = 10;
+            neigh = new DisjointMultiDeletionNeighbourhood(d, minSize);
             
-            // apply moves until minimum size is reached
-            while((move = (SubsetMove) neigh.getRandomMove(sol)) != null){
+            // apply moves until fewer than d items are selected
+            while(sol.getNumSelectedIDs() >= minSize+d){
+                move = (SubsetMove) neigh.getRandomMove(sol);
                 // verify
                 assertTrue(sol.getSelectedIDs().containsAll(move.getDeletedIDs()));
                 assertTrue(move.getAddedIDs().isEmpty());
@@ -115,35 +134,45 @@ public class MultiDeletionNeighbourhoodTest {
                 // apply move
                 move.apply(sol);
             }
+
+            if(sol.getNumSelectedIDs() > minSize){
+                // check: next (final) move deselects as many items as possible (< d)
+                move = (SubsetMove) neigh.getRandomMove(sol);
+                assertEquals(sol.getNumSelectedIDs()-minSize, move.getNumDeleted());
+                assertTrue(move.getNumDeleted() < d);
+                assertEquals(0, move.getNumAdded());
+                // apply move
+                move.apply(sol);
+            }
             
             // check: no more moves to be generated
             assertNull(neigh.getRandomMove(sol));
             // check: minimum number of IDs selected
-            assertEquals(limit, sol.getNumSelectedIDs());
+            assertEquals(minSize, sol.getNumSelectedIDs());
             
         }
         
     }
 
     /**
-     * Test of getAllMoves method, of class MultiDeletionNeighbourhood.
+     * Test of getAllMoves method, of class DisjointMultiDeletionNeighbourhood.
      */
     @Test
     public void testGetAllMoves() {
         
         System.out.println(" - test getAllMoves");
         
-        // 1) compare with single deletion neighbourhood by setting maxDeletions to 1
+        // 1) compare with single deletion neighbourhood by setting numDeletions to 1
         
         // create neighbourhoods
         SingleDeletionNeighbourhood sdn = new SingleDeletionNeighbourhood();
-        MultiDeletionNeighbourhood mdn = new MultiDeletionNeighbourhood(1);
+        DisjointMultiDeletionNeighbourhood dmdn = new DisjointMultiDeletionNeighbourhood(1);
 
         // create empty subset solution
         SubsetSolution sol = new SubsetSolution(IDs);
         // verify: no moves generated
         assertTrue(sdn.getAllMoves(sol).isEmpty());
-        assertTrue(mdn.getAllMoves(sol).isEmpty());
+        assertTrue(dmdn.getAllMoves(sol).isEmpty());
 
         // select all IDs
         sol.selectAll();
@@ -151,7 +180,7 @@ public class MultiDeletionNeighbourhoodTest {
         Set<SubsetMove> moves1, moves2, temp;
         
         moves1 = sdn.getAllMoves(sol);
-        moves2 = mdn.getAllMoves(sol);
+        moves2 = dmdn.getAllMoves(sol);
         // verify
         assertEquals(sol.getNumSelectedIDs(), moves2.size());
         assertEquals(moves1.size(), moves2.size());
@@ -166,16 +195,13 @@ public class MultiDeletionNeighbourhoodTest {
         assertEquals(temp, moves2);
         assertEquals(moves1, moves2);
         
-        // 2) test with maxDeletions 2 up to 5
+        // 2) test with numDeletions 2 up to 5
         
         for(int d=2; d<=5; d++){
-            // create multi deletion neighbourhood
-            MultiDeletionNeighbourhood neigh = new MultiDeletionNeighbourhood(d);
+            // create disjoint multi deletion neighbourhood
+            DisjointMultiDeletionNeighbourhood neigh = new DisjointMultiDeletionNeighbourhood(d);
             // compute number of expected moves
-            int num = 0;
-            for(int j=1; j<=d; j++){
-                num += numSubsets(sol.getNumSelectedIDs(), j);
-            }
+            int num = numSubsets(sol.getNumSelectedIDs(), d);
             // generate all moves
             moves1 = neigh.getAllMoves(sol);
             // verify
@@ -210,8 +236,8 @@ public class MultiDeletionNeighbourhoodTest {
         
         // randomly fix 5 selected IDs
         Set<Integer> fixedIDs = SetUtilities.getRandomSubset(sol.getSelectedIDs(), 5, RG);
-        // create new neighbourhood with fixed IDs (max 2 deletions)
-        Neighbourhood<SubsetSolution> neigh = new MultiDeletionNeighbourhood(2, 0, fixedIDs);
+        // create new neighbourhood with fixed IDs (2 deletions)
+        Neighbourhood<SubsetSolution> neigh = new DisjointMultiDeletionNeighbourhood(2, 0, fixedIDs);
         
         // generate random moves and check that fixed IDs are never removed
         SubsetMove move;
@@ -244,7 +270,7 @@ public class MultiDeletionNeighbourhoodTest {
         // select all
         sol.selectAll();
         // now fix ALL IDs
-        neigh = new MultiDeletionNeighbourhood(2, 0, sol.getAllIDs());
+        neigh = new DisjointMultiDeletionNeighbourhood(2, 0, sol.getAllIDs());
         // check that no move can be generated
         assertNull(neigh.getRandomMove(sol));
         assertTrue(neigh.getAllMoves(sol).isEmpty());

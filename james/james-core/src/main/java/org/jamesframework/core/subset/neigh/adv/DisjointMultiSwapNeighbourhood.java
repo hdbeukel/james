@@ -100,6 +100,15 @@ public class DisjointMultiSwapNeighbourhood extends SubsetNeighbourhood {
     }
     
     /**
+     * Get the fixed number of swaps performed by generated moves.
+     * 
+     * @return fixed number of swaps
+     */
+    public int getNumSwaps() {
+        return numSwaps;
+    }
+    
+    /**
      * Generates a move for the given subset solution that removes a random subset of \(k\) IDs from the current
      * selection and replaces them with an equally large random subset of the currently unselected IDs, where
      * \(k\) is the number of swaps specified at construction. If it is not possible to swap \(k\) items a

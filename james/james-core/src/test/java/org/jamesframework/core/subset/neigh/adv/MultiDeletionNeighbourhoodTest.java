@@ -19,16 +19,13 @@ package org.jamesframework.core.subset.neigh.adv;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
-import java.util.stream.Collectors;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.neigh.Neighbourhood;
-import org.jamesframework.core.subset.neigh.SingleAdditionNeighbourhood;
 import org.jamesframework.core.subset.neigh.SingleDeletionNeighbourhood;
-import org.jamesframework.core.subset.neigh.SingleSwapNeighbourhood;
-import org.jamesframework.core.subset.neigh.moves.AdditionMove;
 import org.jamesframework.core.subset.neigh.moves.DeletionMove;
 import org.jamesframework.core.subset.neigh.moves.SubsetMove;
 import org.jamesframework.core.util.SetUtilities;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -49,11 +46,20 @@ public class MultiDeletionNeighbourhoodTest {
     
     @BeforeClass
     public static void setUpClass() {
+        System.out.println("# Testing MultiDeletionNeighbourhood ...");
         // create set of all IDs
         IDs = new HashSet<>();
         for(int i=0; i<NUM_IDS; i++){
             IDs.add(i);
         }
+    }
+
+    /**
+     * Print message when tests are complete.
+     */
+    @AfterClass
+    public static void tearDownClass() {
+        System.out.println("# Done testing MultiDeletionNeighbourhood!");
     }
 
     /**

@@ -91,7 +91,7 @@ public class MultiDeletionNeighbourhood extends SubsetNeighbourhood {
      * @param maxDeletions maximum number of removed IDs (&gt; 0)
      * @param minSubsetSize minimum subset size (&ge; 0)
      * @throws IllegalArgumentException if <code>maxDeletions</code> is not strictly positive
-     *                                  or <code>minSubsetSize</code> is not positive (can be zero)
+     *                                  or <code>minSubsetSize</code> is negative
      */
     public MultiDeletionNeighbourhood(int maxDeletions, int minSubsetSize){
         this(maxDeletions, minSubsetSize, null);
