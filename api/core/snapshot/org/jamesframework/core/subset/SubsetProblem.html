@@ -457,7 +457,7 @@ extends <a href="../../../../org/jamesframework/core/problems/AbstractProblem.ht
                                  <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;curSolution,
                                  <a href="../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;curValidation)</pre>
 <div class="block">Validate a move to be applied to the current subset solution of a local search (delta validation).
- A subset problem can only perform delta validation for moves of type <a href="../../../../org/jamesframework/core/subset/neigh/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh"><code>SubsetMove</code></a>. If the
+ A subset problem can only perform delta validation for moves of type <a href="../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves"><code>SubsetMove</code></a>. If the
  received move has a different type an <a href="../../../../org/jamesframework/core/exceptions/IncompatibleDeltaValidationException.html" title="class in org.jamesframework.core.exceptions"><code>IncompatibleDeltaValidationException</code></a> is thrown.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -471,7 +471,7 @@ extends <a href="../../../../org/jamesframework/core/problems/AbstractProblem.ht
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>validation of modified subset solution</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../../org/jamesframework/core/exceptions/IncompatibleDeltaValidationException.html" title="class in org.jamesframework.core.exceptions">IncompatibleDeltaValidationException</a></code> - if the received move is not of type <a href="../../../../org/jamesframework/core/subset/neigh/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh"><code>SubsetMove</code></a>
+<dd><code><a href="../../../../org/jamesframework/core/exceptions/IncompatibleDeltaValidationException.html" title="class in org.jamesframework.core.exceptions">IncompatibleDeltaValidationException</a></code> - if the received move is not of type <a href="../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves"><code>SubsetMove</code></a>
                                               or if the delta validation of any mandatory constraint
                                               is not compatible with the received move type</dd>
 </dl>
