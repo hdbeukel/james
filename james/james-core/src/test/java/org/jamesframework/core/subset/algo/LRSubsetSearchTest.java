@@ -45,7 +45,7 @@ public class LRSubsetSearchTest extends SearchTestTemplate {
     
     // maximum runtime
     private final long SINGLE_RUN_RUNTIME = 100;
-    private final long MULTI_RUN_RUNTIME = 20;
+    private final long MULTI_RUN_RUNTIME = 30;
     private final TimeUnit MAX_RUNTIME_TIME_UNIT = TimeUnit.MILLISECONDS;
     
     // number of runs in multi run tests
@@ -132,6 +132,7 @@ public class LRSubsetSearchTest extends SearchTestTemplate {
         search = new LRSubsetSearch(problem, DEFAULT_L, DEFAULT_R);
         // single run
         singleRunWithMaxRuntime(search, problem, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        System.out.println("   >>> num selected: " + search.getBestSolution().getNumSelectedIDs());
     }
     
     /**
@@ -146,6 +147,7 @@ public class LRSubsetSearchTest extends SearchTestTemplate {
         search = new LRSubsetSearch(problem, 20, 5);
         // single run
         singleRunWithMaxRuntime(search, problem, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        System.out.println("   >>> num selected: " + search.getBestSolution().getNumSelectedIDs());
     }
     
     /**
