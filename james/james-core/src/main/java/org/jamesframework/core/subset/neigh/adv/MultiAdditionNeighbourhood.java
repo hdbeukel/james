@@ -26,7 +26,6 @@ import java.util.stream.IntStream;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.subset.algo.exh.SubsetSolutionIterator;
 import org.jamesframework.core.subset.neigh.SingleAdditionNeighbourhood;
-import org.jamesframework.core.subset.neigh.SingleSwapNeighbourhood;
 import org.jamesframework.core.subset.neigh.moves.SubsetMove;
 import org.jamesframework.core.subset.neigh.SubsetNeighbourhood;
 import org.jamesframework.core.util.SetUtilities;
