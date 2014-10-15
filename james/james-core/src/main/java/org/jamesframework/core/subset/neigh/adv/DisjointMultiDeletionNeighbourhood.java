@@ -105,7 +105,7 @@ public class DisjointMultiDeletionNeighbourhood extends SubsetNeighbourhood {
      */
     public DisjointMultiDeletionNeighbourhood(int numDeletions, int minSubsetSize, Set<Integer> fixedIDs){
         super(fixedIDs);
-        // check maximum number of deletions
+        // check number of deletions
         if(numDeletions <= 0){
             throw new IllegalArgumentException("The number of deletions should be strictly positive.");
         }
@@ -119,7 +119,7 @@ public class DisjointMultiDeletionNeighbourhood extends SubsetNeighbourhood {
     /**
      * Get the fixed number of deletions performed by generated moves.
      * 
-     * @return maximum number of deletions
+     * @return fixed number of deletions
      */
     public int getNumDeletions() {
         return numDeletions;
@@ -165,9 +165,8 @@ public class DisjointMultiDeletionNeighbourhood extends SubsetNeighbourhood {
     /**
      * <p>
      * Generates the set of all possible moves that perform \(k\) deletions, where \(k\) is the fixed number
-     * of deletions specified at construction. Note: taking into account the current number of selected items,
-     * the imposed minimum subset size (if set) and the fixed IDs (if any) may result in fewer deletions (as
-     * many as possible).
+     * specified at construction. Note: taking into account the current number of selected items, the imposed
+     * minimum subset size (if set) and the fixed IDs (if any) may result in fewer deletions (as many as possible).
      * </p>
      * <p>
      * May return an empty set if no moves can be generated.
@@ -201,7 +200,7 @@ public class DisjointMultiDeletionNeighbourhood extends SubsetNeighbourhood {
     }
     
     /**
-     * Computes the number of deletions that can be performed, given the set of remove candidates
+     * Computes the number of deletions that are to be performed, given the set of remove candidates
      * and the current subset solution. Takes into account the desired number of deletions \(k\)
      * specified at construction, the number of currently selected non-fixed items and the minimum
      * allowed subset size (if any).
