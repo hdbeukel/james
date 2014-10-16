@@ -16,8 +16,7 @@
 
 package org.jamesframework.core.problems.constraints.validations;
 
-import java.util.Collection;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import org.jamesframework.core.problems.constraints.Validation;
 
@@ -31,13 +30,27 @@ public class UnanimousValidation implements Validation {
 
     // contained validations
     private Map<Object, Validation> validations;
+    
+    // cached value
+    private Boolean cachedValue = null;
 
     /**
      * Create an empty unanimous validation object. Actual underlying validations can be added
      * later by calling {@link #addValidation(Object, Validation)}.
      */
     public UnanimousValidation() {
-        validations = new HashMap<>();
+        validations = null;
+    }
+    
+    /**
+     * Private method to initialize the validation map if not yet initialized.
+     */
+    private void initMapOnce(){
+        if(validations == null){
+            // use custom initial capacity as map is expected to
+            // contain few items (in most cases only a single item)
+            validations = new LinkedHashMap<>(1);
+        }
     }
     
     /**
@@ -47,7 +60,10 @@ public class UnanimousValidation implements Validation {
      * @param validation validation object
      */
     public void addValidation(Object key, Validation validation){
+        initMapOnce();
         validations.put(key, validation);
+        // invalidate cache
+        cachedValue = null;
     }
     
     /**
@@ -62,27 +78,21 @@ public class UnanimousValidation implements Validation {
     
     /**
      * Retrieve the validation object corresponding to the given key.
+     * If no validation with this key has been added, <code>null</code>
+     * is returned.
      * 
      * @param key key specified when adding the validation
-     * @return retrieved validation object
+     * @return retrieved validation object, <code>null</code> if no validation with this key was added
      */
     public Validation getValidation(Object key){
-        return validations.get(key);
-    }
-    
-    /**
-     * Get the collection of all keys specified when adding a validation object.
-     * 
-     * @return collection of used keys
-     */
-    public Collection<Object> getKeys(){
-        return validations.keySet();
+        return validations == null ? null : validations.get(key);
     }
     
     /**
      * Get a map containing all added validation objects stored by the assigned keys.
+     * May return <code>null</code> if no validations have been added.
      * 
-     * @return map containing all validations
+     * @return map containing all validations; <code>null</code> if no validations have been added
      */
     public Map<Object, Validation> getValidations(){
         return validations;
@@ -90,21 +100,29 @@ public class UnanimousValidation implements Validation {
     
     /**
      * Set a new validation map, discarding any previously added validation objects.
+     * This method does <b>not</b> perform a deep copy but stores a reference to the given map.
      * 
      * @param validations map of validation objects
      */
     public void setValidations(Map<Object, Validation> validations){
         this.validations = validations;
+        // invalidate cache
+        cachedValue = null;
     }
 
     /**
      * A unanimous validation passed if and only if all contained validations passed.
+     * The result is cached so that it only needs to be computed when it is retrieved
+     * for the first time.
      * 
      * @return <code>true</code> if all contained validations passed
      */
     @Override
     public boolean passed() {
-        return validations.values().stream().allMatch(Validation::passed);
+        if(cachedValue == null){
+            cachedValue = validations == null ? true : validations.values().stream().allMatch(Validation::passed);
+        }
+        return cachedValue;
     }
     
     /**

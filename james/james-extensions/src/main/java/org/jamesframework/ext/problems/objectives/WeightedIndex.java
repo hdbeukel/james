@@ -16,7 +16,7 @@
 
 package org.jamesframework.ext.problems.objectives;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import org.jamesframework.core.problems.objectives.Objective;
 import org.jamesframework.core.problems.Solution;
@@ -42,7 +42,7 @@ public class WeightedIndex<SolutionType extends Solution, DataType> implements O
      * Create an empty weighted index.
      */
     public WeightedIndex() {
-        weights = new HashMap<>();
+        weights = new LinkedHashMap<>();
     }
     
     /**

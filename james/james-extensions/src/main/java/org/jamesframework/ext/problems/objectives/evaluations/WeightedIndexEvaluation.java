@@ -16,7 +16,7 @@
 
 package org.jamesframework.ext.problems.objectives.evaluations;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.problems.objectives.Objective;
@@ -24,8 +24,7 @@ import org.jamesframework.core.problems.objectives.Objective;
 /**
  * Evaluation produced by a weighted index. Contains evaluations produced by the underlying
  * objectives and the respective weights. The double value is computed as a weighted sum
- * of the contained objectives' double values where the sign of minimizing objectives
- * is flipped because a weighted index is always maximized.
+ * of the double values of all contained objectives.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
@@ -34,11 +33,14 @@ public class WeightedIndexEvaluation implements Evaluation {
     // objectives' evaluations and respective weights
     private final Map<Objective, WeightedEvaluation> evaluations;
 
+    // cached value
+    private Double cachedValue = null;
+    
     /**
      * Create an empty evaluation.
      */
     public WeightedIndexEvaluation() {
-        evaluations = new HashMap<>();
+        evaluations = new LinkedHashMap<>();
     }
     
     /**
@@ -50,10 +52,14 @@ public class WeightedIndexEvaluation implements Evaluation {
      */
     public void addEvaluation(Objective obj, Evaluation eval, double weight){
         evaluations.put(obj, new WeightedEvaluation(eval, weight));
+        // invalidate cache
+        cachedValue = null;
     }
     
     /**
      * Get a previously added evaluation produced by a specific objective.
+     * If no evaluation has been added with this objective as its key,
+     * <code>null</code> is returned.
      * 
      * @param obj objective
      * @return evaluation produced by this objective, may be <code>null</code>
@@ -64,12 +70,17 @@ public class WeightedIndexEvaluation implements Evaluation {
 
     /**
      * The value consist of the weighted sum of the values of all added evaluations.
+     * The result is cached so that it only needs to be computed when it is retrieved
+     * for the first time.
      * 
      * @return weighted sum of values
      */
     @Override
     public double getValue() {
-        return evaluations.values().stream().mapToDouble(we -> we.getWeightedValue()).sum();
+        if(cachedValue == null){
+            cachedValue = evaluations.values().stream().mapToDouble(WeightedEvaluation::getWeightedValue).sum();
+        }
+        return cachedValue;
     }
     
     /**

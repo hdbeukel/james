@@ -16,8 +16,7 @@
 
 package org.jamesframework.core.problems.objectives.evaluations;
 
-import java.util.Collection;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import org.jamesframework.core.problems.constraints.PenalizingValidation;
 import org.jamesframework.core.problems.objectives.Evaluation;
@@ -53,7 +52,18 @@ public class PenalizedEvaluation implements Evaluation {
     public PenalizedEvaluation(Evaluation evaluation, boolean minimizing){
         this.evaluation = evaluation;
         this.minimizing = minimizing;
-        this.penalties = new HashMap<>();
+        this.penalties = null;
+    }
+    
+    /**
+     * Private method to initialize the penalty map if not yet initialized.
+     */
+    private void initMapOnce(){
+        if(penalties == null){
+            // use custom initial capacity as map is expected to
+            // contain few items (in most cases only a single item)
+            penalties = new LinkedHashMap<>(1);
+        }
     }
     
     /**
@@ -64,7 +74,10 @@ public class PenalizedEvaluation implements Evaluation {
      * @param penalty penalizing validation that indicates the assigned penalty
      */
     public void addPenalizingValidation(Object key, PenalizingValidation penalty){
+        initMapOnce();
         penalties.put(key, penalty);
+        // invalidate cache
+        cachedValue = null;
     }
     
     /**
@@ -79,27 +92,21 @@ public class PenalizedEvaluation implements Evaluation {
     
     /**
      * Retrieve the penalizing validation object corresponding to the given key.
+     * If no penalty has been added with this key, <code>null</code> is returned.
      * 
      * @param key key specified when adding the penalizing validation
-     * @return retrieved validation object
+     * @return retrieved validation object, or <code>null</code> if no validation
+     *         object was added with this key
      */
     public PenalizingValidation getPenalizingValidation(Object key){
-        return penalties.get(key);
-    }
-    
-    /**
-     * Get the collection of all keys specified when adding a penalizing validation object.
-     * 
-     * @return collection of used keys
-     */
-    public Collection<Object> getKeys(){
-        return penalties.keySet();
+        return penalties == null ? null : penalties.get(key);
     }
     
     /**
      * Get a map containing all added penalizing validation objects stored by the assigned keys.
+     * May return <code>null</code> if no penalizing validations have been added.
      * 
-     * @return map containing all penalizing validations
+     * @return map containing all penalizing validations; <code>null</code> if no validations have been added
      */
     public Map<Object, PenalizingValidation> getValidations(){
         return penalties;
@@ -107,11 +114,14 @@ public class PenalizedEvaluation implements Evaluation {
     
     /**
      * Set a new penalty map, discarding any previously added penalizing validation objects.
+     * This method does <b>not</b> perform a deep copy but stores a reference to the given map.
      * 
      * @param penalties map of penalizing validation objects
      */
     public void setValidations(Map<Object, PenalizingValidation> penalties){
         this.penalties = penalties;
+        // invalidate cache
+        cachedValue = null;
     }
     
     /**
@@ -133,9 +143,12 @@ public class PenalizedEvaluation implements Evaluation {
     public double getValue() {
         if(cachedValue == null){
             double e = evaluation.getValue();
-            double p = penalties.values().stream()
-                                .mapToDouble(val -> val.getPenalty())
-                                .sum();
+            double p = 0.0;
+            if(penalties != null){
+                p = penalties.values().stream()
+                                      .mapToDouble(PenalizingValidation::getPenalty)
+                                      .sum();
+            }
             if(minimizing){
                 e += p;
             } else {
@@ -155,7 +168,7 @@ public class PenalizedEvaluation implements Evaluation {
      */
     @Override
     public String toString(){
-        if(penalties.values().stream().allMatch(pc -> pc.passed())){
+        if(penalties == null || penalties.values().stream().allMatch(pc -> pc.passed())){
             // no penalties assigned
             return getValue() + "";
         } else {
