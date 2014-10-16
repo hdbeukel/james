@@ -47,14 +47,14 @@ public class MaxTimeWithoutImprovement implements StopCriterion {
     }
     
     /**
-     * Checks whether the maximum time without finding improvements has been exceeded for the given search.
+     * Checks whether the maximum time without finding improvements has been reached for the given search.
      * 
      * @param search search for which the time without finding improvements has to be checked
-     * @return <code>true</code> if the given search has exceeded the maximum time without improvement
+     * @return <code>true</code> if the given search has reached the maximum time without improvement
      */
     @Override
     public boolean searchShouldStop(Search<?> search) {
-        return search.getTimeWithoutImprovement()> maxTimeWithoutImprovement;
+        return search.getTimeWithoutImprovement() >= maxTimeWithoutImprovement;
     }
     
     @Override

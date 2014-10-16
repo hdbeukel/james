@@ -17,6 +17,7 @@
 package org.jamesframework.core.search.stopcriteria;
 
 import org.jamesframework.core.search.Search;
+import org.jamesframework.core.util.JamesConstants;
 
 /**
  * Stop criterion that imposes a minimum delta (amount of improvement in evaluation)
@@ -58,7 +59,7 @@ public class MinDelta implements StopCriterion {
      */
     @Override
     public boolean searchShouldStop(Search<?> search) {
-        return search.getMinDelta() > 0.0 && search.getMinDelta() < minDelta;
+        return search.getMinDelta() != JamesConstants.INVALID_DELTA && search.getMinDelta() < minDelta;
     }
     
     @Override

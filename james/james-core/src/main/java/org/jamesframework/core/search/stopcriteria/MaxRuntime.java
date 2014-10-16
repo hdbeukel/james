@@ -46,14 +46,14 @@ public class MaxRuntime implements StopCriterion {
     }
     
     /**
-     * Checks whether the maximum runtime has been exceeded for the given search.
+     * Checks whether the maximum runtime has been reached for the given search.
      * 
      * @param search search for which the runtime has to be checked
-     * @return <code>true</code> if the given search has exceeded the maximum runtime
+     * @return <code>true</code> if the given search has reached the maximum runtime
      */
     @Override
     public boolean searchShouldStop(Search<?> search) {
-        return search.getRuntime() > maxRuntime;
+        return search.getRuntime() >= maxRuntime;
     }
     
     @Override

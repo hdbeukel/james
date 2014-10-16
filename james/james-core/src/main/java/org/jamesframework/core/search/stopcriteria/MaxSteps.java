@@ -44,14 +44,14 @@ public class MaxSteps implements StopCriterion {
     }
     
     /**
-     * Checks whether the maximum number of steps has been exceeded for the given search.
+     * Checks whether the maximum number of steps has been reached for the given search.
      * 
      * @param search search for which the number of performed steps has to be checked
-     * @return <code>true</code> if the given search has exceeded the maximum number of steps
+     * @return <code>true</code> if the given search has reached the maximum number of steps
      */
     @Override
     public boolean searchShouldStop(Search<?> search) {
-        return search.getSteps() > maxSteps;
+        return search.getSteps() >= maxSteps;
     }
     
     @Override

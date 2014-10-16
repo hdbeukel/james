@@ -45,14 +45,14 @@ public class MaxStepsWithoutImprovement implements StopCriterion {
     }
     
     /**
-     * Checks whether the maximum number of steps without finding improvement has been exceeded for the given search.
+     * Checks whether the maximum number of steps without finding improvement has been reached for the given search.
      * 
      * @param search search for which the number of performed steps without finding any improvement has to be checked
-     * @return <code>true</code> if the given search has exceeded the maximum number of steps without improvement
+     * @return <code>true</code> if the given search has reached the maximum number of steps without improvement
      */
     @Override
     public boolean searchShouldStop(Search<?> search) {
-        return search.getStepsWithoutImprovement()> maxStepsWithoutImprovement;
+        return search.getStepsWithoutImprovement() >= maxStepsWithoutImprovement;
     }
     
     @Override
