@@ -1,172 +1,176 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg height="1084" version="1.1" width="716" xmlns="http://www.w3.org/2000/svg">
-<polygon fill="#ffffff" points="14,14 652,14 652,38 701,38 701,1069 14,1069 14,14" stroke="#ffffff" stroke-width="1"/>
+<svg height="1116" version="1.1" width="716" xmlns="http://www.w3.org/2000/svg">
+<polygon fill="#ffffff" points="14,14 652,14 652,38 701,38 701,1101 14,1101 14,14" stroke="#ffffff" stroke-width="1"/>
 <rect fill="none" height="24" stroke="#000000" stroke-width="1" width="638" x="14" y="14"/>
 <text font-family="Lucida Grande" font-size="13" x="19" y="28">
 search</text>
-<rect fill="none" height="1031" stroke="#000000" stroke-width="1" width="687" x="14" y="38"/>
-<rect fill="#ffffff" height="92" stroke="#ffffff" stroke-width="1" width="271" x="38" y="854"/>
-<rect fill="none" height="92" stroke="#000000" stroke-width="1" width="271" x="38" y="854"/>
-<text font-family="Lucida Grande" font-size="13" font-style="italic" x="85" y="868">
+<rect fill="none" height="1063" stroke="#000000" stroke-width="1" width="687" x="14" y="38"/>
+<rect fill="#ffffff" height="92" stroke="#ffffff" stroke-width="1" width="271" x="38" y="886"/>
+<rect fill="none" height="92" stroke="#000000" stroke-width="1" width="271" x="38" y="886"/>
+<text font-family="Lucida Grande" font-size="13" font-style="italic" x="85" y="900">
 SingleNeighbourhoodSearch</text>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="271" x="38" y="878"/>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="271" x="38" y="901"/>
-<text font-family="Lucida Grande" font-size="13" x="42" y="916">
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="271" x="38" y="910"/>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="271" x="38" y="933"/>
+<text font-family="Lucida Grande" font-size="13" x="42" y="948">
 setNeighbourhood(Neighbourhood) : void</text>
-<text font-family="Lucida Grande" font-size="13" x="42" y="933">
+<text font-family="Lucida Grande" font-size="13" x="42" y="965">
 getNeighbourhood() : Neighbourhood</text>
-<rect fill="#ffffff" height="92" stroke="#ffffff" stroke-width="1" width="253" x="78" y="957"/>
-<rect fill="none" height="92" stroke="#000000" stroke-width="1" width="253" x="78" y="957"/>
-<text font-family="Lucida Grande" font-size="13" font-style="italic" x="119" y="971">
+<rect fill="#ffffff" height="92" stroke="#ffffff" stroke-width="1" width="253" x="78" y="989"/>
+<rect fill="none" height="92" stroke="#000000" stroke-width="1" width="253" x="78" y="989"/>
+<text font-family="Lucida Grande" font-size="13" font-style="italic" x="119" y="1003">
 MultiNeighbourhoodSearch</text>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="253" x="78" y="981"/>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="253" x="78" y="1004"/>
-<text font-family="Lucida Grande" font-size="13" x="82" y="1019">
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="253" x="78" y="1013"/>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="253" x="78" y="1036"/>
+<text font-family="Lucida Grande" font-size="13" x="82" y="1051">
 setNeighbourhoods(List) : void</text>
-<text font-family="Lucida Grande" font-size="13" x="82" y="1036">
+<text font-family="Lucida Grande" font-size="13" x="82" y="1068">
 getNeighbourhoods() : List</text>
-<rect fill="#ffffff" height="138" stroke="#ffffff" stroke-width="1" width="334" x="346" y="167"/>
-<rect fill="none" height="138" stroke="#000000" stroke-width="1" width="334" x="346" y="167"/>
-<text font-family="Lucida Grande" font-size="13" x="467" y="201">
+<rect fill="#ffffff" height="138" stroke="#ffffff" stroke-width="1" width="421" x="255" y="169"/>
+<rect fill="none" height="138" stroke="#000000" stroke-width="1" width="421" x="255" y="169"/>
+<text font-family="Lucida Grande" font-size="13" x="420" y="203">
 SearchListener</text>
-<text font-family="Lucida Grande" font-size="13" x="465" y="182">
+<text font-family="Lucida Grande" font-size="13" x="418" y="184">
 &lt;&lt;interface&gt;&gt;</text>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="334" x="346" y="211"/>
-<text font-family="Lucida Grande" font-size="13" font-style="italic" x="350" y="226">
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="421" x="255" y="213"/>
+<text font-family="Lucida Grande" font-size="13" font-style="italic" x="259" y="228">
 searchStarted(Search) : void</text>
-<text font-family="Lucida Grande" font-size="13" font-style="italic" x="350" y="243">
+<text font-family="Lucida Grande" font-size="13" font-style="italic" x="259" y="245">
 searchStopped(Search) : void</text>
-<text font-family="Lucida Grande" font-size="13" font-style="italic" x="350" y="260">
-newBestSolution(Search,SolutionType,double) : void</text>
-<text font-family="Lucida Grande" font-size="13" font-style="italic" x="350" y="277">
+<text font-family="Lucida Grande" font-size="13" font-style="italic" x="259" y="262">
+newBestSolution(Search,SolutionType,Evaluation,Validation) : void</text>
+<text font-family="Lucida Grande" font-size="13" font-style="italic" x="259" y="279">
 stepCompleted(Search,long) : void</text>
-<text font-family="Lucida Grande" font-size="13" font-style="italic" x="350" y="294">
+<text font-family="Lucida Grande" font-size="13" font-style="italic" x="259" y="296">
 statusChanged(Search,SearchStatus) : void</text>
-<rect fill="#ffffff" height="70" stroke="#ffffff" stroke-width="1" width="233" x="69" y="398"/>
-<rect fill="none" height="70" stroke="#000000" stroke-width="1" width="233" x="69" y="398"/>
-<text font-family="Lucida Grande" font-size="13" x="144" y="432">
+<rect fill="#ffffff" height="70" stroke="#ffffff" stroke-width="1" width="233" x="69" y="407"/>
+<rect fill="none" height="70" stroke="#000000" stroke-width="1" width="233" x="69" y="407"/>
+<text font-family="Lucida Grande" font-size="13" x="144" y="441">
 StopCriterion</text>
-<text font-family="Lucida Grande" font-size="13" x="138" y="413">
+<text font-family="Lucida Grande" font-size="13" x="138" y="422">
 &lt;&lt;interface&gt;&gt;</text>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="233" x="69" y="442"/>
-<text font-family="Lucida Grande" font-size="13" font-style="italic" x="73" y="457">
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="233" x="69" y="451"/>
+<text font-family="Lucida Grande" font-size="13" font-style="italic" x="73" y="466">
 searchShouldStop(Search) : boolean</text>
-<rect fill="#ffffff" height="70" stroke="#ffffff" stroke-width="1" width="424" x="174" y="60"/>
-<rect fill="none" height="70" stroke="#000000" stroke-width="1" width="424" x="174" y="60"/>
-<text font-family="Lucida Grande" font-size="13" x="324" y="94">
+<rect fill="#ffffff" height="70" stroke="#ffffff" stroke-width="1" width="506" x="170" y="63"/>
+<rect fill="none" height="70" stroke="#000000" stroke-width="1" width="506" x="170" y="63"/>
+<text font-family="Lucida Grande" font-size="13" x="361" y="97">
 LocalSearchListener</text>
-<text font-family="Lucida Grande" font-size="13" x="338" y="75">
+<text font-family="Lucida Grande" font-size="13" x="375" y="78">
 &lt;&lt;interface&gt;&gt;</text>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="424" x="174" y="104"/>
-<text font-family="Lucida Grande" font-size="13" font-style="italic" x="178" y="119">
-modifiedCurrentSolution(LocalSearch,SolutionType,double) : void</text>
-<polyline fill="none" points="429,129 429,167" stroke="#000000" stroke-width="1"/>
-<polygon fill="#ffffff" points="429,167 422,155 436,155" stroke="#ffffff" stroke-width="1"/>
-<polygon fill="none" points="429,167 422,155 436,155" stroke="#000000" stroke-width="1"/>
-<rect fill="#ffffff" height="377" stroke="#ffffff" stroke-width="1" width="325" x="351" y="338"/>
-<rect fill="none" height="377" stroke="#000000" stroke-width="1" width="325" x="351" y="338"/>
-<text font-family="Lucida Grande" font-size="13" font-style="italic" x="493" y="352">
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="506" x="170" y="107"/>
+<text font-family="Lucida Grande" font-size="13" font-style="italic" x="174" y="122">
+modifiedCurrentSolution(LocalSearch,SolutionType,Evaluation,Validation) : void</text>
+<polyline fill="none" points="510,132 510,169" stroke="#000000" stroke-width="1"/>
+<polygon fill="#ffffff" points="510,169 503,157 517,157" stroke="#ffffff" stroke-width="1"/>
+<polygon fill="none" points="510,169 503,157 517,157" stroke="#000000" stroke-width="1"/>
+<rect fill="#ffffff" height="394" stroke="#ffffff" stroke-width="1" width="327" x="351" y="347"/>
+<rect fill="none" height="394" stroke="#000000" stroke-width="1" width="327" x="351" y="347"/>
+<text font-family="Lucida Grande" font-size="13" font-style="italic" x="494" y="361">
 Search</text>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="325" x="351" y="362"/>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="325" x="351" y="383"/>
-<text font-family="Lucida Grande" font-size="13" x="355" y="398">
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="327" x="351" y="371"/>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="327" x="351" y="392"/>
+<text font-family="Lucida Grande" font-size="13" x="355" y="407">
 setStopCriterionCheckPeriod(long,TimeUnit) : void</text>
-<text font-family="Lucida Grande" font-size="13" x="355" y="415">
+<text font-family="Lucida Grande" font-size="13" x="355" y="424">
 addStopCriterion(StopCriterion) : void</text>
-<text font-family="Lucida Grande" font-size="13" x="355" y="432">
+<text font-family="Lucida Grande" font-size="13" x="355" y="441">
 removeStopCriterion(StopCriterion) : boolean</text>
-<text font-family="Lucida Grande" font-size="13" x="355" y="449">
+<text font-family="Lucida Grande" font-size="13" x="355" y="458">
 addSearchListener(SearchListener) : boolean</text>
-<text font-family="Lucida Grande" font-size="13" x="355" y="466">
+<text font-family="Lucida Grande" font-size="13" x="355" y="475">
 removeSearchListener(SearchListener) : boolean</text>
-<text font-family="Lucida Grande" font-size="13" x="355" y="483">
+<text font-family="Lucida Grande" font-size="13" x="355" y="492">
 getStatus() : SearchStatus</text>
-<text font-family="Lucida Grande" font-size="13" x="355" y="500">
+<text font-family="Lucida Grande" font-size="13" x="355" y="509">
 getRuntime() : long</text>
-<text font-family="Lucida Grande" font-size="13" x="355" y="517">
+<text font-family="Lucida Grande" font-size="13" x="355" y="526">
 getSteps() : long</text>
-<text font-family="Lucida Grande" font-size="13" x="355" y="534">
+<text font-family="Lucida Grande" font-size="13" x="355" y="543">
 getTimeWithoutImprovement() : long</text>
-<text font-family="Lucida Grande" font-size="13" x="355" y="551">
+<text font-family="Lucida Grande" font-size="13" x="355" y="560">
 getStepsWithoutImprovement() : long</text>
-<text font-family="Lucida Grande" font-size="13" x="355" y="568">
+<text font-family="Lucida Grande" font-size="13" x="355" y="577">
 getMinDelta() : double</text>
-<text font-family="Lucida Grande" font-size="13" x="355" y="585">
+<text font-family="Lucida Grande" font-size="13" x="355" y="594">
 start() : void</text>
-<text font-family="Lucida Grande" font-size="13" x="355" y="602">
+<text font-family="Lucida Grande" font-size="13" x="355" y="611">
 stop() : void</text>
-<text font-family="Lucida Grande" font-size="13" x="355" y="619">
+<text font-family="Lucida Grande" font-size="13" x="355" y="628">
 getBestSolution() : SolutionType</text>
-<text font-family="Lucida Grande" font-size="13" x="355" y="636">
-getBestSolutionEvaluation() : double</text>
-<text font-family="Lucida Grande" font-size="13" x="355" y="653">
+<text font-family="Lucida Grande" font-size="13" x="355" y="645">
+getBestSolutionEvaluation() : Evaluation</text>
+<text font-family="Lucida Grande" font-size="13" x="355" y="662">
+getBestSolutionValidation() : Validation</text>
+<text font-family="Lucida Grande" font-size="13" x="355" y="679">
 getName() : String</text>
-<text font-family="Lucida Grande" font-size="13" x="355" y="670">
+<text font-family="Lucida Grande" font-size="13" x="355" y="696">
 getID() : int</text>
-<text font-family="Lucida Grande" font-size="13" x="355" y="687">
+<text font-family="Lucida Grande" font-size="13" x="355" y="713">
 dispose() : void</text>
-<text font-family="Lucida Grande" font-size="13" x="355" y="704">
+<text font-family="Lucida Grande" font-size="13" x="355" y="730">
 getProblem() : Problem</text>
-<polyline fill="none" points="351,421 301,421" stroke="#000000" stroke-width="1"/>
-<line fill="#000000" stroke="#000000" stroke-width="1" x1="313" x2="301" y1="414" y2="421"/>
-<line fill="#000000" stroke="#000000" stroke-width="1" x1="313" x2="301" y1="428" y2="421"/>
-<polyline fill="none" points="510,338 510,304" stroke="#000000" stroke-width="1"/>
-<line fill="#000000" stroke="#000000" stroke-width="1" x1="517" x2="510" y1="316" y2="304"/>
-<line fill="#000000" stroke="#000000" stroke-width="1" x1="503" x2="510" y1="316" y2="304"/>
-<rect fill="#ffffff" height="88" stroke="#ffffff" stroke-width="1" width="232" x="397" y="918"/>
-<rect fill="none" height="88" stroke="#000000" stroke-width="1" width="232" x="397" y="918"/>
-<text font-family="Lucida Grande" font-size="13" font-style="italic" x="443" y="932">
+<polyline fill="none" points="351,430 301,430" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="313" x2="301" y1="423" y2="430"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="313" x2="301" y1="437" y2="430"/>
+<polyline fill="none" points="510,347 510,306" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="517" x2="510" y1="318" y2="306"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="503" x2="510" y1="318" y2="306"/>
+<rect fill="#ffffff" height="88" stroke="#ffffff" stroke-width="1" width="232" x="398" y="950"/>
+<rect fill="none" height="88" stroke="#000000" stroke-width="1" width="232" x="398" y="950"/>
+<text font-family="Lucida Grande" font-size="13" font-style="italic" x="444" y="964">
 NeighbourhoodSearch</text>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="232" x="397" y="942"/>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="232" x="397" y="963"/>
-<text font-family="Lucida Grande" font-size="13" x="401" y="978">
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="232" x="398" y="974"/>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="232" x="398" y="995"/>
+<text font-family="Lucida Grande" font-size="13" x="402" y="1010">
 getNumAcceptedMoves() : long</text>
-<text font-family="Lucida Grande" font-size="13" x="401" y="995">
+<text font-family="Lucida Grande" font-size="13" x="402" y="1027">
 getNumRejectedMoves() : long</text>
-<rect fill="#ffffff" height="159" stroke="#ffffff" stroke-width="1" width="129" x="173" y="510"/>
-<rect fill="none" height="159" stroke="#000000" stroke-width="1" width="129" x="173" y="510"/>
-<text font-family="Lucida Grande" font-size="13" x="197" y="544">
+<rect fill="#ffffff" height="159" stroke="#ffffff" stroke-width="1" width="129" x="173" y="519"/>
+<rect fill="none" height="159" stroke="#000000" stroke-width="1" width="129" x="173" y="519"/>
+<text font-family="Lucida Grande" font-size="13" x="197" y="553">
 SearchStatus</text>
-<text font-family="Lucida Grande" font-size="13" x="178" y="525">
+<text font-family="Lucida Grande" font-size="13" x="178" y="534">
 &lt;&lt;enumeration&gt;&gt;</text>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="129" x="173" y="554"/>
-<text font-family="Lucida Grande" font-size="13" x="177" y="569">
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="129" x="173" y="563"/>
+<text font-family="Lucida Grande" font-size="13" x="177" y="578">
 IDLE</text>
-<text font-family="Lucida Grande" font-size="13" x="177" y="586">
+<text font-family="Lucida Grande" font-size="13" x="177" y="595">
 INITIALIZING</text>
-<text font-family="Lucida Grande" font-size="13" x="177" y="603">
+<text font-family="Lucida Grande" font-size="13" x="177" y="612">
 RUNNING</text>
-<text font-family="Lucida Grande" font-size="13" x="177" y="620">
+<text font-family="Lucida Grande" font-size="13" x="177" y="629">
 TERMINATING</text>
-<text font-family="Lucida Grande" font-size="13" x="177" y="637">
+<text font-family="Lucida Grande" font-size="13" x="177" y="646">
 DISPOSED</text>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="129" x="173" y="647"/>
-<polyline fill="none" points="351,534 301,534" stroke="#000000" stroke-width="1"/>
-<line fill="#000000" stroke="#000000" stroke-width="1" x1="313" x2="301" y1="527" y2="534"/>
-<line fill="#000000" stroke="#000000" stroke-width="1" x1="313" x2="301" y1="541" y2="534"/>
-<polyline fill="none" points="308,934 397,934" stroke="#000000" stroke-width="1"/>
-<polygon fill="#ffffff" points="397,934 385,941 385,927" stroke="#ffffff" stroke-width="1"/>
-<polygon fill="none" points="397,934 385,941 385,927" stroke="#000000" stroke-width="1"/>
-<polyline fill="none" points="330,969 397,969" stroke="#000000" stroke-width="1"/>
-<polygon fill="#ffffff" points="397,969 385,976 385,962" stroke="#ffffff" stroke-width="1"/>
-<polygon fill="none" points="397,969 385,976 385,962" stroke="#000000" stroke-width="1"/>
-<rect fill="#ffffff" height="105" stroke="#ffffff" stroke-width="1" width="256" x="385" y="766"/>
-<rect fill="none" height="105" stroke="#000000" stroke-width="1" width="256" x="385" y="766"/>
-<text font-family="Lucida Grande" font-size="13" font-style="italic" x="476" y="780">
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="129" x="173" y="656"/>
+<polyline fill="none" points="351,543 301,543" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="313" x2="301" y1="536" y2="543"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="313" x2="301" y1="550" y2="543"/>
+<polyline fill="none" points="308,966 398,966" stroke="#000000" stroke-width="1"/>
+<polygon fill="#ffffff" points="398,966 386,973 386,959" stroke="#ffffff" stroke-width="1"/>
+<polygon fill="none" points="398,966 386,973 386,959" stroke="#000000" stroke-width="1"/>
+<polyline fill="none" points="330,1001 398,1001" stroke="#000000" stroke-width="1"/>
+<polygon fill="#ffffff" points="398,1001 386,1008 386,994" stroke="#ffffff" stroke-width="1"/>
+<polygon fill="none" points="398,1001 386,1008 386,994" stroke="#000000" stroke-width="1"/>
+<rect fill="#ffffff" height="122" stroke="#ffffff" stroke-width="1" width="278" x="375" y="782"/>
+<rect fill="none" height="122" stroke="#000000" stroke-width="1" width="278" x="375" y="782"/>
+<text font-family="Lucida Grande" font-size="13" font-style="italic" x="477" y="796">
 LocalSearch</text>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="256" x="385" y="790"/>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="256" x="385" y="811"/>
-<text font-family="Lucida Grande" font-size="13" x="389" y="826">
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="278" x="375" y="806"/>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="278" x="375" y="827"/>
+<text font-family="Lucida Grande" font-size="13" x="379" y="842">
 getCurrentSolution() : SolutionType</text>
-<text font-family="Lucida Grande" font-size="13" x="389" y="843">
-getCurrentSolutionEvaluation() : double</text>
-<text font-family="Lucida Grande" font-size="13" x="389" y="860">
+<text font-family="Lucida Grande" font-size="13" x="379" y="859">
+getCurrentSolutionEvaluation() : Evaluation</text>
+<text font-family="Lucida Grande" font-size="13" x="379" y="876">
+getCurrentSolutionValidation() : Validation</text>
+<text font-family="Lucida Grande" font-size="13" x="379" y="893">
 setCurrentSolution(SolutionType) : void</text>
-<polyline fill="none" points="510,766 510,714" stroke="#000000" stroke-width="1"/>
-<polygon fill="#ffffff" points="510,714 517,726 503,726" stroke="#ffffff" stroke-width="1"/>
-<polygon fill="none" points="510,714 517,726 503,726" stroke="#000000" stroke-width="1"/>
-<polyline fill="none" points="510,918 510,870" stroke="#000000" stroke-width="1"/>
-<polygon fill="#ffffff" points="510,870 517,882 503,882" stroke="#ffffff" stroke-width="1"/>
-<polygon fill="none" points="510,870 517,882 503,882" stroke="#000000" stroke-width="1"/>
+<polyline fill="none" points="510,782 510,740" stroke="#000000" stroke-width="1"/>
+<polygon fill="#ffffff" points="510,740 517,752 503,752" stroke="#ffffff" stroke-width="1"/>
+<polygon fill="none" points="510,740 517,752 503,752" stroke="#000000" stroke-width="1"/>
+<polyline fill="none" points="510,950 510,903" stroke="#000000" stroke-width="1"/>
+<polygon fill="#ffffff" points="510,903 517,915 503,915" stroke="#ffffff" stroke-width="1"/>
+<polygon fill="none" points="510,903 517,915 503,915" stroke="#000000" stroke-width="1"/>
 </svg>
