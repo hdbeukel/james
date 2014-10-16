@@ -22,4 +22,5 @@ org.jamesframework.core.subset.algo.tabu
 org.jamesframework.core.subset.neigh
 org.jamesframework.core.subset.neigh.adv
 org.jamesframework.core.subset.neigh.moves
+org.jamesframework.core.subset.validations
 org.jamesframework.core.util

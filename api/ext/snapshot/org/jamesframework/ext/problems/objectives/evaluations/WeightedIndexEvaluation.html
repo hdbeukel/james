@@ -119,8 +119,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 implements <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/objectives/Evaluation.html?is-external=true" title="class or interface in org.jamesframework.core.problems.objectives">Evaluation</a></pre>
 <div class="block">Evaluation produced by a weighted index. Contains evaluations produced by the underlying
  objectives and the respective weights. The double value is computed as a weighted sum
- of the contained objectives' double values where the sign of minimizing objectives
- is flipped because a weighted index is always maximized.</div>
+ of the double values of all contained objectives.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a></dd>
@@ -247,7 +246,9 @@ implements <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesfr
 <li class="blockList">
 <h4>getEvaluation</h4>
 <pre>public&nbsp;<a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/objectives/Evaluation.html?is-external=true" title="class or interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;getEvaluation(<a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/objectives/Objective.html?is-external=true" title="class or interface in org.jamesframework.core.problems.objectives">Objective</a>&nbsp;obj)</pre>
-<div class="block">Get a previously added evaluation produced by a specific objective.</div>
+<div class="block">Get a previously added evaluation produced by a specific objective.
+ If no evaluation has been added with this objective as its key,
+ <code>null</code> is returned.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>obj</code> - objective</dd>
@@ -263,7 +264,9 @@ implements <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesfr
 <li class="blockList">
 <h4>getValue</h4>
 <pre>public&nbsp;double&nbsp;getValue()</pre>
-<div class="block">The value consist of the weighted sum of the values of all added evaluations.</div>
+<div class="block">The value consist of the weighted sum of the values of all added evaluations.
+ The result is cached so that it only needs to be computed when it is retrieved
+ for the first time.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/objectives/Evaluation.html?is-external=true#getValue--" title="class or interface in org.jamesframework.core.problems.objectives">getValue</a></code>&nbsp;in interface&nbsp;<code><a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/objectives/Evaluation.html?is-external=true" title="class or interface in org.jamesframework.core.problems.objectives">Evaluation</a></code></dd>
