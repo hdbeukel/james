@@ -14,12 +14,14 @@
  * limitations under the License.
  */
 
-package org.jamesframework.core.problems.constraints.validations;
+package org.jamesframework.core.subset.validations;
+
+import org.jamesframework.core.problems.constraints.validations.UnanimousValidation;
 
 /**
  * Represents a validation of a subset solution. Separately indicates whether
  * the subset has a valid size, in addition to the general unanimous constraint
- * validation. It can be checked wether the subset passed validation, possibly
+ * validation. It can be checked whether the subset passed validation, possibly
  * ignoring its size.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
