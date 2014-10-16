@@ -16,10 +16,13 @@
 
 package org.jamesframework.examples.knapsack;
 
+import org.jamesframework.core.exceptions.IncompatibleDeltaEvaluationException;
 import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.problems.objectives.Objective;
 import org.jamesframework.core.problems.objectives.evaluations.SimpleEvaluation;
+import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.subset.SubsetSolution;
+import org.jamesframework.core.subset.neigh.moves.SubsetMove;
 
 /**
  * Objective for the knapsack problem: maximize the total profit.
@@ -32,10 +35,29 @@ public class KnapsackObjective implements Objective<SubsetSolution, KnapsackData
     public Evaluation evaluate(SubsetSolution solution, KnapsackData data) {
         // compute sum of profits of selected items
         double value =  solution.getSelectedIDs().stream()
-                                                 .mapToDouble(id -> data.getProfit(id))
+                                                 .mapToDouble(data::getProfit)
                                                  .sum();
         return new SimpleEvaluation(value);
     }
+
+    @Override
+    public Evaluation evaluate(Move move, SubsetSolution curSolution, Evaluation curEvaluation, KnapsackData data) {
+        // check move type
+        if(!(move instanceof SubsetMove)){
+            throw new IncompatibleDeltaEvaluationException("Knapsack objective should be used in combination "
+                                                + "with neighbourhoods that generate moves of type SubsetMove.");
+        }
+        // cast move
+        SubsetMove subsetMove = (SubsetMove) move;
+        // get current profit
+        double value = curEvaluation.getValue();
+        // account for added items
+        value += subsetMove.getAddedIDs().stream().mapToDouble(data::getProfit).sum();
+        // account for removed items
+        value -= subsetMove.getDeletedIDs().stream().mapToDouble(data::getProfit).sum();
+        // return updated evaluation
+        return new SimpleEvaluation(value);
+    }    
 
     @Override
     public boolean isMinimizing() {
