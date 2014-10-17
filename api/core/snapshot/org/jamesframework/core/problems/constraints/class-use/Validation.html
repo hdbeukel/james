@@ -158,8 +158,24 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a></code></td>
+<td class="colLast"><span class="typeNameLabel">AbstractProblem.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html#validate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.constraints.Validation-">validate</a></span>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">SolutionType</a>&gt;&nbsp;move,
+        <a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">SolutionType</a>&nbsp;curSolution,
+        <a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;curValidation)</code>
+<div class="block">
+ Validate a move by checking all mandatory constraints.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a></code></td>
 <td class="colLast"><span class="typeNameLabel">Problem.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/Problem.html#validate-SolutionType-">validate</a></span>(<a href="../../../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;solution)</code>
 <div class="block">Validates a solution.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a></code></td>
+<td class="colLast"><span class="typeNameLabel">AbstractProblem.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html#validate-SolutionType-">validate</a></span>(<a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">SolutionType</a>&nbsp;solution)</code>
+<div class="block">
+ Validate a solution by checking all mandatory constraints.</div>
 </td>
 </tr>
 </tbody>
@@ -181,7 +197,7 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">UnanimousValidation</a></code></td>
+<td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a></code></td>
 <td class="colLast"><span class="typeNameLabel">AbstractProblem.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html#validate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.constraints.Validation-">validate</a></span>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">SolutionType</a>&gt;&nbsp;move,
         <a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">SolutionType</a>&nbsp;curSolution,
         <a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;curValidation)</code>
@@ -319,21 +335,6 @@
 </tbody>
 </table>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/package-summary.html">org.jamesframework.core.problems.constraints.validations</a> that return types with arguments of type <a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>,<a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">UnanimousValidation.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html#getValidations--">getValidations</a></span>()</code>
-<div class="block">Get a map containing all added validation objects stored by the assigned keys.</div>
-</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
 <caption><span>Methods in <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/package-summary.html">org.jamesframework.core.problems.constraints.validations</a> with parameters of type <a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
@@ -345,27 +346,6 @@
 <td class="colLast"><span class="typeNameLabel">UnanimousValidation.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html#addValidation-java.lang.Object-org.jamesframework.core.problems.constraints.Validation-">addValidation</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;key,
              <a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;validation)</code>
 <div class="block">Add a validation object.</div>
-</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Method parameters in <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/package-summary.html">org.jamesframework.core.problems.constraints.validations</a> with type arguments of type <a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">UnanimousValidation.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html#addValidations-java.util.Map-">addValidations</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>,<a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&gt;&nbsp;validations)</code>
-<div class="block">Add a collections of validation objects.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">UnanimousValidation.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html#setValidations-java.util.Map-">setValidations</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>,<a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&gt;&nbsp;validations)</code>
-<div class="block">Set a new validation map, discarding any previously added validation objects.</div>
 </td>
 </tr>
 </tbody>
@@ -568,6 +548,35 @@
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/validations/SubsetValidation.html" title="class in org.jamesframework.core.subset.validations">SubsetValidation</a></span></code>
 <div class="block">Represents a validation of a subset solution.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../../org/jamesframework/core/subset/validations/package-summary.html">org.jamesframework.core.subset.validations</a> that return <a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a></code></td>
+<td class="colLast"><span class="typeNameLabel">SubsetValidation.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/validations/SubsetValidation.html#getConstraintValidation--">getConstraintValidation</a></span>()</code>
+<div class="block">Get the validation object produced when checking the general constraints.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
+<caption><span>Constructors in <a href="../../../../../../org/jamesframework/core/subset/validations/package-summary.html">org.jamesframework.core.subset.validations</a> with parameters of type <a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Constructor and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/validations/SubsetValidation.html#SubsetValidation-boolean-org.jamesframework.core.problems.constraints.Validation-">SubsetValidation</a></span>(boolean&nbsp;validSize,
+                <a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;constraintValidation)</code>
+<div class="block">Create a subset validation.</div>
 </td>
 </tr>
 </tbody>

@@ -125,10 +125,6 @@
 <dd>
 <div class="block">Add a penalty expressed by a penalizing validation object.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html#addPenalizingValidations-java.util.Map-">addPenalizingValidations(Map&lt;Object, PenalizingValidation&gt;)</a></span> - Method in class org.jamesframework.core.problems.objectives.evaluations.<a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html" title="class in org.jamesframework.core.problems.objectives.evaluations">PenalizedEvaluation</a></dt>
-<dd>
-<div class="block">Add a collections of penalties.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/BasicParallelSearch.html#addSearch-org.jamesframework.core.search.Search-">addSearch(Search&lt;SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a></dt>
 <dd>
 <div class="block">
@@ -149,10 +145,6 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html#addValidation-java.lang.Object-org.jamesframework.core.problems.constraints.Validation-">addValidation(Object, Validation)</a></span> - Method in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">UnanimousValidation</a></dt>
 <dd>
 <div class="block">Add a validation object.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html#addValidations-java.util.Map-">addValidations(Map&lt;Object, Validation&gt;)</a></span> - Method in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">UnanimousValidation</a></dt>
-<dd>
-<div class="block">Add a collections of validation objects.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/Move.html#apply-SolutionType-">apply(SolutionType)</a></span> - Method in interface org.jamesframework.core.search.neigh.<a href="org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a></dt>
 <dd>
@@ -611,6 +603,10 @@
 <dd>
 <div class="block">Retrieve a cached validation, if still available.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/validations/SubsetValidation.html#getConstraintValidation--">getConstraintValidation()</a></span> - Method in class org.jamesframework.core.subset.validations.<a href="org/jamesframework/core/subset/validations/SubsetValidation.html" title="class in org.jamesframework.core.subset.validations">SubsetValidation</a></dt>
+<dd>
+<div class="block">Get the validation object produced when checking the general constraints.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#getCurrentSolution--">getCurrentSolution()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
 <dd>
 <div class="block">Get the current solution.</div>
@@ -946,14 +942,6 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html#getValidation-java.lang.Object-">getValidation(Object)</a></span> - Method in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">UnanimousValidation</a></dt>
 <dd>
 <div class="block">Retrieve the validation object corresponding to the given key.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html#getValidations--">getValidations()</a></span> - Method in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">UnanimousValidation</a></dt>
-<dd>
-<div class="block">Get a map containing all added validation objects stored by the assigned keys.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html#getValidations--">getValidations()</a></span> - Method in class org.jamesframework.core.problems.objectives.evaluations.<a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html" title="class in org.jamesframework.core.problems.objectives.evaluations">PenalizedEvaluation</a></dt>
-<dd>
-<div class="block">Get a map containing all added penalizing validation objects stored by the assigned keys.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/Evaluation.html#getValue--">getValue()</a></span> - Method in interface org.jamesframework.core.problems.objectives.<a href="org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a></dt>
 <dd>
@@ -2071,14 +2059,6 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/util/SetUtilities.html#SetUtilities--">SetUtilities()</a></span> - Constructor for class org.jamesframework.core.util.<a href="org/jamesframework/core/util/SetUtilities.html" title="class in org.jamesframework.core.util">SetUtilities</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html#setValidations-java.util.Map-">setValidations(Map&lt;Object, Validation&gt;)</a></span> - Method in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">UnanimousValidation</a></dt>
-<dd>
-<div class="block">Set a new validation map, discarding any previously added validation objects.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html#setValidations-java.util.Map-">setValidations(Map&lt;Object, PenalizingValidation&gt;)</a></span> - Method in class org.jamesframework.core.problems.objectives.evaluations.<a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html" title="class in org.jamesframework.core.problems.objectives.evaluations">PenalizedEvaluation</a></dt>
-<dd>
-<div class="block">Set a new penalty map, discarding any previously added penalizing validation objects.</div>
-</dd>
 <dt><a href="org/jamesframework/core/problems/objectives/evaluations/SimpleEvaluation.html" title="class in org.jamesframework.core.problems.objectives.evaluations"><span class="typeNameLink">SimpleEvaluation</span></a> - Class in <a href="org/jamesframework/core/problems/objectives/evaluations/package-summary.html">org.jamesframework.core.problems.objectives.evaluations</a></dt>
 <dd>
 <div class="block">A simple evaluation object that wraps a double value.</div>
@@ -2398,7 +2378,7 @@
 <dd>
 <div class="block">Represents a validation of a subset solution.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/validations/SubsetValidation.html#SubsetValidation-boolean-org.jamesframework.core.problems.constraints.validations.UnanimousValidation-">SubsetValidation(boolean, UnanimousValidation)</a></span> - Constructor for class org.jamesframework.core.subset.validations.<a href="org/jamesframework/core/subset/validations/SubsetValidation.html" title="class in org.jamesframework.core.subset.validations">SubsetValidation</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/validations/SubsetValidation.html#SubsetValidation-boolean-org.jamesframework.core.problems.constraints.Validation-">SubsetValidation(boolean, Validation)</a></span> - Constructor for class org.jamesframework.core.subset.validations.<a href="org/jamesframework/core/subset/validations/SubsetValidation.html" title="class in org.jamesframework.core.subset.validations">SubsetValidation</a></dt>
 <dd>
 <div class="block">Create a subset validation.</div>
 </dd>

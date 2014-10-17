@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -170,42 +170,24 @@ implements <a href="../../../../../../org/jamesframework/core/problems/objective
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html#addPenalizingValidations-java.util.Map-">addPenalizingValidations</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>,<a href="../../../../../../org/jamesframework/core/problems/constraints/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints">PenalizingValidation</a>&gt;&nbsp;penalties)</code>
-<div class="block">Add a collections of penalties.</div>
-</td>
-</tr>
-<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html#getEvaluation--">getEvaluation</a></span>()</code>
 <div class="block">Get the original unpenalized evaluation.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/problems/constraints/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints">PenalizingValidation</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html#getPenalizingValidation-java.lang.Object-">getPenalizingValidation</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;key)</code>
 <div class="block">Retrieve the penalizing validation object corresponding to the given key.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>,<a href="../../../../../../org/jamesframework/core/problems/constraints/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints">PenalizingValidation</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html#getValidations--">getValidations</a></span>()</code>
-<div class="block">Get a map containing all added penalizing validation objects stored by the assigned keys.</div>
-</td>
-</tr>
-<tr id="i5" class="rowColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html#getValue--">getValue</a></span>()</code>
 <div class="block">Compute the penalized evaluation.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html#setValidations-java.util.Map-">setValidations</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>,<a href="../../../../../../org/jamesframework/core/problems/constraints/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints">PenalizingValidation</a>&gt;&nbsp;penalties)</code>
-<div class="block">Set a new penalty map, discarding any previously added penalizing validation objects.</div>
-</td>
-</tr>
-<tr id="i7" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html#toString--">toString</a></span>()</code>
 <div class="block">Get a string representation that contains both the penalized and unpenalized
@@ -279,21 +261,6 @@ implements <a href="../../../../../../org/jamesframework/core/problems/objective
 </dl>
 </li>
 </ul>
-<a name="addPenalizingValidations-java.util.Map-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>addPenalizingValidations</h4>
-<pre>public&nbsp;void&nbsp;addPenalizingValidations(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>,<a href="../../../../../../org/jamesframework/core/problems/constraints/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints">PenalizingValidation</a>&gt;&nbsp;penalties)</pre>
-<div class="block">Add a collections of penalties. Each corresponding penalizing
- validation object is assigned a key as indicated in the provided map.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>penalties</code> - penalizing validations to add</dd>
-</dl>
-</li>
-</ul>
 <a name="getPenalizingValidation-java.lang.Object-">
 <!--   -->
 </a>
@@ -309,36 +276,6 @@ implements <a href="../../../../../../org/jamesframework/core/problems/objective
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>retrieved validation object, or <code>null</code> if no validation
          object was added with this key</dd>
-</dl>
-</li>
-</ul>
-<a name="getValidations--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getValidations</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>,<a href="../../../../../../org/jamesframework/core/problems/constraints/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints">PenalizingValidation</a>&gt;&nbsp;getValidations()</pre>
-<div class="block">Get a map containing all added penalizing validation objects stored by the assigned keys.
- May return <code>null</code> if no penalizing validations have been added.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>map containing all penalizing validations; <code>null</code> if no validations have been added</dd>
-</dl>
-</li>
-</ul>
-<a name="setValidations-java.util.Map-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setValidations</h4>
-<pre>public&nbsp;void&nbsp;setValidations(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>,<a href="../../../../../../org/jamesframework/core/problems/constraints/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints">PenalizingValidation</a>&gt;&nbsp;penalties)</pre>
-<div class="block">Set a new penalty map, discarding any previously added penalizing validation objects.
- This method does <b>not</b> perform a deep copy but stores a reference to the given map.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>penalties</code> - map of penalizing validation objects</dd>
 </dl>
 </li>
 </ul>
