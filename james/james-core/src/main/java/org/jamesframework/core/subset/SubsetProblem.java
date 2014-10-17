@@ -214,11 +214,12 @@ public class SubsetProblem<DataType extends IntegerIdentifiedData> extends Abstr
         // check type and cast
         if(move instanceof SubsetMove){
             SubsetMove subsetMove = (SubsetMove) move;
+            SubsetValidation subsetVal = (SubsetValidation) curValidation;
             // check new size
             int newSize = curSolution.getNumSelectedIDs() + subsetMove.getNumAdded() - subsetMove.getNumDeleted();
             boolean validSize = newSize >= getMinSubsetSize() && newSize <= getMaxSubsetSize();
             // delta validation of general constraints
-            Validation deltaVal = super.validate(subsetMove, curSolution, curValidation);
+            Validation deltaVal = super.validate(subsetMove, curSolution, subsetVal.getConstraintValidation());
             // create and return new subset validation
             return new SubsetValidation(validSize, deltaVal);
         } else {
