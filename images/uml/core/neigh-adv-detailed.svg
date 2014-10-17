@@ -1,123 +1,124 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg height="556" version="1.1" width="876" xmlns="http://www.w3.org/2000/svg">
-<polygon fill="#ffffff" points="14,14 212,14 212,38 261,38 261,541 14,541 14,14" stroke="#ffffff" stroke-width="1"/>
-<rect fill="none" height="24" stroke="#000000" stroke-width="1" width="198" x="14" y="14"/>
+<svg height="620" version="1.1" width="916" xmlns="http://www.w3.org/2000/svg">
+<polygon fill="#ffffff" points="14,14 236,14 236,38 285,38 285,605 14,605 14,14" stroke="#ffffff" stroke-width="1"/>
+<rect fill="none" height="24" stroke="#000000" stroke-width="1" width="222" x="14" y="14"/>
 <text font-family="Lucida Grande" font-size="13" x="19" y="28">
 subset.neigh.moves</text>
-<rect fill="none" height="503" stroke="#000000" stroke-width="1" width="247" x="14" y="38"/>
-<rect fill="#ffffff" height="66" stroke="#ffffff" stroke-width="1" width="104" x="84" y="62"/>
-<rect fill="none" height="66" stroke="#000000" stroke-width="1" width="104" x="84" y="62"/>
-<text font-family="Lucida Grande" font-size="13" x="91" y="96">
+<rect fill="none" height="567" stroke="#000000" stroke-width="1" width="271" x="14" y="38"/>
+<rect fill="#ffffff" height="66" stroke="#ffffff" stroke-width="1" width="104" x="94" y="62"/>
+<rect fill="none" height="66" stroke="#000000" stroke-width="1" width="104" x="94" y="62"/>
+<text font-family="Lucida Grande" font-size="13" x="101" y="96">
 + SubsetMove</text>
-<text font-family="Lucida Grande" font-size="13" x="88" y="77">
+<text font-family="Lucida Grande" font-size="13" x="98" y="77">
 &lt;&lt;interface&gt;&gt;</text>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="104" x="84" y="106"/>
-<polygon fill="#ffffff" points="286,14 812,14 812,38 861,38 861,541 286,541 286,14" stroke="#ffffff" stroke-width="1"/>
-<rect fill="none" height="24" stroke="#000000" stroke-width="1" width="526" x="286" y="14"/>
-<text font-family="Lucida Grande" font-size="13" x="291" y="28">
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="104" x="94" y="106"/>
+<polygon fill="#ffffff" points="310,14 852,14 852,38 901,38 901,605 310,605 310,14" stroke="#ffffff" stroke-width="1"/>
+<rect fill="none" height="24" stroke="#000000" stroke-width="1" width="542" x="310" y="14"/>
+<text font-family="Lucida Grande" font-size="13" x="315" y="28">
 subset.neigh.adv</text>
-<rect fill="none" height="503" stroke="#000000" stroke-width="1" width="575" x="286" y="38"/>
-<rect fill="#ffffff" height="352" stroke="#ffffff" stroke-width="1" width="148" x="62" y="166"/>
-<rect fill="none" height="352" stroke="#000000" stroke-width="1" width="148" x="62" y="166"/>
-<text font-family="Lucida Grande" font-size="13" x="68" y="180">
+<rect fill="none" height="567" stroke="#000000" stroke-width="1" width="591" x="310" y="38"/>
+<rect fill="#ffffff" height="368" stroke="#ffffff" stroke-width="1" width="148" x="72" y="174"/>
+<rect fill="none" height="368" stroke="#000000" stroke-width="1" width="148" x="72" y="174"/>
+<text font-family="Lucida Grande" font-size="13" x="78" y="188">
 + GeneralSubsetMove</text>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="148" x="62" y="190"/>
-<text font-family="Lucida Grande" font-size="13" x="66" y="205">
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="148" x="72" y="198"/>
+<text font-family="Lucida Grande" font-size="13" x="76" y="213">
 +add : Set</text>
-<text font-family="Lucida Grande" font-size="13" x="66" y="222">
+<text font-family="Lucida Grande" font-size="13" x="76" y="230">
 +delete : Set</text>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="148" x="62" y="364"/>
-<line fill="#000000" stroke="#000000" stroke-width="1" x1="134" x2="134" y1="166" y2="161"/>
-<line fill="#000000" stroke="#000000" stroke-width="1" x1="134" x2="134" y1="156" y2="151"/>
-<line fill="#000000" stroke="#000000" stroke-width="1" x1="134" x2="134" y1="146" y2="141"/>
-<line fill="#000000" stroke="#000000" stroke-width="1" x1="134" x2="134" y1="136" y2="131"/>
-<polygon fill="#ffffff" points="134,127 141,139 127,139" stroke="#ffffff" stroke-width="1"/>
-<polygon fill="none" points="134,127 141,139 127,139" stroke="#000000" stroke-width="1"/>
-<rect fill="#ffffff" height="71" stroke="#ffffff" stroke-width="1" width="187" x="324" y="126"/>
-<rect fill="none" height="71" stroke="#000000" stroke-width="1" width="187" x="324" y="126"/>
-<text font-family="Lucida Grande" font-size="13" x="329" y="140">
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="148" x="72" y="380"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="150" x2="150" y1="174" y2="169"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="150" x2="150" y1="164" y2="159"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="150" x2="150" y1="154" y2="149"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="150" x2="150" y1="144" y2="139"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="150" x2="150" y1="134" y2="129"/>
+<polygon fill="#ffffff" points="150,127 157,139 143,139" stroke="#ffffff" stroke-width="1"/>
+<polygon fill="none" points="150,127 157,139 143,139" stroke="#000000" stroke-width="1"/>
+<rect fill="#ffffff" height="71" stroke="#ffffff" stroke-width="1" width="187" x="377" y="134"/>
+<rect fill="none" height="71" stroke="#000000" stroke-width="1" width="187" x="377" y="134"/>
+<text font-family="Lucida Grande" font-size="13" x="382" y="148">
 + MultiSwapNeighbourhood</text>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="187" x="324" y="150"/>
-<text font-family="Lucida Grande" font-size="13" x="328" y="165">
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="187" x="377" y="158"/>
+<text font-family="Lucida Grande" font-size="13" x="381" y="173">
 +maxSwaps : int</text>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="187" x="324" y="175"/>
-<polyline fill="none" points="324,182 209,182" stroke="#000000" stroke-width="1"/>
-<line fill="#000000" stroke="#000000" stroke-width="1" x1="221" x2="209" y1="175" y2="182"/>
-<line fill="#000000" stroke="#000000" stroke-width="1" x1="221" x2="209" y1="189" y2="182"/>
-<text font-family="Lucida Grande" font-size="13" x="236" y="162">
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="187" x="377" y="183"/>
+<polyline fill="none" points="377,190 219,190" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="231" x2="219" y1="183" y2="190"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="231" x2="219" y1="197" y2="190"/>
+<text font-family="Lucida Grande" font-size="13" x="267" y="170">
  </text>
-<rect fill="#ffffff" height="71" stroke="#ffffff" stroke-width="1" width="236" x="586" y="182"/>
-<rect fill="none" height="71" stroke="#000000" stroke-width="1" width="236" x="586" y="182"/>
-<text font-family="Lucida Grande" font-size="13" x="591" y="196">
+<rect fill="#ffffff" height="71" stroke="#ffffff" stroke-width="1" width="236" x="624" y="190"/>
+<rect fill="none" height="71" stroke="#000000" stroke-width="1" width="236" x="624" y="190"/>
+<text font-family="Lucida Grande" font-size="13" x="629" y="204">
 + DisjointMultiSwapNeighbourhood</text>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="236" x="586" y="206"/>
-<text font-family="Lucida Grande" font-size="13" x="590" y="221">
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="236" x="624" y="214"/>
+<text font-family="Lucida Grande" font-size="13" x="628" y="229">
 +numSwaps : int</text>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="236" x="586" y="231"/>
-<polyline fill="none" points="586,228 209,228" stroke="#000000" stroke-width="1"/>
-<line fill="#000000" stroke="#000000" stroke-width="1" x1="221" x2="209" y1="221" y2="228"/>
-<line fill="#000000" stroke="#000000" stroke-width="1" x1="221" x2="209" y1="235" y2="228"/>
-<text font-family="Lucida Grande" font-size="13" x="368" y="218">
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="236" x="624" y="239"/>
+<polyline fill="none" points="624,228 219,228" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="231" x2="219" y1="221" y2="228"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="231" x2="219" y1="235" y2="228"/>
+<text font-family="Lucida Grande" font-size="13" x="392" y="218">
  </text>
-<rect fill="#ffffff" height="88" stroke="#ffffff" stroke-width="1" width="208" x="313" y="254"/>
-<rect fill="none" height="88" stroke="#000000" stroke-width="1" width="208" x="313" y="254"/>
-<text font-family="Lucida Grande" font-size="13" x="318" y="268">
+<rect fill="#ffffff" height="88" stroke="#ffffff" stroke-width="1" width="208" x="366" y="254"/>
+<rect fill="none" height="88" stroke="#000000" stroke-width="1" width="208" x="366" y="254"/>
+<text font-family="Lucida Grande" font-size="13" x="371" y="268">
 + MultiAdditionNeighbourhood</text>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="208" x="313" y="278"/>
-<text font-family="Lucida Grande" font-size="13" x="317" y="293">
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="208" x="366" y="278"/>
+<text font-family="Lucida Grande" font-size="13" x="370" y="293">
 +maxAdditions : int</text>
-<text font-family="Lucida Grande" font-size="13" x="317" y="310">
+<text font-family="Lucida Grande" font-size="13" x="370" y="310">
 +maxSubsetSize : int</text>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="208" x="313" y="320"/>
-<rect fill="#ffffff" height="88" stroke="#ffffff" stroke-width="1" width="257" x="576" y="429"/>
-<rect fill="none" height="88" stroke="#000000" stroke-width="1" width="257" x="576" y="429"/>
-<text font-family="Lucida Grande" font-size="13" x="581" y="443">
-+ DisjointMultiDeletionNeighbourhood</text>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="257" x="576" y="453"/>
-<text font-family="Lucida Grande" font-size="13" x="580" y="468">
-+numDeletions : int</text>
-<text font-family="Lucida Grande" font-size="13" x="580" y="485">
-+minSubsetSize : int</text>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="257" x="576" y="495"/>
-<rect fill="#ffffff" height="88" stroke="#ffffff" stroke-width="1" width="258" x="575" y="308"/>
-<rect fill="none" height="88" stroke="#000000" stroke-width="1" width="258" x="575" y="308"/>
-<text font-family="Lucida Grande" font-size="13" x="580" y="322">
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="208" x="366" y="320"/>
+<rect fill="#ffffff" height="88" stroke="#ffffff" stroke-width="1" width="258" x="613" y="326"/>
+<rect fill="none" height="88" stroke="#000000" stroke-width="1" width="258" x="613" y="326"/>
+<text font-family="Lucida Grande" font-size="13" x="618" y="340">
 + DisjointMultiAdditionNeighbourhood</text>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="258" x="575" y="332"/>
-<text font-family="Lucida Grande" font-size="13" x="579" y="347">
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="258" x="613" y="350"/>
+<text font-family="Lucida Grande" font-size="13" x="617" y="365">
 +numAdditions : int</text>
-<text font-family="Lucida Grande" font-size="13" x="579" y="364">
+<text font-family="Lucida Grande" font-size="13" x="617" y="382">
 +maxSubsetSize : int</text>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="258" x="575" y="374"/>
-<rect fill="#ffffff" height="88" stroke="#ffffff" stroke-width="1" width="207" x="314" y="374"/>
-<rect fill="none" height="88" stroke="#000000" stroke-width="1" width="207" x="314" y="374"/>
-<text font-family="Lucida Grande" font-size="13" x="319" y="388">
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="258" x="613" y="392"/>
+<rect fill="#ffffff" height="88" stroke="#ffffff" stroke-width="1" width="207" x="367" y="406"/>
+<rect fill="none" height="88" stroke="#000000" stroke-width="1" width="207" x="367" y="406"/>
+<text font-family="Lucida Grande" font-size="13" x="372" y="420">
 + MultiDeletionNeighbourhood</text>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="207" x="314" y="398"/>
-<text font-family="Lucida Grande" font-size="13" x="318" y="413">
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="207" x="367" y="430"/>
+<text font-family="Lucida Grande" font-size="13" x="371" y="445">
 +maxDeletions : int</text>
-<text font-family="Lucida Grande" font-size="13" x="318" y="430">
+<text font-family="Lucida Grande" font-size="13" x="371" y="462">
 +minSubsetSize : int</text>
-<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="207" x="314" y="440"/>
-<polyline fill="none" points="313,286 209,286" stroke="#000000" stroke-width="1"/>
-<line fill="#000000" stroke="#000000" stroke-width="1" x1="221" x2="209" y1="279" y2="286"/>
-<line fill="#000000" stroke="#000000" stroke-width="1" x1="221" x2="209" y1="293" y2="286"/>
-<text font-family="Lucida Grande" font-size="13" x="230" y="266">
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="207" x="367" y="472"/>
+<rect fill="#ffffff" height="88" stroke="#ffffff" stroke-width="1" width="257" x="614" y="486"/>
+<rect fill="none" height="88" stroke="#000000" stroke-width="1" width="257" x="614" y="486"/>
+<text font-family="Lucida Grande" font-size="13" x="619" y="500">
++ DisjointMultiDeletionNeighbourhood</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="257" x="614" y="510"/>
+<text font-family="Lucida Grande" font-size="13" x="618" y="525">
++numDeletions : int</text>
+<text font-family="Lucida Grande" font-size="13" x="618" y="542">
++minSubsetSize : int</text>
+<rect fill="#000000" height="1" stroke="#000000" stroke-width="1" width="257" x="614" y="552"/>
+<polyline fill="none" points="366,302 219,302" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="231" x2="219" y1="295" y2="302"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="231" x2="219" y1="309" y2="302"/>
+<text font-family="Lucida Grande" font-size="13" x="262" y="282">
  </text>
-<polyline fill="none" points="575,358 209,358" stroke="#000000" stroke-width="1"/>
-<line fill="#000000" stroke="#000000" stroke-width="1" x1="221" x2="209" y1="351" y2="358"/>
-<line fill="#000000" stroke="#000000" stroke-width="1" x1="221" x2="209" y1="365" y2="358"/>
-<text font-family="Lucida Grande" font-size="13" x="361" y="338">
+<polyline fill="none" points="613,374 219,374" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="231" x2="219" y1="367" y2="374"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="231" x2="219" y1="381" y2="374"/>
+<text font-family="Lucida Grande" font-size="13" x="385" y="354">
  </text>
-<polyline fill="none" points="314,410 209,410" stroke="#000000" stroke-width="1"/>
-<line fill="#000000" stroke="#000000" stroke-width="1" x1="221" x2="209" y1="403" y2="410"/>
-<line fill="#000000" stroke="#000000" stroke-width="1" x1="221" x2="209" y1="417" y2="410"/>
-<text font-family="Lucida Grande" font-size="13" x="231" y="390">
+<polyline fill="none" points="367,450 219,450" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="231" x2="219" y1="443" y2="450"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="231" x2="219" y1="457" y2="450"/>
+<text font-family="Lucida Grande" font-size="13" x="262" y="430">
  </text>
-<polyline fill="none" points="576,486 209,486" stroke="#000000" stroke-width="1"/>
-<line fill="#000000" stroke="#000000" stroke-width="1" x1="221" x2="209" y1="479" y2="486"/>
-<line fill="#000000" stroke="#000000" stroke-width="1" x1="221" x2="209" y1="493" y2="486"/>
-<text font-family="Lucida Grande" font-size="13" x="362" y="466">
+<polyline fill="none" points="614,518 219,518" stroke="#000000" stroke-width="1"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="231" x2="219" y1="511" y2="518"/>
+<line fill="#000000" stroke="#000000" stroke-width="1" x1="231" x2="219" y1="525" y2="518"/>
+<text font-family="Lucida Grande" font-size="13" x="386" y="498">
  </text>
 </svg>
