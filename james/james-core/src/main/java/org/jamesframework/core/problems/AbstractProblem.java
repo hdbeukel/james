@@ -193,10 +193,10 @@ public abstract class AbstractProblem<SolutionType extends Solution, DataType> i
      * </p>
      * 
      * @param solution solution to validate
-     * @return unanimous validation indicating whether all mandatory constraints are satisfied
+     * @return validation indicating whether all mandatory constraints are satisfied
      */
     @Override
-    public UnanimousValidation validate(SolutionType solution){
+    public Validation validate(SolutionType solution){
         UnanimousValidation val = new UnanimousValidation();
         mandatoryConstraints.stream()
                             .allMatch(c -> {
@@ -225,10 +225,10 @@ public abstract class AbstractProblem<SolutionType extends Solution, DataType> i
      * @param curValidation validation of current solution
      * @throws IncompatibleDeltaValidationException if the provided delta validation of any mandatory
      *                                              constraint is not compatible with the received move type
-     * @return unanimous validation indicating whether all mandatory constraints are satisfied
+     * @return validation indicating whether all mandatory constraints are satisfied
      */
     @Override
-    public UnanimousValidation validate(Move<? super SolutionType> move,
+    public Validation validate(Move<? super SolutionType> move,
                                         SolutionType curSolution,
                                         Validation curValidation){
         UnanimousValidation curUnanimousVal = (UnanimousValidation) curValidation;
@@ -277,7 +277,7 @@ public abstract class AbstractProblem<SolutionType extends Solution, DataType> i
      * @return aggregated evaluation taking into account both the objective function and penalizing constraints
      */
     @Override
-    public PenalizedEvaluation evaluate(SolutionType solution) {
+    public Evaluation evaluate(SolutionType solution) {
         // evaluate objective function
         Evaluation eval = objective.evaluate(solution, data);
         // initialize penalized evaluation object
@@ -305,9 +305,7 @@ public abstract class AbstractProblem<SolutionType extends Solution, DataType> i
      *         function and penalizing constraints
      */
     @Override
-    public PenalizedEvaluation evaluate(Move<? super SolutionType> move,
-                                        SolutionType curSolution,
-                                        Evaluation curEvaluation){
+    public Evaluation evaluate(Move<? super SolutionType> move, SolutionType curSolution, Evaluation curEvaluation){
         PenalizedEvaluation curPenalizedEval = (PenalizedEvaluation) curEvaluation;
         // retrieve current evaluation without penalties
         Evaluation curEval = curPenalizedEval.getEvaluation();

@@ -67,16 +67,6 @@ public class UnanimousValidation implements Validation {
     }
     
     /**
-     * Add a collections of validation objects. Each validation is
-     * assigned a key as indicated in the provided map.
-     * 
-     * @param validations validations to add
-     */
-    public void addValidations(Map<Object, Validation> validations){
-        validations.keySet().forEach(k -> addValidation(k, validations.get(k)));
-    }
-    
-    /**
      * Retrieve the validation object corresponding to the given key.
      * If no validation with this key has been added, <code>null</code>
      * is returned.
@@ -86,28 +76,6 @@ public class UnanimousValidation implements Validation {
      */
     public Validation getValidation(Object key){
         return validations == null ? null : validations.get(key);
-    }
-    
-    /**
-     * Get a map containing all added validation objects stored by the assigned keys.
-     * May return <code>null</code> if no validations have been added.
-     * 
-     * @return map containing all validations; <code>null</code> if no validations have been added
-     */
-    public Map<Object, Validation> getValidations(){
-        return validations;
-    }
-    
-    /**
-     * Set a new validation map, discarding any previously added validation objects.
-     * This method does <b>not</b> perform a deep copy but stores a reference to the given map.
-     * 
-     * @param validations map of validation objects
-     */
-    public void setValidations(Map<Object, Validation> validations){
-        this.validations = validations;
-        // invalidate cache
-        cachedValue = null;
     }
 
     /**

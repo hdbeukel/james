@@ -81,16 +81,6 @@ public class PenalizedEvaluation implements Evaluation {
     }
     
     /**
-     * Add a collections of penalties. Each corresponding penalizing
-     * validation object is assigned a key as indicated in the provided map.
-     * 
-     * @param penalties penalizing validations to add
-     */
-    public void addPenalizingValidations(Map<Object, PenalizingValidation> penalties){
-        penalties.keySet().forEach(k -> addPenalizingValidation(k, penalties.get(k)));
-    }
-    
-    /**
      * Retrieve the penalizing validation object corresponding to the given key.
      * If no penalty has been added with this key, <code>null</code> is returned.
      * 
@@ -100,28 +90,6 @@ public class PenalizedEvaluation implements Evaluation {
      */
     public PenalizingValidation getPenalizingValidation(Object key){
         return penalties == null ? null : penalties.get(key);
-    }
-    
-    /**
-     * Get a map containing all added penalizing validation objects stored by the assigned keys.
-     * May return <code>null</code> if no penalizing validations have been added.
-     * 
-     * @return map containing all penalizing validations; <code>null</code> if no validations have been added
-     */
-    public Map<Object, PenalizingValidation> getValidations(){
-        return penalties;
-    }
-    
-    /**
-     * Set a new penalty map, discarding any previously added penalizing validation objects.
-     * This method does <b>not</b> perform a deep copy but stores a reference to the given map.
-     * 
-     * @param penalties map of penalizing validation objects
-     */
-    public void setValidations(Map<Object, PenalizingValidation> penalties){
-        this.penalties = penalties;
-        // invalidate cache
-        cachedValue = null;
     }
     
     /**

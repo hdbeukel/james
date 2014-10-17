@@ -16,31 +16,31 @@
 
 package org.jamesframework.core.subset.validations;
 
-import org.jamesframework.core.problems.constraints.validations.UnanimousValidation;
+import org.jamesframework.core.problems.constraints.Validation;
 
 /**
  * Represents a validation of a subset solution. Separately indicates whether
- * the subset has a valid size, in addition to the general unanimous constraint
- * validation. It can be checked whether the subset passed validation, possibly
- * ignoring its size.
+ * the subset has a valid size, in addition to the general constraint validation.
+ * It can be checked whether the subset passed validation, possibly ignoring its size.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class SubsetValidation extends UnanimousValidation {
+public class SubsetValidation implements Validation {
 
     // valid size
     private final boolean validSize;
+    // constraint validation object
+    private final Validation constraintValidation;
 
     /**
      * Create a subset validation.
      * 
      * @param validSize indicates whether the subset has a valid size
-     * @param unanimousValidation unanimous validation object produced when checking the general constraints
+     * @param constraintValidation validation object produced when checking the general constraints
      */
-    public SubsetValidation(boolean validSize, UnanimousValidation unanimousValidation) {
+    public SubsetValidation(boolean validSize, Validation constraintValidation) {
         this.validSize = validSize;
-        // set general constraint validations
-        setValidations(unanimousValidation.getValidations());
+        this.constraintValidation = constraintValidation;
     }
     
     /**
@@ -53,6 +53,15 @@ public class SubsetValidation extends UnanimousValidation {
     }
     
     /**
+     * Get the validation object produced when checking the general constraints.
+     * 
+     * @return constraint validation object
+     */
+    public Validation getConstraintValidation(){
+        return constraintValidation;
+    }
+    
+    /**
      * Check whether the subset solution passed validation. If <code>checkSize</code>
      * is <code>false</code> the size of the subset is ignored and only the general
      * constraints are checked.
@@ -61,7 +70,7 @@ public class SubsetValidation extends UnanimousValidation {
      * @return <code>true</code> if the subset solution is valid, possibly ignoring its size
      */
     public boolean passed(boolean checkSize) {
-        return (!checkSize || validSize) && super.passed();
+        return (!checkSize || validSize) && constraintValidation.passed();
     }
     
     /**
@@ -91,7 +100,7 @@ public class SubsetValidation extends UnanimousValidation {
             str.append("invalid size");
         }
         str.append(", ");
-        if(super.passed()){
+        if(constraintValidation.passed()){
             str.append("constraints satisfied");
         } else {
             str.append("constraints not satisfied");

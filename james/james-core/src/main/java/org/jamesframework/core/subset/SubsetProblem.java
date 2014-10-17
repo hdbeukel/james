@@ -187,11 +187,11 @@ public class SubsetProblem<DataType extends IntegerIdentifiedData> extends Abstr
     @Override
     public SubsetValidation validate(SubsetSolution solution){
         // validate constraints
-        UnanimousValidation uval = super.validate(solution);
+        Validation constraintVal = super.validate(solution);
         // extend with size check
         boolean validSize = solution.getNumSelectedIDs() >= getMinSubsetSize()
                                 && solution.getNumSelectedIDs() <= getMaxSubsetSize();
-        return new SubsetValidation(validSize, uval);
+        return new SubsetValidation(validSize, constraintVal);
     }
     
     /**
@@ -218,7 +218,7 @@ public class SubsetProblem<DataType extends IntegerIdentifiedData> extends Abstr
             int newSize = curSolution.getNumSelectedIDs() + subsetMove.getNumAdded() - subsetMove.getNumDeleted();
             boolean validSize = newSize >= getMinSubsetSize() && newSize <= getMaxSubsetSize();
             // delta validation of general constraints
-            UnanimousValidation deltaVal = super.validate(subsetMove, curSolution, curValidation);
+            Validation deltaVal = super.validate(subsetMove, curSolution, curValidation);
             // create and return new subset validation
             return new SubsetValidation(validSize, deltaVal);
         } else {
