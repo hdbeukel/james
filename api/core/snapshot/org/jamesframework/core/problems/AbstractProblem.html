@@ -135,8 +135,9 @@ implements <a href="../../../../org/jamesframework/core/problems/Problem.html" t
   <li>
   <p>
       <b>Mandatory constraints</b>: a solution will only pass validation if it satisfies all mandatory constraints.
-      If not, it will be discarded regardless of its evaluation. It is guaranteed that the best solution found by
-      a search will always satisfy all mandatory constraints.
+      If not, it is discarded regardless of its evaluation. It is guaranteed that the best solution found by
+      a search will always satisfy all mandatory constraints. In a neighbourhood search, only those neighbours
+      of the current solution that satisfy all mandatory constraints are considered.
   </p>
   </li>
   <li>
