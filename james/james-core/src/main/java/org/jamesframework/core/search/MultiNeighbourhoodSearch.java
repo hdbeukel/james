@@ -16,6 +16,7 @@
 
 package org.jamesframework.core.search;
 
+import java.util.Collections;
 import java.util.List;
 import org.jamesframework.core.exceptions.SearchException;
 import org.jamesframework.core.problems.Problem;
@@ -87,12 +88,12 @@ public abstract class MultiNeighbourhoodSearch<SolutionType extends Solution> ex
     }
     
     /**
-     * Get the list of neighbourhoods used to modify the current solution.
+     * Get an unmodifiable view of the list of applied neighbourhoods.
      * 
-     * @return list of applied neighbourhoods
+     * @return unmodifiable view of neighbourhood list
      */
     public List<? extends Neighbourhood<? super SolutionType>> getNeighbourhoods(){
-        return neighs;
+        return Collections.unmodifiableList(neighs);
     }
     
     /**
