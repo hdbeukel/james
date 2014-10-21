@@ -46,8 +46,8 @@ public class CoreSubsetData implements IntegerIdentifiedData {
         this.dist = dist;
         // infer IDs: 0..N-1 in case of N items (indices in distance matrix and name array)
         ids = new HashSet<>();
-        for(int id=0; id<names.length; id++){
-            ids.add(id);
+        for(int i=0; i<names.length; i++){
+            ids.add(i);
         }
     }
     
