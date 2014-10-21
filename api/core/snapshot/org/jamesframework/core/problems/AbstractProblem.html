@@ -134,7 +134,7 @@ implements <a href="../../../../org/jamesframework/core/problems/Problem.html" t
  <ul>
   <li>
   <p>
-      <b>Mandatory constraints</b>: a solution will only pass validation if it satisfies all mandatory constraints.
+      <b>Mandatory constraints</b>: a solution is valid only if it satisfies all mandatory constraints.
       If not, it is discarded regardless of its evaluation. It is guaranteed that the best solution found by
       a search will always satisfy all mandatory constraints. In a neighbourhood search, only those neighbours
       of the current solution that satisfy all mandatory constraints are considered.
@@ -142,12 +142,12 @@ implements <a href="../../../../org/jamesframework/core/problems/Problem.html" t
   </li>
   <li>
   <p>
-      <b>Penalizing constraints</b>: assign penalties to the evaluation calculated by the objective, which are
-      usually chosen to reflect the severeness of the violation. Solutions closer to satisfaction are then
-      favoured over solutions that violate the constraints more severely. In case of maximization, penalties
-      are subtracted from the evaluation, while they are added to it in case of minimization. Depending
-      on the interaction between the evaluation and penalties, the best found solution might not satisfy
-      all penalizing constraints (which may or may not be desired).
+      <b>Penalizing constraints</b>: if a solution does not pass validation by a penalizing constraint, a penalty
+      is assigned to its evaluation. The solution is not discarded. Penalties are usually chosen to reflect the
+      severeness of the violation. Solutions closer to satisfaction are then favoured over solutions that violate
+      the constraints more severely. In case of maximization, penalties are subtracted from the evaluation, while
+      they are added to it in case of minimization. Depending on the interaction between the evaluation and penalties,
+      the best found solution might not satisfy all penalizing constraints (which may or may not be desired).
   </p>
   </li>
  </ul></div>
