@@ -212,48 +212,42 @@ public class VariableNeighbourhoodSearch<SolutionType extends Solution> extends 
         
         // get random move from current shaking neighbourhood
         Move<? super SolutionType> shakeMove = getNeighbourhoods().get(s).getRandomMove(shakedSolution);
-        // assert that a shaking move is obtained
+        // shake only if a move was obtained
         if(shakeMove != null){
-            
-            // shake
             shakeMove.apply(shakedSolution);
+        }
 
-            // 2) LOCAL SEARCH
+        // 2) LOCAL SEARCH
 
-            // create instance of local search algorithm
-            LocalSearch<SolutionType> localSearch = localSearchFactory.create(getProblem());
-            // set initial solution to be modified
-            localSearch.setCurrentSolution(shakedSolution);
-            // interrupt local search algorithm when main VNS search wants to terminate
-            localSearch.addStopCriterion(_search -> getStatus() == SearchStatus.TERMINATING);
-            // run local search
-            localSearch.start();
-            // dispose local search when completed
-            localSearch.dispose();
+        // create instance of local search algorithm
+        LocalSearch<SolutionType> localSearch = localSearchFactory.create(getProblem());
+        // set initial solution to be modified
+        localSearch.setCurrentSolution(shakedSolution);
+        // interrupt local search algorithm when main VNS search wants to terminate
+        localSearch.addStopCriterion(_search -> getStatus() == SearchStatus.TERMINATING);
+        // run local search
+        localSearch.start();
+        // dispose local search when completed
+        localSearch.dispose();
 
-            // 3) ACCEPTANCE
+        // 3) ACCEPTANCE
 
-            SolutionType lsBestSolution = localSearch.getBestSolution();
-            Evaluation lsBestSolutionEvaluation = localSearch.getBestSolutionEvaluation();
-            Validation lsBestSolutionValidation = localSearch.getBestSolutionValidation();
-            // check improvement
-            if(lsBestSolution != null
-                    && lsBestSolutionValidation.passed() // should always be true but it doesn't hurt to check
-                    && computeDelta(lsBestSolutionEvaluation, getCurrentSolutionEvaluation()) > 0){
-                // improvement: increase number of accepted moves
-                incNumAcceptedMoves(1);
-                // update current and best solution
-                updateCurrentAndBestSolution(lsBestSolution, lsBestSolutionEvaluation, lsBestSolutionValidation);
-                // reset shaking neighbourhood
-                s = 0;
-            } else {
-                // no improvement: stick with current solution, adopt next shaking neighbourhood
-                incNumRejectedMoves(1);
-                s++;
-            }
-            
+        SolutionType lsBestSolution = localSearch.getBestSolution();
+        Evaluation lsBestSolutionEvaluation = localSearch.getBestSolutionEvaluation();
+        Validation lsBestSolutionValidation = localSearch.getBestSolutionValidation();
+        // check improvement
+        if(lsBestSolution != null
+                && lsBestSolutionValidation.passed() // should always be true but it doesn't hurt to check
+                && computeDelta(lsBestSolutionEvaluation, getCurrentSolutionEvaluation()) > 0){
+            // improvement: increase number of accepted moves
+            incNumAcceptedMoves(1);
+            // update current and best solution
+            updateCurrentAndBestSolution(lsBestSolution, lsBestSolutionEvaluation, lsBestSolutionValidation);
+            // reset shaking neighbourhood
+            s = 0;
         } else {
-            // s-th neighbourhood did not produce any random shaking move, try again with next neighbourhood in next step
+            // no improvement: stick with current solution, adopt next shaking neighbourhood
+            incNumRejectedMoves(1);
             s++;
         }
                 

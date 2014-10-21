@@ -127,7 +127,7 @@ public class ReducedVariableNeighbourhoodSearch<SolutionType extends Solution> e
     /**
      * Samples a random neighbour of the current solution, using the k-th neighbourhood, and accepts it as the new
      * current solution if it is an improvement. If no improvement is found, k is increased. Upon each improvement,
-     * or when k has reached the number of available neighbourhoods (if cycling is enbabled, as is the default), k
+     * or when k has reached the number of available neighbourhoods (if cycling is enabled, as is the default), k
      * is reset to 0.
      * <p>
      * If the k-th neighbourhood is unable to generate any move, k is also increased to try the next neighbourhood
