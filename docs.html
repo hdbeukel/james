@@ -99,41 +99,46 @@ layout: default
                 <li>
                     Create a custom data class (e.g. <code>MyData</code>) by implementing the <code>IntegerIdentifiedData</code> interface.
                     This interface defines a single method <code>getIDs()</code> that should return the set of all IDs that are
-                    assigned to an item. Custom methods may be added as well, for example to access data corresponding
-                    to specific items based on their IDs.
+                    assigned to an item in the data set. Custom methods may be added as well, for example to access (properties of)
+                    items based on their IDs.
                 </li>
                 <li>
                     Provide an objective function by implementing the <code>Objective</code> interface. This is a generic interface
                     with two type parameters: the solution and data type.
                     Set the solution type to <code>SubsetSolution</code> and the data type to <code>MyData</code>.
                     Now implement the necessary methods to evaluate solutions using the underlying data and to inform the
-                    search whether evaluations are to be minimized or maximized.
+                    search whether evaluations are to be minimized or maximized. If desired, an efficient delta evaluation
+                    can also be provided which evaluates a neighbour of the current solution of a local search based on its
+                    current evaluation and the applied move.
                 </li>
                 <li>
-                    If there are any constraints, these can be specified by implementing the <code>Constraint</code> or
-                    <code>PenalizingConstraint</code> interfaces. The former rejects all invalid solutions, while the latter
-                    assigns a penalty to the evaluation that usually corresponds to the severity of the constraint violation.
+                    Specify the constraints (if any) by implementing the <code>Constraint</code> or
+                    <code>PenalizingConstraint</code> interfaces to be added as <emph>mandatory</emph> or <emph>penalizing</emph>
+                    constraints to the problem definition. Solutions that do not satisfy all mandatory constraints are discarded.
+                    If a penalizing constraint is violated, a penalty is assigned to the solution's evaluation but the solution
+                    is still considered as valid.
                     Both interfaces again have a generic solution and data type which should be set to <code>SubsetSolution</code>
                     and <code>MyData</code>, respectively.
+                    Efficient delta validations can also be provided (optional).
                 </li>
                 <li>
                     Combine the data, objective and constraints (if any) in a <code>SubsetProblem</code>, specifying
-                    the desired minimum and maximum subset size. The data and objective are required and
-                    set at construction while constraints can be added later using <code>addRejectingConstraint(c)</code>
-                    or <code>addPenalizingConstraint(c)</code>.
+                    the desired minimum and maximum (or fixed) subset size. The data and objective are required and
+                    set at construction while mandatory and penalizing constraints can be added later using
+                    <code>addMandatoryConstraint(c)</code> and <code>addPenalizingConstraint(c)</code>, respectively.
                 </li>
             </ol>
             <p>
                 The obtained problem definition can be passed to any search to optimize the selection. Several predefined subset
                 neighbourhoods are available which add and/or remove some IDs to/from the selection to modify the current solution.
-                The details are best explained through an <a href="/examples/#subset-selection">example</a>.
+                Details are best explained through an <a href="/examples/#subset-selection">example</a>.
             </p>
             
             <h4 id="beyond-subset-selection" class="page-header">
                 Beyond subset selection
             </h4>
             <p>
-                A bit more coding is required to implement other types of problems besides subset selection:
+                Other types of problems can also easily be modelled and solved:
             </p>
             <ol>
                 <li>
@@ -308,7 +313,10 @@ layout: default
                 Parallel tempering (also referred to as Replica Exchange Monte Carlo) is an advanced local search algorithm
                 that concurrently runs several <a href="#metropolis-search">Metropolis searches</a> with different temperatures.
                 Each of these subsearches repeatedly apply a series of moves on a private solution and the global best solution
-                found by any replica is tracked by the main search.
+                found by any replica is tracked by the main search. The parallel tempering algorithm is somewhat similar to simulated
+                annealing but takes advantage of modern multi-core architectures and is generally less sensitive to parameter
+                values such as replica temperatures, as compared to e.g. the initial temperature and cooling scheme in simulated
+                annealing.
             </p>
             <p>
                 When applying the parallel tempering algorithm, the number of replcias and a minimum and maximum temperature
