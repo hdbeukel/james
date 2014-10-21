@@ -103,7 +103,7 @@ public class KnapSack {
             System.out.println("# RANDOM DESCENT");
             
             // create random descent search with single perturbation neighbourhood
-            RandomDescent<SubsetSolution> randomDescent = new RandomDescent<>(problem, new SinglePerturbationNeighbourhood(0, data.getIDs().size()));
+            RandomDescent<SubsetSolution> randomDescent = new RandomDescent<>(problem, new SinglePerturbationNeighbourhood());
             // set maximum runtime
             randomDescent.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
             // attach listener
@@ -142,7 +142,7 @@ public class KnapSack {
             double minTemp = 0.001;
             double maxTemp = 0.05;
             ParallelTempering<SubsetSolution> parallelTempering = new ParallelTempering<>(problem,
-                                                                        new SinglePerturbationNeighbourhood(0, data.getIDs().size()),
+                                                                        new SinglePerturbationNeighbourhood(),
                                                                         10, minTemp, maxTemp);
             // scale temperatures according to average profit of knapsack items
             double scale = computeAverageProfit(data);

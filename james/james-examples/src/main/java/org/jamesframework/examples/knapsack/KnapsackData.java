@@ -41,8 +41,8 @@ public class KnapsackData implements IntegerIdentifiedData {
         // infer IDs: 0..N-1 in case of N items
         // (indices in weight and profit arrays)
         ids = new HashSet<>();
-        for(int id=0; id<weights.length; id++){
-            ids.add(id);
+        for(int i=0; i<weights.length; i++){
+            ids.add(i);
         }
     }
     
