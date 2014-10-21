@@ -26,6 +26,7 @@ import org.jamesframework.core.search.algo.RandomDescent;
 import org.jamesframework.core.search.algo.vns.VariableNeighbourhoodSearch;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.search.stopcriteria.MaxRuntime;
+import org.jamesframework.core.subset.neigh.adv.DisjointMultiDeletionNeighbourhood;
 import org.jamesframework.examples.util.ProgressSearchListener;
 
 /**
@@ -120,7 +121,7 @@ public class MaximumClique {
             // create shaking neighbourhoods
             List<Neighbourhood<SubsetSolution>> shakingNeighs = new ArrayList<>();
             for(int s=1; s <= maxShake; s++){
-                shakingNeighs.add(new ShakingNeighbourhood(s));
+                shakingNeighs.add(new DisjointMultiDeletionNeighbourhood(s));
             }
             // create variable neighbourhood search
             LocalSearch<CliqueSolution> vns = new VariableNeighbourhoodSearch<>(
