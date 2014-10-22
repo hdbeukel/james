@@ -94,7 +94,8 @@ public double getDistance(int id1, int id2){
             <li>
                 <code>Evaluation evaluate(SubsetSolution, CoreSubsetData)</code>: evaluates a subset solution given our core subset data.
                 The solution indicates the IDs of the selected items based on which the necessary data can be retrieved. In this example,
-                the average distance between all selected items is computed.
+                the average distance between all selected items is computed. The value is fixed to 0.0 if less than 2 items are selected
+                (no distances).
             </li>
             <li>
                 <code>boolean isMinimizing()</code>: indicates whether evaluations are to be minimized or maximized, i.e. whether lower
