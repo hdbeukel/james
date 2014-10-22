@@ -210,15 +210,15 @@ search.dispose();
 <pre class="prettyprint">
 public class ProgressSearchListener implements SearchListener&lt;Solution&gt; {
 
-    public void searchStarted(Search&lt;? extends Solution&gt; search) {
+    public void searchStarted(Search search) {
         System.out.println(" &gt;&gt;&gt; Search started");
     }
 
-    public void searchStopped(Search&lt;? extends Solution&gt; search) {
+    public void searchStopped(Search search) {
         System.out.println(" >>> Search stopped (" + search.getRuntime()/1000 + " sec, " + search.getSteps() + "  steps)");
     }
 
-    public void newBestSolution(Search&lt;? extends Solution&gt; search,
+    public void newBestSolution(Search search,
                                 Solution newBestSolution,
                                 Evaluation newBestSolutionEvaluation,
                                 Validation newBestSolutionValidation) {
@@ -239,10 +239,8 @@ public class ProgressSearchListener implements SearchListener&lt;Solution&gt; {
             <i class="fa fa-lightbulb-o"></i>
             Good to know
         </h4>
-        All methods defined in the <code>SearchListener</code> interface have a default empty implementation.
-        Listeners can therefore simply ignore any callbacks for which no action is to be taken. Moreover,
-        an additional interface <code>LocalSearchListener</code> is provided that adds local search specific
-        callbacks fired when listening to a local search only.
+        All methods in the <code>SearchListener</code> interface have a default empty implementation.
+        Listeners can therefore simply ignore any callbacks for which no action is to be taken.
     </div>
     <p>
         To track the progress of the applied random descent algorithm, simply add the listener before starting the search.
