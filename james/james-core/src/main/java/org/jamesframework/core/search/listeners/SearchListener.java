@@ -72,7 +72,7 @@ public interface SearchListener<SolutionType extends Solution> {
                                         Validation newBestSolutionValidation){}
     
     /**
-     * Fired by <emph>local searches</emph> only, when a new current solution has been adopted.
+     * Fired by <strong>local searches</strong> only, when a new current solution has been adopted.
      * Called exactly once for every newly adopted current solution.
      * 
      * @param search local search which has updated its current solution
