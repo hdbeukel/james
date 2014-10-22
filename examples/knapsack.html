@@ -18,15 +18,15 @@ layout: default
             <i class="fa fa-info-circle"></i>
             Info
         </h4>
-        The random descent and parallel tempering metaheuristics are applied to optimize the selected knapsack.
+        The random descent and parallel tempering metaheuristics are applied to optimize the knapsack contents.
         Don't know what random descent is? Read <a href="/docs/#random-descent">this</a>. Never heard about parallel
         tempering? Read <a href="/docs/#parallel-tempering">this</a>.
     </div>
     <p>
         In this example the 0/1 knapsack problem &mdash; a constrained variable size subset selection
-        problem &mdash; is implemented in James. Given a list of items which each have a specific weight and profit, the goal
+        problem &mdash; is implemented in James. Given a collection of items which each have a weight and profit, the goal
         is to select a subset of these items so that the total profit is maximized without exceeding
-        the capacity of the knapsack. More precisely, the total weight of all selected items should be
+        the capacity of the knapsack, i.e. the total weight of all selected items should be
         smaller than or equal to a constant W.
     </p>
     
@@ -35,10 +35,10 @@ layout: default
     </h4>
     <p>
         First provide the data by implementing the <code>IntegerIdentifiedData</code> interface in <code>KnapsackData</code>.
-        Every item is assigned an ID in [0, N-1]. The data stores two arrays
+        Every item is assigned a unique ID in [0, N-1]. The data stores two arrays
         of length N where <code>weights[i]</code> and <code>profits[i]</code> contain
         the weight and profit, respectively, of the item with ID i. These two arrays are specified when
-        creating the data and the IDs are automatically inferred. Methods are provided to get all IDs
+        creating the data and the IDs are automatically inferred to match the array indices. Methods are provided to get all IDs
         (as required by the <code>IntegerIdentifiedData</code> interface) as well as to get the weight or profit
         of an item with a given ID.
     </p>
@@ -46,11 +46,11 @@ layout: default
 public class KnapsackData implements IntegerIdentifiedData {
 
     // weights
-    private final double[] weights;
+    private double[] weights;
     // profits
-    private final double[] profits;
+    private double[] profits;
     // IDs (indices in weight and profit arrays)
-    private final Set&lt;Integer&gt; ids;
+    private Set&lt;Integer&gt; ids;
     
     public KnapsackData(double[] weights, double[] profits){
         // store data
@@ -64,7 +64,6 @@ public class KnapsackData implements IntegerIdentifiedData {
         }
     }
     
-    @Override
     public Set&lt;Integer&gt; getIDs() {
         return ids;
     }
@@ -86,21 +85,17 @@ public class KnapsackData implements IntegerIdentifiedData {
     <p>
         The objective of the knapsack problem is easily defined. We create a class <code>KnapsackObjective</code>
         that implements the <code>Objective</code> interface where the solution and data type are set to
-        <code>SubsetSolution</code> and <code>KnapsackData</code>, respectively. A given subset solution
+        <code>SubsetSolution</code> and <code>KnapsackData</code> respectively. A given subset solution
         is evaluated by computing the sum of profits of all selected items. This value is to be maximized.
     </p>
 <pre class="prettyprint">
 public class KnapsackObjective implements Objective&lt;SubsetSolution, KnapsackData&gt;{
 
-    @Override
     public double evaluate(SubsetSolution solution, KnapsackData data) {
         // compute sum of profits of selected items
-        return solution.getSelectedIDs().stream()
-                                        .mapToDouble(id -> data.getProfit(id))
-                                        .sum();
+        return solution.getSelectedIDs().stream().mapToDouble(data::getProfit).sum();
     }
 
-    @Override
     public boolean isMinimizing() {
         return false;
     }
@@ -113,10 +108,17 @@ public class KnapsackObjective implements Objective&lt;SubsetSolution, KnapsackD
     </h4>
     <p>
         To ensure that the knapsack capacity is never exceeded we will add a constraint to our problem. Therefore, we provide
-        a <code>KnapsackConstraint</code> that implements the <code>Constraint</code> interface with solution and
-        data type <code>SubsetSolution</code> and <code>KnapsackData</code>, respectively (just like we did for the
-        objective). Given a subset solution, the constraint computes the total weight of all selected items and verifies
-        that it does not exceed a predefined maximum weight. If so, the constraint is satisfied.
+        a <code>KnapsackConstraint</code> that implements the <code>Constraint</code> interface, again with solution and
+        data type <code>SubsetSolution</code> and <code>KnapsackData</code>.
+        The <code>Objective</code> interface requires to implement a single method:
+        <ul>
+            <li>
+                <code>Validation validate(SubsetSolution, KnapsackData)</code>: validates a subset solution given our knapsack data.
+                In this example, the sum of weights of all selected items is computed and compared to the knapsack capacity. If the
+                capacity is not exceeded, the constraint is satisfied.
+            </li>
+        </ul>
+        ... <span style="color: red">(explain return type)</span>
     </p>
 <pre class="prettyprint">
 public class KnapsackConstraint implements Constraint&lt;SubsetSolution, KnapsackData&gt; {
@@ -128,22 +130,23 @@ public class KnapsackConstraint implements Constraint&lt;SubsetSolution, Knapsac
         this.maxWeight = maxWeight;
     }
 
-    @Override
-    public boolean isSatisfied(SubsetSolution solution, KnapsackData data) {
-        // check: maximum weight not exceeded
-        double sum = 0.0;
-        for(int id : solution.getSelectedIDs()){
-            sum += data.getWeight(id);
-            if(sum > maxWeight){
-                return false;
-            }
+    public Validation validate(SubsetSolution solution, KnapsackData data) {
+        // compute sum of weights of selected items
+        double weight = solution.getSelectedIDs().stream().mapToDouble(data::getWeight).sum();
+        // return validation object
+        if(weight &lt;= maxWeigth){
+            return new SimpleValidation(true);
+        } else {
+            return new SimpleValidation(false);
         }
-        return true;
     }
     
 }
 </pre>
-
+    <p>
+        ... <span style="color: red">(delta validation)</span>
+   </p>
+        
     <h4 class="page-header">
         Finalizing the problem specification
     </h4>
@@ -151,10 +154,9 @@ public class KnapsackConstraint implements Constraint&lt;SubsetSolution, Knapsac
         We are now ready to combine the data, objective and constraint in a <code>SubsetProblem</code>.
         As all subset sizes are allowed, the minimum and maximum size are set to 0 and the total number of items,
         respectively. The data and objective are passed to the problem upon construction and the constraint is
-        added afterwards by calling <code>addRejectingConstraint(...)</code>. By adding a <i>rejecting</i> constraint,
-        solutions that violate this constraint are rejected so that no modification that yields such
-        solution will ever be accepted by any local search. The returned best found solution (if any) is then always
-        guaranteed to satisfy the constraint(s).
+        added afterwards with <code>addMandatoryConstraint(...)</code>. By adding a <i>mandatory</i> constraint,
+        applied neighbourhood searches discard all neighbours that violate this constraint.
+        The returned best found solution (if any) is then always guaranteed to satisfy the constraint.
     </p>
 <pre class="prettyprint">
 // set weights, profits and capacity
@@ -172,22 +174,21 @@ KnapsackConstraint constraint = new KnapsackConstraint(capacity);
 // create subset problem (all sizes allowed)
 SubsetProblem&lt;KnapsackData&gt; problem = new SubsetProblem&lt;&gt;(obj, data, 0, data.getIDs().size());
 
-// add rejecting constraint
-problem.addRejectingConstraint(constraint);
+// add mandatory constraint
+problem.addMandatoryConstraint(constraint);
 </pre>
     <div class="bs-callout bs-callout-info">
         <h4>
             <i class="fa fa-lightbulb-o"></i>
-            Rejecting versus penalizing constraints
+            Mandatory versus penalizing constraints
         </h4>
         <p>
-            Instead of adding a rejecting constraint you may also provide a penalizing constraint. Such constraint is required to implement the
-            <code>PenalizingConstraint</code> interface and does not result in rejection of solutions that violate the constraint. Instead, a
-            penalty is assigned to the solution's evaluation. This allows to cross invalid regions of the search space and may for example
-            be useful in case of a tight constraint which is difficult to satisfy.
-            However, the assigned penalties should be carefully
-            chosen &ndash; usually reflecting the severeness of the constraint violation &ndash; and there is no guarantee that
-            the best found solution of a search will actually satisfy all penalizing constraints.
+            Instead of adding a mandatory constraint you may also use a penalizing constraint. The constraint is then required to implement the
+            <code>PenalizingConstraint</code> interface and does not cause solutions that violate the constraint to be discarded. Instead, a
+            penalty is assigned to the solution's evaluation. This is a more flexible approach compared to mandatory constraints but requires
+            to carefully choose the penalties, usually reflecting the severeness of the constraint violation. As there is a tradeoff between
+            evaluation and penalties it is not guaranteed that the best found solution of a search will satisfy all penalizing constraints,
+            which may or may not be desired.
         </p>
     </div>
     
