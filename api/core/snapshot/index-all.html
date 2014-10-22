@@ -130,10 +130,6 @@
 <div class="block">
  Add the given search, to be executed in parallel with the other searches.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#addSearchListener-org.jamesframework.core.search.listeners.SearchListener-">addSearchListener(SearchListener&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
-<dd>
-<div class="block">Add a search listener, if not already added before.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#addSearchListener-org.jamesframework.core.search.listeners.SearchListener-">addSearchListener(SearchListener&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
 <div class="block">Add a search listener, if it has not been added before.</div>
@@ -456,6 +452,10 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/util/FastLimitedQueue.html#FastLimitedQueue-int-">FastLimitedQueue(int)</a></span> - Constructor for class org.jamesframework.core.util.<a href="org/jamesframework/core/util/FastLimitedQueue.html" title="class in org.jamesframework.core.util">FastLimitedQueue</a></dt>
 <dd>
 <div class="block">Creat a new instance with given size limit.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#fireListenerCallback-java.util.function.Consumer-">fireListenerCallback(Consumer&lt;? super SearchListener&lt;? super SolutionType&gt;&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
+<dd>
+<div class="block">Fire the given callback on all attached listeners.</div>
 </dd>
 <dt><a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="class in org.jamesframework.core.search.algo.tabu"><span class="typeNameLink">FullTabuMemory</span></a>&lt;<a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="type parameter in FullTabuMemory">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/algo/tabu/package-summary.html">org.jamesframework.core.search.algo.tabu</a></dt>
 <dd>
@@ -1225,12 +1225,6 @@
 <dd>
 <div class="block">Interface of a local search factory used to create any local search.</div>
 </dd>
-<dt><a href="org/jamesframework/core/search/listeners/LocalSearchListener.html" title="interface in org.jamesframework.core.search.listeners"><span class="typeNameLink">LocalSearchListener</span></a>&lt;<a href="org/jamesframework/core/search/listeners/LocalSearchListener.html" title="type parameter in LocalSearchListener">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Interface in <a href="org/jamesframework/core/search/listeners/package-summary.html">org.jamesframework.core.search.listeners</a></dt>
-<dd>
-<div class="block">
- Extends the general search listener interface with a local search specific callback, fired when the current solution
- has been modified.</div>
-</dd>
 <dt><a href="org/jamesframework/core/subset/algo/LRSubsetSearch.html" title="class in org.jamesframework.core.subset.algo"><span class="typeNameLink">LRSubsetSearch</span></a> - Class in <a href="org/jamesframework/core/subset/algo/package-summary.html">org.jamesframework.core.subset.algo</a></dt>
 <dd>
 <div class="block">LR subset search is a greedy local search heuristic for subset selection.</div>
@@ -1306,10 +1300,6 @@
 <dd>
 <div class="block">Create a stop criterion that imposes a minimum evaluation delta when
  finding a new best solution during a search run.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/LocalSearchListener.html#modifiedCurrentSolution-org.jamesframework.core.search.LocalSearch-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">modifiedCurrentSolution(LocalSearch&lt;? extends SolutionType&gt;, SolutionType, Evaluation, Validation)</a></span> - Method in interface org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/LocalSearchListener.html" title="interface in org.jamesframework.core.search.listeners">LocalSearchListener</a></dt>
-<dd>
-<div class="block">Fired whenever a new current solution has been adopted.</div>
 </dd>
 <dt><a href="org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh"><span class="typeNameLink">Move</span></a>&lt;<a href="org/jamesframework/core/search/neigh/Move.html" title="type parameter in Move">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Interface in <a href="org/jamesframework/core/search/neigh/package-summary.html">org.jamesframework.core.search.neigh</a></dt>
 <dd>
@@ -1427,6 +1417,10 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/SearchListener.html#newBestSolution-org.jamesframework.core.search.Search-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">newBestSolution(Search&lt;? extends SolutionType&gt;, SolutionType, Evaluation, Validation)</a></span> - Method in interface org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a></dt>
 <dd>
 <div class="block">Fired when the search has found a new best solution.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/SearchListener.html#newCurrentSolution-org.jamesframework.core.search.LocalSearch-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">newCurrentSolution(LocalSearch&lt;? extends SolutionType&gt;, SolutionType, Evaluation, Validation)</a></span> - Method in interface org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a></dt>
+<dd>
+<div class="block">Fired by <strong>local searches</strong> only, when a new current solution has been adopted.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/exh/SolutionIterator.html#next--">next()</a></span> - Method in interface org.jamesframework.core.search.algo.exh.<a href="org/jamesframework/core/search/algo/exh/SolutionIterator.html" title="interface in org.jamesframework.core.search.algo.exh">SolutionIterator</a></dt>
 <dd>
@@ -1725,10 +1719,6 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/BasicParallelSearch.html#removeSearch-org.jamesframework.core.search.Search-">removeSearch(Search&lt;SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a></dt>
 <dd>
 <div class="block">Remove the given search.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener(SearchListener&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
-<dd>
-<div class="block">Remove the given search listener.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener(SearchListener&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>

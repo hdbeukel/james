@@ -450,20 +450,20 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>default void</code></td>
-<td class="colLast"><span class="typeNameLabel">LocalSearchListener.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/listeners/LocalSearchListener.html#modifiedCurrentSolution-org.jamesframework.core.search.LocalSearch-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">modifiedCurrentSolution</a></span>(<a href="../../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a>&lt;? extends <a href="../../../../../../org/jamesframework/core/search/listeners/LocalSearchListener.html" title="type parameter in LocalSearchListener">SolutionType</a>&gt;&nbsp;search,
-                       <a href="../../../../../../org/jamesframework/core/search/listeners/LocalSearchListener.html" title="type parameter in LocalSearchListener">SolutionType</a>&nbsp;newCurrentSolution,
-                       <a href="../../../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;newCurrentSolutionEvaluation,
-                       <a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;newCurrentSolutionValidation)</code>
-<div class="block">Fired whenever a new current solution has been adopted.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>default void</code></td>
 <td class="colLast"><span class="typeNameLabel">SearchListener.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/listeners/SearchListener.html#newBestSolution-org.jamesframework.core.search.Search-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">newBestSolution</a></span>(<a href="../../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="type parameter in SearchListener">SolutionType</a>&gt;&nbsp;search,
                <a href="../../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="type parameter in SearchListener">SolutionType</a>&nbsp;newBestSolution,
                <a href="../../../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;newBestSolutionEvaluation,
                <a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;newBestSolutionValidation)</code>
 <div class="block">Fired when the search has found a new best solution.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>default void</code></td>
+<td class="colLast"><span class="typeNameLabel">SearchListener.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/listeners/SearchListener.html#newCurrentSolution-org.jamesframework.core.search.LocalSearch-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">newCurrentSolution</a></span>(<a href="../../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a>&lt;? extends <a href="../../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="type parameter in SearchListener">SolutionType</a>&gt;&nbsp;search,
+                  <a href="../../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="type parameter in SearchListener">SolutionType</a>&nbsp;newCurrentSolution,
+                  <a href="../../../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;newCurrentSolutionEvaluation,
+                  <a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;newCurrentSolutionValidation)</code>
+<div class="block">Fired by <strong>local searches</strong> only, when a new current solution has been adopted.</div>
 </td>
 </tr>
 </tbody>
