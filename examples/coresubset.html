@@ -88,29 +88,45 @@ public double getDistance(int id1, int id2){
     <p>
         Now create a class <code>CoreSubsetObjective</code> that implements the <code>Objective</code> interface. This interface has two
         type parameters: the solution and data type. The solution type should be set to <code>SubsetSolution</code> (as for all
-        subset selection problems) and the data type to <code>CoreSubsetData</code> (specifically for this example). The objective can
-        then use our custom data class to evaluate any given subset solution by inspecting the set of selected IDs and computing the
-        average distance between all pairs of selected items. This evaluation is implemented in the required method
-        <code>evaluate(SubsetSolution, CoreSubsetData)</code>.
-        The second required method <code>isMinimizing()</code> returns <code>false</code> as the
-        average distance is to be maximized. This informs the framework that higher evaluations are better.
+        subset selection problems) and the data type to <code>CoreSubsetData</code> (specifically for this example).
+        The <code>Objective</code> interface requires to implement two methods:
+        <ol>
+            <li>
+                <code>Evaluation evaluate(SubsetSolution, CoreSubsetData)</code>: evaluates a subset solution given our core subset data.
+                The solution indicates the IDs of the selected items based on which the necessary data can be retrieved. In this example,
+                the average distance between all selected items is computed.
+            </li>
+            <li>
+                <code>boolean isMinimizing()</code>: indicates whether evaluations are to be minimized or maximized, i.e. whether lower
+                values or higher values are better, respectively. In this example, <code>false</code> is returned as the average distance
+                is to be maximized.
+            </li>
+        </ol>
+    </p> 
+    <p>
+        The <code>evaluate(...)</code> method returns an object of type <code>Evaluation</code> (interface) that can be converted into
+        a double value by calling <code>getValue()</code>. A predefined implementation of a <code>SimpleEvaluation</code> is provided that
+        merely wraps a double value. For this example we can just compute the average distance as a double value and wrap it in
+        such simple evaluation object when returning. <a href="/examples/coresubset2">Example 1B</a> and
+        <a href="/examples/coresubset3">example 1C</a> further explain why this method
+        returns an evaluation object and not just a plain double value, and how this can be
+        used to implement efficient delta evaluations. For now, you can ignore this.
     </p>
 <pre class="prettyprint">
 public class CoreSubsetObjective implements Objective&lt;SubsetSolution, CoreSubsetData&gt;{
     
     public Evaluation evaluate(SubsetSolution solution, CoreSubsetData data) {
         double value = 0.0;
-        if(solution.getNumSelectedIDs() >= 2){
-            // at least two items selected: compute average distance
-            List&lt;Integer&gt; ids = new ArrayList&lt;&gt;(solution.getSelectedIDs());
-            int id1, id2, numDist = 0;
+        if(solution.getNumSelectedIDs() &gt;= 2){
+            int numDist = 0;
             double sumDist = 0.0;
-            for(int i=0; i&lt;ids.size(); i++){
-                id1 = ids.get(i);
-                for(int j=i+1; j&lt;ids.size(); j++){
-                    id2 = ids.get(j);
-                    sumDist += data.getDistance(id1, id2);
-                    numDist++;
+            for(int id1 : solution.getSelectedIDs()){
+                for(int id2 : solution.getSelectedIDs()){
+                    // account for each pair of distinct items only once
+                    if(id1 &lt; id2){
+                        sumDist += data.getDistance(id1, id2);
+                        numDist++;
+                    }
                 }
             }
             value = sumDist/numDist;
@@ -133,10 +149,10 @@ public class CoreSubsetObjective implements Objective&lt;SubsetSolution, CoreSub
         <a href="/docs/#random-descent">random descent</a> algorithm, starting from a random initial solution (default)
         with the predefined <code>SingleSwapNeighbourhood</code>.
         This neighbourhood generates moves that swap a single selected and unselected ID.
-        The data and objective are wrapped in a
+        The data and objective are combined in a
         <code>SubsetProblem</code> with data type <code>CoreSubsetData</code>.
         When creating the problem, the desired subset size is also specified.
-        The problem is then given to the search.
+        The problem is then passed to the search to find a good solution.
         Note that searches are parameterized on the solution type
         of the problem that is being solved, which should be set to <code>SubsetSolution</code> for this example.
     </p>
@@ -158,7 +174,7 @@ public static void main(String[] args) {
     // create objective
     CoreSubsetObjective obj = new CoreSubsetObjective();
 
-    // wrap data and objective in a subset problem, specify desired subset size
+    // combine data and objective in a subset problem, specify desired subset size
     int subsetSize = ...
     SubsetProblem&lt;CoreSubsetData&gt; problem = new SubsetProblem&lt;&gt;(obj, data, subsetSize);
 
@@ -175,8 +191,8 @@ public static void main(String[] args) {
     System.out.println("Best solution (IDs): " + search.getBestSolution().getSelectedIDs());
     System.out.println("Best solution (names): " + search.getBestSolution().getSelectedIDs()
                                                                            .stream()
-                                                                           .map(id -> data.getName(id))
-                                                                           .collect(Collectors.toSet()));
+                                                                           .map(data::getName)
+                                                                           .toArray());
     System.out.println("Best solution evaluation: " + search.getBestSolutionEvaluation());
 
     // dispose search
