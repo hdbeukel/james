@@ -165,76 +165,74 @@ public class CoreSubsetObjective implements Objective&lt;SubsetSolution, CoreSub
         Finally, the search is disposed so that all resources are released.
     </p>
 <pre class="prettyprint">
-public static void main(String[] args) {
-    // set name array and distance matrix (e.g. read from a file)
-    String[] names = ...
-    double[][] dist = ...
-    // create data object
-    CoreSubsetData data = new CoreSubsetData(names, dist);
-    // create objective
-    CoreSubsetObjective obj = new CoreSubsetObjective();
+// set name array and distance matrix (e.g. read from a file)
+String[] names = ...
+double[][] dist = ...
+// create data object
+CoreSubsetData data = new CoreSubsetData(names, dist);
+// create objective
+CoreSubsetObjective obj = new CoreSubsetObjective();
 
-    // combine data and objective in a subset problem, specify desired subset size
-    int subsetSize = ...
-    SubsetProblem&lt;CoreSubsetData&gt; problem = new SubsetProblem&lt;&gt;(obj, data, subsetSize);
+// combine data and objective in a subset problem, specify desired subset size
+int subsetSize = ...
+SubsetProblem&lt;CoreSubsetData&gt; problem = new SubsetProblem&lt;&gt;(obj, data, subsetSize);
 
-    // create random descent search with single swap neighbourhood
-    RandomDescent&lt;SubsetSolution&gt; search = new RandomDescent&lt;&gt;(problem, new SingleSwapNeighbourhood());
-    // set maximum runtime (in seconds)
-    long timeLimit = ...
-    search.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
+// create random descent search with single swap neighbourhood
+RandomDescent&lt;SubsetSolution&gt; search = new RandomDescent&lt;&gt;(problem, new SingleSwapNeighbourhood());
+// set maximum runtime (in seconds)
+long timeLimit = ...
+search.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
 
-    // start search
-    search.start();
+// start search
+search.start();
 
-    // print best solution and evaluation
-    System.out.println("Best solution (IDs): " + search.getBestSolution().getSelectedIDs());
-    System.out.println("Best solution (names): " + search.getBestSolution().getSelectedIDs()
-                                                                           .stream()
-                                                                           .map(data::getName)
-                                                                           .toArray());
-    System.out.println("Best solution evaluation: " + search.getBestSolutionEvaluation());
+// print best solution and evaluation
+System.out.println("Best solution (IDs): " + search.getBestSolution().getSelectedIDs());
+System.out.println("Best solution (names): " + search.getBestSolution().getSelectedIDs()
+                                                                       .stream()
+                                                                       .map(data::getName)
+                                                                       .collect(Collectors.toSet()));
+System.out.println("Best solution evaluation: " + search.getBestSolutionEvaluation());
 
-    // dispose search
-    search.dispose();
-}
+// dispose search
+search.dispose();
 </pre>
 
     <h4 id="search-listener" class="page-header">
-        Attaching a search listener
+        Optional: attaching a search listener
     </h4>
     <p>
-        It is possible to attach one or more search listeners to any optimization algorithm, which are informed by the algorithm when certain
-        events occur. For example, an event is fired when the search has started, stopped or found a new best solution. We will now
+        It is possible to attach one or more search listeners to a search engine. These are informed by the algorithm when certain
+        events occur. For example, an event is fired when the search has started, stopped or found a new best solution. We now
         create a <code>ProgressSearchListener</code> that prints messages to the console to stay informed about the progress
-        of an active search.
+        of a search.
     </p>
 <pre class="prettyprint">
 public class ProgressSearchListener implements SearchListener&lt;Solution&gt; {
 
-    @Override
     public void searchStarted(Search&lt;? extends Solution&gt; search) {
         System.out.println(" &gt;&gt;&gt; Search started");
     }
 
-    @Override
     public void searchStopped(Search&lt;? extends Solution&gt; search) {
         System.out.println(" >>> Search stopped (" + search.getRuntime()/1000 + " sec, " + search.getSteps() + "  steps)");
     }
 
-    @Override
-    public void newBestSolution(Search&lt;? extends Solution&gt; search, Solution newBestSolution, double newBestSolutionEvaluation) {
+    public void newBestSolution(Search&lt;? extends Solution&gt; search,
+                                Solution newBestSolution,
+                                Evaluation newBestSolutionEvaluation,
+                                Validation newBestSolutionValidation) {
         System.out.println(" &gt;&gt;&gt; New best solution: " + newBestSolutionEvaluation);
     }
     
 }
 </pre>
     <p>
-        Search listeners are parameterized on the solution type of the searches to which they can be attached. However, the solution
-        type of a listener is allowed to be more general than the solution type of the search. As the implemented progress listener
-        does not perform any solution type specific actions, its solution type is set to the top-level class <code>Solution</code>.
-        It can then be attached to track the progress of any search with any solution type as all solution types are subclasses of
-        <code>Solution</code>.
+        Search listeners are parameterized on the solution type of the searches to which they can listen. However, the solution
+        type of a listener is allowed to be more general than the solution type of the search (i.e. a super class or interface).
+        As our progress listener does not perform any solution type specific actions, its solution type is set to
+        the top-level class <code>Solution</code>. It can thus be used to track the progress of any search with any
+        solution type as these are all required to be subclasses of <code>Solution</code>.
     </p>
     <div class="bs-callout bs-callout-info">
         <h4>
@@ -243,7 +241,8 @@ public class ProgressSearchListener implements SearchListener&lt;Solution&gt; {
         </h4>
         All methods defined in the <code>SearchListener</code> interface have a default empty implementation.
         Listeners can therefore simply ignore any callbacks for which no action is to be taken. Moreover,
-        an additional interface <code>LocalSearchListener</code> is provided that adds local search specific callbacks.
+        an additional interface <code>LocalSearchListener</code> is provided that adds local search specific
+        callbacks fired when listening to a local search only.
     </div>
     <p>
         To track the progress of the applied random descent algorithm, simply add the listener before starting the search.
