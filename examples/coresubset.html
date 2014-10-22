@@ -90,7 +90,7 @@ public double getDistance(int id1, int id2){
         type parameters: the solution and data type. The solution type should be set to <code>SubsetSolution</code> (as for all
         subset selection problems) and the data type to <code>CoreSubsetData</code> (specifically for this example).
         The <code>Objective</code> interface requires to implement two methods:
-        <ol>
+        <ul>
             <li>
                 <code>Evaluation evaluate(SubsetSolution, CoreSubsetData)</code>: evaluates a subset solution given our core subset data.
                 The solution indicates the IDs of the selected items based on which the necessary data can be retrieved. In this example,
@@ -102,9 +102,7 @@ public double getDistance(int id1, int id2){
                 values or higher values are better, respectively. In this example, <code>false</code> is returned as the average distance
                 is to be maximized.
             </li>
-        </ol>
-    </p> 
-    <p>
+        </ul>
         The <code>evaluate(...)</code> method returns an object of type <code>Evaluation</code> (interface) that can be converted into
         a double value by calling <code>getValue()</code>. A predefined implementation of a <code>SimpleEvaluation</code> is provided that
         merely wraps a double value. For this example we can just compute the average distance as a double value and wrap it in
