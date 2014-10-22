@@ -34,9 +34,8 @@ public class KnapsackObjective implements Objective<SubsetSolution, KnapsackData
     @Override
     public Evaluation evaluate(SubsetSolution solution, KnapsackData data) {
         // compute sum of profits of selected items
-        double value =  solution.getSelectedIDs().stream()
-                                                 .mapToDouble(data::getProfit)
-                                                 .sum();
+        double value =  solution.getSelectedIDs().stream().mapToDouble(data::getProfit).sum();
+        // wrap in simple evaluation object
         return new SimpleEvaluation(value);
     }
 
