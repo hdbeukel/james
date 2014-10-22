@@ -16,8 +16,8 @@
 
 package org.jamesframework.core.search;
 
-import org.jamesframework.core.problems.constraints.Validation;
-import org.jamesframework.core.problems.objectives.Evaluation;
+import org.jamesframework.core.problems.constraints.validations.Validation;
+import org.jamesframework.core.problems.objectives.evaluations.Evaluation;
 import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.search.status.SearchStatus;
 import org.jamesframework.core.subset.SubsetSolution;

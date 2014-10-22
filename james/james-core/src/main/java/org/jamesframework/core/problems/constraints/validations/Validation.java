@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jamesframework.core.problems.constraints;
+package org.jamesframework.core.problems.constraints.validations;
 
 import org.jamesframework.core.problems.constraints.validations.SimpleValidation;
 

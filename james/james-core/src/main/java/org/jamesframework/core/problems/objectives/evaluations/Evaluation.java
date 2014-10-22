@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jamesframework.core.problems.objectives;
+package org.jamesframework.core.problems.objectives.evaluations;
 
 import org.jamesframework.core.problems.objectives.evaluations.SimpleEvaluation;
 

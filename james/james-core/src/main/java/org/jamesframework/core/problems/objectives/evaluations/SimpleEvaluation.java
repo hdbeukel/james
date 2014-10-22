@@ -16,8 +16,6 @@
 
 package org.jamesframework.core.problems.objectives.evaluations;
 
-import org.jamesframework.core.problems.objectives.Evaluation;
-
 /**
  * A simple evaluation object that wraps a double value.
  * 

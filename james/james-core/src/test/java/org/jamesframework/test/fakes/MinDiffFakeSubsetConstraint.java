@@ -18,8 +18,8 @@ package org.jamesframework.test.fakes;
 
 import org.jamesframework.core.exceptions.IncompatibleDeltaValidationException;
 import org.jamesframework.core.problems.constraints.PenalizingConstraint;
-import org.jamesframework.core.problems.constraints.PenalizingValidation;
-import org.jamesframework.core.problems.constraints.Validation;
+import org.jamesframework.core.problems.constraints.validations.PenalizingValidation;
+import org.jamesframework.core.problems.constraints.validations.Validation;
 import org.jamesframework.core.problems.constraints.validations.SimplePenalizingValidation;
 import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.subset.SubsetSolution;

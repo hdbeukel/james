@@ -18,7 +18,6 @@ package org.jamesframework.core.problems.constraints.validations;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import org.jamesframework.core.problems.constraints.Validation;
 
 /**
  * A unanimous validation object is used to combine validations produced by a number of constraints.

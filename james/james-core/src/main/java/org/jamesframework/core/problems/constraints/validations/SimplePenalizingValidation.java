@@ -16,8 +16,6 @@
 
 package org.jamesframework.core.problems.constraints.validations;
 
-import org.jamesframework.core.problems.constraints.PenalizingValidation;
-
 /**
  * A simple penalizing validation object that wraps a boolean value,
  * indicating whether the corresponding solution passed validation,

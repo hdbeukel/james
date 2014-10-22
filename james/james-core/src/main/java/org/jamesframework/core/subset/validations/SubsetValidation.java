@@ -16,7 +16,7 @@
 
 package org.jamesframework.core.subset.validations;
 
-import org.jamesframework.core.problems.constraints.Validation;
+import org.jamesframework.core.problems.constraints.validations.Validation;
 
 /**
  * Represents a validation of a subset solution. Separately indicates whether

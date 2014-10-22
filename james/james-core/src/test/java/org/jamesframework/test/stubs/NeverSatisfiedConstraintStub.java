@@ -18,7 +18,7 @@ package org.jamesframework.test.stubs;
 
 import org.jamesframework.core.problems.constraints.Constraint;
 import org.jamesframework.core.problems.Solution;
-import org.jamesframework.core.problems.constraints.Validation;
+import org.jamesframework.core.problems.constraints.validations.Validation;
 import org.jamesframework.core.problems.constraints.validations.SimpleValidation;
 
 /**

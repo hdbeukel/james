@@ -20,7 +20,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import org.jamesframework.core.problems.objectives.Objective;
 import org.jamesframework.core.problems.Solution;
-import org.jamesframework.core.problems.objectives.Evaluation;
+import org.jamesframework.core.problems.objectives.evaluations.Evaluation;
 import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.ext.problems.objectives.evaluations.WeightedIndexEvaluation;
 

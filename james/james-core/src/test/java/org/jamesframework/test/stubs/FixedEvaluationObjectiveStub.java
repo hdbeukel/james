@@ -17,7 +17,7 @@
 package org.jamesframework.test.stubs;
 
 import org.jamesframework.core.problems.Solution;
-import org.jamesframework.core.problems.objectives.Evaluation;
+import org.jamesframework.core.problems.objectives.evaluations.Evaluation;
 import org.jamesframework.core.problems.objectives.evaluations.SimpleEvaluation;
 import org.jamesframework.test.util.MinMaxObjective;
 

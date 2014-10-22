@@ -16,8 +16,8 @@
 
 package org.jamesframework.core.search.cache;
 
-import org.jamesframework.core.problems.constraints.Validation;
-import org.jamesframework.core.problems.objectives.Evaluation;
+import org.jamesframework.core.problems.constraints.validations.Validation;
+import org.jamesframework.core.problems.objectives.evaluations.Evaluation;
 import org.jamesframework.core.search.neigh.Move;
 
 /**

@@ -16,6 +16,7 @@
 
 package org.jamesframework.core.problems.objectives;
 
+import org.jamesframework.core.problems.objectives.evaluations.Evaluation;
 import org.jamesframework.core.exceptions.IncompatibleDeltaEvaluationException;
 import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.search.neigh.Move;

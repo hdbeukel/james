@@ -17,7 +17,7 @@
 package org.jamesframework.examples.knapsack;
 
 import org.jamesframework.core.exceptions.IncompatibleDeltaEvaluationException;
-import org.jamesframework.core.problems.objectives.Evaluation;
+import org.jamesframework.core.problems.objectives.evaluations.Evaluation;
 import org.jamesframework.core.problems.objectives.Objective;
 import org.jamesframework.core.problems.objectives.evaluations.SimpleEvaluation;
 import org.jamesframework.core.search.neigh.Move;

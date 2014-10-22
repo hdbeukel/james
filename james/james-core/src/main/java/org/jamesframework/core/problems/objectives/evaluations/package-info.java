@@ -15,6 +15,6 @@
  */
 
 /**
- * Predefined evaluation objects.
+ * Evaluation interface and predefined implementations.
  */
 package org.jamesframework.core.problems.objectives.evaluations;

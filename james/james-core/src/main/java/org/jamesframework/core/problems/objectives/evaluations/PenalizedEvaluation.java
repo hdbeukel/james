@@ -18,8 +18,7 @@ package org.jamesframework.core.problems.objectives.evaluations;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import org.jamesframework.core.problems.constraints.PenalizingValidation;
-import org.jamesframework.core.problems.objectives.Evaluation;
+import org.jamesframework.core.problems.constraints.validations.PenalizingValidation;
 
 /**
  * A penalized evaluation consists of an original evaluation and a number of penalizing validations.

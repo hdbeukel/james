@@ -15,6 +15,6 @@
  */
 
 /**
- * Predefined validation objects.
+ * Validation interfaces and predefined implementations.
  */
 package org.jamesframework.core.problems.constraints.validations;

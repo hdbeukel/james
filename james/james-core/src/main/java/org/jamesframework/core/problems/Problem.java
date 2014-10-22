@@ -18,8 +18,8 @@ package org.jamesframework.core.problems;
 
 import org.jamesframework.core.exceptions.IncompatibleDeltaEvaluationException;
 import org.jamesframework.core.exceptions.IncompatibleDeltaValidationException;
-import org.jamesframework.core.problems.constraints.Validation;
-import org.jamesframework.core.problems.objectives.Evaluation;
+import org.jamesframework.core.problems.constraints.validations.Validation;
+import org.jamesframework.core.problems.objectives.evaluations.Evaluation;
 import org.jamesframework.core.search.neigh.Move;
 
 /**

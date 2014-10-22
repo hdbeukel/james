@@ -17,7 +17,7 @@
 package org.jamesframework.core.search.stopcriteria;
 
 import java.util.concurrent.TimeUnit;
-import org.jamesframework.core.problems.objectives.Evaluation;
+import org.jamesframework.core.problems.objectives.evaluations.Evaluation;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.SearchTestTemplate;

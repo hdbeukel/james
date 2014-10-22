@@ -16,8 +16,6 @@
 
 package org.jamesframework.core.problems.constraints.validations;
 
-import org.jamesframework.core.problems.constraints.Validation;
-
 /**
  * A simple validation object that merely wraps a boolean value
  * indicating whether the corresponding solution passed validation.

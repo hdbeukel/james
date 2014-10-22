@@ -17,8 +17,8 @@
 package org.jamesframework.examples.util;
 
 import org.jamesframework.core.problems.Solution;
-import org.jamesframework.core.problems.constraints.Validation;
-import org.jamesframework.core.problems.objectives.Evaluation;
+import org.jamesframework.core.problems.constraints.validations.Validation;
+import org.jamesframework.core.problems.objectives.evaluations.Evaluation;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.listeners.SearchListener;
 
