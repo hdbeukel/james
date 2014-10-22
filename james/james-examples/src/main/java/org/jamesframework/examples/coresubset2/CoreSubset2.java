@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.jamesframework.examples.coresubset;
+package org.jamesframework.examples.coresubset2;
 
 import java.io.FileNotFoundException;
 import java.util.concurrent.TimeUnit;
@@ -24,14 +24,16 @@ import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.algo.RandomDescent;
 import org.jamesframework.core.subset.neigh.SingleSwapNeighbourhood;
 import org.jamesframework.core.search.stopcriteria.MaxRuntime;
+import org.jamesframework.examples.coresubset.CoreSubsetData;
+import org.jamesframework.examples.coresubset.CoreSubsetFileReader;
 import org.jamesframework.examples.util.ProgressSearchListener;
 
 /**
- * Main class for the basic core subset selection example.
+ * Main class for the core subset selection example with efficient delta evaluation (example 1B).
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class CoreSubset {
+public class CoreSubset2 {
     
     /**
      * Runs the core subset selection problem. Expects three parameters: (1) the input file path, (2) the desired
@@ -43,12 +45,12 @@ public class CoreSubset {
      * @param args array containing the input file path, subset size and runtime limit
      */
     public static void main(String[] args) {
-        System.out.println("#########################");
-        System.out.println("# CORE SUBSET SELECTION #");
-        System.out.println("#########################");
+        System.out.println("#########################################################");
+        System.out.println("# CORE SUBSET SELECTION WITH EFFICIENT DELTA EVALUATION #");
+        System.out.println("#########################################################");
         // parse arguments
         if(args.length != 3){
-            System.err.println("Usage: java -cp james-examples.jar org.jamesframework.examples.coresubset.CoreSubset <inputfile> <subsetsize> <runtime>");
+            System.err.println("Usage: java -cp james-examples.jar org.jamesframework.examples.coresubset2.CoreSubset2 <inputfile> <subsetsize> <runtime>");
             System.exit(1);
         }
         String filePath = args[0];
@@ -81,7 +83,7 @@ public class CoreSubset {
             System.out.println("Time limit: " + timeLimit + " seconds");
 
             // create objective
-            CoreSubsetObjective obj = new CoreSubsetObjective();
+            CoreSubsetObjectiveWithDelta obj = new CoreSubsetObjectiveWithDelta();
             // create subset problem
             SubsetProblem<CoreSubsetData> problem = new SubsetProblem<>(obj, data, subsetSize);
 

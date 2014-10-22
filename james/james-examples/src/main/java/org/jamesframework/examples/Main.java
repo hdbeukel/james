@@ -40,6 +40,18 @@ public class Main {
         System.out.println("");
         System.out.println("java -cp james-examples.jar org.jamesframework.examples.coresubset.CoreSubset <inputfile> <subsetsize> <runtime>");
         System.out.println("");
+        System.out.println("Example 1B: core subset selection with efficient delta evaluation");
+        System.out.println("-----------------------------------------------------------------");
+        System.out.println("");
+        System.out.println("Same problem and algorithm as for example 1, where the objective \n"
+                         + "has been extended to include an efficient delta evaluation. Should give \n"
+                         + "the same results as example 1 with the advantage that more search steps \n"
+                         + "can be performed in the same amount of time.");
+        System.out.println("");
+        System.out.println("Usage:");
+        System.out.println("");
+        System.out.println("java -cp james-examples.jar org.jamesframework.examples.coresubset2.CoreSubset2 <inputfile> <subsetsize> <runtime>");
+        System.out.println("");
         System.out.println("Example 2: the knapsack problem");
         System.out.println("--------------------------------");
         System.out.println("");

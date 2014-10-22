@@ -16,15 +16,10 @@
 
 package org.jamesframework.examples.coresubset;
 
-import java.util.HashSet;
-import java.util.Set;
-import org.jamesframework.core.exceptions.IncompatibleDeltaEvaluationException;
 import org.jamesframework.core.problems.objectives.Evaluation;
 import org.jamesframework.core.problems.objectives.Objective;
 import org.jamesframework.core.problems.objectives.evaluations.SimpleEvaluation;
-import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.subset.SubsetSolution;
-import org.jamesframework.core.subset.neigh.moves.SubsetMove;
 
 /**
  * Implements the core subset selection objective: maximizing the average distance between all pairs of selected items.
@@ -62,101 +57,6 @@ public class CoreSubsetObjective implements Objective<SubsetSolution, CoreSubset
             value = sumDist/numDist;
         }
         return new SimpleEvaluation(value);
-    }
-
-    /**
-     * <p>
-     * Computes the updated evaluation obtained when applying a given move to the current solution of a local search.
-     * This so-called "delta evaluation" is much more efficient compared to re-evaluating the entire modified solution.
-     * It is assumed that the received move is a {@link SubsetMove}, if not an exception is thrown. Therefore this
-     * objective can only be used in combination with a neighbourhood that generates moves of this type.
-     * </p>
-     * <p>
-     * The new evaluation is obtained by inspecting the currently selected and added/removed IDs, accounting for
-     * the respective changes in the average of all pairwise distances.
-     * </p>
-     * 
-     * @param move subset move
-     * @param curSolution current subset solution
-     * @param curEvaluation evaluation of the given solution
-     * @param data core subset data
-     * @throws IncompatibleDeltaEvaluationException if the received move is not a {@link SubsetMove}
-     * @return evaluation of modified solution
-     */
-    @Override
-    public Evaluation evaluate(Move move, SubsetSolution curSolution, Evaluation curEvaluation, CoreSubsetData data) {
-        // check move type
-        if(!(move instanceof SubsetMove)){
-            throw new IncompatibleDeltaEvaluationException("Core subset objective should be used in combination "
-                                                + "with neighbourhoods that generate moves of type SubsetMove.");
-        }
-        // cast move
-        SubsetMove subsetMove = (SubsetMove) move;
-        
-        // get current evaluation
-        double curEval = curEvaluation.getValue();
-        // undo average to get sum of distances
-        int numSelected = curSolution.getNumSelectedIDs();
-        int numDistances = numSelected * (numSelected-1) / 2;
-        double sumDist = curEval * numDistances;
-        
-        // get set of added and removed IDs
-        Set<Integer> added = subsetMove.getAddedIDs();
-        Set<Integer> removed = subsetMove.getDeletedIDs();
-        // infer set of retained IDs
-        Set<Integer> retained = new HashSet<>(curSolution.getSelectedIDs());
-        retained.removeAll(removed);
-        
-        // subtract distances from removed items to retained items
-        for(int rem : removed){
-            for(int ret : retained){
-                sumDist -= data.getDistance(rem, ret);
-                numDistances--;
-            }
-        }
-        
-        // subtract distances from removed to other removed items
-        for(int rem1 : removed){
-            for(int rem2 : removed){
-                // account for each distinct pair only once
-                if(rem1 < rem2){
-                    sumDist -= data.getDistance(rem1, rem2);
-                    numDistances--;
-                }
-            }
-        }
-        
-        // add distances from new items to retained items
-        for(int add : added){
-            for(int ret : retained){
-                sumDist += data.getDistance(add, ret);
-                numDistances++;
-            }
-        }
-        
-        // add distances from new items to other new items
-        for(int add1 : added){
-            for(int add2 : added){
-                // account for each distinct pair only once
-                if(add1 < add2){
-                    sumDist += data.getDistance(add1, add2);
-                    numDistances++;
-                }
-            }
-        }
-        
-        double newEval;
-        if(numDistances > 0){
-            // take average based on updated number of distances
-            newEval = sumDist / numDistances;
-        } else {
-            // no distances (less than two items remain selected)
-            newEval = 0.0;
-        }
-        
-        // return new evaluation
-        return new SimpleEvaluation(newEval);
-        
     }
     
     /**
