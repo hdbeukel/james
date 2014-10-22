@@ -30,17 +30,17 @@ import org.jamesframework.core.search.listeners.SearchListener;
 public class ProgressSearchListener implements SearchListener<Solution> {
 
     @Override
-    public void searchStarted(Search<? extends Solution> search) {
+    public void searchStarted(Search search) {
         System.out.println(" >>> Search started");
     }
 
     @Override
-    public void searchStopped(Search<? extends Solution> search) {
+    public void searchStopped(Search search) {
         System.out.println(" >>> Search stopped (" + search.getRuntime()/1000 + " sec, " + search.getSteps() + " steps)");
     }
 
     @Override
-    public void newBestSolution(Search<? extends Solution> search,
+    public void newBestSolution(Search search,
                                 Solution newBestSolution,
                                 Evaluation newBestSolutionEvaluation,
                                 Validation newBestSolutionValidation) {
