@@ -20,6 +20,7 @@ import org.jamesframework.core.exceptions.IncompatibleSearchListenerException;
 import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.problems.constraints.Validation;
 import org.jamesframework.core.problems.objectives.Evaluation;
+import org.jamesframework.core.search.LocalSearch;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.status.SearchStatus;
 
@@ -32,7 +33,7 @@ import org.jamesframework.core.search.status.SearchStatus;
  * be thrown.
  * </p>
  * <p>
- * All callbacks have a default empty implementation.
+ * All callbacks have a default empty implementation. Some callbacks may only be fired by specific search types.
  * </p>
  * 
  * @param <SolutionType> solution type, required to extend {@link Solution}
@@ -69,6 +70,21 @@ public interface SearchListener<SolutionType extends Solution> {
                                         SolutionType newBestSolution,
                                         Evaluation newBestSolutionEvaluation,
                                         Validation newBestSolutionValidation){}
+    
+    /**
+     * Fired by <emph>local searches</emph> only, when a new current solution has been adopted.
+     * Called exactly once for every newly adopted current solution.
+     * 
+     * @param search local search which has updated its current solution
+     * @param newCurrentSolution newly adopted current solution
+     * @param newCurrentSolutionEvaluation evaluation of new current solution
+     * @param newCurrentSolutionValidation validation of new current solution
+     * @throws IncompatibleSearchListenerException if the listener is not compatible with the search
+     */
+    default public void newCurrentSolution(LocalSearch<? extends SolutionType> search,
+                                           SolutionType newCurrentSolution,
+                                           Evaluation newCurrentSolutionEvaluation,
+                                           Validation newCurrentSolutionValidation){}
     
     /**
      * Fired when the search has completed a step. Called exactly once for every completed step.

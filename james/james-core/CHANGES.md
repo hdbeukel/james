@@ -14,7 +14,7 @@ Version 0.2 (under development)
  - Various code simplifications and optimizations (e.g. using functional operations).
  - Removed SubsetProblem interface and renamed SubsetProblemWithData to SubsetProblem.
  - Removed MinMaxObjective.
- - Removed EmptySearchListener and EmptyLocalSearchListener. Default empty implementations of all callbacks are now directly provided in the corresponding interfaces.
+ - Removed EmptySearchListener, LocalSearchListener and EmptyLocalSearchListener. Default empty implementations of all callbacks are now directly provided in the SearchListener interface.
  - Moved to SLF4J API 1.7.7.
  - Moved to Java 8.
 

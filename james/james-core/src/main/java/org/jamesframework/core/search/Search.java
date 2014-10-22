@@ -16,12 +16,14 @@
 
 package org.jamesframework.core.search;
 
+import java.util.Collection;
 import org.jamesframework.core.search.status.SearchStatus;
 import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.search.stopcriteria.StopCriterion;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 import org.jamesframework.core.exceptions.IncompatibleStopCriterionException;
 import org.jamesframework.core.exceptions.JamesRuntimeException;
 import org.jamesframework.core.exceptions.SearchException;
@@ -574,7 +576,7 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
      * Should only be executed when search is active (initializing, running or terminating).
      */
     private void fireSearchStarted(){
-        searchListeners.forEach(l -> l.searchStarted(this));
+        fireListenerCallback(l -> l.searchStarted(this));
     }
     
     /**
@@ -582,7 +584,7 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
      * Should only be executed when search is active (initializing, running or terminating).
      */
     private void fireSearchStopped(){
-        searchListeners.forEach(l -> l.searchStopped(this));
+        fireListenerCallback(l -> l.searchStopped(this));
     }
     
     /**
@@ -597,10 +599,10 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
     private void fireNewBestSolution(SolutionType newBestSolution,
                                      Evaluation newBestSolutionEvaluation,
                                      Validation newBestSolutionValidation){
-        searchListeners.forEach(l -> l.newBestSolution(this,
-                                                       newBestSolution,
-                                                       newBestSolutionEvaluation,
-                                                       newBestSolutionValidation));
+        fireListenerCallback(l -> l.newBestSolution(this,
+                                                    newBestSolution,
+                                                    newBestSolutionEvaluation,
+                                                    newBestSolutionValidation));
     }
     
     /**
@@ -610,7 +612,7 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
      * @param numSteps number of steps completed so far (during the current run)
      */
     private void fireStepCompleted(long numSteps){
-        searchListeners.forEach(l -> l.stepCompleted(this, numSteps));
+        fireListenerCallback(l -> l.stepCompleted(this, numSteps));
     }
     
     /**
@@ -620,7 +622,21 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
      * @param newStatus new search status
      */
     private void fireStatusChanged(SearchStatus newStatus){
-        searchListeners.forEach(l -> l.statusChanged(this, newStatus));
+        fireListenerCallback(l -> l.statusChanged(this, newStatus));
+    }
+    
+    /************************************/
+    /* PROTECTED SEARCH LISTENER ACCESS */
+    /************************************/
+    
+    /**
+     * Fire the given callback on all attached listeners. The easiest way
+     * to use this method is to specify the callback as a lambda expression.
+     * 
+     * @param callback callback to be fired
+     */
+    protected void fireListenerCallback(Consumer<? super SearchListener<? super SolutionType>> callback){
+        searchListeners.forEach(callback);
     }
     
     /*****************/
@@ -1047,7 +1063,7 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
     
     /**
      * Computes the amount of improvement of <code>currentEvaluation</code> over <code>previousEvaluation</code>,
-     * taking into account whether evaluations are being maximized or minimized. Positive deltas indicate improvment.
+     * taking into account whether evaluations are being maximized or minimized. Positive deltas indicate improvement.
      * In case of maximization the amount of increase is returned, which is equal to
      *  <pre> currentEvaluation - previousEvaluation </pre>
      * while the amount of decrease, equal to

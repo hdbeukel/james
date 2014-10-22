@@ -23,7 +23,7 @@ import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.NeighbourhoodSearch;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.SearchTestTemplate;
-import org.jamesframework.core.search.listeners.LocalSearchListener;
+import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.subset.neigh.adv.DisjointMultiSwapNeighbourhood;
 import org.jamesframework.test.stubs.NeverSatisfiedConstraintStub;
@@ -188,7 +188,7 @@ public class VariableNeighbourhoodDescentTest extends SearchTestTemplate {
     /**
      * Rejected moves listener.
      */
-    private class RejectedMovesListener implements LocalSearchListener<SubsetSolution>{
+    private class RejectedMovesListener implements SearchListener<SubsetSolution>{
         // rejected moves counter
         private int rejectedMoves = 0;
         

@@ -16,14 +16,11 @@
 
 package org.jamesframework.core.search;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.jamesframework.core.exceptions.SearchException;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.problems.constraints.Validation;
 import org.jamesframework.core.problems.objectives.Evaluation;
-import org.jamesframework.core.search.listeners.LocalSearchListener;
 import org.jamesframework.core.search.listeners.SearchListener;
 
 /**
@@ -45,13 +42,6 @@ public abstract class LocalSearch<SolutionType extends Solution> extends Search<
     private SolutionType curSolution;
     private Evaluation curSolutionEvaluation;
     private Validation curSolutionValidation;
-    
-    /************************/
-    /* PRIVATE FINAL FIELDS */
-    /************************/
-    
-    // list containing local search listeners attached to this search
-    private final List<LocalSearchListener<? super SolutionType>> localSearchListeners;
     
     /***************/
     /* CONSTRUCTOR */
@@ -81,8 +71,6 @@ public abstract class LocalSearch<SolutionType extends Solution> extends Search<
         curSolution = null;
         curSolutionEvaluation = null;
         curSolutionValidation = null;
-        // initialize list for local search listeners
-        localSearchListeners = new ArrayList<>();
     }
     
     /******************/
@@ -102,74 +90,22 @@ public abstract class LocalSearch<SolutionType extends Solution> extends Search<
         }
     }
     
-    /**************************************************/
-    /* OVERRIDDEN METHODS FOR ADDING SEARCH LISTENERS */
-    /**************************************************/
+    /***********************************************************************/
+    /* PRIVATE METHODS FOR FIRING LOCAL SEARCH SPECIFIC LISTENER CALLBACKS */
+    /***********************************************************************/
     
     /**
-     * Add a search listener, if not already added before. Passes the listener to its parent (general search),
-     * but also stores it locally in case it is a local search listener, to fire local search specific callbacks.
-     * Note that this method may only be called when the search is idle.
-     * 
-     * @param listener search listener to add to the search
-     * @throws SearchException if the search is not idle
-     * @return <code>true</code> if the search listener is successfully added (not added before)
+     * Calls {@link SearchListener#newCurrentSolution(LocalSearch, Solution, Evaluation, Validation)} on
+     * every attached search listener. Should only be executed when the search is active (initializing,
+     * running or terminating) and be fired exactly once for each update of the current solution.
      */
-    @Override
-    public boolean addSearchListener(SearchListener<? super SolutionType> listener){
-        // acquire status lock
-        synchronized(getStatusLock()){
-            // pass to super (also checks whether search is idle)
-            boolean a = super.addSearchListener(listener);
-            // store locally in case of a local search listener
-            if(listener instanceof LocalSearchListener){
-                localSearchListeners.add((LocalSearchListener<? super SolutionType>) listener);
-            }
-            return a;
-        }
-    }
-    
-    /**
-     * Remove the given search listener. If the search listener had not been added, <code>false</code> is returned.
-     * Calls its parent (general search) to remove the listener, and also removes it locally in case it is a
-     * local search listener. Note that this method may only be called when the search is idle.
-     * 
-     * @param listener search listener to be removed
-     * @throws SearchException if the search is not idle
-     * @return <code>true</code> if the listener has been successfully removed
-     */
-    @Override
-    public boolean removeSearchListener(SearchListener<? super SolutionType> listener){
-        // acquire status lock
-        synchronized(getStatusLock()){
-            // call super (also verifies status)
-            boolean r = super.removeSearchListener(listener);
-            // also remove locally in case of a local search listener
-            if(listener instanceof LocalSearchListener){
-                localSearchListeners.remove((LocalSearchListener<? super SolutionType>) listener);
-            }
-            return r;
-        }
-    }
-    
-    /**************************************************************/
-    /* PRIVATE METHODS FOR FIRING LOCAL SEARCH LISTENER CALLBACKS */
-    /**************************************************************/
-    
-    /**
-     * Calls {@link LocalSearchListener#modifiedCurrentSolution(LocalSearch, Solution, Evaluation, Validation)} on
-     * every attached local search listener. Should only be executed when the search is active (initializing, running
-     * or terminating) and only be fired exactly once for each update of the current solution.
-     */
-    private void fireModifiedCurrentSolution(SolutionType newCurrentSolution,
-                                             Evaluation newCurrentSolutionEvaluation,
-                                             Validation newCurrentSolutionValidation){
-        localSearchListeners.forEach(l -> {
-                                l.modifiedCurrentSolution(this,
-                                                          newCurrentSolution,
-                                                          newCurrentSolutionEvaluation,
-                                                          newCurrentSolutionValidation);
-                            });
+    private void fireNewCurrentSolution(SolutionType newCurrentSolution,
+                                        Evaluation newCurrentSolutionEvaluation,
+                                        Validation newCurrentSolutionValidation){
+        fireListenerCallback(l -> l.newCurrentSolution(this,
+                                                       newCurrentSolution,
+                                                       newCurrentSolutionEvaluation,
+                                                       newCurrentSolutionValidation));
     }
     
     /******************************************/
@@ -269,7 +205,7 @@ public abstract class LocalSearch<SolutionType extends Solution> extends Search<
         curSolutionEvaluation = evaluation;
         curSolutionValidation = validation;
         // inform listeners
-        fireModifiedCurrentSolution(curSolution, curSolutionEvaluation, curSolutionValidation);
+        fireNewCurrentSolution(curSolution, curSolutionEvaluation, curSolutionValidation);
     }
 
     /**
