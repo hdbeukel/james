@@ -233,16 +233,11 @@ public class KnapSack {
     }
     
     private static double computeSelectionWeight(SubsetSolution solution, KnapsackData data){
-        return solution.getSelectedIDs().stream()
-                                        .mapToDouble(id -> data.getWeight(id))
-                                        .sum();
+        return solution.getSelectedIDs().stream().mapToDouble(data::getWeight).sum();
     }
     
     private static double computeAverageProfit(KnapsackData data){
-        return data.getIDs().stream()
-                            .mapToDouble(id -> data.getProfit(id))
-                            .average()
-                            .getAsDouble();
+        return data.getIDs().stream().mapToDouble(data::getProfit).average().getAsDouble();
     }
     
 }
