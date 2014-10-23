@@ -24,8 +24,29 @@ package org.jamesframework.core.problems.constraints.validations;
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class SimplePenalizingValidation extends SimpleValidation implements PenalizingValidation {
+public class SimplePenalizingValidation implements PenalizingValidation {
 
+    /**
+     * Constant simple penalizing validation indicating that the validation passed successfully
+     * ({@link #passed()} returns <code>true</code> and no penalty is assigned).
+     */
+    public static final SimplePenalizingValidation PASSED = new SimplePenalizingValidation(true, -1);
+    
+    /**
+     * Creates a simple penalizing validation indicating that the validation failed, where
+     * the given strictly positive penalty is assigned.
+     * 
+     * @param penalty assigned penalty
+     * @return simple penalizing validation where {@link #passed()} returns <code>false</code>
+     *         and {@link #getPenalty()} returns the given strictly positive penalty
+     * @throws IllegalArgumentException if <code>penalty</code> is not strictly positive
+     */
+    public static final SimplePenalizingValidation FAILED(double penalty){
+        return new SimplePenalizingValidation(false, penalty);
+    }
+    
+    // contained boolean value
+    private final boolean passed;
     // assigned penalty
     private final double penalty;
 
@@ -43,7 +64,7 @@ public class SimplePenalizingValidation extends SimpleValidation implements Pena
      *                                  <code>penalty</code> is not strictly positive
      */
     public SimplePenalizingValidation(boolean passed, double penalty) {
-        super(passed);
+        this.passed = passed;
         if(passed){
             this.penalty = 0.0;
         } else {
@@ -57,7 +78,19 @@ public class SimplePenalizingValidation extends SimpleValidation implements Pena
     }
     
     /**
-     * Get the assigned penalty
+     * Get the boolean value specified at construction, indicating whether the corresponding solution
+     * passed validation. If this method returns <code>true</code>, {@link #getPenalty()} returns 0.0.
+     * 
+     * @return boolean value, <code>true</code> if the corresponding solution is valid
+     */
+    @Override
+    public boolean passed() {
+        return passed;
+    }
+    
+    /**
+     * Get the assigned penalty. If {@link #passed()} returns <code>false</code> this method returns
+     * the strictly positive penalty specified at construction. Else, it returns 0.0.
      * 
      * @return assigned penalty
      */
@@ -68,13 +101,18 @@ public class SimplePenalizingValidation extends SimpleValidation implements Pena
     
     /**
      * Get a string representation of the validation object. Indicates
-     * whether the the solution passed validation and the assigned penalty.
+     * whether the the solution passed validation and the assigned penalty
+     * (only if any).
      * 
      * @return string representation
      */
     @Override
     public String toString(){
-        return (passed() ? "valid" : "invalid") + " (penalty: " + getPenalty() + ")";
+        if(passed()){
+            return "valid";
+        } else {
+            return "invalid (penalty: " + getPenalty() + ")";
+        }        
     }
 
 }

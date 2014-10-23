@@ -24,6 +24,18 @@ package org.jamesframework.core.problems.constraints.validations;
  */
 public class SimpleValidation implements Validation {
 
+    /**
+     * Constant simple validation indicating that the validation passed successfully
+     * ({@link #passed()} returns <code>true</code>).
+     */
+    public static final SimpleValidation PASSED = new SimpleValidation(true);
+    
+    /**
+     * Constant simple validation indicating that the validation failed
+     * ({@link #passed()} returns <code>false</code>).
+     */
+    public static final SimpleValidation FAILED = new SimpleValidation(false);
+    
     // contained boolean value
     private final boolean passed;
 
