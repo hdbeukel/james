@@ -16,8 +16,6 @@
 
 package org.jamesframework.core.problems.constraints.validations;
 
-import org.jamesframework.core.problems.constraints.validations.SimpleValidation;
-
 /**
  * <p>
  * Interface of a solution validation produced by a problem definition. The only requirement is that the

@@ -16,8 +16,6 @@
 
 package org.jamesframework.core.problems.objectives.evaluations;
 
-import org.jamesframework.core.problems.objectives.evaluations.SimpleEvaluation;
-
 /**
  * <p>
  * Interface of a solution evaluation produced by a problem definition. The only requirement is that the
