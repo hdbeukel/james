@@ -121,7 +121,7 @@
 <dd>
 <div class="block">Add a penalizing constraint to the problem.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html#addPenalizingValidation-java.lang.Object-org.jamesframework.core.problems.constraints.PenalizingValidation-">addPenalizingValidation(Object, PenalizingValidation)</a></span> - Method in class org.jamesframework.core.problems.objectives.evaluations.<a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html" title="class in org.jamesframework.core.problems.objectives.evaluations">PenalizedEvaluation</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html#addPenalizingValidation-java.lang.Object-org.jamesframework.core.problems.constraints.validations.PenalizingValidation-">addPenalizingValidation(Object, PenalizingValidation)</a></span> - Method in class org.jamesframework.core.problems.objectives.evaluations.<a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html" title="class in org.jamesframework.core.problems.objectives.evaluations">PenalizedEvaluation</a></dt>
 <dd>
 <div class="block">Add a penalty expressed by a penalizing validation object.</div>
 </dd>
@@ -138,7 +138,7 @@
 <dd>
 <div class="block">Adds a stop criterion used to decide when the search should stop running.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html#addValidation-java.lang.Object-org.jamesframework.core.problems.constraints.Validation-">addValidation(Object, Validation)</a></span> - Method in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">UnanimousValidation</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html#addValidation-java.lang.Object-org.jamesframework.core.problems.constraints.validations.Validation-">addValidation(Object, Validation)</a></span> - Method in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">UnanimousValidation</a></dt>
 <dd>
 <div class="block">Add a validation object.</div>
 </dd>
@@ -180,21 +180,21 @@
 </a>
 <h2 class="title">C</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html#cacheMoveEvaluation-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.objectives.Evaluation-">cacheMoveEvaluation(Move&lt;?&gt;, Evaluation)</a></span> - Method in interface org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html" title="interface in org.jamesframework.core.search.cache">EvaluatedMoveCache</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html#cacheMoveEvaluation-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">cacheMoveEvaluation(Move&lt;?&gt;, Evaluation)</a></span> - Method in interface org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html" title="interface in org.jamesframework.core.search.cache">EvaluatedMoveCache</a></dt>
 <dd>
 <div class="block">Request to cache the evaluation (see <a href="org/jamesframework/core/problems/Problem.html#evaluate-SolutionType-"><code>Problem.evaluate(Solution)</code></a>) of the neighbouring
  solution which is obtained by applying the given move to the current solution.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#cacheMoveEvaluation-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.objectives.Evaluation-">cacheMoveEvaluation(Move&lt;?&gt;, Evaluation)</a></span> - Method in class org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html" title="class in org.jamesframework.core.search.cache">SingleEvaluatedMoveCache</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#cacheMoveEvaluation-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">cacheMoveEvaluation(Move&lt;?&gt;, Evaluation)</a></span> - Method in class org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html" title="class in org.jamesframework.core.search.cache">SingleEvaluatedMoveCache</a></dt>
 <dd>
 <div class="block">Cache the given evaluation, discarding any previously cached evaluations.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html#cacheMoveValidation-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.constraints.Validation-">cacheMoveValidation(Move&lt;?&gt;, Validation)</a></span> - Method in interface org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html" title="interface in org.jamesframework.core.search.cache">EvaluatedMoveCache</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html#cacheMoveValidation-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.constraints.validations.Validation-">cacheMoveValidation(Move&lt;?&gt;, Validation)</a></span> - Method in interface org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html" title="interface in org.jamesframework.core.search.cache">EvaluatedMoveCache</a></dt>
 <dd>
 <div class="block">Request to cache the validation (see <a href="org/jamesframework/core/problems/Problem.html#validate-SolutionType-"><code>Problem.validate(Solution)</code></a>) of the neighbouring
  solution which is obtained by applying the given move to the current solution.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#cacheMoveValidation-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.constraints.Validation-">cacheMoveValidation(Move&lt;?&gt;, Validation)</a></span> - Method in class org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html" title="class in org.jamesframework.core.search.cache">SingleEvaluatedMoveCache</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#cacheMoveValidation-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.constraints.validations.Validation-">cacheMoveValidation(Move&lt;?&gt;, Validation)</a></span> - Method in class org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html" title="class in org.jamesframework.core.search.cache">SingleEvaluatedMoveCache</a></dt>
 <dd>
 <div class="block">Cache validation of the given move, discarding any previously cached value.</div>
 </dd>
@@ -230,7 +230,7 @@
 <dd>
 <div class="block">Clear the tabu memory.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#computeDelta-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.objectives.Evaluation-">computeDelta(Evaluation, Evaluation)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#computeDelta-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">computeDelta(Evaluation, Evaluation)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
 <div class="block">Computes the amount of improvement of <code>currentEvaluation</code> over <code>previousEvaluation</code>,
  taking into account whether evaluations are being maximized or minimized.</div>
@@ -386,7 +386,7 @@
 <div class="block">Evaluates a solution by taking into account both the evaluation calculated by the objective function and the
  penalizing constraints (if any).</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/AbstractProblem.html#evaluate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-">evaluate(Move&lt;? super SolutionType&gt;, SolutionType, Evaluation)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/AbstractProblem.html#evaluate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">evaluate(Move&lt;? super SolutionType&gt;, SolutionType, Evaluation)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a></dt>
 <dd>
 <div class="block">Evaluate a move by taking into account both the evaluation of the modified solution and
  the penalizing constraints (if any).</div>
@@ -395,7 +395,7 @@
 <dd>
 <div class="block">Evaluates a given solution using the given data.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/Objective.html#evaluate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.objectives.Evaluation-DataType-">evaluate(Move&lt;? super ActualSolutionType&gt;, ActualSolutionType, Evaluation, DataType)</a></span> - Method in interface org.jamesframework.core.problems.objectives.<a href="org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/Objective.html#evaluate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-DataType-">evaluate(Move&lt;? super ActualSolutionType&gt;, ActualSolutionType, Evaluation, DataType)</a></span> - Method in interface org.jamesframework.core.problems.objectives.<a href="org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a></dt>
 <dd>
 <div class="block">
  Evaluates a move that will be applied to the current solution of a local search (delta evaluation).</div>
@@ -404,7 +404,7 @@
 <dd>
 <div class="block">Evaluates a given solution.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/Problem.html#evaluate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-">evaluate(Move&lt;? super SolutionType&gt;, SolutionType, Evaluation)</a></span> - Method in interface org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/Problem.html#evaluate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">evaluate(Move&lt;? super SolutionType&gt;, SolutionType, Evaluation)</a></span> - Method in interface org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a></dt>
 <dd>
 <div class="block">
  Evaluates a move that will be applied to the current solution of a local search (delta evaluation).</div>
@@ -419,7 +419,7 @@
 <dd>
 <div class="block">Evaluates a move to be applied to the current solution.</div>
 </dd>
-<dt><a href="org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives"><span class="typeNameLink">Evaluation</span></a> - Interface in <a href="org/jamesframework/core/problems/objectives/package-summary.html">org.jamesframework.core.problems.objectives</a></dt>
+<dt><a href="org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations"><span class="typeNameLink">Evaluation</span></a> - Interface in <a href="org/jamesframework/core/problems/objectives/evaluations/package-summary.html">org.jamesframework.core.problems.objectives.evaluations</a></dt>
 <dd>
 <div class="block">
  Interface of a solution evaluation produced by a problem definition.</div>
@@ -444,6 +444,16 @@
 </a>
 <h2 class="title">F</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html#FAILED-double-">FAILED(double)</a></span> - Static method in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimplePenalizingValidation</a></dt>
+<dd>
+<div class="block">Creates a simple penalizing validation indicating that the validation failed, where
+ the given strictly positive penalty is assigned.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/SimpleValidation.html#FAILED">FAILED</a></span> - Static variable in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/SimpleValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimpleValidation</a></dt>
+<dd>
+<div class="block">Constant simple validation indicating that the validation failed
+ (<a href="org/jamesframework/core/problems/constraints/validations/SimpleValidation.html#passed--"><code>SimpleValidation.passed()</code></a> returns <code>false</code>).</div>
+</dd>
 <dt><a href="org/jamesframework/core/util/FastLimitedQueue.html" title="class in org.jamesframework.core.util"><span class="typeNameLink">FastLimitedQueue</span></a>&lt;<a href="org/jamesframework/core/util/FastLimitedQueue.html" title="type parameter in FastLimitedQueue">E</a>&gt; - Class in <a href="org/jamesframework/core/util/package-summary.html">org.jamesframework.core.util</a></dt>
 <dd>
 <div class="block">A fast queue with limited size that replaces the least recently added items if it is full, and which never contains
@@ -785,13 +795,13 @@
 <dd>
 <div class="block">Retrieve the penalizing validation object corresponding to the given key.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/PenalizingValidation.html#getPenalty--">getPenalty()</a></span> - Method in interface org.jamesframework.core.problems.constraints.<a href="org/jamesframework/core/problems/constraints/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints">PenalizingValidation</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/PenalizingValidation.html#getPenalty--">getPenalty()</a></span> - Method in interface org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints.validations">PenalizingValidation</a></dt>
 <dd>
 <div class="block">Get the assigned penalty.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html#getPenalty--">getPenalty()</a></span> - Method in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimplePenalizingValidation</a></dt>
 <dd>
-<div class="block">Get the assigned penalty</div>
+<div class="block">Get the assigned penalty.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#getProblem--">getProblem()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
@@ -943,7 +953,7 @@
 <dd>
 <div class="block">Retrieve the validation object corresponding to the given key.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/Evaluation.html#getValue--">getValue()</a></span> - Method in interface org.jamesframework.core.problems.objectives.<a href="org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/evaluations/Evaluation.html#getValue--">getValue()</a></span> - Method in interface org.jamesframework.core.problems.objectives.evaluations.<a href="org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a></dt>
 <dd>
 <div class="block">Get the double value of this evaluation, expressing the solution quality.</div>
 </dd>
@@ -1414,11 +1424,11 @@
 <dd>
 <div class="block">Create a new neighbourhood search to solve the given problem, with a custom name.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/SearchListener.html#newBestSolution-org.jamesframework.core.search.Search-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">newBestSolution(Search&lt;? extends SolutionType&gt;, SolutionType, Evaluation, Validation)</a></span> - Method in interface org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/SearchListener.html#newBestSolution-org.jamesframework.core.search.Search-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">newBestSolution(Search&lt;? extends SolutionType&gt;, SolutionType, Evaluation, Validation)</a></span> - Method in interface org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a></dt>
 <dd>
 <div class="block">Fired when the search has found a new best solution.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/SearchListener.html#newCurrentSolution-org.jamesframework.core.search.LocalSearch-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">newCurrentSolution(LocalSearch&lt;? extends SolutionType&gt;, SolutionType, Evaluation, Validation)</a></span> - Method in interface org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/SearchListener.html#newCurrentSolution-org.jamesframework.core.search.LocalSearch-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">newCurrentSolution(LocalSearch&lt;? extends SolutionType&gt;, SolutionType, Evaluation, Validation)</a></span> - Method in interface org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a></dt>
 <dd>
 <div class="block">Fired by <strong>local searches</strong> only, when a new current solution has been adopted.</div>
 </dd>
@@ -1455,7 +1465,7 @@
 </dd>
 <dt><a href="org/jamesframework/core/problems/constraints/validations/package-summary.html">org.jamesframework.core.problems.constraints.validations</a> - package org.jamesframework.core.problems.constraints.validations</dt>
 <dd>
-<div class="block">Predefined validation objects.</div>
+<div class="block">Validation interfaces and predefined implementations.</div>
 </dd>
 <dt><a href="org/jamesframework/core/problems/datatypes/package-summary.html">org.jamesframework.core.problems.datatypes</a> - package org.jamesframework.core.problems.datatypes</dt>
 <dd>
@@ -1467,7 +1477,7 @@
 </dd>
 <dt><a href="org/jamesframework/core/problems/objectives/evaluations/package-summary.html">org.jamesframework.core.problems.objectives.evaluations</a> - package org.jamesframework.core.problems.objectives.evaluations</dt>
 <dd>
-<div class="block">Predefined evaluation objects.</div>
+<div class="block">Evaluation interface and predefined implementations.</div>
 </dd>
 <dt><a href="org/jamesframework/core/search/package-summary.html">org.jamesframework.core.search</a> - package org.jamesframework.core.search</dt>
 <dd>
@@ -1570,9 +1580,20 @@
  Creates a new parallel tempering algorithm, specifying the problem to solve, the neighbourhood used in each replica, the number
  of replicas, the minimum and maximum temperature, and a custom search name.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/Validation.html#passed--">passed()</a></span> - Method in interface org.jamesframework.core.problems.constraints.<a href="org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html#PASSED">PASSED</a></span> - Static variable in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimplePenalizingValidation</a></dt>
 <dd>
-<div class="block">Check whether the corresponding solution passed validation.</div>
+<div class="block">Constant simple penalizing validation indicating that the validation passed successfully
+ (<a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html#passed--"><code>SimplePenalizingValidation.passed()</code></a> returns <code>true</code> and no penalty is assigned).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html#passed--">passed()</a></span> - Method in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimplePenalizingValidation</a></dt>
+<dd>
+<div class="block">Get the boolean value specified at construction, indicating whether the corresponding solution
+ passed validation.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/SimpleValidation.html#PASSED">PASSED</a></span> - Static variable in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/SimpleValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimpleValidation</a></dt>
+<dd>
+<div class="block">Constant simple validation indicating that the validation passed successfully
+ (<a href="org/jamesframework/core/problems/constraints/validations/SimpleValidation.html#passed--"><code>SimpleValidation.passed()</code></a> returns <code>true</code>).</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/SimpleValidation.html#passed--">passed()</a></span> - Method in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/SimpleValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimpleValidation</a></dt>
 <dd>
@@ -1582,6 +1603,10 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html#passed--">passed()</a></span> - Method in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">UnanimousValidation</a></dt>
 <dd>
 <div class="block">A unanimous validation passed if and only if all contained validations passed.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/Validation.html#passed--">passed()</a></span> - Method in interface org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></dt>
+<dd>
+<div class="block">Check whether the corresponding solution passed validation.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/validations/SubsetValidation.html#passed-boolean-">passed(boolean)</a></span> - Method in class org.jamesframework.core.subset.validations.<a href="org/jamesframework/core/subset/validations/SubsetValidation.html" title="class in org.jamesframework.core.subset.validations">SubsetValidation</a></dt>
 <dd>
@@ -1596,7 +1621,7 @@
 <dd>
 <div class="block">A penalized evaluation consists of an original evaluation and a number of penalizing validations.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html#PenalizedEvaluation-org.jamesframework.core.problems.objectives.Evaluation-boolean-">PenalizedEvaluation(Evaluation, boolean)</a></span> - Constructor for class org.jamesframework.core.problems.objectives.evaluations.<a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html" title="class in org.jamesframework.core.problems.objectives.evaluations">PenalizedEvaluation</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html#PenalizedEvaluation-org.jamesframework.core.problems.objectives.evaluations.Evaluation-boolean-">PenalizedEvaluation(Evaluation, boolean)</a></span> - Constructor for class org.jamesframework.core.problems.objectives.evaluations.<a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html" title="class in org.jamesframework.core.problems.objectives.evaluations">PenalizedEvaluation</a></dt>
 <dd>
 <div class="block">Create a new penalized evaluation, given the original evaluation.</div>
 </dd>
@@ -1606,7 +1631,7 @@
  Interface of a penalizing constraint that assigns a penalty to a solution's evaluation if it does not
  satisfy the constraint.</div>
 </dd>
-<dt><a href="org/jamesframework/core/problems/constraints/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints"><span class="typeNameLink">PenalizingValidation</span></a> - Interface in <a href="org/jamesframework/core/problems/constraints/package-summary.html">org.jamesframework.core.problems.constraints</a></dt>
+<dt><a href="org/jamesframework/core/problems/constraints/validations/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints.validations"><span class="typeNameLink">PenalizingValidation</span></a> - Interface in <a href="org/jamesframework/core/problems/constraints/validations/package-summary.html">org.jamesframework.core.problems.constraints.validations</a></dt>
 <dd>
 <div class="block">
  Interface of a validation produced by a penalizing constraint.</div>
@@ -2368,7 +2393,7 @@
 <dd>
 <div class="block">Represents a validation of a subset solution.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/validations/SubsetValidation.html#SubsetValidation-boolean-org.jamesframework.core.problems.constraints.Validation-">SubsetValidation(boolean, Validation)</a></span> - Constructor for class org.jamesframework.core.subset.validations.<a href="org/jamesframework/core/subset/validations/SubsetValidation.html" title="class in org.jamesframework.core.subset.validations">SubsetValidation</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/validations/SubsetValidation.html#SubsetValidation-boolean-org.jamesframework.core.problems.constraints.validations.Validation-">SubsetValidation(boolean, Validation)</a></span> - Constructor for class org.jamesframework.core.subset.validations.<a href="org/jamesframework/core/subset/validations/SubsetValidation.html" title="class in org.jamesframework.core.subset.validations">SubsetValidation</a></dt>
 <dd>
 <div class="block">Create a subset validation.</div>
 </dd>
@@ -2484,7 +2509,7 @@
 <div class="block">
  Checks whether a new best solution has been found and updates it accordingly.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">updateBestSolution(SolutionType, Evaluation, Validation)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">updateBestSolution(SolutionType, Evaluation, Validation)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
 <div class="block">
  Checks whether a new best solution has been found and updates it accordingly,
@@ -2494,7 +2519,7 @@
 <dd>
 <div class="block">Update the current and best solution during search.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">updateCurrentAndBestSolution(SolutionType, Evaluation, Validation)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">updateCurrentAndBestSolution(SolutionType, Evaluation, Validation)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
 <dd>
 <div class="block">Update the current and best solution during search, given that the respective solution has already
  been evaluated and validated.</div>
@@ -2503,11 +2528,11 @@
 <dd>
 <div class="block">Update the current solution during search.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#updateCurrentSolution-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">updateCurrentSolution(SolutionType, Evaluation, Validation)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#updateCurrentSolution-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">updateCurrentSolution(SolutionType, Evaluation, Validation)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
 <dd>
 <div class="block">Update the current solution during search, given that it has already been evaluated and validated.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#updateCurrentSolution-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">updateCurrentSolution(SolutionType, Evaluation, Validation)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#updateCurrentSolution-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">updateCurrentSolution(SolutionType, Evaluation, Validation)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
 <dd>
 <div class="block">When updating the current solution in a neighbourhood search, the evaluated move cache is
  cleared because it is no longer valid for the new current solution.</div>
@@ -2523,7 +2548,7 @@
 <div class="block">
  Validate a solution by checking all mandatory constraints.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/AbstractProblem.html#validate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.constraints.Validation-">validate(Move&lt;? super SolutionType&gt;, SolutionType, Validation)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/AbstractProblem.html#validate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.constraints.validations.Validation-">validate(Move&lt;? super SolutionType&gt;, SolutionType, Validation)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a></dt>
 <dd>
 <div class="block">
  Validate a move by checking all mandatory constraints.</div>
@@ -2532,7 +2557,7 @@
 <dd>
 <div class="block">Validates a solution given the underlying data.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/Constraint.html#validate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.constraints.Validation-DataType-">validate(Move&lt;? super ActualSolutionType&gt;, ActualSolutionType, Validation, DataType)</a></span> - Method in interface org.jamesframework.core.problems.constraints.<a href="org/jamesframework/core/problems/constraints/Constraint.html" title="interface in org.jamesframework.core.problems.constraints">Constraint</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/Constraint.html#validate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.constraints.validations.Validation-DataType-">validate(Move&lt;? super ActualSolutionType&gt;, ActualSolutionType, Validation, DataType)</a></span> - Method in interface org.jamesframework.core.problems.constraints.<a href="org/jamesframework/core/problems/constraints/Constraint.html" title="interface in org.jamesframework.core.problems.constraints">Constraint</a></dt>
 <dd>
 <div class="block">
  Validates a move that will be applied to the current solution of a local search (delta validation).</div>
@@ -2541,7 +2566,7 @@
 <dd>
 <div class="block">Validates a solution given the underlying data.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/PenalizingConstraint.html#validate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.constraints.Validation-DataType-">validate(Move&lt;? super ActualSolutionType&gt;, ActualSolutionType, Validation, DataType)</a></span> - Method in interface org.jamesframework.core.problems.constraints.<a href="org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="interface in org.jamesframework.core.problems.constraints">PenalizingConstraint</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/PenalizingConstraint.html#validate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.constraints.validations.Validation-DataType-">validate(Move&lt;? super ActualSolutionType&gt;, ActualSolutionType, Validation, DataType)</a></span> - Method in interface org.jamesframework.core.problems.constraints.<a href="org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="interface in org.jamesframework.core.problems.constraints">PenalizingConstraint</a></dt>
 <dd>
 <div class="block">
  Validates a move that will be applied to the current solution of a local search (delta validation).</div>
@@ -2550,7 +2575,7 @@
 <dd>
 <div class="block">Validates a solution.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/Problem.html#validate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.constraints.Validation-">validate(Move&lt;? super SolutionType&gt;, SolutionType, Validation)</a></span> - Method in interface org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/Problem.html#validate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.constraints.validations.Validation-">validate(Move&lt;? super SolutionType&gt;, SolutionType, Validation)</a></span> - Method in interface org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a></dt>
 <dd>
 <div class="block">
  Validates a move that will be applied to the current solution of a local search (delta validation).</div>
@@ -2559,7 +2584,7 @@
 <dd>
 <div class="block">Validate a subset solution.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetProblem.html#validate-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.subset.SubsetSolution-org.jamesframework.core.problems.constraints.Validation-">validate(Move&lt;? super SubsetSolution&gt;, SubsetSolution, Validation)</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset">SubsetProblem</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetProblem.html#validate-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.subset.SubsetSolution-org.jamesframework.core.problems.constraints.validations.Validation-">validate(Move&lt;? super SubsetSolution&gt;, SubsetSolution, Validation)</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset">SubsetProblem</a></dt>
 <dd>
 <div class="block">Validate a move to be applied to the current subset solution of a local search (delta validation).</div>
 </dd>
@@ -2567,7 +2592,7 @@
 <dd>
 <div class="block">Validates a move to be applied to the current solution.</div>
 </dd>
-<dt><a href="org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints"><span class="typeNameLink">Validation</span></a> - Interface in <a href="org/jamesframework/core/problems/constraints/package-summary.html">org.jamesframework.core.problems.constraints</a></dt>
+<dt><a href="org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations"><span class="typeNameLink">Validation</span></a> - Interface in <a href="org/jamesframework/core/problems/constraints/validations/package-summary.html">org.jamesframework.core.problems.constraints.validations</a></dt>
 <dd>
 <div class="block">
  Interface of a solution validation produced by a problem definition.</div>

@@ -118,7 +118,7 @@ var activeTableTab = "activeTableTab";
  <p>
  It is required to provide a full validation by implementing <a href="../../../../../org/jamesframework/core/problems/constraints/Constraint.html#validate-SolutionType-DataType-"><code>validate(Solution, Object)</code></a>.
  If desired, an efficient delta validation can also be provided by overriding the default behaviour
- of <a href="../../../../../org/jamesframework/core/problems/constraints/Constraint.html#validate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.constraints.Validation-DataType-"><code>validate(Move, Solution, Validation, Object)</code></a> which (1) applies the move, (2) performs
+ of <a href="../../../../../org/jamesframework/core/problems/constraints/Constraint.html#validate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.constraints.validations.Validation-DataType-"><code>validate(Move, Solution, Validation, Object)</code></a> which (1) applies the move, (2) performs
  a full validation and (3) undoes the move.
  </p></div>
 <dl>
@@ -144,17 +144,17 @@ var activeTableTab = "activeTableTab";
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>default &lt;ActualSolutionType extends <a href="../../../../../org/jamesframework/core/problems/constraints/Constraint.html" title="type parameter in Constraint">SolutionType</a>&gt;<br><a href="../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/constraints/Constraint.html#validate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.constraints.Validation-DataType-">validate</a></span>(<a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super ActualSolutionType&gt;&nbsp;move,
+<td class="colFirst"><code>default &lt;ActualSolutionType extends <a href="../../../../../org/jamesframework/core/problems/constraints/Constraint.html" title="type parameter in Constraint">SolutionType</a>&gt;<br><a href="../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/constraints/Constraint.html#validate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.constraints.validations.Validation-DataType-">validate</a></span>(<a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super ActualSolutionType&gt;&nbsp;move,
         ActualSolutionType&nbsp;curSolution,
-        <a href="../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;curValidation,
+        <a href="../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;curValidation,
         <a href="../../../../../org/jamesframework/core/problems/constraints/Constraint.html" title="type parameter in Constraint">DataType</a>&nbsp;data)</code>
 <div class="block">
  Validates a move that will be applied to the current solution of a local search (delta validation).</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a></code></td>
+<td class="colFirst"><code><a href="../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/constraints/Constraint.html#validate-SolutionType-DataType-">validate</a></span>(<a href="../../../../../org/jamesframework/core/problems/constraints/Constraint.html" title="type parameter in Constraint">SolutionType</a>&nbsp;solution,
         <a href="../../../../../org/jamesframework/core/problems/constraints/Constraint.html" title="type parameter in Constraint">DataType</a>&nbsp;data)</code>
 <div class="block">Validates a solution given the underlying data.</div>
@@ -183,10 +183,10 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>validate</h4>
-<pre><a href="../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;validate(<a href="../../../../../org/jamesframework/core/problems/constraints/Constraint.html" title="type parameter in Constraint">SolutionType</a>&nbsp;solution,
+<pre><a href="../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;validate(<a href="../../../../../org/jamesframework/core/problems/constraints/Constraint.html" title="type parameter in Constraint">SolutionType</a>&nbsp;solution,
                     <a href="../../../../../org/jamesframework/core/problems/constraints/Constraint.html" title="type parameter in Constraint">DataType</a>&nbsp;data)</pre>
-<div class="block">Validates a solution given the underlying data. Returns an object of type <a href="../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints"><code>Validation</code></a>.
- It can be checked wether the solution passed validation by calling <a href="../../../../../org/jamesframework/core/problems/constraints/Validation.html#passed--"><code>Validation.passed()</code></a>
+<div class="block">Validates a solution given the underlying data. Returns an object of type <a href="../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations"><code>Validation</code></a>.
+ It can be checked wether the solution passed validation by calling <a href="../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html#passed--"><code>Validation.passed()</code></a>
  on this validation object.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -197,17 +197,17 @@ var activeTableTab = "activeTableTab";
 </dl>
 </li>
 </ul>
-<a name="validate-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.Solution-org.jamesframework.core.problems.constraints.Validation-java.lang.Object-">
+<a name="validate-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.Solution-org.jamesframework.core.problems.constraints.validations.Validation-java.lang.Object-">
 <!--   -->
-</a><a name="validate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.constraints.Validation-DataType-">
+</a><a name="validate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.constraints.validations.Validation-DataType-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>validate</h4>
-<pre>default&nbsp;&lt;ActualSolutionType extends <a href="../../../../../org/jamesframework/core/problems/constraints/Constraint.html" title="type parameter in Constraint">SolutionType</a>&gt;&nbsp;<a href="../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;validate(<a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super ActualSolutionType&gt;&nbsp;move,
+<pre>default&nbsp;&lt;ActualSolutionType extends <a href="../../../../../org/jamesframework/core/problems/constraints/Constraint.html" title="type parameter in Constraint">SolutionType</a>&gt;&nbsp;<a href="../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;validate(<a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super ActualSolutionType&gt;&nbsp;move,
                                                                       ActualSolutionType&nbsp;curSolution,
-                                                                      <a href="../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;curValidation,
+                                                                      <a href="../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;curValidation,
                                                                       <a href="../../../../../org/jamesframework/core/problems/constraints/Constraint.html" title="type parameter in Constraint">DataType</a>&nbsp;data)</pre>
 <div class="block"><p>
  Validates a move that will be applied to the current solution of a local search (delta validation).

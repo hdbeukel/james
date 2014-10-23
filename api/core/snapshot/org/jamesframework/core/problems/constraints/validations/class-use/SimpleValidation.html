@@ -86,7 +86,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.problems.constraints.validations">org.jamesframework.core.problems.constraints.validations</a></td>
 <td class="colLast">
-<div class="block">Predefined validation objects.</div>
+<div class="block">Validation interfaces and predefined implementations.</div>
 </td>
 </tr>
 </tbody>
@@ -98,20 +98,25 @@
 <!--   -->
 </a>
 <h3>Uses of <a href="../../../../../../../org/jamesframework/core/problems/constraints/validations/SimpleValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimpleValidation</a> in <a href="../../../../../../../org/jamesframework/core/problems/constraints/validations/package-summary.html">org.jamesframework.core.problems.constraints.validations</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing subclasses, and an explanation">
-<caption><span>Subclasses of <a href="../../../../../../../org/jamesframework/core/problems/constraints/validations/SimpleValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimpleValidation</a> in <a href="../../../../../../../org/jamesframework/core/problems/constraints/validations/package-summary.html">org.jamesframework.core.problems.constraints.validations</a></span><span class="tabEnd">&nbsp;</span></caption>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing fields, and an explanation">
+<caption><span>Fields in <a href="../../../../../../../org/jamesframework/core/problems/constraints/validations/package-summary.html">org.jamesframework.core.problems.constraints.validations</a> declared as <a href="../../../../../../../org/jamesframework/core/problems/constraints/validations/SimpleValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimpleValidation</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Class and Description</th>
+<th class="colLast" scope="col">Field and Description</th>
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimplePenalizingValidation</a></span></code>
-<div class="block">A simple penalizing validation object that wraps a boolean value,
- indicating whether the corresponding solution passed validation,
- and a double value, indicating the assigned penalty if the solution
- did not pass validation.</div>
+<td class="colFirst"><code>static <a href="../../../../../../../org/jamesframework/core/problems/constraints/validations/SimpleValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimpleValidation</a></code></td>
+<td class="colLast"><span class="typeNameLabel">SimpleValidation.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/problems/constraints/validations/SimpleValidation.html#FAILED">FAILED</a></span></code>
+<div class="block">Constant simple validation indicating that the validation failed
+ (<a href="../../../../../../../org/jamesframework/core/problems/constraints/validations/SimpleValidation.html#passed--"><code>passed()</code></a> returns <code>false</code>).</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static <a href="../../../../../../../org/jamesframework/core/problems/constraints/validations/SimpleValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimpleValidation</a></code></td>
+<td class="colLast"><span class="typeNameLabel">SimpleValidation.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/problems/constraints/validations/SimpleValidation.html#PASSED">PASSED</a></span></code>
+<div class="block">Constant simple validation indicating that the validation passed successfully
+ (<a href="../../../../../../../org/jamesframework/core/problems/constraints/validations/SimpleValidation.html#passed--"><code>passed()</code></a> returns <code>true</code>).</div>
 </td>
 </tr>
 </tbody>

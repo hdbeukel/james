@@ -51,7 +51,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/SimpleValidation.html" title="class in org.jamesframework.core.problems.constraints.validations"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li>Next&nbsp;Class</li>
+<li><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../../index.html?org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html" target="_top">Frames</a></li>
@@ -110,13 +110,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a></dd>
+<dd><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">UnanimousValidation</span>
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
-implements <a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a></pre>
+implements <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></pre>
 <div class="block">A unanimous validation object is used to combine validations produced by a number of constraints.
  A solution passes a unanimous validation if and only if it passes each contained validation.</div>
 <dl>
@@ -162,13 +162,13 @@ implements <a href="../../../../../../org/jamesframework/core/problems/constrain
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html#addValidation-java.lang.Object-org.jamesframework.core.problems.constraints.Validation-">addValidation</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;key,
-             <a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;validation)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html#addValidation-java.lang.Object-org.jamesframework.core.problems.constraints.validations.Validation-">addValidation</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;key,
+             <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;validation)</code>
 <div class="block">Add a validation object.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a></code></td>
+<td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html#getValidation-java.lang.Object-">getValidation</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;key)</code>
 <div class="block">Retrieve the validation object corresponding to the given key.</div>
 </td>
@@ -215,7 +215,7 @@ implements <a href="../../../../../../org/jamesframework/core/problems/constrain
 <h4>UnanimousValidation</h4>
 <pre>public&nbsp;UnanimousValidation()</pre>
 <div class="block">Create an empty unanimous validation object. Actual underlying validations can be added
- later by calling <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html#addValidation-java.lang.Object-org.jamesframework.core.problems.constraints.Validation-"><code>addValidation(Object, Validation)</code></a>.</div>
+ later by calling <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html#addValidation-java.lang.Object-org.jamesframework.core.problems.constraints.validations.Validation-"><code>addValidation(Object, Validation)</code></a>.</div>
 </li>
 </ul>
 </li>
@@ -226,14 +226,14 @@ implements <a href="../../../../../../org/jamesframework/core/problems/constrain
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="addValidation-java.lang.Object-org.jamesframework.core.problems.constraints.Validation-">
+<a name="addValidation-java.lang.Object-org.jamesframework.core.problems.constraints.validations.Validation-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>addValidation</h4>
 <pre>public&nbsp;void&nbsp;addValidation(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;key,
-                          <a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;validation)</pre>
+                          <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;validation)</pre>
 <div class="block">Add a validation object. A key is required that can be used to retrieve the validation object.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -248,7 +248,7 @@ implements <a href="../../../../../../org/jamesframework/core/problems/constrain
 <ul class="blockList">
 <li class="blockList">
 <h4>getValidation</h4>
-<pre>public&nbsp;<a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;getValidation(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;key)</pre>
+<pre>public&nbsp;<a href="../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;getValidation(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;key)</pre>
 <div class="block">Retrieve the validation object corresponding to the given key.
  If no validation with this key has been added, <code>null</code>
  is returned.</div>
@@ -272,7 +272,7 @@ implements <a href="../../../../../../org/jamesframework/core/problems/constrain
  for the first time.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html#passed--">passed</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a></code></dd>
+<dd><code><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html#passed--">passed</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd><code>true</code> if all contained validations passed</dd>
 </dl>
@@ -326,7 +326,7 @@ implements <a href="../../../../../../org/jamesframework/core/problems/constrain
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/SimpleValidation.html" title="class in org.jamesframework.core.problems.constraints.validations"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li>Next&nbsp;Class</li>
+<li><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../../index.html?org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html" target="_top">Frames</a></li>

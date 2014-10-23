@@ -51,7 +51,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../../org/jamesframework/core/problems/constraints/Constraint.html" title="interface in org.jamesframework.core.problems.constraints"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li>Next&nbsp;Class</li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?org/jamesframework/core/problems/constraints/PenalizingConstraint.html" target="_top">Frames</a></li>
@@ -123,7 +123,7 @@ extends <a href="../../../../../org/jamesframework/core/problems/constraints/Con
  <p>
  It is required to provide a full validation by implementing <a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html#validate-SolutionType-DataType-"><code>validate(Solution, Object)</code></a>.
  If desired, an efficient delta validation can also be provided by overriding the default behaviour
- of <a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html#validate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.constraints.Validation-DataType-"><code>validate(Move, Solution, Validation, Object)</code></a> which (1) applies the move, (2) performs
+ of <a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html#validate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.constraints.validations.Validation-DataType-"><code>validate(Move, Solution, Validation, Object)</code></a> which (1) applies the move, (2) performs
  a full validation and (3) undoes the move.
  </p></div>
 <dl>
@@ -149,17 +149,17 @@ extends <a href="../../../../../org/jamesframework/core/problems/constraints/Con
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>default &lt;ActualSolutionType extends <a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="type parameter in PenalizingConstraint">SolutionType</a>&gt;<br><a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints">PenalizingValidation</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html#validate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.constraints.Validation-DataType-">validate</a></span>(<a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super ActualSolutionType&gt;&nbsp;move,
+<td class="colFirst"><code>default &lt;ActualSolutionType extends <a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="type parameter in PenalizingConstraint">SolutionType</a>&gt;<br><a href="../../../../../org/jamesframework/core/problems/constraints/validations/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints.validations">PenalizingValidation</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html#validate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.constraints.validations.Validation-DataType-">validate</a></span>(<a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super ActualSolutionType&gt;&nbsp;move,
         ActualSolutionType&nbsp;curSolution,
-        <a href="../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;curValidation,
+        <a href="../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;curValidation,
         <a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="type parameter in PenalizingConstraint">DataType</a>&nbsp;data)</code>
 <div class="block">
  Validates a move that will be applied to the current solution of a local search (delta validation).</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints">PenalizingValidation</a></code></td>
+<td class="colFirst"><code><a href="../../../../../org/jamesframework/core/problems/constraints/validations/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints.validations">PenalizingValidation</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html#validate-SolutionType-DataType-">validate</a></span>(<a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="type parameter in PenalizingConstraint">SolutionType</a>&nbsp;solution,
         <a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="type parameter in PenalizingConstraint">DataType</a>&nbsp;data)</code>
 <div class="block">Validates a solution given the underlying data.</div>
@@ -188,10 +188,10 @@ extends <a href="../../../../../org/jamesframework/core/problems/constraints/Con
 <ul class="blockList">
 <li class="blockList">
 <h4>validate</h4>
-<pre><a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints">PenalizingValidation</a>&nbsp;validate(<a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="type parameter in PenalizingConstraint">SolutionType</a>&nbsp;solution,
+<pre><a href="../../../../../org/jamesframework/core/problems/constraints/validations/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints.validations">PenalizingValidation</a>&nbsp;validate(<a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="type parameter in PenalizingConstraint">SolutionType</a>&nbsp;solution,
                               <a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="type parameter in PenalizingConstraint">DataType</a>&nbsp;data)</pre>
-<div class="block">Validates a solution given the underlying data. Returns an object of type <a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints"><code>PenalizingValidation</code></a>.
- The assigned penalty can be retrieved by calling <a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingValidation.html#getPenalty--"><code>PenalizingValidation.getPenalty()</code></a> on this object.</div>
+<div class="block">Validates a solution given the underlying data. Returns an object of type <a href="../../../../../org/jamesframework/core/problems/constraints/validations/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints.validations"><code>PenalizingValidation</code></a>.
+ The assigned penalty can be retrieved by calling <a href="../../../../../org/jamesframework/core/problems/constraints/validations/PenalizingValidation.html#getPenalty--"><code>PenalizingValidation.getPenalty()</code></a> on this object.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../../../org/jamesframework/core/problems/constraints/Constraint.html#validate-SolutionType-DataType-">validate</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/jamesframework/core/problems/constraints/Constraint.html" title="interface in org.jamesframework.core.problems.constraints">Constraint</a>&lt;<a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="type parameter in PenalizingConstraint">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>,<a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="type parameter in PenalizingConstraint">DataType</a>&gt;</code></dd>
@@ -203,17 +203,17 @@ extends <a href="../../../../../org/jamesframework/core/problems/constraints/Con
 </dl>
 </li>
 </ul>
-<a name="validate-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.Solution-org.jamesframework.core.problems.constraints.Validation-java.lang.Object-">
+<a name="validate-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.Solution-org.jamesframework.core.problems.constraints.validations.Validation-java.lang.Object-">
 <!--   -->
-</a><a name="validate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.constraints.Validation-DataType-">
+</a><a name="validate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.constraints.validations.Validation-DataType-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>validate</h4>
-<pre>default&nbsp;&lt;ActualSolutionType extends <a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="type parameter in PenalizingConstraint">SolutionType</a>&gt;&nbsp;<a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints">PenalizingValidation</a>&nbsp;validate(<a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super ActualSolutionType&gt;&nbsp;move,
+<pre>default&nbsp;&lt;ActualSolutionType extends <a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="type parameter in PenalizingConstraint">SolutionType</a>&gt;&nbsp;<a href="../../../../../org/jamesframework/core/problems/constraints/validations/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints.validations">PenalizingValidation</a>&nbsp;validate(<a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super ActualSolutionType&gt;&nbsp;move,
                                                                                 ActualSolutionType&nbsp;curSolution,
-                                                                                <a href="../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;curValidation,
+                                                                                <a href="../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;curValidation,
                                                                                 <a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="type parameter in PenalizingConstraint">DataType</a>&nbsp;data)</pre>
 <div class="block"><p>
  Validates a move that will be applied to the current solution of a local search (delta validation).
@@ -236,7 +236,7 @@ extends <a href="../../../../../org/jamesframework/core/problems/constraints/Con
  </p></div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/jamesframework/core/problems/constraints/Constraint.html#validate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.constraints.Validation-DataType-">validate</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/jamesframework/core/problems/constraints/Constraint.html" title="interface in org.jamesframework.core.problems.constraints">Constraint</a>&lt;<a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="type parameter in PenalizingConstraint">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>,<a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="type parameter in PenalizingConstraint">DataType</a>&gt;</code></dd>
+<dd><code><a href="../../../../../org/jamesframework/core/problems/constraints/Constraint.html#validate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.constraints.validations.Validation-DataType-">validate</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/jamesframework/core/problems/constraints/Constraint.html" title="interface in org.jamesframework.core.problems.constraints">Constraint</a>&lt;<a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="type parameter in PenalizingConstraint">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>,<a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="type parameter in PenalizingConstraint">DataType</a>&gt;</code></dd>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>ActualSolutionType</code> - the actual solution type of the problem that is being solved;
                              a subtype of the solution types of both the constraint and the applied move</dd>
@@ -283,7 +283,7 @@ extends <a href="../../../../../org/jamesframework/core/problems/constraints/Con
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../../org/jamesframework/core/problems/constraints/Constraint.html" title="interface in org.jamesframework.core.problems.constraints"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../../org/jamesframework/core/problems/constraints/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li>Next&nbsp;Class</li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?org/jamesframework/core/problems/constraints/PenalizingConstraint.html" target="_top">Frames</a></li>

@@ -142,16 +142,16 @@ var activeTableTab = "activeTableTab";
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>default <a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Problem.html#evaluate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-">evaluate</a></span>(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&gt;&nbsp;move,
+<td class="colFirst"><code>default <a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Problem.html#evaluate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">evaluate</a></span>(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&gt;&nbsp;move,
         <a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;curSolution,
-        <a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;curEvaluation)</code>
+        <a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;curEvaluation)</code>
 <div class="block">
  Evaluates a move that will be applied to the current solution of a local search (delta evaluation).</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a></code></td>
+<td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Problem.html#evaluate-SolutionType-">evaluate</a></span>(<a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;solution)</code>
 <div class="block">Evaluates a given solution.</div>
 </td>
@@ -163,16 +163,16 @@ var activeTableTab = "activeTableTab";
 </td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code>default <a href="../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Problem.html#validate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.constraints.Validation-">validate</a></span>(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&gt;&nbsp;move,
+<td class="colFirst"><code>default <a href="../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Problem.html#validate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.constraints.validations.Validation-">validate</a></span>(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&gt;&nbsp;move,
         <a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;curSolution,
-        <a href="../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;curValidation)</code>
+        <a href="../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;curValidation)</code>
 <div class="block">
  Validates a move that will be applied to the current solution of a local search (delta validation).</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a></code></td>
+<td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Problem.html#validate-SolutionType-">validate</a></span>(<a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;solution)</code>
 <div class="block">Validates a solution.</div>
 </td>
@@ -200,9 +200,9 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>evaluate</h4>
-<pre><a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;evaluate(<a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;solution)</pre>
-<div class="block">Evaluates a given solution. Returns an object of type <a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives"><code>Evaluation</code></a>. The corresponding
- double value can be obtained by calling <a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html#getValue--"><code>Evaluation.getValue()</code></a> on the evaluation object.</div>
+<pre><a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;evaluate(<a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;solution)</pre>
+<div class="block">Evaluates a given solution. Returns an object of type <a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations"><code>Evaluation</code></a>. The corresponding
+ double value can be obtained by calling <a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html#getValue--"><code>Evaluation.getValue()</code></a> on the evaluation object.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>solution</code> - the solution to evaluate</dd>
@@ -211,17 +211,17 @@ var activeTableTab = "activeTableTab";
 </dl>
 </li>
 </ul>
-<a name="evaluate-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.Solution-org.jamesframework.core.problems.objectives.Evaluation-">
+<a name="evaluate-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.Solution-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">
 <!--   -->
-</a><a name="evaluate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-">
+</a><a name="evaluate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>evaluate</h4>
-<pre>default&nbsp;<a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;evaluate(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&gt;&nbsp;move,
+<pre>default&nbsp;<a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;evaluate(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&gt;&nbsp;move,
                             <a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;curSolution,
-                            <a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;curEvaluation)</pre>
+                            <a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;curEvaluation)</pre>
 <div class="block"><p>
  Evaluates a move that will be applied to the current solution of a local search (delta evaluation).
  The result corresponds to the evaluation of the modified solution that would be obtained by applying
@@ -263,9 +263,9 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>validate</h4>
-<pre><a href="../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;validate(<a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;solution)</pre>
-<div class="block">Validates a solution. Returns an object of type <a href="../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints"><code>Validation</code></a>. It can be checked wether the
- solution passed validation by calling <a href="../../../../org/jamesframework/core/problems/constraints/Validation.html#passed--"><code>Validation.passed()</code></a> on this validation object. When
+<pre><a href="../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;validate(<a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;solution)</pre>
+<div class="block">Validates a solution. Returns an object of type <a href="../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations"><code>Validation</code></a>. It can be checked wether the
+ solution passed validation by calling <a href="../../../../org/jamesframework/core/problems/constraints/validations/Validation.html#passed--"><code>Validation.passed()</code></a> on this validation object. When
  a solution does not pass validation it is discarded by any search so that the best found solution
  is guaranteed to be valid.</div>
 <dl>
@@ -276,17 +276,17 @@ var activeTableTab = "activeTableTab";
 </dl>
 </li>
 </ul>
-<a name="validate-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.Solution-org.jamesframework.core.problems.constraints.Validation-">
+<a name="validate-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.Solution-org.jamesframework.core.problems.constraints.validations.Validation-">
 <!--   -->
-</a><a name="validate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.constraints.Validation-">
+</a><a name="validate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.constraints.validations.Validation-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>validate</h4>
-<pre>default&nbsp;<a href="../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;validate(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&gt;&nbsp;move,
+<pre>default&nbsp;<a href="../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;validate(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&gt;&nbsp;move,
                             <a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;curSolution,
-                            <a href="../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;curValidation)</pre>
+                            <a href="../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;curValidation)</pre>
 <div class="block"><p>
  Validates a move that will be applied to the current solution of a local search (delta validation).
  The result corresponds to the validation of the modified solution that would be obtained by applying

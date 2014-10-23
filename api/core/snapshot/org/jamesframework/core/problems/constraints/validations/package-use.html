@@ -84,9 +84,99 @@
 </tr>
 <tbody>
 <tr class="altColor">
+<td class="colFirst"><a href="#org.jamesframework.core.problems">org.jamesframework.core.problems</a></td>
+<td class="colLast">
+<div class="block">High-level problem specification.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="#org.jamesframework.core.problems.constraints">org.jamesframework.core.problems.constraints</a></td>
+<td class="colLast">
+<div class="block">Constraint interfaces.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.problems.constraints.validations">org.jamesframework.core.problems.constraints.validations</a></td>
 <td class="colLast">
-<div class="block">Predefined validation objects.</div>
+<div class="block">Validation interfaces and predefined implementations.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="#org.jamesframework.core.problems.objectives.evaluations">org.jamesframework.core.problems.objectives.evaluations</a></td>
+<td class="colLast">
+<div class="block">Evaluation interface and predefined implementations.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#org.jamesframework.core.search">org.jamesframework.core.search</a></td>
+<td class="colLast">
+<div class="block">High-level search templates.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="#org.jamesframework.core.search.cache">org.jamesframework.core.search.cache</a></td>
+<td class="colLast">
+<div class="block">Caches used by searches for efficient move evaluation and validation.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#org.jamesframework.core.search.listeners">org.jamesframework.core.search.listeners</a></td>
+<td class="colLast">
+<div class="block">Search listeners.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="#org.jamesframework.core.subset">org.jamesframework.core.subset</a></td>
+<td class="colLast">
+<div class="block">Predefined subset problem.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#org.jamesframework.core.subset.validations">org.jamesframework.core.subset.validations</a></td>
+<td class="colLast">
+<div class="block">Subset validation objects.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.problems">
+<!--   -->
+</a>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/package-summary.html">org.jamesframework.core.problems.constraints.validations</a> used by <a href="../../../../../../org/jamesframework/core/problems/package-summary.html">org.jamesframework.core.problems</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/class-use/Validation.html#org.jamesframework.core.problems">Validation</a>
+<div class="block">
+ Interface of a solution validation produced by a problem definition.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.problems.constraints">
+<!--   -->
+</a>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/package-summary.html">org.jamesframework.core.problems.constraints.validations</a> used by <a href="../../../../../../org/jamesframework/core/problems/constraints/package-summary.html">org.jamesframework.core.problems.constraints</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/class-use/PenalizingValidation.html#org.jamesframework.core.problems.constraints">PenalizingValidation</a>
+<div class="block">
+ Interface of a validation produced by a penalizing constraint.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/class-use/Validation.html#org.jamesframework.core.problems.constraints">Validation</a>
+<div class="block">
+ Interface of a solution validation produced by a problem definition.</div>
 </td>
 </tr>
 </tbody>
@@ -102,9 +192,137 @@
 </tr>
 <tbody>
 <tr class="altColor">
+<td class="colOne"><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/class-use/PenalizingValidation.html#org.jamesframework.core.problems.constraints.validations">PenalizingValidation</a>
+<div class="block">
+ Interface of a validation produced by a penalizing constraint.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/class-use/SimplePenalizingValidation.html#org.jamesframework.core.problems.constraints.validations">SimplePenalizingValidation</a>
+<div class="block">A simple penalizing validation object that wraps a boolean value,
+ indicating whether the corresponding solution passed validation,
+ and a double value, indicating the assigned penalty if the solution
+ did not pass validation.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colOne"><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/class-use/SimpleValidation.html#org.jamesframework.core.problems.constraints.validations">SimpleValidation</a>
 <div class="block">A simple validation object that merely wraps a boolean value
  indicating whether the corresponding solution passed validation.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/class-use/Validation.html#org.jamesframework.core.problems.constraints.validations">Validation</a>
+<div class="block">
+ Interface of a solution validation produced by a problem definition.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.problems.objectives.evaluations">
+<!--   -->
+</a>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/package-summary.html">org.jamesframework.core.problems.constraints.validations</a> used by <a href="../../../../../../org/jamesframework/core/problems/objectives/evaluations/package-summary.html">org.jamesframework.core.problems.objectives.evaluations</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/class-use/PenalizingValidation.html#org.jamesframework.core.problems.objectives.evaluations">PenalizingValidation</a>
+<div class="block">
+ Interface of a validation produced by a penalizing constraint.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.search">
+<!--   -->
+</a>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/package-summary.html">org.jamesframework.core.problems.constraints.validations</a> used by <a href="../../../../../../org/jamesframework/core/search/package-summary.html">org.jamesframework.core.search</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/class-use/Validation.html#org.jamesframework.core.search">Validation</a>
+<div class="block">
+ Interface of a solution validation produced by a problem definition.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.search.cache">
+<!--   -->
+</a>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/package-summary.html">org.jamesframework.core.problems.constraints.validations</a> used by <a href="../../../../../../org/jamesframework/core/search/cache/package-summary.html">org.jamesframework.core.search.cache</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/class-use/Validation.html#org.jamesframework.core.search.cache">Validation</a>
+<div class="block">
+ Interface of a solution validation produced by a problem definition.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.search.listeners">
+<!--   -->
+</a>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/package-summary.html">org.jamesframework.core.problems.constraints.validations</a> used by <a href="../../../../../../org/jamesframework/core/search/listeners/package-summary.html">org.jamesframework.core.search.listeners</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/class-use/Validation.html#org.jamesframework.core.search.listeners">Validation</a>
+<div class="block">
+ Interface of a solution validation produced by a problem definition.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.subset">
+<!--   -->
+</a>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/package-summary.html">org.jamesframework.core.problems.constraints.validations</a> used by <a href="../../../../../../org/jamesframework/core/subset/package-summary.html">org.jamesframework.core.subset</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/class-use/Validation.html#org.jamesframework.core.subset">Validation</a>
+<div class="block">
+ Interface of a solution validation produced by a problem definition.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.subset.validations">
+<!--   -->
+</a>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/package-summary.html">org.jamesframework.core.problems.constraints.validations</a> used by <a href="../../../../../../org/jamesframework/core/subset/validations/package-summary.html">org.jamesframework.core.subset.validations</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/class-use/Validation.html#org.jamesframework.core.subset.validations">Validation</a>
+<div class="block">
+ Interface of a solution validation produced by a problem definition.</div>
 </td>
 </tr>
 </tbody>

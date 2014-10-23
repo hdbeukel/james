@@ -231,8 +231,8 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>protected double</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#computeDelta-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.objectives.Evaluation-">computeDelta</a></span>(<a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;currentEvaluation,
-            <a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;previousEvaluation)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#computeDelta-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">computeDelta</a></span>(<a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;currentEvaluation,
+            <a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;previousEvaluation)</code>
 <div class="block">Computes the amount of improvement of <code>currentEvaluation</code> over <code>previousEvaluation</code>,
  taking into account whether evaluations are being maximized or minimized.</div>
 </td>
@@ -256,13 +256,13 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 </td>
 </tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a></code></td>
+<td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getBestSolutionEvaluation--">getBestSolutionEvaluation</a></span>()</code>
 <div class="block">Get the evaluation of the best solution found so far.</div>
 </td>
 </tr>
 <tr id="i8" class="altColor">
-<td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a></code></td>
+<td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getBestSolutionValidation--">getBestSolutionValidation</a></span>()</code>
 <div class="block">Get the validation of the best solution found so far.</div>
 </td>
@@ -415,9 +415,9 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 </tr>
 <tr id="i31" class="rowColor">
 <td class="colFirst"><code>protected boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">updateBestSolution</a></span>(<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&nbsp;newSolution,
-                  <a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;newSolutionEvaluation,
-                  <a href="../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;newSolutionValidation)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">updateBestSolution</a></span>(<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&nbsp;newSolution,
+                  <a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;newSolutionEvaluation,
+                  <a href="../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;newSolutionValidation)</code>
 <div class="block">
  Checks whether a new best solution has been found and updates it accordingly,
  given that the solution has already been evaluated and validated.</div>
@@ -814,7 +814,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 <ul class="blockList">
 <li class="blockList">
 <h4>getBestSolutionEvaluation</h4>
-<pre>public&nbsp;<a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;getBestSolutionEvaluation()</pre>
+<pre>public&nbsp;<a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;getBestSolutionEvaluation()</pre>
 <div class="block">Get the evaluation of the best solution found so far. The best solution is <b>retained</b>
  across subsequent runs of the same search. May return <code>null</code> if no best solution
  has yet been set, for example when the search has just been created.</div>
@@ -830,7 +830,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 <ul class="blockList">
 <li class="blockList">
 <h4>getBestSolutionValidation</h4>
-<pre>public&nbsp;<a href="../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;getBestSolutionValidation()</pre>
+<pre>public&nbsp;<a href="../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;getBestSolutionValidation()</pre>
 <div class="block">Get the validation of the best solution found so far. The best solution is <b>retained</b>
  across subsequent runs of the same search. May return <code>null</code> if no best solution
  has yet been set, for example when the search has just been created.</div>
@@ -871,17 +871,17 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 </dl>
 </li>
 </ul>
-<a name="updateBestSolution-org.jamesframework.core.problems.Solution-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">
+<a name="updateBestSolution-org.jamesframework.core.problems.Solution-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">
 <!--   -->
-</a><a name="updateBestSolution-SolutionType-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.constraints.Validation-">
+</a><a name="updateBestSolution-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>updateBestSolution</h4>
 <pre>protected&nbsp;boolean&nbsp;updateBestSolution(<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&nbsp;newSolution,
-                                     <a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;newSolutionEvaluation,
-                                     <a href="../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a>&nbsp;newSolutionValidation)</pre>
+                                     <a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;newSolutionEvaluation,
+                                     <a href="../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;newSolutionValidation)</pre>
 <div class="block"><p>
  Checks whether a new best solution has been found and updates it accordingly,
  given that the solution has already been evaluated and validated. The best
@@ -1080,14 +1080,14 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 </dl>
 </li>
 </ul>
-<a name="computeDelta-org.jamesframework.core.problems.objectives.Evaluation-org.jamesframework.core.problems.objectives.Evaluation-">
+<a name="computeDelta-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>computeDelta</h4>
-<pre>protected&nbsp;double&nbsp;computeDelta(<a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;currentEvaluation,
-                              <a href="../../../../org/jamesframework/core/problems/objectives/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives">Evaluation</a>&nbsp;previousEvaluation)</pre>
+<pre>protected&nbsp;double&nbsp;computeDelta(<a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;currentEvaluation,
+                              <a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;previousEvaluation)</pre>
 <div class="block">Computes the amount of improvement of <code>currentEvaluation</code> over <code>previousEvaluation</code>,
  taking into account whether evaluations are being maximized or minimized. Positive deltas indicate improvement.
  In case of maximization the amount of increase is returned, which is equal to

@@ -76,13 +76,13 @@ var activeTableTab = "activeTableTab";
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
@@ -110,17 +110,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a></dd>
-</dl>
-<dl>
-<dt>Direct Known Subclasses:</dt>
-<dd><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimplePenalizingValidation</a></dd>
+<dd><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">SimpleValidation</span>
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
-implements <a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a></pre>
+implements <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></pre>
 <div class="block">A simple validation object that merely wraps a boolean value
  indicating whether the corresponding solution passed validation.</div>
 <dl>
@@ -133,6 +129,35 @@ implements <a href="../../../../../../org/jamesframework/core/problems/constrain
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- =========== FIELD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field.summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Field Summary table, listing fields, and an explanation">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/SimpleValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimpleValidation</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/SimpleValidation.html#FAILED">FAILED</a></span></code>
+<div class="block">Constant simple validation indicating that the validation failed
+ (<a href="../../../../../../org/jamesframework/core/problems/constraints/validations/SimpleValidation.html#passed--"><code>passed()</code></a> returns <code>false</code>).</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/SimpleValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimpleValidation</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/SimpleValidation.html#PASSED">PASSED</a></span></code>
+<div class="block">Constant simple validation indicating that the validation passed successfully
+ (<a href="../../../../../../org/jamesframework/core/problems/constraints/validations/SimpleValidation.html#passed--"><code>passed()</code></a> returns <code>true</code>).</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <ul class="blockList">
 <li class="blockList"><a name="constructor.summary">
@@ -194,6 +219,36 @@ implements <a href="../../../../../../org/jamesframework/core/problems/constrain
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field.detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a name="PASSED">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>PASSED</h4>
+<pre>public static final&nbsp;<a href="../../../../../../org/jamesframework/core/problems/constraints/validations/SimpleValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimpleValidation</a> PASSED</pre>
+<div class="block">Constant simple validation indicating that the validation passed successfully
+ (<a href="../../../../../../org/jamesframework/core/problems/constraints/validations/SimpleValidation.html#passed--"><code>passed()</code></a> returns <code>true</code>).</div>
+</li>
+</ul>
+<a name="FAILED">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>FAILED</h4>
+<pre>public static final&nbsp;<a href="../../../../../../org/jamesframework/core/problems/constraints/validations/SimpleValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimpleValidation</a> FAILED</pre>
+<div class="block">Constant simple validation indicating that the validation failed
+ (<a href="../../../../../../org/jamesframework/core/problems/constraints/validations/SimpleValidation.html#passed--"><code>passed()</code></a> returns <code>false</code>).</div>
+</li>
+</ul>
+</li>
+</ul>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <ul class="blockList">
 <li class="blockList"><a name="constructor.detail">
@@ -234,7 +289,7 @@ implements <a href="../../../../../../org/jamesframework/core/problems/constrain
  whether the corresponding solution passed validation.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html#passed--">passed</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/jamesframework/core/problems/constraints/Validation.html" title="interface in org.jamesframework.core.problems.constraints">Validation</a></code></dd>
+<dd><code><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html#passed--">passed</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>boolean value, <code>true</code> if the corresponding solution is valid</dd>
 </dl>
@@ -313,13 +368,13 @@ implements <a href="../../../../../../org/jamesframework/core/problems/constrain
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
