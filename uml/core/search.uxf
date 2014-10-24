@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>310</x>
+      <y>60</y>
+      <w>820</w>
+      <h>990</h>
+    </coordinates>
+    <panel_attributes>search
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>570</x>
+      <y>110</y>
+      <w>530</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+SearchListener&lt;SolutionType&gt;
+--
+searchStarted(Search) : void
+searchStopped(Search) : void
+statusChanged(Search,SearchStatus) : void
+stepCompleted(Search,long) : void
+newBestSolution(Search,SolutionType,Evaluation,Validation) : void
+newCurrentSolution(LocalSearch,SolutionType,Evaluation,Validation) : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>740</x>
+      <y>300</y>
+      <w>360</w>
+      <h>370</h>
+    </coordinates>
+    <panel_attributes>/Search&lt;SolutionType&gt;/
+--
+
+--
+addStopCriterion(StopCriterion) : void
+removeStopCriterion(StopCriterion) : boolean
+setStopCriterionCheckPeriod(long,TimeUnit) : void
+addSearchListener(SearchListener) : boolean
+removeSearchListener(SearchListener) : boolean
+start() : void
+stop() : void
+dispose() : void
+getStatus() : SearchStatus
+getRuntime() : long
+getSteps() : long
+getTimeWithoutImprovement() : long
+getStepsWithoutImprovement() : long
+getMinDelta() : double
+getBestSolution() : SolutionType
+getBestSolutionEvaluation() : Evaluation
+getBestSolutionValidation() : Validation
+getName() : String
+getID() : int
+getProblem() : Problem</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>900</x>
+      <y>240</y>
+      <w>30</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>540</x>
+      <y>470</y>
+      <w>120</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enumeration&gt;&gt;
+SearchStatus
+--
+IDLE
+INITIALIZING
+RUNNING
+TERMINATING
+DISPOSED</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>430</x>
+      <y>370</y>
+      <w>250</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+StopCriterion
+--
+searchShouldStop(Search) : boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>670</x>
+      <y>380</y>
+      <w>90</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>650</x>
+      <y>480</y>
+      <w>110</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>740</x>
+      <y>720</y>
+      <w>360</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>/LocalSearch&lt;SolutionType&gt;/
+--
+
+--
+getCurrentSolution() : SolutionType
+getCurrentSolutionEvaluation() : Evaluation
+getCurrentSolutionValidation() : Validation
+setCurrentSolution(SolutionType) : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>900</x>
+      <y>660</y>
+      <w>30</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>740</x>
+      <y>890</y>
+      <w>360</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>/NeighbourhoodSearch&lt;SolutionType&gt;/
+--
+
+--
+getNumAcceptedMoves() : long
+getNumRejectedMoves() : long</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>900</x>
+      <y>830</y>
+      <w>30</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>340</x>
+      <y>840</y>
+      <w>320</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>/SingleNeighbourhoodSearch&lt;SolutionType&gt;/
+--
+
+--
+setNeighbourhood(Neighbourhood) : void
+getNeighbourhood() : Neighbourhood</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>370</x>
+      <y>940</y>
+      <w>310</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>/MultiNeighbourhoodSearch&lt;SolutionType&gt;/
+--
+
+--
+setNeighbourhoods(List) : void
+getNeighbourhoods() : List</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>650</x>
+      <y>890</y>
+      <w>110</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>670</x>
+      <y>950</y>
+      <w>90</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
