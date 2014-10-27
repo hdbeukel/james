@@ -72,7 +72,7 @@ layout: default
             </p>
             
             <h4 class="page-header example-header">
-                Example 1B: Core selection with efficient delta evaluation
+                Example 1B: Core selection with an efficient delta evaluation
                 <span class="hidden-xs">
                     <span class="pull-right label label-warning">
                         Difficulty:
@@ -85,16 +85,20 @@ layout: default
                 </span>
             </h4>
             <p class="lead">
-                [HERE COMES LEAD TEXT]. Optimization algorithm: random descent with a predefined
-                subset neighbourhood (single swap).
+                Core subset selection with an optimized objective function that performs
+                efficient delta evaluations when applying moves to the current solution.
             </p>
             <p>
-                ...
+                When a neighbourhood search evaluates a neighbour of the current solution, both solutions are usually
+                very similar. It is therefore often possible to evaluate such neighbour based on the current solution,
+                its evaluation, the applied move (changes) and possibly some related metadata, using fewer computations
+                as compared to a full evaluation of the neighbour.
             </p>
             <p>
-                The basic <a href="/docs/#random-descent">random descent</a> algorithm is applied to sample a core subset,
-                using a predefined subset neighbourhood that swaps a single selected and unselected ID to modify the
-                current solution.
+                This example demonstrates how to implement such efficient delta evaluation for the same problem
+                and objective from example 1.
+                The same basic <a href="/docs/#random-descent">random descent</a> algorithm is applied to sample a core subset,
+                using the predefined single swap neighbourhood.
             </p>
             <p>
                 <a class="btn btn-default" href="/examples/coresubset2"><i class="fa fa-chevron-right"></i> View example</a>
