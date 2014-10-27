@@ -113,17 +113,15 @@ public class KnapsackObjective implements Objective&lt;SubsetSolution, KnapsackD
     </h4>
     <p>
         To ensure that the knapsack capacity is never exceeded we will add a constraint to our problem. We provide
-        a <code>KnapsackConstraint</code> that implements the <code>Constraint</code> interface, again with solution and
-        data type <code>SubsetSolution</code> and <code>KnapsackData</code>.
-        The <code>Constraint</code> interface requires to implement a single method:
-        <ul>
-            <li>
-                <code>Validation validate(SubsetSolution, KnapsackData)</code>: validates a subset solution given our knapsack data.
-                In this example, the sum of weights of all selected items is computed and compared to the knapsack capacity. If the
-                capacity is not exceeded, the constraint is satisfied.
-            </li>
-        </ul>
-        The <code>validate(...)</code> method returns an object of type <code>Validation</code>. This <code>Validation</code> interface
+        a <code>KnapsackConstraint</code> that implements the <code>Constraint</code> interface, with solution
+        type <code>SubsetSolution</code> and data type <code>KnapsackData</code>.
+        The <code>Constraint</code> interface requires to implement a single method
+        <code>Validation validate(SubsetSolution, KnapsackData)</code> that validates a subset solution given our knapsack data.
+        In this example, the sum of weights of all selected items is computed and compared to the knapsack capacity. If the
+        capacity is not exceeded, the constraint is satisfied.
+    </p>
+    <p>
+        The <code>validate(...)</code> method returns an object of type <code>Validation</code>. The <code>Validation</code> interface
         has a single method <code>passed()</code> that indicates whether the solution passed validation, i.e. whether the constraint
         is satisfied. A predefined implementation of a <code>SimpleValidation</code> is provided that merely wraps a boolean value.
         The constraint below returns such simple validation object.
@@ -239,15 +237,16 @@ randomDescent.addSearchListener(new ProgressSearchListener());
             <i class="fa fa-lightbulb-o"></i>
             Mandatory versus penalizing constraints (revisited)
         </h4>
-        When using a penalizing instead of a mandatory constraint (see above) it is not necessary to set an initial solution that satisfies
-        the constraint, as no solutions will be discarded.
+        When using a penalizing instead of a mandatory constraint it might not be required to set a custom initial solution that satisfies
+        the constraint. If the penalties are carefully chosen, the search may be able to recover from an invalid (initial) solution, as solutions
+        that violate the constraint are not discarded.
     </div>
 <pre class="prettyprint">
 // random generator
 private static final Random RG = new Random();
 
 // creates a custom initial solution that does not exceed the knapsack capacity
-private static SubsetSolution createInitalSolution(Problem&lt;SubsetSolution&gt; problem, KnapsackData data, double capacity){
+SubsetSolution createInitalSolution(Problem&lt;SubsetSolution&gt; problem, KnapsackData data, double capacity){
     // 1: create random initial solution
     SubsetSolution initialSolution = problem.createRandomSolution();
     // 2: compute current total weight
@@ -269,7 +268,7 @@ private static SubsetSolution createInitalSolution(Problem&lt;SubsetSolution&gt;
 }
 
 // computes the total weight of items selected in the given subset solution
-private static double computeSelectionWeight(SubsetSolution solution, KnapsackData data){
+double computeSelectionWeight(SubsetSolution solution, KnapsackData data){
     return solution.getSelectedIDs().stream().mapToDouble(data::getWeight).sum();
 }
 </pre>
@@ -284,7 +283,7 @@ private static double computeSelectionWeight(SubsetSolution solution, KnapsackDa
         Now we can set a custom initial solution before starting the search.
     </p>
 <pre class="prettyprint">
-// set custom initial solution within the constraint
+// set custom initial solution that satisfies the constraint
 randomDescent.setCurrentSolution(createInitalSolution(problem, data, capacity));
 </pre>
     <p>
@@ -354,7 +353,7 @@ parallelTempering.setTemperatureScaleFactor(scale);
         The average profit of all knapsack items is easily computed.
     </p>
 <pre class="prettyprint">
-private static double computeAverageProfit(KnapsackData data){
+double computeAverageProfit(KnapsackData data){
     return data.getIDs().stream().mapToDouble(data::getProfit).average().getAsDouble();
 }
 </pre>
