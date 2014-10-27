@@ -34,6 +34,9 @@ end note
 
 note over Search : status = RUNNING
 
+note over StopCriterionChecker
+ periodical check
+end note
 StopCriterionChecker ->+ StopCriterion : searchShouldStop(Search)
 StopCriterion ->- StopCriterionChecker : returns false
 
@@ -45,15 +48,42 @@ end note
 
 Search -> Search : continueSearch()
 Search -> Search : searchStep()
-Search -> Search : continueSearch()
-Search -> Search : searchStep()
+Search -> StopCriterionChecker: checkNow()
+note over StopCriterionChecker
+ manual check
+end note
+StopCriterionChecker ->+ StopCriterion : searchShouldStop(Search)
+StopCriterion ->- StopCriterionChecker : returns false
 
+Search -> Search : continueSearch()
+
+note over StopCriterionChecker
+ periodical check
+end note
 StopCriterionChecker ->+ StopCriterion : searchShouldStop(Search)
 StopCriterion ->- StopCriterionChecker : returns  false
 
+Search -> Search : searchStep()
+Search -> StopCriterionChecker: checkNow()
+note over StopCriterionChecker
+ manual check
+end note
+StopCriterionChecker ->+ StopCriterion : searchShouldStop(Search)
+StopCriterion ->- StopCriterionChecker : returns false
+
+note over StopCriterionChecker
+ periodical check
+end note
+StopCriterionChecker ->+ StopCriterion : searchShouldStop(Search)
+StopCriterion ->- StopCriterionChecker : returns false
+
 Search -> Search : continueSearch()
 Search -> Search : searchStep()
 
+Search -> StopCriterionChecker: checkNow()
+note over StopCriterionChecker
+ manual check
+end note
 StopCriterionChecker ->+ StopCriterion : searchShouldStop(Search)
 StopCriterion ->- StopCriterionChecker : returns  true
 

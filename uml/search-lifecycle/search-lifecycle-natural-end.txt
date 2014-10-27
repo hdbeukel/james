@@ -19,8 +19,17 @@ note over Search : status = RUNNING
 
 Search -> Search : continueSearch()
 Search -> Search : searchStep()
+Search -> StopCriterionChecker : checkNow()
+note right of StopCriterionChecker
+ has no effect here
+end note
+
 Search -> Search : continueSearch()
 Search -> Search : searchStep()
+Search -> StopCriterionChecker : checkNow()
+note right of StopCriterionChecker
+ has no effect here
+end note
 
 note right of Search
  at some point, the search calls
