@@ -636,14 +636,14 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 <li class="blockList">
 <h4>addStopCriterion</h4>
 <pre>public&nbsp;void&nbsp;addStopCriterion(<a href="../../../../org/jamesframework/core/search/stopcriteria/StopCriterion.html" title="interface in org.jamesframework.core.search.stopcriteria">StopCriterion</a>&nbsp;stopCriterion)</pre>
-<div class="block">Adds a stop criterion used to decide when the search should stop running. It might be verified whether the given stop criterion
- is compatible with the search and if not, an exception may be thrown. Note that this method can only be called when the search
- is idle.</div>
+<div class="block">Adds a stop criterion used to decide when the search should stop running. It is verified whether the given
+ stop criterion is compatible with the search and if not, an exception is thrown. Note that this method can
+ only be called when the search is idle.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>stopCriterion</code> - stop criterion used to decide when the search should stop running</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../../org/jamesframework/core/exceptions/IncompatibleStopCriterionException.html" title="class in org.jamesframework.core.exceptions">IncompatibleStopCriterionException</a></code> - when the given stop criterion is incompatible with the search</dd>
+<dd><code><a href="../../../../org/jamesframework/core/exceptions/IncompatibleStopCriterionException.html" title="class in org.jamesframework.core.exceptions">IncompatibleStopCriterionException</a></code> - if the given stop criterion is incompatible with the search</dd>
 <dd><code><a href="../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions">SearchException</a></code> - if the search is not idle</dd>
 </dl>
 </li>
@@ -678,7 +678,9 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 <div class="block">Instructs the search to check its stop criteria at regular intervals separated by the given period.
  For the default period, see <a href="../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria"><code>StopCriterionChecker</code></a>, which is used internally for this purpose.
  The period should be at least 1 millisecond, else the stop criterion checker may thrown an exception
- when the search is started. Note that this method may only be called when the search is idle.</div>
+ when the search is started. Note that this method may only be called when the search is idle.
+ <p>
+ Regardless of the specified period, the stop criteria are also checked after each search step.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>period</code> - time between subsequent stop criterion checks (&gt; 0)</dd>
