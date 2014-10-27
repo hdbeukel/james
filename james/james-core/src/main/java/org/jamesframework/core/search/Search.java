@@ -16,7 +16,6 @@
 
 package org.jamesframework.core.search;
 
-import java.util.Collection;
 import org.jamesframework.core.search.status.SearchStatus;
 import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.search.stopcriteria.StopCriterion;
@@ -349,6 +348,8 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
                 }
                 // fire callback
                 fireStepCompleted(currentSteps);
+                // check stop criteria
+                stopCriterionChecker.checkNow();
             }
         
             // instruct stop criterion checker to stop checking
@@ -449,12 +450,12 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
     /*********************************************************/
     
     /**
-     * Adds a stop criterion used to decide when the search should stop running. It might be verified whether the given stop criterion
-     * is compatible with the search and if not, an exception may be thrown. Note that this method can only be called when the search
-     * is idle.
+     * Adds a stop criterion used to decide when the search should stop running. It is verified whether the given
+     * stop criterion is compatible with the search and if not, an exception is thrown. Note that this method can
+     * only be called when the search is idle.
      * 
      * @param stopCriterion stop criterion used to decide when the search should stop running
-     * @throws IncompatibleStopCriterionException when the given stop criterion is incompatible with the search
+     * @throws IncompatibleStopCriterionException if the given stop criterion is incompatible with the search
      * @throws SearchException if the search is not idle
      */
     public void addStopCriterion(StopCriterion stopCriterion){
@@ -500,6 +501,8 @@ public abstract class Search<SolutionType extends Solution> implements Runnable 
      * For the default period, see {@link StopCriterionChecker}, which is used internally for this purpose.
      * The period should be at least 1 millisecond, else the stop criterion checker may thrown an exception
      * when the search is started. Note that this method may only be called when the search is idle.
+     * <p>
+     * Regardless of the specified period, the stop criteria are also checked after each search step.
      * 
      * @param period time between subsequent stop criterion checks (&gt; 0)
      * @param timeUnit corresponding time unit

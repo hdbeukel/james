@@ -28,16 +28,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * A stop criterion checker is responsible for checking the stop criteria of a given search, while this search is running. At construction,
- * a reference to the search is given. Stop criteria can be added using {@link #add(StopCriterion)}, which usually only happens from within
- * the search, which passes all its stop criteria to its dedicated checker after verifying compatibility.
+ * A stop criterion checker is responsible for checking the stop criteria of a given search, while this
+ * search is running. At construction, a reference to the search is given. Stop criteria can be added
+ * using {@link #add(StopCriterion)}, which usually only happens from within the search, which passes
+ * all its stop criteria to its dedicated checker after verifying compatibility.
  * <p>
- * When {@link #startChecking()} is called, a task will be scheduled to periodically check the stop criteria in the background, by default
- * with a period of 1 second, while the search is running. These tasks are executed by a dedicated thread which is shared among all stop
- * criterion checker instances, as checking stop criteria is not an intensive task.
+ * When {@link #startChecking()} is called, a task will be scheduled to periodically check the stop
+ * criteria in the background, by default with a period of 1 second, while the search is running.
+ * These tasks are executed by a dedicated thread which is shared among all stop criterion checker
+ * instances, as checking stop criteria is not an intensive task. A manual request to immediately
+ * check all stop criteria can also be made by calling {@link #checkNow()}.
  * <p>
- * As soon as some stop criterion is satisfied, the checker will request the search to stop and will also cancel the scheduled task
- * for further execution.
+ * As soon as some stop criterion is satisfied, the checker will request the search to stop and will
+ * also cancel the scheduled task for further execution.
  *
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
@@ -128,7 +131,7 @@ public class StopCriterionChecker {
         // synchronize with other attempts to update the running task
         synchronized(runningTaskLock){
             // check if not already active
-            if (runningTask == null) {
+            if(runningTask == null) {
                 // only activate if at least one stop criterion has been set
                 if(!stopCriteria.isEmpty()){
                     // schedule periodical check (starting without any delay)
@@ -151,7 +154,7 @@ public class StopCriterionChecker {
     public void stopChecking() {
         // synchronize with other attempts to update the running task
         synchronized(runningTaskLock){
-            if (runningTask != null) {
+            if(runningTask != null) {
                 // cancel task (let it complete its current run if running)
                 runningTaskFuture.cancel(false);
                 // log
@@ -159,6 +162,18 @@ public class StopCriterionChecker {
                 // discard task
                 runningTask = null;
                 runningTaskFuture = null;
+            }
+        }
+    }
+    
+    /**
+     * Force the checker to check all stop criteria now.
+     */
+    public void checkNow(){
+        // synchronize with attempts to update the running task
+        synchronized(runningTaskLock){
+            if(runningTask != null){
+                runningTask.check();
             }
         }
     }
@@ -172,11 +187,18 @@ public class StopCriterionChecker {
         private boolean warned = false;
         
         /**
-         * Performs the actual check when being scheduled on the timer thread.
+         * Performs the check when being scheduled on the timer thread.
          */
         @Override
         public void run() {
-            
+            // check stop criteria
+            check();
+        }
+        
+        /**
+         * Check the stop criteria.
+         */
+        public void check(){
             // log
             logger.debug("Checking stop criteria for search {}", search);
             

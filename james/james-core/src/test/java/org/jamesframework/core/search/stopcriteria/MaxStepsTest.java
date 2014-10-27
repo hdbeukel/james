@@ -41,8 +41,7 @@ public class MaxStepsTest extends SearchTestTemplate {
     private Search<SubsetSolution> search;
     
     // maximum number of steps
-    private final long MAX_STEPS = 1000;
-    private final long LOW_MAX_STEPS = 200;
+    private final long MAX_STEPS = 10;
     
     // short check period
     private final long SHORT_CHECK_PERIOD = 1;
@@ -89,6 +88,9 @@ public class MaxStepsTest extends SearchTestTemplate {
         // run search (should stop)
         search.start();
         
+        // verify number of steps
+        assertEquals(MAX_STEPS, search.getSteps());
+        
         System.out.println("   >>> run: " + search.getSteps()+ " steps");
         System.out.println("   >>> best: " + search.getBestSolutionEvaluation());
         
@@ -111,6 +113,9 @@ public class MaxStepsTest extends SearchTestTemplate {
         // run search (should stop)
         search.start();
         
+        // verify number of steps
+        assertEquals(MAX_STEPS, search.getSteps());
+        
         System.out.println("   >>> run: " + search.getSteps()+ " steps");
         System.out.println("   >>> best: " + search.getBestSolutionEvaluation());
 
@@ -124,8 +129,8 @@ public class MaxStepsTest extends SearchTestTemplate {
         
         System.out.println(" - test subsequent runs");
         
-        // add stop criterion (low max steps per run)
-        search.addStopCriterion(new MaxSteps(LOW_MAX_STEPS));
+        // add stop criterion (max steps per run)
+        search.addStopCriterion(new MaxSteps(MAX_STEPS));
         // set short check period
         search.setStopCriterionCheckPeriod(SHORT_CHECK_PERIOD, CHECK_PERIOD_TIME_UNIT);
         
@@ -158,8 +163,8 @@ public class MaxStepsTest extends SearchTestTemplate {
         // set objective to minimize
         obj.setMinimizing();
         
-        // add stop criterion (low max steps per run)
-        search.addStopCriterion(new MaxSteps(LOW_MAX_STEPS));
+        // add stop criterion (max steps per run)
+        search.addStopCriterion(new MaxSteps(MAX_STEPS));
         // set short check period
         search.setStopCriterionCheckPeriod(SHORT_CHECK_PERIOD, CHECK_PERIOD_TIME_UNIT);
         
