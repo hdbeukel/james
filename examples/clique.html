@@ -43,21 +43,20 @@ layout: default
 public class CliqueData implements IntegerIdentiefiedData {
 
     // maps each vertex to set of adjacent vertices
-    private final Map&lt;Integer, Set&lt;Integer&gt;&gt; adjacencyMap;
+    private Map&lt;Integer, Set&lt;Integer&gt;&gt; adjacencyMap;
     // number of edges
-    private final int numEdges;
+    private int numEdges;
 
     public CliqueData(Map&lt;Integer, Set&lt;Integer&gt;&gt; adjacencyMap) {
         this.adjacencyMap = adjacencyMap;
         // count number of edges
         numEdges = adjacencyMap.values()                
-                               .stream()                // stream of neighbour sets
-                               .mapToInt(n -> n.size()) // map to number of neighbours
-                               .sum()                   // sum neighbour counts of all vertices
-                               /2;                      // all edges have been counted twice
+                               .stream()              // stream of neighbour sets
+                               .mapToInt(Set::size)   // map to number of neighbours
+                               .sum()                 // sum neighbour counts of all vertices
+                               /2;                    // all edges have been counted twice
     }
     
-    @Override
     public Set&lt;Integer&gt; getIDs() {
         return adjacencyMap.keySet();
     }
@@ -74,15 +73,13 @@ public class CliqueData implements IntegerIdentiefiedData {
         return adjacencyMap.get(v).size();
     }
     
-    // computes the degree of a given vertex in a subgraph
+    // computes the degree of a vertex in a specific subgraph
     // (edges to vertices outside the subgraph are not counted)
     public int degree(int v, Set&lt;Integer&gt; subGraph){
         // get neighbours of v
         Set&lt;Integer&gt; neighbours = adjacencyMap.get(v);
         // count and return degree within subgraph
-        return neighbours.stream()
-                         .filter(n -> subGraph.contains(n))
-                         .count();
+        return neighbours.stream().filter(n -> subGraph.contains(n)).count();
     }
     
     public int numVertices(){
@@ -107,12 +104,10 @@ public class CliqueData implements IntegerIdentiefiedData {
 <pre class="prettyprint">
 public class CliqueObjective implements Objective&lt;SubsetSolution, Object&gt;{
 
-    @Override
-    public double evaluate(SubsetSolution solution, Object data) {
-        return solution.getNumSelectedIDs();
+    public Evaluation evaluate(SubsetSolution solution, Object data) {
+        return new SimpleEvaluation(solution.getNumSelectedIDs());
     }
 
-    @Override
     public boolean isMinimizing() {
         return false;
     }
@@ -158,13 +153,12 @@ public class CliqueObjective implements Objective&lt;SubsetSolution, Object&gt;{
 public class GreedyCliqueNeighbourhood implements Neighbourhood&lt;SubsetSolution&gt; {
 
     // clique data (graph)
-    private final CliqueData data;
+    private CliqueData data;
 
     public GreedyCliqueNeighbourhood(CliqueData data) {
         this.data = data;
     }
     
-    @Override
     public Move&lt;SubsetSolution&gt; getRandomMove(SubsetSolution solution) {
         Set&lt;Move&lt;SubsetSolution&gt;&gt; allMoves = getAllMoves(solution);
         if(allMoves.isEmpty()){
@@ -174,7 +168,6 @@ public class GreedyCliqueNeighbourhood implements Neighbourhood&lt;SubsetSolutio
         }
     }
 
-    @Override
     public Set&lt;Move&lt;SubsetSolution&gt;&gt; getAllMoves(SubsetSolution solution) {
         // get current clique
         Set&lt;Integer&gt; clique = solution.getSelectedIDs();
@@ -259,53 +252,31 @@ randomDescent.dispose();
         Variable neighbourhood search
     </h4>
     <p>
-        The basic greedy approach may easily get stuck in a local optimum, i.e. a clique which can not be further extended but
-        which is not the largest clique in the entire graph. We will now create a more advanced variable neighbourhood search
-        that is based on the greedy approach from above in combination with custom shaking neighbourhoods used to escape from
-        local optima. The implemented <code>ShakingNeighbourhood</code> only supports generation of random moves that remove
-        a fixed number of randomly picked items (vertices) from the selection (clique). The number of removed items is specified
-        as a parameter when creating the neighbourhood.
+        The basic greedy approach may easily get stuck in a local optimum, i.e. a clique which can not be further extended (maxim<strong>al</strong>) but
+        which is not the largest clique in the entire graph (not maxim<strong>um</strong>). We will now create a more advanced
+        <a href="/docs/#vns">variable neighbourhood search</a>
+        that is based on the greedy approach from above in combination with additional shaking neighbourhoods used to escape from
+        local optima.
     </p>
-<pre class="prettyprint">
-public class ShakingNeighbourhood implements Neighbourhood&lt;SubsetSolution&gt;{
-
-    // number of vertices which are removed from the clique
-    private final int numRemovals;
-
-    public ShakingNeighbourhood(int numRemovals) {
-        this.numRemovals = numRemovals;
-    }
-    
-    @Override
-    public Move&lt;SubsetSolution&gt; getRandomMove(SubsetSolution solution) {
-        Set&lt;Integer&gt; remove = SetUtilities.getRandomSubset(
-                                    solution.getSelectedIDs(),
-                                    Math.min(numRemovals, solution.getNumSelectedIDs()),
-                                    ThreadLocalRandom.current()
-                              );
-        Set&lt;Integer&gt; add = Collections.emptySet();
-        return new GeneralSubsetMove(add, remove);
-    }
-
-    @Override
-    public Set&lt;Move&lt;SubsetSolution&gt;&gt; getAllMoves(SubsetSolution solution) {
-        throw new UnsupportedOperationException("Neighbourhood only supports generation of random moves.");
-    }
-
-}
-</pre>
     <p>
-        Now we can create a <a href="/docs/#vns">variable neighbourhood search</a> that iteratively applies the greedy strategy from before,
-        using a series of shaking neighbourhoods with a different number of removals to escape from local optima. When the greedy search
-        terminates some vertices will be randomly removed from the clique through shaking and the greedy strategy is resumed. This process
-        is repeated until some stop criterion is satisfied.
+        A <a href="/docs/#vns">variable neighbourhood search</a>
+        iteratively applies some local search algorithm where the best solution obtained in the previous iteration
+        is somehow perturbed (shaked) and then used as initial solution of the next iteration.
+        We will use the predefined <code>DisjointMultiDeletionNeighbourhood</code> for shaking. Random moves generated by such neighbourhood
+        remove a fixed number of randomly chosen items (vertices) from the selection (clique). The number of removed items is specified as a parameter when creating the neighbourhood.
+    </p>
+    <p>
+        The code below demonstrates how to create a <a href="/docs/#vns">variable neighbourhood search</a> that iteratively applies the
+        greedy strategy from before, using a series of shaking neighbourhoods with a different number of removals to escape from local optima.
+        When the greedy search terminates some vertices will be randomly removed from the clique through shaking and the greedy strategy is
+        resumed. This process is repeated until some stop criterion is satisfied.
     </p>
 <pre class="prettyprint">
 // create shaking neighbourhoods
 int maxShake = ...
 List&lt;Neighbourhood&lt;SubsetSolution&gt;&gt; shakingNeighs = new ArrayList&lt;&gt;();
 for(int s=1; s &lt;= maxShake; s++){
-    shakingNeighs.add(new ShakingNeighbourhood(s));
+    shakingNeighs.add(new DisjointMultiDeletionNeighbourhood(s));
 }
 // create variable neighbourhood search
 LocalSearch&lt;SubsetSolution&gt; vns = new VariableNeighbourhoodSearch&lt;&gt;(
@@ -330,10 +301,10 @@ System.out.println("Clique size: " + vns.getBestSolution().getNumSelectedIDs();)
 vns.dispose();
 </pre>
     <p>
-        The applied VNS strategy is a simplification of a much more advanced and powerful variable neighbourhood search described in
+        The applied VNS strategy is a simplification of a more powerful variable neighbourhood search described in
         <a href="http://www.sciencedirect.com/science/article/pii/S0166218X04000708">"Variable neighborhood search for the maximum clique" &mdash; Hansen et al</a>.
-        This full VNS strategy can easily be implemented in James by plugging in some additional custom neighbourhoods
-        and chaining different local searches using a <a href="/docs/#piped-local-search">piped local search</a>.
+        This full VNS strategy can easily be implemented in James by plugging in some additional neighbourhoods
+        and chaining several local searches using a <a href="/docs/#piped-local-search">piped local search</a>.
     </p>
     
     <h4 class="page-header">
@@ -367,12 +338,12 @@ vns.dispose();
 public class CliqueSolution extends SubsetSolution {
 
     // possible adds (connected to entire current clique)
-    private final Set&lt;Integer&gt; possibleAdds;
+    private Set&lt;Integer&gt; possibleAdds;
     // impossible adds (not connected to at least one vertex in current clique)
-    private final Set&lt;Integer&gt; impossibleAdds;
+    private Set&lt;Integer&gt; impossibleAdds;
     
     // reference to clique data
-    private final CliqueData data;
+    private CliqueData data;
     
     // single constructor (empty clique)
     public CliqueSolution(CliqueData data){
@@ -454,7 +425,6 @@ public class CliqueProblem extends AbstractProblem&lt;CliqueSolution, CliqueData
         super(objective, data);
     }
 
-    @Override
     public CliqueSolution createRandomSolution() {
         throw new UnsupportedOperationException("Creating a random clique is not supported.");
     }
@@ -475,12 +445,10 @@ public class GreedyCliqueNeighbourhood2 implements Neighbourhood&lt;CliqueSoluti
     
     // ...
     
-    @Override
     public Move&lt;SubsetSolution&gt; getRandomMove(CliqueSolution clique) {
         // ... (same as before)
     }
 
-    @Override
     public Set&lt;Move&lt;SubsetSolution&gt;&gt; getAllMoves(CliqueSolution clique) {
         
         // get possible adds (constant time!)
@@ -503,12 +471,12 @@ public class GreedyCliqueNeighbourhood2 implements Neighbourhood&lt;CliqueSoluti
 CliqueData data = ...
 CliqueObjective obj = ...
 
-// create clique problem with clique solution type
+// create clique problem with optimized clique solution type
 CliqueProblem problem = new CliqueProblem(obj, data);
 
 // RANDOM DESCENT
 
-// use neighbourhood defined for clique solution type
+// set solution type of search to clique solution and use optimized neighbourhood
 RandomDescent&lt;CliqueSolution&gt; randomDescent = new RandomDescent&lt;&gt;(problem, new GreedyCliqueNeighbourhood2(data));
 // start with empty clique
 randomDescent.setCurrentSolution(new CliqueSolution(data));
@@ -520,7 +488,7 @@ randomDescent.setCurrentSolution(new CliqueSolution(data));
 // create shaking neighbourhoods (same as before)
 List&lt;Neighbourhood&lt;SubsetSolution&gt;&gt; shakingNeighs = ...
 
-// create variable neighbourhood search with optimized greedy neighbourhood
+// create variable neighbourhood search with optimized neighbourhood
 VariableNeighbourhoodSearch&lt;CliqueSolution&gt; vns = new VariableNeighbourhoodSearch&lt;&gt;(
                                                         problem,
                                                         shakingNeighs,
