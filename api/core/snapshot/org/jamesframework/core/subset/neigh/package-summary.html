@@ -80,24 +80,6 @@
 <div class="contentContainer">
 <ul class="blockList">
 <li class="blockList">
-<table class="typeSummary" border="0" cellpadding="3" cellspacing="0" summary="Interface Summary table, listing interfaces, and an explanation">
-<caption><span>Interface Summary</span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Interface</th>
-<th class="colLast" scope="col">Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../../../org/jamesframework/core/subset/neigh/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh">SubsetMove</a></td>
-<td class="colLast">
-<div class="block">General interface of a subset move that adds a number of IDs to the selection and/or
- removes a number of IDs.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList">
 <table class="typeSummary" border="0" cellpadding="3" cellspacing="0" summary="Class Summary table, listing classes, and an explanation">
 <caption><span>Class Summary</span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
@@ -106,43 +88,38 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../../../org/jamesframework/core/subset/neigh/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh">AdditionMove</a></td>
+<td class="colFirst"><a href="../../../../../org/jamesframework/core/subset/neigh/SingleAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleAdditionNeighbourhood</a></td>
 <td class="colLast">
-<div class="block">Simple subset move that adds a single ID to the current selection.</div>
+<div class="block">
+ A subset neighbourhood that generates addition moves only (see <a href="../../../../../org/jamesframework/core/subset/neigh/moves/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh.moves"><code>AdditionMove</code></a>).</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="../../../../../org/jamesframework/core/subset/neigh/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh">DeletionMove</a></td>
+<td class="colFirst"><a href="../../../../../org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleDeletionNeighbourhood</a></td>
 <td class="colLast">
-<div class="block">Simple subset move that removes a single ID from the current selection.</div>
+<div class="block">
+ A subset neighbourhood that generates deletion moves only (see <a href="../../../../../org/jamesframework/core/subset/neigh/moves/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh.moves"><code>DeletionMove</code></a>).</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><a href="../../../../../org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SinglePerturbationNeighbourhood</a></td>
 <td class="colLast">
 <div class="block">
- A subset neighbourhood that generates swap moves (see <a href="../../../../../org/jamesframework/core/subset/neigh/SwapMove.html" title="class in org.jamesframework.core.subset.neigh"><code>SwapMove</code></a>), addition moves (see <a href="../../../../../org/jamesframework/core/subset/neigh/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh"><code>AdditionMove</code></a>) and deletion
- moves (see <a href="../../../../../org/jamesframework/core/subset/neigh/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh"><code>DeletionMove</code></a>).</div>
+ A subset neighbourhood that generates swap moves (see <a href="../../../../../org/jamesframework/core/subset/neigh/moves/SwapMove.html" title="class in org.jamesframework.core.subset.neigh.moves"><code>SwapMove</code></a>), addition moves (see <a href="../../../../../org/jamesframework/core/subset/neigh/moves/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh.moves"><code>AdditionMove</code></a>)
+ and deletion moves (see <a href="../../../../../org/jamesframework/core/subset/neigh/moves/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh.moves"><code>DeletionMove</code></a>).</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="../../../../../org/jamesframework/core/subset/neigh/SingleSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleSwapNeighbourhood</a></td>
 <td class="colLast">
 <div class="block">
- A subset neighbourhood that generates swap moves only (see <a href="../../../../../org/jamesframework/core/subset/neigh/SwapMove.html" title="class in org.jamesframework.core.subset.neigh"><code>SwapMove</code></a>).</div>
+ A subset neighbourhood that generates swap moves only (see <a href="../../../../../org/jamesframework/core/subset/neigh/moves/SwapMove.html" title="class in org.jamesframework.core.subset.neigh.moves"><code>SwapMove</code></a>).</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><a href="../../../../../org/jamesframework/core/subset/neigh/SubsetNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SubsetNeighbourhood</a></td>
 <td class="colLast">
 <div class="block">Abstract subset neighbourhood.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="../../../../../org/jamesframework/core/subset/neigh/SwapMove.html" title="class in org.jamesframework.core.subset.neigh">SwapMove</a></td>
-<td class="colLast">
-<div class="block">Simple subset move that removes a single ID from the current selection
- and replaces it with a new ID which was previously not selected.</div>
 </td>
 </tr>
 </tbody>

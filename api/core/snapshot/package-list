@@ -1,8 +1,10 @@
 org.jamesframework.core.exceptions
 org.jamesframework.core.problems
 org.jamesframework.core.problems.constraints
+org.jamesframework.core.problems.constraints.validations
 org.jamesframework.core.problems.datatypes
 org.jamesframework.core.problems.objectives
+org.jamesframework.core.problems.objectives.evaluations
 org.jamesframework.core.search
 org.jamesframework.core.search.algo
 org.jamesframework.core.search.algo.exh
@@ -19,4 +21,6 @@ org.jamesframework.core.subset.algo.exh
 org.jamesframework.core.subset.algo.tabu
 org.jamesframework.core.subset.neigh
 org.jamesframework.core.subset.neigh.adv
+org.jamesframework.core.subset.neigh.moves
+org.jamesframework.core.subset.validations
 org.jamesframework.core.util

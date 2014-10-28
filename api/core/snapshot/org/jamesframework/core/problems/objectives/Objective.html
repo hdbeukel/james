@@ -18,8 +18,8 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
+var methods = {"i0":18,"i1":6,"i2":6};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -108,9 +108,17 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">Objective&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>,DataType&gt;</span></pre>
-<div class="block">Interface of a general objective used to evaluate solutions, using some underlying data.
+<div class="block"><p>
+ Interface of an objective function that evaluates solutions using underlying data.
  An objective can be either maximizing or minimizing; in the former case increasing scores
- indicate improvement, while in the latter case decreasing scores indicate improvement.</div>
+ indicate improvement, while in the latter case decreasing scores indicate improvement.
+ </p>
+ <p>
+ It is required to provide a full evaluation by implementing <a href="../../../../../org/jamesframework/core/problems/objectives/Objective.html#evaluate-SolutionType-DataType-"><code>evaluate(Solution, Object)</code></a>.
+ If desired, an efficient delta evaluation can also be provided by overriding the default behaviour
+ of <a href="../../../../../org/jamesframework/core/problems/objectives/Objective.html#evaluate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-DataType-"><code>evaluate(Move, Solution, Evaluation, Object)</code></a> which (1) applies the move, (2) performs
+ a full evaluation and (3) undoes the move.
+ </p></div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a></dd>
@@ -128,22 +136,32 @@ var activeTableTab = "activeTableTab";
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t5" class="tableTab"><span><a href="javascript:show(16);">Default Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/objectives/Objective.html#evaluate-SolutionType-DataType-">evaluate</a></span>(<a href="../../../../../org/jamesframework/core/problems/objectives/Objective.html" title="type parameter in Objective">SolutionType</a>&nbsp;solution,
+<td class="colFirst"><code>default &lt;ActualSolutionType extends <a href="../../../../../org/jamesframework/core/problems/objectives/Objective.html" title="type parameter in Objective">SolutionType</a>&gt;<br><a href="../../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/objectives/Objective.html#evaluate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-DataType-">evaluate</a></span>(<a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super ActualSolutionType&gt;&nbsp;move,
+        ActualSolutionType&nbsp;curSolution,
+        <a href="../../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;curEvaluation,
         <a href="../../../../../org/jamesframework/core/problems/objectives/Objective.html" title="type parameter in Objective">DataType</a>&nbsp;data)</code>
-<div class="block">Evaluates a given solution, based on some underlying data.</div>
+<div class="block">
+ Evaluates a move that will be applied to the current solution of a local search (delta evaluation).</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/objectives/Objective.html#evaluate-SolutionType-DataType-">evaluate</a></span>(<a href="../../../../../org/jamesframework/core/problems/objectives/Objective.html" title="type parameter in Objective">SolutionType</a>&nbsp;solution,
+        <a href="../../../../../org/jamesframework/core/problems/objectives/Objective.html" title="type parameter in Objective">DataType</a>&nbsp;data)</code>
+<div class="block">Evaluates a given solution using the given data.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/objectives/Objective.html#isMinimizing--">isMinimizing</a></span>()</code>
-<div class="block">Check whether the objective is minimizing.</div>
+<div class="block">Check whether the produced evaluations are to be minimized.</div>
 </td>
 </tr>
 </table>
@@ -169,16 +187,66 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>evaluate</h4>
-<pre>double&nbsp;evaluate(<a href="../../../../../org/jamesframework/core/problems/objectives/Objective.html" title="type parameter in Objective">SolutionType</a>&nbsp;solution,
-                <a href="../../../../../org/jamesframework/core/problems/objectives/Objective.html" title="type parameter in Objective">DataType</a>&nbsp;data)</pre>
-<div class="block">Evaluates a given solution, based on some underlying data. Depending on whether the objective
- is maximizing (versus minimizing), better solutions have higher (respectively lower) scores.</div>
+<pre><a href="../../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;evaluate(<a href="../../../../../org/jamesframework/core/problems/objectives/Objective.html" title="type parameter in Objective">SolutionType</a>&nbsp;solution,
+                    <a href="../../../../../org/jamesframework/core/problems/objectives/Objective.html" title="type parameter in Objective">DataType</a>&nbsp;data)</pre>
+<div class="block">Evaluates a given solution using the given data. Returns an object of type <a href="../../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations"><code>Evaluation</code></a>.
+ The corresponding double value can be obtained by calling <a href="../../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html#getValue--"><code>Evaluation.getValue()</code></a> on this
+ evaluation object.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>solution</code> - solution to evaluate</dd>
-<dd><code>data</code> - underlying data which is used for evaluation</dd>
+<dd><code>data</code> - underlying data used for evaluation</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>evaluation of the given solution</dd>
+</dl>
+</li>
+</ul>
+<a name="evaluate-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.Solution-org.jamesframework.core.problems.objectives.evaluations.Evaluation-java.lang.Object-">
+<!--   -->
+</a><a name="evaluate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-DataType-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>evaluate</h4>
+<pre>default&nbsp;&lt;ActualSolutionType extends <a href="../../../../../org/jamesframework/core/problems/objectives/Objective.html" title="type parameter in Objective">SolutionType</a>&gt;&nbsp;<a href="../../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;evaluate(<a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super ActualSolutionType&gt;&nbsp;move,
+                                                                      ActualSolutionType&nbsp;curSolution,
+                                                                      <a href="../../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;curEvaluation,
+                                                                      <a href="../../../../../org/jamesframework/core/problems/objectives/Objective.html" title="type parameter in Objective">DataType</a>&nbsp;data)</pre>
+<div class="block"><p>
+ Evaluates a move that will be applied to the current solution of a local search (delta evaluation).
+ The result corresponds to the evaluation of the modified solution that would be obtained by applying
+ the given move to the current solution. A default implementation is provided that (1) applies the move,
+ (2) computes a full evaluation by calling <a href="../../../../../org/jamesframework/core/problems/objectives/Objective.html#evaluate-SolutionType-DataType-"><code>evaluate(Solution, Object)</code></a> and (3) undoes the applied move.
+ </p>
+ <p>
+ It is often possible to provide a custom, much more efficient delta evaluation that computes
+ the modified evaluation based on the current evaluation and the changes that will be made
+ when applying the move to the current solution. This can be done by overriding this method.
+ It is usually required to cast the received move to a specific type so that this objective
+ can only be used in combination with neighbourhoods that generate moves of this type (or a
+ subtype). If an incompatible move type is received, an <a href="../../../../../org/jamesframework/core/exceptions/IncompatibleDeltaEvaluationException.html" title="class in org.jamesframework.core.exceptions"><code>IncompatibleDeltaEvaluationException</code></a>
+ may be thrown.
+ </p>
+ <p>
+ Given that both this method and the full evaluation (<a href="../../../../../org/jamesframework/core/problems/objectives/Objective.html#evaluate-SolutionType-DataType-"><code>evaluate(Solution, Object)</code></a>) return
+ evaluations of the same type, it is guaranteed that <code>curEvaluation</code> will also be of
+ this specific type and it is safe to perform a cast, if required.
+ </p></div>
+<dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>ActualSolutionType</code> - the actual solution type of the problem that is being solved;
+                             a subtype of the solution types of both the objective and the applied move</dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>move</code> - move to evaluate</dd>
+<dd><code>curSolution</code> - current solution</dd>
+<dd><code>curEvaluation</code> - evaluation of current solution</dd>
+<dd><code>data</code> - underlying data used for evaluation</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>evaluation of modified solution obtained when applying the move to the current solution</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="../../../../../org/jamesframework/core/exceptions/IncompatibleDeltaEvaluationException.html" title="class in org.jamesframework.core.exceptions">IncompatibleDeltaEvaluationException</a></code> - if the provided delta evaluation is not compatible
+                                              with the received move type</dd>
 </dl>
 </li>
 </ul>
@@ -189,10 +257,11 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>isMinimizing</h4>
 <pre>boolean&nbsp;isMinimizing()</pre>
-<div class="block">Check whether the objective is minimizing.</div>
+<div class="block">Check whether the produced evaluations are to be minimized.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>true if the objective is minimizing</dd>
+<dd><code>true</code> if evaluations are to be minimized,
+         <code>false</code> if they are to be maximized</dd>
 </dl>
 </li>
 </ul>

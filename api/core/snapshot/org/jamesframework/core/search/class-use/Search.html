@@ -150,8 +150,7 @@
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
-<div class="block">Local searches are searches that start with some initial solution and modify this solution in an attempt to improve
- it.</div>
+<div class="block">Local searches are searches that start from an initial solution and modify this solution in an attempt to improve it.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -265,13 +264,13 @@
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">BasicParallelSearch.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html#addSearch-org.jamesframework.core.search.Search-">addSearch</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&gt;&nbsp;search)</code>
 <div class="block">
- Add the given search to the parallel algorithm, to be executed in parallel with the other searches.</div>
+ Add the given search, to be executed in parallel with the other searches.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><span class="typeNameLabel">BasicParallelSearch.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html#removeSearch-org.jamesframework.core.search.Search-">removeSearch</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&gt;&nbsp;search)</code>
-<div class="block">Remove the given search from the parallel algorithm, if it had been added before.</div>
+<div class="block">Remove the given search.</div>
 </td>
 </tr>
 </tbody>
@@ -365,9 +364,10 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>default void</code></td>
-<td class="colLast"><span class="typeNameLabel">SearchListener.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#newBestSolution-org.jamesframework.core.search.Search-SolutionType-double-">newBestSolution</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="type parameter in SearchListener">SolutionType</a>&gt;&nbsp;search,
+<td class="colLast"><span class="typeNameLabel">SearchListener.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html#newBestSolution-org.jamesframework.core.search.Search-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">newBestSolution</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;? extends <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="type parameter in SearchListener">SolutionType</a>&gt;&nbsp;search,
                <a href="../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="type parameter in SearchListener">SolutionType</a>&nbsp;newBestSolution,
-               double&nbsp;newBestSolutionEvaluation)</code>
+               <a href="../../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;newBestSolutionEvaluation,
+               <a href="../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;newBestSolutionValidation)</code>
 <div class="block">Fired when the search has found a new best solution.</div>
 </td>
 </tr>
@@ -427,25 +427,25 @@
 <tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><span class="typeNameLabel">MaxTimeWithoutImprovement.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/MaxTimeWithoutImprovement.html#searchShouldStop-org.jamesframework.core.search.Search-">searchShouldStop</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;?&gt;&nbsp;search)</code>
-<div class="block">Checks whether the maximum time without finding improvements has been exceeded for the given search.</div>
+<div class="block">Checks whether the maximum time without finding improvements has been reached for the given search.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><span class="typeNameLabel">MaxStepsWithoutImprovement.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/MaxStepsWithoutImprovement.html#searchShouldStop-org.jamesframework.core.search.Search-">searchShouldStop</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;?&gt;&nbsp;search)</code>
-<div class="block">Checks whether the maximum number of steps without finding improvement has been exceeded for the given search.</div>
+<div class="block">Checks whether the maximum number of steps without finding improvement has been reached for the given search.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><span class="typeNameLabel">MaxSteps.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/MaxSteps.html#searchShouldStop-org.jamesframework.core.search.Search-">searchShouldStop</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;?&gt;&nbsp;search)</code>
-<div class="block">Checks whether the maximum number of steps has been exceeded for the given search.</div>
+<div class="block">Checks whether the maximum number of steps has been reached for the given search.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><span class="typeNameLabel">MaxRuntime.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/MaxRuntime.html#searchShouldStop-org.jamesframework.core.search.Search-">searchShouldStop</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;?&gt;&nbsp;search)</code>
-<div class="block">Checks whether the maximum runtime has been exceeded for the given search.</div>
+<div class="block">Checks whether the maximum runtime has been reached for the given search.</div>
 </td>
 </tr>
 </tbody>

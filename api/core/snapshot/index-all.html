@@ -104,31 +104,31 @@
 <dd>
 <div class="block">Add the given collection of items.</div>
 </dd>
-<dt><a href="org/jamesframework/core/subset/neigh/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh"><span class="typeNameLink">AdditionMove</span></a> - Class in <a href="org/jamesframework/core/subset/neigh/package-summary.html">org.jamesframework.core.subset.neigh</a></dt>
+<dt><a href="org/jamesframework/core/subset/neigh/moves/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh.moves"><span class="typeNameLink">AdditionMove</span></a> - Class in <a href="org/jamesframework/core/subset/neigh/moves/package-summary.html">org.jamesframework.core.subset.neigh.moves</a></dt>
 <dd>
 <div class="block">Simple subset move that adds a single ID to the current selection.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/AdditionMove.html#AdditionMove-int-">AdditionMove(int)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh">AdditionMove</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/moves/AdditionMove.html#AdditionMove-int-">AdditionMove(int)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.moves.<a href="org/jamesframework/core/subset/neigh/moves/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh.moves">AdditionMove</a></dt>
 <dd>
 <div class="block">Create a new addition move that will add the specified ID to the current
  selection when being applied to a given subset solution.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/AbstractProblem.html#addMandatoryConstraint-org.jamesframework.core.problems.constraints.Constraint-">addMandatoryConstraint(Constraint&lt;? super SolutionType, ? super DataType&gt;)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a></dt>
+<dd>
+<div class="block">Add a mandatory constraint to the problem.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/AbstractProblem.html#addPenalizingConstraint-org.jamesframework.core.problems.constraints.PenalizingConstraint-">addPenalizingConstraint(PenalizingConstraint&lt;? super SolutionType, ? super DataType&gt;)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a></dt>
 <dd>
 <div class="block">Add a penalizing constraint to the problem.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/AbstractProblem.html#addRejectingConstraint-org.jamesframework.core.problems.constraints.Constraint-">addRejectingConstraint(Constraint&lt;? super SolutionType, ? super DataType&gt;)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html#addPenalizingValidation-java.lang.Object-org.jamesframework.core.problems.constraints.validations.PenalizingValidation-">addPenalizingValidation(Object, PenalizingValidation)</a></span> - Method in class org.jamesframework.core.problems.objectives.evaluations.<a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html" title="class in org.jamesframework.core.problems.objectives.evaluations">PenalizedEvaluation</a></dt>
 <dd>
-<div class="block">Add a rejecting constraint to the problem.</div>
+<div class="block">Add a penalty expressed by a penalizing validation object.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/BasicParallelSearch.html#addSearch-org.jamesframework.core.search.Search-">addSearch(Search&lt;SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a></dt>
 <dd>
 <div class="block">
- Add the given search to the parallel algorithm, to be executed in parallel with the other searches.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#addSearchListener-org.jamesframework.core.search.listeners.SearchListener-">addSearchListener(SearchListener&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
-<dd>
-<div class="block">Add a search listener, if not already added before.</div>
+ Add the given search, to be executed in parallel with the other searches.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#addSearchListener-org.jamesframework.core.search.listeners.SearchListener-">addSearchListener(SearchListener&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
@@ -138,25 +138,17 @@
 <dd>
 <div class="block">Adds a stop criterion used to decide when the search should stop running.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html#addValidation-java.lang.Object-org.jamesframework.core.problems.constraints.validations.Validation-">addValidation(Object, Validation)</a></span> - Method in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">UnanimousValidation</a></dt>
+<dd>
+<div class="block">Add a validation object.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/Move.html#apply-SolutionType-">apply(SolutionType)</a></span> - Method in interface org.jamesframework.core.search.neigh.<a href="org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a></dt>
 <dd>
 <div class="block">Apply this move to the given solution.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/AdditionMove.html#apply-org.jamesframework.core.subset.SubsetSolution-">apply(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh">AdditionMove</a></dt>
-<dd>
-<div class="block">Apply this addition move to the given subset solution.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/GeneralSubsetMove.html#apply-org.jamesframework.core.subset.SubsetSolution-">apply(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/GeneralSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.adv">GeneralSubsetMove</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html#apply-org.jamesframework.core.subset.SubsetSolution-">apply(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.moves.<a href="org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.moves">GeneralSubsetMove</a></dt>
 <dd>
 <div class="block">Apply this move to a given subset solution.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/DeletionMove.html#apply-org.jamesframework.core.subset.SubsetSolution-">apply(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh">DeletionMove</a></dt>
-<dd>
-<div class="block">Apply this deletion move to the given subset solution.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SwapMove.html#apply-org.jamesframework.core.subset.SubsetSolution-">apply(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SwapMove.html" title="class in org.jamesframework.core.subset.neigh">SwapMove</a></dt>
-<dd>
-<div class="block">Apply this swap move to a given subset solution.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#assertIdle-java.lang.String-">assertIdle(String)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
@@ -188,27 +180,31 @@
 </a>
 <h2 class="title">C</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html#cacheMoveEvaluation-org.jamesframework.core.search.neigh.Move-double-">cacheMoveEvaluation(Move&lt;?&gt;, double)</a></span> - Method in interface org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html" title="interface in org.jamesframework.core.search.cache">EvaluatedMoveCache</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html#cacheMoveEvaluation-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">cacheMoveEvaluation(Move&lt;?&gt;, Evaluation)</a></span> - Method in interface org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html" title="interface in org.jamesframework.core.search.cache">EvaluatedMoveCache</a></dt>
 <dd>
 <div class="block">Request to cache the evaluation (see <a href="org/jamesframework/core/problems/Problem.html#evaluate-SolutionType-"><code>Problem.evaluate(Solution)</code></a>) of the neighbouring
  solution which is obtained by applying the given move to the current solution.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#cacheMoveEvaluation-org.jamesframework.core.search.neigh.Move-double-">cacheMoveEvaluation(Move&lt;?&gt;, double)</a></span> - Method in class org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html" title="class in org.jamesframework.core.search.cache">SingleEvaluatedMoveCache</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#cacheMoveEvaluation-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">cacheMoveEvaluation(Move&lt;?&gt;, Evaluation)</a></span> - Method in class org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html" title="class in org.jamesframework.core.search.cache">SingleEvaluatedMoveCache</a></dt>
 <dd>
 <div class="block">Cache the given evaluation, discarding any previously cached evaluations.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html#cacheMoveRejection-org.jamesframework.core.search.neigh.Move-boolean-">cacheMoveRejection(Move&lt;?&gt;, boolean)</a></span> - Method in interface org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html" title="interface in org.jamesframework.core.search.cache">EvaluatedMoveCache</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html#cacheMoveValidation-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.constraints.validations.Validation-">cacheMoveValidation(Move&lt;?&gt;, Validation)</a></span> - Method in interface org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html" title="interface in org.jamesframework.core.search.cache">EvaluatedMoveCache</a></dt>
 <dd>
-<div class="block">Request to cache rejection (see <a href="org/jamesframework/core/problems/Problem.html#rejectSolution-SolutionType-"><code>Problem.rejectSolution(Solution)</code></a>) of the neighbouring
+<div class="block">Request to cache the validation (see <a href="org/jamesframework/core/problems/Problem.html#validate-SolutionType-"><code>Problem.validate(Solution)</code></a>) of the neighbouring
  solution which is obtained by applying the given move to the current solution.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#cacheMoveRejection-org.jamesframework.core.search.neigh.Move-boolean-">cacheMoveRejection(Move&lt;?&gt;, boolean)</a></span> - Method in class org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html" title="class in org.jamesframework.core.search.cache">SingleEvaluatedMoveCache</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#cacheMoveValidation-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.constraints.validations.Validation-">cacheMoveValidation(Move&lt;?&gt;, Validation)</a></span> - Method in class org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html" title="class in org.jamesframework.core.search.cache">SingleEvaluatedMoveCache</a></dt>
 <dd>
-<div class="block">Cache rejection of the given move, discarding any previously cached value.</div>
+<div class="block">Cache validation of the given move, discarding any previously cached value.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/Solution.html#checkedCopy-T-">checkedCopy(T)</a></span> - Static method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a></dt>
 <dd>
 <div class="block">Creates a checked deep copy of the given solution with specific type <code>T</code> (a subclass of <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems"><code>Solution</code></a>).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#checkNow--">checkNow()</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria">StopCriterionChecker</a></dt>
+<dd>
+<div class="block">Force the checker to check all stop criteria now.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html#clear--">clear()</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="class in org.jamesframework.core.search.algo.tabu">FullTabuMemory</a></dt>
 <dd>
@@ -238,27 +234,15 @@
 <dd>
 <div class="block">Clear the tabu memory.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#computeDelta-double-double-">computeDelta(double, double)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#computeDelta-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">computeDelta(Evaluation, Evaluation)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
-<div class="block">Computes the amount of improvement of <code>currentEvaluation</code> over <code>previousEvaluation</code>, taking into
- account whether a maximization or minimization problem is being solved, where positive deltas indicate improvement.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/Solution.html#computeHashCode--">computeHashCode()</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a></dt>
-<dd>
-<div class="block">Compute a hash code for this solution.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetSolution.html#computeHashCode--">computeHashCode()</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a></dt>
-<dd>
-<div class="block">Computes a hash code in compliance with the implementation of <a href="org/jamesframework/core/subset/SubsetSolution.html#isSameSolution-org.jamesframework.core.problems.Solution-"><code>SubsetSolution.isSameSolution(Solution)</code></a>, meaning that
- the same hash code is returned for equal subset solutions.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/PenalizingConstraint.html#computePenalty-SolutionType-DataType-">computePenalty(SolutionType, DataType)</a></span> - Method in interface org.jamesframework.core.problems.constraints.<a href="org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="interface in org.jamesframework.core.problems.constraints">PenalizingConstraint</a></dt>
-<dd>
-<div class="block">Computes the penalty which is assigned to a solution.</div>
+<div class="block">Computes the amount of improvement of <code>currentEvaluation</code> over <code>previousEvaluation</code>,
+ taking into account whether evaluations are being maximized or minimized.</div>
 </dd>
 <dt><a href="org/jamesframework/core/problems/constraints/Constraint.html" title="interface in org.jamesframework.core.problems.constraints"><span class="typeNameLink">Constraint</span></a>&lt;<a href="org/jamesframework/core/problems/constraints/Constraint.html" title="type parameter in Constraint">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>,<a href="org/jamesframework/core/problems/constraints/Constraint.html" title="type parameter in Constraint">DataType</a>&gt; - Interface in <a href="org/jamesframework/core/problems/constraints/package-summary.html">org.jamesframework.core.problems.constraints</a></dt>
 <dd>
-<div class="block">Interface of a constraint that can be imposed on the solutions, based on underlying data.</div>
+<div class="block">
+ Interface of a constraint that can be imposed on the solutions of a problem.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/util/FastLimitedQueue.html#contains-E-">contains(E)</a></span> - Method in class org.jamesframework.core.util.<a href="org/jamesframework/core/util/FastLimitedQueue.html" title="class in org.jamesframework.core.util">FastLimitedQueue</a></dt>
 <dd>
@@ -300,11 +284,11 @@
 </a>
 <h2 class="title">D</h2>
 <dl>
-<dt><a href="org/jamesframework/core/subset/neigh/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh"><span class="typeNameLink">DeletionMove</span></a> - Class in <a href="org/jamesframework/core/subset/neigh/package-summary.html">org.jamesframework.core.subset.neigh</a></dt>
+<dt><a href="org/jamesframework/core/subset/neigh/moves/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh.moves"><span class="typeNameLink">DeletionMove</span></a> - Class in <a href="org/jamesframework/core/subset/neigh/moves/package-summary.html">org.jamesframework.core.subset.neigh.moves</a></dt>
 <dd>
 <div class="block">Simple subset move that removes a single ID from the current selection.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/DeletionMove.html#DeletionMove-int-">DeletionMove(int)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh">DeletionMove</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/moves/DeletionMove.html#DeletionMove-int-">DeletionMove(int)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.moves.<a href="org/jamesframework/core/subset/neigh/moves/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh.moves">DeletionMove</a></dt>
 <dd>
 <div class="block">Create a new deletion move, specifying the ID that will be removed from the selection
  when this moves is applied to a given subset solution.</div>
@@ -321,11 +305,53 @@
 <dd>
 <div class="block">Deselect all IDs.</div>
 </dd>
+<dt><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv"><span class="typeNameLink">DisjointMultiAdditionNeighbourhood</span></a> - Class in <a href="org/jamesframework/core/subset/neigh/adv/package-summary.html">org.jamesframework.core.subset.neigh.adv</a></dt>
+<dd>
+<div class="block">
+ A subset neighbourhood that generates moves which simultaneously add a fixed number of items to the selection.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html#DisjointMultiAdditionNeighbourhood-int-">DisjointMultiAdditionNeighbourhood(int)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiAdditionNeighbourhood</a></dt>
+<dd>
+<div class="block">Creates a disjoint multi addition neighbourhood that simultaneously adds a fixed number of
+ IDs to the selection.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html#DisjointMultiAdditionNeighbourhood-int-int-">DisjointMultiAdditionNeighbourhood(int, int)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiAdditionNeighbourhood</a></dt>
+<dd>
+<div class="block">Creates a disjoint multi addition neighbourhood that simultaneously adds a fixed number of
+ IDs to the selection, taking into account that the subset size may not exceed the given maximum.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html#DisjointMultiAdditionNeighbourhood-int-int-java.util.Set-">DisjointMultiAdditionNeighbourhood(int, int, Set&lt;Integer&gt;)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiAdditionNeighbourhood</a></dt>
+<dd>
+<div class="block">Creates a disjoint multi addition neighbourhood that simultaneously adds a fixed number of
+ IDs to the selection, taking into account that the subset size may not exceed the given maximum
+ and that the given set of fixed IDs are not allowed to be selected.</div>
+</dd>
+<dt><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv"><span class="typeNameLink">DisjointMultiDeletionNeighbourhood</span></a> - Class in <a href="org/jamesframework/core/subset/neigh/adv/package-summary.html">org.jamesframework.core.subset.neigh.adv</a></dt>
+<dd>
+<div class="block">
+ A subset neighbourhood that generates moves which simultaneously remove a fixed number of items from the selection.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html#DisjointMultiDeletionNeighbourhood-int-">DisjointMultiDeletionNeighbourhood(int)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiDeletionNeighbourhood</a></dt>
+<dd>
+<div class="block">Creates a disjoint multi deletion neighbourhood that simultaneously removes a fixed number of
+ IDs from the selection.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html#DisjointMultiDeletionNeighbourhood-int-int-">DisjointMultiDeletionNeighbourhood(int, int)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiDeletionNeighbourhood</a></dt>
+<dd>
+<div class="block">Creates a disjoint multi deletion neighbourhood that simultaneously removes a fixed number of
+ IDs from the selection, taking into account that the subset size may not drop below the given minimum.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html#DisjointMultiDeletionNeighbourhood-int-int-java.util.Set-">DisjointMultiDeletionNeighbourhood(int, int, Set&lt;Integer&gt;)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiDeletionNeighbourhood</a></dt>
+<dd>
+<div class="block">Creates a disjoint multi deletion neighbourhood that simultaneously removes a fixed number of
+ IDs from the selection, taking into account that the subset size may not drop below the given minimum
+ and that the given set of fixed IDs are not allowed to be deselected.</div>
+</dd>
 <dt><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv"><span class="typeNameLink">DisjointMultiSwapNeighbourhood</span></a> - Class in <a href="org/jamesframework/core/subset/neigh/adv/package-summary.html">org.jamesframework.core.subset.neigh.adv</a></dt>
 <dd>
 <div class="block">
- A subset neighbourhood that generates moves performing a fixed number of simultaneous swaps of selected and unselected
- IDs.</div>
+ A subset neighbourhood that generates moves performing a fixed number of simultaneous swaps of selected and
+ unselected IDs.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiSwapNeighbourhood.html#DisjointMultiSwapNeighbourhood-int-">DisjointMultiSwapNeighbourhood(int)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiSwapNeighbourhood</a></dt>
 <dd>
@@ -348,43 +374,59 @@
 <dl>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/Solution.html#equals-java.lang.Object-">equals(Object)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a></dt>
 <dd>
-<div class="block">Overrides the default equality check by first verifying whether the given object is also of type
- <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems"><code>Solution</code></a> and subsequently calling the specific equality check <a href="org/jamesframework/core/problems/Solution.html#isSameSolution-org.jamesframework.core.problems.Solution-"><code>Solution.isSameSolution(Solution)</code></a>.</div>
+<div class="block">Overrides default <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang"><code>Object.equals(Object)</code></a> to be abstract so that all extending solution types are
+ required to provide an appropriate implemenation that compares solutions by value instead of by reference.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/AdditionMove.html#equals-java.lang.Object-">equals(Object)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh">AdditionMove</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html#equals-java.lang.Object-">equals(Object)</a></span> - Method in class org.jamesframework.core.subset.neigh.moves.<a href="org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.moves">GeneralSubsetMove</a></dt>
 <dd>
-<div class="block">Two addition moves are considered equal if they add the same ID.</div>
+<div class="block">Two subset moves are considered equal if they remove and add the same IDs.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/DeletionMove.html#equals-java.lang.Object-">equals(Object)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh">DeletionMove</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetSolution.html#equals-java.lang.Object-">equals(Object)</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a></dt>
 <dd>
-<div class="block">Two deletion moves are considered equal if they remove the same ID.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SwapMove.html#equals-java.lang.Object-">equals(Object)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SwapMove.html" title="class in org.jamesframework.core.subset.neigh">SwapMove</a></dt>
-<dd>
-<div class="block">Two swap moves are considered equal if they swap the same IDs.</div>
+<div class="block">Checks whether the given other object represents the same subset solution.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/AbstractProblem.html#evaluate-SolutionType-">evaluate(SolutionType)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a></dt>
 <dd>
-<div class="block">Evaluates a solution by taking into account both the score calculated by the objective function and the
+<div class="block">Evaluates a solution by taking into account both the evaluation calculated by the objective function and the
  penalizing constraints (if any).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/AbstractProblem.html#evaluate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">evaluate(Move&lt;? super SolutionType&gt;, SolutionType, Evaluation)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a></dt>
+<dd>
+<div class="block">Evaluate a move by taking into account both the evaluation of the modified solution and
+ the penalizing constraints (if any).</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/Objective.html#evaluate-SolutionType-DataType-">evaluate(SolutionType, DataType)</a></span> - Method in interface org.jamesframework.core.problems.objectives.<a href="org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a></dt>
 <dd>
-<div class="block">Evaluates a given solution, based on some underlying data.</div>
+<div class="block">Evaluates a given solution using the given data.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/Objective.html#evaluate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-DataType-">evaluate(Move&lt;? super ActualSolutionType&gt;, ActualSolutionType, Evaluation, DataType)</a></span> - Method in interface org.jamesframework.core.problems.objectives.<a href="org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a></dt>
+<dd>
+<div class="block">
+ Evaluates a move that will be applied to the current solution of a local search (delta evaluation).</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/Problem.html#evaluate-SolutionType-">evaluate(SolutionType)</a></span> - Method in interface org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a></dt>
 <dd>
 <div class="block">Evaluates a given solution.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/Problem.html#evaluate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">evaluate(Move&lt;? super SolutionType&gt;, SolutionType, Evaluation)</a></span> - Method in interface org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a></dt>
+<dd>
+<div class="block">
+ Evaluates a move that will be applied to the current solution of a local search (delta evaluation).</div>
+</dd>
 <dt><a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html" title="interface in org.jamesframework.core.search.cache"><span class="typeNameLink">EvaluatedMoveCache</span></a> - Interface in <a href="org/jamesframework/core/search/cache/package-summary.html">org.jamesframework.core.search.cache</a></dt>
 <dd>
-<div class="block">Interface of a cache that records rejections (see <a href="org/jamesframework/core/problems/Problem.html#rejectSolution-SolutionType-"><code>Problem.rejectSolution(Solution)</code></a>) and
+<div class="block">Interface of a cache that stores validations (see <a href="org/jamesframework/core/problems/Problem.html#validate-SolutionType-"><code>Problem.validate(Solution)</code></a>) and
  evaluations (see <a href="org/jamesframework/core/problems/Problem.html#evaluate-SolutionType-"><code>Problem.evaluate(Solution)</code></a>) of neighbours obtained by applying moves
  to the current solution in a neighbourhood search.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#evaluateMove-org.jamesframework.core.search.neigh.Move-">evaluateMove(Move&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
 <dd>
-<div class="block">Evaluates the neighbour obtained by applying the given move to the current solution.</div>
+<div class="block">Evaluates a move to be applied to the current solution.</div>
+</dd>
+<dt><a href="org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations"><span class="typeNameLink">Evaluation</span></a> - Interface in <a href="org/jamesframework/core/problems/objectives/evaluations/package-summary.html">org.jamesframework.core.problems.objectives.evaluations</a></dt>
+<dd>
+<div class="block">
+ Interface of a solution evaluation produced by a problem definition.</div>
 </dd>
 <dt><a href="org/jamesframework/core/search/algo/exh/ExhaustiveSearch.html" title="class in org.jamesframework.core.search.algo.exh"><span class="typeNameLink">ExhaustiveSearch</span></a>&lt;<a href="org/jamesframework/core/search/algo/exh/ExhaustiveSearch.html" title="type parameter in ExhaustiveSearch">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/algo/exh/package-summary.html">org.jamesframework.core.search.algo.exh</a></dt>
 <dd>
@@ -406,6 +448,16 @@
 </a>
 <h2 class="title">F</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html#FAILED-double-">FAILED(double)</a></span> - Static method in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimplePenalizingValidation</a></dt>
+<dd>
+<div class="block">Creates a simple penalizing validation indicating that the validation failed, where
+ the given strictly positive penalty is assigned.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/SimpleValidation.html#FAILED">FAILED</a></span> - Static variable in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/SimpleValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimpleValidation</a></dt>
+<dd>
+<div class="block">Constant simple validation indicating that the validation failed
+ (<a href="org/jamesframework/core/problems/constraints/validations/SimpleValidation.html#passed--"><code>SimpleValidation.passed()</code></a> returns <code>false</code>).</div>
+</dd>
 <dt><a href="org/jamesframework/core/util/FastLimitedQueue.html" title="class in org.jamesframework.core.util"><span class="typeNameLink">FastLimitedQueue</span></a>&lt;<a href="org/jamesframework/core/util/FastLimitedQueue.html" title="type parameter in FastLimitedQueue">E</a>&gt; - Class in <a href="org/jamesframework/core/util/package-summary.html">org.jamesframework.core.util</a></dt>
 <dd>
 <div class="block">A fast queue with limited size that replaces the least recently added items if it is full, and which never contains
@@ -414,6 +466,10 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/util/FastLimitedQueue.html#FastLimitedQueue-int-">FastLimitedQueue(int)</a></span> - Constructor for class org.jamesframework.core.util.<a href="org/jamesframework/core/util/FastLimitedQueue.html" title="class in org.jamesframework.core.util">FastLimitedQueue</a></dt>
 <dd>
 <div class="block">Creat a new instance with given size limit.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#fireListenerCallback-java.util.function.Consumer-">fireListenerCallback(Consumer&lt;? super SearchListener&lt;? super SolutionType&gt;&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
+<dd>
+<div class="block">Fire the given callback on all attached listeners.</div>
 </dd>
 <dt><a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="class in org.jamesframework.core.search.algo.tabu"><span class="typeNameLink">FullTabuMemory</span></a>&lt;<a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="type parameter in FullTabuMemory">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/algo/tabu/package-summary.html">org.jamesframework.core.search.algo.tabu</a></dt>
 <dd>
@@ -431,12 +487,12 @@
 </a>
 <h2 class="title">G</h2>
 <dl>
-<dt><a href="org/jamesframework/core/subset/neigh/adv/GeneralSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.adv"><span class="typeNameLink">GeneralSubsetMove</span></a> - Class in <a href="org/jamesframework/core/subset/neigh/adv/package-summary.html">org.jamesframework.core.subset.neigh.adv</a></dt>
+<dt><a href="org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.moves"><span class="typeNameLink">GeneralSubsetMove</span></a> - Class in <a href="org/jamesframework/core/subset/neigh/moves/package-summary.html">org.jamesframework.core.subset.neigh.moves</a></dt>
 <dd>
-<div class="block">A general subset move adds and/or removes several IDs at once to/from the current selection
- of a subset solution.</div>
+<div class="block">A general subset move may simultaneously add and/or remove
+ several IDs to/from the current selection of a subset solution.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/GeneralSubsetMove.html#GeneralSubsetMove-java.util.Set-java.util.Set-">GeneralSubsetMove(Set&lt;Integer&gt;, Set&lt;Integer&gt;)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/GeneralSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.adv">GeneralSubsetMove</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html#GeneralSubsetMove-java.util.Set-java.util.Set-">GeneralSubsetMove(Set&lt;Integer&gt;, Set&lt;Integer&gt;)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.moves.<a href="org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.moves">GeneralSubsetMove</a></dt>
 <dd>
 <div class="block">Creates a general subset move, indicating which IDs are to be added to and removed from
  the current selection when being applied to a given subset solution.</div>
@@ -445,34 +501,22 @@
 <dd>
 <div class="block">Infer the set of IDs that may be added to the selection in the given subset solution.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/AdditionMove.html#getAddedID--">getAddedID()</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh">AdditionMove</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/moves/AdditionMove.html#getAddedID--">getAddedID()</a></span> - Method in class org.jamesframework.core.subset.neigh.moves.<a href="org/jamesframework/core/subset/neigh/moves/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh.moves">AdditionMove</a></dt>
 <dd>
 <div class="block">Returns the added ID.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SwapMove.html#getAddedID--">getAddedID()</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SwapMove.html" title="class in org.jamesframework.core.subset.neigh">SwapMove</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/moves/SwapMove.html#getAddedID--">getAddedID()</a></span> - Method in class org.jamesframework.core.subset.neigh.moves.<a href="org/jamesframework/core/subset/neigh/moves/SwapMove.html" title="class in org.jamesframework.core.subset.neigh.moves">SwapMove</a></dt>
 <dd>
 <div class="block">Returns the added ID.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/AdditionMove.html#getAddedIDs--">getAddedIDs()</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh">AdditionMove</a></dt>
-<dd>
-<div class="block">Returns an unmodifiable singleton containing the only added ID.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/GeneralSubsetMove.html#getAddedIDs--">getAddedIDs()</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/GeneralSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.adv">GeneralSubsetMove</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html#getAddedIDs--">getAddedIDs()</a></span> - Method in class org.jamesframework.core.subset.neigh.moves.<a href="org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.moves">GeneralSubsetMove</a></dt>
 <dd>
 <div class="block">Returns an unmodifiable view of the set of IDs added to the selection when applying
  this move to a subset solution.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/DeletionMove.html#getAddedIDs--">getAddedIDs()</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh">DeletionMove</a></dt>
-<dd>
-<div class="block">Returns an unmodifiable empty set, as no IDs are added.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SubsetMove.html#getAddedIDs--">getAddedIDs()</a></span> - Method in interface org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh">SubsetMove</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/moves/SubsetMove.html#getAddedIDs--">getAddedIDs()</a></span> - Method in interface org.jamesframework.core.subset.neigh.moves.<a href="org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a></dt>
 <dd>
 <div class="block">Get the set of IDs that are added to the selection by applying this move to a subset solution.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SwapMove.html#getAddedIDs--">getAddedIDs()</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SwapMove.html" title="class in org.jamesframework.core.subset.neigh">SwapMove</a></dt>
-<dd>
-<div class="block">Returns an unmodifiable singleton containing the only added ID.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetSolution.html#getAllIDs--">getAllIDs()</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a></dt>
 <dd>
@@ -483,17 +527,51 @@
 <div class="block">Get a set of all moves that can be applied to the given solution to transform
  it into each of the neighbouring solutions contained in this specific neighbourhood.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiAdditionNeighbourhood</a></dt>
+<dd>
+<div class="block">
+ Generates the set of all possible moves that perform \(k\) additions, where \(k\) is the fixed number
+ specified at construction.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiDeletionNeighbourhood</a></dt>
+<dd>
+<div class="block">
+ Generates the set of all possible moves that perform \(k\) deletions, where \(k\) is the fixed number
+ specified at construction.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiSwapNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiSwapNeighbourhood</a></dt>
 <dd>
 <div class="block">
  Generates the set of all possible moves that perform exactly \(k\) swaps, where \(k\) is the desired number
  of swaps specified at construction.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiAdditionNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiAdditionNeighbourhood</a></dt>
+<dd>
+<div class="block">
+ Generates the set of all possible moves that perform 1 up to \(k\) additions, where \(k\) is the maximum number
+ of additions specified at construction.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiDeletionNeighbourhood</a></dt>
+<dd>
+<div class="block">
+ Generates the set of all possible moves that perform 1 up to \(k\) deletions, where \(k\) is the maximum number
+ of deletions specified at construction.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiSwapNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiSwapNeighbourhood</a></dt>
 <dd>
 <div class="block">
  Generates the set of all possible moves that perform 1 up to \(k\) swaps, where \(k\) is the maximum number
  of swaps specified at construction.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SingleAdditionNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SingleAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleAdditionNeighbourhood</a></dt>
+<dd>
+<div class="block">Generates a set of all possible addition moves that add a single ID to the selection of a given
+ subset solution.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleDeletionNeighbourhood</a></dt>
+<dd>
+<div class="block">Generates a set of all possible deletion moves that remove a single ID from the selection of a given
+ subset solution.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SinglePerturbationNeighbourhood</a></dt>
 <dd>
@@ -505,6 +583,10 @@
 <div class="block">Generates a set of all possible swap moves that transform the given subset solution by removing a single ID from
  the current selection and replacing it with a new ID which is currently not selected.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#getBestMove-java.util.Collection-boolean-java.util.function.Predicate...-">getBestMove(Collection&lt;? extends Move&lt;? super SolutionType&gt;&gt;, boolean, Predicate&lt;? super Move&lt;? super SolutionType&gt;&gt;...)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">Get the best valid move among a collection of possible moves.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#getBestSolution--">getBestSolution()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
 <div class="block">Returns the best solution found so far.</div>
@@ -512,6 +594,10 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#getBestSolutionEvaluation--">getBestSolutionEvaluation()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
 <div class="block">Get the evaluation of the best solution found so far.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#getBestSolutionValidation--">getBestSolutionValidation()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
+<dd>
+<div class="block">Get the validation of the best solution found so far.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html#getCachedMoveEvaluation-org.jamesframework.core.search.neigh.Move-">getCachedMoveEvaluation(Move&lt;?&gt;)</a></span> - Method in interface org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html" title="interface in org.jamesframework.core.search.cache">EvaluatedMoveCache</a></dt>
 <dd>
@@ -522,55 +608,55 @@
 <dd>
 <div class="block">Retrieve a cached evaluation, if still available.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html#getCachedMoveRejection-org.jamesframework.core.search.neigh.Move-">getCachedMoveRejection(Move&lt;?&gt;)</a></span> - Method in interface org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html" title="interface in org.jamesframework.core.search.cache">EvaluatedMoveCache</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html#getCachedMoveValidation-org.jamesframework.core.search.neigh.Move-">getCachedMoveValidation(Move&lt;?&gt;)</a></span> - Method in interface org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html" title="interface in org.jamesframework.core.search.cache">EvaluatedMoveCache</a></dt>
 <dd>
-<div class="block">Retrieve cached rejection (see <a href="org/jamesframework/core/problems/Problem.html#evaluate-SolutionType-"><code>Problem.evaluate(Solution)</code></a>) of the neighbouring
+<div class="block">Retrieve the cached validation (see <a href="org/jamesframework/core/problems/Problem.html#validate-SolutionType-"><code>Problem.validate(Solution)</code></a>) of the neighbouring
  solution which is obtained by applying the given move to the current solution, if available.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#getCachedMoveRejection-org.jamesframework.core.search.neigh.Move-">getCachedMoveRejection(Move&lt;?&gt;)</a></span> - Method in class org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html" title="class in org.jamesframework.core.search.cache">SingleEvaluatedMoveCache</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#getCachedMoveValidation-org.jamesframework.core.search.neigh.Move-">getCachedMoveValidation(Move&lt;?&gt;)</a></span> - Method in class org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html" title="class in org.jamesframework.core.search.cache">SingleEvaluatedMoveCache</a></dt>
 <dd>
-<div class="block">Retrieve cached rejection, if still available.</div>
+<div class="block">Retrieve a cached validation, if still available.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/validations/SubsetValidation.html#getConstraintValidation--">getConstraintValidation()</a></span> - Method in class org.jamesframework.core.subset.validations.<a href="org/jamesframework/core/subset/validations/SubsetValidation.html" title="class in org.jamesframework.core.subset.validations">SubsetValidation</a></dt>
+<dd>
+<div class="block">Get the validation object produced when checking the general constraints.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#getCurrentSolution--">getCurrentSolution()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
 <dd>
-<div class="block">Returns the current solution.</div>
+<div class="block">Get the current solution.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionEvaluation--">getCurrentSolutionEvaluation()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
 <dd>
 <div class="block">Get the evaluation of the current solution.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionValidation--">getCurrentSolutionValidation()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
+<dd>
+<div class="block">Get the validation of the current solution.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/AbstractProblem.html#getData--">getData()</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a></dt>
 <dd>
 <div class="block">Get the underlying data.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/DeletionMove.html#getDeletedID--">getDeletedID()</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh">DeletionMove</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/moves/DeletionMove.html#getDeletedID--">getDeletedID()</a></span> - Method in class org.jamesframework.core.subset.neigh.moves.<a href="org/jamesframework/core/subset/neigh/moves/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh.moves">DeletionMove</a></dt>
 <dd>
 <div class="block">Returns the deleted ID.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SwapMove.html#getDeletedID--">getDeletedID()</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SwapMove.html" title="class in org.jamesframework.core.subset.neigh">SwapMove</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/moves/SwapMove.html#getDeletedID--">getDeletedID()</a></span> - Method in class org.jamesframework.core.subset.neigh.moves.<a href="org/jamesframework/core/subset/neigh/moves/SwapMove.html" title="class in org.jamesframework.core.subset.neigh.moves">SwapMove</a></dt>
 <dd>
 <div class="block">Returns the deleted ID.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/AdditionMove.html#getDeletedIDs--">getDeletedIDs()</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh">AdditionMove</a></dt>
-<dd>
-<div class="block">Returns an unmodifiable empty set, as no IDs are deleted by this move.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/GeneralSubsetMove.html#getDeletedIDs--">getDeletedIDs()</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/GeneralSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.adv">GeneralSubsetMove</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html#getDeletedIDs--">getDeletedIDs()</a></span> - Method in class org.jamesframework.core.subset.neigh.moves.<a href="org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.moves">GeneralSubsetMove</a></dt>
 <dd>
 <div class="block">Returns an unmodifiable view of the set of IDs removed from the selection when applying
  this move to a subset solution.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/DeletionMove.html#getDeletedIDs--">getDeletedIDs()</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh">DeletionMove</a></dt>
-<dd>
-<div class="block">Returns an unmodifiable singleton, containing the only deleted ID.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SubsetMove.html#getDeletedIDs--">getDeletedIDs()</a></span> - Method in interface org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh">SubsetMove</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/moves/SubsetMove.html#getDeletedIDs--">getDeletedIDs()</a></span> - Method in interface org.jamesframework.core.subset.neigh.moves.<a href="org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a></dt>
 <dd>
 <div class="block">Get the set of IDs that are removed from the selection by applying this move to a subset solution.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SwapMove.html#getDeletedIDs--">getDeletedIDs()</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SwapMove.html" title="class in org.jamesframework.core.subset.neigh">SwapMove</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html#getEvaluation--">getEvaluation()</a></span> - Method in class org.jamesframework.core.problems.objectives.evaluations.<a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html" title="class in org.jamesframework.core.problems.objectives.evaluations">PenalizedEvaluation</a></dt>
 <dd>
-<div class="block">Returns an unmodifiable singleton containing the only deleted ID.</div>
+<div class="block">Get the original unpenalized evaluation.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#getID--">getID()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
@@ -589,6 +675,26 @@
 <div class="block">Get the factory used to create instances of the local search algorithm which is applied to modify
  solutions obtained after shaking.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiAdditionNeighbourhood.html#getMaxAdditions--">getMaxAdditions()</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiAdditionNeighbourhood</a></dt>
+<dd>
+<div class="block">Get the maximum number of additions performed by generated moves.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html#getMaxDeletions--">getMaxDeletions()</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiDeletionNeighbourhood</a></dt>
+<dd>
+<div class="block">Get the maximum number of deletions performed by generated moves.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html#getMaxSubsetSize--">getMaxSubsetSize()</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiAdditionNeighbourhood</a></dt>
+<dd>
+<div class="block">Get the maximum subset size specified at construction.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiAdditionNeighbourhood.html#getMaxSubsetSize--">getMaxSubsetSize()</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiAdditionNeighbourhood</a></dt>
+<dd>
+<div class="block">Get the maximum subset size specified at construction.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SingleAdditionNeighbourhood.html#getMaxSubsetSize--">getMaxSubsetSize()</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SingleAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleAdditionNeighbourhood</a></dt>
+<dd>
+<div class="block">Get the maximum subset size.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html#getMaxSubsetSize--">getMaxSubsetSize()</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SinglePerturbationNeighbourhood</a></dt>
 <dd>
 <div class="block">Get the maximum subset size specified at construction.</div>
@@ -597,11 +703,27 @@
 <dd>
 <div class="block">Get the maximum subset size.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiSwapNeighbourhood.html#getMaxSwaps--">getMaxSwaps()</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiSwapNeighbourhood</a></dt>
+<dd>
+<div class="block">Get the maximum number of swaps performed by generated moves.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#getMinDelta--">getMinDelta()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
 <div class="block">
  Get the minimum improvement in evaluation of a new best known solution over the previous best known solution,
  found during the <i>current</i> (or last) run.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html#getMinSubsetSize--">getMinSubsetSize()</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiDeletionNeighbourhood</a></dt>
+<dd>
+<div class="block">Get the minimum subset size specified at construction.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html#getMinSubsetSize--">getMinSubsetSize()</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiDeletionNeighbourhood</a></dt>
+<dd>
+<div class="block">Get the minimum subset size specified at construction.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html#getMinSubsetSize--">getMinSubsetSize()</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleDeletionNeighbourhood</a></dt>
+<dd>
+<div class="block">Get the minimum subset size.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html#getMinSubsetSize--">getMinSubsetSize()</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SinglePerturbationNeighbourhood</a></dt>
 <dd>
@@ -610,12 +732,6 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetProblem.html#getMinSubsetSize--">getMinSubsetSize()</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset">SubsetProblem</a></dt>
 <dd>
 <div class="block">Get the minimum subset size.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#getMoveWithLargestDelta-java.util.Collection-boolean-">getMoveWithLargestDelta(Collection&lt;? extends Move&lt;? super SolutionType&gt;&gt;, boolean)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
-<dd>
-<div class="block">Given a collection of possible moves, get the move which yields the largest delta (see <a href="org/jamesframework/core/search/Search.html#computeDelta-double-double-"><code>Search.computeDelta(double, double)</code></a>)
- when applying it to the current solution, where only those moves leading to a valid neighbour are considered (those moves for
- which <a href="org/jamesframework/core/problems/Problem.html#rejectSolution-SolutionType-"><code>Problem.rejectSolution(Solution)</code></a> returns <code>false</code>).</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#getName--">getName()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
@@ -627,52 +743,36 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/MultiNeighbourhoodSearch.html#getNeighbourhoods--">getNeighbourhoods()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/MultiNeighbourhoodSearch.html" title="class in org.jamesframework.core.search">MultiNeighbourhoodSearch</a></dt>
 <dd>
-<div class="block">Get the list of neighbourhoods used to modify the current solution.</div>
+<div class="block">Get an unmodifiable view of the list of applied neighbourhoods.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#getNumAcceptedMoves--">getNumAcceptedMoves()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
 <dd>
 <div class="block">
  Get the number of moves accepted during the <i>current</i> (or last) run.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/AdditionMove.html#getNumAdded--">getNumAdded()</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh">AdditionMove</a></dt>
-<dd>
-<div class="block">Always return 1, as a single ID is added.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/GeneralSubsetMove.html#getNumAdded--">getNumAdded()</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/GeneralSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.adv">GeneralSubsetMove</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html#getNumAdded--">getNumAdded()</a></span> - Method in class org.jamesframework.core.subset.neigh.moves.<a href="org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.moves">GeneralSubsetMove</a></dt>
 <dd>
 <div class="block">Returns the number of added IDs.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/DeletionMove.html#getNumAdded--">getNumAdded()</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh">DeletionMove</a></dt>
-<dd>
-<div class="block">Always returns 0, as no IDs are added.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SubsetMove.html#getNumAdded--">getNumAdded()</a></span> - Method in interface org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh">SubsetMove</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/moves/SubsetMove.html#getNumAdded--">getNumAdded()</a></span> - Method in interface org.jamesframework.core.subset.neigh.moves.<a href="org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a></dt>
 <dd>
 <div class="block">Returns the number of added IDs, possibly 0.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SwapMove.html#getNumAdded--">getNumAdded()</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SwapMove.html" title="class in org.jamesframework.core.subset.neigh">SwapMove</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html#getNumAdditions--">getNumAdditions()</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiAdditionNeighbourhood</a></dt>
 <dd>
-<div class="block">Always returns 1.</div>
+<div class="block">Get the fixed number of additions performed by generated moves.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/AdditionMove.html#getNumDeleted--">getNumDeleted()</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh">AdditionMove</a></dt>
-<dd>
-<div class="block">Always returns 0, as no IDs are deleted.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/GeneralSubsetMove.html#getNumDeleted--">getNumDeleted()</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/GeneralSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.adv">GeneralSubsetMove</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html#getNumDeleted--">getNumDeleted()</a></span> - Method in class org.jamesframework.core.subset.neigh.moves.<a href="org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.moves">GeneralSubsetMove</a></dt>
 <dd>
 <div class="block">Returns the number of removed IDs.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/DeletionMove.html#getNumDeleted--">getNumDeleted()</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh">DeletionMove</a></dt>
-<dd>
-<div class="block">Always returns 1, as a single ID is deleted.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SubsetMove.html#getNumDeleted--">getNumDeleted()</a></span> - Method in interface org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh">SubsetMove</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/moves/SubsetMove.html#getNumDeleted--">getNumDeleted()</a></span> - Method in interface org.jamesframework.core.subset.neigh.moves.<a href="org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a></dt>
 <dd>
 <div class="block">Returns the number of deleted IDs, possibly 0.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SwapMove.html#getNumDeleted--">getNumDeleted()</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SwapMove.html" title="class in org.jamesframework.core.subset.neigh">SwapMove</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html#getNumDeletions--">getNumDeletions()</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiDeletionNeighbourhood</a></dt>
 <dd>
-<div class="block">Always return 1.</div>
+<div class="block">Get the fixed number of deletions performed by generated moves.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#getNumRejectedMoves--">getNumRejectedMoves()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
 <dd>
@@ -683,6 +783,10 @@
 <dd>
 <div class="block">Get the number of IDs which are currently selected.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiSwapNeighbourhood.html#getNumSwaps--">getNumSwaps()</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiSwapNeighbourhood</a></dt>
+<dd>
+<div class="block">Get the fixed number of swaps performed by generated moves.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetSolution.html#getNumUnselectedIDs--">getNumUnselectedIDs()</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a></dt>
 <dd>
 <div class="block">Get the number of IDs which are currently unselected.</div>
@@ -690,6 +794,18 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/AbstractProblem.html#getObjective--">getObjective()</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a></dt>
 <dd>
 <div class="block">Get the objective function.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html#getPenalizingValidation-java.lang.Object-">getPenalizingValidation(Object)</a></span> - Method in class org.jamesframework.core.problems.objectives.evaluations.<a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html" title="class in org.jamesframework.core.problems.objectives.evaluations">PenalizedEvaluation</a></dt>
+<dd>
+<div class="block">Retrieve the penalizing validation object corresponding to the given key.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/PenalizingValidation.html#getPenalty--">getPenalty()</a></span> - Method in interface org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints.validations">PenalizingValidation</a></dt>
+<dd>
+<div class="block">Get the assigned penalty.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html#getPenalty--">getPenalty()</a></span> - Method in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimplePenalizingValidation</a></dt>
+<dd>
+<div class="block">Get the assigned penalty.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#getProblem--">getProblem()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
@@ -712,17 +828,44 @@
 <div class="block">Generates a move that transforms the given solution into a random neighbour
  contained in this specific neighbourhood.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiAdditionNeighbourhood</a></dt>
+<dd>
+<div class="block">Generates a move for the given subset solution that selects a random subset of currently unselected IDs.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiDeletionNeighbourhood</a></dt>
+<dd>
+<div class="block">Generates a move for the given subset solution that deselects a random subset of currently selected IDs.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiSwapNeighbourhood</a></dt>
 <dd>
 <div class="block">Generates a move for the given subset solution that removes a random subset of \(k\) IDs from the current
  selection and replaces them with an equally large random subset of the currently unselected IDs, where
  \(k\) is the number of swaps specified at construction.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiAdditionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiAdditionNeighbourhood</a></dt>
+<dd>
+<div class="block">
+ Generates a move for the given subset solution that adds a random subset of currently unselected IDs to the
+ selection.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiDeletionNeighbourhood</a></dt>
+<dd>
+<div class="block">
+ Generates a move for the given subset solution that deselects a random subset of currently selected IDs.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiSwapNeighbourhood</a></dt>
 <dd>
 <div class="block">
  Generates a move for the given subset solution that removes a random subset of IDs from the current selection
  and replaces them with an equally large random subset of the currently unselected IDs.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SingleAdditionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SingleAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleAdditionNeighbourhood</a></dt>
+<dd>
+<div class="block">Generates a random addition move for the given subset solution that adds a single ID to the selection.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleDeletionNeighbourhood</a></dt>
+<dd>
+<div class="block">Generates a random deletion move for the given subset solution that removes a single ID from the selection.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SinglePerturbationNeighbourhood</a></dt>
 <dd>
@@ -794,7 +937,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/MetropolisSearch.html#getTemperatureScaleFactor--">getTemperatureScaleFactor()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a></dt>
 <dd>
-<div class="block">Get the temperature scale factor \(k\) of the system.</div>
+<div class="block">Get the temperature scale factor \(k\).</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#getTimeWithoutImprovement--">getTimeWithoutImprovement()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
@@ -810,9 +953,25 @@
 <dd>
 <div class="block">Returns an unmodifiable view of the set of currently non selected IDs.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html#getValidation-java.lang.Object-">getValidation(Object)</a></span> - Method in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">UnanimousValidation</a></dt>
+<dd>
+<div class="block">Retrieve the validation object corresponding to the given key.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/evaluations/Evaluation.html#getValue--">getValue()</a></span> - Method in interface org.jamesframework.core.problems.objectives.evaluations.<a href="org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a></dt>
+<dd>
+<div class="block">Get the double value of this evaluation, expressing the solution quality.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html#getValue--">getValue()</a></span> - Method in class org.jamesframework.core.problems.objectives.evaluations.<a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html" title="class in org.jamesframework.core.problems.objectives.evaluations">PenalizedEvaluation</a></dt>
+<dd>
+<div class="block">Compute the penalized evaluation.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/evaluations/SimpleEvaluation.html#getValue--">getValue()</a></span> - Method in class org.jamesframework.core.problems.objectives.evaluations.<a href="org/jamesframework/core/problems/objectives/evaluations/SimpleEvaluation.html" title="class in org.jamesframework.core.problems.objectives.evaluations">SimpleEvaluation</a></dt>
+<dd>
+<div class="block">Get the double value specified at construction.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/AbstractProblem.html#getViolatedConstraints-SolutionType-">getViolatedConstraints(SolutionType)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a></dt>
 <dd>
-<div class="block">Returns a set of all violated constraints (both rejecting and penalizing constraints).</div>
+<div class="block">Returns a collection of all violated constraints (both mandatory and penalizing).</div>
 </dd>
 </dl>
 <a name="I:H">
@@ -822,19 +981,17 @@
 <dl>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/Solution.html#hashCode--">hashCode()</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a></dt>
 <dd>
-<div class="block">Overrides default hash code computation by calling <a href="org/jamesframework/core/problems/Solution.html#computeHashCode--"><code>Solution.computeHashCode()</code></a>.</div>
+<div class="block">Overrides default <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang"><code>Object.hashCode()</code></a> to be abstract so that all extending solution types are required
+ to provide a hash code computation that is consistent with the implementation of <a href="org/jamesframework/core/problems/Solution.html#equals-java.lang.Object-"><code>Solution.equals(Object)</code></a>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/AdditionMove.html#hashCode--">hashCode()</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh">AdditionMove</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html#hashCode--">hashCode()</a></span> - Method in class org.jamesframework.core.subset.neigh.moves.<a href="org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.moves">GeneralSubsetMove</a></dt>
 <dd>
-<div class="block">Hash code corresponding to implementation of <a href="org/jamesframework/core/subset/neigh/AdditionMove.html#equals-java.lang.Object-"><code>AdditionMove.equals(Object)</code></a>.</div>
+<div class="block">Hash code corresponding to implementation of <a href="org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html#equals-java.lang.Object-"><code>GeneralSubsetMove.equals(Object)</code></a>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/DeletionMove.html#hashCode--">hashCode()</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh">DeletionMove</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetSolution.html#hashCode--">hashCode()</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a></dt>
 <dd>
-<div class="block">Hash code corresponding to implementation of <a href="org/jamesframework/core/subset/neigh/DeletionMove.html#equals-java.lang.Object-"><code>DeletionMove.equals(Object)</code></a>.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SwapMove.html#hashCode--">hashCode()</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SwapMove.html" title="class in org.jamesframework.core.subset.neigh">SwapMove</a></dt>
-<dd>
-<div class="block">Hash code corresponding to implementation of <a href="org/jamesframework/core/subset/neigh/SwapMove.html#equals-java.lang.Object-"><code>SwapMove.equals(Object)</code></a>.</div>
+<div class="block">Computes a hash code that is consistent with the implementation of <a href="org/jamesframework/core/subset/SubsetSolution.html#equals-java.lang.Object-"><code>SubsetSolution.equals(Object)</code></a> meaning that
+ the same hash code is returned for equal subset solutions.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/exh/SolutionIterator.html#hasNext--">hasNext()</a></span> - Method in interface org.jamesframework.core.search.algo.exh.<a href="org/jamesframework/core/search/algo/exh/SolutionIterator.html" title="interface in org.jamesframework.core.search.algo.exh">SolutionIterator</a></dt>
 <dd>
@@ -867,6 +1024,48 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#incNumRejectedMoves-long-">incNumRejectedMoves(long)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
 <dd>
 <div class="block">Increase the number of rejected moves with the given value.</div>
+</dd>
+<dt><a href="org/jamesframework/core/exceptions/IncompatibleDeltaEvaluationException.html" title="class in org.jamesframework.core.exceptions"><span class="typeNameLink">IncompatibleDeltaEvaluationException</span></a> - Exception in <a href="org/jamesframework/core/exceptions/package-summary.html">org.jamesframework.core.exceptions</a></dt>
+<dd>
+<div class="block">Exception thrown when a delta evaluation is not compatible with the
+ type of moves generated by the applied neighbourhood(s).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/exceptions/IncompatibleDeltaEvaluationException.html#IncompatibleDeltaEvaluationException--">IncompatibleDeltaEvaluationException()</a></span> - Constructor for exception org.jamesframework.core.exceptions.<a href="org/jamesframework/core/exceptions/IncompatibleDeltaEvaluationException.html" title="class in org.jamesframework.core.exceptions">IncompatibleDeltaEvaluationException</a></dt>
+<dd>
+<div class="block">Creates a new instance without detail message.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/exceptions/IncompatibleDeltaEvaluationException.html#IncompatibleDeltaEvaluationException-java.lang.String-">IncompatibleDeltaEvaluationException(String)</a></span> - Constructor for exception org.jamesframework.core.exceptions.<a href="org/jamesframework/core/exceptions/IncompatibleDeltaEvaluationException.html" title="class in org.jamesframework.core.exceptions">IncompatibleDeltaEvaluationException</a></dt>
+<dd>
+<div class="block">Constructs an instance with the specified detail message.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/exceptions/IncompatibleDeltaEvaluationException.html#IncompatibleDeltaEvaluationException-java.lang.Throwable-">IncompatibleDeltaEvaluationException(Throwable)</a></span> - Constructor for exception org.jamesframework.core.exceptions.<a href="org/jamesframework/core/exceptions/IncompatibleDeltaEvaluationException.html" title="class in org.jamesframework.core.exceptions">IncompatibleDeltaEvaluationException</a></dt>
+<dd>
+<div class="block">Constructs an instance with the specified cause.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/exceptions/IncompatibleDeltaEvaluationException.html#IncompatibleDeltaEvaluationException-java.lang.String-java.lang.Throwable-">IncompatibleDeltaEvaluationException(String, Throwable)</a></span> - Constructor for exception org.jamesframework.core.exceptions.<a href="org/jamesframework/core/exceptions/IncompatibleDeltaEvaluationException.html" title="class in org.jamesframework.core.exceptions">IncompatibleDeltaEvaluationException</a></dt>
+<dd>
+<div class="block">Constructs an instance with the specified detail message and cause.</div>
+</dd>
+<dt><a href="org/jamesframework/core/exceptions/IncompatibleDeltaValidationException.html" title="class in org.jamesframework.core.exceptions"><span class="typeNameLink">IncompatibleDeltaValidationException</span></a> - Exception in <a href="org/jamesframework/core/exceptions/package-summary.html">org.jamesframework.core.exceptions</a></dt>
+<dd>
+<div class="block">Exception thrown when a delta validation is not compatible with the
+ type of moves generated by the applied neighbourhood(s).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/exceptions/IncompatibleDeltaValidationException.html#IncompatibleDeltaValidationException--">IncompatibleDeltaValidationException()</a></span> - Constructor for exception org.jamesframework.core.exceptions.<a href="org/jamesframework/core/exceptions/IncompatibleDeltaValidationException.html" title="class in org.jamesframework.core.exceptions">IncompatibleDeltaValidationException</a></dt>
+<dd>
+<div class="block">Creates a new instance without detail message.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/exceptions/IncompatibleDeltaValidationException.html#IncompatibleDeltaValidationException-java.lang.String-">IncompatibleDeltaValidationException(String)</a></span> - Constructor for exception org.jamesframework.core.exceptions.<a href="org/jamesframework/core/exceptions/IncompatibleDeltaValidationException.html" title="class in org.jamesframework.core.exceptions">IncompatibleDeltaValidationException</a></dt>
+<dd>
+<div class="block">Constructs an instance with the specified detail message.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/exceptions/IncompatibleDeltaValidationException.html#IncompatibleDeltaValidationException-java.lang.Throwable-">IncompatibleDeltaValidationException(Throwable)</a></span> - Constructor for exception org.jamesframework.core.exceptions.<a href="org/jamesframework/core/exceptions/IncompatibleDeltaValidationException.html" title="class in org.jamesframework.core.exceptions">IncompatibleDeltaValidationException</a></dt>
+<dd>
+<div class="block">Constructs an instance with the specified cause.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/exceptions/IncompatibleDeltaValidationException.html#IncompatibleDeltaValidationException-java.lang.String-java.lang.Throwable-">IncompatibleDeltaValidationException(String, Throwable)</a></span> - Constructor for exception org.jamesframework.core.exceptions.<a href="org/jamesframework/core/exceptions/IncompatibleDeltaValidationException.html" title="class in org.jamesframework.core.exceptions">IncompatibleDeltaValidationException</a></dt>
+<dd>
+<div class="block">Constructs an instance with the specified detail message and cause.</div>
 </dd>
 <dt><a href="org/jamesframework/core/exceptions/IncompatibleSearchListenerException.html" title="class in org.jamesframework.core.exceptions"><span class="typeNameLink">IncompatibleSearchListenerException</span></a> - Exception in <a href="org/jamesframework/core/exceptions/package-summary.html">org.jamesframework.core.exceptions</a></dt>
 <dd>
@@ -954,7 +1153,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#isImprovement-org.jamesframework.core.search.neigh.Move-">isImprovement(Move&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
 <dd>
-<div class="block">Checks whether the given move leads to an improvement when being applied to the current solution.</div>
+<div class="block">Checks whether applying the given move to the current solution yields a valid improvement.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/AbstractProblem.html#isMinimizing--">isMinimizing()</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a></dt>
 <dd>
@@ -962,24 +1161,11 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/Objective.html#isMinimizing--">isMinimizing()</a></span> - Method in interface org.jamesframework.core.problems.objectives.<a href="org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a></dt>
 <dd>
-<div class="block">Check whether the objective is minimizing.</div>
+<div class="block">Check whether the produced evaluations are to be minimized.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/Problem.html#isMinimizing--">isMinimizing()</a></span> - Method in interface org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a></dt>
 <dd>
 <div class="block">Indicates whether scores are being minimized or maximized.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/Solution.html#isSameSolution-org.jamesframework.core.problems.Solution-">isSameSolution(Solution)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a></dt>
-<dd>
-<div class="block">Checks whether this solution is equal to an other, given solution.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetSolution.html#isSameSolution-org.jamesframework.core.problems.Solution-">isSameSolution(Solution)</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a></dt>
-<dd>
-<div class="block">Checks whether the given other solution represents the same subset solution.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/Constraint.html#isSatisfied-SolutionType-DataType-">isSatisfied(SolutionType, DataType)</a></span> - Method in interface org.jamesframework.core.problems.constraints.<a href="org/jamesframework/core/problems/constraints/Constraint.html" title="interface in org.jamesframework.core.problems.constraints">Constraint</a></dt>
-<dd>
-<div class="block">Checks whether a given solution satisfies the imposed constraint, based on
- the given underlying data.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetSolution.html#isSorted--">isSorted()</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a></dt>
 <dd>
@@ -1039,8 +1225,7 @@
 <dl>
 <dt><a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search"><span class="typeNameLink">LocalSearch</span></a>&lt;<a href="org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/package-summary.html">org.jamesframework.core.search</a></dt>
 <dd>
-<div class="block">Local searches are searches that start with some initial solution and modify this solution in an attempt to improve
- it.</div>
+<div class="block">Local searches are searches that start from an initial solution and modify this solution in an attempt to improve it.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#LocalSearch-org.jamesframework.core.problems.Problem-">LocalSearch(Problem&lt;SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
 <dd>
@@ -1053,12 +1238,6 @@
 <dt><a href="org/jamesframework/core/util/LocalSearchFactory.html" title="interface in org.jamesframework.core.util"><span class="typeNameLink">LocalSearchFactory</span></a>&lt;<a href="org/jamesframework/core/util/LocalSearchFactory.html" title="type parameter in LocalSearchFactory">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Interface in <a href="org/jamesframework/core/util/package-summary.html">org.jamesframework.core.util</a></dt>
 <dd>
 <div class="block">Interface of a local search factory used to create any local search.</div>
-</dd>
-<dt><a href="org/jamesframework/core/search/listeners/LocalSearchListener.html" title="interface in org.jamesframework.core.search.listeners"><span class="typeNameLink">LocalSearchListener</span></a>&lt;<a href="org/jamesframework/core/search/listeners/LocalSearchListener.html" title="type parameter in LocalSearchListener">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Interface in <a href="org/jamesframework/core/search/listeners/package-summary.html">org.jamesframework.core.search.listeners</a></dt>
-<dd>
-<div class="block">
- Extends the general search listener interface with a local search specific callback, fired when the current solution
- has been modified.</div>
 </dd>
 <dt><a href="org/jamesframework/core/subset/algo/LRSubsetSearch.html" title="class in org.jamesframework.core.subset.algo"><span class="typeNameLink">LRSubsetSearch</span></a> - Class in <a href="org/jamesframework/core/subset/algo/package-summary.html">org.jamesframework.core.subset.algo</a></dt>
 <dd>
@@ -1136,13 +1315,61 @@
 <div class="block">Create a stop criterion that imposes a minimum evaluation delta when
  finding a new best solution during a search run.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/LocalSearchListener.html#modifiedCurrentSolution-org.jamesframework.core.search.LocalSearch-SolutionType-double-">modifiedCurrentSolution(LocalSearch&lt;? extends SolutionType&gt;, SolutionType, double)</a></span> - Method in interface org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/LocalSearchListener.html" title="interface in org.jamesframework.core.search.listeners">LocalSearchListener</a></dt>
-<dd>
-<div class="block">Fired whenever a new current solution has been adopted.</div>
-</dd>
 <dt><a href="org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh"><span class="typeNameLink">Move</span></a>&lt;<a href="org/jamesframework/core/search/neigh/Move.html" title="type parameter in Move">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Interface in <a href="org/jamesframework/core/search/neigh/package-summary.html">org.jamesframework.core.search.neigh</a></dt>
 <dd>
 <div class="block">Interface of a move that can be applied to a generic solution type.</div>
+</dd>
+<dt><a href="org/jamesframework/core/subset/neigh/adv/MultiAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv"><span class="typeNameLink">MultiAdditionNeighbourhood</span></a> - Class in <a href="org/jamesframework/core/subset/neigh/adv/package-summary.html">org.jamesframework.core.subset.neigh.adv</a></dt>
+<dd>
+<div class="block">
+ A subset neighbourhood that generates moves which simultaneously add up to \(k\) items to the selection,
+ where \(k\) is specified at construction (or unlimited).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiAdditionNeighbourhood.html#MultiAdditionNeighbourhood--">MultiAdditionNeighbourhood()</a></span> - Constructor for class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiAdditionNeighbourhood</a></dt>
+<dd>
+<div class="block">Creates a multi addition neighbourhood that may add an unlimited number of IDs to the selection.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiAdditionNeighbourhood.html#MultiAdditionNeighbourhood-int-">MultiAdditionNeighbourhood(int)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiAdditionNeighbourhood</a></dt>
+<dd>
+<div class="block">Creates a multi addition neighbourhood that may simultaneously add up to the specified number of
+ IDs to the selection.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiAdditionNeighbourhood.html#MultiAdditionNeighbourhood-int-int-">MultiAdditionNeighbourhood(int, int)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiAdditionNeighbourhood</a></dt>
+<dd>
+<div class="block">Creates a multi addition neighbourhood that may simultaneously add up to the specified number of
+ IDs to the selection, taking into account that the given maximum subset size can not be exceeded.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiAdditionNeighbourhood.html#MultiAdditionNeighbourhood-int-int-java.util.Set-">MultiAdditionNeighbourhood(int, int, Set&lt;Integer&gt;)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiAdditionNeighbourhood</a></dt>
+<dd>
+<div class="block">Creates a multi addition neighbourhood that may simultaneously add up to the specified number of
+ IDs to the selection, taking into account that the given maximum subset size can not be exceeded
+ and that the given set of fixed IDs are not allowed to be selected.</div>
+</dd>
+<dt><a href="org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv"><span class="typeNameLink">MultiDeletionNeighbourhood</span></a> - Class in <a href="org/jamesframework/core/subset/neigh/adv/package-summary.html">org.jamesframework.core.subset.neigh.adv</a></dt>
+<dd>
+<div class="block">
+ A subset neighbourhood that generates moves which simultaneously remove up to \(k\) items from the selection,
+ where \(k\) is specified at construction (or unlimited).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html#MultiDeletionNeighbourhood--">MultiDeletionNeighbourhood()</a></span> - Constructor for class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiDeletionNeighbourhood</a></dt>
+<dd>
+<div class="block">Creates a multi deletion neighbourhood that may remove an unlimited number of IDs from the selection.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html#MultiDeletionNeighbourhood-int-">MultiDeletionNeighbourhood(int)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiDeletionNeighbourhood</a></dt>
+<dd>
+<div class="block">Creates a multi deletion neighbourhood that may simultaneously remove up to the specified number of
+ IDs from the selection.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html#MultiDeletionNeighbourhood-int-int-">MultiDeletionNeighbourhood(int, int)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiDeletionNeighbourhood</a></dt>
+<dd>
+<div class="block">Creates a multi deletion neighbourhood that may simultaneously remove up to the specified number of
+ IDs from the selection, taking into account that the subset size may not drop below the given minimum.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html#MultiDeletionNeighbourhood-int-int-java.util.Set-">MultiDeletionNeighbourhood(int, int, Set&lt;Integer&gt;)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiDeletionNeighbourhood</a></dt>
+<dd>
+<div class="block">Creates a multi deletion neighbourhood that may simultaneously remove up to the specified number of
+ IDs from the selection, taking into account that the subset size may not drop below the given minimum
+ and that the given set of fixed IDs are not allowed to be deselected.</div>
 </dd>
 <dt><a href="org/jamesframework/core/search/MultiNeighbourhoodSearch.html" title="class in org.jamesframework.core.search"><span class="typeNameLink">MultiNeighbourhoodSearch</span></a>&lt;<a href="org/jamesframework/core/search/MultiNeighbourhoodSearch.html" title="type parameter in MultiNeighbourhoodSearch">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/package-summary.html">org.jamesframework.core.search</a></dt>
 <dd>
@@ -1161,8 +1388,12 @@
 <dt><a href="org/jamesframework/core/subset/neigh/adv/MultiSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv"><span class="typeNameLink">MultiSwapNeighbourhood</span></a> - Class in <a href="org/jamesframework/core/subset/neigh/adv/package-summary.html">org.jamesframework.core.subset.neigh.adv</a></dt>
 <dd>
 <div class="block">
- A subset neighbourhood that generates moves performing up to \(k\) multiple simultaneous swaps of selected and
- unselected IDs, where \(k\) is specified when creating the neighbourhood.</div>
+ A subset neighbourhood that generates moves performing up to \(k\) simultaneous swaps of selected and
+ unselected IDs, where \(k\) is specified when creating the neighbourhood (or unlimited).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiSwapNeighbourhood.html#MultiSwapNeighbourhood--">MultiSwapNeighbourhood()</a></span> - Constructor for class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiSwapNeighbourhood</a></dt>
+<dd>
+<div class="block">Creates a multi swap neighbourhood that may perform an unlimited number of swaps.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiSwapNeighbourhood.html#MultiSwapNeighbourhood-int-">MultiSwapNeighbourhood(int)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiSwapNeighbourhood</a></dt>
 <dd>
@@ -1197,9 +1428,13 @@
 <dd>
 <div class="block">Create a new neighbourhood search to solve the given problem, with a custom name.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/SearchListener.html#newBestSolution-org.jamesframework.core.search.Search-SolutionType-double-">newBestSolution(Search&lt;? extends SolutionType&gt;, SolutionType, double)</a></span> - Method in interface org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/SearchListener.html#newBestSolution-org.jamesframework.core.search.Search-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">newBestSolution(Search&lt;? extends SolutionType&gt;, SolutionType, Evaluation, Validation)</a></span> - Method in interface org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a></dt>
 <dd>
 <div class="block">Fired when the search has found a new best solution.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/SearchListener.html#newCurrentSolution-org.jamesframework.core.search.LocalSearch-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">newCurrentSolution(LocalSearch&lt;? extends SolutionType&gt;, SolutionType, Evaluation, Validation)</a></span> - Method in interface org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a></dt>
+<dd>
+<div class="block">Fired by <strong>local searches</strong> only, when a new current solution has been adopted.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/exh/SolutionIterator.html#next--">next()</a></span> - Method in interface org.jamesframework.core.search.algo.exh.<a href="org/jamesframework/core/search/algo/exh/SolutionIterator.html" title="interface in org.jamesframework.core.search.algo.exh">SolutionIterator</a></dt>
 <dd>
@@ -1217,7 +1452,8 @@
 <dl>
 <dt><a href="org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives"><span class="typeNameLink">Objective</span></a>&lt;<a href="org/jamesframework/core/problems/objectives/Objective.html" title="type parameter in Objective">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>,<a href="org/jamesframework/core/problems/objectives/Objective.html" title="type parameter in Objective">DataType</a>&gt; - Interface in <a href="org/jamesframework/core/problems/objectives/package-summary.html">org.jamesframework.core.problems.objectives</a></dt>
 <dd>
-<div class="block">Interface of a general objective used to evaluate solutions, using some underlying data.</div>
+<div class="block">
+ Interface of an objective function that evaluates solutions using underlying data.</div>
 </dd>
 <dt><a href="org/jamesframework/core/exceptions/package-summary.html">org.jamesframework.core.exceptions</a> - package org.jamesframework.core.exceptions</dt>
 <dd>
@@ -1231,13 +1467,21 @@
 <dd>
 <div class="block">Constraint interfaces.</div>
 </dd>
+<dt><a href="org/jamesframework/core/problems/constraints/validations/package-summary.html">org.jamesframework.core.problems.constraints.validations</a> - package org.jamesframework.core.problems.constraints.validations</dt>
+<dd>
+<div class="block">Validation interfaces and predefined implementations.</div>
+</dd>
 <dt><a href="org/jamesframework/core/problems/datatypes/package-summary.html">org.jamesframework.core.problems.datatypes</a> - package org.jamesframework.core.problems.datatypes</dt>
 <dd>
 <div class="block">Predefined data types.</div>
 </dd>
 <dt><a href="org/jamesframework/core/problems/objectives/package-summary.html">org.jamesframework.core.problems.objectives</a> - package org.jamesframework.core.problems.objectives</dt>
 <dd>
-<div class="block">Objective interfaces.</div>
+<div class="block">Interfaces of objectives and produced evaluations.</div>
+</dd>
+<dt><a href="org/jamesframework/core/problems/objectives/evaluations/package-summary.html">org.jamesframework.core.problems.objectives.evaluations</a> - package org.jamesframework.core.problems.objectives.evaluations</dt>
+<dd>
+<div class="block">Evaluation interface and predefined implementations.</div>
 </dd>
 <dt><a href="org/jamesframework/core/search/package-summary.html">org.jamesframework.core.search</a> - package org.jamesframework.core.search</dt>
 <dd>
@@ -1303,6 +1547,14 @@
 <dd>
 <div class="block">Advanced subset selection neighbourhoods.</div>
 </dd>
+<dt><a href="org/jamesframework/core/subset/neigh/moves/package-summary.html">org.jamesframework.core.subset.neigh.moves</a> - package org.jamesframework.core.subset.neigh.moves</dt>
+<dd>
+<div class="block">Subset moves generated by the provided subset neighbourhoods.</div>
+</dd>
+<dt><a href="org/jamesframework/core/subset/validations/package-summary.html">org.jamesframework.core.subset.validations</a> - package org.jamesframework.core.subset.validations</dt>
+<dd>
+<div class="block">Subset validation objects.</div>
+</dd>
 <dt><a href="org/jamesframework/core/util/package-summary.html">org.jamesframework.core.util</a> - package org.jamesframework.core.util</dt>
 <dd>
 <div class="block">General utilities.</div>
@@ -1332,10 +1584,61 @@
  Creates a new parallel tempering algorithm, specifying the problem to solve, the neighbourhood used in each replica, the number
  of replicas, the minimum and maximum temperature, and a custom search name.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html#PASSED">PASSED</a></span> - Static variable in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimplePenalizingValidation</a></dt>
+<dd>
+<div class="block">Constant simple penalizing validation indicating that the validation passed successfully
+ (<a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html#passed--"><code>SimplePenalizingValidation.passed()</code></a> returns <code>true</code> and no penalty is assigned).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html#passed--">passed()</a></span> - Method in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimplePenalizingValidation</a></dt>
+<dd>
+<div class="block">Get the boolean value specified at construction, indicating whether the corresponding solution
+ passed validation.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/SimpleValidation.html#PASSED">PASSED</a></span> - Static variable in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/SimpleValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimpleValidation</a></dt>
+<dd>
+<div class="block">Constant simple validation indicating that the validation passed successfully
+ (<a href="org/jamesframework/core/problems/constraints/validations/SimpleValidation.html#passed--"><code>SimpleValidation.passed()</code></a> returns <code>true</code>).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/SimpleValidation.html#passed--">passed()</a></span> - Method in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/SimpleValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimpleValidation</a></dt>
+<dd>
+<div class="block">Get the boolean value specified at construction, indicating
+ whether the corresponding solution passed validation.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html#passed--">passed()</a></span> - Method in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">UnanimousValidation</a></dt>
+<dd>
+<div class="block">A unanimous validation passed if and only if all contained validations passed.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/Validation.html#passed--">passed()</a></span> - Method in interface org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></dt>
+<dd>
+<div class="block">Check whether the corresponding solution passed validation.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/validations/SubsetValidation.html#passed-boolean-">passed(boolean)</a></span> - Method in class org.jamesframework.core.subset.validations.<a href="org/jamesframework/core/subset/validations/SubsetValidation.html" title="class in org.jamesframework.core.subset.validations">SubsetValidation</a></dt>
+<dd>
+<div class="block">Check whether the subset solution passed validation.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/validations/SubsetValidation.html#passed--">passed()</a></span> - Method in class org.jamesframework.core.subset.validations.<a href="org/jamesframework/core/subset/validations/SubsetValidation.html" title="class in org.jamesframework.core.subset.validations">SubsetValidation</a></dt>
+<dd>
+<div class="block">Check whether the subset solution passed validation, taking into
+ account both its size and the general constraint validations.</div>
+</dd>
+<dt><a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html" title="class in org.jamesframework.core.problems.objectives.evaluations"><span class="typeNameLink">PenalizedEvaluation</span></a> - Class in <a href="org/jamesframework/core/problems/objectives/evaluations/package-summary.html">org.jamesframework.core.problems.objectives.evaluations</a></dt>
+<dd>
+<div class="block">A penalized evaluation consists of an original evaluation and a number of penalizing validations.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html#PenalizedEvaluation-org.jamesframework.core.problems.objectives.evaluations.Evaluation-boolean-">PenalizedEvaluation(Evaluation, boolean)</a></span> - Constructor for class org.jamesframework.core.problems.objectives.evaluations.<a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html" title="class in org.jamesframework.core.problems.objectives.evaluations">PenalizedEvaluation</a></dt>
+<dd>
+<div class="block">Create a new penalized evaluation, given the original evaluation.</div>
+</dd>
 <dt><a href="org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="interface in org.jamesframework.core.problems.constraints"><span class="typeNameLink">PenalizingConstraint</span></a>&lt;<a href="org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="type parameter in PenalizingConstraint">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>,<a href="org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="type parameter in PenalizingConstraint">DataType</a>&gt; - Interface in <a href="org/jamesframework/core/problems/constraints/package-summary.html">org.jamesframework.core.problems.constraints</a></dt>
 <dd>
-<div class="block">Interface of a penalizing constraint, which assigns a certain penalty to a solution which does not
+<div class="block">
+ Interface of a penalizing constraint that assigns a penalty to a solution's evaluation if it does not
  satisfy the constraint.</div>
+</dd>
+<dt><a href="org/jamesframework/core/problems/constraints/validations/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints.validations"><span class="typeNameLink">PenalizingValidation</span></a> - Interface in <a href="org/jamesframework/core/problems/constraints/validations/package-summary.html">org.jamesframework.core.problems.constraints.validations</a></dt>
+<dd>
+<div class="block">
+ Interface of a validation produced by a penalizing constraint.</div>
 </dd>
 <dt><a href="org/jamesframework/core/search/algo/PipedLocalSearch.html" title="class in org.jamesframework.core.search.algo"><span class="typeNameLink">PipedLocalSearch</span></a>&lt;<a href="org/jamesframework/core/search/algo/PipedLocalSearch.html" title="type parameter in PipedLocalSearch">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/algo/package-summary.html">org.jamesframework.core.search.algo</a></dt>
 <dd>
@@ -1350,7 +1653,7 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/PipedLocalSearch.html#PipedLocalSearch-java.lang.String-org.jamesframework.core.problems.Problem-java.util.List-">PipedLocalSearch(String, Problem&lt;SolutionType&gt;, List&lt;LocalSearch&lt;SolutionType&gt;&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/PipedLocalSearch.html" title="class in org.jamesframework.core.search.algo">PipedLocalSearch</a></dt>
 <dd>
 <div class="block">Creates a new piped local search, specifying the problem to solve, a list of local searches to
- be executed in the pipeline, in the given order, and a custom search name.</div>
+ be executed in the pipeline in the given order, and a custom search name.</div>
 </dd>
 <dt><a href="org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems"><span class="typeNameLink">Problem</span></a>&lt;<a href="org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Interface in <a href="org/jamesframework/core/problems/package-summary.html">org.jamesframework.core.problems</a></dt>
 <dd>
@@ -1426,23 +1729,6 @@
 <dd>
 <div class="block">Indicate that a move was rejected.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/AbstractProblem.html#rejectSolution-SolutionType-">rejectSolution(SolutionType)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a></dt>
-<dd>
-<div class="block">Checks whether any of the specified rejecting constraints are violated.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/Problem.html#rejectSolution-SolutionType-">rejectSolution(SolutionType)</a></span> - Method in interface org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a></dt>
-<dd>
-<div class="block">Indicates whether the given solution should be rejected during search,
- regardless of its evaluation.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetProblem.html#rejectSolution-org.jamesframework.core.subset.SubsetSolution-">rejectSolution(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset">SubsetProblem</a></dt>
-<dd>
-<div class="block">Checks whether the given subset solution is rejected.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetProblem.html#rejectSolution-org.jamesframework.core.subset.SubsetSolution-boolean-">rejectSolution(SubsetSolution, boolean)</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset">SubsetProblem</a></dt>
-<dd>
-<div class="block">Checks whether the given subset solution is rejected.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#remove-org.jamesframework.core.search.stopcriteria.StopCriterion-">remove(StopCriterion)</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria">StopCriterionChecker</a></dt>
 <dd>
 <div class="block">Remove a stop criterion.</div>
@@ -1451,21 +1737,17 @@
 <dd>
 <div class="block">Retrieves and removes the head of the queue, or returns <code>null</code> if the queue is empty.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/AbstractProblem.html#removeMandatoryConstraint-org.jamesframework.core.problems.constraints.Constraint-">removeMandatoryConstraint(Constraint&lt;? super SolutionType, ? super DataType&gt;)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a></dt>
+<dd>
+<div class="block">Remove a mandatory constraint.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/AbstractProblem.html#removePenalizingConstraint-org.jamesframework.core.problems.constraints.PenalizingConstraint-">removePenalizingConstraint(PenalizingConstraint&lt;? super SolutionType, ? super DataType&gt;)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a></dt>
 <dd>
 <div class="block">Remove a penalizing constraint.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/AbstractProblem.html#removeRejectingConstraint-org.jamesframework.core.problems.constraints.Constraint-">removeRejectingConstraint(Constraint&lt;? super SolutionType, ? super DataType&gt;)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a></dt>
-<dd>
-<div class="block">Remove a rejecting constraint.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/BasicParallelSearch.html#removeSearch-org.jamesframework.core.search.Search-">removeSearch(Search&lt;SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a></dt>
 <dd>
-<div class="block">Remove the given search from the parallel algorithm, if it had been added before.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener(SearchListener&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
-<dd>
-<div class="block">Remove the given search listener.</div>
+<div class="block">Remove the given search.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener(SearchListener&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
@@ -1549,23 +1831,23 @@
 <dt><a href="org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners"><span class="typeNameLink">SearchListener</span></a>&lt;<a href="org/jamesframework/core/search/listeners/SearchListener.html" title="type parameter in SearchListener">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Interface in <a href="org/jamesframework/core/search/listeners/package-summary.html">org.jamesframework.core.search.listeners</a></dt>
 <dd>
 <div class="block">
- Interface of a search listener that can be attached to any search with the specified (or more specific) solution type.</div>
+ Interface of a search listener that can be attached to any search with the specified solution type (or a subtype).</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/stopcriteria/MaxRuntime.html#searchShouldStop-org.jamesframework.core.search.Search-">searchShouldStop(Search&lt;?&gt;)</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="org/jamesframework/core/search/stopcriteria/MaxRuntime.html" title="class in org.jamesframework.core.search.stopcriteria">MaxRuntime</a></dt>
 <dd>
-<div class="block">Checks whether the maximum runtime has been exceeded for the given search.</div>
+<div class="block">Checks whether the maximum runtime has been reached for the given search.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/stopcriteria/MaxSteps.html#searchShouldStop-org.jamesframework.core.search.Search-">searchShouldStop(Search&lt;?&gt;)</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="org/jamesframework/core/search/stopcriteria/MaxSteps.html" title="class in org.jamesframework.core.search.stopcriteria">MaxSteps</a></dt>
 <dd>
-<div class="block">Checks whether the maximum number of steps has been exceeded for the given search.</div>
+<div class="block">Checks whether the maximum number of steps has been reached for the given search.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/stopcriteria/MaxStepsWithoutImprovement.html#searchShouldStop-org.jamesframework.core.search.Search-">searchShouldStop(Search&lt;?&gt;)</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="org/jamesframework/core/search/stopcriteria/MaxStepsWithoutImprovement.html" title="class in org.jamesframework.core.search.stopcriteria">MaxStepsWithoutImprovement</a></dt>
 <dd>
-<div class="block">Checks whether the maximum number of steps without finding improvement has been exceeded for the given search.</div>
+<div class="block">Checks whether the maximum number of steps without finding improvement has been reached for the given search.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/stopcriteria/MaxTimeWithoutImprovement.html#searchShouldStop-org.jamesframework.core.search.Search-">searchShouldStop(Search&lt;?&gt;)</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="org/jamesframework/core/search/stopcriteria/MaxTimeWithoutImprovement.html" title="class in org.jamesframework.core.search.stopcriteria">MaxTimeWithoutImprovement</a></dt>
 <dd>
-<div class="block">Checks whether the maximum time without finding improvements has been exceeded for the given search.</div>
+<div class="block">Checks whether the maximum time without finding improvements has been reached for the given search.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/stopcriteria/MinDelta.html#searchShouldStop-org.jamesframework.core.search.Search-">searchShouldStop(Search&lt;?&gt;)</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="org/jamesframework/core/search/stopcriteria/MinDelta.html" title="class in org.jamesframework.core.search.stopcriteria">MinDelta</a></dt>
 <dd>
@@ -1618,14 +1900,14 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/MetropolisSearch.html#searchStep--">searchStep()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a></dt>
 <dd>
-<div class="block">Creates a random neighbour of the current solution and accepts it if it improves over the current solution,
- or if
+<div class="block">Creates a random neighbour of the current solution and accepts it as the new current solution
+ if it is valid and either improves over the current solution or
  \[
       e^{\frac{\Delta E}{kT}} &gt; R(0,1)
  \]
- where \(\Delta E\) is the difference between the evaluation of the neighbour and that of the current solution,
- \(T\) is the temperature of the system, \(k\) is a constant scale factor, and \(R(0,1)\) is a random number
- in the interval \([0,1]\).</div>
+ where \(\Delta E\) is the difference between the evaluation of the neighbour and that of the
+ current solution, \(T\) is the temperature, \(k\) is a constant scale factor, and \(R(0,1)\)
+ is a random number sampled from a uniform distribution in the interval \([0,1]\).</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#searchStep--">searchStep()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
@@ -1712,7 +1994,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#setCurrentSolution-SolutionType-">setCurrentSolution(SolutionType)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
 <dd>
-<div class="block">Sets the current solution.</div>
+<div class="block">Sets the current solution prior to execution or in between search runs.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/ReducedVariableNeighbourhoodSearch.html#setCycleNeighbourhoods-boolean-">setCycleNeighbourhoods(boolean)</a></span> - Method in class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/ReducedVariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">ReducedVariableNeighbourhoodSearch</a></dt>
 <dd>
@@ -1796,9 +2078,77 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/util/SetUtilities.html#SetUtilities--">SetUtilities()</a></span> - Constructor for class org.jamesframework.core.util.<a href="org/jamesframework/core/util/SetUtilities.html" title="class in org.jamesframework.core.util">SetUtilities</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="org/jamesframework/core/problems/objectives/evaluations/SimpleEvaluation.html" title="class in org.jamesframework.core.problems.objectives.evaluations"><span class="typeNameLink">SimpleEvaluation</span></a> - Class in <a href="org/jamesframework/core/problems/objectives/evaluations/package-summary.html">org.jamesframework.core.problems.objectives.evaluations</a></dt>
+<dd>
+<div class="block">A simple evaluation object that wraps a double value.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/evaluations/SimpleEvaluation.html#SimpleEvaluation-double-">SimpleEvaluation(double)</a></span> - Constructor for class org.jamesframework.core.problems.objectives.evaluations.<a href="org/jamesframework/core/problems/objectives/evaluations/SimpleEvaluation.html" title="class in org.jamesframework.core.problems.objectives.evaluations">SimpleEvaluation</a></dt>
+<dd>
+<div class="block">Create a simple evaluation with given double value.</div>
+</dd>
+<dt><a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html" title="class in org.jamesframework.core.problems.constraints.validations"><span class="typeNameLink">SimplePenalizingValidation</span></a> - Class in <a href="org/jamesframework/core/problems/constraints/validations/package-summary.html">org.jamesframework.core.problems.constraints.validations</a></dt>
+<dd>
+<div class="block">A simple penalizing validation object that wraps a boolean value,
+ indicating whether the corresponding solution passed validation,
+ and a double value, indicating the assigned penalty if the solution
+ did not pass validation.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html#SimplePenalizingValidation-boolean-double-">SimplePenalizingValidation(boolean, double)</a></span> - Constructor for class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimplePenalizingValidation</a></dt>
+<dd>
+<div class="block">Create a simple penalizing validation with a given boolean value, indicating
+ whether the corresponding solution passed validation, and an assigned penalty.</div>
+</dd>
+<dt><a href="org/jamesframework/core/problems/constraints/validations/SimpleValidation.html" title="class in org.jamesframework.core.problems.constraints.validations"><span class="typeNameLink">SimpleValidation</span></a> - Class in <a href="org/jamesframework/core/problems/constraints/validations/package-summary.html">org.jamesframework.core.problems.constraints.validations</a></dt>
+<dd>
+<div class="block">A simple validation object that merely wraps a boolean value
+ indicating whether the corresponding solution passed validation.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/SimpleValidation.html#SimpleValidation-boolean-">SimpleValidation(boolean)</a></span> - Constructor for class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/SimpleValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimpleValidation</a></dt>
+<dd>
+<div class="block">Create a simple validation with a given boolean value, indicating
+ whether the corresponding solution passed validation.</div>
+</dd>
+<dt><a href="org/jamesframework/core/subset/neigh/SingleAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh"><span class="typeNameLink">SingleAdditionNeighbourhood</span></a> - Class in <a href="org/jamesframework/core/subset/neigh/package-summary.html">org.jamesframework.core.subset.neigh</a></dt>
+<dd>
+<div class="block">
+ A subset neighbourhood that generates addition moves only (see <a href="org/jamesframework/core/subset/neigh/moves/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh.moves"><code>AdditionMove</code></a>).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SingleAdditionNeighbourhood.html#SingleAdditionNeighbourhood--">SingleAdditionNeighbourhood()</a></span> - Constructor for class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SingleAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleAdditionNeighbourhood</a></dt>
+<dd>
+<div class="block">Create a single addition neighbourhood without maximum subset size.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SingleAdditionNeighbourhood.html#SingleAdditionNeighbourhood-int-">SingleAdditionNeighbourhood(int)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SingleAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleAdditionNeighbourhood</a></dt>
+<dd>
+<div class="block">Create a single addition neighbourhood with a given limit on the number of selected items
+ (maximum subset size).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SingleAdditionNeighbourhood.html#SingleAdditionNeighbourhood-int-java.util.Set-">SingleAdditionNeighbourhood(int, Set&lt;Integer&gt;)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SingleAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleAdditionNeighbourhood</a></dt>
+<dd>
+<div class="block">Create a single addition neighbourhood with a limit on the number of selected
+ items (subset size) and a given set of fixed IDs which are not allowed to be
+ selected.</div>
+</dd>
+<dt><a href="org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh"><span class="typeNameLink">SingleDeletionNeighbourhood</span></a> - Class in <a href="org/jamesframework/core/subset/neigh/package-summary.html">org.jamesframework.core.subset.neigh</a></dt>
+<dd>
+<div class="block">
+ A subset neighbourhood that generates deletion moves only (see <a href="org/jamesframework/core/subset/neigh/moves/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh.moves"><code>DeletionMove</code></a>).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html#SingleDeletionNeighbourhood--">SingleDeletionNeighbourhood()</a></span> - Constructor for class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleDeletionNeighbourhood</a></dt>
+<dd>
+<div class="block">Create a single deletion neighbourhood without minimum subset size.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html#SingleDeletionNeighbourhood-int-">SingleDeletionNeighbourhood(int)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleDeletionNeighbourhood</a></dt>
+<dd>
+<div class="block">Create a single deletion neighbourhood with a given minimum subset size.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html#SingleDeletionNeighbourhood-int-java.util.Set-">SingleDeletionNeighbourhood(int, Set&lt;Integer&gt;)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleDeletionNeighbourhood</a></dt>
+<dd>
+<div class="block">Create a single deletion neighbourhood with a given minimum subset size
+ and a set of fixed IDs which are not allowed to be deselected.</div>
+</dd>
 <dt><a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html" title="class in org.jamesframework.core.search.cache"><span class="typeNameLink">SingleEvaluatedMoveCache</span></a> - Class in <a href="org/jamesframework/core/search/cache/package-summary.html">org.jamesframework.core.search.cache</a></dt>
 <dd>
-<div class="block">A single move cache only stores the last evaluation and validity that were offered to the cache.</div>
+<div class="block">A single move cache only stores the last evaluation and validation that were offered to the cache.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#SingleEvaluatedMoveCache--">SingleEvaluatedMoveCache()</a></span> - Constructor for class org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html" title="class in org.jamesframework.core.search.cache">SingleEvaluatedMoveCache</a></dt>
 <dd>
@@ -1821,8 +2171,12 @@
 <dt><a href="org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh"><span class="typeNameLink">SinglePerturbationNeighbourhood</span></a> - Class in <a href="org/jamesframework/core/subset/neigh/package-summary.html">org.jamesframework.core.subset.neigh</a></dt>
 <dd>
 <div class="block">
- A subset neighbourhood that generates swap moves (see <a href="org/jamesframework/core/subset/neigh/SwapMove.html" title="class in org.jamesframework.core.subset.neigh"><code>SwapMove</code></a>), addition moves (see <a href="org/jamesframework/core/subset/neigh/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh"><code>AdditionMove</code></a>) and deletion
- moves (see <a href="org/jamesframework/core/subset/neigh/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh"><code>DeletionMove</code></a>).</div>
+ A subset neighbourhood that generates swap moves (see <a href="org/jamesframework/core/subset/neigh/moves/SwapMove.html" title="class in org.jamesframework.core.subset.neigh.moves"><code>SwapMove</code></a>), addition moves (see <a href="org/jamesframework/core/subset/neigh/moves/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh.moves"><code>AdditionMove</code></a>)
+ and deletion moves (see <a href="org/jamesframework/core/subset/neigh/moves/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh.moves"><code>DeletionMove</code></a>).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html#SinglePerturbationNeighbourhood--">SinglePerturbationNeighbourhood()</a></span> - Constructor for class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SinglePerturbationNeighbourhood</a></dt>
+<dd>
+<div class="block">Creates a new single perturbation neighbourhood without size limits.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html#SinglePerturbationNeighbourhood-int-int-">SinglePerturbationNeighbourhood(int, int)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SinglePerturbationNeighbourhood</a></dt>
 <dd>
@@ -1836,7 +2190,7 @@
 <dt><a href="org/jamesframework/core/subset/neigh/SingleSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh"><span class="typeNameLink">SingleSwapNeighbourhood</span></a> - Class in <a href="org/jamesframework/core/subset/neigh/package-summary.html">org.jamesframework.core.subset.neigh</a></dt>
 <dd>
 <div class="block">
- A subset neighbourhood that generates swap moves only (see <a href="org/jamesframework/core/subset/neigh/SwapMove.html" title="class in org.jamesframework.core.subset.neigh"><code>SwapMove</code></a>).</div>
+ A subset neighbourhood that generates swap moves only (see <a href="org/jamesframework/core/subset/neigh/moves/SwapMove.html" title="class in org.jamesframework.core.subset.neigh.moves"><code>SwapMove</code></a>).</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SingleSwapNeighbourhood.html#SingleSwapNeighbourhood--">SingleSwapNeighbourhood()</a></span> - Constructor for class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SingleSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleSwapNeighbourhood</a></dt>
 <dd>
@@ -1962,13 +2316,14 @@
 </dd>
 <dt><a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria"><span class="typeNameLink">StopCriterionChecker</span></a> - Class in <a href="org/jamesframework/core/search/stopcriteria/package-summary.html">org.jamesframework.core.search.stopcriteria</a></dt>
 <dd>
-<div class="block">A stop criterion checker is responsible for checking the stop criteria of a given search, while this search is running.</div>
+<div class="block">A stop criterion checker is responsible for checking the stop criteria of a given search, while this
+ search is running.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#StopCriterionChecker-org.jamesframework.core.search.Search-">StopCriterionChecker(Search&lt;?&gt;)</a></span> - Constructor for class org.jamesframework.core.search.stopcriteria.<a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria">StopCriterionChecker</a></dt>
 <dd>
 <div class="block">Create a stop criterion checker dedicated to checking the stop criteria of the given search.</div>
 </dd>
-<dt><a href="org/jamesframework/core/subset/neigh/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh"><span class="typeNameLink">SubsetMove</span></a> - Interface in <a href="org/jamesframework/core/subset/neigh/package-summary.html">org.jamesframework.core.subset.neigh</a></dt>
+<dt><a href="org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves"><span class="typeNameLink">SubsetMove</span></a> - Interface in <a href="org/jamesframework/core/subset/neigh/moves/package-summary.html">org.jamesframework.core.subset.neigh.moves</a></dt>
 <dd>
 <div class="block">General interface of a subset move that adds a number of IDs to the selection and/or
  removes a number of IDs.</div>
@@ -2039,12 +2394,20 @@
 <div class="block">Create a subset solution iterator that generates all subsets with a fixed size,
  sampled from the given set of IDs.</div>
 </dd>
-<dt><a href="org/jamesframework/core/subset/neigh/SwapMove.html" title="class in org.jamesframework.core.subset.neigh"><span class="typeNameLink">SwapMove</span></a> - Class in <a href="org/jamesframework/core/subset/neigh/package-summary.html">org.jamesframework.core.subset.neigh</a></dt>
+<dt><a href="org/jamesframework/core/subset/validations/SubsetValidation.html" title="class in org.jamesframework.core.subset.validations"><span class="typeNameLink">SubsetValidation</span></a> - Class in <a href="org/jamesframework/core/subset/validations/package-summary.html">org.jamesframework.core.subset.validations</a></dt>
+<dd>
+<div class="block">Represents a validation of a subset solution.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/validations/SubsetValidation.html#SubsetValidation-boolean-org.jamesframework.core.problems.constraints.validations.Validation-">SubsetValidation(boolean, Validation)</a></span> - Constructor for class org.jamesframework.core.subset.validations.<a href="org/jamesframework/core/subset/validations/SubsetValidation.html" title="class in org.jamesframework.core.subset.validations">SubsetValidation</a></dt>
+<dd>
+<div class="block">Create a subset validation.</div>
+</dd>
+<dt><a href="org/jamesframework/core/subset/neigh/moves/SwapMove.html" title="class in org.jamesframework.core.subset.neigh.moves"><span class="typeNameLink">SwapMove</span></a> - Class in <a href="org/jamesframework/core/subset/neigh/moves/package-summary.html">org.jamesframework.core.subset.neigh.moves</a></dt>
 <dd>
 <div class="block">Simple subset move that removes a single ID from the current selection
  and replaces it with a new ID which was previously not selected.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SwapMove.html#SwapMove-int-int-">SwapMove(int, int)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SwapMove.html" title="class in org.jamesframework.core.subset.neigh">SwapMove</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/moves/SwapMove.html#SwapMove-int-int-">SwapMove(int, int)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.moves.<a href="org/jamesframework/core/subset/neigh/moves/SwapMove.html" title="class in org.jamesframework.core.subset.neigh.moves">SwapMove</a></dt>
 <dd>
 <div class="block">Creates a new swap move with specified IDs to add to and remove from the current selection
  when being applied to a given subset solution.</div>
@@ -2079,6 +2442,28 @@
 <dd>
 <div class="block">Extend string representation to include solution that was being modified.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html#toString--">toString()</a></span> - Method in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimplePenalizingValidation</a></dt>
+<dd>
+<div class="block">Get a string representation of the validation object.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/SimpleValidation.html#toString--">toString()</a></span> - Method in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/SimpleValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimpleValidation</a></dt>
+<dd>
+<div class="block">Get a string representation of the validation object.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html#toString--">toString()</a></span> - Method in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">UnanimousValidation</a></dt>
+<dd>
+<div class="block">Get a string representation of the validation object.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html#toString--">toString()</a></span> - Method in class org.jamesframework.core.problems.objectives.evaluations.<a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html" title="class in org.jamesframework.core.problems.objectives.evaluations">PenalizedEvaluation</a></dt>
+<dd>
+<div class="block">Get a string representation that contains both the penalized and unpenalized
+ evaluation, where the latter is only included if penalties have actually been
+ assigned.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/evaluations/SimpleEvaluation.html#toString--">toString()</a></span> - Method in class org.jamesframework.core.problems.objectives.evaluations.<a href="org/jamesframework/core/problems/objectives/evaluations/SimpleEvaluation.html" title="class in org.jamesframework.core.problems.objectives.evaluations">SimpleEvaluation</a></dt>
+<dd>
+<div class="block">Get a string representation of the assigned value.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#toString--">toString()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
 <div class="block">Returns a string representation of the search, formatted as "%name(%id)".</div>
@@ -2095,7 +2480,11 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetSolution.html#toString--">toString()</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a></dt>
 <dd>
-<div class="block">Creates a nicely formatted, human readable string containing the selected IDs.</div>
+<div class="block">Creates a formatted string containing the selected IDs.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/validations/SubsetValidation.html#toString--">toString()</a></span> - Method in class org.jamesframework.core.subset.validations.<a href="org/jamesframework/core/subset/validations/SubsetValidation.html" title="class in org.jamesframework.core.subset.validations">SubsetValidation</a></dt>
+<dd>
+<div class="block">Get a string representation of the validation object.</div>
 </dd>
 </dl>
 <a name="I:U">
@@ -2103,64 +2492,55 @@
 </a>
 <h2 class="title">U</h2>
 <dl>
+<dt><a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html" title="class in org.jamesframework.core.problems.constraints.validations"><span class="typeNameLink">UnanimousValidation</span></a> - Class in <a href="org/jamesframework/core/problems/constraints/validations/package-summary.html">org.jamesframework.core.problems.constraints.validations</a></dt>
+<dd>
+<div class="block">A unanimous validation object is used to combine validations produced by a number of constraints.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html#UnanimousValidation--">UnanimousValidation()</a></span> - Constructor for class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">UnanimousValidation</a></dt>
+<dd>
+<div class="block">Create an empty unanimous validation object.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/Move.html#undo-SolutionType-">undo(SolutionType)</a></span> - Method in interface org.jamesframework.core.search.neigh.<a href="org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a></dt>
 <dd>
 <div class="block">Undo this move after it has been applied to the given solution.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/AdditionMove.html#undo-org.jamesframework.core.subset.SubsetSolution-">undo(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh">AdditionMove</a></dt>
-<dd>
-<div class="block">Undo this addition move after it has been successfully applied to the given subset solution, by removing the newly added ID
- from the selection.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/GeneralSubsetMove.html#undo-org.jamesframework.core.subset.SubsetSolution-">undo(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/GeneralSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.adv">GeneralSubsetMove</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html#undo-org.jamesframework.core.subset.SubsetSolution-">undo(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.moves.<a href="org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.moves">GeneralSubsetMove</a></dt>
 <dd>
 <div class="block">Undo this move after it has been successfully applied to the given subset solution,
  by removing all added IDs and adding all removed IDs.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/DeletionMove.html#undo-org.jamesframework.core.subset.SubsetSolution-">undo(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh">DeletionMove</a></dt>
-<dd>
-<div class="block">Undo this deletion move after it has been successfully applied to the given subset solution, by re-adding the
- deleted ID to the selection.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SwapMove.html#undo-org.jamesframework.core.subset.SubsetSolution-">undo(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SwapMove.html" title="class in org.jamesframework.core.subset.neigh">SwapMove</a></dt>
-<dd>
-<div class="block">Undo this swap move after it has been successfully applied to the given subset solution,
- by removing the newly added ID and re-adding the deleted ID.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-">updateBestSolution(SolutionType)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
 <div class="block">
  Checks whether a new best solution has been found and updates it accordingly.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-double-">updateBestSolution(SolutionType, double)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">updateBestSolution(SolutionType, Evaluation, Validation)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
 <div class="block">
  Checks whether a new best solution has been found and updates it accordingly,
- assuming that the given solution is <b>not</b> rejected by the problem (see
- <a href="org/jamesframework/core/problems/Problem.html#rejectSolution-SolutionType-"><code>Problem.rejectSolution(Solution)</code></a> and has already been evaluated.</div>
+ given that the solution has already been evaluated and validated.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-">updateCurrentAndBestSolution(SolutionType)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
 <dd>
 <div class="block">Update the current and best solution during search.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-double-">updateCurrentAndBestSolution(SolutionType, double)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">updateCurrentAndBestSolution(SolutionType, Evaluation, Validation)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
 <dd>
-<div class="block">Update the current and best solution during search, given that the new current solution has already
- been evaluated.</div>
+<div class="block">Update the current and best solution during search, given that the respective solution has already
+ been evaluated and validated.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-double-boolean-">updateCurrentAndBestSolution(SolutionType, double, boolean)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#updateCurrentSolution-SolutionType-">updateCurrentSolution(SolutionType)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
 <dd>
-<div class="block">Update the current and best solution during search, given that the new current solution has already
- been evaluated.</div>
+<div class="block">Update the current solution during search.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#updateCurrentSolution-SolutionType-double-">updateCurrentSolution(SolutionType, double)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#updateCurrentSolution-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">updateCurrentSolution(SolutionType, Evaluation, Validation)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
 <dd>
-<div class="block">Update the current solution during search, given that it has already been evaluated.</div>
+<div class="block">Update the current solution during search, given that it has already been evaluated and validated.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#updateCurrentSolution-SolutionType-double-">updateCurrentSolution(SolutionType, double)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#updateCurrentSolution-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">updateCurrentSolution(SolutionType, Evaluation, Validation)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
 <dd>
-<div class="block">When updating the current solution in a neighbourhood search, the evaluated move cache is cleared because
- it is no longer valid for the new current solution.</div>
+<div class="block">When updating the current solution in a neighbourhood search, the evaluated move cache is
+ cleared because it is no longer valid for the new current solution.</div>
 </dd>
 </dl>
 <a name="I:V">
@@ -2168,13 +2548,63 @@
 </a>
 <h2 class="title">V</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html#validateMove-org.jamesframework.core.search.neigh.Move-">validateMove(Move&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="class in org.jamesframework.core.search.algo.tabu">TabuSearch</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/AbstractProblem.html#validate-SolutionType-">validate(SolutionType)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a></dt>
 <dd>
-<div class="block">Overrides validation of moves to verify that the move is not tabu.</div>
+<div class="block">
+ Validate a solution by checking all mandatory constraints.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/AbstractProblem.html#validate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.constraints.validations.Validation-">validate(Move&lt;? super SolutionType&gt;, SolutionType, Validation)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a></dt>
+<dd>
+<div class="block">
+ Validate a move by checking all mandatory constraints.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/Constraint.html#validate-SolutionType-DataType-">validate(SolutionType, DataType)</a></span> - Method in interface org.jamesframework.core.problems.constraints.<a href="org/jamesframework/core/problems/constraints/Constraint.html" title="interface in org.jamesframework.core.problems.constraints">Constraint</a></dt>
+<dd>
+<div class="block">Validates a solution given the underlying data.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/Constraint.html#validate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.constraints.validations.Validation-DataType-">validate(Move&lt;? super ActualSolutionType&gt;, ActualSolutionType, Validation, DataType)</a></span> - Method in interface org.jamesframework.core.problems.constraints.<a href="org/jamesframework/core/problems/constraints/Constraint.html" title="interface in org.jamesframework.core.problems.constraints">Constraint</a></dt>
+<dd>
+<div class="block">
+ Validates a move that will be applied to the current solution of a local search (delta validation).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/PenalizingConstraint.html#validate-SolutionType-DataType-">validate(SolutionType, DataType)</a></span> - Method in interface org.jamesframework.core.problems.constraints.<a href="org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="interface in org.jamesframework.core.problems.constraints">PenalizingConstraint</a></dt>
+<dd>
+<div class="block">Validates a solution given the underlying data.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/PenalizingConstraint.html#validate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.constraints.validations.Validation-DataType-">validate(Move&lt;? super ActualSolutionType&gt;, ActualSolutionType, Validation, DataType)</a></span> - Method in interface org.jamesframework.core.problems.constraints.<a href="org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="interface in org.jamesframework.core.problems.constraints">PenalizingConstraint</a></dt>
+<dd>
+<div class="block">
+ Validates a move that will be applied to the current solution of a local search (delta validation).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/Problem.html#validate-SolutionType-">validate(SolutionType)</a></span> - Method in interface org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a></dt>
+<dd>
+<div class="block">Validates a solution.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/Problem.html#validate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.constraints.validations.Validation-">validate(Move&lt;? super SolutionType&gt;, SolutionType, Validation)</a></span> - Method in interface org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a></dt>
+<dd>
+<div class="block">
+ Validates a move that will be applied to the current solution of a local search (delta validation).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetProblem.html#validate-org.jamesframework.core.subset.SubsetSolution-">validate(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset">SubsetProblem</a></dt>
+<dd>
+<div class="block">Validate a subset solution.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetProblem.html#validate-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.subset.SubsetSolution-org.jamesframework.core.problems.constraints.validations.Validation-">validate(Move&lt;? super SubsetSolution&gt;, SubsetSolution, Validation)</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset">SubsetProblem</a></dt>
+<dd>
+<div class="block">Validate a move to be applied to the current subset solution of a local search (delta validation).</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#validateMove-org.jamesframework.core.search.neigh.Move-">validateMove(Move&lt;? super SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
 <dd>
-<div class="block">Validates the neighbour obtained by applying the given move to the current solution.</div>
+<div class="block">Validates a move to be applied to the current solution.</div>
+</dd>
+<dt><a href="org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations"><span class="typeNameLink">Validation</span></a> - Interface in <a href="org/jamesframework/core/problems/constraints/validations/package-summary.html">org.jamesframework.core.problems.constraints.validations</a></dt>
+<dd>
+<div class="block">
+ Interface of a solution validation produced by a problem definition.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/validations/SubsetValidation.html#validSize--">validSize()</a></span> - Method in class org.jamesframework.core.subset.validations.<a href="org/jamesframework/core/subset/validations/SubsetValidation.html" title="class in org.jamesframework.core.subset.validations">SubsetValidation</a></dt>
+<dd>
+<div class="block">Check whether the subset solution has a valid size.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/status/SearchStatus.html#valueOf-java.lang.String-">valueOf(String)</a></span> - Static method in enum org.jamesframework.core.search.status.<a href="org/jamesframework/core/search/status/SearchStatus.html" title="enum in org.jamesframework.core.search.status">SearchStatus</a></dt>
 <dd>

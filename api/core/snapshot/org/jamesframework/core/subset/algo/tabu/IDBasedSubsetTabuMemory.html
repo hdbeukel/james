@@ -120,7 +120,7 @@ implements <a href="../../../../../../org/jamesframework/core/search/algo/tabu/T
 <div class="block">An ID based subset tabu memory keeps track of recently added and deleted IDs (recently applied moves) and does not
  allow that these IDs are added nor deleted to/from the current solution as long as they are contained in the limited
  size tabu memory. This tabu memory can only be used for subset selection, in combination with neighbourhoods that
- generate moves of type <a href="../../../../../../org/jamesframework/core/subset/neigh/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh"><code>SubsetMove</code></a>. The tabu memory casts all received moves to this specific type and throws
+ generate moves of type <a href="../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves"><code>SubsetMove</code></a>. The tabu memory casts all received moves to this specific type and throws
  an <a href="../../../../../../org/jamesframework/core/exceptions/IncompatibleTabuMemoryException.html" title="class in org.jamesframework.core.exceptions"><code>IncompatibleTabuMemoryException</code></a> if the cast fails.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
@@ -240,19 +240,19 @@ implements <a href="../../../../../../org/jamesframework/core/search/algo/tabu/T
 <pre>public&nbsp;boolean&nbsp;isTabu(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&gt;&nbsp;move,
                       <a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;currentSolution)</pre>
 <div class="block">A move is considered tabu if any involved ID (added or deleted) is currently contained in the tabu memory.
- If not, the move is allowed. It is required that the given move is of type <a href="../../../../../../org/jamesframework/core/subset/neigh/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh"><code>SubsetMove</code></a>, else an
+ If not, the move is allowed. It is required that the given move is of type <a href="../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves"><code>SubsetMove</code></a>, else an
  <a href="../../../../../../org/jamesframework/core/exceptions/IncompatibleTabuMemoryException.html" title="class in org.jamesframework.core.exceptions"><code>IncompatibleTabuMemoryException</code></a> will be thrown. Note that the argument <code>currentSolution</code>
  is not used here, because the move itself contains all necessary information, and may be <code>null</code>.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html#isTabu-org.jamesframework.core.search.neigh.Move-SolutionType-">isTabu</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html" title="interface in org.jamesframework.core.search.algo.tabu">TabuMemory</a>&lt;<a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>move</code> - subset move to be applied to the current solution (required to be of type <a href="../../../../../../org/jamesframework/core/subset/neigh/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh"><code>SubsetMove</code></a>)</dd>
+<dd><code>move</code> - subset move to be applied to the current solution (required to be of type <a href="../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves"><code>SubsetMove</code></a>)</dd>
 <dd><code>currentSolution</code> - current solution (not used here, may be <code>null</code>)</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd><code>true</code> if the current memory contains any ID which is added or deleted by the given move</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../../../../org/jamesframework/core/exceptions/IncompatibleTabuMemoryException.html" title="class in org.jamesframework.core.exceptions">IncompatibleTabuMemoryException</a></code> - if the given move is not of type <a href="../../../../../../org/jamesframework/core/subset/neigh/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh"><code>SubsetMove</code></a></dd>
+<dd><code><a href="../../../../../../org/jamesframework/core/exceptions/IncompatibleTabuMemoryException.html" title="class in org.jamesframework.core.exceptions">IncompatibleTabuMemoryException</a></code> - if the given move is not of type <a href="../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves"><code>SubsetMove</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -265,7 +265,7 @@ implements <a href="../../../../../../org/jamesframework/core/search/algo/tabu/T
 <pre>public&nbsp;void&nbsp;registerVisitedSolution(<a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;visitedSolution,
                                     <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&gt;&nbsp;appliedMove)</pre>
 <div class="block">Registers an applied subset move by storing all involved IDs (added or deleted) in the tabu memory. It is required
- that the given move is of type <a href="../../../../../../org/jamesframework/core/subset/neigh/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh"><code>SubsetMove</code></a>, else an <a href="../../../../../../org/jamesframework/core/exceptions/IncompatibleTabuMemoryException.html" title="class in org.jamesframework.core.exceptions"><code>IncompatibleTabuMemoryException</code></a> will be thrown.
+ that the given move is of type <a href="../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves"><code>SubsetMove</code></a>, else an <a href="../../../../../../org/jamesframework/core/exceptions/IncompatibleTabuMemoryException.html" title="class in org.jamesframework.core.exceptions"><code>IncompatibleTabuMemoryException</code></a> will be thrown.
  The argument <code>visitedSolution</code> is ignored, as the applied move contains all necessary information, and
  may be <code>null</code>. If <code>appliedMove</code> is <code>null</code>, calling this method does not have any
  effect.</div>
@@ -276,7 +276,7 @@ implements <a href="../../../../../../org/jamesframework/core/search/algo/tabu/T
 <dd><code>visitedSolution</code> - newly visited solution (not used here, may be <code>null</code>)</dd>
 <dd><code>appliedMove</code> - applied move of which all involved IDs are stored in the tabu memory</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../../../../org/jamesframework/core/exceptions/IncompatibleTabuMemoryException.html" title="class in org.jamesframework.core.exceptions">IncompatibleTabuMemoryException</a></code> - if the given move is not of type <a href="../../../../../../org/jamesframework/core/subset/neigh/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh"><code>SubsetMove</code></a></dd>
+<dd><code><a href="../../../../../../org/jamesframework/core/exceptions/IncompatibleTabuMemoryException.html" title="class in org.jamesframework.core.exceptions">IncompatibleTabuMemoryException</a></code> - if the given move is not of type <a href="../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves"><code>SubsetMove</code></a></dd>
 </dl>
 </li>
 </ul>

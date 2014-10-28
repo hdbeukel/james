@@ -18,8 +18,8 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":6};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
+var methods = {"i0":6,"i1":18,"i2":6,"i3":6,"i4":18,"i5":6};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -111,8 +111,8 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">Problem&lt;SolutionType extends <a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></pre>
-<div class="block">Interface of a problem with a generic solution type. Contains methods to evaluate or validate a solution and
- to create a random solution. Also indicates whether the evaluations are to be maximized or minimized.</div>
+<div class="block">Interface of a problem with a generic solution type. Contains methods to evaluate or validate a solution
+ or move and to create a random solution. Also indicates whether evaluations are to be maximized or minimized.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a></dd>
@@ -130,7 +130,7 @@ var activeTableTab = "activeTableTab";
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t5" class="tableTab"><span><a href="javascript:show(16);">Default Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
@@ -142,22 +142,39 @@ var activeTableTab = "activeTableTab";
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>double</code></td>
+<td class="colFirst"><code>default <a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Problem.html#evaluate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">evaluate</a></span>(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&gt;&nbsp;move,
+        <a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;curSolution,
+        <a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;curEvaluation)</code>
+<div class="block">
+ Evaluates a move that will be applied to the current solution of a local search (delta evaluation).</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Problem.html#evaluate-SolutionType-">evaluate</a></span>(<a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;solution)</code>
 <div class="block">Evaluates a given solution.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Problem.html#isMinimizing--">isMinimizing</a></span>()</code>
 <div class="block">Indicates whether scores are being minimized or maximized.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Problem.html#rejectSolution-SolutionType-">rejectSolution</a></span>(<a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;solution)</code>
-<div class="block">Indicates whether the given solution should be rejected during search,
- regardless of its evaluation.</div>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>default <a href="../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Problem.html#validate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.constraints.validations.Validation-">validate</a></span>(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&gt;&nbsp;move,
+        <a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;curSolution,
+        <a href="../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;curValidation)</code>
+<div class="block">
+ Validates a move that will be applied to the current solution of a local search (delta validation).</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Problem.html#validate-SolutionType-">validate</a></span>(<a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;solution)</code>
+<div class="block">Validates a solution.</div>
 </td>
 </tr>
 </table>
@@ -183,37 +200,122 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>evaluate</h4>
-<pre>double&nbsp;evaluate(<a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;solution)</pre>
-<div class="block">Evaluates a given solution. The computed score reflects the quality of the solution;
- depending on whether scores are maximized (or minimized), higher (respectively lower)
- scores indicate improvement.</div>
+<pre><a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;evaluate(<a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;solution)</pre>
+<div class="block">Evaluates a given solution. Returns an object of type <a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations"><code>Evaluation</code></a>. The corresponding
+ double value can be obtained by calling <a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html#getValue--"><code>Evaluation.getValue()</code></a> on the evaluation object.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>solution</code> - the solution to evaluate</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>evaluation of the solution</dd>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../org/jamesframework/core/problems/Problem.html#isMinimizing--"><code>isMinimizing()</code></a></dd>
+<dd>evaluation of the given solution</dd>
 </dl>
 </li>
 </ul>
-<a name="rejectSolution-org.jamesframework.core.problems.Solution-">
+<a name="evaluate-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.Solution-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">
 <!--   -->
-</a><a name="rejectSolution-SolutionType-">
+</a><a name="evaluate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>rejectSolution</h4>
-<pre>boolean&nbsp;rejectSolution(<a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;solution)</pre>
-<div class="block">Indicates whether the given solution should be rejected during search,
- regardless of its evaluation. This method may for example be used to
- discard solutions that do not satisfy imposed constraints.</div>
+<h4>evaluate</h4>
+<pre>default&nbsp;<a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;evaluate(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&gt;&nbsp;move,
+                            <a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;curSolution,
+                            <a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;curEvaluation)</pre>
+<div class="block"><p>
+ Evaluates a move that will be applied to the current solution of a local search (delta evaluation).
+ The result corresponds to the evaluation of the modified solution that would be obtained by applying
+ the given move to the current solution. A default implementation is provided that (1) applies the move,
+ (2) computes a full evaluation by calling <a href="../../../../org/jamesframework/core/problems/Problem.html#evaluate-SolutionType-"><code>evaluate(Solution)</code></a> and (3) undoes the applied move.
+ </p>
+ <p>
+ It is often possible to provide a custom, much more efficient delta evaluation that computes
+ the modified evaluation based on the current evaluation and the changes that will be made
+ when applying the move to the current solution. This can be done by overriding this method.
+ It is usually required to cast the received move to a specific type so that this problem
+ requires application of neighbourhoods that generate moves of this type (or a subtype).
+ If an incompatible move type is received, an <a href="../../../../org/jamesframework/core/exceptions/IncompatibleDeltaEvaluationException.html" title="class in org.jamesframework.core.exceptions"><code>IncompatibleDeltaEvaluationException</code></a>
+ may be thrown.
+ </p>
+ <p>
+ Given that both this method and the full evaluation (<a href="../../../../org/jamesframework/core/problems/Problem.html#evaluate-SolutionType-"><code>evaluate(Solution)</code></a>) return
+ evaluations of the same type, it is guaranteed that <code>curEvaluation</code> will also be of
+ this specific type and it is safe to perform a cast, if required.
+ </p></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>solution</code> - solution to verify</dd>
+<dd><code>move</code> - move to evaluate</dd>
+<dd><code>curSolution</code> - current solution</dd>
+<dd><code>curEvaluation</code> - evaluation of current solution</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>true if the given solution should be rejected</dd>
+<dd>evaluation of modified solution obtained when applying the move to the current solution</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="../../../../org/jamesframework/core/exceptions/IncompatibleDeltaEvaluationException.html" title="class in org.jamesframework.core.exceptions">IncompatibleDeltaEvaluationException</a></code> - if the provided delta evaluation is not compatible
+                                              with the received move type</dd>
+</dl>
+</li>
+</ul>
+<a name="validate-org.jamesframework.core.problems.Solution-">
+<!--   -->
+</a><a name="validate-SolutionType-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>validate</h4>
+<pre><a href="../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;validate(<a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;solution)</pre>
+<div class="block">Validates a solution. Returns an object of type <a href="../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations"><code>Validation</code></a>. It can be checked wether the
+ solution passed validation by calling <a href="../../../../org/jamesframework/core/problems/constraints/validations/Validation.html#passed--"><code>Validation.passed()</code></a> on this validation object. When
+ a solution does not pass validation it is discarded by any search so that the best found solution
+ is guaranteed to be valid.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>solution</code> - solution to validate</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a validation object that indicates wether the solution passed validation</dd>
+</dl>
+</li>
+</ul>
+<a name="validate-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.Solution-org.jamesframework.core.problems.constraints.validations.Validation-">
+<!--   -->
+</a><a name="validate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.constraints.validations.Validation-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>validate</h4>
+<pre>default&nbsp;<a href="../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;validate(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&gt;&nbsp;move,
+                            <a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;curSolution,
+                            <a href="../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;curValidation)</pre>
+<div class="block"><p>
+ Validates a move that will be applied to the current solution of a local search (delta validation).
+ The result corresponds to the validation of the modified solution that would be obtained by applying
+ the given move to the current solution. A default implementation is provided that (1) applies the move,
+ (2) performs a full validation by calling <a href="../../../../org/jamesframework/core/problems/Problem.html#validate-SolutionType-"><code>validate(Solution)</code></a> and (3) undoes the applied move.
+ </p>
+ <p>
+ It is often possible to provide a custom, much more efficient delta validation based on the
+ current validation and the changes that will be made when applying the move to the current
+ solution. This can be done by overriding this method. It is usually required to cast the
+ received move to a specific type so that this constraint can only be used in combination
+ with neighbourhoods that generate moves of this type (or a subtype). If an incompatible
+ move type is received, an <a href="../../../../org/jamesframework/core/exceptions/IncompatibleDeltaValidationException.html" title="class in org.jamesframework.core.exceptions"><code>IncompatibleDeltaValidationException</code></a> may be thrown.
+ </p>
+ <p>
+ Given that both this method and the full validation (<a href="../../../../org/jamesframework/core/problems/Problem.html#validate-SolutionType-"><code>validate(Solution)</code></a>) return
+ validations of the same type, it is guaranteed that <code>curValidation</code> will also
+ be of this specific type and it is safe to perform a cast, if required.
+ </p></div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>move</code> - move to validate</dd>
+<dd><code>curSolution</code> - current solution</dd>
+<dd><code>curValidation</code> - validation of current solution</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>validation of modified solution obtained when applying the move to the current solution</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="../../../../org/jamesframework/core/exceptions/IncompatibleDeltaValidationException.html" title="class in org.jamesframework.core.exceptions">IncompatibleDeltaValidationException</a></code> - if the provided delta validation is not compatible
+                                              with the received move type</dd>
 </dl>
 </li>
 </ul>

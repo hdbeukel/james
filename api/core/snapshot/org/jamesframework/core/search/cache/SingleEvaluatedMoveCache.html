@@ -117,12 +117,14 @@ var activeTableTab = "activeTableTab";
 <pre>public class <span class="typeNameLabel">SingleEvaluatedMoveCache</span>
 extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="../../../../../org/jamesframework/core/search/cache/EvaluatedMoveCache.html" title="interface in org.jamesframework.core.search.cache">EvaluatedMoveCache</a></pre>
-<div class="block">A single move cache only stores the last evaluation and validity that were offered to the cache.
+<div class="block">A single move cache only stores the last evaluation and validation that were offered to the cache.
  Any previously cached value is immediately discarded and replaced with the new value. In general,
  most neighbourhood searches select a single candidate move (random, best, ...) from the neighbourhood
- in every step and then merely decide whether or not to apply it to the current solution. Therefore, a
- single move cache can be used to appropriately cache the validity and evaluation of this candidate move,
- with minor memory overhead.</div>
+ in every step and then just decide whether or not to apply it to the current solution. Therefore, a
+ single move cache can be used to effectively cache the evaluation and validation of this candidate
+ move with minor memory overhead.
+ <p>
+ This is the default cache of any neighbourhood search.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a></dd>
@@ -166,16 +168,16 @@ implements <a href="../../../../../org/jamesframework/core/search/cache/Evaluate
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#cacheMoveEvaluation-org.jamesframework.core.search.neigh.Move-double-">cacheMoveEvaluation</a></span>(<a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move,
-                   double&nbsp;evaluation)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#cacheMoveEvaluation-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">cacheMoveEvaluation</a></span>(<a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move,
+                   <a href="../../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;evaluation)</code>
 <div class="block">Cache the given evaluation, discarding any previously cached evaluations.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#cacheMoveRejection-org.jamesframework.core.search.neigh.Move-boolean-">cacheMoveRejection</a></span>(<a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move,
-                  boolean&nbsp;isRejected)</code>
-<div class="block">Cache rejection of the given move, discarding any previously cached value.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#cacheMoveValidation-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.constraints.validations.Validation-">cacheMoveValidation</a></span>(<a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move,
+                   <a href="../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;validation)</code>
+<div class="block">Cache validation of the given move, discarding any previously cached value.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
@@ -185,15 +187,15 @@ implements <a href="../../../../../org/jamesframework/core/search/cache/Evaluate
 </td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Double.html?is-external=true" title="class or interface in java.lang">Double</a></code></td>
+<td class="colFirst"><code><a href="../../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#getCachedMoveEvaluation-org.jamesframework.core.search.neigh.Move-">getCachedMoveEvaluation</a></span>(<a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move)</code>
 <div class="block">Retrieve a cached evaluation, if still available.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#getCachedMoveRejection-org.jamesframework.core.search.neigh.Move-">getCachedMoveRejection</a></span>(<a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move)</code>
-<div class="block">Retrieve cached rejection, if still available.</div>
+<td class="colFirst"><code><a href="../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#getCachedMoveValidation-org.jamesframework.core.search.neigh.Move-">getCachedMoveValidation</a></span>(<a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move)</code>
+<div class="block">Retrieve a cached validation, if still available.</div>
 </td>
 </tr>
 </table>
@@ -236,18 +238,18 @@ implements <a href="../../../../../org/jamesframework/core/search/cache/Evaluate
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="cacheMoveEvaluation-org.jamesframework.core.search.neigh.Move-double-">
+<a name="cacheMoveEvaluation-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>cacheMoveEvaluation</h4>
 <pre>public final&nbsp;void&nbsp;cacheMoveEvaluation(<a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move,
-                                      double&nbsp;evaluation)</pre>
+                                      <a href="../../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;evaluation)</pre>
 <div class="block">Cache the given evaluation, discarding any previously cached evaluations.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/jamesframework/core/search/cache/EvaluatedMoveCache.html#cacheMoveEvaluation-org.jamesframework.core.search.neigh.Move-double-">cacheMoveEvaluation</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/jamesframework/core/search/cache/EvaluatedMoveCache.html" title="interface in org.jamesframework.core.search.cache">EvaluatedMoveCache</a></code></dd>
+<dd><code><a href="../../../../../org/jamesframework/core/search/cache/EvaluatedMoveCache.html#cacheMoveEvaluation-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">cacheMoveEvaluation</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/jamesframework/core/search/cache/EvaluatedMoveCache.html" title="interface in org.jamesframework.core.search.cache">EvaluatedMoveCache</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>move</code> - move applied to the current solution</dd>
 <dd><code>evaluation</code> - evaluation of obtained neighbour</dd>
@@ -260,10 +262,10 @@ implements <a href="../../../../../org/jamesframework/core/search/cache/Evaluate
 <ul class="blockList">
 <li class="blockList">
 <h4>getCachedMoveEvaluation</h4>
-<pre>public final&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Double.html?is-external=true" title="class or interface in java.lang">Double</a>&nbsp;getCachedMoveEvaluation(<a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move)</pre>
+<pre>public final&nbsp;<a href="../../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;getCachedMoveEvaluation(<a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move)</pre>
 <div class="block">Retrieve a cached evaluation, if still available. If the evaluation of any
- other move has been cached at a later point in time, it will have overwritten
- the evaluation of this move.</div>
+ other move has been cached at a later point in time, the value for this move
+ will have been overwritten.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../../../org/jamesframework/core/search/cache/EvaluatedMoveCache.html#getCachedMoveEvaluation-org.jamesframework.core.search.neigh.Move-">getCachedMoveEvaluation</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/jamesframework/core/search/cache/EvaluatedMoveCache.html" title="interface in org.jamesframework.core.search.cache">EvaluatedMoveCache</a></code></dd>
@@ -274,41 +276,40 @@ implements <a href="../../../../../org/jamesframework/core/search/cache/Evaluate
 </dl>
 </li>
 </ul>
-<a name="cacheMoveRejection-org.jamesframework.core.search.neigh.Move-boolean-">
+<a name="cacheMoveValidation-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.constraints.validations.Validation-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>cacheMoveRejection</h4>
-<pre>public final&nbsp;void&nbsp;cacheMoveRejection(<a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move,
-                                     boolean&nbsp;isRejected)</pre>
-<div class="block">Cache rejection of the given move, discarding any previously cached value.</div>
+<h4>cacheMoveValidation</h4>
+<pre>public final&nbsp;void&nbsp;cacheMoveValidation(<a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move,
+                                      <a href="../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;validation)</pre>
+<div class="block">Cache validation of the given move, discarding any previously cached value.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/jamesframework/core/search/cache/EvaluatedMoveCache.html#cacheMoveRejection-org.jamesframework.core.search.neigh.Move-boolean-">cacheMoveRejection</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/jamesframework/core/search/cache/EvaluatedMoveCache.html" title="interface in org.jamesframework.core.search.cache">EvaluatedMoveCache</a></code></dd>
+<dd><code><a href="../../../../../org/jamesframework/core/search/cache/EvaluatedMoveCache.html#cacheMoveValidation-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.constraints.validations.Validation-">cacheMoveValidation</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/jamesframework/core/search/cache/EvaluatedMoveCache.html" title="interface in org.jamesframework.core.search.cache">EvaluatedMoveCache</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>move</code> - move applied to the current solution</dd>
-<dd><code>isRejected</code> - indicates whether the obtained neighbour is rejected</dd>
+<dd><code>validation</code> - validation of obtained neighbour</dd>
 </dl>
 </li>
 </ul>
-<a name="getCachedMoveRejection-org.jamesframework.core.search.neigh.Move-">
+<a name="getCachedMoveValidation-org.jamesframework.core.search.neigh.Move-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getCachedMoveRejection</h4>
-<pre>public final&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&nbsp;getCachedMoveRejection(<a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move)</pre>
-<div class="block">Retrieve cached rejection, if still available. If rejection of any other move has
+<h4>getCachedMoveValidation</h4>
+<pre>public final&nbsp;<a href="../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;getCachedMoveValidation(<a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move)</pre>
+<div class="block">Retrieve a cached validation, if still available. If the validation of any other move has
  been cached at a later point in time, the value for this move will have been overwritten.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../org/jamesframework/core/search/cache/EvaluatedMoveCache.html#getCachedMoveRejection-org.jamesframework.core.search.neigh.Move-">getCachedMoveRejection</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/jamesframework/core/search/cache/EvaluatedMoveCache.html" title="interface in org.jamesframework.core.search.cache">EvaluatedMoveCache</a></code></dd>
+<dd><code><a href="../../../../../org/jamesframework/core/search/cache/EvaluatedMoveCache.html#getCachedMoveValidation-org.jamesframework.core.search.neigh.Move-">getCachedMoveValidation</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/jamesframework/core/search/cache/EvaluatedMoveCache.html" title="interface in org.jamesframework.core.search.cache">EvaluatedMoveCache</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>move</code> - move applied to the current solution</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd><code>true</code> if the obtained neighbour is known to be rejected,
-         <code>null</code> if the requested value is not available in the cache</dd>
+<dd>cached validation of the obtained neighbour, if available, <code>null</code> if not</dd>
 </dl>
 </li>
 </ul>

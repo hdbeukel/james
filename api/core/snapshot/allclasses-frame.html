@@ -13,17 +13,22 @@
 <div class="indexContainer">
 <ul>
 <li><a href="org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems" target="classFrame">AbstractProblem</a></li>
-<li><a href="org/jamesframework/core/subset/neigh/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh" target="classFrame">AdditionMove</a></li>
+<li><a href="org/jamesframework/core/subset/neigh/moves/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh.moves" target="classFrame">AdditionMove</a></li>
 <li><a href="org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo" target="classFrame">BasicParallelSearch</a></li>
 <li><a href="org/jamesframework/core/problems/constraints/Constraint.html" title="interface in org.jamesframework.core.problems.constraints" target="classFrame"><span class="interfaceName">Constraint</span></a></li>
-<li><a href="org/jamesframework/core/subset/neigh/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh" target="classFrame">DeletionMove</a></li>
+<li><a href="org/jamesframework/core/subset/neigh/moves/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh.moves" target="classFrame">DeletionMove</a></li>
+<li><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv" target="classFrame">DisjointMultiAdditionNeighbourhood</a></li>
+<li><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv" target="classFrame">DisjointMultiDeletionNeighbourhood</a></li>
 <li><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv" target="classFrame">DisjointMultiSwapNeighbourhood</a></li>
 <li><a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html" title="interface in org.jamesframework.core.search.cache" target="classFrame"><span class="interfaceName">EvaluatedMoveCache</span></a></li>
+<li><a href="org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations" target="classFrame"><span class="interfaceName">Evaluation</span></a></li>
 <li><a href="org/jamesframework/core/search/algo/exh/ExhaustiveSearch.html" title="class in org.jamesframework.core.search.algo.exh" target="classFrame">ExhaustiveSearch</a></li>
 <li><a href="org/jamesframework/core/util/FastLimitedQueue.html" title="class in org.jamesframework.core.util" target="classFrame">FastLimitedQueue</a></li>
 <li><a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="class in org.jamesframework.core.search.algo.tabu" target="classFrame">FullTabuMemory</a></li>
-<li><a href="org/jamesframework/core/subset/neigh/adv/GeneralSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.adv" target="classFrame">GeneralSubsetMove</a></li>
+<li><a href="org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.moves" target="classFrame">GeneralSubsetMove</a></li>
 <li><a href="org/jamesframework/core/subset/algo/tabu/IDBasedSubsetTabuMemory.html" title="class in org.jamesframework.core.subset.algo.tabu" target="classFrame">IDBasedSubsetTabuMemory</a></li>
+<li><a href="org/jamesframework/core/exceptions/IncompatibleDeltaEvaluationException.html" title="class in org.jamesframework.core.exceptions" target="classFrame">IncompatibleDeltaEvaluationException</a></li>
+<li><a href="org/jamesframework/core/exceptions/IncompatibleDeltaValidationException.html" title="class in org.jamesframework.core.exceptions" target="classFrame">IncompatibleDeltaValidationException</a></li>
 <li><a href="org/jamesframework/core/exceptions/IncompatibleSearchListenerException.html" title="class in org.jamesframework.core.exceptions" target="classFrame">IncompatibleSearchListenerException</a></li>
 <li><a href="org/jamesframework/core/exceptions/IncompatibleStopCriterionException.html" title="class in org.jamesframework.core.exceptions" target="classFrame">IncompatibleStopCriterionException</a></li>
 <li><a href="org/jamesframework/core/exceptions/IncompatibleTabuMemoryException.html" title="class in org.jamesframework.core.exceptions" target="classFrame">IncompatibleTabuMemoryException</a></li>
@@ -32,7 +37,6 @@
 <li><a href="org/jamesframework/core/exceptions/JamesRuntimeException.html" title="class in org.jamesframework.core.exceptions" target="classFrame">JamesRuntimeException</a></li>
 <li><a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search" target="classFrame">LocalSearch</a></li>
 <li><a href="org/jamesframework/core/util/LocalSearchFactory.html" title="interface in org.jamesframework.core.util" target="classFrame"><span class="interfaceName">LocalSearchFactory</span></a></li>
-<li><a href="org/jamesframework/core/search/listeners/LocalSearchListener.html" title="interface in org.jamesframework.core.search.listeners" target="classFrame"><span class="interfaceName">LocalSearchListener</span></a></li>
 <li><a href="org/jamesframework/core/subset/algo/LRSubsetSearch.html" title="class in org.jamesframework.core.subset.algo" target="classFrame">LRSubsetSearch</a></li>
 <li><a href="org/jamesframework/core/search/stopcriteria/MaxRuntime.html" title="class in org.jamesframework.core.search.stopcriteria" target="classFrame">MaxRuntime</a></li>
 <li><a href="org/jamesframework/core/search/stopcriteria/MaxSteps.html" title="class in org.jamesframework.core.search.stopcriteria" target="classFrame">MaxSteps</a></li>
@@ -41,13 +45,17 @@
 <li><a href="org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo" target="classFrame">MetropolisSearch</a></li>
 <li><a href="org/jamesframework/core/search/stopcriteria/MinDelta.html" title="class in org.jamesframework.core.search.stopcriteria" target="classFrame">MinDelta</a></li>
 <li><a href="org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh" target="classFrame"><span class="interfaceName">Move</span></a></li>
+<li><a href="org/jamesframework/core/subset/neigh/adv/MultiAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv" target="classFrame">MultiAdditionNeighbourhood</a></li>
+<li><a href="org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv" target="classFrame">MultiDeletionNeighbourhood</a></li>
 <li><a href="org/jamesframework/core/search/MultiNeighbourhoodSearch.html" title="class in org.jamesframework.core.search" target="classFrame">MultiNeighbourhoodSearch</a></li>
 <li><a href="org/jamesframework/core/subset/neigh/adv/MultiSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv" target="classFrame">MultiSwapNeighbourhood</a></li>
 <li><a href="org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh" target="classFrame"><span class="interfaceName">Neighbourhood</span></a></li>
 <li><a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search" target="classFrame">NeighbourhoodSearch</a></li>
 <li><a href="org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives" target="classFrame"><span class="interfaceName">Objective</span></a></li>
 <li><a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo" target="classFrame">ParallelTempering</a></li>
+<li><a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html" title="class in org.jamesframework.core.problems.objectives.evaluations" target="classFrame">PenalizedEvaluation</a></li>
 <li><a href="org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="interface in org.jamesframework.core.problems.constraints" target="classFrame"><span class="interfaceName">PenalizingConstraint</span></a></li>
+<li><a href="org/jamesframework/core/problems/constraints/validations/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints.validations" target="classFrame"><span class="interfaceName">PenalizingValidation</span></a></li>
 <li><a href="org/jamesframework/core/search/algo/PipedLocalSearch.html" title="class in org.jamesframework.core.search.algo" target="classFrame">PipedLocalSearch</a></li>
 <li><a href="org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems" target="classFrame"><span class="interfaceName">Problem</span></a></li>
 <li><a href="org/jamesframework/core/search/algo/RandomDescent.html" title="class in org.jamesframework.core.search.algo" target="classFrame">RandomDescent</a></li>
@@ -59,6 +67,11 @@
 <li><a href="org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners" target="classFrame"><span class="interfaceName">SearchListener</span></a></li>
 <li><a href="org/jamesframework/core/search/status/SearchStatus.html" title="enum in org.jamesframework.core.search.status" target="classFrame">SearchStatus</a></li>
 <li><a href="org/jamesframework/core/util/SetUtilities.html" title="class in org.jamesframework.core.util" target="classFrame">SetUtilities</a></li>
+<li><a href="org/jamesframework/core/problems/objectives/evaluations/SimpleEvaluation.html" title="class in org.jamesframework.core.problems.objectives.evaluations" target="classFrame">SimpleEvaluation</a></li>
+<li><a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html" title="class in org.jamesframework.core.problems.constraints.validations" target="classFrame">SimplePenalizingValidation</a></li>
+<li><a href="org/jamesframework/core/problems/constraints/validations/SimpleValidation.html" title="class in org.jamesframework.core.problems.constraints.validations" target="classFrame">SimpleValidation</a></li>
+<li><a href="org/jamesframework/core/subset/neigh/SingleAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh" target="classFrame">SingleAdditionNeighbourhood</a></li>
+<li><a href="org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh" target="classFrame">SingleDeletionNeighbourhood</a></li>
 <li><a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html" title="class in org.jamesframework.core.search.cache" target="classFrame">SingleEvaluatedMoveCache</a></li>
 <li><a href="org/jamesframework/core/search/SingleNeighbourhoodSearch.html" title="class in org.jamesframework.core.search" target="classFrame">SingleNeighbourhoodSearch</a></li>
 <li><a href="org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh" target="classFrame">SinglePerturbationNeighbourhood</a></li>
@@ -70,14 +83,17 @@
 <li><a href="org/jamesframework/core/search/algo/SteepestDescent.html" title="class in org.jamesframework.core.search.algo" target="classFrame">SteepestDescent</a></li>
 <li><a href="org/jamesframework/core/search/stopcriteria/StopCriterion.html" title="interface in org.jamesframework.core.search.stopcriteria" target="classFrame"><span class="interfaceName">StopCriterion</span></a></li>
 <li><a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria" target="classFrame">StopCriterionChecker</a></li>
-<li><a href="org/jamesframework/core/subset/neigh/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh" target="classFrame"><span class="interfaceName">SubsetMove</span></a></li>
+<li><a href="org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves" target="classFrame"><span class="interfaceName">SubsetMove</span></a></li>
 <li><a href="org/jamesframework/core/subset/neigh/SubsetNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh" target="classFrame">SubsetNeighbourhood</a></li>
 <li><a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset" target="classFrame">SubsetProblem</a></li>
 <li><a href="org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset" target="classFrame">SubsetSolution</a></li>
 <li><a href="org/jamesframework/core/subset/algo/exh/SubsetSolutionIterator.html" title="class in org.jamesframework.core.subset.algo.exh" target="classFrame">SubsetSolutionIterator</a></li>
-<li><a href="org/jamesframework/core/subset/neigh/SwapMove.html" title="class in org.jamesframework.core.subset.neigh" target="classFrame">SwapMove</a></li>
+<li><a href="org/jamesframework/core/subset/validations/SubsetValidation.html" title="class in org.jamesframework.core.subset.validations" target="classFrame">SubsetValidation</a></li>
+<li><a href="org/jamesframework/core/subset/neigh/moves/SwapMove.html" title="class in org.jamesframework.core.subset.neigh.moves" target="classFrame">SwapMove</a></li>
 <li><a href="org/jamesframework/core/search/algo/tabu/TabuMemory.html" title="interface in org.jamesframework.core.search.algo.tabu" target="classFrame"><span class="interfaceName">TabuMemory</span></a></li>
 <li><a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="class in org.jamesframework.core.search.algo.tabu" target="classFrame">TabuSearch</a></li>
+<li><a href="org/jamesframework/core/problems/constraints/validations/UnanimousValidation.html" title="class in org.jamesframework.core.problems.constraints.validations" target="classFrame">UnanimousValidation</a></li>
+<li><a href="org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations" target="classFrame"><span class="interfaceName">Validation</span></a></li>
 <li><a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodDescent.html" title="class in org.jamesframework.core.search.algo.vns" target="classFrame">VariableNeighbourhoodDescent</a></li>
 <li><a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns" target="classFrame">VariableNeighbourhoodSearch</a></li>
 <li><a href="org/jamesframework/core/search/algo/vns/VNDFactory.html" title="class in org.jamesframework.core.search.algo.vns" target="classFrame">VNDFactory</a></li>

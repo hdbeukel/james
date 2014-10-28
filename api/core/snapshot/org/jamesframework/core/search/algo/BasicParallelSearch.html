@@ -115,8 +115,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
-<dd><code>SolutionType</code> - solution type of the problems that may be solved using this search, required to extend
- <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems"><code>Solution</code></a></dd>
+<dd><code>SolutionType</code> - solution type of the problems that may be solved using this search, required to extend <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems"><code>Solution</code></a></dd>
 </dl>
 <dl>
 <dt>All Implemented Interfaces:</dt>
@@ -133,13 +132,13 @@ extends <a href="../../../../../org/jamesframework/core/search/Search.html" titl
  main search itself terminates.
  </p>
  <p>
- When the parallel search is requested to stop (see <a href="../../../../../org/jamesframework/core/search/Search.html#stop--"><code>Search.stop()</code></a>) it will propagate this request to its
- subsearches and will wait for their termination. Similarly, when the parallel search is disposed (see
- <a href="../../../../../org/jamesframework/core/search/Search.html#dispose--"><code>Search.dispose()</code></a>), all subsearches will also be disposed.
+ When a parallel search is requested to stop (see <a href="../../../../../org/jamesframework/core/search/Search.html#stop--"><code>Search.stop()</code></a>) it will propagate this request
+ to its subsearches and will wait for their termination. Similarly, when a parallel search is disposed
+ (see <a href="../../../../../org/jamesframework/core/search/Search.html#dispose--"><code>Search.dispose()</code></a>) all subsearches are also disposed.
  </p>
  <p>
- Because searches are executed in separate threads, it is important to ensure that any shared objects (problem,
- objective, constraints, neighbourhood, ...) are thread-safe.
+ Because searches are executed in separate threads, it is important to ensure that any shared objects
+ (problem, objective, constraints, neighbourhood, ...) are thread-safe.
  </p></div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
@@ -192,7 +191,7 @@ extends <a href="../../../../../org/jamesframework/core/search/Search.html" titl
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html#addSearch-org.jamesframework.core.search.Search-">addSearch</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&gt;&nbsp;search)</code>
 <div class="block">
- Add the given search to the parallel algorithm, to be executed in parallel with the other searches.</div>
+ Add the given search, to be executed in parallel with the other searches.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -204,7 +203,7 @@ extends <a href="../../../../../org/jamesframework/core/search/Search.html" titl
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html#removeSearch-org.jamesframework.core.search.Search-">removeSearch</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&gt;&nbsp;search)</code>
-<div class="block">Remove the given search from the parallel algorithm, if it had been added before.</div>
+<div class="block">Remove the given search.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
@@ -239,7 +238,7 @@ extends <a href="../../../../../org/jamesframework/core/search/Search.html" titl
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.jamesframework.core.search.<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></h3>
-<code><a href="../../../../../org/jamesframework/core/search/Search.html#addSearchListener-org.jamesframework.core.search.listeners.SearchListener-">addSearchListener</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#addStopCriterion-org.jamesframework.core.search.stopcriteria.StopCriterion-">addStopCriterion</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#assertIdle-java.lang.String-">assertIdle</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#computeDelta-double-double-">computeDelta</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#dispose--">dispose</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getBestSolution--">getBestSolution</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getBestSolutionEvaluation--">getBestSolutionEvaluation</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getID--">getID</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getMinDelta--">getMinDelta</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getName--">getName</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getProblem--">getProblem</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getRuntime--">getRuntime</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getStatus--">getStatus</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getStatusLock--">getStatusLock</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getSteps--">getSteps</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getStepsWithoutImprovement--">getStepsWithoutImprovement</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getTimeWithoutImprovement--">getTimeWithoutImprovement</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#removeStopCriterion-org.jamesframework.core.search.stopcriteria.StopCriterion-">removeStopCriterion</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#run--">run</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#searchStopped--">searchStopped</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#setStopCriterionCheckPeriod-long-java.util.concurrent.TimeUnit-">setStopCriterionCheckPeriod</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#start--">start</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#toString--">toString</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-">updateBestSolution</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-double-">updateBestSolution</a></code></li>
+<code><a href="../../../../../org/jamesframework/core/search/Search.html#addSearchListener-org.jamesframework.core.search.listeners.SearchListener-">addSearchListener</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#addStopCriterion-org.jamesframework.core.search.stopcriteria.StopCriterion-">addStopCriterion</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#assertIdle-java.lang.String-">assertIdle</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#computeDelta-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">computeDelta</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#dispose--">dispose</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#fireListenerCallback-java.util.function.Consumer-">fireListenerCallback</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getBestSolution--">getBestSolution</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getBestSolutionEvaluation--">getBestSolutionEvaluation</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getBestSolutionValidation--">getBestSolutionValidation</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getID--">getID</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getMinDelta--">getMinDelta</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getName--">getName</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getProblem--">getProblem</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getRuntime--">getRuntime</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getStatus--">getStatus</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getStatusLock--">getStatusLock</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getSteps--">getSteps</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getStepsWithoutImprovement--">getStepsWithoutImprovement</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#getTimeWithoutImprovement--">getTimeWithoutImprovement</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#removeStopCriterion-org.jamesframework.core.search.stopcriteria.StopCriterion-">removeStopCriterion</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#run--">run</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#searchStopped--">searchStopped</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#setStopCriterionCheckPeriod-long-java.util.concurrent.TimeUnit-">setStopCriterionCheckPeriod</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#start--">start</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#toString--">toString</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-">updateBestSolution</a>, <a href="../../../../../org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">updateBestSolution</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -315,22 +314,21 @@ extends <a href="../../../../../org/jamesframework/core/search/Search.html" titl
 <h4>addSearch</h4>
 <pre>public&nbsp;void&nbsp;addSearch(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&gt;&nbsp;search)</pre>
 <div class="block"><p>
- Add the given search to the parallel algorithm, to be executed in parallel with the other searches. Only searches
- that solve the same problem as the one specified when creating the parallel search can be added. An exception
- will be thrown when attempting to add a search that solves a different problem. The parallel search is attached
- as a listener to the given search, to keep track of all new best solutions found by this search. Note that this
+ Add the given search, to be executed in parallel with the other searches. Only searches that solve
+ the same problem as the one specified when creating the parallel search can be added. An exception
+ will be thrown when attempting to add a search that solves a different problem. Note that this
  method may only be called when the search is idle.
  </p>
  <p>
- Because searches are executed in separate threads, it is important to ensure that any shared objects (problem,
- objective, constraints, neighbourhood, ...) are thread-safe.
+ Because searches are executed in separate threads, it is important to ensure that any shared objects
+ (problem, objective, constraints, neighbourhood, ...) are thread-safe.
  </p></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>search</code> - search to add for parallel execution</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions">SearchException</a></code> - if the parallel search is not idle, or if the given search does not solve the same
- problem as the parallel search</dd>
+<dd><code><a href="../../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions">SearchException</a></code> - if the parallel search is not idle, or if the given search does not solve
+                         the same problem as the parallel search</dd>
 </dl>
 </li>
 </ul>
@@ -341,14 +339,13 @@ extends <a href="../../../../../org/jamesframework/core/search/Search.html" titl
 <li class="blockList">
 <h4>removeSearch</h4>
 <pre>public&nbsp;boolean&nbsp;removeSearch(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&gt;&nbsp;search)</pre>
-<div class="block">Remove the given search from the parallel algorithm, if it had been added before. If not, <code>false</code> is
- returned. The parallel search stops listening to the given search when it is removed. Note that this method may
- only be called when the search is idle.</div>
+<div class="block">Remove the given search. If the search was never added, <code>false</code> is returned.
+ Note that this method may only be called when the search is idle.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>search</code> - search to be removed from parallel algorithm</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd><code>true</code> if search was successfully removed</dd>
+<dd><code>true</code> if search is successfully removed</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions">SearchException</a></code> - if the search is not idle</dd>
 </dl>

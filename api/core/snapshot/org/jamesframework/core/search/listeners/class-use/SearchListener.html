@@ -89,12 +89,6 @@
 <div class="block">High-level search templates.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="#org.jamesframework.core.search.listeners">org.jamesframework.core.search.listeners</a></td>
-<td class="colLast">
-<div class="block">Search listeners.</div>
-</td>
-</tr>
 </tbody>
 </table>
 </li>
@@ -119,42 +113,23 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><span class="typeNameLabel">LocalSearch.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/LocalSearch.html#addSearchListener-org.jamesframework.core.search.listeners.SearchListener-">addSearchListener</a></span>(<a href="../../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&gt;&nbsp;listener)</code>
-<div class="block">Add a search listener, if not already added before.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><span class="typeNameLabel">Search.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/Search.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener</a></span>(<a href="../../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&nbsp;listener)</code>
-<div class="block">Remove the given search listener.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><span class="typeNameLabel">LocalSearch.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/LocalSearch.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener</a></span>(<a href="../../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&gt;&nbsp;listener)</code>
 <div class="block">Remove the given search listener.</div>
 </td>
 </tr>
 </tbody>
 </table>
-</li>
-<li class="blockList"><a name="org.jamesframework.core.search.listeners">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a> in <a href="../../../../../../org/jamesframework/core/search/listeners/package-summary.html">org.jamesframework.core.search.listeners</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing subinterfaces, and an explanation">
-<caption><span>Subinterfaces of <a href="../../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a> in <a href="../../../../../../org/jamesframework/core/search/listeners/package-summary.html">org.jamesframework.core.search.listeners</a></span><span class="tabEnd">&nbsp;</span></caption>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Method parameters in <a href="../../../../../../org/jamesframework/core/search/package-summary.html">org.jamesframework.core.search</a> with type arguments of type <a href="../../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Interface and Description</th>
+<th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code>interface&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/listeners/LocalSearchListener.html" title="interface in org.jamesframework.core.search.listeners">LocalSearchListener</a>&lt;SolutionType extends <a href="../../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
-<div class="block">
- Extends the general search listener interface with a local search specific callback, fired when the current solution
- has been modified.</div>
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><span class="typeNameLabel">Search.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/Search.html#fireListenerCallback-java.util.function.Consumer-">fireListenerCallback</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/function.Consumer.html?is-external=true" title="class or interface in java.util">java.util.function.Consumer</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&gt;&nbsp;callback)</code>
+<div class="block">Fire the given callback on all attached listeners.</div>
 </td>
 </tr>
 </tbody>
