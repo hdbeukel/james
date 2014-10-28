@@ -227,9 +227,9 @@ randomDescent.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
 randomDescent.addSearchListener(new ProgressSearchListener());
 </pre>
     <p>
-        By default, random descent starts from a randomly generated initial solution. However, it may happen that none of the neighbours of such
-        random solution satisfy the capacity constraint so that they are all discarded and the search immediately gets stuck. To avoid this
-        we specify a custom initial solution. We could simply always start from an empty solution
+        By default, a local search starts from a randomly generated initial solution. However, it may happen that such random
+        solution exceeds the knapsack capacity and does not have any valid neighbours so that the search immediately gets stuck.
+        To avoid this we specify a custom initial solution. We could simply always start from an empty solution
         but a different approach is taken here to increase the variability of initial solutions.
     </p>
     <div class="bs-callout bs-callout-info">
@@ -238,8 +238,9 @@ randomDescent.addSearchListener(new ProgressSearchListener());
             Mandatory versus penalizing constraints (revisited)
         </h4>
         When using a penalizing instead of a mandatory constraint it might not be required to set a custom initial solution that satisfies
-        the constraint. If the penalties are carefully chosen, the search may be able to recover from an invalid (initial) solution, as solutions
-        that violate the constraint are not discarded.
+        the constraint. If the penalties are carefully chosen, the search may be able to find its way towards solutions within the constraint
+        even if it started in a region of the search space where all solutions violate the constraint, because the latter solutions are not
+        discarded but penalized. Yet, a penalizing constraint is more difficult to design.
     </div>
 <pre class="prettyprint">
 // random generator
