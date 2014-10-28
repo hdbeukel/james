@@ -16,15 +16,20 @@
 
 package org.jamesframework.core.search;
 
+import java.util.Collections;
 import java.util.Set;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.subset.SubsetProblem;
 import org.jamesframework.core.problems.Solution;
+import org.jamesframework.core.problems.constraints.Constraint;
+import org.jamesframework.core.problems.constraints.validations.SimpleValidation;
 import org.jamesframework.core.problems.constraints.validations.Validation;
 import org.jamesframework.core.problems.objectives.evaluations.Evaluation;
 import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.neigh.Move;
+import org.jamesframework.core.subset.neigh.SingleDeletionNeighbourhood;
+import org.jamesframework.core.subset.neigh.SinglePerturbationNeighbourhood;
 import org.jamesframework.core.subset.neigh.moves.AdditionMove;
 import org.jamesframework.core.subset.neigh.moves.DeletionMove;
 import org.jamesframework.core.subset.neigh.moves.SwapMove;
@@ -259,7 +264,7 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
             obj.setMaximizing();
 
             // repeat with unsatisfiable constraint and random initial solution
-            NeverSatisfiedConstraintStub c = new NeverSatisfiedConstraintStub();
+            Constraint<? super SubsetSolution, Object> c = new NeverSatisfiedConstraintStub();
             problem.addMandatoryConstraint(c);
             neighSearch.setCurrentSolution(problem.createRandomSolution());
             // create random addition, deletion and swap move
@@ -273,7 +278,44 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
             assertFalse(neighSearch.isImprovement(m3));
             // remove constraint
             problem.removeMandatoryConstraint(c);
+            
+            // create random initial solution
+            initial = new SubsetSolution(data.getIDs());
+            initial.selectAll(SetUtilities.getRandomSubset(initial.getUnselectedIDs(), SUBSET_SIZE, RG));
+            // add constraint that invalidates this solution
+            c = new InvalidateSelectedSolutionsConstraint(Collections.singleton(Solution.checkedCopy(initial)));
+            problem.addMandatoryConstraint(c);
+            // set initial solution
+            neighSearch.setCurrentSolution(initial);
+            // create random addition, deletion and swap move
+            m = new AdditionMove(SetUtilities.getRandomElement(neighSearch.getCurrentSolution().getUnselectedIDs(), RG));
+            m2 = new DeletionMove(SetUtilities.getRandomElement(neighSearch.getCurrentSolution().getSelectedIDs(), RG));
+            m3 = new SwapMove(SetUtilities.getRandomElement(neighSearch.getCurrentSolution().getUnselectedIDs(), RG),
+                                       SetUtilities.getRandomElement(neighSearch.getCurrentSolution().getSelectedIDs(), RG));
+            // verify that all moves are considered improvements, regardless of their evaluation,
+            // as yield valid neighbours of an invalid current solution
+            assertTrue(neighSearch.isImprovement(m));
+            assertTrue(neighSearch.isImprovement(m2));
+            assertTrue(neighSearch.isImprovement(m3));
+            // remove constraint
+            problem.removeMandatoryConstraint(c);
         
+        }
+        
+    }
+    
+    private class InvalidateSelectedSolutionsConstraint implements Constraint<SubsetSolution, Object>{
+
+        // invalid solutions
+        private final Set<SubsetSolution> invalid;
+
+        public InvalidateSelectedSolutionsConstraint(Set<SubsetSolution> invalid) {
+            this.invalid = invalid;
+        }
+        
+        @Override
+        public Validation validate(SubsetSolution solution, Object data) {
+            return new SimpleValidation(!invalid.contains(solution));
         }
         
     }
@@ -282,7 +324,7 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
      * Test of getBestMove method, of class NeighbourhoodSearch.
      */
     @Test
-    public void testGetMoveWithLargestDelta() {
+    public void testGetBestMove() {
         
         System.out.println(" - test getBestMove");
         
@@ -307,11 +349,35 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
         }
         
         // add unsatisfiable constraint
-        problem.addMandatoryConstraint(new NeverSatisfiedConstraintStub());
+        Constraint<? super SubsetSolution, Object> c = new NeverSatisfiedConstraintStub();
+        problem.addMandatoryConstraint(c);
         // set new random current solution
         neighSearch.setCurrentSolution(problem.createRandomSolution());
         // verify that all moves are rejected
         assertNull(neighSearch.getBestMove(neigh.getAllMoves(neighSearch.getCurrentSolution()), false));
+        // remove constraint
+        problem.removeMandatoryConstraint(c);
+        
+        // test with initial invalid solution with valid neighbours
+        SubsetSolution sol = new SubsetSolution(data.getIDs());
+        // select random items
+        sol.selectAll(SetUtilities.getRandomSubset(sol.getUnselectedIDs(), SUBSET_SIZE, RG));
+        // add constraint that invalidates the initial solution
+        c = new InvalidateSelectedSolutionsConstraint(Collections.singleton(Solution.checkedCopy(sol)));
+        problem.addMandatoryConstraint(c);
+        // set initial solution
+        neighSearch.setCurrentSolution(sol);
+        // check deletion moves: all have negative delta but the one yielding
+        // the smallest decrease in value will still be identified as the best
+        // improving move since the current solution is invalid
+        moves = new SingleDeletionNeighbourhood().getAllMoves(sol);
+        bestMove = neighSearch.getBestMove(moves, true);
+        // verify: move with negative delta selected although improvement was required
+        assertNotNull(bestMove);
+        assertTrue(neighSearch.computeDelta(neighSearch.evaluateMove(bestMove), neighSearch.getCurrentSolutionEvaluation()) < 0);
+        assertTrue(neighSearch.validateMove(bestMove).passed());
+        // remove constraint
+        assertTrue(problem.removeMandatoryConstraint(c));
         
     }
 

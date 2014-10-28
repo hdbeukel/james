@@ -278,12 +278,15 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
     }
     
     /**
+     * <p>
      * Checks whether applying the given move to the current solution yields a valid improvement.
-     * An improvement is made if and only if the given move is <b>not</b> <code>null</code> and
-     * the neighbour obtained by applying the move is a valid solution with a better evaluation
-     * than the current solution.
+     * An improvement is made if and only if (1) the given move is not <code>null</code>,
+     * (2) the move is valid, and (3) the obtained neighbour has a better evaluation than the
+     * current solution or the current solution is invalid.
+     * </p>
      * <p>
      * Note that computed values are cached to prevent multiple evaluations or validations of the same move.
+     * </p>
      * 
      * @param move move to be applied to the current solution
      * @return <code>true</code> if applying this move yields a valid improvement
@@ -291,23 +294,31 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
     protected boolean isImprovement(Move<? super SolutionType> move){
         return move != null
                 && validateMove(move).passed()
-                && computeDelta(evaluateMove(move), getCurrentSolutionEvaluation()) > 0;
+                && (!getCurrentSolutionValidation().passed()
+                    || computeDelta(evaluateMove(move), getCurrentSolutionEvaluation()) > 0);
     }
     
     /**
+     * <p>
      * Get the best valid move among a collection of possible moves. The best valid move is the one yielding the
      * largest delta (see {@link #computeDelta(Evaluation, Evaluation)}) when being applied to the current solution.
-     * If <code>requireImprovement</code> is set to <code>true</code>, only moves that yield an improvement are
-     * considered (i.e. moves with positive delta). Any number of additional filters can be specified so that
-     * moves are only considered if they pass through all filters. Each filter is a predicate that should return
-     * <code>true</code> if a given move is to be considered. If any filter returns <code>false</code> for a
-     * specific move, this move is discarded.
+     * </p>
+     * <p>
+     * If <code>requireImprovement</code> is set to <code>true</code>, only moves that improve the current solution
+     * are considered, i.e. moves that yield a positive delta (unless the current solution is invalid, then all
+     * valid moves are improvements). Any number of additional filters can be specified so that moves are only
+     * considered if they pass through all filters. Each filter is a predicate that should return <code>true</code>
+     * if a given move is to be considered. If any filter returns <code>false</code> for a specific move, this
+     * move is discarded.
+     * </p>
      * <p>
      * Returns <code>null</code> if no move is found that satisfies all conditions.
+     * </p>
      * <p>
-     * Note that all computed values are cached to prevent multiple evaluations or validations of the same move.
-     * Before returning the selected best move, if any, its evaluation and validity are cached again to maximize
-     * the probability that these values will remain available in the cache.
+     * Note that all computed evaluations and validations are cached.
+     * Before returning the selected best move, if any, its evaluation and validity are cached
+     * again to maximize the probability that these values will remain available in the cache.
+     * </p>
      * 
      * @param moves collection of possible moves
      * @param requireImprovement if set to <code>true</code>, only improving moves are considered
@@ -335,8 +346,10 @@ public abstract class NeighbourhoodSearch<SolutionType extends Solution> extends
                     // compute delta
                     curMoveDelta = computeDelta(curMoveEvaluation, getCurrentSolutionEvaluation());
                     // compare with current best move
-                    if (curMoveDelta > bestMoveDelta                             // higher delta
-                            && (!requireImprovement || curMoveDelta > 0)) {      // ensure improvement, if required
+                    if (curMoveDelta > bestMoveDelta    // higher delta
+                            && (!requireImprovement     // ensure improvement, if required
+                                || curMoveDelta > 0
+                                || !getCurrentSolutionValidation().passed())) {
                         bestMove = move;
                         bestMoveDelta = curMoveDelta;
                         bestMoveEvaluation = curMoveEvaluation;
