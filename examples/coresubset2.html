@@ -22,19 +22,207 @@ layout: default
         Read <a href="/docs/#random-descent">this</a>.
     </div>
     <p>
-        Intro ...
+        This example demonstrates how to implement an objective function that includes an efficient delta evaluation used to evaluate
+        a neighbour of the current solution, based on this current solution, its evaluation and the applied move.
+        The same core subset selection problem from <a href="/examples/coresubset">example 1</a>
+        is addressed using the same basic random descent algorithm. Please take a look at that example before proceeding.
     </p>
     
     <h4 class="page-header">
-        Header
+        Basic objective implementation
     </h4>
     <p>
-        ...
+        In <a href="/examples/coresubset/#objective">example 1</a> we provided a basic implementation of the objective
+        to maximize the average pairwise distance between all selected items.
+        This implementation simply sums all pairwise distances and divides by the amount of distances.
     </p>
 <pre class="prettyprint">
-some code
+public class CoreSubsetObjective implements Objective&lt;SubsetSolution, CoreSubsetData&gt;{
+    
+    public Evaluation evaluate(SubsetSolution solution, CoreSubsetData data) {
+        double value = 0.0;
+        if(solution.getNumSelectedIDs() &gt;= 2){
+            int numDist = 0;
+            double sumDist = 0.0;
+            for(int id1 : solution.getSelectedIDs()){
+                for(int id2 : solution.getSelectedIDs()){
+                    // account for each pair of distinct items only once
+                    if(id1 &lt; id2){
+                        sumDist += data.getDistance(id1, id2);
+                        numDist++;
+                    }
+                }
+            }
+            value = sumDist/numDist;
+        }
+        return new SimpleEvaluation(value);
+    }
+
+    public boolean isMinimizing() {
+        return false;
+    }
+
+}
 </pre>
 
+    <h4 class="page-header">
+        Efficient delta evaluation
+    </h4>
+    <p>
+        When a neighbourhood search evaluates a neighbour of the current solution, both solutions are similar so that it is often
+        not necessary to repeat all computations for this neighbour. Based on the applied changes (move) we can update the evaluation
+        of the current solution to that of its neighbour.
+    </p>
+    <p>
+        Consider a selection <var>S</var> (current solution) with evaluation <var>e</var> and a move that will remove a set of IDs
+        <var>D</var> from the selection and add a set <var>A</var> of currently unselected IDs.
+        We then identify three important sets:
+        <ol>
+            <li>
+                <var>D</var> = removed IDs
+            </li>
+            <li>
+                <var>A</var> = added IDs
+            </li>
+            <li>
+                <var>R</var> = <var>S</var>\<var>D</var> = retained IDs
+            </li>
+        </ol>
+        All pairwise distances within <var>R</var> are already accounted for in the evaluation <var>e</var> of <var>S</var>.
+        Pairwise distances within <var>D</var> and from elements in <var>D</var> to elements in <var>R</var> need to be removed
+        from the average, while distances within <var>A</var> and from <var>A</var> to <var>R</var> need to be added to it.
+    </p>
+    <p>
+        Now let's take a look at the details of the <code>Objective</code> interface.
+        Previously we had implemented the two required methods <code>evaluate(solution, data)</code> and
+        <code>isMinimizing()</code> but the <a href="/api/core/{{ site.core-latest-stable }}/index.html?org/jamesframework/core/problems/objectives/Objective.html">API</a> shows
+        that there is actually also a third method to evaluate a move that will be applied to the current solution.
+        This method has a default implementation that performs a full evaluation of the obtained neighbour:
+        <ol>
+            <li>
+                The move is applied to the current solution.
+            </li>
+            <li>
+                The modified solution (neighbour) is fully evaluated by calling <code>evaluate(solution, data)</code>.
+            </li>
+            <li>
+                The move is undone.
+            </li>
+        </ol>
+        Of course, this is often not very efficent, as is the case for our example. Overriding this method is the key to efficient
+        delta evaluations, although it is not required. The method description in the API may look a bit weird:
+<pre class="prettyprint">
+default &lt;ActualSolutionType extends SolutionType&gt; Evaluation evaluate(Move&lt;? super ActualSolutionType&gt; move, ActualSolutionType curSolution, Evaluation curEvaluation, DataType data)
+</pre>
+        This is because it uses some generics magics with bounds and wildcards to provide a default implementation (as described above)
+        that always works, regardless of your specific solution type, applied neighbourhood, etc. These generics can be ignored when overriding
+        this method:
+<pre class="prettyprint">
+public Evaluation evaluate(Move move, SolutionType curSolution, Evaluation curEvaluation, DataType data) {
+    // provide delta evaluation here
+}
+</pre>
+        Here, the solution and data type are set to <code>SubsetSolution</code> and <code>CoreSubsetData</code>, respectively, and
+        we can extend our basic <code>CoreSubsetObjective</code> that already contains the full evaluation to also include an
+        efficient delta evaluation.
+        Because this delta evaluation needs to know how the selection will change when the received move is applied to the current solution,
+        it casts the move to a <code>SubsetMove</code> so that the set of added and removed IDs can be accessed.
+        If a different move type is received, an
+        <code>IncompatibleDeltaEvaluationException</code> is thrown. This means that the extended
+        objective can only be used in combination with neighbourhoods that generate moves of type
+        <code>SubsetMove</code>. This is the case for all predefined subset neighbourhoods.
+        It is inevitable to require a specific move type when providing a smart delta evaluation, but
+        it can be a high-level class or interface as in this example.
+    </p>
+    <p>
+        The double value of the current solution's evaluation can be obtained by calling <code>curEvaluation.getValue()</code>.
+        For this objective function, it is sufficient to know this value, the current solution and the applied move to be able
+        to compute the new evaluation. This is not always the case: it might be necessary to track some metadata as well by using
+        a custom evaluation object (see <a href="/examples/coresubset3">example 1C</a>). Here we can still use the basic 
+        <code>SimpleEvaluation</code> that just wraps a double value.
+<pre class="prettyprint">
+public class CoreSubsetObjectiveWithDelta extends CoreSubsetObjective {
+
+    public Evaluation evaluate(Move move, SubsetSolution curSolution, Evaluation curEvaluation, CoreSubsetData data) {
+        // check move type
+        if(!(move instanceof SubsetMove)){
+            throw new IncompatibleDeltaEvaluationException("Core subset objective should be used in combination "
+                                                + "with neighbourhoods that generate moves of type SubsetMove.");
+        }
+        // cast move
+        SubsetMove subsetMove = (SubsetMove) move;
+        
+        // get current evaluation
+        double curEval = curEvaluation.getValue();
+        // undo average to get sum of distances
+        int numSelected = curSolution.getNumSelectedIDs();
+        int numDistances = numSelected * (numSelected-1) / 2;
+        double sumDist = curEval * numDistances;
+        
+        // get set of added and removed IDs
+        Set&lt;Integer&gt; added = subsetMove.getAddedIDs();
+        Set&lt;Integer&gt; removed = subsetMove.getDeletedIDs();
+        // infer set of retained IDs
+        Set&lt;Integer&gt; retained = new HashSet&lt;&gt;(curSolution.getSelectedIDs());
+        retained.removeAll(removed);
+        
+        // subtract distances from removed items to retained items
+        for(int rem : removed){
+            for(int ret : retained){
+                sumDist -= data.getDistance(rem, ret);
+                numDistances--;
+            }
+        }
+        
+        // subtract distances from removed to other removed items
+        for(int rem1 : removed){
+            for(int rem2 : removed){
+                // account for each distinct pair only once
+                if(rem1 &lt; rem2){
+                    sumDist -= data.getDistance(rem1, rem2);
+                    numDistances--;
+                }
+            }
+        }
+        
+        // add distances from new items to retained items
+        for(int add : added){
+            for(int ret : retained){
+                sumDist += data.getDistance(add, ret);
+                numDistances++;
+            }
+        }
+        
+        // add distances from new items to other new items
+        for(int add1 : added){
+            for(int add2 : added){
+                // account for each distinct pair only once
+                if(add1 &lt; add2){
+                    sumDist += data.getDistance(add1, add2);
+                    numDistances++;
+                }
+            }
+        }
+        
+        double newEval;
+        if(numDistances > 0){
+            // take average based on updated number of distances
+            newEval = sumDist / numDistances;
+        } else {
+            // no distances (less than two items remain selected)
+            newEval = 0.0;
+        }
+        
+        // return new evaluation
+        return new SimpleEvaluation(newEval);
+        
+    }
+    
+}
+</pre>
+
+    </p>
+        
     <h4 class="page-header">
         Full source code
     </h4>
