@@ -52,6 +52,18 @@ public class Main {
         System.out.println("");
         System.out.println("java -cp james-examples.jar org.jamesframework.examples.coresubset2.CoreSubset2 <inputfile> <subsetsize> <runtime>");
         System.out.println("");
+        System.out.println("Example 1C: core subset selection with a different objective function");
+        System.out.println("---------------------------------------------------------------------");
+        System.out.println("");
+        System.out.println("A core selection problem where the average distance of each selected item \n"
+                         + "to the closest other selected item is maximized. This objective produces \n"
+                         + "a custom evaluation object that tracks metadata used for efficient delta \n"
+                         + "evaluation. The random descent algorithm is applied to optimize the core.");
+        System.out.println("");
+        System.out.println("Usage:");
+        System.out.println("");
+        System.out.println("java -cp james-examples.jar org.jamesframework.examples.coresubset3.CoreSubset3 <inputfile> <subsetsize> <runtime>");
+        System.out.println("");
         System.out.println("Example 2: the knapsack problem");
         System.out.println("--------------------------------");
         System.out.println("");
