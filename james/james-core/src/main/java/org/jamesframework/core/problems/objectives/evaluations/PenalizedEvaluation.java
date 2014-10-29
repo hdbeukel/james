@@ -36,8 +36,8 @@ public class PenalizedEvaluation implements Evaluation {
     // indicates whether evaluations are maximized or minimized
     private final boolean minimizing;
     
-    // cached value
-    private Double cachedValue = null;
+    // penalized value
+    private double penalizedValue;
     
     /**
      * Create a new penalized evaluation, given the original evaluation. Penalties can be added
@@ -52,6 +52,8 @@ public class PenalizedEvaluation implements Evaluation {
         this.evaluation = evaluation;
         this.minimizing = minimizing;
         this.penalties = null;
+        // initially, the penalized value is equal to the unpenalized value
+        penalizedValue = evaluation.getValue();
     }
     
     /**
@@ -70,13 +72,17 @@ public class PenalizedEvaluation implements Evaluation {
      * required that can be used to retrieve the validation object later.
      * 
      * @param key key used to retrieve the validation object later
-     * @param penalty penalizing validation that indicates the assigned penalty
+     * @param penalizingValidation penalizing validation that indicates the assigned penalty
      */
-    public void addPenalizingValidation(Object key, PenalizingValidation penalty){
+    public void addPenalizingValidation(Object key, PenalizingValidation penalizingValidation){
         initMapOnce();
-        penalties.put(key, penalty);
-        // invalidate cache
-        cachedValue = null;
+        penalties.put(key, penalizingValidation);
+        // update penalized value
+        if(minimizing){
+            penalizedValue += penalizingValidation.getPenalty();
+        } else {
+            penalizedValue -= penalizingValidation.getPenalty();
+        }
     }
     
     /**
@@ -101,29 +107,15 @@ public class PenalizedEvaluation implements Evaluation {
     }
 
     /**
-     * Compute the penalized evaluation. The result is cached so that it only needs
-     * to be computed when it is retrieved for the first time.
+     * Get the penalized value. The returned value is only guaranteed to be correct if
+     * the original evaluation and penalizing validation objects have not been modified
+     * after they were added to this penalized evaluation.
      * 
      * @return penalized evaluation
      */
     @Override
     public double getValue() {
-        if(cachedValue == null){
-            double e = evaluation.getValue();
-            double p = 0.0;
-            if(penalties != null){
-                p = penalties.values().stream()
-                                      .mapToDouble(PenalizingValidation::getPenalty)
-                                      .sum();
-            }
-            if(minimizing){
-                e += p;
-            } else {
-                e -= p;
-            }
-            cachedValue = e;
-        }
-        return cachedValue;
+        return penalizedValue;
     }
     
     /**

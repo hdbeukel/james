@@ -30,8 +30,8 @@ public class UnanimousValidation implements Validation {
     // contained validations
     private Map<Object, Validation> validations;
     
-    // cached value
-    private Boolean cachedValue = null;
+    // aggregated value
+    private boolean passedAll;
 
     /**
      * Create an empty unanimous validation object. Actual underlying validations can be added
@@ -39,6 +39,7 @@ public class UnanimousValidation implements Validation {
      */
     public UnanimousValidation() {
         validations = null;
+        passedAll = true;
     }
     
     /**
@@ -61,8 +62,8 @@ public class UnanimousValidation implements Validation {
     public void addValidation(Object key, Validation validation){
         initMapOnce();
         validations.put(key, validation);
-        // invalidate cache
-        cachedValue = null;
+        // update aggregated value
+        passedAll = passedAll && validation.passed();
     }
     
     /**
@@ -79,17 +80,14 @@ public class UnanimousValidation implements Validation {
 
     /**
      * A unanimous validation passed if and only if all contained validations passed.
-     * The result is cached so that it only needs to be computed when it is retrieved
-     * for the first time.
+     * The returned value is only guaranteed to be correct if the validation objects
+     * have not been modified after they were added to this unanimous validation.
      * 
      * @return <code>true</code> if all contained validations passed
      */
     @Override
     public boolean passed() {
-        if(cachedValue == null){
-            cachedValue = validations == null ? true : validations.values().stream().allMatch(Validation::passed);
-        }
-        return cachedValue;
+        return passedAll;
     }
     
     /**
