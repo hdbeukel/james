@@ -19,6 +19,7 @@ package org.jamesframework.core.subset.neigh;
 import org.jamesframework.core.subset.neigh.moves.SubsetMove;
 import org.jamesframework.core.subset.neigh.moves.SwapMove;
 import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
@@ -88,27 +89,27 @@ public class SingleSwapNeighbourhood extends SubsetNeighbourhood {
     }
 
     /**
-     * Generates a set of all possible swap moves that transform the given subset solution by removing a single ID from
+     * Generates a list of all possible swap moves that transform the given subset solution by removing a single ID from
      * the current selection and replacing it with a new ID which is currently not selected. Possible fixed IDs are not 
-     * considered to be swapped. May return an empty set if no swap moves can be generated.
+     * considered to be swapped. May return an empty list if no swap moves can be generated.
      * 
      * @param solution solution for which all possible swap moves are generated
-     * @return set of all swap moves, may be empty
+     * @return list of all swap moves, may be empty
      */
     @Override
-    public Set<SubsetMove> getAllMoves(SubsetSolution solution) {
+    public List<SubsetMove> getAllMoves(SubsetSolution solution) {
         // get set of candidate IDs for removal and addition (possibly fixed IDs are discarded)
         Set<Integer> removeCandidates = getRemoveCandidates(solution);
         Set<Integer> addCandidates = getAddCandidates(solution);
         // first check if swaps are possible, for efficiency (avoids superfluous loop iterations)
         if(removeCandidates.isEmpty() || addCandidates.isEmpty()){
             // no swap moves can be applied, return empty set
-            return Collections.emptySet();
+            return Collections.emptyList();
         }
         // create swap move for all combinations of add and remove candidates
         return addCandidates.stream()
                             .flatMap(add -> removeCandidates.stream().map(remove -> new SwapMove(add, remove)))
-                            .collect(Collectors.toSet());
+                            .collect(Collectors.toList());
     }
 
 }

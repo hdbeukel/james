@@ -16,12 +16,13 @@
 
 package org.jamesframework.core.subset.neigh;
 
+import java.util.ArrayList;
 import org.jamesframework.core.subset.neigh.moves.SubsetMove;
 import org.jamesframework.core.subset.neigh.moves.SwapMove;
 import org.jamesframework.core.subset.neigh.moves.AdditionMove;
 import org.jamesframework.core.subset.neigh.moves.DeletionMove;
 import java.util.Arrays;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
@@ -167,20 +168,20 @@ public class SinglePerturbationNeighbourhood extends SubsetNeighbourhood {
 
     /**
      * Generate all valid swap, deletion and addition moves that transform the given subset solution into
-     * a neighbour within the minimum and maximum allowed subset size. The returned set may be empty,
+     * a neighbour within the minimum and maximum allowed subset size. The returned list may be empty,
      * if no valid moves exist. If any fixed IDs have been specified, these will not be considered
      * for deletion nor addition.
      * 
      * @param solution solution for which a set of all valid moves is generated
-     * @return set of all valid swap, deletion and addition moves
+     * @return list of all valid swap, deletion and addition moves
      */
     @Override
-    public Set<SubsetMove> getAllMoves(SubsetSolution solution) {
+    public List<SubsetMove> getAllMoves(SubsetSolution solution) {
         // get set of candidate IDs for deletion and addition (fixed IDs are discarded)
         Set<Integer> removeCandidates = getRemoveCandidates(solution);
         Set<Integer> addCandidates = getAddCandidates(solution);
-        // create empty set of moves
-        Set<SubsetMove> moves = new HashSet<>();
+        // create empty list of moves
+        List<SubsetMove> moves = new ArrayList<>();
         // generate all addition moves, if valid
         if(canAdd(solution, addCandidates)){
             // create addition move for each add candidate

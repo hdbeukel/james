@@ -16,15 +16,15 @@
 
 package org.jamesframework.core.subset.neigh.adv;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.subset.neigh.SingleAdditionNeighbourhood;
-import org.jamesframework.core.subset.neigh.SingleDeletionNeighbourhood;
 import org.jamesframework.core.subset.neigh.moves.AdditionMove;
-import org.jamesframework.core.subset.neigh.moves.DeletionMove;
 import org.jamesframework.core.subset.neigh.moves.SubsetMove;
 import org.jamesframework.core.util.SetUtilities;
 import org.junit.AfterClass;
@@ -176,14 +176,14 @@ public class DisjointMultiAdditionNeighbourhoodTest {
         // deselect all IDs
         sol.deselectAll();
 
-        Set<SubsetMove> moves1, moves2, temp;
+        List<SubsetMove> moves1, moves2, temp;
         
         moves1 = san.getAllMoves(sol);
         moves2 = dman.getAllMoves(sol);
         // verify
         assertEquals(sol.getNumUnselectedIDs(), moves2.size());
         assertEquals(moves1.size(), moves2.size());
-        temp = new HashSet<>();
+        temp = new ArrayList<>();
         moves2.forEach(m -> {
             SubsetMove sm = (SubsetMove) m;
             assertEquals(1, sm.getNumAdded());

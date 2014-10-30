@@ -16,7 +16,9 @@
 
 package org.jamesframework.core.subset.neigh.adv;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import org.jamesframework.core.subset.SubsetSolution;
@@ -172,14 +174,14 @@ public class DisjointMultiDeletionNeighbourhoodTest {
         // select all IDs
         sol.selectAll();
 
-        Set<SubsetMove> moves1, moves2, temp;
+        List<SubsetMove> moves1, moves2, temp;
         
         moves1 = sdn.getAllMoves(sol);
         moves2 = dmdn.getAllMoves(sol);
         // verify
         assertEquals(sol.getNumSelectedIDs(), moves2.size());
         assertEquals(moves1.size(), moves2.size());
-        temp = new HashSet<>();
+        temp = new ArrayList<>();
         moves2.forEach(m -> {
             SubsetMove sm = (SubsetMove) m;
             assertEquals(0, sm.getNumAdded());

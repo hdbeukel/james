@@ -16,17 +16,18 @@
 
 package org.jamesframework.core.subset.neigh.adv;
 
+import java.util.ArrayList;
 import org.jamesframework.core.subset.neigh.moves.GeneralSubsetMove;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import org.jamesframework.core.subset.SubsetSolution;
-import org.jamesframework.core.subset.algo.exh.SubsetSolutionIterator;
 import org.jamesframework.core.subset.neigh.SingleSwapNeighbourhood;
 import org.jamesframework.core.subset.neigh.moves.SubsetMove;
 import org.jamesframework.core.subset.neigh.SubsetNeighbourhood;
 import org.jamesframework.core.util.SetUtilities;
+import org.jamesframework.core.util.SubsetIterator;
 
 /**
  * <p>
@@ -162,38 +163,38 @@ public class MultiSwapNeighbourhood extends SubsetNeighbourhood {
 
     /**
      * <p>
-     * Generates the set of all possible moves that perform 1 up to \(k\) swaps, where \(k\) is the maximum number
+     * Generates the list of all possible moves that perform 1 up to \(k\) swaps, where \(k\) is the maximum number
      * of swaps specified at construction. Possible fixed IDs are not considered to be swapped. If \(m &lt; k\)
      * IDs are currently selected or unselected (excluding any fixed IDs), generated moves will perform up to
      * \(m\) swaps only, as it is impossible to perform more than this amount of swaps.
      * </p>
      * <p>
-     * May return an empty set if no swap moves can be generated.
+     * May return an empty list if no swap moves can be generated.
      * </p>
      * 
      * @param solution solution for which all possible multi swap moves are generated
-     * @return set of all multi swap moves, may be empty
+     * @return list of all multi swap moves, may be empty
      */
     @Override
-    public Set<SubsetMove> getAllMoves(SubsetSolution solution) {
-        // create empty set to store generated moves
-        Set<SubsetMove> moves = new HashSet<>();
+    public List<SubsetMove> getAllMoves(SubsetSolution solution) {
+        // create empty list to store generated moves
+        List<SubsetMove> moves = new ArrayList<>();
         // get set of candidate IDs for deletion and addition (fixed IDs are discarded)
         Set<Integer> removeCandidates = getRemoveCandidates(solution);
         Set<Integer> addCandidates = getAddCandidates(solution);
         // compute maximum number of swaps
         int curMaxSwaps = maxSwaps(addCandidates, removeCandidates);
         // create all moves for each considered amount of swaps (in [1,curMaxSwaps])
-        SubsetSolutionIterator itDel, itAdd;
+        SubsetIterator<Integer> itDel, itAdd;
         Set<Integer> del, add;
         for(int s=1; s <= curMaxSwaps; s++){
             // create all moves that perform s swaps
-            itDel = new SubsetSolutionIterator(removeCandidates, s);
+            itDel = new SubsetIterator<>(removeCandidates, s);
             while(itDel.hasNext()){
-                del = itDel.next().getSelectedIDs();
-                itAdd = new SubsetSolutionIterator(addCandidates, s);
+                del = itDel.next();
+                itAdd = new SubsetIterator<>(addCandidates, s);
                 while(itAdd.hasNext()){
-                    add = itAdd.next().getSelectedIDs();
+                    add = itAdd.next();
                     // create and add move
                     moves.add(new GeneralSubsetMove(add, del));
                 }

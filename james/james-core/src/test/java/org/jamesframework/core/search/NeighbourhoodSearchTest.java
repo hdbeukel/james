@@ -17,6 +17,7 @@
 package org.jamesframework.core.search;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.subset.SubsetProblem;
@@ -29,7 +30,6 @@ import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.subset.neigh.SingleDeletionNeighbourhood;
-import org.jamesframework.core.subset.neigh.SinglePerturbationNeighbourhood;
 import org.jamesframework.core.subset.neigh.moves.AdditionMove;
 import org.jamesframework.core.subset.neigh.moves.DeletionMove;
 import org.jamesframework.core.subset.neigh.moves.SwapMove;
@@ -331,7 +331,7 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
         // set random initial solution
         neighSearch.setCurrentSolution(problem.createRandomSolution());
         
-        Set<? extends Move<? super SubsetSolution>> moves  = neigh.getAllMoves(neighSearch.getCurrentSolution());
+        List<? extends Move<? super SubsetSolution>> moves  = neigh.getAllMoves(neighSearch.getCurrentSolution());
         Move<? super SubsetSolution> bestMove = neighSearch.getBestMove(moves, true);
         Evaluation prevSolutionEvaluation = neighSearch.getCurrentSolutionEvaluation();
         

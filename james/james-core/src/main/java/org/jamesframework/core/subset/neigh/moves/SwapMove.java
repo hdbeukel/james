@@ -17,6 +17,9 @@
 package org.jamesframework.core.subset.neigh.moves;
 
 import java.util.Collections;
+import java.util.Set;
+import org.jamesframework.core.exceptions.SolutionModificationException;
+import org.jamesframework.core.subset.SubsetSolution;
 
 /**
  * Simple subset move that removes a single ID from the current selection
@@ -24,7 +27,10 @@ import java.util.Collections;
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class SwapMove extends GeneralSubsetMove{
+public class SwapMove extends AbstractSubsetMove{
+    
+    // added and deleted ID
+    private final int add, delete;
     
     /**
      * Creates a new swap move with specified IDs to add to and remove from the current selection
@@ -35,11 +41,62 @@ public class SwapMove extends GeneralSubsetMove{
      * @param delete ID to delete
      */
     public SwapMove(int add, int delete){
-        super(Collections.singleton(add), Collections.singleton(delete));
         // check not equal
         if(add == delete){
             throw new IllegalArgumentException("Error while creating swap move: added and deleted ID can not be equal.");
         }
+        // store IDs
+        this.add = add;
+        this.delete = delete;
+    }
+    
+    /**
+     * Apply this swap move to a given subset solution. The move can only be applied to a solution
+     * for which the added ID is currently <b>not selected</b> and the deleted ID is currently
+     * <b>selected</b>. This guarantees that calling {@link #undo(SubsetSolution)} will correctly
+     * undo the move.
+     * 
+     * @throws SolutionModificationException if the added ID is already selected, the deleted ID is already unselected,
+     *                                       or any of both IDs does not correspond to an underlying entity
+     * @param solution solution to which to move will be applied
+     */
+    @Override
+    public void apply(SubsetSolution solution) {
+        // add new ID to selection
+        if(solution.select(add)){
+            // succesfully added new ID, now try to remove deleted ID
+            if(!solution.deselect(delete)){
+                // deselecting ID failed (currently not selected)
+                throw new SolutionModificationException("Error while applying swap move to subset solution: deleted ID currently not selected.", solution);
+            }
+        } else {
+            // selecting new ID failed (already selected)
+            throw new SolutionModificationException("Error while applying swap move to subset solution: added ID already selected.", solution);
+        }
+    }
+
+    /**
+     * Undo this swap move after it has been successfully applied to the given subset solution,
+     * by removing the newly added ID and re-adding the deleted ID.
+     * 
+     * @param solution solution to which the move has been applied
+     */
+    @Override
+    public void undo(SubsetSolution solution) {
+        // re-add deleted ID
+        solution.select(delete);
+        // remove newly added ID
+        solution.deselect(add);
+    }
+
+    /**
+     * Returns an unmodifiable singleton containing the only added ID.
+     * 
+     * @return unmodifiable singleton containing added ID
+     */
+    @Override
+    public Set<Integer> getAddedIDs() {
+        return Collections.singleton(add);
     }
     
     /**
@@ -48,7 +105,17 @@ public class SwapMove extends GeneralSubsetMove{
      * @return added ID
      */
     public int getAddedID() {
-        return getAddedIDs().iterator().next();
+        return add;
+    }
+
+    /**
+     * Returns an unmodifiable singleton containing the only deleted ID.
+     * 
+     * @return unmodifiable singleton containing deleted ID
+     */
+    @Override
+    public Set<Integer> getDeletedIDs() {
+        return Collections.singleton(delete);
     }
     
     /**
@@ -57,7 +124,27 @@ public class SwapMove extends GeneralSubsetMove{
      * @return deleted ID
      */
     public int getDeletedID(){
-        return getDeletedIDs().iterator().next();
+        return delete;
+    }
+
+    /**
+     * Always returns 1.
+     * 
+     * @return 1
+     */
+    @Override
+    public int getNumAdded() {
+        return 1;
+    }
+
+    /**
+     * Always return 1.
+     * 
+     * @return 1
+     */
+    @Override
+    public int getNumDeleted() {
+        return 1;
     }
 
 }

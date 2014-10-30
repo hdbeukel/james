@@ -16,7 +16,7 @@
 
 package org.jamesframework.core.subset.neigh;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.subset.SubsetSolution;
@@ -57,7 +57,7 @@ public abstract class SubsetNeighbourhood implements Neighbourhood<SubsetSolutio
         Set<Integer> addCandidates = currentSolution.getUnselectedIDs();
         // remove fixed IDs, if any, from candidates
         if(fixedIDs != null && !fixedIDs.isEmpty()){
-            addCandidates = new HashSet<>(addCandidates);
+            addCandidates = new LinkedHashSet<>(addCandidates);
             addCandidates.removeAll(fixedIDs);
         }
         return addCandidates;
@@ -77,7 +77,7 @@ public abstract class SubsetNeighbourhood implements Neighbourhood<SubsetSolutio
         Set<Integer> removeCandidates = currentSolution.getSelectedIDs();
         // remove fixed IDs, if any, from candidates
         if(fixedIDs != null && !fixedIDs.isEmpty()){
-            removeCandidates = new HashSet<>(removeCandidates);
+            removeCandidates = new LinkedHashSet<>(removeCandidates);
             removeCandidates.removeAll(fixedIDs);
         }
         return removeCandidates;

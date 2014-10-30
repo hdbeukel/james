@@ -16,7 +16,9 @@
 
 package org.jamesframework.core.subset.neigh.adv;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -157,14 +159,14 @@ public class MultiAdditionNeighbourhoodTest {
         // deselect all IDs
         sol.deselectAll();
 
-        Set<SubsetMove> moves1, moves2, temp;
+        List<SubsetMove> moves1, moves2, temp;
         
         moves1 = san.getAllMoves(sol);
         moves2 = man.getAllMoves(sol);
         // verify
         assertEquals(sol.getNumUnselectedIDs(), moves2.size());
         assertEquals(moves1.size(), moves2.size());
-        temp = new HashSet<>();
+        temp = new ArrayList<>();
         moves2.forEach(m -> {
             SubsetMove sm = (SubsetMove) m;
             assertEquals(1, sm.getNumAdded());

@@ -16,7 +16,7 @@
 
 package org.jamesframework.ext.problems.objectives.evaluations;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 import org.jamesframework.core.problems.objectives.evaluations.Evaluation;
 import org.jamesframework.core.problems.objectives.Objective;
@@ -40,7 +40,9 @@ public class WeightedIndexEvaluation implements Evaluation {
      * Create an empty evaluation.
      */
     public WeightedIndexEvaluation() {
-        evaluations = new LinkedHashMap<>();
+        // set initial capacity to 4 instead of default of 16
+        // as it is unusual to include that many objectives
+        evaluations = new HashMap<>(4);
         weightedSum = 0.0;
     }
     

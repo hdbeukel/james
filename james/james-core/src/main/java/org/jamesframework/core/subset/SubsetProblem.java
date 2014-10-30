@@ -17,12 +17,12 @@
 package org.jamesframework.core.subset;
 
 import java.util.Random;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import org.jamesframework.core.exceptions.IncompatibleDeltaValidationException;
 import org.jamesframework.core.problems.AbstractProblem;
 import org.jamesframework.core.problems.constraints.validations.Validation;
 import org.jamesframework.core.subset.validations.SubsetValidation;
-import org.jamesframework.core.problems.constraints.validations.UnanimousValidation;
 import org.jamesframework.core.problems.datatypes.IntegerIdentifiedData;
 import org.jamesframework.core.problems.objectives.Objective;
 import org.jamesframework.core.search.neigh.Move;
@@ -155,13 +155,13 @@ public class SubsetProblem<DataType extends IntegerIdentifiedData> extends Abstr
     @Override
     public SubsetSolution createRandomSolution() {
         // get thread local random generator
-        final Random rg = ThreadLocalRandom.current();
-        // create new subset solution with IDs from underlying data
-        final SubsetSolution sol = new SubsetSolution(getData().getIDs(), sortedIDs);
-        // pick random number of initially selected IDs within bounds
+        Random rg = ThreadLocalRandom.current();
+        // pick random number of selected IDs within bounds
         int size = minSubsetSize + rg.nextInt(maxSubsetSize-minSubsetSize+1);
-        // randomly select initial IDs
-        sol.selectAll(SetUtilities.getRandomSubset(sol.getAllIDs(), size, rg));
+        // randomly generate selection
+        Set<Integer> selection = SetUtilities.getRandomSubset(getData().getIDs(), size, rg);
+        // create subset solution with this selection
+        SubsetSolution sol = new SubsetSolution(getData().getIDs(), selection, sortedIDs);
         // return random solution
         return sol;
     }

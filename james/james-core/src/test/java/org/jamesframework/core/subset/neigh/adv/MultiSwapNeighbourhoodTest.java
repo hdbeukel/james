@@ -16,7 +16,9 @@
 
 package org.jamesframework.core.subset.neigh.adv;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import org.jamesframework.core.subset.SubsetSolution;
@@ -122,21 +124,18 @@ public class MultiSwapNeighbourhoodTest {
         // randomly select 10 IDs
         sol.selectAll(SetUtilities.getRandomSubset(sol.getUnselectedIDs(), 10, RG));
 
-        Set<SubsetMove> moves1, moves2, temp;
+        List<SubsetMove> moves1, moves2;
+        Set<SubsetMove> unordered1, unordered2;
         
         moves1 = ssn.getAllMoves(sol);
         moves2 = msn.getAllMoves(sol);
-        // verify
+        // verify sizes
         assertEquals(sol.getNumSelectedIDs()*sol.getNumUnselectedIDs(), moves2.size());
         assertEquals(moves1.size(), moves2.size());
-        temp = new HashSet<>();
-        moves2.forEach(m -> {
-            SubsetMove sm = (SubsetMove) m;
-            assertEquals(1, sm.getNumAdded());
-            assertEquals(1, sm.getNumDeleted());
-            temp.add(new SwapMove(sm.getAddedIDs().iterator().next(), sm.getDeletedIDs().iterator().next()));
-        });
-        assertEquals(temp, moves1);
+        // compare moves (convert to sets to ignore order)
+        unordered1 = new HashSet<>(moves1);
+        unordered2 = new HashSet<>(moves2);
+        assertEquals(unordered1, unordered2);
         
         // 2) test with maxSwaps 2 up to 5
         

@@ -18,7 +18,7 @@ package org.jamesframework.core.subset;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
@@ -89,13 +89,13 @@ public class SubsetSolution extends Solution {
     public SubsetSolution(Set<Integer> allIDs, boolean sorted){
         this.sorted = sorted;
         if(!sorted){
-            this.all = new HashSet<>(allIDs);           // set with all IDs (copy)
-            this.selected = new HashSet<>();            // set with selected IDs (empty)
-            this.unselected = new HashSet<>(allIDs);    // set with unselected IDs (all)
+            this.all = new LinkedHashSet<>(allIDs);         // set with all IDs (copy)
+            this.selected = new LinkedHashSet<>();          // set with selected IDs (empty)
+            this.unselected = new LinkedHashSet<>(allIDs);  // set with unselected IDs (all)
         } else {
-            this.all = new TreeSet<>(allIDs);           // sorted set with all IDs (copy)
-            this.selected = new TreeSet<>();            // sorted set with selected IDs (empty)
-            this.unselected = new TreeSet<>(allIDs);    // sorted set with unselected IDs (all)
+            this.all = new TreeSet<>(allIDs);               // sorted set with all IDs (copy)
+            this.selected = new TreeSet<>();                // sorted set with selected IDs (empty)
+            this.unselected = new TreeSet<>(allIDs);        // sorted set with unselected IDs (all)
         }
     }
     

@@ -228,7 +228,7 @@ public class SinglePerturbationNeighbourhoodTest {
         
         System.out.println(" - test getAllMoves");
         
-        Set<? extends Move<SubsetSolution>> moves;
+        List<? extends Move<SubsetSolution>> moves;
                 
         // 1) generate moves for empty solution
         

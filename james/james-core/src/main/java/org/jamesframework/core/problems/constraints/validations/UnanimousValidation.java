@@ -16,7 +16,7 @@
 
 package org.jamesframework.core.problems.constraints.validations;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -49,7 +49,7 @@ public class UnanimousValidation implements Validation {
         if(validations == null){
             // use custom initial capacity as map is expected to
             // contain few items (in most cases only a single item)
-            validations = new LinkedHashMap<>(1);
+            validations = new HashMap<>(1);
         }
     }
     

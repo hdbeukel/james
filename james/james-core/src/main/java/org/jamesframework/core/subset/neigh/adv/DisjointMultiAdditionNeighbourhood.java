@@ -16,19 +16,20 @@
 
 package org.jamesframework.core.subset.neigh.adv;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import org.jamesframework.core.subset.neigh.moves.GeneralSubsetMove;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
 import org.jamesframework.core.subset.SubsetSolution;
-import org.jamesframework.core.subset.algo.exh.SubsetSolutionIterator;
 import org.jamesframework.core.subset.neigh.SingleAdditionNeighbourhood;
 import org.jamesframework.core.subset.neigh.moves.SubsetMove;
 import org.jamesframework.core.subset.neigh.SubsetNeighbourhood;
 import org.jamesframework.core.util.SetUtilities;
+import org.jamesframework.core.util.SubsetIterator;
 
 /**
  * <p>
@@ -164,21 +165,21 @@ public class DisjointMultiAdditionNeighbourhood extends SubsetNeighbourhood {
 
     /**
      * <p>
-     * Generates the set of all possible moves that perform \(k\) additions, where \(k\) is the fixed number
+     * Generates the list of all possible moves that perform \(k\) additions, where \(k\) is the fixed number
      * specified at construction. Note: taking into account the current number of unselected items, the imposed
      * maximum subset size (if set) and the fixed IDs (if any) may result in fewer additions (as many as possible).
      * </p>
      * <p>
-     * May return an empty set if no moves can be generated.
+     * May return an empty list if no moves can be generated.
      * </p>
      * 
      * @param solution solution for which all possible multi addition moves are generated
-     * @return set of all multi addition moves, may be empty
+     * @return list of all multi addition moves, may be empty
      */
     @Override
-    public Set<SubsetMove> getAllMoves(SubsetSolution solution) {
-        // create empty set to store generated moves
-        Set<SubsetMove> moves = new HashSet<>();
+    public List<SubsetMove> getAllMoves(SubsetSolution solution) {
+        // create empty list to store generated moves
+        List<SubsetMove> moves = new ArrayList<>();
         // get set of candidate IDs for addition (fixed IDs are discarded)
         Set<Integer> addCandidates = getAddCandidates(solution);
         // compute number of additions
@@ -189,9 +190,9 @@ public class DisjointMultiAdditionNeighbourhood extends SubsetNeighbourhood {
         }
         // create all moves that add curNumAdd items
         Set<Integer> add;
-        SubsetSolutionIterator itAdd = new SubsetSolutionIterator(addCandidates, curNumAdd);
+        SubsetIterator<Integer> itAdd = new SubsetIterator<>(addCandidates, curNumAdd);
         while(itAdd.hasNext()){
-            add = itAdd.next().getSelectedIDs();
+            add = itAdd.next();
             // create and add move
             moves.add(new GeneralSubsetMove(add, Collections.emptySet()));
         }

@@ -16,7 +16,7 @@
 
 package org.jamesframework.core.problems.objectives.evaluations;
 
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 import org.jamesframework.core.problems.constraints.validations.PenalizingValidation;
 
@@ -38,6 +38,8 @@ public class PenalizedEvaluation implements Evaluation {
     
     // penalized value
     private double penalizedValue;
+    // indicates whether penalties have been assigned
+    private boolean assignedPenalties;
     
     /**
      * Create a new penalized evaluation, given the original evaluation. Penalties can be added
@@ -52,8 +54,9 @@ public class PenalizedEvaluation implements Evaluation {
         this.evaluation = evaluation;
         this.minimizing = minimizing;
         this.penalties = null;
-        // initially, the penalized value is equal to the unpenalized value
+        // initially, no penalties have been assigned
         penalizedValue = evaluation.getValue();
+        assignedPenalties = false;
     }
     
     /**
@@ -63,7 +66,7 @@ public class PenalizedEvaluation implements Evaluation {
         if(penalties == null){
             // use custom initial capacity as map is expected to
             // contain few items (in most cases only a single item)
-            penalties = new LinkedHashMap<>(1);
+            penalties = new HashMap<>(1);
         }
     }
     
@@ -78,10 +81,10 @@ public class PenalizedEvaluation implements Evaluation {
         initMapOnce();
         penalties.put(key, penalizingValidation);
         // update penalized value
-        if(minimizing){
-            penalizedValue += penalizingValidation.getPenalty();
-        } else {
-            penalizedValue -= penalizingValidation.getPenalty();
+        if(!penalizingValidation.passed()){
+            assignedPenalties = true;
+            double p = penalizingValidation.getPenalty();
+            penalizedValue += minimizing ? p : -p;
         }
     }
     
@@ -127,7 +130,7 @@ public class PenalizedEvaluation implements Evaluation {
      */
     @Override
     public String toString(){
-        if(penalties == null || penalties.values().stream().allMatch(pc -> pc.passed())){
+        if(!assignedPenalties){
             // no penalties assigned
             return getValue() + "";
         } else {

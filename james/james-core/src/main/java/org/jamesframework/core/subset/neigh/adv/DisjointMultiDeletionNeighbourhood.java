@@ -16,19 +16,20 @@
 
 package org.jamesframework.core.subset.neigh.adv;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import org.jamesframework.core.subset.neigh.moves.GeneralSubsetMove;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
 import org.jamesframework.core.subset.SubsetSolution;
-import org.jamesframework.core.subset.algo.exh.SubsetSolutionIterator;
 import org.jamesframework.core.subset.neigh.SingleDeletionNeighbourhood;
 import org.jamesframework.core.subset.neigh.moves.SubsetMove;
 import org.jamesframework.core.subset.neigh.SubsetNeighbourhood;
 import org.jamesframework.core.util.SetUtilities;
+import org.jamesframework.core.util.SubsetIterator;
 
 /**
  * <p>
@@ -164,21 +165,21 @@ public class DisjointMultiDeletionNeighbourhood extends SubsetNeighbourhood {
 
     /**
      * <p>
-     * Generates the set of all possible moves that perform \(k\) deletions, where \(k\) is the fixed number
+     * Generates the list of all possible moves that perform \(k\) deletions, where \(k\) is the fixed number
      * specified at construction. Note: taking into account the current number of selected items, the imposed
      * minimum subset size (if set) and the fixed IDs (if any) may result in fewer deletions (as many as possible).
      * </p>
      * <p>
-     * May return an empty set if no moves can be generated.
+     * May return an empty list if no moves can be generated.
      * </p>
      * 
      * @param solution solution for which all possible multi deletion moves are generated
-     * @return set of all multi deletion moves, may be empty
+     * @return list of all multi deletion moves, may be empty
      */
     @Override
-    public Set<SubsetMove> getAllMoves(SubsetSolution solution) {
-        // create empty set to store generated moves
-        Set<SubsetMove> moves = new HashSet<>();
+    public List<SubsetMove> getAllMoves(SubsetSolution solution) {
+        // create empty list to store generated moves
+        List<SubsetMove> moves = new ArrayList<>();
         // get set of candidate IDs for removal (fixed IDs are discarded)
         Set<Integer> delCandidates = getRemoveCandidates(solution);
         // compute number of deletions
@@ -189,9 +190,9 @@ public class DisjointMultiDeletionNeighbourhood extends SubsetNeighbourhood {
         }
         // create all moves that remove curNumDel items
         Set<Integer> del;
-        SubsetSolutionIterator itDel = new SubsetSolutionIterator(delCandidates, curNumDel);
+        SubsetIterator<Integer> itDel = new SubsetIterator<>(delCandidates, curNumDel);
         while(itDel.hasNext()){
-            del = itDel.next().getSelectedIDs();
+            del = itDel.next();
             // create and add move
             moves.add(new GeneralSubsetMove(Collections.emptySet(), del));
         }

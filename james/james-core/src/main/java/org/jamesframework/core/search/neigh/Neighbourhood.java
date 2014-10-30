@@ -16,7 +16,7 @@
 
 package org.jamesframework.core.search.neigh;
 
-import java.util.Set;
+import java.util.List;
 import org.jamesframework.core.problems.Solution;
 
 /**
@@ -39,14 +39,14 @@ public interface Neighbourhood<SolutionType extends Solution> {
     public Move<? super SolutionType> getRandomMove(SolutionType solution);
     
     /**
-     * Get a set of all moves that can be applied to the given solution to transform
+     * Get a list of all moves that can be applied to the given solution to transform
      * it into each of the neighbouring solutions contained in this specific neighbourhood.
-     * The returned set may be empty, in case the given solution does not have any neighbours.
+     * The returned list may be empty, in case the given solution does not have any neighbours.
      * 
      * @param solution solution to which the moves are to be applied
-     * @return set of all moves for this neighbourhood, may be empty if the
+     * @return list of all moves for this neighbourhood, may be empty if the
      *         given solution does not have any neighbours
      */
-    public Set<? extends Move<? super SolutionType>> getAllMoves(SolutionType solution);
+    public List<? extends Move<? super SolutionType>> getAllMoves(SolutionType solution);
     
 }

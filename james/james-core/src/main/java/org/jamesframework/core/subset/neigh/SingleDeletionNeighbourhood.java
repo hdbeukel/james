@@ -18,6 +18,7 @@ package org.jamesframework.core.subset.neigh;
 
 import org.jamesframework.core.subset.neigh.moves.SubsetMove;
 import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
@@ -122,29 +123,29 @@ public class SingleDeletionNeighbourhood extends SubsetNeighbourhood {
     }
 
     /**
-     * Generates a set of all possible deletion moves that remove a single ID from the selection of a given
+     * Generates a list of all possible deletion moves that remove a single ID from the selection of a given
      * subset solution. Possible fixed IDs are not considered to be removed and the minimum subset size
-     * is taken into account. May return an empty set if no deletion moves can be generated.
+     * is taken into account. May return an empty list if no deletion moves can be generated.
      * 
      * @param solution solution for which all possible deletion moves are generated
-     * @return set of all deletion moves, may be empty
+     * @return list of all deletion moves, may be empty
      */
     @Override
-    public Set<SubsetMove> getAllMoves(SubsetSolution solution) {
+    public List<SubsetMove> getAllMoves(SubsetSolution solution) {
         // check minimum size
         if(minSizeReached(solution)){
-            return Collections.emptySet();
+            return Collections.emptyList();
         }
         // get set of candidate IDs for deletion (possibly fixed IDs are discarded)
         Set<Integer> removeCandidates = getRemoveCandidates(solution);
         // check if there are any candidates to be removed
         if(removeCandidates.isEmpty()){
-            return Collections.emptySet();
+            return Collections.emptyList();
         }
         // create deletion move for all candidates
         return removeCandidates.stream()
                                .map(del -> new DeletionMove(del))
-                               .collect(Collectors.toSet());
+                               .collect(Collectors.toList());
     }
     
     /**

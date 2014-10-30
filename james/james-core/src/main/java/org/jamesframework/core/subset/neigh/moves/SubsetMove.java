@@ -30,7 +30,7 @@ import org.jamesframework.core.search.neigh.Move;
 public interface SubsetMove extends Move<SubsetSolution> {
 
     /**
-     * Get the set of IDs that are added to the selection by applying this move to a subset solution.
+     * Get the set of IDs that are added to the selection when applying this move to a subset solution.
      * The returned set may be empty.
      * 
      * @return set of added IDs
@@ -38,7 +38,7 @@ public interface SubsetMove extends Move<SubsetSolution> {
     public Set<Integer> getAddedIDs();
     
     /**
-     * Get the set of IDs that are removed from the selection by applying this move to a subset solution.
+     * Get the set of IDs that are removed from the selection when applying this move to a subset solution.
      * The returned set may be empty.
      * 
      * @return set of removed IDs

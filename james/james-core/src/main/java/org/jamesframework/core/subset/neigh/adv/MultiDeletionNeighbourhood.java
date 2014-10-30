@@ -16,19 +16,20 @@
 
 package org.jamesframework.core.subset.neigh.adv;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import org.jamesframework.core.subset.neigh.moves.GeneralSubsetMove;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
 import org.jamesframework.core.subset.SubsetSolution;
-import org.jamesframework.core.subset.algo.exh.SubsetSolutionIterator;
 import org.jamesframework.core.subset.neigh.SingleDeletionNeighbourhood;
 import org.jamesframework.core.subset.neigh.moves.SubsetMove;
 import org.jamesframework.core.subset.neigh.SubsetNeighbourhood;
 import org.jamesframework.core.util.SetUtilities;
+import org.jamesframework.core.util.SubsetIterator;
 
 /**
  * <p>
@@ -185,33 +186,33 @@ public class MultiDeletionNeighbourhood extends SubsetNeighbourhood {
 
     /**
      * <p>
-     * Generates the set of all possible moves that perform 1 up to \(k\) deletions, where \(k\) is the maximum number
+     * Generates the list of all possible moves that perform 1 up to \(k\) deletions, where \(k\) is the maximum number
      * of deletions specified at construction. Possible fixed IDs are not considered to be removed and the minimum
      * allowed subset size is respected.
      * </p>
      * <p>
-     * May return an empty set if no moves can be generated.
+     * May return an empty list if no moves can be generated.
      * </p>
      * 
      * @param solution solution for which all possible multi deletion moves are generated
-     * @return set of all multi deletion moves, may be empty
+     * @return list of all multi deletion moves, may be empty
      */
     @Override
-    public Set<SubsetMove> getAllMoves(SubsetSolution solution) {
-        // create empty set to store generated moves
-        Set<SubsetMove> moves = new HashSet<>();
+    public List<SubsetMove> getAllMoves(SubsetSolution solution) {
+        // create empty list to store generated moves
+        List<SubsetMove> moves = new ArrayList<>();
         // get set of candidate IDs for removal (fixed IDs are discarded)
         Set<Integer> delCandidates = getRemoveCandidates(solution);
         // compute maximum number of deletions
         int curMaxDel = maxDeletions(delCandidates, solution);
         // create all moves for each considered amount of deletions (in [1,curMaxDel])
-        SubsetSolutionIterator itDel;
+        SubsetIterator<Integer> itDel;
         Set<Integer> del;
         for(int d=1; d <= curMaxDel; d++){
             // create all moves that perform d deletions
-            itDel = new SubsetSolutionIterator(delCandidates, d);
+            itDel = new SubsetIterator<>(delCandidates, d);
             while(itDel.hasNext()){
-                del = itDel.next().getSelectedIDs();
+                del = itDel.next();
                 // create and add move
                 moves.add(new GeneralSubsetMove(Collections.emptySet(), del));
             }

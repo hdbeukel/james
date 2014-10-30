@@ -16,8 +16,9 @@
 
 package org.jamesframework.core.util;
 
-import java.util.HashSet;
+import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.Set;
 
@@ -50,26 +51,35 @@ public final class SetUtilities {
     }
     
     /**
-     * Selects a random subset of a specific size from a given set (uniformly distributed). This implementation
-     * applies a full scan algorithm that iterates once through the given set and selects each item with probability
+     * <p>
+     * Selects a random subset of a specific size from a given set (uniformly distributed).
+     * Applies a full scan algorithm that iterates once through the given set and selects each item with probability
      * (#remaining to select)/(#remaining to scan). It can be proven that this algorithm creates uniformly distributed
      * random subsets (for example, a proof is given <a href="http://eyalsch.wordpress.com/2010/04/01/random-sample">here</a>).
      * In the worst case, this algorithm has linear time complexity with respect to the size of the given set.
+     * </p>
+     * <p>
+     * The items from the selected subset are added to the given collection <code>subset</code>. This collection is
+     * <b>not</b> cleared so that already contained items will be retained. A reference to this same collection is
+     * returned after it has been modified. To store the generated subset in a newly allocated {@link LinkedHashSet}
+     * the alternative method {@link #getRandomSubset(Set, int, Random)} may also be used.
+     * </p>
      * 
      * @see <a href="http://eyalsch.wordpress.com/2010/04/01/random-sample">http://eyalsch.wordpress.com/2010/04/01/random-sample</a>
      * @param <T> type of elements in randomly selected subset
-     * @param set set from which a random subset is to be selected
+     * @param set set from which a random subset is to be sampled
      * @param size desired subset size, should be a number in [0,|set|]
      * @param rg random generator
+     * @param subset collection to which the items from the selected subset are added
      * @throws IllegalArgumentException if an invalid subset size outside [0,|set|] is specified
-     * @return random subset (uniformly distributed) 
+     * @return reference to given collection <code>subset</code> after it has been filled with the
+     *         items from the randomly generated subset 
      */
-    public static <T> Set<T> getRandomSubset(Set<? extends T> set, int size, Random rg) {
+    public static <T> Collection<T> getRandomSubset(Set<? extends T> set, int size, Random rg, Collection<T> subset) {
         // check size
         if(size < 0 || size > set.size()){
             throw new IllegalArgumentException("Error in SetUtilities: desired subset size should be a number in [0,|set|].");
         }
-        Set<T> subset = new HashSet<>();
         // remaining number of items to select
         int remainingToSelect = size;
         // remaining number of candidates to consider
@@ -90,6 +100,32 @@ public final class SetUtilities {
             remainingToScan--;
         }        
         // return selected subset
+        return subset;
+    }
+    
+    /**
+     * <p>
+     * Selects a random subset of a specific size from a given set (uniformly distributed).
+     * Applies a full scan algorithm that iterates once through the given set and selects each item with probability
+     * (#remaining to select)/(#remaining to scan). It can be proven that this algorithm creates uniformly distributed
+     * random subsets (for example, a proof is given <a href="http://eyalsch.wordpress.com/2010/04/01/random-sample">here</a>).
+     * In the worst case, this algorithm has linear time complexity with respect to the size of the given set.
+     * </p>
+     * <p>
+     * The generated subset is stored in a newly allocated {@link LinkedHashSet}.
+     * </p>
+     * 
+     * @see <a href="http://eyalsch.wordpress.com/2010/04/01/random-sample">http://eyalsch.wordpress.com/2010/04/01/random-sample</a>
+     * @param <T> type of elements in randomly selected subset
+     * @param set set from which a random subset is to be selected
+     * @param size desired subset size, should be a number in [0,|set|]
+     * @param rg random generator
+     * @throws IllegalArgumentException if an invalid subset size outside [0,|set|] is specified
+     * @return random subset stored in a newly allocated {@link LinkedHashSet}.
+     */
+    public static <T> Set<T> getRandomSubset(Set<? extends T> set, int size, Random rg) {
+        Set<T> subset = new LinkedHashSet<>();
+        getRandomSubset(set, size, rg, subset);
         return subset;
     }
 

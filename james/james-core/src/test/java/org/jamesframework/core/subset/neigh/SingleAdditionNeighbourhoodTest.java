@@ -19,6 +19,7 @@ package org.jamesframework.core.subset.neigh;
 import org.jamesframework.core.subset.neigh.moves.SubsetMove;
 import org.jamesframework.core.subset.neigh.moves.AdditionMove;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import org.jamesframework.core.subset.SubsetSolution;
@@ -193,7 +194,7 @@ public class SingleAdditionNeighbourhoodTest {
         
         System.out.println(" - test getAllMoves");
         
-        Set<? extends Move<SubsetSolution>> moves;
+        List<? extends Move<SubsetSolution>> moves;
                 
         // 1) generate moves for empty solution
         

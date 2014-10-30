@@ -18,6 +18,7 @@ package org.jamesframework.core.subset.neigh;
 
 import org.jamesframework.core.subset.neigh.moves.SubsetMove;
 import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
@@ -122,29 +123,29 @@ public class SingleAdditionNeighbourhood extends SubsetNeighbourhood {
     }
 
     /**
-     * Generates a set of all possible addition moves that add a single ID to the selection of a given
+     * Generates a list of all possible addition moves that add a single ID to the selection of a given
      * subset solution. Possible fixed IDs are not considered to be added and the maximum subset size
-     * is taken into account. May return an empty set if no addition moves can be generated.
+     * is taken into account. May return an empty list if no addition moves can be generated.
      * 
      * @param solution solution for which all possible addition moves are generated
-     * @return set of all addition moves, may be empty
+     * @return list of all addition moves, may be empty
      */
     @Override
-    public Set<SubsetMove> getAllMoves(SubsetSolution solution) {
+    public List<SubsetMove> getAllMoves(SubsetSolution solution) {
         // check size limit
         if(maxSizeReached(solution)){
-            return Collections.emptySet();
+            return Collections.emptyList();
         }
         // get set of candidate IDs for addition (possibly fixed IDs are discarded)
         Set<Integer> addCandidates = getAddCandidates(solution);
         // check if there are any candidates to be added
         if(addCandidates.isEmpty()){
-            return Collections.emptySet();
+            return Collections.emptyList();
         }
         // create addition move for all add candidates
         return addCandidates.stream()
                             .map(add -> new AdditionMove(add))
-                            .collect(Collectors.toSet());
+                            .collect(Collectors.toList());
     }
     
     /**

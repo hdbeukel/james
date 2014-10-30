@@ -17,7 +17,6 @@
 package org.jamesframework.core.subset.neigh.moves;
 
 import java.util.Collections;
-import java.util.Objects;
 import java.util.Set;
 import org.jamesframework.core.exceptions.SolutionModificationException;
 import org.jamesframework.core.subset.SubsetSolution;
@@ -28,11 +27,11 @@ import org.jamesframework.core.subset.SubsetSolution;
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class GeneralSubsetMove implements SubsetMove {
+public class GeneralSubsetMove extends AbstractSubsetMove {
 
     // set of IDs to add and remove
-    private Set<Integer> add;
-    private Set<Integer> delete;
+    private final Set<Integer> add;
+    private final Set<Integer> delete;
     
     /**
      * Creates a general subset move, indicating which IDs are to be added to and removed from
@@ -46,16 +45,8 @@ public class GeneralSubsetMove implements SubsetMove {
      */
     public GeneralSubsetMove(Set<Integer> add, Set<Integer> remove){
         // store sets (set empty set in case of nullpointers)
-        if(add != null){
-            this.add = add;
-        } else {
-            this.add = Collections.emptySet();
-        }
-        if(remove != null){
-            this.delete = remove;
-        } else {
-            this.delete = Collections.emptySet();
-        }
+        this.add = add != null ? add : Collections.emptySet();
+        this.delete = remove != null ? remove : Collections.emptySet();
     }
     
     /**
@@ -141,39 +132,5 @@ public class GeneralSubsetMove implements SubsetMove {
         // add all removed IDs
         solution.selectAll(delete);
     }
-
-    /**
-     * Hash code corresponding to implementation of {@link #equals(Object)}.
-     * 
-     * @return hash code of this move
-     */
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 71 * hash + Objects.hashCode(getAddedIDs());
-        hash = 71 * hash + Objects.hashCode(getDeletedIDs());
-        return hash;
-    }
-
-    /**
-     * Two subset moves are considered equal if they remove and add the same IDs.
-     * 
-     * @param obj object to compare with this move for equality
-     * @return <code>true</code> if the given object is also a subset move and removes and adds the same IDs
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (!(obj instanceof SubsetMove)) {
-            return false;
-        }
-        final SubsetMove other = (SubsetMove) obj;
-        return Objects.equals(getAddedIDs(), other.getAddedIDs())
-                && Objects.equals(getDeletedIDs(), other.getDeletedIDs());
-    }
-    
-    
 
 }

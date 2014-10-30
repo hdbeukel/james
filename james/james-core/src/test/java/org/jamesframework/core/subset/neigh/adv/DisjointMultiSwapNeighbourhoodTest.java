@@ -16,7 +16,9 @@
 
 package org.jamesframework.core.subset.neigh.adv;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import org.jamesframework.core.subset.SubsetSolution;
@@ -125,31 +127,23 @@ public class DisjointMultiSwapNeighbourhoodTest {
         // randomly select 10 IDs
         sol.selectAll(SetUtilities.getRandomSubset(sol.getUnselectedIDs(), 10, RG));
 
-        Set<SubsetMove> moves1, moves2, moves3, temp2, temp3;
+        List<SubsetMove> moves1, moves2, moves3;
+        Set<SubsetMove> unordered1, unordered2, unordered3;
         
         moves1 = ssn.getAllMoves(sol);
         moves2 = msn.getAllMoves(sol);
         moves3 = dmsn.getAllMoves(sol);
-        // verify
+        // verify sizes
         assertEquals(sol.getNumSelectedIDs()*sol.getNumUnselectedIDs(), moves3.size());
         assertEquals(moves1.size(), moves3.size());
         assertEquals(moves2.size(), moves3.size());
-        temp3 = new HashSet<>();
-        moves3.forEach(m -> {
-            SubsetMove sm = (SubsetMove) m;
-            assertEquals(1, sm.getNumAdded());
-            assertEquals(1, sm.getNumDeleted());
-            temp3.add(new SwapMove(sm.getAddedIDs().iterator().next(), sm.getDeletedIDs().iterator().next()));
-        });
-        temp2 = new HashSet<>();
-        moves2.forEach(m -> {
-            SubsetMove sm = (SubsetMove) m;
-            assertEquals(1, sm.getNumAdded());
-            assertEquals(1, sm.getNumDeleted());
-            temp2.add(new SwapMove(sm.getAddedIDs().iterator().next(), sm.getDeletedIDs().iterator().next()));
-        });
-        assertEquals(temp3, moves1);
-        assertEquals(temp3, temp2);
+        // verify moves (convert to sets to ignore order)
+        unordered1 = new HashSet<>(moves1);
+        unordered2 = new HashSet<>(moves2);
+        unordered3 = new HashSet<>(moves3);
+        assertEquals(unordered3, unordered1);
+        assertEquals(unordered3, unordered2);        
+        assertEquals(unordered1, unordered2);        
         
         // 2) test with numSwaps 2 up to 5
         

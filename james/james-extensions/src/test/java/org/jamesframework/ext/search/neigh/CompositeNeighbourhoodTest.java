@@ -99,9 +99,9 @@ public class CompositeNeighbourhoodTest {
         // create random subset solution
         SubsetSolution sol = new SubsetSolution(IDs, SetUtilities.getRandomSubset(IDs, SUBSET_SIZE, RG));
         
-        // construct set of all moves for both neighbourhoods
-        Set<? extends Move<? super SubsetSolution>> swapMoves = neighs.get(0).getAllMoves(sol);
-        Set<? extends Move<? super SubsetSolution>> pertMoves = neighs.get(1).getAllMoves(sol);
+        // construct list of all moves for both neighbourhoods
+        List<? extends Move<? super SubsetSolution>> swapMoves = neighs.get(0).getAllMoves(sol);
+        List<? extends Move<? super SubsetSolution>> pertMoves = neighs.get(1).getAllMoves(sol);
         
         // weights (80, 20)
         double swapWeight = 80;
@@ -171,8 +171,8 @@ public class CompositeNeighbourhoodTest {
         SubsetSolution sol = new SubsetSolution(IDs, SetUtilities.getRandomSubset(IDs, SUBSET_SIZE, RG));
         
         // construct set of all moves for both neighbourhoods
-        Set<? extends Move<? super SubsetSolution>> swapMoves = neighs.get(0).getAllMoves(sol);
-        Set<? extends Move<? super SubsetSolution>> pertMoves = neighs.get(1).getAllMoves(sol);
+        List<? extends Move<? super SubsetSolution>> swapMoves = neighs.get(0).getAllMoves(sol);
+        List<? extends Move<? super SubsetSolution>> pertMoves = neighs.get(1).getAllMoves(sol);
         
         for(int i=0; i<100; i++){
             // composite neighbourhood with arbitrary weights
@@ -181,7 +181,7 @@ public class CompositeNeighbourhoodTest {
                                                                 Arrays.asList(RG.nextDouble(), RG.nextDouble())
                                                            );
             // get all moves
-            Set<? extends Move<? super SubsetSolution>> moves = compositeNeigh.getAllMoves(sol);
+            List<? extends Move<? super SubsetSolution>> moves = compositeNeigh.getAllMoves(sol);
             // verify
             assertTrue(moves.size() <= swapMoves.size()+pertMoves.size());
             assertTrue(moves.containsAll(swapMoves));
