@@ -16,8 +16,10 @@
 
 package org.jamesframework.examples.coresubset2;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import org.jamesframework.core.exceptions.IncompatibleDeltaEvaluationException;
 import org.jamesframework.core.problems.objectives.evaluations.Evaluation;
 import org.jamesframework.core.problems.objectives.evaluations.SimpleEvaluation;
@@ -74,7 +76,7 @@ public class CoreSubsetObjectiveWithDelta extends CoreSubsetObjective{
         Set<Integer> added = subsetMove.getAddedIDs();
         Set<Integer> removed = subsetMove.getDeletedIDs();
         // infer set of retained IDs
-        Set<Integer> retained = new HashSet<>(curSolution.getSelectedIDs());
+        List<Integer> retained = new ArrayList<>(curSolution.getSelectedIDs());
         retained.removeAll(removed);
         
         // subtract distances from removed items to retained items

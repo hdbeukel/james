@@ -45,13 +45,12 @@ public class CoreSubsetObjective implements Objective<SubsetSolution, CoreSubset
             // at least two items selected: compute average distance
             int numDist = 0;
             double sumDist = 0.0;
-            for(int id1 : solution.getSelectedIDs()){
-                for(int id2 : solution.getSelectedIDs()){
-                    // account for each pair of distinct items only once
-                    if(id1 < id2){
-                        sumDist += data.getDistance(id1, id2);
-                        numDist++;
-                    }
+            Integer[] selected = new Integer[solution.getNumSelectedIDs()];
+            solution.getSelectedIDs().toArray(selected);
+            for(int i=0; i<selected.length; i++){
+                for(int j=i+1; j<selected.length; j++){
+                    sumDist += data.getDistance(selected[i], selected[j]);
+                    numDist++;
                 }
             }
             value = sumDist/numDist;

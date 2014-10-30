@@ -16,7 +16,9 @@
 
 package org.jamesframework.examples.clique;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
@@ -24,7 +26,6 @@ import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.subset.neigh.moves.AdditionMove;
-import org.jamesframework.core.util.SetUtilities;
 
 /**
  * Greedy neighbourhood for the maximum clique problem that generates moves which add a single new vertex that is
@@ -44,16 +45,17 @@ public class GreedyCliqueNeighbourhood implements Neighbourhood<SubsetSolution> 
     
     @Override
     public Move<SubsetSolution> getRandomMove(SubsetSolution solution) {
-        Set<Move<SubsetSolution>> allMoves = getAllMoves(solution);
+        List<Move<SubsetSolution>> allMoves = getAllMoves(solution);
         if(allMoves.isEmpty()){
             return null;
         } else {
-            return SetUtilities.getRandomElement(allMoves, ThreadLocalRandom.current());
+            Random rg = ThreadLocalRandom.current();
+            return allMoves.get(rg.nextInt(allMoves.size()));
         }
     }
 
     @Override
-    public Set<Move<SubsetSolution>> getAllMoves(SubsetSolution solution) {
+    public List<Move<SubsetSolution>> getAllMoves(SubsetSolution solution) {
         // get current clique
         Set<Integer> clique = solution.getSelectedIDs();
         // construct set of possible additions
@@ -62,7 +64,7 @@ public class GreedyCliqueNeighbourhood implements Neighbourhood<SubsetSolution> 
                                                                .collect(Collectors.toSet());
         // retain only additions of candidate vertices
         // with maximum degree within induced subgraph
-        Set<Move<SubsetSolution>> moves = new HashSet<>();
+        List<Move<SubsetSolution>> moves = new ArrayList<>();
         long degree, maxDegree = -1;
         for(int v : possibleAdds){
             // get degree within subgraph

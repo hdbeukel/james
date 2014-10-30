@@ -16,14 +16,15 @@
 
 package org.jamesframework.examples.clique;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.subset.neigh.moves.AdditionMove;
-import org.jamesframework.core.util.SetUtilities;
 
 /**
  * Alternative implementation of greedy clique neighbourhood that uses the optimized clique solution type
@@ -41,21 +42,22 @@ public class GreedyCliqueNeighbourhood2 implements Neighbourhood<CliqueSolution>
     
     @Override
     public Move<SubsetSolution> getRandomMove(CliqueSolution clique) {
-        Set<Move<SubsetSolution>> allMoves = getAllMoves(clique);
+        List<Move<SubsetSolution>> allMoves = getAllMoves(clique);
         if(allMoves.isEmpty()){
             return null;
         } else {
-            return SetUtilities.getRandomElement(allMoves, ThreadLocalRandom.current());
+            Random rg = ThreadLocalRandom.current();
+            return allMoves.get(rg.nextInt(allMoves.size()));
         }
     }
 
     @Override
-    public Set<Move<SubsetSolution>> getAllMoves(CliqueSolution clique) {
+    public List<Move<SubsetSolution>> getAllMoves(CliqueSolution clique) {
         // get possible adds (constant time!)
         Set<Integer> possibleAdds = clique.getPossibleAdds();
         // retain only additions of candidate vertices
         // with maximum degree within induced subgraph
-        Set<Move<SubsetSolution>> moves = new HashSet<>();
+        List<Move<SubsetSolution>> moves = new ArrayList<>();
         long degree, maxDegree = -1;
         for(int v : possibleAdds){
             // get degree within subgraph
