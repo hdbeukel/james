@@ -140,15 +140,8 @@ public class CliqueObjective implements Objective&lt;SubsetSolution, Object&gt;{
             </li>
         </ol>
         For every retained candidate vertex an <code>AdditionMove</code> is generated. If desired, a custom move
-        type could be created as well but this is not required here.
+        type could be created as well but this is not necessary here.
     </p>
-    <div class="bs-callout bs-callout-info">
-        <h4>
-            <i class="fa fa-info-circle"></i>
-            Info
-        </h4>
-        The utility class <code>SetUtilities</code> can be used to easily select a random item or subset from any given set.
-    </div>
 <pre class="prettyprint">
 public class GreedyCliqueNeighbourhood implements Neighbourhood&lt;SubsetSolution&gt; {
 
@@ -160,15 +153,16 @@ public class GreedyCliqueNeighbourhood implements Neighbourhood&lt;SubsetSolutio
     }
     
     public Move&lt;SubsetSolution&gt; getRandomMove(SubsetSolution solution) {
-        Set&lt;Move&lt;SubsetSolution&gt;&gt; allMoves = getAllMoves(solution);
+        List&lt;Move&lt;SubsetSolution&gt;&gt; allMoves = getAllMoves(solution);
         if(allMoves.isEmpty()){
             return null;
         } else {
-            return SetUtilities.getRandomElement(allMoves, ThreadLocalRandom.current());
+            Random rg = ThreadLocalRandom.current();
+            return allMoves.get(rg.nextInt(allMoves.size()));
         }
     }
 
-    public Set&lt;Move&lt;SubsetSolution&gt;&gt; getAllMoves(SubsetSolution solution) {
+    public List&lt;Move&lt;SubsetSolution&gt;&gt; getAllMoves(SubsetSolution solution) {
         // get current clique
         Set&lt;Integer&gt; clique = solution.getSelectedIDs();
         // construct set of possible additions
@@ -177,7 +171,7 @@ public class GreedyCliqueNeighbourhood implements Neighbourhood&lt;SubsetSolutio
                                                                .collect(Collectors.toSet());
         // retain only additions of candidate vertices
         // with maximum degree within induced subgraph
-        Set&lt;Move&lt;SubsetSolution&gt;&gt; moves = new HashSet&lt;&gt;();
+        List&lt;Move&lt;SubsetSolution&gt;&gt; moves = new ArrayList&lt;&gt;();
         long degree, maxDegree = -1;
         for(int v : possibleAdds){
             // get degree within subgraph
@@ -449,7 +443,7 @@ public class GreedyCliqueNeighbourhood2 implements Neighbourhood&lt;CliqueSoluti
         // ... (same as before)
     }
 
-    public Set&lt;Move&lt;SubsetSolution&gt;&gt; getAllMoves(CliqueSolution clique) {
+    public List&lt;Move&lt;SubsetSolution&gt;&gt; getAllMoves(CliqueSolution clique) {
         
         // get possible adds (constant time!)
         Set&lt;Integer&gt; possibleAdds = clique.getPossibleAdds();
