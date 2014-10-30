@@ -37,7 +37,7 @@
 Neighbourhood&lt;SolutionType&gt;
 --
 getRandomMove(SolutionType) : Move
-getAllMoves(SolutionType) : Set</panel_attributes>
+getAllMoves(SolutionType) : List</panel_attributes>
     <additional_attributes/>
   </element>
   <element>

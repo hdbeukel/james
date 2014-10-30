@@ -47,7 +47,7 @@ newCurrentSolution(LocalSearch,SolutionType,Evaluation,Validation) : void</panel
 addStopCriterion(StopCriterion) : void
 removeStopCriterion(StopCriterion) : boolean
 setStopCriterionCheckPeriod(long,TimeUnit) : void
-addSearchListener(SearchListener) : boolean
+addSearchListener(SearchListener) : void
 removeSearchListener(SearchListener) : boolean
 start() : void
 stop() : void

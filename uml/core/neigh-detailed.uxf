@@ -4,10 +4,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>250</x>
-      <y>170</y>
+      <x>240</x>
+      <y>80</y>
       <w>940</w>
-      <h>740</h>
+      <h>730</h>
     </coordinates>
     <panel_attributes>subset.neigh
 --</panel_attributes>
@@ -16,10 +16,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>370</x>
-      <y>460</y>
+      <x>360</x>
+      <y>370</y>
       <w>630</w>
-      <h>410</h>
+      <h>420</h>
     </coordinates>
     <panel_attributes>moves
 --</panel_attributes>
@@ -28,8 +28,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>590</x>
-      <y>740</y>
+      <x>580</x>
+      <y>660</y>
       <w>160</w>
       <h>110</h>
     </coordinates>
@@ -45,28 +45,12 @@ getNumDeleted() : int</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>440</x>
-      <y>620</y>
+      <x>430</x>
+      <y>550</y>
       <w>460</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>GeneralSubsetMove
---
-add : Set
-delete : Set
---
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>390</x>
-      <y>500</y>
-      <w>140</w>
       <h>70</h>
     </coordinates>
-    <panel_attributes>SwapMove
+    <panel_attributes>AbstractSubsetMove
 --
 
 --
@@ -76,38 +60,55 @@ delete : Set
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>600</x>
-      <y>500</y>
+      <x>380</x>
+      <y>410</y>
+      <w>150</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>SwapMove
+--
+add : int
+delete : int
+--
+getAddedID() : int
+getDeletedID() : int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>590</x>
+      <y>410</y>
       <w>140</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>AdditionMove
 --
-
+add : int
 --
-</panel_attributes>
+getAddedID() : int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>810</x>
-      <y>500</y>
+      <x>800</x>
+      <y>410</y>
       <w>170</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>DeletionMove
 --
-
+delete : int
 --
-</panel_attributes>
+getDeletedID() : int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>660</x>
-      <y>690</y>
+      <x>650</x>
+      <y>610</y>
       <w>30</w>
       <h>70</h>
     </coordinates>
@@ -117,41 +118,41 @@ delete : Set
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>850</x>
-      <y>560</y>
+      <x>840</x>
+      <y>470</y>
       <w>30</w>
-      <h>80</h>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>660</x>
-      <y>560</y>
+      <x>650</x>
+      <y>470</y>
       <w>30</w>
-      <h>80</h>
+      <h>100</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>470</x>
-      <y>560</y>
+      <x>450</x>
+      <y>500</y>
       <w>30</w>
-      <h>80</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>350</y>
+      <x>280</x>
+      <y>260</y>
       <w>210</w>
       <h>70</h>
     </coordinates>
@@ -165,8 +166,8 @@ delete : Set
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>650</x>
-      <y>350</y>
+      <x>640</x>
+      <y>260</y>
       <w>230</w>
       <h>70</h>
     </coordinates>
@@ -180,8 +181,8 @@ maxSubsetSize : int
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>930</x>
-      <y>350</y>
+      <x>920</x>
+      <y>260</y>
       <w>230</w>
       <h>70</h>
     </coordinates>
@@ -195,8 +196,8 @@ minSubsetSize : int
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>490</x>
-      <y>220</y>
+      <x>480</x>
+      <y>130</y>
       <w>420</w>
       <h>80</h>
     </coordinates>
@@ -211,8 +212,8 @@ maxSubsetSize : int
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>440</x>
-      <y>410</y>
+      <x>420</x>
+      <y>320</y>
       <w>30</w>
       <h>110</h>
     </coordinates>
@@ -222,8 +223,8 @@ maxSubsetSize : int
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>690</x>
-      <y>410</y>
+      <x>680</x>
+      <y>320</y>
       <w>30</w>
       <h>110</h>
     </coordinates>
@@ -233,8 +234,8 @@ maxSubsetSize : int
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>950</x>
-      <y>410</y>
+      <x>940</x>
+      <y>320</y>
       <w>30</w>
       <h>110</h>
     </coordinates>
@@ -244,8 +245,8 @@ maxSubsetSize : int
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>510</x>
-      <y>290</y>
+      <x>500</x>
+      <y>200</y>
       <w>30</w>
       <h>230</h>
     </coordinates>
@@ -255,8 +256,8 @@ maxSubsetSize : int
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>620</x>
-      <y>290</y>
+      <x>610</x>
+      <y>200</y>
       <w>30</w>
       <h>230</h>
     </coordinates>
@@ -266,8 +267,8 @@ maxSubsetSize : int
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>880</x>
-      <y>290</y>
+      <x>870</x>
+      <y>200</y>
       <w>30</w>
       <h>230</h>
     </coordinates>
