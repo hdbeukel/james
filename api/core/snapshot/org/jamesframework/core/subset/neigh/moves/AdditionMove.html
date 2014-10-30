@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li>Prev&nbsp;Class</li>
+<li><a href="../../../../../../org/jamesframework/core/subset/neigh/moves/AbstractSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.moves"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../../../org/jamesframework/core/subset/neigh/moves/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh.moves"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -101,7 +101,7 @@ var activeTableTab = "activeTableTab";
 <li><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../../../../org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.moves">org.jamesframework.core.subset.neigh.moves.GeneralSubsetMove</a></li>
+<li><a href="../../../../../../org/jamesframework/core/subset/neigh/moves/AbstractSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.moves">org.jamesframework.core.subset.neigh.moves.AbstractSubsetMove</a></li>
 <li>
 <ul class="inheritance">
 <li>org.jamesframework.core.subset.neigh.moves.AdditionMove</li>
@@ -120,7 +120,7 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">AdditionMove</span>
-extends <a href="../../../../../../org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.moves">GeneralSubsetMove</a></pre>
+extends <a href="../../../../../../org/jamesframework/core/subset/neigh/moves/AbstractSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.moves">AbstractSubsetMove</a></pre>
 <div class="block">Simple subset move that adds a single ID to the current selection.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
@@ -165,18 +165,55 @@ extends <a href="../../../../../../org/jamesframework/core/subset/neigh/moves/Ge
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/moves/AdditionMove.html#apply-org.jamesframework.core.subset.SubsetSolution-">apply</a></span>(<a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
+<div class="block">Apply this addition move to the given subset solution.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/moves/AdditionMove.html#getAddedID--">getAddedID</a></span>()</code>
 <div class="block">Returns the added ID.</div>
 </td>
 </tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/moves/AdditionMove.html#getAddedIDs--">getAddedIDs</a></span>()</code>
+<div class="block">Returns an unmodifiable singleton containing the only added ID.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/moves/AdditionMove.html#getDeletedIDs--">getDeletedIDs</a></span>()</code>
+<div class="block">Returns an unmodifiable empty set, as no IDs are deleted by this move.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/moves/AdditionMove.html#getNumAdded--">getNumAdded</a></span>()</code>
+<div class="block">Always return 1, as a single ID is added.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/moves/AdditionMove.html#getNumDeleted--">getNumDeleted</a></span>()</code>
+<div class="block">Always returns 0, as no IDs are deleted.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/moves/AdditionMove.html#undo-org.jamesframework.core.subset.SubsetSolution-">undo</a></span>(<a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
+<div class="block">Undo this addition move after it has been successfully applied to the given subset solution, by removing the newly added ID
+ from the selection.</div>
+</td>
+</tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.org.jamesframework.core.subset.neigh.moves.GeneralSubsetMove">
+<li class="blockList"><a name="methods.inherited.from.class.org.jamesframework.core.subset.neigh.moves.AbstractSubsetMove">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;org.jamesframework.core.subset.neigh.moves.<a href="../../../../../../org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.moves">GeneralSubsetMove</a></h3>
-<code><a href="../../../../../../org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html#apply-org.jamesframework.core.subset.SubsetSolution-">apply</a>, <a href="../../../../../../org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html#equals-java.lang.Object-">equals</a>, <a href="../../../../../../org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html#getAddedIDs--">getAddedIDs</a>, <a href="../../../../../../org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html#getDeletedIDs--">getDeletedIDs</a>, <a href="../../../../../../org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html#getNumAdded--">getNumAdded</a>, <a href="../../../../../../org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html#getNumDeleted--">getNumDeleted</a>, <a href="../../../../../../org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html#hashCode--">hashCode</a>, <a href="../../../../../../org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html#undo-org.jamesframework.core.subset.SubsetSolution-">undo</a></code></li>
+<h3>Methods inherited from class&nbsp;org.jamesframework.core.subset.neigh.moves.<a href="../../../../../../org/jamesframework/core/subset/neigh/moves/AbstractSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.moves">AbstractSubsetMove</a></h3>
+<code><a href="../../../../../../org/jamesframework/core/subset/neigh/moves/AbstractSubsetMove.html#equals-java.lang.Object-">equals</a>, <a href="../../../../../../org/jamesframework/core/subset/neigh/moves/AbstractSubsetMove.html#hashCode--">hashCode</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -222,10 +259,24 @@ extends <a href="../../../../../../org/jamesframework/core/subset/neigh/moves/Ge
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="getAddedIDs--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getAddedIDs</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;getAddedIDs()</pre>
+<div class="block">Returns an unmodifiable singleton containing the only added ID.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>unmodifiable singleton containing added ID</dd>
+</dl>
+</li>
+</ul>
 <a name="getAddedID--">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>getAddedID</h4>
 <pre>public&nbsp;int&nbsp;getAddedID()</pre>
@@ -233,6 +284,81 @@ extends <a href="../../../../../../org/jamesframework/core/subset/neigh/moves/Ge
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>added ID</dd>
+</dl>
+</li>
+</ul>
+<a name="getDeletedIDs--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getDeletedIDs</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;getDeletedIDs()</pre>
+<div class="block">Returns an unmodifiable empty set, as no IDs are deleted by this move.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>empty set</dd>
+</dl>
+</li>
+</ul>
+<a name="getNumAdded--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getNumAdded</h4>
+<pre>public&nbsp;int&nbsp;getNumAdded()</pre>
+<div class="block">Always return 1, as a single ID is added.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>1</dd>
+</dl>
+</li>
+</ul>
+<a name="getNumDeleted--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getNumDeleted</h4>
+<pre>public&nbsp;int&nbsp;getNumDeleted()</pre>
+<div class="block">Always returns 0, as no IDs are deleted.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>0</dd>
+</dl>
+</li>
+</ul>
+<a name="apply-org.jamesframework.core.subset.SubsetSolution-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>apply</h4>
+<pre>public&nbsp;void&nbsp;apply(<a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</pre>
+<div class="block">Apply this addition move to the given subset solution. The move can only be applied if the ID that will be added
+ to the selection is currently not already selected. This guarantees that calling <a href="../../../../../../org/jamesframework/core/subset/neigh/moves/AdditionMove.html#undo-org.jamesframework.core.subset.SubsetSolution-"><code>undo(SubsetSolution)</code></a> will
+ correctly undo the move.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>solution</code> - solution to which to move is applied</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="../../../../../../org/jamesframework/core/exceptions/SolutionModificationException.html" title="class in org.jamesframework.core.exceptions">SolutionModificationException</a></code> - if the added ID is currently already selected or does not correspond to an entity</dd>
+</dl>
+</li>
+</ul>
+<a name="undo-org.jamesframework.core.subset.SubsetSolution-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>undo</h4>
+<pre>public&nbsp;void&nbsp;undo(<a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</pre>
+<div class="block">Undo this addition move after it has been successfully applied to the given subset solution, by removing the newly added ID
+ from the selection.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>solution</code> - solution to which the move has been applied</dd>
 </dl>
 </li>
 </ul>
@@ -265,7 +391,7 @@ extends <a href="../../../../../../org/jamesframework/core/subset/neigh/moves/Ge
 </div>
 <div class="subNav">
 <ul class="navList">
-<li>Prev&nbsp;Class</li>
+<li><a href="../../../../../../org/jamesframework/core/subset/neigh/moves/AbstractSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.moves"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../../../org/jamesframework/core/subset/neigh/moves/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh.moves"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">

@@ -268,8 +268,8 @@ implements <a href="../../../../../../org/jamesframework/core/problems/constrain
 <h4>passed</h4>
 <pre>public&nbsp;boolean&nbsp;passed()</pre>
 <div class="block">A unanimous validation passed if and only if all contained validations passed.
- The result is cached so that it only needs to be computed when it is retrieved
- for the first time.</div>
+ The returned value is only guaranteed to be correct if the validation objects
+ have not been modified after they were added to this unanimous validation.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html#passed--">passed</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></code></dd>

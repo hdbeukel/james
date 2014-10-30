@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":9};
+var methods = {"i0":9,"i1":9,"i2":9};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -51,7 +51,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../org/jamesframework/core/util/RouletteSelector.html" title="class in org.jamesframework.core.util"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li>Next&nbsp;Class</li>
+<li><a href="../../../../org/jamesframework/core/util/SubsetIterator.html" title="class in org.jamesframework.core.util"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?org/jamesframework/core/util/SetUtilities.html" target="_top">Frames</a></li>
@@ -164,7 +164,18 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/util/SetUtilities.html#getRandomSubset-java.util.Set-int-java.util.Random-">getRandomSubset</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;? extends T&gt;&nbsp;set,
                int&nbsp;size,
                <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rg)</code>
-<div class="block">Selects a random subset of a specific size from a given set (uniformly distributed).</div>
+<div class="block">
+ Selects a random subset of a specific size from a given set (uniformly distributed).</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>static &lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;T&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/util/SetUtilities.html#getRandomSubset-java.util.Set-int-java.util.Random-java.util.Collection-">getRandomSubset</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;? extends T&gt;&nbsp;set,
+               int&nbsp;size,
+               <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rg,
+               <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;T&gt;&nbsp;subset)</code>
+<div class="block">
+ Selects a random subset of a specific size from a given set (uniformly distributed).</div>
 </td>
 </tr>
 </table>
@@ -229,6 +240,47 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </dl>
 </li>
 </ul>
+<a name="getRandomSubset-java.util.Set-int-java.util.Random-java.util.Collection-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getRandomSubset</h4>
+<pre>public static&nbsp;&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;T&gt;&nbsp;getRandomSubset(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;? extends T&gt;&nbsp;set,
+                                                int&nbsp;size,
+                                                <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rg,
+                                                <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;T&gt;&nbsp;subset)</pre>
+<div class="block"><p>
+ Selects a random subset of a specific size from a given set (uniformly distributed).
+ Applies a full scan algorithm that iterates once through the given set and selects each item with probability
+ (#remaining to select)/(#remaining to scan). It can be proven that this algorithm creates uniformly distributed
+ random subsets (for example, a proof is given <a href="http://eyalsch.wordpress.com/2010/04/01/random-sample">here</a>).
+ In the worst case, this algorithm has linear time complexity with respect to the size of the given set.
+ </p>
+ <p>
+ The items from the selected subset are added to the given collection <code>subset</code>. This collection is
+ <b>not</b> cleared so that already contained items will be retained. A reference to this same collection is
+ returned after it has been modified. To store the generated subset in a newly allocated <a href="http://docs.oracle.com/javase/7/docs/api/java/util/LinkedHashSet.html?is-external=true" title="class or interface in java.util"><code>LinkedHashSet</code></a>
+ the alternative method <a href="../../../../org/jamesframework/core/util/SetUtilities.html#getRandomSubset-java.util.Set-int-java.util.Random-"><code>getRandomSubset(Set, int, Random)</code></a> may also be used.
+ </p></div>
+<dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - type of elements in randomly selected subset</dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>set</code> - set from which a random subset is to be sampled</dd>
+<dd><code>size</code> - desired subset size, should be a number in [0,|set|]</dd>
+<dd><code>rg</code> - random generator</dd>
+<dd><code>subset</code> - collection to which the items from the selected subset are added</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>reference to given collection <code>subset</code> after it has been filled with the
+         items from the randomly generated subset</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if an invalid subset size outside [0,|set|] is specified</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="http://eyalsch.wordpress.com/2010/04/01/random-sample">http://eyalsch.wordpress.com/2010/04/01/random-sample</a></dd>
+</dl>
+</li>
+</ul>
 <a name="getRandomSubset-java.util.Set-int-java.util.Random-">
 <!--   -->
 </a>
@@ -238,11 +290,16 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <pre>public static&nbsp;&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;T&gt;&nbsp;getRandomSubset(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;? extends T&gt;&nbsp;set,
                                          int&nbsp;size,
                                          <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rg)</pre>
-<div class="block">Selects a random subset of a specific size from a given set (uniformly distributed). This implementation
- applies a full scan algorithm that iterates once through the given set and selects each item with probability
+<div class="block"><p>
+ Selects a random subset of a specific size from a given set (uniformly distributed).
+ Applies a full scan algorithm that iterates once through the given set and selects each item with probability
  (#remaining to select)/(#remaining to scan). It can be proven that this algorithm creates uniformly distributed
  random subsets (for example, a proof is given <a href="http://eyalsch.wordpress.com/2010/04/01/random-sample">here</a>).
- In the worst case, this algorithm has linear time complexity with respect to the size of the given set.</div>
+ In the worst case, this algorithm has linear time complexity with respect to the size of the given set.
+ </p>
+ <p>
+ The generated subset is stored in a newly allocated <a href="http://docs.oracle.com/javase/7/docs/api/java/util/LinkedHashSet.html?is-external=true" title="class or interface in java.util"><code>LinkedHashSet</code></a>.
+ </p></div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>T</code> - type of elements in randomly selected subset</dd>
@@ -251,7 +308,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dd><code>size</code> - desired subset size, should be a number in [0,|set|]</dd>
 <dd><code>rg</code> - random generator</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>random subset (uniformly distributed)</dd>
+<dd>random subset stored in a newly allocated <a href="http://docs.oracle.com/javase/7/docs/api/java/util/LinkedHashSet.html?is-external=true" title="class or interface in java.util"><code>LinkedHashSet</code></a>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if an invalid subset size outside [0,|set|] is specified</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
@@ -289,7 +346,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../org/jamesframework/core/util/RouletteSelector.html" title="class in org.jamesframework.core.util"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li>Next&nbsp;Class</li>
+<li><a href="../../../../org/jamesframework/core/util/SubsetIterator.html" title="class in org.jamesframework.core.util"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?org/jamesframework/core/util/SetUtilities.html" target="_top">Frames</a></li>

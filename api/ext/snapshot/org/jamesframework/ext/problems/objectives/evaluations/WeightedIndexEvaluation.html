@@ -166,7 +166,7 @@ implements <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesfr
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/ext/problems/objectives/evaluations/WeightedIndexEvaluation.html#addEvaluation-org.jamesframework.core.problems.objectives.Objective-org.jamesframework.core.problems.objectives.evaluations.Evaluation-double-">addEvaluation</a></span>(<a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/objectives/Objective.html?is-external=true" title="class or interface in org.jamesframework.core.problems.objectives">Objective</a>&nbsp;obj,
              <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/objectives/evaluations/Evaluation.html?is-external=true" title="class or interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;eval,
              double&nbsp;weight)</code>
-<div class="block">Add an evaluation produced by an objective and specify its weight.</div>
+<div class="block">Add an evaluation produced by an objective, specifying its weight.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -230,7 +230,7 @@ implements <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesfr
 <pre>public&nbsp;void&nbsp;addEvaluation(<a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/objectives/Objective.html?is-external=true" title="class or interface in org.jamesframework.core.problems.objectives">Objective</a>&nbsp;obj,
                           <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/objectives/evaluations/Evaluation.html?is-external=true" title="class or interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;eval,
                           double&nbsp;weight)</pre>
-<div class="block">Add an evaluation produced by an objective and specify its weight.</div>
+<div class="block">Add an evaluation produced by an objective, specifying its weight.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>obj</code> - objective</dd>
@@ -265,8 +265,8 @@ implements <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesfr
 <h4>getValue</h4>
 <pre>public&nbsp;double&nbsp;getValue()</pre>
 <div class="block">The value consist of the weighted sum of the values of all added evaluations.
- The result is cached so that it only needs to be computed when it is retrieved
- for the first time.</div>
+ The value is only guaranteed to be correct if the evaluation objects have not
+ been modified after they were added to this weighted index evaluation.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/objectives/evaluations/Evaluation.html?is-external=true#getValue--" title="class or interface in org.jamesframework.core.problems.objectives.evaluations">getValue</a></code>&nbsp;in interface&nbsp;<code><a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/objectives/evaluations/Evaluation.html?is-external=true" title="class or interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a></code></dd>
