@@ -64,9 +64,7 @@ public class PenalizedEvaluation implements Evaluation {
      */
     private void initMapOnce(){
         if(penalties == null){
-            // use custom initial capacity as map is expected to
-            // contain few items (in most cases only a single item)
-            penalties = new HashMap<>(1);
+            penalties = new HashMap<>();
         }
     }
     

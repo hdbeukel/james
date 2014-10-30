@@ -40,9 +40,7 @@ public class WeightedIndexEvaluation implements Evaluation {
      * Create an empty evaluation.
      */
     public WeightedIndexEvaluation() {
-        // set initial capacity to 4 instead of default of 16
-        // as it is unusual to include that many objectives
-        evaluations = new HashMap<>(4);
+        evaluations = new HashMap<>();
         weightedSum = 0.0;
     }
     

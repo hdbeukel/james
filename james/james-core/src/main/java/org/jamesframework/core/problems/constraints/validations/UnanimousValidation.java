@@ -47,9 +47,7 @@ public class UnanimousValidation implements Validation {
      */
     private void initMapOnce(){
         if(validations == null){
-            // use custom initial capacity as map is expected to
-            // contain few items (in most cases only a single item)
-            validations = new HashMap<>(1);
+            validations = new HashMap<>();
         }
     }
     
