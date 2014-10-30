@@ -199,10 +199,10 @@ extends <a href="../../../../../../org/jamesframework/core/subset/neigh/SubsetNe
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
 <div class="block">
- Generates the set of all possible moves that perform \(k\) additions, where \(k\) is the fixed number
+ Generates the list of all possible moves that perform \(k\) additions, where \(k\) is the fixed number
  specified at construction.</div>
 </td>
 </tr>
@@ -383,20 +383,20 @@ extends <a href="../../../../../../org/jamesframework/core/subset/neigh/SubsetNe
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getAllMoves</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a>&gt;&nbsp;getAllMoves(<a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a>&gt;&nbsp;getAllMoves(<a href="../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</pre>
 <div class="block"><p>
- Generates the set of all possible moves that perform \(k\) additions, where \(k\) is the fixed number
+ Generates the list of all possible moves that perform \(k\) additions, where \(k\) is the fixed number
  specified at construction. Note: taking into account the current number of unselected items, the imposed
  maximum subset size (if set) and the fixed IDs (if any) may result in fewer additions (as many as possible).
  </p>
  <p>
- May return an empty set if no moves can be generated.
+ May return an empty list if no moves can be generated.
  </p></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>solution</code> - solution for which all possible multi addition moves are generated</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>set of all multi addition moves, may be empty</dd>
+<dd>list of all multi addition moves, may be empty</dd>
 </dl>
 </li>
 </ul>

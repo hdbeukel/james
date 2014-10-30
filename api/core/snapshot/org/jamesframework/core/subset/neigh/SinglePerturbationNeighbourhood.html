@@ -197,7 +197,7 @@ extends <a href="../../../../../org/jamesframework/core/subset/neigh/SubsetNeigh
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
 <div class="block">Generate all valid swap, deletion and addition moves that transform the given subset solution into
  a neighbour within the minimum and maximum allowed subset size.</div>
@@ -348,16 +348,16 @@ extends <a href="../../../../../org/jamesframework/core/subset/neigh/SubsetNeigh
 <ul class="blockList">
 <li class="blockList">
 <h4>getAllMoves</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a>&gt;&nbsp;getAllMoves(<a href="../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a>&gt;&nbsp;getAllMoves(<a href="../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</pre>
 <div class="block">Generate all valid swap, deletion and addition moves that transform the given subset solution into
- a neighbour within the minimum and maximum allowed subset size. The returned set may be empty,
+ a neighbour within the minimum and maximum allowed subset size. The returned list may be empty,
  if no valid moves exist. If any fixed IDs have been specified, these will not be considered
  for deletion nor addition.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>solution</code> - solution for which a set of all valid moves is generated</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>set of all valid swap, deletion and addition moves</dd>
+<dd>list of all valid swap, deletion and addition moves</dd>
 </dl>
 </li>
 </ul>

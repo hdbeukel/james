@@ -479,9 +479,9 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;? extends <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="type parameter in Neighbourhood">SolutionType</a>&gt;&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;? extends <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="type parameter in Neighbourhood">SolutionType</a>&gt;&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">Neighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html#getAllMoves-SolutionType-">getAllMoves</a></span>(<a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="type parameter in Neighbourhood">SolutionType</a>&nbsp;solution)</code>
-<div class="block">Get a set of all moves that can be applied to the given solution to transform
+<div class="block">Get a list of all moves that can be applied to the given solution to transform
  it into each of the neighbouring solutions contained in this specific neighbourhood.</div>
 </td>
 </tr>
@@ -567,24 +567,30 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/moves/AbstractSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.moves">AbstractSubsetMove</a></span></code>
+<div class="block">Abstract subset move that contains general behaviour such as <a href="../../../../../../org/jamesframework/core/subset/neigh/moves/AbstractSubsetMove.html#equals-java.lang.Object-"><code>AbstractSubsetMove.equals(Object)</code></a> and <a href="../../../../../../org/jamesframework/core/subset/neigh/moves/AbstractSubsetMove.html#hashCode--"><code>AbstractSubsetMove.hashCode()</code></a>.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/moves/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh.moves">AdditionMove</a></span></code>
 <div class="block">Simple subset move that adds a single ID to the current selection.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/moves/DeletionMove.html" title="class in org.jamesframework.core.subset.neigh.moves">DeletionMove</a></span></code>
 <div class="block">Simple subset move that removes a single ID from the current selection.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.moves">GeneralSubsetMove</a></span></code>
 <div class="block">A general subset move may simultaneously add and/or remove
  several IDs to/from the current selection of a subset solution.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/moves/SwapMove.html" title="class in org.jamesframework.core.subset.neigh.moves">SwapMove</a></span></code>
 <div class="block">Simple subset move that removes a single ID from the current selection

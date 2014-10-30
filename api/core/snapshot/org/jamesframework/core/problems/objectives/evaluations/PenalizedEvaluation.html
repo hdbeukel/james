@@ -165,7 +165,7 @@ implements <a href="../../../../../../org/jamesframework/core/problems/objective
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html#addPenalizingValidation-java.lang.Object-org.jamesframework.core.problems.constraints.validations.PenalizingValidation-">addPenalizingValidation</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;key,
-                       <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints.validations">PenalizingValidation</a>&nbsp;penalty)</code>
+                       <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints.validations">PenalizingValidation</a>&nbsp;penalizingValidation)</code>
 <div class="block">Add a penalty expressed by a penalizing validation object.</div>
 </td>
 </tr>
@@ -184,7 +184,7 @@ implements <a href="../../../../../../org/jamesframework/core/problems/objective
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html#getValue--">getValue</a></span>()</code>
-<div class="block">Compute the penalized evaluation.</div>
+<div class="block">Get the penalized value.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
@@ -251,13 +251,13 @@ implements <a href="../../../../../../org/jamesframework/core/problems/objective
 <li class="blockList">
 <h4>addPenalizingValidation</h4>
 <pre>public&nbsp;void&nbsp;addPenalizingValidation(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;key,
-                                    <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints.validations">PenalizingValidation</a>&nbsp;penalty)</pre>
+                                    <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints.validations">PenalizingValidation</a>&nbsp;penalizingValidation)</pre>
 <div class="block">Add a penalty expressed by a penalizing validation object. A key is
  required that can be used to retrieve the validation object later.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>key</code> - key used to retrieve the validation object later</dd>
-<dd><code>penalty</code> - penalizing validation that indicates the assigned penalty</dd>
+<dd><code>penalizingValidation</code> - penalizing validation that indicates the assigned penalty</dd>
 </dl>
 </li>
 </ul>
@@ -300,8 +300,9 @@ implements <a href="../../../../../../org/jamesframework/core/problems/objective
 <li class="blockList">
 <h4>getValue</h4>
 <pre>public&nbsp;double&nbsp;getValue()</pre>
-<div class="block">Compute the penalized evaluation. The result is cached so that it only needs
- to be computed when it is retrieved for the first time.</div>
+<div class="block">Get the penalized value. The returned value is only guaranteed to be correct if
+ the original evaluation and penalizing validation objects have not been modified
+ after they were added to this penalized evaluation.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html#getValue--">getValue</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a></code></dd>
