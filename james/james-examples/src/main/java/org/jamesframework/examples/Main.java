@@ -58,7 +58,8 @@ public class Main {
         System.out.println("A core selection problem where the average distance of each selected item \n"
                          + "to the closest other selected item is maximized. This objective produces \n"
                          + "a custom evaluation object that tracks metadata used for efficient delta \n"
-                         + "evaluation. The random descent algorithm is applied to optimize the core.");
+                         + "evaluation. The random descent and parallel tempering algorithms are applied \n"
+                         + "to optimize the core.");
         System.out.println("");
         System.out.println("Usage:");
         System.out.println("");
@@ -79,8 +80,8 @@ public class Main {
         System.out.println("Example 3: the maximum clique problem");
         System.out.println("-------------------------------------");
         System.out.println("");
-        System.out.println("Random descent and variable neighbourhood search are applied to find a clique\n"
-                         + "of maximum size in a given graph.");
+        System.out.println("A random descent and variable neighbourhood search are applied to find a \n"
+                         + "maximum clique in a given graph, using a custom greedy neighbourhood.");
         System.out.println("");
         System.out.println("Usage:");
         System.out.println("");

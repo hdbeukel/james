@@ -16,10 +16,13 @@
 
 package org.jamesframework.examples.coresubset3;
 
-import org.jamesframework.examples.coresubset2.*;
 import java.io.FileNotFoundException;
+import java.text.DecimalFormat;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import org.jamesframework.core.problems.objectives.evaluations.Evaluation;
+import org.jamesframework.core.search.LocalSearch;
+import org.jamesframework.core.search.algo.ParallelTempering;
 import org.jamesframework.core.subset.SubsetProblem;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.algo.RandomDescent;
@@ -74,48 +77,119 @@ public class CoreSubset3 {
             
             CoreSubsetData data = new CoreSubsetFileReader().read(filePath);
         
-            /**********************/
-            /* SAMPLE CORE SUBSET */
-            /**********************/
-
             System.out.println("# SAMPLING CORE SUBSET");
 
             System.out.println("Dataset size: " + data.getIDs().size());
             System.out.println("Subset size: " + subsetSize);
             System.out.println("Time limit: " + timeLimit + " seconds");
-
+            
+            /**********************/
+            /* INITIALIZE PROBLEM */
+            /**********************/
+            
             // create objective
             EntryToNearestEntryObjective obj = new EntryToNearestEntryObjective();
             // create subset problem
             SubsetProblem<CoreSubsetData> problem = new SubsetProblem<>(obj, data, subsetSize);
+            
+            /******************/
+            /* RANDOM DESCENT */
+            /******************/
 
+            System.out.println("# RANDOM DESCENT");
+            
             // create random descent search with single swap neighbourhood
-            RandomDescent<SubsetSolution> search = new RandomDescent<>(problem, new SingleSwapNeighbourhood());
+            LocalSearch<SubsetSolution> randomDescent = new RandomDescent<>(problem, new SingleSwapNeighbourhood());
             // set maximum runtime
-            search.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
+            randomDescent.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
             // attach listener
-            search.addSearchListener(new ProgressSearchListener());
+            randomDescent.addSearchListener(new ProgressSearchListener());
 
             // start search
-            search.start();
-
-            // print best solution and evaluation
-            if(search.getBestSolution() != null){
+            randomDescent.start();
+            
+            // print results
+            Evaluation randomDescentBestEval = null;
+            if(randomDescent.getBestSolution() != null){
                 System.out.println("Best solution (IDs): "
-                                        + search.getBestSolution().getSelectedIDs());
+                                        + randomDescent.getBestSolution().getSelectedIDs());
                 System.out.println("Best solution (names): "
-                                        + search.getBestSolution().getSelectedIDs()
+                                        + randomDescent.getBestSolution().getSelectedIDs()
                                                                   .stream()
                                                                   .map(data::getName)
                                                                   .collect(Collectors.toSet()));
+                randomDescentBestEval = randomDescent.getBestSolutionEvaluation();
                 System.out.println("Best solution evaluation: "
-                                        + search.getBestSolutionEvaluation());
+                                        + randomDescentBestEval);
             } else {
                 System.out.println("No valid solution found...");
             }
 
-            // dispose search
-            search.dispose();
+            // dispose
+            randomDescent.dispose();
+            
+            /**********************/
+            /* PARALLEL TEMPERING */
+            /**********************/
+            
+            System.out.println("# PARALLEL TEMPERING");
+            
+            // create parallel tempering search with single swap neighbourhood
+            double minTemp = 0.00001;
+            double maxTemp = 0.01;
+            LocalSearch<SubsetSolution> parallelTempering = new ParallelTempering<>(problem,
+                                                                        new SingleSwapNeighbourhood(),
+                                                                        10, minTemp, maxTemp);
+            // set maximum runtime
+            parallelTempering.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
+            // attach listener
+            parallelTempering.addSearchListener(new ProgressSearchListener());
+
+            // start search
+            parallelTempering.start();
+            
+            // print results
+            Evaluation ptBestEval = null;
+            if(parallelTempering.getBestSolution() != null){
+                System.out.println("Best solution (IDs): "
+                                        + parallelTempering.getBestSolution().getSelectedIDs());
+                System.out.println("Best solution (names): "
+                                        + parallelTempering.getBestSolution().getSelectedIDs()
+                                                                  .stream()
+                                                                  .map(data::getName)
+                                                                  .collect(Collectors.toSet()));
+                ptBestEval = parallelTempering.getBestSolutionEvaluation();
+                System.out.println("Best solution evaluation: "
+                                        + ptBestEval);
+            } else {
+                System.out.println("No valid solution found...");
+            }
+
+            // dispose
+            parallelTempering.dispose();
+            
+            /***********/
+            /* SUMMARY */
+            /***********/
+
+            System.out.println("---------------------------------------");
+            System.out.println("Summary:");
+            System.out.println("---------------------------------------");
+
+            System.out.println("Dataset size: " + data.getIDs().size());
+            System.out.println("Subset size: " + subsetSize);
+            System.out.println("Time limit: " + timeLimit + " seconds");
+            System.out.println("---------------------------------------");
+
+            DecimalFormat df = new DecimalFormat("0.000");
+            System.out.format("%20s    %13s \n", "", "Best solution");
+            System.out.format("%20s    %13s \n",
+                                "Random descent:",
+                                randomDescentBestEval != null ? df.format(randomDescentBestEval.getValue()) : "-");
+            System.out.format("%20s    %13s \n",
+                                "Parallel tempering:",
+                                ptBestEval != null ? df.format(ptBestEval.getValue()) : "-");
+            System.out.println("---------------------------------------");
             
         } catch (FileNotFoundException ex) {
             System.err.println("Failed to read file: " + filePath);

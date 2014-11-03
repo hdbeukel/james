@@ -59,12 +59,16 @@ public class EntryToNearestEntryEvaluation implements Evaluation {
     }
     
     // remove item
-    public void remove(int itemID){
-        // update minimum distance sum
-        minDistSum -= minDistMap.get(itemID);
-        // update metadata
-        closestItemMap.remove(itemID);
-        minDistMap.remove(itemID);
+    public boolean remove(int itemID){
+        if(closestItemMap.containsKey(itemID)){
+            // update minimum distance sum
+            minDistSum -= minDistMap.get(itemID);
+            // update metadata
+            closestItemMap.remove(itemID);
+            minDistMap.remove(itemID);
+            return true;
+        }
+        return false;
     }
     
     // update closest item
@@ -77,14 +81,9 @@ public class EntryToNearestEntryEvaluation implements Evaluation {
         minDistMap.put(itemID, distance);
     }
     
-    // get closest item
-    public int getClosest(int itemID){
+    // get closest item (null of no closest item registered)
+    public Integer getClosest(int itemID){
         return closestItemMap.get(itemID);
-    }
-    
-    // get the distance to the closest other selected item
-    public double getDistanceToClosest(int itemID){
-        return minDistMap.get(itemID);
     }
 
     // return average distance from each item to closest item; 0.0 if no distances
