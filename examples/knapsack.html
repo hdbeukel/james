@@ -309,27 +309,13 @@ randomDescent.dispose();
         Parallel tempering
     </h5>
     <p>
-        The parallel tempering algorithm concurrently runs several <a href="/docs/#metropolis-search">Metropolis searches</a>
-        with different temperatures where higher temperatures yield higher probabilities to accept inferior moves.
-        Solutions are shifted between subsearches, based on their quality, to obtain a balance between convergence and freedom to
-        escape from local optima.
-        The parallel tempering algorithm is somewhat similar to simulated annealing but takes advantage of multi-core CPUs.
+        The basic random descent search may easily get stuck in a local optimum.
+        Advanced searches, such as the <a href="/docs/#parallel-tempering">parallel tempering</a> algorithm,
+        provide ways to escape from such local optima so that they can find better solutions. Parallel tempering
+        has three parameters: the number of concurrently executed
+        <a href="/docs/#metropolis-search">Metropolis searches</a> and the minimum and maximum temperature.
+        Especially the temperature bounds should be carefully chosen.
     </p>
-    <p>
-        When applying parallel tempering,
-        the number of Metropolis replicas and the minimum and maximum temperature are specified. It is important
-        to set appropriate temperatures, taking into account the scale of the objective function. For example, whether a temperature
-        of 0.001 is considered high or low strongly depends on whether evaluations range from e.g. zero to one or from ten thousand
-        up to a hundred thousand.
-    </p>
-    <div class="bs-callout bs-callout-info">
-        <h4>
-            <i class="fa fa-lightbulb-o"></i>
-            Temperature range
-        </h4>
-        To find an appropriate temperature range to be used for parallel tempering it might help to experiment with individual Metropolis
-        searches with different fixed temperatures.
-    </div>
 <pre class="prettyprint">
 // create parallel tempering with single perturbation neighbourhood
 double minTemp = 0.001;
@@ -342,8 +328,15 @@ ParallelTempering&lt;SubsetSolution&gt; parallelTempering = new ParallelTemperin
                                                                 );
 </pre>
     <p>
-        For the knapsack problem the scale of the evaluations highly depends on the scale of the profits assigned to the items.
+        For parallel tempering it is important to take into account the scale of the objective function
+        when setting the minimum and maximum temperature, as the probability to accept an inferior move
+        depends on the temperature and the difference in evaluation (delta). If large deltas are common,
+        the temperatures should be increased. Else, almost no inferior moves will ever be accepted.
+    </p>
+    <p>
+        In this example, the scale of the evaluations highly depends on the scale of the profits assigned to the items.
         Therefore all temperatures are scaled accordingly by multiplying them with the average profit of all knapsack items.
+        Alternatively, we could have normalized all profits to values in [0,1].
     </p>
 <pre class="prettyprint">
 // scale temperatures according to average profit of knapsack items
