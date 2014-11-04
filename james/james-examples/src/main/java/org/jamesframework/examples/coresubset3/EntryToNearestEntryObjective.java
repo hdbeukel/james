@@ -126,7 +126,8 @@ public class EntryToNearestEntryObjective implements Objective<SubsetSolution, C
                     // case 2B: current closest item retained; only check if any newly
                     //          added item is closer
                     Integer closestAddedItem = findClosest(item, added, data);
-                    if(data.getDistance(item, closestAddedItem) < data.getDistance(item, curClosest)){
+                    if(closestAddedItem != null
+                            && data.getDistance(item, closestAddedItem) < data.getDistance(item, curClosest)){
                         // update closest item
                         newEval.update(item, closestAddedItem, data.getDistance(item, closestAddedItem));
                     }
