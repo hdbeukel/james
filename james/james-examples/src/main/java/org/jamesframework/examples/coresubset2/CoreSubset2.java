@@ -45,9 +45,9 @@ public class CoreSubset2 {
      * @param args array containing the input file path, subset size and runtime limit
      */
     public static void main(String[] args) {
-        System.out.println("#########################################################");
-        System.out.println("# CORE SUBSET SELECTION WITH EFFICIENT DELTA EVALUATION #");
-        System.out.println("#########################################################");
+        System.out.println("#############################");
+        System.out.println("# CORE SUBSET SELECTION (2) #");
+        System.out.println("#############################");
         // parse arguments
         if(args.length != 3){
             System.err.println("Usage: java -cp james-examples.jar org.jamesframework.examples.coresubset2.CoreSubset2 <inputfile> <subsetsize> <runtime>");

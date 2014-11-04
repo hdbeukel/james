@@ -40,24 +40,22 @@ public class Main {
         System.out.println("");
         System.out.println("java -cp james-examples.jar org.jamesframework.examples.coresubset.CoreSubset <inputfile> <subsetsize> <runtime>");
         System.out.println("");
-        System.out.println("Example 1B: core subset selection with efficient delta evaluation");
-        System.out.println("-----------------------------------------------------------------");
+        System.out.println("Example 1B: core subset selection (2)");
+        System.out.println("-------------------------------------");
         System.out.println("");
         System.out.println("Same problem and algorithm as for example 1, where the objective \n"
-                         + "has been extended to include an efficient delta evaluation. Should give \n"
-                         + "the same results as example 1 with the advantage that more search steps \n"
-                         + "can be performed in the same amount of time.");
+                         + "has been extended to include an efficient delta evaluation.");
         System.out.println("");
         System.out.println("Usage:");
         System.out.println("");
         System.out.println("java -cp james-examples.jar org.jamesframework.examples.coresubset2.CoreSubset2 <inputfile> <subsetsize> <runtime>");
         System.out.println("");
-        System.out.println("Example 1C: core subset selection with a different objective function");
-        System.out.println("---------------------------------------------------------------------");
+        System.out.println("Example 1C: core subset selection (3)");
+        System.out.println("-------------------------------------");
         System.out.println("");
         System.out.println("A core selection problem where the average distance of each selected item \n"
                          + "to the closest other selected item is maximized. This objective produces \n"
-                         + "a custom evaluation object that tracks metadata used for efficient delta \n"
+                         + "custom evaluation objects that track metadata used for efficient delta \n"
                          + "evaluation. The random descent and parallel tempering algorithms are applied \n"
                          + "to optimize the core.");
         System.out.println("");

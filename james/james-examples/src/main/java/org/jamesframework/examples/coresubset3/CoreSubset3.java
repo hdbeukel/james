@@ -50,9 +50,9 @@ public class CoreSubset3 {
      * @param args array containing the input file path, subset size and runtime limit
      */
     public static void main(String[] args) {
-        System.out.println("###########################################################");
-        System.out.println("# CORE SUBSET SELECTION WITH DIFFERENT OBJECTIVE FUNCTION #");
-        System.out.println("###########################################################");
+        System.out.println("#############################");
+        System.out.println("# CORE SUBSET SELECTION (3) #");
+        System.out.println("#############################");
         // parse arguments
         if(args.length != 3){
             System.err.println("Usage: java -cp james-examples.jar org.jamesframework.examples.coresubset3.CoreSubset3 <inputfile> <subsetsize> <runtime>");
