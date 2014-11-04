@@ -87,7 +87,8 @@ public class EntryToNearestEntryObjective implements Objective&lt;SubsetSolution
         Efficient delta evaluation
     </h4>
     <p>
-        We might also want to include an efficient delta evaluation (see <a href="/examples/coresubset2/">example 1B</a>) to speed up applied neighbourhood searches.
+        We might also want to include an efficient delta evaluation (see <a href="/examples/coresubset2/#delta-eval">example 1B</a>)
+        to speed up applied neighbourhood searches.
     </p>
 <pre class="prettyprint">
 public Evaluation evaluate(Move move, SubsetSolution curSolution, Evaluation curEvaluation, CoreSubsetData data){
@@ -182,7 +183,9 @@ public class EntryToNearestEntryEvaluation implements Evaluation {
     <p>
         Now we can modify the objective to use this custom evaluation type and provide an efficient delta evaluation. The received
         evaluation of the current solution is cast to an <code>EntryToNearestEntryEvaluation</code> so that we can access
-        and update the metadata. This cast can not fail as both evaluation methods (full and delta) return an evaluation of this type.
+        and update the metadata. This cast can not fail as both <code>evaluate(...)</code> methods (full and delta) return an evaluation of this type.
+        If an item's closest neighbour is not removed from the selection it suffices to check whether any of the added items is even closer.
+        Of course, this is much more efficient as compared to rescanning the entire new selection to find each item's closest neighbour.
     </p>
 <pre class="prettyprint">
 public class EntryToNearestEntryObjective implements Objective&lt;SubsetSolution, CoreSubsetData&gt;{
@@ -265,7 +268,8 @@ public class EntryToNearestEntryObjective implements Objective&lt;SubsetSolution
                     // case 2B: current closest item retained; only check if any newly
                     //          added item is closer
                     Integer closestAddedItem = findClosest(item, added, data);
-                    if(data.getDistance(item, closestAddedItem) &lt; data.getDistance(item, curClosest)){
+                    if(closestAddedItem != null
+                        &amp;&amp; data.getDistance(item, closestAddedItem) &lt; data.getDistance(item, curClosest)){
                         // update closest item
                         newEval.update(item, closestAddedItem, data.getDistance(item, closestAddedItem));
                     }
@@ -283,6 +287,90 @@ public class EntryToNearestEntryObjective implements Objective&lt;SubsetSolution
 }
 </pre>
         
+    <h4 class="page-header">
+        Selecting a core subset
+    </h4>
+    <p>
+        As in <a href="/examples/coresubset/#select-core">example 1</a> we can easily apply a basic random descent search to select a core,
+        using the predefined <code>SingleSwapNeighbourhood</code>. The only difference is the objective function.
+    </p>
+<pre class="prettyprint">
+// set name array and distance matrix (e.g. read from a file)
+String[] names = ...
+double[][] dist = ...
+// create data object
+CoreSubsetData data = new CoreSubsetData(names, dist);
+// create objective
+EntryToNearestEntryObjective obj = new EntryToNearestEntryObjective();
+
+// combine data and objective in a subset problem, specify desired subset size
+int subsetSize = ...
+SubsetProblem&lt;CoreSubsetData&gt; problem = new SubsetProblem&lt;&gt;(obj, data, subsetSize);
+
+// create random descent search with single swap neighbourhood
+RandomDescent&lt;SubsetSolution&gt; search = new RandomDescent&lt;&gt;(problem, new SingleSwapNeighbourhood());
+// set maximum runtime (in seconds)
+long timeLimit = ...
+search.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
+// attach listener (see example 1)
+parallelTempering.addSearchListener(new ProgressSearchListener());
+
+// start search
+search.start();
+
+// print best solution and evaluation
+System.out.println("Best solution (IDs): " + search.getBestSolution().getSelectedIDs());
+System.out.println("Best solution (names): " + search.getBestSolution().getSelectedIDs()
+                                                                       .stream()
+                                                                       .map(data::getName)
+                                                                       .collect(Collectors.toSet()));
+System.out.println("Best solution evaluation: " + search.getBestSolutionEvaluation());
+
+// dispose search
+search.dispose();
+</pre>
+    <p>
+        However, you may notice that subsequent runs of this algorithm tend to give different results of varying quality. This means that
+        the search gets stuck in different local optima so that it would be appropriate to apply a more advanced algorithm, as this objective
+        function seems to be harder to optimize than the average pairwise distance objective from <a href="/examples/coresubset/#objective">example 1</a>.
+    </p>
+    <p>
+        An example of such advanced method is the <a href="/docs/#parallel-tempering">parallel tempering</a> algorithm,
+        which concurrently runs several <a href="/docs/#metropolis-search">Metropolis searches</a>
+        with different temperatures where higher temperatures yield higher probabilities to accept inferior moves.
+        Solutions are shifted between subsearches, based on their quality, to obtain a balance between convergence and freedom to
+        escape from local optima.
+        The parallel tempering algorithm is somewhat similar to simulated annealing but takes advantage of multi-core CPUs.
+    </p>
+    <p>
+        When applying parallel tempering,
+        the number of Metropolis replicas and the minimum and maximum temperature are specified. It is important
+        to set appropriate temperatures, taking into account the scale of the objective function. For example, whether a temperature
+        of 0.001 is considered high or low strongly depends on whether evaluations range from e.g. zero to one (as is the case here)
+        or from e.g. ten thousand up to a hundred thousand.
+    </p>
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-lightbulb-o"></i>
+            Temperature range
+        </h4>
+        To find an appropriate temperature range to be used for parallel tempering it might help to experiment with individual Metropolis
+        searches with different fixed temperatures.
+    </div>
+<pre class="prettyprint">
+// create parallel tempering search with single swap neighbourhood
+double minTemp = 0.00001;
+double maxTemp = 0.01;
+ParallelTempering&lt;SubsetSolution&gt; search = new ParallelTempering&lt;&gt;(problem,
+                                                                   new SingleSwapNeighbourhood(),
+                                                                   10, minTemp, maxTemp);
+// same as before ...
+</pre>
+    <p>
+        If you run this example you will notice that applying parallel tempering gives better (and stable) results as compared to the basic random descent
+        algorithm when optimizing this specific objective function. 
+    </p>
+    
     <h4 class="page-header">
         Full source code
     </h4>
