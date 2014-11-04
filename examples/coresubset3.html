@@ -1,0 +1,325 @@
+---
+layout: default
+---
+
+<div id="examples-coresubset">
+    <ol class="breadcrumb">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/examples">Examples</a></li>
+        <li class="active">Core subset selection (3)</li>
+    </ol>
+    
+    <h2 class="page-header">
+        Example 1B: Core subset selection (3)
+    </h2>
+    
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-info-circle"></i>
+            Info
+        </h4>
+        The random descent and parallel tempering algorithms are applied to sample a good core subset. Don't know what random descent is?
+        Read <a href="/docs/#random-descent">this</a>. Never heard about parallel tempering? Read <a href="/docs/#parallel-tempering">this</a>.
+    </div>
+    <p>
+        This example demonstrates the implementation of a core subset selection problem
+        (see <a href="/examples/coresubset/">example 1</a> and <a href="/examples/coresubset2/">example 1B</a>) with a different objective: maximize the
+        average distance of each selected item to the <em>closest</em> other selected item (instead of the average distance between <em>all</em> pairs).
+        To be able to provide an efficient delta evaluation, the objective generates custom evaluation objects that store additional
+        metadata. Both a basic random descent as well as an advanced parallel tempering algorithm are applied to optimize the core.
+    </p>
+    
+    <h4 class="page-header">
+        Defining the objective
+    </h4>
+    <p>
+        To evaluate a subset we iterate over all selected items and find the closest other selected item to compute the average <em>entry-to-nearest-entry</em> distance. This value is to be maximized.
+    </p>
+<pre class="prettyprint">
+public class EntryToNearestEntryObjective implements Objective&lt;SubsetSolution, CoreSubsetData&gt;{
+
+    public Evaluation evaluate(SubsetSolution solution, CoreSubsetData data) {
+        double value = 0.0;
+        if(solution.getNumSelectedIDs() &gt;= 2){
+            // sum distances to closest other selected item
+            int numDist = 0;
+            double sumDist = 0.0;
+            Set&lt;Integer&gt; selected = solution.getSelectedIDs();
+            for(int sel : selected){
+                // find closest other selected item
+                int closestOther = findClosest(sel, selected, data);
+                // add distance to sum
+                sumDist += data.getDistance(sel, closestOther);
+                numDist++;
+            }
+            // divide by number of distances
+            value = sumDist/numDist;
+        }
+        return new SimpleEvaluation(value);
+    }
+    
+    // finds the item in the given collection that is closest to the given item;
+    // null if the collection does not contain any items different from the given item
+    private Integer findClosest(int item, Collection&lt;Integer&gt; group, CoreSubsetData data){
+        double dist;
+        Double minDist = null;
+        Integer closestOther = null;
+        for(int other : group){
+            if(other != item){
+                dist = data.getDistance(item, other);
+                if(minDist == null || dist &lt; minDist){
+                    minDist = dist;
+                    closestOther = other;
+                }
+            }
+        }
+        return closestOther;
+    }
+
+    public boolean isMinimizing() {
+        return false;
+    }
+
+}
+</pre>
+
+    <h4 class="page-header">
+        Efficient delta evaluation
+    </h4>
+    <p>
+        We might also want to include an efficient delta evaluation (see <a href="/examples/coresubset2/">example 1B</a>) to speed up applied neighbourhood searches.
+    </p>
+<pre class="prettyprint">
+public Evaluation evaluate(Move move, SubsetSolution curSolution, Evaluation curEvaluation, CoreSubsetData data){
+    // provide efficient delta evaluation here ...
+}
+</pre>
+    <p>
+        However, for this objective, it is not possible to efficiently compute the modified evaluation when only the current solution, its evaluation (value) and the applied move are available.
+        The full evaluation from above finds the closest other selected item for each item in the selection, but this information is lost when
+        returning the average of the respective distances wrapped in a <code>SimpleEvaluation</code>.
+        If we keep track of this metadata, it can be efficiently updated
+        when performing a delta evaluation. The new average <em>entry-to-nearest-entry</em> distance is then inferred from the updated metadata.
+    </p>
+    <p>
+        With this approach in mind we create a custom evaluation object that implements the <code>Evaluation</code> interface.
+        It keeps track of the closest neighbour of each item in the selection. The only required method <code>getValue()</code> 
+        returns the average <em>entry-to-nearest-entry</em> distance which is updated whenever the metadata changes.
+    </p>
+<pre class="prettyprint">
+public class EntryToNearestEntryEvaluation implements Evaluation {
+
+    // maps items to closest other items (IDs)
+    private Map&lt;Integer, Integer&gt; closestItemMap;
+    // maps items to distance to respective closest item
+    private Map&lt;Integer, Double&gt; minDistMap;
+    
+    // sum of distances from items to respective closest items
+    private double minDistSum;
+
+    public EntryToNearestEntryEvaluation() {
+        closestItemMap = new HashMap&lt;&gt;();
+        minDistMap = new HashMap&lt;&gt;();
+        minDistSum = 0.0;
+    }
+    
+    // deep copy constructor
+    public EntryToNearestEntryEvaluation(EntryToNearestEntryEvaluation toCopy){
+        closestItemMap = new HashMap&lt;&gt;(toCopy.closestItemMap);
+        minDistMap = new HashMap&lt;&gt;(toCopy.minDistMap);
+        minDistSum = toCopy.minDistSum;
+    }
+    
+    // add item
+    public void add(int itemID, int closestOtherItemID, double distance){
+        // update minimum distance sum
+        minDistSum += distance;
+        // update metadata
+        closestItemMap.put(itemID, closestOtherItemID);
+        minDistMap.put(itemID, distance);
+    }
+    
+    // remove item
+    public boolean remove(int itemID){
+        if(closestItemMap.containsKey(itemID)){
+            // update minimum distance sum
+            minDistSum -= minDistMap.get(itemID);
+            // update metadata
+            closestItemMap.remove(itemID);
+            minDistMap.remove(itemID);
+            return true;
+        }
+        return false;
+    }
+    
+    // update closest item
+    public void update(int itemID, int closestOtherItemID, double distance){
+        // update minimum distance sum
+        minDistSum -= minDistMap.get(itemID);
+        minDistSum += distance;
+        // update metadata
+        closestItemMap.put(itemID, closestOtherItemID);
+        minDistMap.put(itemID, distance);
+    }
+    
+    // get closest item (null of no closest item registered)
+    public Integer getClosest(int itemID){
+        return closestItemMap.get(itemID);
+    }
+
+    // return average distance from each item to closest item; 0.0 if no distances
+    public double getValue() {
+        int numDistances = minDistMap.size();
+        if(numDistances > 0){
+            return minDistSum/numDistances;
+        } else {
+            return 0.0;
+        }
+    }
+    
+}
+</pre>
+    <p>
+        Now we can modify the objective to use this custom evaluation type and provide an efficient delta evaluation. The received
+        evaluation of the current solution is cast to an <code>EntryToNearestEntryEvaluation</code> so that we can access
+        and update the metadata. This cast can not fail as both evaluation methods (full and delta) return an evaluation of this type.
+    </p>
+<pre class="prettyprint">
+public class EntryToNearestEntryObjective implements Objective&lt;SubsetSolution, CoreSubsetData&gt;{
+
+    public Evaluation evaluate(SubsetSolution solution, CoreSubsetData data) {
+        // initialize evaluation object
+        EntryToNearestEntryEvaluation eval = new EntryToNearestEntryEvaluation();
+        // find closest neighbour of each item in the selection
+        Set&lt;Integer&gt; selected = solution.getSelectedIDs();
+        for(int sel : selected){
+            // find closest other selected item
+            Integer closestOther = findClosest(sel, selected, data);
+            // register closest item in evaluation object (if any)
+            if(closestOther != null){
+                eval.add(sel, closestOther, data.getDistance(sel, closestOther));
+            }
+        }
+        return eval;
+    }
+    
+    // finds the item in the given collection that is closest to the given item;
+    // null if the collection does not contain any items different from the given item
+    private Integer findClosest(int item, Collection&lt;Integer&gt; group, CoreSubsetData data){
+        // same as before ...
+    }
+    
+    public Evaluation evaluate(Move move, SubsetSolution curSolution, Evaluation curEvaluation, CoreSubsetData data){
+        // check move type
+        if(!(move instanceof SubsetMove)){
+            throw new IncompatibleDeltaEvaluationException("Entry to nearest entry objective should be used in "
+                                     + "combination with neighbourhoods that generate moves of type SubsetMove.");
+        }
+        // cast move
+        SubsetMove subsetMove = (SubsetMove) move;
+        
+        // cast evaluation (cannot fail as both evaluate methods return such evaluation object)
+        EntryToNearestEntryEvaluation eval = (EntryToNearestEntryEvaluation) curEvaluation;
+        // copy to initialize new evaluation
+        EntryToNearestEntryEvaluation newEval = new EntryToNearestEntryEvaluation(eval);
+        
+        // get added and deleted IDs from move
+        Set&lt;Integer&gt; added = subsetMove.getAddedIDs();
+        Set&lt;Integer&gt; deleted = subsetMove.getDeletedIDs();
+        // get current selection from solution
+        Set&lt;Integer&gt; curSelection = curSolution.getSelectedIDs();
+        // infer new selection
+        List&lt;Integer&gt; newSelection = new ArrayList&lt;&gt;(curSelection);
+        newSelection.addAll(added);
+        newSelection.removeAll(deleted);
+
+        // discard contribution of removed items
+        for(int item : deleted){
+            newEval.remove(item);
+        }
+        
+        // update closest items in new selection
+        for(int item : newSelection){
+            Integer curClosest = newEval.getClosest(item);
+            if(curClosest == null){
+                // case 1: previously unselected or no closest item set (less than two items selected);
+                //         search for closest item in new selection
+                Integer newClosest = findClosest(item, newSelection, data);
+                // register, if any
+                if(newClosest != null){
+                    newEval.add(item, newClosest, data.getDistance(item, newClosest));
+                }
+            } else {
+                // case 2: current closest item needs to be updated
+                if(deleted.contains(curClosest)){
+                    // case 2A: current closest item removed, rescan entire new selection
+                    Integer newClosest = findClosest(item, newSelection, data);
+                    // update, if any
+                    if(newClosest != null){
+                        newEval.update(item, newClosest, data.getDistance(item, newClosest));
+                    } else {
+                        // no closest item left (less than two items selected); discard
+                        newEval.remove(item);
+                    }
+                } else {
+                    // case 2B: current closest item retained; only check if any newly
+                    //          added item is closer
+                    Integer closestAddedItem = findClosest(item, added, data);
+                    if(data.getDistance(item, closestAddedItem) &lt; data.getDistance(item, curClosest)){
+                        // update closest item
+                        newEval.update(item, closestAddedItem, data.getDistance(item, closestAddedItem));
+                    }
+                }
+            }
+        }
+        
+        return newEval;
+    }
+
+    public boolean isMinimizing() {
+        return false;
+    }
+
+}
+</pre>
+        
+    <h4 class="page-header">
+        Full source code
+    </h4>
+    <p>
+        The complete source code of this example is available on
+        <a href="https://github.com/hdbeukel/james/tree/v{{site.examples-latest-stable}}/james/james-examples/src/main/java/org/jamesframework/examples/coresubset3">GitHub</a>,
+        including some additional code to read the input from a CSV file.
+        You can also download a <a href="/getstarted/#releases-examples">ZIP file</a> that contains the Java sources of all examples, a compiled
+        JAR (including all dependencies) as well as some input files for in case you want to run any of the examples. To run this example, execute
+    </p>
+<pre class="prettyprint">
+$ java -cp james-examples.jar org.jamesframework.examples.coresubset3.CoreSubset3 &lt;inputfile&gt; &lt;subsetsize&gt; &lt;runtime&gt;
+</pre>
+    </p>
+        from the command line. The input file should be a CSV file in which the first row contains N item names and the subsequent N rows
+        specify an N &times; N distance matrix. The runtime is given in seconds.
+    </p>
+    <p>
+        <a href="/files/examples/coresubset.csv"><i class="fa fa-file-text-o"></i> Example input file (100 items)</a>
+    </p>
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
