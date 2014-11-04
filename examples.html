@@ -47,8 +47,10 @@ layout: default
                 </span>
             </h4>
             <p class="lead">
-                Basic fixed size subset selection. Optimization algorithm: random descent with a predefined
-                subset neighbourhood (single swap).
+                Basic fixed size subset selection.
+                <span class="algo">
+                    Algorithm: random descent with a predefined subset neighbourhood (single swap).
+                </span>
             </p>
             <p>
                 The core subset selection problem originates from the field of crop science. Given a large collection
@@ -72,7 +74,7 @@ layout: default
             </p>
             
             <h4 class="page-header example-header">
-                Example 1B: Core selection with an efficient delta evaluation
+                Example 1B: Core subset selection (2)
                 <span class="hidden-xs">
                     <span class="pull-right label label-warning">
                         Difficulty:
@@ -85,8 +87,10 @@ layout: default
                 </span>
             </h4>
             <p class="lead">
-                Core subset selection with an optimized objective function that performs
-                efficient delta evaluations when applying moves to the current solution.
+                Efficient delta evaluation in neighbourhood searches.
+                <span class="algo">
+                    Algorithm: random descent with a predefined subset neighbourhood (single swap).
+                </span>
             </p>
             <p>
                 When a neighbourhood search evaluates a neighbour of the current solution, both solutions are usually
@@ -105,7 +109,7 @@ layout: default
             </p>
             
             <h4 class="page-header example-header">
-                Example 1C: Core selection with a different objective function
+                Example 1C: Core subset selection (3)
                 <span class="hidden-xs">
                     <span class="pull-right label label-warning">
                         Difficulty:
@@ -118,14 +122,22 @@ layout: default
                 </span>
             </h4>
             <p class="lead">
-                [HERE COMES LEAD TEXT]. Optimization algorithm: random descent with a predefined
-                subset neighbourhood (single swap).
+                Custom evaluation objects with metadata for delta evaluation.
+                <span class="algo">
+                    Algorithms: random descent and parallel tempering with a predefined
+                    subset neighbourhood (single swap).
+                </span>
             </p>
             <p>
-                ...
+                Various objective functions have been proposed for the core subset selection problem.
+                In this example, the average distance from every selected item to the closest other selected
+                item is maximized, instead of the average distance between all pairs. To be able to provide
+                an efficient delta evaluation for this objective, a custom evaluation object is constructed
+                that stores additional metadata.
             </p>
             <p>
-                The basic <a href="/docs/#random-descent">random descent</a> algorithm is applied to sample a core subset,
+                The <a href="/docs/#random-descent">random descent</a> and
+                <a href="/docs/#parallel-tempering">parallel tempering</a> algorithms are applied to sample a core subset,
                 using a predefined subset neighbourhood that swaps a single selected and unselected ID to modify the
                 current solution.
             </p>
@@ -147,8 +159,11 @@ layout: default
                 </span>
             </h4>
             <p class="lead">
-                Variable size subset selection with constraints. Optimization algorithms: random descent and parallel tempering
-                with a predefined subset neighbourhood (single perturbation).
+                Variable size subset selection with constraints.
+                <span class="algo">
+                    Algorithms: random descent and parallel tempering
+                    with a predefined subset neighbourhood (single perturbation).
+                </span>
             </p>
             <p>
                 The 0/1 knapsack problem is a contrained variable size subset selection problem. The input consists of a list of items
@@ -178,8 +193,10 @@ layout: default
                 </span>
             </h4>
             <p class="lead">
-                Variable size subset selection with a custom greedy neighbourhood. Optimization algorithms: random descent
-                and variable neighbourhood search.
+                Variable size subset selection with a custom greedy neighbourhood.
+                <span class="algo">
+                    Algorithms: random descent and variable neighbourhood search.
+                </span>
             </p>
             <p>
                 The maximum clique problem originates from graph theory and has many applications in e.g. social networks, bioinformatics
