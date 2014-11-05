@@ -862,6 +862,10 @@
 <dd>
 <div class="block">Get the objective function.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetSolution.html#getOrderOfIDs--">getOrderOfIDs()</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a></dt>
+<dd>
+<div class="block">Get the comparator used to impose an order on the set of selected, unselected and all IDs.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html#getPenalizingValidation-java.lang.Object-">getPenalizingValidation(Object)</a></span> - Method in class org.jamesframework.core.problems.objectives.evaluations.<a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html" title="class in org.jamesframework.core.problems.objectives.evaluations">PenalizedEvaluation</a></dt>
 <dd>
 <div class="block">Retrieve the penalizing validation object corresponding to the given key.</div>
@@ -1244,10 +1248,6 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/Problem.html#isMinimizing--">isMinimizing()</a></span> - Method in interface org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a></dt>
 <dd>
 <div class="block">Indicates whether scores are being minimized or maximized.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetSolution.html#isSorted--">isSorted()</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a></dt>
-<dd>
-<div class="block">Indicates whether IDs are stored in sorted sets.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html#isTabu-org.jamesframework.core.search.neigh.Move-SolutionType-">isTabu(Move&lt;? super SolutionType&gt;, SolutionType)</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="class in org.jamesframework.core.search.algo.tabu">FullTabuMemory</a></dt>
 <dd>
@@ -2441,9 +2441,15 @@
 <dd>
 <div class="block">High-level subset problem consisting of data, an objective and possibly some constraints (see <a href="org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems"><code>AbstractProblem</code></a>).</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetProblem.html#SubsetProblem-org.jamesframework.core.problems.objectives.Objective-DataType-int-int-java.util.Comparator-">SubsetProblem(Objective&lt;? super SubsetSolution, ? super DataType&gt;, DataType, int, int, Comparator&lt;Integer&gt;)</a></span> - Constructor for class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset">SubsetProblem</a></dt>
+<dd>
+<div class="block">
+ Creates a new subset problem with given objective, data and minimum/maximum subset size.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetProblem.html#SubsetProblem-org.jamesframework.core.problems.objectives.Objective-DataType-int-int-boolean-">SubsetProblem(Objective&lt;? super SubsetSolution, ? super DataType&gt;, DataType, int, int, boolean)</a></span> - Constructor for class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset">SubsetProblem</a></dt>
 <dd>
-<div class="block">Creates a new subset problem with given objective, data and minimum/maximum subset size.</div>
+<div class="block">
+ Creates a new subset problem with given objective, data and minimum/maximum subset size.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetProblem.html#SubsetProblem-org.jamesframework.core.problems.objectives.Objective-DataType-int-int-">SubsetProblem(Objective&lt;? super SubsetSolution, ? super DataType&gt;, DataType, int, int)</a></span> - Constructor for class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset">SubsetProblem</a></dt>
 <dd>
@@ -2472,6 +2478,15 @@
  from which a subset is to be selected.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetSolution.html#SubsetSolution-java.util.Set-java.util.Set-boolean-">SubsetSolution(Set&lt;Integer&gt;, Set&lt;Integer&gt;, boolean)</a></span> - Constructor for class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a></dt>
+<dd>
+<div class="block">Creates a new subset solution given the set of all IDs, and the set of currently selected IDs.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetSolution.html#SubsetSolution-java.util.Set-java.util.Comparator-">SubsetSolution(Set&lt;Integer&gt;, Comparator&lt;Integer&gt;)</a></span> - Constructor for class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a></dt>
+<dd>
+<div class="block">Creates a new subset solution given the set of all IDs, each corresponding to an underlying entity,
+ from which a subset is to be selected.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetSolution.html#SubsetSolution-java.util.Set-java.util.Set-java.util.Comparator-">SubsetSolution(Set&lt;Integer&gt;, Set&lt;Integer&gt;, Comparator&lt;Integer&gt;)</a></span> - Constructor for class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a></dt>
 <dd>
 <div class="block">Creates a new subset solution given the set of all IDs, and the set of currently selected IDs.</div>
 </dd>
