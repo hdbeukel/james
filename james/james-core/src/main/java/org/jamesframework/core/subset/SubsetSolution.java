@@ -18,6 +18,7 @@ package org.jamesframework.core.subset;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -41,15 +42,15 @@ public class SubsetSolution extends Solution {
     // set of all IDs (stored for efficiency, will always
     // be equal to the union of selected and unselected)
     private final Set<Integer> all;
-    // indicates whether IDs are stored in sorted sets
-    private boolean sorted;
+    // comparator according to which IDs are sorted;
+    // null in case no order has been imposed
+    private Comparator<Integer> orderOfIDs;
     
     /**
      * Creates a new subset solution given the set of all IDs, each corresponding to an underlying entity,
      * from which a subset is to be selected. Initially, no IDs are selected. Note: IDs are copied to the
      * internal data structures of the subset solution; no reference is stored to the set given at construction.
-     * IDs are stored in sets that do not guarantee any order. See {@link #SubsetSolution(Set, boolean)} to
-     * create a subset solution that stores IDs in sorted sets.
+     * IDs are stored in sets that do not impose any order.
      * 
      * @param allIDs set of all IDs from which a subset is to be selected
      * @throws NullPointerException if <code>allIDs</code> is <code>null</code>
@@ -61,8 +62,7 @@ public class SubsetSolution extends Solution {
     /**
      * Creates a new subset solution given the set of all IDs, and the set of currently selected IDs. Note: IDs
      * are copied to the internal data structures of the subset solution; no reference is stored to the sets given
-     * at construction. IDs are stored in sets that do not guarantee any order. See {@link #SubsetSolution(Set, boolean)}
-     * and {@link #SubsetSolution(Set, Set, boolean)} to create subset solutions that store IDs in sorted sets.
+     * at construction. IDs are stored in sets that do not impose any ordering.
      * 
      * @param allIDs set of all IDs from which a subset is to be selected
      * @param selectedIDs set of currently selected IDs (subset of all IDs)
@@ -78,43 +78,80 @@ public class SubsetSolution extends Solution {
      * Creates a new subset solution given the set of all IDs, each corresponding to an underlying entity,
      * from which a subset is to be selected. Initially, no IDs are selected. Note: IDs are copied to the
      * internal data structures of the subset solution; no reference is stored to the set given at construction.
-     * If <code>sorted</code> is true, IDs will be stored in sorted sets, else they are stored in general sets
-     * that do not guarantee any order.
+     * If <code>naturalOrder</code> is <code>true</code>, the set of selected, unselected and all IDs will be
+     * ordered according to the natural ordering of integers (ascending); else, no ordering is imposed on the IDs.
      * 
      * @param allIDs set of all IDs from which a subset is to be selected
-     * @param sorted if <code>sorted</code> is <code>true</code>, IDs will be stored in sorted sets,
-     *               else they are stored in general sets that do not guarantee any order
+     * @param naturalOrder if <code>naturalOrder</code> is <code>true</code>, IDs will be ordered according to
+     *                     their natural ordering; else, no ordering is imposed on the IDs
      * @throws NullPointerException if <code>allIDs</code> is <code>null</code>
      */
-    public SubsetSolution(Set<Integer> allIDs, boolean sorted){
-        this.sorted = sorted;
-        if(!sorted){
-            this.all = new LinkedHashSet<>(allIDs);         // set with all IDs (copy)
-            this.selected = new LinkedHashSet<>();          // set with selected IDs (empty)
-            this.unselected = new LinkedHashSet<>(allIDs);  // set with unselected IDs (all)
+    public SubsetSolution(Set<Integer> allIDs, boolean naturalOrder){
+        this(allIDs, naturalOrder ? Comparator.naturalOrder() : null);
+    }
+    
+    /**
+     * Creates a new subset solution given the set of all IDs, and the set of currently selected IDs. Note: IDs
+     * are copied to the internal data structures of the subset solution; no reference is stored to the sets given
+     * at construction. If <code>naturalOrder</code> is <code>true</code>, the set of selected, unselected and all
+     * IDs will be ordered according to the natural ordering of integers (ascending); else, no ordering is imposed
+     * on the IDs.
+     * 
+     * @param allIDs set of all IDs from which a subset is to be selected
+     * @param selectedIDs set of currently selected IDs (subset of all IDs)
+     * @param naturalOrder if <code>naturalOrder</code> is <code>true</code>, IDs will be ordered according to
+     *                     their natural ordering; else, no ordering is imposed on the IDs
+     * @throws NullPointerException if <code>allIDs</code> or <code>selectedIDs</code> are <code>null</code>,
+     *                              or <code>selectedIDs</code> contains any <code>null</code> elements
+     * @throws SolutionModificationException if <code>selectedIDs</code> is not a subset of <code>allIDs</code>
+     */
+    public SubsetSolution(Set<Integer> allIDs, Set<Integer> selectedIDs, boolean naturalOrder){
+        this(allIDs, selectedIDs, naturalOrder ? Comparator.naturalOrder() : null);
+    }
+    
+    /**
+     * Creates a new subset solution given the set of all IDs, each corresponding to an underlying entity,
+     * from which a subset is to be selected. Initially, no IDs are selected. Note: IDs are copied to the
+     * internal data structures of the subset solution; no reference is stored to the set given at construction.
+     * The order defined by the given <code>comparator</code> is imposed on the set of selected, unselected and
+     * all IDs; if this argument is <code>null</code> no order is imposed.
+     * 
+     * @param allIDs set of all IDs from which a subset is to be selected
+     * @param orderOfIDs comparator according to which IDs are ordered, allowed to be
+     *                   <code>null</code> in which case no order is imposed
+     * @throws NullPointerException if <code>allIDs</code> is <code>null</code>
+     */
+    public SubsetSolution(Set<Integer> allIDs, Comparator<Integer> orderOfIDs){
+        this.orderOfIDs = orderOfIDs;
+        if(orderOfIDs == null){
+            all = new LinkedHashSet<>(allIDs);         // set with all IDs (copy)
+            selected = new LinkedHashSet<>();          // set with selected IDs (empty)
+            unselected = new LinkedHashSet<>(allIDs);  // set with unselected IDs (all)
         } else {
-            this.all = new TreeSet<>(allIDs);               // sorted set with all IDs (copy)
-            this.selected = new TreeSet<>();                // sorted set with selected IDs (empty)
-            this.unselected = new TreeSet<>(allIDs);        // sorted set with unselected IDs (all)
+            all = new TreeSet<>(orderOfIDs);           // sorted set with all IDs (copy)
+            all.addAll(allIDs);
+            selected = new TreeSet<>(orderOfIDs);      // sorted set with selected IDs (empty)
+            unselected = new TreeSet<>(orderOfIDs);    // sorted set with unselected IDs (all)
+            unselected.addAll(allIDs);
         }
     }
     
     /**
      * Creates a new subset solution given the set of all IDs, and the set of currently selected IDs. Note: IDs
      * are copied to the internal data structures of the subset solution; no reference is stored to the sets given
-     * at construction. If <code>sorted</code> is true, IDs will be stored in sorted sets, else they are stored in
-     * general sets that do not guarantee any order.
+     * at construction. The order defined by the given <code>comparator</code> is imposed on the set of selected,
+     * unselected and all IDs; if this argument is <code>null</code> no order is imposed.
      * 
      * @param allIDs set of all IDs from which a subset is to be selected
      * @param selectedIDs set of currently selected IDs (subset of all IDs)
-     * @param sorted if <code>sorted</code> is <code>true</code>, IDs will be stored in sorted sets,
-     *               else they are stored in general sets that do not guarantee any order
+     * @param orderOfIDs comparator according to which IDs are ordered, allowed to be
+     *                   <code>null</code> in which case no order is imposed
      * @throws NullPointerException if <code>allIDs</code> or <code>selectedIDs</code> are <code>null</code>,
-     *                              of <code>selectedIDs</code> contains any <code>null</code> elements
+     *                              or <code>selectedIDs</code> contains any <code>null</code> elements
      * @throws SolutionModificationException if <code>selectedIDs</code> is not a subset of <code>allIDs</code>
      */
-    public SubsetSolution(Set<Integer> allIDs, Set<Integer> selectedIDs, boolean sorted){
-        this(allIDs, sorted);
+    public SubsetSolution(Set<Integer> allIDs, Set<Integer> selectedIDs, Comparator<Integer> orderOfIDs){
+        this(allIDs, orderOfIDs);
         for(int ID : selectedIDs){
             if(!allIDs.contains(ID)){
                 throw new SolutionModificationException("Error while creating subset solution: "
@@ -129,13 +166,13 @@ public class SubsetSolution extends Solution {
     /**
      * Copy constructor. Creates a new subset solution which is identical to the given solution, but does not have
      * any reference to any data structures contained within the given solution (deep copy). The obtained subset
-     * solution will have exactly the same selected/unselected IDs as the given solution, and if IDs are ordered
-     * in the given solution this ordering will be retained.
+     * solution will have exactly the same selected/unselected IDs as the given solution, and will impose the
+     * same ordering on the IDs (if any).
      * 
      * @param sol solution to copy
      */
     public SubsetSolution(SubsetSolution sol){
-        this(sol.getAllIDs(), sol.getSelectedIDs(), sol.isSorted());
+        this(sol.getAllIDs(), sol.getSelectedIDs(), sol.getOrderOfIDs());
     }
     
     /**
@@ -150,12 +187,13 @@ public class SubsetSolution extends Solution {
     }
     
     /**
-     * Indicates whether IDs are stored in sorted sets.
+     * Get the comparator used to impose an order on the set of selected, unselected and all IDs.
+     * May return <code>null</code> which means that no order has been imposed.
      * 
-     * @return <code>true</code> if IDs are stored in sorted sets
+     * @return comparator according to which IDs are ordered, may be <code>null</code>
      */
-    public boolean isSorted(){
-        return sorted;
+    public Comparator<Integer> getOrderOfIDs(){
+        return orderOfIDs;
     }
     
     /**

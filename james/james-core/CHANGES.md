@@ -7,6 +7,7 @@ Version 0.2 (under development)
 
  - Added support for efficient delta evaluations and validations.
  - Provided additional subset neighbourhoods.
+ - Added option to sort IDs of selected items in a subset solution using a custom comparator.
  - Renamed SubsetData to IntegerIdentifiedData.
  - Renamed ProblemWithData to AbstractProblem.
  - Refactored abstract Solution class.

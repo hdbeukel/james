@@ -17,6 +17,7 @@
 package org.jamesframework.core.subset;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -736,6 +737,39 @@ public class SubsetSolutionTest {
             for(int ID : subsetSolution.getUnselectedIDs()){
                 if(prevID != null){
                     assertTrue(ID > prevID);
+                }
+                prevID = ID;
+            }
+        }
+        
+        // again with reverse order
+        subsetSolution = new SubsetSolution(subsetSolution.getAllIDs(), Comparator.reverseOrder());
+        
+        // repeat
+        for(int i=0; i<100; i++){
+            // take random subset of all IDs
+            Set<Integer> random = SetUtilities.getRandomSubset(subsetSolution.getAllIDs(), NUM_IDS/2, RG);
+            // select them
+            subsetSolution.selectAll(random);
+            // verify
+            Integer prevID = null;
+            for(int ID : subsetSolution.getAllIDs()){
+                if(prevID != null){
+                    assertTrue(ID < prevID);
+                }
+                prevID = ID;
+            }
+            prevID = null;
+            for(int ID : subsetSolution.getSelectedIDs()){
+                if(prevID != null){
+                    assertTrue(ID < prevID);
+                }
+                prevID = ID;
+            }
+            prevID = null;
+            for(int ID : subsetSolution.getUnselectedIDs()){
+                if(prevID != null){
+                    assertTrue(ID < prevID);
                 }
                 prevID = ID;
             }
