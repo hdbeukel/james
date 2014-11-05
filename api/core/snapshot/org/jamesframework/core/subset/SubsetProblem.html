@@ -172,8 +172,19 @@ extends <a href="../../../../org/jamesframework/core/problems/AbstractProblem.ht
              <a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a>&nbsp;data,
              int&nbsp;minSubsetSize,
              int&nbsp;maxSubsetSize,
-             boolean&nbsp;sortedIDs)</code>
-<div class="block">Creates a new subset problem with given objective, data and minimum/maximum subset size.</div>
+             boolean&nbsp;orderIDs)</code>
+<div class="block">
+ Creates a new subset problem with given objective, data and minimum/maximum subset size.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetProblem.html#SubsetProblem-org.jamesframework.core.problems.objectives.Objective-DataType-int-int-java.util.Comparator-">SubsetProblem</a></span>(<a href="../../../../org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;? super <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>,? super <a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a>&gt;&nbsp;objective,
+             <a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a>&nbsp;data,
+             int&nbsp;minSubsetSize,
+             int&nbsp;maxSubsetSize,
+             <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;orderOfIDs)</code>
+<div class="block">
+ Creates a new subset problem with given objective, data and minimum/maximum subset size.</div>
 </td>
 </tr>
 </table>
@@ -276,6 +287,45 @@ extends <a href="../../../../org/jamesframework/core/problems/AbstractProblem.ht
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
+<a name="SubsetProblem-org.jamesframework.core.problems.objectives.Objective-org.jamesframework.core.problems.datatypes.IntegerIdentifiedData-int-int-java.util.Comparator-">
+<!--   -->
+</a><a name="SubsetProblem-org.jamesframework.core.problems.objectives.Objective-DataType-int-int-java.util.Comparator-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>SubsetProblem</h4>
+<pre>public&nbsp;SubsetProblem(<a href="../../../../org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;? super <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>,? super <a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a>&gt;&nbsp;objective,
+                     <a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a>&nbsp;data,
+                     int&nbsp;minSubsetSize,
+                     int&nbsp;maxSubsetSize,
+                     <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;orderOfIDs)</pre>
+<div class="block"><p>
+ Creates a new subset problem with given objective, data and minimum/maximum subset size. Both <code>objective</code>
+ and <code>data</code> are not allowed to be <code>null</code>, an exception will be thrown if they are. Any objective
+ designed to evaluate subset solutions (or more general solutions) using the specified data type (or more general data)
+ is accepted. The minimum and maximum subset size should be contained in <code>[0,n]</code> where <code>n</code>
+ is the number of items in the given data from which a subset is to be selected. Also, the minimum size
+ should be smaller than or equal to the maximum size.
+ </p>
+ <p>
+ The given comparator <code>orderOfIDs</code> is used to impose an order on the IDs in any generated subset solution.
+ This argument may be <code>null</code> in case no order is to be imposed.
+ </p></div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>objective</code> - objective function, can not be <code>null</code></dd>
+<dd><code>data</code> - underlying data, can not be <code>null</code></dd>
+<dd><code>minSubsetSize</code> - minimum subset size (should be &ge; 0 and &le; maximum subset size)</dd>
+<dd><code>maxSubsetSize</code> - maximum subset size (should be &ge; minimum subset size and &le; number of items in underlying data)</dd>
+<dd><code>orderOfIDs</code> - the order that is imposed on the IDs in any generated subset solution, may be <code>null</code>
+                   in case no order is to be imposed</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>objective</code> or <code>data</code> is <code>null</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if an invalid minimum or maximum subset size is specified</dd>
+</dl>
+</li>
+</ul>
 <a name="SubsetProblem-org.jamesframework.core.problems.objectives.Objective-org.jamesframework.core.problems.datatypes.IntegerIdentifiedData-int-int-boolean-">
 <!--   -->
 </a><a name="SubsetProblem-org.jamesframework.core.problems.objectives.Objective-DataType-int-int-boolean-">
@@ -288,21 +338,26 @@ extends <a href="../../../../org/jamesframework/core/problems/AbstractProblem.ht
                      <a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a>&nbsp;data,
                      int&nbsp;minSubsetSize,
                      int&nbsp;maxSubsetSize,
-                     boolean&nbsp;sortedIDs)</pre>
-<div class="block">Creates a new subset problem with given objective, data and minimum/maximum subset size. Both <code>objective</code>
+                     boolean&nbsp;orderIDs)</pre>
+<div class="block"><p>
+ Creates a new subset problem with given objective, data and minimum/maximum subset size. Both <code>objective</code>
  and <code>data</code> are not allowed to be <code>null</code>, an exception will be thrown if they are. Any objective
  designed to evaluate subset solutions (or more general solutions) using the specified data type (or more general data)
  is accepted. The minimum and maximum subset size should be contained in <code>[0,n]</code> where <code>n</code>
  is the number of items in the given data from which a subset is to be selected. Also, the minimum size
- should be smaller than or equal to the maximum size. If <code>sortedIDs</code> is <code>true</code>, any subset
- solution generated by this problem (random, empty, ...) will store the underlying IDs in sorted sets.</div>
+ should be smaller than or equal to the maximum size.
+ </p>
+ <p>
+ If <code>orderIDs</code> is <code>true</code>, any subset solution generated by this problem will order IDs
+ in ascending order.
+ </p></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>objective</code> - objective function, can not be <code>null</code></dd>
 <dd><code>data</code> - underlying data, can not be <code>null</code></dd>
 <dd><code>minSubsetSize</code> - minimum subset size (should be &ge; 0 and &le; maximum subset size)</dd>
 <dd><code>maxSubsetSize</code> - maximum subset size (should be &ge; minimum subset size and &le; number of items in underlying data)</dd>
-<dd><code>sortedIDs</code> - indicates whether IDs are sorted in generated subset solutions</dd>
+<dd><code>orderIDs</code> - indicates whether IDs are ordered (ascending) in generated subset solutions</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>objective</code> or <code>data</code> is <code>null</code></dd>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if an invalid minimum or maximum subset size is specified</dd>
@@ -326,8 +381,8 @@ extends <a href="../../../../org/jamesframework/core/problems/AbstractProblem.ht
  designed to evaluate subset solutions (or more general solutions) using the specified data type (or more general data)
  is accepted. The minimum and maximum subset size should be contained in <code>[0,n]</code> where <code>n</code>
  is the number of items in the given data from which a subset is to be selected. Also, the minimum size
- should be smaller than or equal to the maximum size. Generated subset solutions do not guarantee any
- order of IDs.</div>
+ should be smaller than or equal to the maximum size. Generated subset solutions do not impose any
+ order on the IDs.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>objective</code> - objective function, can not be <code>null</code></dd>
@@ -355,7 +410,7 @@ extends <a href="../../../../org/jamesframework/core/problems/AbstractProblem.ht
  SubsetProblem p = new SubsetProblem(objective, data, fixedSubsetSize, fixedSubsetSize);</pre>
  The fixed subset size should be contained in <code>[0,n]</code> where <code>n</code>
  is the number of items in the given data from which a subset is to be selected.
- Generated subset solutions do not guarantee any order of IDs.</div>
+ Generated subset solutions do not impose any order on the IDs.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>objective</code> - objective function, can not be <code>null</code></dd>
