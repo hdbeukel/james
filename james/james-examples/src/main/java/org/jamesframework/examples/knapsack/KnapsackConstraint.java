@@ -42,7 +42,7 @@ public class KnapsackConstraint implements Constraint<SubsetSolution, KnapsackDa
         // compute sum of weights of selected items
         double weight = solution.getSelectedIDs().stream().mapToDouble(data::getWeight).sum();
         // return custom validation object
-        return new KnapsackValidation(weight);
+        return new KnapsackValidation(weight, maxWeight);
     }
     
     @Override
@@ -63,29 +63,7 @@ public class KnapsackConstraint implements Constraint<SubsetSolution, KnapsackDa
         // account for removed items
         weight -= subsetMove.getDeletedIDs().stream().mapToDouble(data::getWeight).sum();
         // return updated validation
-        return new KnapsackValidation(weight);
-    }
-    
-    /**
-     * Private class implementing custom validation object.
-     */
-    private class KnapsackValidation implements Validation {
-
-        private final double curWeight;
-
-        public KnapsackValidation(double curWeight) {
-            this.curWeight = curWeight;
-        }
-        
-        @Override
-        public boolean passed() {
-            return curWeight <= maxWeight;
-        }
-
-        public double getCurWeight() {
-            return curWeight;
-        }
-        
+        return new KnapsackValidation(weight, maxWeight);
     }
     
 }
