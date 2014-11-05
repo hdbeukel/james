@@ -105,8 +105,31 @@ public class KnapsackObjective implements Objective&lt;SubsetSolution, KnapsackD
 }
 </pre>
     <p>
-        ... <span style="color: red">(delta evaluation)</span>
+        It is advised to also add an efficient delta evaluation to speed up applied neighbourhood searches
+        (see <a href="/examples/coresubset2/#delta-eval">example 1B</a>). First, the value (total profit) of the current solution
+        is retrieved. Then, the profit of any newly selected items is added and the profit of any removed items
+        is subtracted. This yields the value of the neighbour that is obtained when applying the evaluated move
+        to the current solution.
     </p>
+<pre class="prettyprint">
+public Evaluation evaluate(Move move, SubsetSolution curSolution, Evaluation curEvaluation, KnapsackData data) {
+    // check move type
+    if(!(move instanceof SubsetMove)){
+        throw new IncompatibleDeltaEvaluationException("Knapsack objective should be used in combination "
+                                            + "with neighbourhoods that generate moves of type SubsetMove.");
+    }
+    // cast move
+    SubsetMove subsetMove = (SubsetMove) move;
+    // get current profit
+    double value = curEvaluation.getValue();
+    // account for added items
+    value += subsetMove.getAddedIDs().stream().mapToDouble(data::getProfit).sum();
+    // account for removed items
+    value -= subsetMove.getDeletedIDs().stream().mapToDouble(data::getProfit).sum();
+    // return updated evaluation
+    return new SimpleEvaluation(value);
+}
+</pre>
 
     <h4 class="page-header">
         Implementing the constraint
@@ -146,8 +169,84 @@ public class KnapsackConstraint implements Constraint&lt;SubsetSolution, Knapsac
 }
 </pre>
     <p>
-        ... <span style="color: red">(delta validation)</span>
+        Similar to a delta evaluation in an objective, we can provide an efficient delta validation in a constraint.
+        This is not required because the <code>Constraint</code> interface includes a default <em>apply-undo</em> behaviour:
+        apply the move, perform a full validation by calling <code>validate(solution, data)</code> and undo the move.
+        Of course, this is not very efficient so it is advised to provide a custom delta validation whenever possible.
     </p>
+<pre class="prettyprint">
+public Validation validate(Move move, SubsetSolution curSolution, Validation curValidation, KnapsackData data) {
+    // provide delta validation here
+}
+</pre>
+    <p>
+        The <code>SimpleValidation</code> type used above only indicates whether the solution passed validation or not.
+        Based on this information only, it is not possible to perform an efficient delta evaluation. Therefore, we create
+        our own <code>KnapsackValidation</code> that tracks the total weight of a solution, as this is what determines validity.
+        It implements the <code>Validation</code> interface with a single required method
+        <code>passed()</code> that checks whether the total weight does not exceed the knapsack capacity.
+    </p>
+<pre class="prettyprint">
+public class KnapsackValidation implements Validation {
+
+    private double curWeight;
+
+    public KnapsackValidation(double curWeight) {
+        this.curWeight = curWeight;
+    }
+    
+    public double getCurWeight() {
+        return curWeight;
+    }
+    
+    public boolean passed() {
+        return curWeight &lt;= maxWeight;
+    }
+    
+}
+</pre>
+    <p>
+        Now we can update the constraint to use this custom validation type and include an efficient delta validation.
+    </p>
+<pre class="prettyprint">
+public class KnapsackConstraint implements Constraint&lt;SubsetSolution, KnapsackData&gt; {
+    
+    // maximum total weight
+    private double maxWeight;
+    
+    public KnapsackConstraint(double maxWeight){
+        this.maxWeight = maxWeight;
+    }
+
+    public Validation validate(SubsetSolution solution, KnapsackData data) {
+        // compute sum of weights of selected items
+        double weight = solution.getSelectedIDs().stream().mapToDouble(data::getWeight).sum();
+        // return custom validation object
+        return new KnapsackValidation(weight);
+    }
+    
+    public Validation validate(Move move, SubsetSolution curSolution, Validation curValidation, KnapsackData data) {
+        // check move type
+        if(!(move instanceof SubsetMove)){
+            throw new IncompatibleDeltaEvaluationException("Knapsack constraint should be used in combination "
+                                                + "with neighbourhoods that generate moves of type SubsetMove.");
+        }
+        // cast move
+        SubsetMove subsetMove = (SubsetMove) move;
+        // cast current validation object (known to be of the required type as both validate methods return such object)
+        KnapsackValidation kVal = (KnapsackValidation) curValidation;
+        // extract current sum of weights
+        double weight = kVal.getCurWeight();
+        // account for added items
+        weight += subsetMove.getAddedIDs().stream().mapToDouble(data::getWeight).sum();
+        // account for removed items
+        weight -= subsetMove.getDeletedIDs().stream().mapToDouble(data::getWeight).sum();
+        // return updated validation
+        return new KnapsackValidation(weight);
+    }
+    
+}
+</pre>
         
     <h4 class="page-header">
         Finalizing the problem specification
