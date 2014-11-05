@@ -190,9 +190,11 @@ public Validation validate(Move move, SubsetSolution curSolution, Validation cur
 public class KnapsackValidation implements Validation {
 
     private double curWeight;
+    private double maxWeight;
 
-    public KnapsackValidation(double curWeight) {
+    public KnapsackValidation(double curWeight, double maxWeight) {
         this.curWeight = curWeight;
+        this.maxWeight = maxWeight;
     }
     
     public double getCurWeight() {
