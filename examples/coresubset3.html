@@ -313,7 +313,7 @@ RandomDescent&lt;SubsetSolution&gt; search = new RandomDescent&lt;&gt;(problem, 
 long timeLimit = ...
 search.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
 // attach listener (see example 1)
-parallelTempering.addSearchListener(new ProgressSearchListener());
+search.addSearchListener(new ProgressSearchListener());
 
 // start search
 search.start();
@@ -361,9 +361,10 @@ search.dispose();
 // create parallel tempering search with single swap neighbourhood
 double minTemp = 0.00001;
 double maxTemp = 0.01;
+int numReplicas = 10;
 ParallelTempering&lt;SubsetSolution&gt; search = new ParallelTempering&lt;&gt;(problem,
                                                                    new SingleSwapNeighbourhood(),
-                                                                   10, minTemp, maxTemp);
+                                                                   numReplicas, minTemp, maxTemp);
 // same as before ...
 </pre>
     <p>
