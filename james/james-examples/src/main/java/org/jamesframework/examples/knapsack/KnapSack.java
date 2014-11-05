@@ -141,9 +141,10 @@ public class KnapSack {
             // create parallel tempering with single perturbation neighbourhood (10 replicas)
             double minTemp = 0.001;
             double maxTemp = 0.05;
+            int numReplicas = 10;
             ParallelTempering<SubsetSolution> parallelTempering = new ParallelTempering<>(problem,
                                                                         new SinglePerturbationNeighbourhood(),
-                                                                        10, minTemp, maxTemp);
+                                                                        numReplicas, minTemp, maxTemp);
             // scale temperatures according to average profit of knapsack items
             double scale = computeAverageProfit(data);
             parallelTempering.setTemperatureScaleFactor(scale);
