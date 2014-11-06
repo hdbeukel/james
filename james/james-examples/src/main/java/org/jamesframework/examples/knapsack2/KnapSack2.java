@@ -21,15 +21,11 @@ import java.io.FileNotFoundException;
 import java.util.Comparator;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-import org.jamesframework.core.problems.Problem;
-import org.jamesframework.core.problems.objectives.evaluations.Evaluation;
 import org.jamesframework.core.subset.SubsetProblem;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.algo.ParallelTempering;
-import org.jamesframework.core.search.algo.RandomDescent;
 import org.jamesframework.core.subset.neigh.SinglePerturbationNeighbourhood;
 import org.jamesframework.core.search.stopcriteria.MaxRuntime;
-import org.jamesframework.core.util.SetUtilities;
 import org.jamesframework.examples.util.ProgressSearchListener;
 
 /**
@@ -51,9 +47,9 @@ public class KnapSack2 {
      * @param args array containing the input file path, knapsack capacity and runtime limit
      */
     public static void main(String[] args) {
-        System.out.println("########################");
-        System.out.println("# KNAPSACK PROBLEM (2) #");
-        System.out.println("########################");
+        System.out.println("############################");
+        System.out.println("# 0/1 KNAPSACK PROBLEM (2) #");
+        System.out.println("############################");
         // parse arguments
         if(args.length != 3){
             System.err.println("Usage: java -cp james-examples.jar org.jamesframework.examples.knapsack2.KnapSack2 <inputfile> <capacity> <runtime>");

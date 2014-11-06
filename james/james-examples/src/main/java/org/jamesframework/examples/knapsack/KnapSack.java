@@ -49,9 +49,9 @@ public class KnapSack {
      * @param args array containing the input file path, knapsack capacity and runtime limit
      */
     public static void main(String[] args) {
-        System.out.println("####################");
-        System.out.println("# KNAPSACK PROBLEM #");
-        System.out.println("####################");
+        System.out.println("########################");
+        System.out.println("# 0/1 KNAPSACK PROBLEM #");
+        System.out.println("########################");
         // parse arguments
         if(args.length != 3){
             System.err.println("Usage: java -cp james-examples.jar org.jamesframework.examples.knapsack.KnapSack <inputfile> <capacity> <runtime>");

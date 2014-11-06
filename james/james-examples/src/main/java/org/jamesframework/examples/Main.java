@@ -63,17 +63,29 @@ public class Main {
         System.out.println("");
         System.out.println("java -cp james-examples.jar org.jamesframework.examples.coresubset3.CoreSubset3 <inputfile> <subsetsize> <runtime>");
         System.out.println("");
-        System.out.println("Example 2: the knapsack problem");
-        System.out.println("--------------------------------");
+        System.out.println("Example 2: the 0/1 knapsack problem");
+        System.out.println("-----------------------------------");
         System.out.println("");
-        System.out.println("Given a series of items with a specific profit and weight, select a subset\n"
-                         + "of these items with maximum total profit without exceeding the capacity\n"
+        System.out.println("Given a series of items with a specific profit and weight, select a subset \n"
+                         + "of these items with maximum total profit without exceeding the capacity \n"
                          + "(maximum total weight) of the knapsack. Both random descent and parallel \n"
-                         + "tempering are applied for optimization of the knapsack.");
+                         + "tempering are applied for optimization of the knapsack, with a mandatory \n"
+                         + "constraint on the total weight of the selection.");
         System.out.println("");
         System.out.println("Usage:");
         System.out.println("");
         System.out.println("java -cp james-examples.jar org.jamesframework.examples.knapsack.KnapSack <inputfile> <capacity> <runtime>");
+        System.out.println("");
+        System.out.println("Example 2B: the 0/1 knapsack problem (2)");
+        System.out.println("----------------------------------------");
+        System.out.println("");
+        System.out.println("In this example, the 0/1 knapsack is solved using a penalizing instead of \n"
+                         + "a mandatory constraint. The parallel tempering algorithm is applied to optimize \n"
+                         + "the selection.");
+        System.out.println("");
+        System.out.println("Usage:");
+        System.out.println("");
+        System.out.println("java -cp james-examples.jar org.jamesframework.examples.knapsack2.KnapSack2 <inputfile> <capacity> <runtime>");
         System.out.println("");
         System.out.println("Example 3: the maximum clique problem");
         System.out.println("-------------------------------------");
