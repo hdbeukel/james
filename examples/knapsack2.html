@@ -1,0 +1,170 @@
+---
+layout: default
+---
+
+<div id="examples-knapsack">
+    <ol class="breadcrumb">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/examples">Examples</a></li>
+        <li class="active">0/1 Knapsack problem (2)</li>
+    </ol>
+    
+    <h2 class="page-header">
+        Example 2B: The 0/1 knapsack problem (2)
+    </h2>
+    
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-info-circle"></i>
+            Info
+        </h4>
+        The parallel tempering algorithm is applied to optimize the knapsack contents.
+        Don't know what parallel tempering is? Read <a href="/docs/#parallel-tempering">this</a>.
+    </div>
+    <p>
+        This example reconsiders the 0/1 knapsack problem from <a href="/examples/knapsack/">example 2</a>
+        using a penalizing instead of a mandatory constraint. Please take a look at
+        that example before proceeding.
+    </p>
+    
+    <h4 class="page-header">
+        Penalizing constraints
+    </h4>
+    <p>
+        A penalizing constraint is more flexible than a mandatory constraint. It does not cause solutions that violate
+        the constraint to be discarded, but assigns a penalty to such solution's evaluation. Usually, this penalty reflects the
+        severeness of the violation so that solutions closer to satisfaction are favoured. Solutions within the constraint are
+        not penalized. This approach has the advantage that a search may cross regions of the search space containing solutions
+        that do not satisfy the contraint. However, a penalizing constraint is more difficult to design than a mandatory constraint:
+        the penalties should be carefully chosen as there is a tradeoff between a solution's value and penalty. There is no absolute
+        guarantee that the best found solution will actually satisfy the constraint, which may or may not be desired.
+    </p>
+    <p>
+        Here we will penalize solutions that exceed the knapsack capacity. From the selection
+        in a subset solution we can infer the minimum number of items that have to be removed to satisfy the maximum capacity, by sorting
+        selected IDs on the weight of the corresponding item (descending). This number is multiplied with the highest profit of all
+        available items, increased by one, to obtain the penalty: <code>penalty = minRemove * (highestProfitPerItem + 1)</code>.
+    </p>
+    <p>
+        From our penalty definition, it follows that any solution outside the
+        constraint can be transformed in a better solution (higher penalized evaluation) by removing e.g. the item with the highest weight.
+        Repeating this action always yields a solution within the constraint.
+        Thus, it is not possible that an invalid solution is a local optimum for a neighbourhood that considers single deletion
+        moves, such as the single perturbation neighbourhood applied below. This ensures that the best found solution will
+        satisfy the constraint, which would not necessarily be the case if the penalty had been poorly designed.
+    </p>
+    
+    <h4 class="page-header">
+        Implementing the constraint
+    </h4>
+    <p>
+        A penalizing constraint is required to implement the <code>PenalizingConstraint</code> interface which extends the <code>Constraint</code> interface.
+        It actually has the same two methods for full (required) and delta validation (optional), respectively, but demands that the returned validation objects
+        implement the <code>PenalizingValidation</code> interface. The latter extends the <code>Validation</code> interface by including a method
+        <code>getPenalty()</code> in addition to the method <code>passed()</code>.
+    </p>
+    <p>
+        The implementation below only defines a full validation corresponding to the definition from above. The solution and data type are set to
+        <code>SubsetSolution</code> and <code>KnapsackData</code> respectively. The constraint produces a <code>SimplePenalizingValidation</code>
+        object that merely wraps a boolean value (like a <code>SimpleValidation</code>) indicating whether the constraint is satisfied, and a
+        double value for the assigned penalty. If the constraint is satisfied, the penalty does not need to be specified as it will be set to
+        0 anyway.
+    </p>
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-info-circle"></i>
+            Info
+        </h4>
+        The <code>SimplePenalizingValidation</code> class provides a constant <code>PASSED</code> that can be used to indicate that the solution
+        passed validation and no penalty is assigned. A corresponding static factory method <code>FAILED(penalty)</code> can be used when the
+        solution does not satisfy the constraint and the given penalty is to be assigned.
+    </div>
+    <div class="bs-callout bs-callout-warning">
+        <h4>
+            <i class="fa fa-warning"></i>
+            Warning
+        </h4>
+        The implementation below <strong>requires</strong> that IDs are ordered based on the weight of the corresponding item (descending).
+        If not, results of validation are arbitrary. It is explained later how to impose this (or any other) order on the IDs in a subset solution.
+    </div>
+<pre class="prettyprint">
+public class PenalizingKnapsackConstraint implements PenalizingConstraint&lt;SubsetSolution, KnapsackData&gt; {
+    
+    // maximum total weight
+    private double maxWeight;
+    // highest profit (of all items in the data set)
+    private double highestProfitPerItem;
+    
+    public PenalizingKnapsackConstraint(double maxWeight, double highestProfitPerItem){
+        this.maxWeight = maxWeight;
+        this.highestProfitPerItem = highestProfitPerItem;
+    }
+
+    // WARNING: only works if IDs are ordered based on weight of corresponding item (descending)
+    public PenalizingValidation validate(SubsetSolution solution, KnapsackData data) {
+        // compute minimum number of items to remove from selection so that capacity is no longer exceeded
+        int minRemove = 0;
+        double curWeight = solution.getSelectedIDs().stream().mapToDouble(data::getWeight).sum();
+        Iterator&lt;Integer&gt; it = solution.getSelectedIDs().iterator();
+        while(it.hasNext() &amp;&amp; curWeight &gt; maxWeight){
+            // subtract weight of next item to be removed
+            curWeight -= data.getWeight(it.next());
+            // update counter
+            minRemove++;
+        }
+        // assign penalty if items need to be removed (capacity exceeded)
+        if(minRemove &gt; 0){
+            double penalty = minRemove * (highestProfitPerItem + 1);
+            return SimplePenalizingValidation.FAILED(penalty);
+        } else {
+            return SimplePenalizingValidation.PASSED;
+        }
+    }
+    
+}
+</pre>
+    
+    <h4 class="page-header">
+        Full source code
+    </h4>
+    <p>
+        The complete source code of this example is available on
+        <a href="https://github.com/hdbeukel/james/tree/v{{site.examples-latest-stable}}/james/james-examples/src/main/java/org/jamesframework/examples/knapsack2">GitHub</a>,
+        including some additional code to read the input from a text file.
+        You can also download a <a href="/getstarted/#releases-examples">ZIP file</a> that contains the Java sources of all examples, a compiled
+        JAR (including all dependencies) as well as some input files for in case you want to run any of the examples. To run this example, execute
+    </p>
+<pre class="prettyprint">
+$ java -cp james-examples.jar org.jamesframework.examples.knapsack2.KnapSack2 &lt;inputfile&gt; &lt;capacity&gt; &lt;runtime&gt;
+</pre>
+    </p>
+        from the command line. The input file should be a text file in which the first row contains a single number N that indicates
+        the number of available knapsack items. The subsequent N rows each contain the profit and weight (in this order) of a single item,
+        separated by one or more spaces. The runtime is given in seconds.
+    </p>
+    <p>
+        <ul class="list-unstyled">
+            <li><a href="/files/examples/knapsack-100.txt"><i class="fa fa-file-text-o"></i> Example input file 1 (100 items)</a></li>
+            <li><a href="/files/examples/knapsack-1000.txt"><i class="fa fa-file-text-o"></i> Example input file 2 (1000 items)</a></li>
+        </ul>
+    </p>
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
