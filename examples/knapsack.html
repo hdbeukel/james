@@ -168,7 +168,7 @@ public class KnapsackConstraint implements Constraint&lt;SubsetSolution, Knapsac
     
 }
 </pre>
-    <p>
+    <p id="delta-validation">
         Similar to a delta evaluation in an objective, we can provide an efficient delta validation in a constraint.
         This is not required because the <code>Constraint</code> interface includes a default <em>apply-undo</em> behaviour:
         apply the move, perform a full validation by calling <code>validate(solution, data)</code> and undo the move.
@@ -250,7 +250,7 @@ public class KnapsackConstraint implements Constraint&lt;SubsetSolution, Knapsac
 }
 </pre>
         
-    <h4 class="page-header">
+    <h4 class="page-header" id="problem-specification">
         Finalizing the problem specification
     </h4>
     <p>
@@ -406,7 +406,7 @@ if(randomDescent.getBestSolution() != null){
 randomDescent.dispose();
 </pre>
 
-    <h5 class="page-header">
+    <h5 class="page-header" id="parallel-tempering">
         Parallel tempering
     </h5>
     <p>
@@ -455,30 +455,8 @@ double computeAverageProfit(KnapsackData data){
     <p>
         Running the search is now done in exactly the same way as for the random descent algorithm. If you experiment
         with some example input, you will see that the advanced parallel tempering algorithm finds much better solutions
-        for the 0/1 knapsack problem compared to the basic random descent algorithm.
+        for the 0/1 knapsack problem as compared to the basic random descent algorithm.
     </p>
-<pre class="prettyprint">
-// set maximum runtime
-long timeLimit = ...
-parallelTempering.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
-// attach listener
-parallelTempering.addSearchListener(new ProgressSearchListener());
-// set valid initial solution
-parallelTempering.setCurrentSolution(createInitalSolution(problem, data, capacity));
-
-// start search (blocks until search terminates)
-parallelTempering.start();
-// print results
-if(parallelTempering.getBestSolution() != null){
-    System.out.println("Items in knapsack: " + parallelTempering.getBestSolution().getNumSelectedIDs() + "/" + data.getIDs().size());
-    System.out.println("Total profit: " + parallelTempering.getBestSolutionEvaluation());
-    System.out.println("Total weight: " + computeSelectionWeight(parallelTempering.getBestSolution(), data) + "/" + capacity);
-} else {
-    System.out.println("No valid solution found...");
-}
-// dispose search
-parallelTempering.dispose();
-</pre>
 
     <h4 class="page-header">
         Full source code

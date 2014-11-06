@@ -42,7 +42,7 @@ layout: default
     <p>
         Here we will penalize solutions that exceed the knapsack capacity. From the selection
         in a subset solution we can infer the minimum number of items that have to be removed to satisfy the maximum capacity, by sorting
-        selected IDs on the weight of the corresponding item (descending). This number is multiplied with the highest profit of all
+        selected IDs on the weight of the corresponding items (descending). This number is multiplied with the highest profit of all
         available items, increased by one, to obtain the penalty: <code>penalty = minRemove * (highestProfitPerItem + 1)</code>.
     </p>
     <p>
@@ -64,7 +64,7 @@ layout: default
         <code>getPenalty()</code> in addition to the method <code>passed()</code>.
     </p>
     <p>
-        The implementation below only defines a full validation corresponding to the definition from above. The solution and data type are set to
+        The implementation below defines a full validation only, corresponding to the definition from above. The solution and data type are set to
         <code>SubsetSolution</code> and <code>KnapsackData</code> respectively. The constraint produces a <code>SimplePenalizingValidation</code>
         object that merely wraps a boolean value (like a <code>SimpleValidation</code>) indicating whether the constraint is satisfied, and a
         double value for the assigned penalty. If the constraint is satisfied, the penalty does not need to be specified as it will be set to
@@ -84,7 +84,7 @@ layout: default
             <i class="fa fa-warning"></i>
             Warning
         </h4>
-        The implementation below <strong>requires</strong> that IDs are ordered based on the weight of the corresponding item (descending).
+        The implementation below <strong>requires</strong> that IDs are ordered based on the weight of the corresponding items (descending).
         If not, results of validation are arbitrary. It is explained later how to impose this (or any other) order on the IDs in a subset solution.
     </div>
 <pre class="prettyprint">
@@ -100,28 +100,129 @@ public class PenalizingKnapsackConstraint implements PenalizingConstraint&lt;Sub
         this.highestProfitPerItem = highestProfitPerItem;
     }
 
-    // WARNING: only works if IDs are ordered based on weight of corresponding item (descending)
+    // WARNING: only works if IDs are ordered based on weight of corresponding items (descending)
     public PenalizingValidation validate(SubsetSolution solution, KnapsackData data) {
-        // compute minimum number of items to remove from selection so that capacity is no longer exceeded
-        int minRemove = 0;
+        
+        // step 1: compute total weight of selected items
         double curWeight = solution.getSelectedIDs().stream().mapToDouble(data::getWeight).sum();
+
+        // step 2: compute minimum number of items to remove from selection to satisfy constraint
+        int minRemove = 0;
         Iterator&lt;Integer&gt; it = solution.getSelectedIDs().iterator();
+        // continue until capacity is not exceeded
         while(it.hasNext() &amp;&amp; curWeight &gt; maxWeight){
-            // subtract weight of next item to be removed
+            // subtract weight of next most heavy item to be removed
             curWeight -= data.getWeight(it.next());
             // update counter
             minRemove++;
         }
-        // assign penalty if items need to be removed (capacity exceeded)
+
+        // step 3: produce penalizing validation
         if(minRemove &gt; 0){
+            // assign penalty (capacity exceeded)
             double penalty = minRemove * (highestProfitPerItem + 1);
             return SimplePenalizingValidation.FAILED(penalty);
         } else {
+            // constraint satisfied
             return SimplePenalizingValidation.PASSED;
         }
+        
     }
     
 }
+</pre>
+    <p>
+        It is of course possible to also provide a more efficient delta evaluation, e.g. by dynamically updating the total
+        weight of the selection as in <a href="/examples/knapsack/#delta-validation">example 2</a>. This is not discussed here.
+    </p>
+    
+    <h4 class="page-header" id="problem-specification">
+        Problem specification
+    </h4>
+    <p>
+        As in <a href="/examples/knapsack/#problem-specification">example 2</a> we first create the problem from the objective
+        and data, and then add the constraint, now using <code>addPenalizingConstraint(c)</code>.
+        As indicated above, the constraint implementation requires that
+        IDs are ordered based on the weight of the corresponding items (descending). This order can be imposed
+        by specifying an appropriate comparator when creating the subset problem. All generated subset solution
+        will then impose this order on the set of selected, unselected and all IDs.
+    </p>
+<pre class="prettyprint">
+// set weights, profits and capacity
+double[] weights = ...
+double[] profits = ...
+double capacity = ...
+
+// create data object
+KnapsackData data = new KnapsackData(weights, profits);
+// create objective
+KnapsackObjective obj = new KnapsackObjective();       
+// create penalizing constraint
+double highestProfitPerItem = computeHighestProfit(data);
+PenalizingKnapsackConstraint constraint = new PenalizingKnapsackConstraint(capacity, highestProfitPerItem);
+
+// create subset problem (all sizes allowed)
+// IMPORTANT: IDs are ordered based on the weight of the corresponding items
+//            (descending), as required by the applied penalizing constraint
+SubsetProblem&lt;KnapsackData&gt; problem = new SubsetProblem&lt;&gt;(
+                                            obj, data,
+                                            0, data.getIDs().size(),
+                                            Comparator.comparing(data::getWeight).reversed()
+                                      );
+// add penalizing constraint
+problem.addPenalizingConstraint(constraint);
+</pre>
+    <p>
+        The highest profit of all available items, as required to initialize the constraint, is easily computed.
+    </p>
+<pre class="prettyprint">
+double computeHighestProfit(KnapsackData data){
+    return data.getIDs().stream().mapToDouble(data::getProfit).max().getAsDouble();
+}
+</pre>
+    
+    <h4 class="page-header">
+        Optimizing the knapsack
+    </h4>
+    <p>
+        We can now apply a <a href="/docs/#parallel-tempering">parallel tempering</a> search as in
+        <a href="/examples/knapsack/#parallel-tempering">example 2</a>. It should give similar results
+        as compared to the approach with a mandatory constraint. Note that it is <strong>not</strong>
+        required now to provide an initial solution within the constraint, the search will find its
+        way to a valid solution anyway because of the way in which the penalties have been designed.
+    </p>
+<pre class="prettyprint">
+// create parallel tempering with single perturbation neighbourhood
+double minTemp = 0.001;
+double maxTemp = 0.1;
+int numReplicas = 10;
+ParallelTempering&lt;SubsetSolution&gt; search = new ParallelTempering&lt;&gt;(problem,
+                                                            new SinglePerturbationNeighbourhood(),
+                                                            numReplicas, minTemp, maxTemp);
+// scale temperatures according to average profit of knapsack items
+double scale = computeAverageProfit(data);
+search.setTemperatureScaleFactor(scale);
+
+// set maximum runtime
+long timeLimit = ...
+search.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
+// attach listener
+search.addSearchListener(new ProgressSearchListener());
+// NOTE: not required to set an initial solution within the constraint (&lt;-&gt; mandatory constraint)
+
+// start search
+search.start();
+// print results
+if(search.getBestSolution() != null){
+    System.out.println("Items in knapsack: " + search.getBestSolution().getNumSelectedIDs() + "/" + data.getIDs().size());
+    System.out.println("Total profit: " + search.getBestSolutionEvaluation());
+    System.out.println("Total weight: " + computeSelectionWeight(search.getBestSolution(), data) + "/" + capacity);
+    System.out.println("Constraint satisifed: " + (problem.getViolatedConstraints(search.getBestSolution()).isEmpty() ? "yes" : "no"));
+} else {
+    System.out.println("No valid solution found...");
+}
+// dispose search
+search.dispose();
 </pre>
     
     <h4 class="page-header">
