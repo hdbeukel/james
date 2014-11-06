@@ -360,7 +360,7 @@ search.dispose();
 <pre class="prettyprint">
 // create parallel tempering search with single swap neighbourhood
 double minTemp = 0.00001;
-double maxTemp = 0.01;
+double maxTemp = 0.001;
 int numReplicas = 10;
 ParallelTempering&lt;SubsetSolution&gt; search = new ParallelTempering&lt;&gt;(problem,
                                                                    new SingleSwapNeighbourhood(),
