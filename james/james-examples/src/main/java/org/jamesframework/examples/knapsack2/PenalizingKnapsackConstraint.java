@@ -44,23 +44,31 @@ public class PenalizingKnapsackConstraint implements PenalizingConstraint<Subset
 
     @Override
     public PenalizingValidation validate(SubsetSolution solution, KnapsackData data) {
-        // compute minimum number of items to remove from selection so that capacity is no longer exceeded
-        int minRemove = 0;
+        
+        // step 1: compute total weight of selected items
         double curWeight = solution.getSelectedIDs().stream().mapToDouble(data::getWeight).sum();
+        
+        // step 2: compute minimum number of items to remove from selection to satisfy constraint
+        int minRemove = 0;
         Iterator<Integer> it = solution.getSelectedIDs().iterator();
+        // continue until capacity is not exceeded
         while(it.hasNext() && curWeight > maxWeight){
-            // subtract weight of next item to be removed
+            // subtract weight of next most heavy item to be removed
             curWeight -= data.getWeight(it.next());
             // update counter
             minRemove++;
         }
-        // assign penalty if items need to be removed (capacity exceeded)
+        
+        // step 3: produce penalizing validation
         if(minRemove > 0){
+            // assign penalty (capacity exceeded)
             double penalty = minRemove * (highestProfitPerItem + 1);
             return SimplePenalizingValidation.FAILED(penalty);
         } else {
+            // constraint satisfied
             return SimplePenalizingValidation.PASSED;
         }
+        
     }
     
 }
