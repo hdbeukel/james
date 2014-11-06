@@ -138,9 +138,9 @@ public class KnapSack {
             
             System.out.println("# PARALLEL TEMPERING");
             
-            // create parallel tempering with single perturbation neighbourhood (10 replicas)
+            // create parallel tempering with single perturbation neighbourhood
             double minTemp = 0.001;
-            double maxTemp = 0.05;
+            double maxTemp = 0.1;
             int numReplicas = 10;
             ParallelTempering<SubsetSolution> parallelTempering = new ParallelTempering<>(problem,
                                                                         new SinglePerturbationNeighbourhood(),
