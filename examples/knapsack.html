@@ -261,6 +261,20 @@ public class KnapsackConstraint implements Constraint&lt;SubsetSolution, Knapsac
         applied neighbourhood searches discard all neighbours that violate this constraint.
         The returned best found solution (if any) is then always guaranteed to satisfy the constraint.
     </p>
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-lightbulb-o"></i>
+            Mandatory versus penalizing constraints
+        </h4>
+        <p>
+            Instead of a mandatory constraint you may also use a penalizing constraint. Such constraint
+            does not cause solutions that violate it to be discarded. Instead, a
+            penalty is assigned to the solution's evaluation. This is a more flexible approach compared to mandatory constraints but requires
+            to carefully choose the penalties, usually reflecting the severeness of the constraint violation. As there is a tradeoff between
+            evaluation and penalties it is not guaranteed that the best found solution of a search will satisfy all penalizing constraints,
+            which may or may not be desired. See <a href="/examples/knapsack2/">example 2B</a>.
+        </p>
+    </div>
 <pre class="prettyprint">
 // set weights, profits and capacity
 double[] weights = ...
@@ -280,20 +294,6 @@ SubsetProblem&lt;KnapsackData&gt; problem = new SubsetProblem&lt;&gt;(obj, data,
 // add mandatory constraint
 problem.addMandatoryConstraint(constraint);
 </pre>
-    <div class="bs-callout bs-callout-info">
-        <h4>
-            <i class="fa fa-lightbulb-o"></i>
-            Mandatory versus penalizing constraints
-        </h4>
-        <p>
-            Instead of a mandatory constraint you may also use a penalizing constraint. The constraint is then required to implement the
-            <code>PenalizingConstraint</code> interface and does not cause solutions that violate it to be discarded. Instead, a
-            penalty is assigned to the solution's evaluation. This is a more flexible approach compared to mandatory constraints but requires
-            to carefully choose the penalties, usually reflecting the severeness of the constraint violation. As there is a tradeoff between
-            evaluation and penalties it is not guaranteed that the best found solution of a search will satisfy all penalizing constraints,
-            which may or may not be desired.
-        </p>
-    </div>
     
     <h4 class="page-header">
         Optimizing the knapsack
@@ -341,7 +341,7 @@ randomDescent.addSearchListener(new ProgressSearchListener());
         When using a penalizing instead of a mandatory constraint it might not be required to set a custom initial solution that satisfies
         the constraint. If the penalties are carefully chosen, the search may be able to find its way towards solutions within the constraint
         even if it started in a region of the search space where all solutions violate the constraint, because the latter solutions are not
-        discarded but penalized. Yet, a penalizing constraint is more difficult to design.
+        discarded but penalized. Yet, a penalizing constraint is more difficult to design. See <a href="/examples/knapsack2/">example 2B</a>.
     </div>
 <pre class="prettyprint">
 // random generator
