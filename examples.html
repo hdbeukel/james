@@ -159,7 +159,7 @@ layout: default
                 </span>
             </h4>
             <p class="lead">
-                Variable size subset selection with constraints.
+                Variable size subset selection with a mandatory constraint.
                 <span class="algo">
                     Algorithms: random descent and parallel tempering
                     with a predefined subset neighbourhood (single perturbation).
@@ -168,15 +168,50 @@ layout: default
             <p>
                 The 0/1 knapsack problem is a contrained variable size subset selection problem. The input consists of a list of items
                 which each have a fixed weight and profit. The goal is to select a subset of these items with maximal total profit where
-                the total weight does not exceed a given knapsack capacity.
+                the total weight does not exceed a given knapsack capacity. The latter requirement is imposed using a mandatory constraint
+                so that invalid solutions are discarded during search.
             </p>
             <p>
                 The <a href="/docs/#random-descent">random descent</a> and <a href="/docs/#parallel-tempering">parallel tempering</a>
-                algorithms are applied to optimize the selected subset, using a predefined subset neighbourhood that adds, deletes or
+                algorithms are applied to optimize the selection, using a predefined subset neighbourhood that adds, deletes or
                 swaps a (pair of) ID(s) to modify the current selection.
             </p>
             <p>
                 <a class="btn btn-default" href="/examples/knapsack"><i class="fa fa-chevron-right"></i> View example</a>
+            </p>
+            
+            <h4 class="page-header example-header">
+                Example 2B: The 0/1 knapsack problem (2)
+                <span class="hidden-xs">
+                    <span class="pull-right label label-warning">
+                        Difficulty:
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-full"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </span>
+                </span>
+            </h4>
+            <p class="lead">
+                Variable size subset selection with a penalizing constraint.
+                <span class="algo">
+                    Algorithm: parallel tempering with a predefined subset neighbourhood (single perturbation).
+                </span>
+            </p>
+            <p>
+                In this example, the 0/1 knapsack problem is solved using a penalizing instead of a mandatory constraint.
+                Such penalizing constraint does not cause solutions that violate it to be discarded, but assigns a penalty
+                to such solution's evaluation. This allows the search to cross regions of the search space with solutions
+                outside the constraint.
+            </p>
+            <p>
+                The <a href="/docs/#parallel-tempering">parallel tempering</a>
+                algorithm is applied to optimize the selection, using a predefined subset neighbourhood that adds, deletes or
+                swaps a (pair of) ID(s) to modify the current selection.
+            </p>
+            <p>
+                <a class="btn btn-default" href="/examples/knapsack2"><i class="fa fa-chevron-right"></i> View example</a>
             </p>
             
             <h4 class="page-header example-header">
@@ -187,7 +222,7 @@ layout: default
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
-                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-half-full"></i>
                         <i class="fa fa-star-o"></i>
                     </span>
                 </span>
