@@ -168,6 +168,10 @@ public class KnapsackConstraint implements Constraint&lt;SubsetSolution, Knapsac
     
 }
 </pre>
+
+    <h4 class="page-header">
+        Efficient delta validation
+    </h4>
     <p id="delta-validation">
         Similar to a delta evaluation in an objective, we can provide an efficient delta validation in a constraint.
         This is not required because the <code>Constraint</code> interface includes a default <em>apply-undo</em> behaviour:
