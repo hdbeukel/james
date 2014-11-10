@@ -46,12 +46,14 @@ public class TSP2OptNeighbourhood implements Neighbourhood<TSPSolution>{
 
     @Override
     public List<? extends Move<? super TSPSolution>> getAllMoves(TSPSolution solution) {
-        // generate a 2-opt TSP move for every pair of positions i,j with i<j
+        // generate a 2-opt TSP move for every pair of positions i,j
         int n = solution.getCities().size();
         List<TSP2OptMove> moves = new ArrayList<>();
         for(int i=0; i<n; i++){
-            for(int j=i+1; j<n; j++){
-                moves.add(new TSP2OptMove(i, j));
+            for(int j=0; j<n; j++){
+                if(i != j){
+                    moves.add(new TSP2OptMove(i, j));
+                }
             }
         }
         return moves;

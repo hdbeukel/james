@@ -25,7 +25,7 @@ import org.jamesframework.core.search.neigh.Move;
  */
 public class TSP2OptMove implements Move<TSPSolution> {
 
-    // city positions i,j (i<j) between which the path is reversed as follows:
+    // city positions i,j between which the path is reversed as follows:
     // ... - (a) - (c_1) - (c_2)   - ... - (c_n-1) - (c_n) - (b) - ... 
     //               i                                 j
     //  =>
@@ -34,16 +34,13 @@ public class TSP2OptMove implements Move<TSPSolution> {
     private final int i, j;
 
     public TSP2OptMove(int i, int j) {
-        // ensure that i < j
-        if(i < j){
-            this.i = i;
-            this.j = j;
-        } else if(j < i) {
-            this.i = j;
-            this.j = i;
-        } else {
+        // check
+        if(i == j){
             throw new IllegalArgumentException("Error: i and j should be distinct positions.");
         }
+        // store
+        this.i = i;
+        this.j = j;
     }
     
     public int getI(){
@@ -59,10 +56,12 @@ public class TSP2OptMove implements Move<TSPSolution> {
         // reverse subpath
         int start = i;
         int stop = j;
-        while(start < stop){
+        int n = solution.getCities().size();
+        int numSwaps = ((stop-start+1+n)%n)/2;
+        for(int k=0; k<numSwaps; k++){
             solution.swapCities(start, stop);
-            start++;
-            stop--;
+            start = (start+1) % n;
+            stop = (stop-1+n) % n;
         }
     }
 
