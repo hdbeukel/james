@@ -14,31 +14,31 @@
  * limitations under the License.
  */
 
-package org.jamesframework.examples.tsp;
+package org.jamesframework.examples.tsp2;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- * Reads a symmetric distance matrix for TSP from a text file and constructs the corresponding TSP problem.
+ * Reads a (symmetric) distance matrix for TSP from a text file and constructs the corresponding TSP data.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class TSPFileReader {
+public class TSPFileReader2 {
     
     /**
-     * Read a symmetric distance matrix from a text file and create the corresponding TSP problem.
+     * Read a (symmetric) distance matrix from a text file and create the corresponding TSP data.
      * The first line of the file contains a single integer value (possibly surrounded by whitespace)
      * that indicates the number of cities N. The remainder of the file contains the entries of the
      * lower triangular part of a symmetric distance matrix (row-wise without diagonal entries),
      * separated by whitespace and/or newlines.
      * 
      * @param filePath input file path
-     * @return TSP problem with distance matrix read from the input file
+     * @return TSP data with distance matrix read from the input file
      * @throws FileNotFoundException if the file does not exist
      */
-    public TSPProblem read(String filePath) throws FileNotFoundException {
+    public TSPData read(String filePath) throws FileNotFoundException {
         // create scanner
         Scanner sc = new Scanner(new File(filePath));
         // read number of cities
@@ -52,8 +52,8 @@ public class TSPFileReader {
                 dist[j][i] = dist[i][j];
             }
         }
-        // create and return TSP problem
-        return new TSPProblem(dist);
+        // create and return TSP data
+        return new TSPData(dist);
     }
 
 }

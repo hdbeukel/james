@@ -79,7 +79,13 @@ public class ReverseSubsequenceMove implements Move<PermutationSolution>{
         int n = solution.size();
         // reverse subsequence by performing a series of swaps
         // (works cyclically when start > stop)
-        int numSwaps = ((stop-start+1+n)%n)/2;
+        int reversedLength;
+        if(start < stop){
+            reversedLength = stop-start+1;
+        } else {
+            reversedLength = n - (start-stop-1);
+        }
+        int numSwaps = (reversedLength)/2;
         for(int k=0; k<numSwaps; k++){
             solution.swap(start, stop);
             start = (start+1) % n;

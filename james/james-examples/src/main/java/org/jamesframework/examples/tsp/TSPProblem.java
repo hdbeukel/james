@@ -19,11 +19,13 @@ package org.jamesframework.examples.tsp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import org.jamesframework.core.exceptions.IncompatibleDeltaEvaluationException;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.constraints.validations.SimpleValidation;
 import org.jamesframework.core.problems.constraints.validations.Validation;
 import org.jamesframework.core.problems.objectives.evaluations.Evaluation;
 import org.jamesframework.core.problems.objectives.evaluations.SimpleEvaluation;
+import org.jamesframework.core.search.neigh.Move;
 
 /**
  * Specification of the travelling salesman problem. Each city is identified using a unique integer value.
@@ -35,7 +37,7 @@ import org.jamesframework.core.problems.objectives.evaluations.SimpleEvaluation;
 public class TSPProblem implements Problem<TSPSolution>{
 
     // travel distance matrix
-    private double[][] dist;
+    private final double[][] dist;
 
     public TSPProblem(double[][] dist) {
         this.dist = dist;
@@ -62,6 +64,50 @@ public class TSPProblem implements Problem<TSPSolution>{
         }
         // wrap in simple evaluation
         return new SimpleEvaluation(totalDistance);
+    }
+    
+    @Override
+    public Evaluation evaluate(Move move, TSPSolution curSolution, Evaluation curEvaluation){
+        
+        // check move type
+        if(!(move instanceof TSP2OptMove)){
+            throw new IncompatibleDeltaEvaluationException("Delta evaluation in TSP problem expects move of type TSP2OptMove.");
+        }
+        // cast move
+        TSP2OptMove move2opt = (TSP2OptMove) move;
+        // get bounds of reversed subsequence
+        int i = move2opt.getI();
+        int j = move2opt.getJ();
+        // get number of cities
+        int n = getNumCities();
+        
+        if((j+1)%n == i){
+            // special case: entire sequence reversed
+            return curEvaluation;
+        } else {
+            // get current total travel distance
+            double totalDistance = curEvaluation.getValue();
+            // get current order of cities
+            List<Integer> cities = curSolution.getCities();
+
+            // get crucial cities (at boundary of reversed subsequence)
+            int beforeReversed = cities.get((i-1+n)%n);
+            int firstReversed = cities.get(i);
+            int lastReversed = cities.get(j);
+            int afterReversed = cities.get((j+1)%n);
+
+            // account for dropped distances
+            totalDistance -= dist[beforeReversed][firstReversed];
+            totalDistance -= dist[lastReversed][afterReversed];
+
+            // account for new distances
+            totalDistance += dist[beforeReversed][lastReversed];
+            totalDistance += dist[firstReversed][afterReversed];
+
+            // return updated travel distance
+            return new SimpleEvaluation(totalDistance);
+        }
+        
     }
 
     @Override

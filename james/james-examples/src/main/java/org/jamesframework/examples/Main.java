@@ -107,6 +107,16 @@ public class Main {
         System.out.println("");
         System.out.println("java -cp james-examples.jar org.jamesframework.examples.tsp.TSP <inputfile> <runtime>");
         System.out.println("");
+        System.out.println("Example 4B: the travelling salesman problem (2)");
+        System.out.println("-----------------------------------------------");
+        System.out.println("");
+        System.out.println("Reconsiders implementing TSP using the predefined components for \n"
+                         + "permutation problems from the James extensions module.");
+        System.out.println("");
+        System.out.println("Usage:");
+        System.out.println("");
+        System.out.println("java -cp james-examples.jar org.jamesframework.examples.tsp2.TSP2 <inputfile> <runtime>");
+        System.out.println("");
     }
     
 }
