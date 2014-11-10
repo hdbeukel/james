@@ -104,4 +104,36 @@ public class ReverseSubsequenceMove implements Move<PermutationSolution>{
         apply(solution);
     }
 
+    /**
+     * Two moves of this type are considered equals if they reverse the same subsequence.
+     * 
+     * @param obj object to compare for equality
+     * @return <code>true</code> if the other object is a move of the same type that reverses
+     *         the same subsequence
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ReverseSubsequenceMove other = (ReverseSubsequenceMove) obj;
+        return this.from == other.from && this.to == other.to;
+    }
+    
+    /**
+     * Hash code computation corresponding to implementation of {@link #equals(Object)}.
+     * 
+     * @return hash code
+     */
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 41 * hash + this.from;
+        hash = 41 * hash + this.to;
+        return hash;
+    }
+
 }

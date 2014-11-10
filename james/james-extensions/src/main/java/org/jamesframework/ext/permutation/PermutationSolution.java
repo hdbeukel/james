@@ -41,7 +41,7 @@ public class PermutationSolution extends Solution {
      * to the given list is stored in this solution.
      * 
      * @param order ordered IDs
-     * @throws IllegalArgumentException if <code>order</code> is empty
+     * @throws IllegalArgumentException if <code>order</code> is empty or contains duplicates
      * @throws NullPointerException if <code>order</code> is <code>null</code> or contains
      *                              any <code>null</code> elements
      */
@@ -53,6 +53,9 @@ public class PermutationSolution extends Solution {
         }
         if(order.isEmpty()){
             throw new IllegalArgumentException("Error while creating permutation solution: given list of IDs can not be empty.");
+        }
+        if(order.stream().distinct().count() < order.size()){
+            throw new IllegalArgumentException("Error while creating permutation solution: given list of IDs can not contain duplicates.");
         }
         this.order = new ArrayList<>(order);
     }
@@ -108,7 +111,7 @@ public class PermutationSolution extends Solution {
      * @return deep copy
      */
     @Override
-    public Solution copy() {
+    public PermutationSolution copy() {
         return new PermutationSolution(order);
     }
 

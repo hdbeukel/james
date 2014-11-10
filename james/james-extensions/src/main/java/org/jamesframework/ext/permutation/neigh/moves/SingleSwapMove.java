@@ -41,6 +41,24 @@ public class SingleSwapMove implements Move<PermutationSolution>{
     }
     
     /**
+     * Get the position of the first swapped item.
+     * 
+     * @return first position
+     */
+    public int getI(){
+        return i;
+    }
+    
+    /**
+     * Get the position of the second swapped item.
+     * 
+     * @return second position
+     */
+    public int getJ(){
+        return j;
+    }
+    
+    /**
      * Apply the move by swapping the items at the positions specified at construction.
      * 
      * @param solution permutation solution to which the move is applied
@@ -59,6 +77,39 @@ public class SingleSwapMove implements Move<PermutationSolution>{
     public void undo(PermutationSolution solution) {
         // apply swap again to undo
         apply(solution);
+    }
+
+    /**
+     * Two single swap moves are considered equal if they swap the same pair of items.
+     * The order of <code>i</code> and <code>j</code> is arbitrary.
+     * 
+     * @param obj object to compare for equality
+     * @return <code>true</code> if the given object is also a single swap move that
+     *         swaps the same pair of items
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final SingleSwapMove other = (SingleSwapMove) obj;
+        return (this.i == other.i && this.j == other.j)
+                || (this.i == other.j && this.j == other.i);
+    }
+    
+    /**
+     * Hash code computation corresponding to the implementation of {@link #equals(Object)}.
+     * 
+     * @return hash code
+     */
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 71 * hash + this.i + this.j;
+        return hash;
     }
 
 }
