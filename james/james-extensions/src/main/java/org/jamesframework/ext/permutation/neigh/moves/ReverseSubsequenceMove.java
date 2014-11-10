@@ -85,7 +85,7 @@ public class ReverseSubsequenceMove implements Move<PermutationSolution>{
         } else {
             reversedLength = n - (start-stop-1);
         }
-        int numSwaps = (reversedLength)/2;
+        int numSwaps = reversedLength/2;
         for(int k=0; k<numSwaps; k++){
             solution.swap(start, stop);
             start = (start+1) % n;

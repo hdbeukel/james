@@ -63,7 +63,7 @@ public class TSP2OptMove implements Move<TSPSolution> {
         } else {
             reversedLength = n - (i-j-1);
         }
-        int numSwaps = (reversedLength)/2;
+        int numSwaps = reversedLength/2;
         for(int k=0; k<numSwaps; k++){
             solution.swapCities(start, stop);
             start = (start+1) % n;
