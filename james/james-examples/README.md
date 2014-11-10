@@ -8,7 +8,7 @@ This module provides a series of example problem implementations.
 Documentation
 =============
 
-Documentation for all implemented examples is provided at the [James website][examples-website].
+Documentation for all implemented examples is provided at the [website][examples-website].
 
 License and copyright
 =====================

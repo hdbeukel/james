@@ -3,14 +3,14 @@ James Extensions Module
 
 The James extensions module is part of the [James framework][james-github].
 
-This module provides additional components for advanced problem specification and search customization.
-
-For later versions it is planned to also add specific components for other frequent problem types besides subset selection (e.g. permutation problems).
+This module extends the core with additional tools
+for advanced problem specification and search customization. It also provides reusable
+components for other problem types besides subset selection (e.g. permutation problems).
   
 Documentation
 =============  
 
-More information, user documentation and examples of how to use the framework are provided at the [James website][james-website].
+More information, user documentation and examples of how to use the framework are provided at the [website][james-website].
 Additional developer documentation is posted on the [wiki][james-wiki].
 
 License and copyright

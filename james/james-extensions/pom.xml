@@ -16,8 +16,8 @@
     <description>
         The James extensions module is part of the James framework for discrete optimization
         using local search metaheuristics in Java. It extends the core with additional tools
-        for advanced problem specification and search customization. It also provides reusable
-        components for other types of problems, besides subset selection (e.g. permutation problems).
+        for advanced problem specification and search customization. It also provides specific
+        components for some other problem types besides subset selection (e.g. permutation problems).
     </description>
     <scm>
       <url>https://github.com/hdbeukel/james/tree/master/james/james-extensions</url>

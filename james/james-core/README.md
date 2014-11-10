@@ -15,15 +15,15 @@ A wide range of local search algorithms are provided out-of-the-box, including
 6. Parallel tempering
 7. ...
 
-In addition, a greedy subset sampling heuristic is available (LR subset search) as well as exhaustive search, which is of course only feasible for problems with a reasonably small search space.
+Exhaustive search is also available, which is of course only feasible for problems with a reasonably small search space.
 
-The core also contains specific components for subset selection such as a predefined solution type, a generic problem specification and various subset neighbourhoods.
+In addition, the core contains specific components for subset selection such as a predefined solution type, a generic problem specification and various subset neighbourhoods, as well as a greedy subset sampling heuristic (LR subset search).
 
   
 Documentation
 =============
 
-More information, user documentation and examples of how to use the framework are provided at the [James website][james-website].
+More information, user documentation and examples of how to use the framework are provided at the [website][james-website].
 Additional developer documentation is posted on the [wiki][james-wiki].
 
 License and copyright
