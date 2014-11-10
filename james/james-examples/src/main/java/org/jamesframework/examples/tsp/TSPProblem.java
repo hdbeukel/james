@@ -41,6 +41,14 @@ public class TSPProblem implements Problem<TSPSolution>{
         this.dist = dist;
     }
     
+    public double[][] getDistanceMatrix(){
+        return dist;
+    }
+    
+    public int getNumCities(){
+        return dist.length;
+    }
+    
     @Override
     public Evaluation evaluate(TSPSolution solution) {
         // compute sum of travel distances

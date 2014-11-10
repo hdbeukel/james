@@ -97,6 +97,16 @@ public class Main {
         System.out.println("");
         System.out.println("java -cp james-examples.jar org.jamesframework.examples.clique.MaximumClique <inputfile> <maxshake> <runtime>");
         System.out.println("");
+        System.out.println("Example 4: the travelling salesman problem");
+        System.out.println("------------------------------------------");
+        System.out.println("");
+        System.out.println("This example demonstrates the implementation of the TSP problem, \n"
+                         + "which is not a subset selection but a permutation problem.");
+        System.out.println("");
+        System.out.println("Usage:");
+        System.out.println("");
+        System.out.println("java -cp james-examples.jar org.jamesframework.examples.tsp.TSP <inputfile> <runtime>");
+        System.out.println("");
     }
     
 }

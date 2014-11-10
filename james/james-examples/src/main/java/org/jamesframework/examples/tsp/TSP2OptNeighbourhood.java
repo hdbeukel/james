@@ -24,15 +24,15 @@ import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 
 /**
- * Neighbourhood for the TSP problem.
+ * Basic 2-opt neighbourhood for the TSP problem.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class TSPNeighbourhood implements Neighbourhood<TSPSolution>{
+public class TSP2OptNeighbourhood implements Neighbourhood<TSPSolution>{
     
     @Override
     public Move<? super TSPSolution> getRandomMove(TSPSolution solution) {
-        // pick two distinct random positions in the round trip
+        // pick two distinct random positions i,j in the round trip
         int n = solution.getCities().size();
         Random rg = ThreadLocalRandom.current();
         int i = rg.nextInt(n);
@@ -40,18 +40,18 @@ public class TSPNeighbourhood implements Neighbourhood<TSPSolution>{
         if(j >= i){
             j++;
         }
-        // return TSP move that swaps cities at these positions
-        return new TSPMove(i, j);
+        // return 2-opt TSP move that reverses path from position i to j
+        return new TSP2OptMove(i, j);
     }
 
     @Override
     public List<? extends Move<? super TSPSolution>> getAllMoves(TSPSolution solution) {
-        // generate a TSP move for every pair of distinct positions in the round trip
+        // generate a 2-opt TSP move for every pair of positions i,j with i<j
         int n = solution.getCities().size();
-        List<TSPMove> moves = new ArrayList<>();
+        List<TSP2OptMove> moves = new ArrayList<>();
         for(int i=0; i<n; i++){
             for(int j=i+1; j<n; j++){
-                moves.add(new TSPMove(i, j));
+                moves.add(new TSP2OptMove(i, j));
             }
         }
         return moves;
