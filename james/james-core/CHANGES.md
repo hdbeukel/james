@@ -2,8 +2,8 @@ James Core Module Changes
 =========================
 
 
-Version 0.2 (under development)
--------------------------------
+Version 0.2 (12/11/2014)
+------------------------
 
  - Added support for efficient delta evaluations and validations.
  - Provided additional subset neighbourhoods.

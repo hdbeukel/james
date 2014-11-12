@@ -2,8 +2,8 @@ James Examples Module Changes
 =============================
 
 
-Version 0.2 (under development)
----------------------------------
+Version 0.2 (12/11/2014)
+------------------------
 
  - Compatible with core module v0.2.
  - Provided additional example: travelling salesman problem (TSP).
