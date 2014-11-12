@@ -1,0 +1,483 @@
+---
+layout: default
+---
+
+<div id="examples-coresubset">
+    <ol class="breadcrumb">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/examples">Examples</a></li>
+        <li class="active">Travelling salesman problem (2)</li>
+    </ol>
+    
+    <h2 class="page-header">
+        Example 4B: The travelling salesman problem (2)
+    </h2>
+    
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-info-circle"></i>
+            Info
+        </h4>
+        The parallel tempering algorithm is applied to optimize the round trip. Don't know what parallel tempering is?
+        Read <a href="/docs/#parallel-tempering">this</a>.
+    </div>
+    <p>
+        This example reconsiders the travelling salesman problem. A TSP is actually a permutation problem: the goal is to find the best permutation
+        of cities so that visiting them in this order yields the lowest possible total travel distance. Thus, generic components are first designed
+        that can be reused for any permutation problem. Then, the TSP is implemented by plugging in the necessary data and objective.
+    </p>
+    <p>
+        All reusable permutation problem components defined here have been made available in the <a href="/getstarted/#modules">James extensions module</a>.
+    </p>
+    
+    <h4 class="page-header">
+        A solution type for permutation problems
+    </h4>
+    <p>
+        A permutation problem consists of finding an optimal order of a list of items. Thus, a solution to such problem indicates a specific order.
+        We will assume that every item is identified with a unique integer ID. This assumption is imposed later when defining a generic permutation
+        problem. A <code>PermutationSolution</code> thus reflects an ordered list of these IDs. It's implementation is very similar to that of
+        the <code>TSPSolution</code> from <a href="/examples/tsp/#solution-type">example 4</a>.
+    </p>
+<pre class="prettyprint">
+public class PermutationSolution extends Solution {
+
+    // ordered sequence of IDs
+    private List&lt;Integer&gt; order;
+
+    public PermutationSolution(List&lt;Integer&gt; order) {
+        this.order = order;
+    }
+
+    public List&lt;Integer&gt; getOrder(){
+        return order;
+    }
+
+    public int size(){
+        return order.size();
+    }
+
+    public void swap(int i, int j){
+        int tmp = order.get(i);
+        order.set(i, order.get(j));
+        order.set(j, tmp);
+    }
+
+    @Override
+    public PermutationSolution copy() {
+        return new PermutationSolution(new ArrayList&lt;&gt;(order));
+    }
+    
+    @Override
+    public boolean equals(Object other) {
+        if (other == null) {
+            return false;
+        }
+        if (getClass() != other.getClass()) {
+            return false;
+        }
+        final PermutationSolution otherPerm = (PermutationSolution) other;
+        return Objects.equals(this.order, otherPerm.order);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.order);
+        return hash;
+    }
+
+}
+</pre>
+
+    <h4 class="page-header">
+        A generic permutation problem
+    </h4>
+    <p>
+        Now we can define a generic reusable permutation problem. It extends <code>AbstractProblem</code> so that the data, objective and
+        constraints (if any) are nicely separated as is the case for subset selection problems. The solution type is fixed to
+        <code>PermutationSolution</code> and it is imposed that the data type should implement the <code>IntegerIdentifiedData</code>
+        interface so that every item in the data set is assigned a unique integer ID.
+    </p>
+    <p>
+        <code>AbstractProblem</code> has a single abstract method that is to be implemented in <code>PermutationProblem</code> responsible for
+        creating a random solution. It is implemented in the same way as the corresponding method in the <code>TSPProblem</code> from
+        <a href="/examples/tsp/#problem">example 4</a>. The IDs of the items in the data set are retrieved from the data object.
+    </p>
+<pre class="prettyprint">
+public class PermutationProblem&lt;DataType extends IntegerIdentifiedData&gt; extends AbstractProblem&lt;PermutationSolution, DataType&gt;{
+
+    public PermutationProblem(Objective&lt;? super PermutationSolution, ? super DataType&gt; objective, DataType data) {
+        super(objective, data);
+    }
+
+    public PermutationSolution createRandomSolution() {
+        // create list with all IDs
+        List&lt;Integer&gt; ids = new ArrayList&lt;&gt;(getData().getIDs());
+        // shuffle IDs
+        Collections.shuffle(ids);
+        // create and return permutation solution
+        return new PermutationSolution(ids);
+    }
+
+}
+</pre>
+
+    <h4 class="page-header">
+        Permutation neighbourhood and corresponding move
+    </h4>
+    <p>
+        To be able to apply neighbourhood searches to solve permutation problems, we need to provide at least one neighbourhood
+        for the newly defined <code>PermutationSolution</code>.
+        Here we create a <code>ReverseSubsequenceNeighbourhood</code> and corresponding move, similar to the <code>TSP2OptNeighbourhood</code>
+        and move introduced in <a href="/examples/tsp/#neigh">example 4</a>.
+    </p>
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-info-circle"></i>
+            Info
+        </h4>
+        The extensions module contains several permutation neighbourhoods among which this <code>ReverseSubsequenceNeighbourhood</code>.
+        Of course, custom neighbourhoods can also be defined for specific permutation problems.
+    </div>
+<pre class="prettyprint">
+public class ReverseSubsequenceMove implements Move&lt;PermutationSolution&gt;{
+
+    // first and last position of subsequence that will be reversed
+    private int from, to;
+
+    public ReverseSubsequenceMove(int from, int to) {
+        this.from = from;
+        this.to = to;
+    }
+
+    public int getFrom(){
+        return from;
+    }
+    
+    public int getTo(){
+        return to;
+    }
+
+    @Override
+    public void apply(PermutationSolution solution) {
+        int start = from;
+        int stop = to;
+        int n = solution.size();
+        // reverse subsequence by performing a series of swaps
+        // (works cyclically when start > stop)
+        int reversedLength;
+        if(start &lt; stop){
+            reversedLength = stop-start+1;
+        } else {
+            reversedLength = n - (start-stop-1);
+        }
+        int numSwaps = reversedLength/2;
+        for(int k=0; k&lt;numSwaps; k++){
+            solution.swap(start, stop);
+            start = (start+1) % n;
+            stop = (stop-1+n) % n;
+        }
+    }
+
+    @Override
+    public void undo(PermutationSolution solution) {
+        // undo by reversing again
+        apply(solution);
+    }
+
+}
+
+public class ReverseSubsequenceNeighbourhood implements Neighbourhood&lt;PermutationSolution&gt;{
+
+    public ReverseSubsequenceMove getRandomMove(PermutationSolution solution) {
+        int n = solution.size();
+        // check: move possible
+        if(n &lt; 2){
+            return null;
+        }
+        // pick two random, distinct positions
+        Random rg = ThreadLocalRandom.current();
+        int i = rg.nextInt(n);
+        int j = rg.nextInt(n-1);
+        if(j >= i){
+            j++;
+        }
+        // generate move
+        return new ReverseSubsequenceMove(i, j);
+    }
+
+    @Override
+    public List&lt;ReverseSubsequenceMove&gt; getAllMoves(PermutationSolution solution) {
+        // initialize list
+        List&lt;ReverseSubsequenceMove&gt; moves = new ArrayList&lt;&gt;();
+        int n = solution.size();
+        for(int i=0; i&lt;n; i++){
+            for(int j=0; j&lt;n; j++){
+                if(i != j){
+                    moves.add(new ReverseSubsequenceMove(i, j));
+                }
+            }
+        }
+        return moves;
+    }
+
+}
+</pre>
+    <h4 class="page-header">
+        TSP Data and objective
+    </h4>
+    <p>
+        The defined permutation problem components can now be used to implement TSP. We simply have to define the data and objective and
+        wrap these in a <code>PermutationProblem</code>. The data contains the distance matrix and implements the <code>IntegerIdentifiedData</code> interface.
+        The IDs assigned to each city correspond to the row and column indices in the distance matrix and are automatically inferred.
+    </p>
+<pre class="prettyprint">
+public class TSPData implements IntegerIdentifiedData {
+
+    // travel distance matrix
+    private final double[][] dist;
+    
+    // set of IDs
+    private final Set&lt;Integer&gt; ids;
+
+    public TSPData(double[][] dist) {
+        // infer IDs
+        ids = new HashSet&lt;&gt;();
+        for(int i=0; i&lt;dist.length; i++){
+            ids.add(i);
+        }
+        // store distance matrix
+        this.dist = dist;
+    }
+
+    @Override
+    public Set&lt;Integer&gt; getIDs() {
+        return ids;
+    }
+    
+    // get travel distance from the given city to the given other city
+    public double getDistance(int from, int to){
+        return dist[from][to];
+    }
+    
+}
+</pre>
+    <p>
+        The objective evaluates a permutation solution by computing the total travel distance of the round trip that visits cities in the
+        order in which they occur in the permutation. The implementation is similar to that of the respective evaluation method in the <code>TSPProblem</code>
+        from <a href="/examples/tsp/#problem">example 4</a> and also includes an efficient delta evaluation for the applied move type. The solution type is
+        set to <code>PermutationSolution</code> and the data type to <code>TSPDta</code> which contains the distance matrix.
+    </p>
+<pre class="prettyprint">
+public class TSPObjective implements Objective&lt;PermutationSolution, TSPData&gt;{
+
+    public Evaluation evaluate(PermutationSolution solution, TSPData data) {
+        // compute sum of travel distances
+        List&lt;Integer&gt; cities = solution.getOrder();
+        int n = cities.size();
+        double totalDistance = 0.0;
+        for(int i=0; i&lt;n; i++){
+            int fromCity = cities.get(i);
+            int toCity = cities.get((i+1)%n);
+            totalDistance += data.getDistance(fromCity, toCity);
+        }
+        // wrap in simple evaluation
+        return new SimpleEvaluation(totalDistance);
+    }
+
+    public Evaluation evaluate(Move move, PermutationSolution curSolution, Evaluation curEvaluation, TSPData data){
+        
+        // check move type
+        if(!(move instanceof ReverseSubsequenceMove)){
+            throw new IncompatibleDeltaEvaluationException("Delta evaluation in TSP objective expects move of type ReverseSubsequenceMove.");
+        }
+        // cast move
+        ReverseSubsequenceMove move2opt = (ReverseSubsequenceMove) move;
+        // get bounds of reversed subsequence
+        int from = move2opt.getFrom();
+        int to = move2opt.getTo();
+        // get number of cities
+        int n = curSolution.size();
+        
+        if((to+1)%n == from){
+            // special case: entire sequence reversed
+            return curEvaluation;
+        } else {
+            // get current total travel distance
+            double totalDistance = curEvaluation.getValue();
+            // get current order of cities
+            List&lt;Integer&gt; cities = curSolution.getOrder();
+
+            // get crucial cities (at boundary of reversed subsequence)
+            int beforeReversed = cities.get((from-1+n)%n);
+            int firstReversed = cities.get(from);
+            int lastReversed = cities.get(to);
+            int afterReversed = cities.get((to+1)%n);
+
+            // account for dropped distances
+            totalDistance -= data.getDistance(beforeReversed, firstReversed);
+            totalDistance -= data.getDistance(lastReversed, afterReversed);
+
+            // account for new distances
+            totalDistance += data.getDistance(beforeReversed, lastReversed);
+            totalDistance += data.getDistance(firstReversed, afterReversed);
+
+            // return updated travel distance
+            return new SimpleEvaluation(totalDistance);
+        }
+        
+    }
+    
+    public boolean isMinimizing() {
+        return true;
+    }
+
+}
+</pre>
+    <h4 class="page-header">
+        Optimizing the round trip
+    </h4>
+    <p>
+        We can apply a parallel tempering algorithm in the same way as in <a href="/examples/tsp/#optimization">example 4</a>.
+        The problem is now a <code>PermutationProblem</code> that contains the TSP data and objective.
+        The <code>ReverseSubsequenceNeighbourhood</code> is applied which corresponds to a 2-opt neighbourhood
+        in the context of TSP.
+    </p>
+<pre class="prettyprint">
+// create distance matrix (e.g. read from a file)
+double[][] dist = ...
+// create data
+TSPData data = new TSPData(dist);
+// create objective
+TSPObjective obj = new TSPObjective();
+
+// wrap data and objective in a permutation problem
+PermutationProblem&lt;TSPData&gt; problem = new PermutationProblem&lt;&gt;(obj, data);
+
+// create parallel tempering search with with neighbourhood that reverses a subsequence (2-opt move)
+double minTemp = 0.001;
+double maxTemp = 0.1;
+int numReplicas = 10;
+ParallelTempering&lt;PermutationSolution&gt; parallelTempering = new ParallelTempering&lt;&gt;(
+                                                            problem,
+                                                            new ReverseSubsequenceNeighbourhood(),
+                                                            numReplicas, minTemp, maxTemp
+                                                           );
+// scale temperatures according to average travel distance between cities
+double scale = computeAverageTravelDistance(data);
+parallelTempering.setTemperatureScaleFactor(scale);
+
+// set maximum runtime
+long timeLimit = ...
+parallelTempering.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
+// attach listener (see example 1)
+parallelTempering.addSearchListener(new ProgressSearchListener());
+
+// start search
+parallelTempering.start();
+
+// print results
+if(parallelTempering.getBestSolution() != null){
+    System.out.println("Best round trip: " + parallelTempering.getBestSolution().getOrder());
+    System.out.println("Best round trip travel distance: " + parallelTempering.getBestSolutionEvaluation());
+} else {
+    System.out.println("No valid solution found...");
+}
+
+// dispose
+parallelTempering.dispose();
+</pre>
+    <p>
+        The average travel distance between each pair of cities is easily computed, to be used as scale factor for the temperatures
+        (see <a href="/examples/tsp/#optimization">example 4</a>).
+    </p>
+<pre class="prettyprint">
+double computeAverageTravelDistance(TSPData data){
+    Set&lt;Integer&gt; ids = data.getIDs();
+    double sum = 0.0;
+    for(int id1 : ids){
+        for(int id2 : ids) {
+            if(id1 != id2){
+                sum += data.getDistance(id1, id2);
+            }
+        }
+    }
+    int n = ids.size();
+    int numDistances = n*(n-1);
+    return sum/numDistances;
+}
+</pre>
+    <h4 class="page-header">
+        Other permutation problems
+    </h4>
+    <p>
+        The advantage of this approach compared to that from <a href="/examples/tsp/">example 4</a> is that
+        any other permutation problem can now also be defined using the provided generic solution type, problem definition and
+        neighbourhood(s). These reusable components have been made available in the <a href="/getstarted/#modules">James extensions module</a>.
+        Source code can be found on
+        <a href="https://github.com/hdbeukel/james/tree/v{{site.examples-latest-stable}}/james/james-extensions/src/main/java/org/jamesframework/ext/permutation">GitHub</a>
+        .
+    </p>
+
+    <h4 class="page-header">
+        Full source code
+    </h4>
+    <p>
+        The complete source code of this example is available on
+        <a href="https://github.com/hdbeukel/james/tree/v{{site.examples-latest-stable}}/james/james-examples/src/main/java/org/jamesframework/examples/tsp2">GitHub</a>,
+        including some additional code to read the input from a text file.
+        You can also download a <a href="/getstarted/#releases-examples">ZIP file</a> that contains the Java sources of all examples, a compiled
+        JAR (including all dependencies) as well as some input files for in case you want to run any of the examples. To run this example, execute
+    </p>
+<pre class="prettyprint">
+$ java -cp james-examples.jar org.jamesframework.examples.tsp2.TSP2 &lt;inputfile&gt; &lt;runtime&gt;
+</pre>
+    </p>
+        from the command line.
+        The first line of the input file contains a single integer value (possibly surrounded by whitespace)
+        that indicates the number of cities N. The remainder of the file contains the entries of the
+        lower triangular part of an N &times; N symmetric distance matrix (row-wise without diagonal entries),
+        separated by whitespace and/or newlines.
+        The runtime is given in seconds.
+    </p>
+    <p>
+        <ul class="list-unstyled">
+            <li>
+                <a href="/files/examples/TSP1.txt"><i class="fa fa-file-text-o"></i> Example input file (17 cities)</a>
+            </li>
+            <li>
+                <a href="/files/examples/TSP2.txt"><i class="fa fa-file-text-o"></i> Example input file (48 cities)</a>
+            </li>
+            <li>
+                <a href="/files/examples/TSP3.txt"><i class="fa fa-file-text-o"></i> Example input file (120 cities)</a>
+            </li>
+            <li>
+                <a href="/files/examples/TSP4.txt"><i class="fa fa-file-text-o"></i> Example input file (561 cities)</a>
+            </li>
+        </ul>
+    </p>
+    <p>
+        The example input files correspond to instances gr17, gr48, gr120 and pa561, respectively, from the
+        <a href="http://www.iwr.uni-heidelberg.de/groups/comopt/software/TSPLIB95/" target="_blank">TSPLIB benchmark set</a>.
+    </p>
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
