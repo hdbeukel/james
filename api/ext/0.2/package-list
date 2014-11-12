@@ -1,0 +1,6 @@
+org.jamesframework.ext.permutation
+org.jamesframework.ext.permutation.neigh
+org.jamesframework.ext.permutation.neigh.moves
+org.jamesframework.ext.problems.objectives
+org.jamesframework.ext.problems.objectives.evaluations
+org.jamesframework.ext.search.neigh
