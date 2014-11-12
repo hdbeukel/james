@@ -10,7 +10,7 @@
     </parent>
     <!-- james examples specifications -->
     <artifactId>james-examples</artifactId>
-    <version>0.2</version>
+    <version>0.2.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>james-examples</name>
     <description>
@@ -126,7 +126,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>james-extensions</artifactId>
-            <version>0.2</version>
+            <version>0.2.1-SNAPSHOT</version>
         </dependency>
         <!-- tests depend on core module tests -->
         <dependency>
