@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 
 /**
@@ -31,7 +30,7 @@ import org.jamesframework.core.search.neigh.Neighbourhood;
 public class TSP2OptNeighbourhood implements Neighbourhood<TSPSolution>{
     
     @Override
-    public Move<? super TSPSolution> getRandomMove(TSPSolution solution) {
+    public TSP2OptMove getRandomMove(TSPSolution solution) {
         // pick two distinct random positions i,j in the round trip
         int n = solution.getCities().size();
         Random rg = ThreadLocalRandom.current();
@@ -45,7 +44,7 @@ public class TSP2OptNeighbourhood implements Neighbourhood<TSPSolution>{
     }
 
     @Override
-    public List<? extends Move<? super TSPSolution>> getAllMoves(TSPSolution solution) {
+    public List<TSP2OptMove> getAllMoves(TSPSolution solution) {
         // generate a 2-opt TSP move for every pair of positions i,j
         int n = solution.getCities().size();
         List<TSP2OptMove> moves = new ArrayList<>();

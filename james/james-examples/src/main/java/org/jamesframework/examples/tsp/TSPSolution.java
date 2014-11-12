@@ -47,7 +47,7 @@ public class TSPSolution extends Solution {
     }
     
     @Override
-    public Solution copy() {
+    public TSPSolution copy() {
         return new TSPSolution(new ArrayList<>(cities));
     }
 
