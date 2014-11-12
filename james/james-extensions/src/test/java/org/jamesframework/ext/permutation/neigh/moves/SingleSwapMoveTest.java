@@ -59,8 +59,8 @@ public class SingleSwapMoveTest {
        
         System.out.println(" - test apply and undo");
         
-        for(int i=0; i<100; i++){
-            int n = RG.nextInt(500)+1;
+        for(int i=0; i<1000; i++){
+            int n = RG.nextInt(499)+2;
             List<Integer> order = new ArrayList<>();
             for(int j=0; j<n; j++){
                 order.add(j);
