@@ -1,0 +1,505 @@
+---
+layout: default
+---
+
+<div id="examples-coresubset">
+    <ol class="breadcrumb">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/examples">Examples</a></li>
+        <li class="active">Travelling salesman problem</li>
+    </ol>
+    
+    <h2 class="page-header">
+        Example 4: The travelling salesman problem
+    </h2>
+    
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-info-circle"></i>
+            Info
+        </h4>
+        The random descent and parallel tempering algorithms are applied to optimize the round trip. Don't know what random descent is?
+        Read <a href="/docs/#random-descent">this</a>. Never heard about parallel tempering? Read <a href="/docs/#parallel-tempering">this</a>.
+    </div>
+    <p>
+        This example demonstrates how to implement and solve the travelling salesman problem, which is <em>not</em> a subset selection problem.
+        The TSP consists of finding the shortest round trip that visits all cities from a given list exactly once and returns to the origin city.
+        It is assumed that the travel distance from <var>a</var> to <var>b</var> is always equal to that from <var>b</var> to <var>a</var>
+        (symmetric TSP). The input consists of a symmetric distance matrix. The goal is to find the optimal order (permutation) of cities
+        yielding the lowest possible total travel distance.
+    </p>
+    
+    <h4 class="page-header">
+        Designing a solution type
+    </h4>
+    <p>
+        When defining a custom problem, the first step is to design the corresponding solution type. Here we create a <code>TSPSolution</code>
+        class that models a solution to the TSP problem as a list of cities, in the order in which they are visited. Each city is represented
+        by a unique integer value. The framework requires that all solution types extend the abstract <code>Solution</code> class which has
+        three abstract methods to override:
+        <ol>
+            <li>
+                <code>Solution copy()</code>: creates a deep copy of the solution. It is important that the returned copy is of exactly the
+                same type as the original solution. Else, errors may occur during optimization. As it is allowed to set a
+                more specific return type when overriding a method you might as well set it to <code>TSPSolution</code> instead of
+                <code>Solution</code> (as in the example code below). In this example, the list of cities is copied into a new
+                <code>TSPSolution</code>.
+            </li>
+            <li>
+                <code>boolean equals(Object)</code>: the default implementation from the top-level <code>Object</code> class has been erased
+                so that it is required to privde an appropriate equality check for every solution type. It is important that solutions are
+                compared based on their contents (value-based) to guarantee correct behaviour of all search algorithms. In this example,
+                the list of cities is compared (given that the other object is also a <code>TSPSolution</code>).
+            </li>
+            <li>
+                <code>int hashCode()</code>: as usual, it is required to implement a custom hash code computation in correspondence
+                with the custom definition of equality. Two equal solution should always produce the same hash code, different solutions
+                <em>may</em> produce different hash codes (and should to guarantee optimal behaviour of e.g. hash-based collections).
+            </li>
+        </ol>
+        A method <code>swapCities(i, j)</code> is provided to swap the two cities at the given positions. This will be used later when creating a neighbourhood.
+    </p>
+<pre class="prettyprint">
+public class TSPSolution extends Solution {
+
+    // list of cities in the order in which they are visited
+    private List&lt;Integer&gt; cities;
+    
+    public TSPSolution(List&lt;Integer&gt; cities){
+        this.cities = cities;
+    }
+    
+    public List&lt;Integer&gt; getCities(){
+        return cities;
+    }
+    
+    // swap the i-th and j-th city in the round trip
+    public void swapCities(int i, int j){
+        int tmp = cities.get(i);
+        cities.set(i, cities.get(j));
+        cities.set(j, tmp);
+    }
+    
+    @Override
+    public TSPSolution copy() {
+        return new TSPSolution(new ArrayList&lt;&gt;(cities));
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final TSPSolution other = (TSPSolution) obj;
+        return Objects.equals(this.cities, other.cities);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.cities);
+        return hash;
+    }
+
+}
+</pre>
+    
+    <h4 class="page-header">
+        Implementing the problem
+    </h4>
+    <p>
+        Now we can specify the problem by implementing the <code>Problem</code> interface. This is a generic interface with one type parameter, the solution type,
+        which is set to <code>TSPSolution</code>. A problem is reponsible for evaluating and validating solutions generated by search algorithms. It also provides
+        a method to create a random solution and tells the search wether evaluations are to be minimized or maximized.
+    </p>
+    <p>
+        A (symmetric) distance matrix is passed to our <code>TSPProblem</code> upon construction. It contains the travel distance between each pair of cities.
+        Evaluation then comes down to computing the total travel distance that results from the order in which cities are visited in the given solution.
+        Validation is trivial and always returns <code>SimpleValidation.PASSED</code>, a constant validation object
+        that indicates that the solution passed validation. The total travel distance is to be minimized so <code>isMinimizing()</code> returns
+        <code>true</code>. To create a random solution, a list with all cities is constructed, shuffled and wrapped in a <code>TSPSolution</code>.
+    </p>
+<pre class="prettyprint">
+public class TSPProblem implements Problem&lt;TSPSolution&gt;{
+
+    // travel distance matrix
+    private double[][] dist;
+
+    public TSPProblem(double[][] dist) {
+        this.dist = dist;
+    }
+    
+    public double[][] getDistanceMatrix(){
+        return dist;
+    }
+    
+    public int getNumCities(){
+        return dist.length;
+    }
+    
+    @Override
+    public Evaluation evaluate(TSPSolution solution) {
+        // compute sum of travel distances
+        List&lt;Integer&gt; cities = solution.getCities();
+        int n = cities.size();
+        double totalDistance = 0.0;
+        for(int i=0; i&lt;n; i++){
+            int fromCity = cities.get(i);
+            int toCity = cities.get((i+1)%n);
+            totalDistance += dist[fromCity][toCity];
+        }
+        // wrap in simple evaluation
+        return new SimpleEvaluation(totalDistance);
+    }
+
+    @Override
+    public Validation validate(TSPSolution solution) {
+        // no constraints
+        return SimpleValidation.PASSED;
+    }
+
+    @Override
+    public boolean isMinimizing() {
+        // total travel distance is to be minimized
+        return true;
+    }
+
+    @Override
+    public TSPSolution createRandomSolution() {
+        // create random permutation of cities
+        List&lt;Integer&gt; cities = new ArrayList&lt;&gt;();
+        int n = dist.length;
+        for(int i=0; i&lt;n; i++){
+            cities.add(i);
+        }
+        Collections.shuffle(cities);
+        // create and return TSP solution
+        return new TSPSolution(cities);
+    }
+
+}
+</pre>
+    
+    <h4 class="page-header">
+        Providing a neighbourhood and corresponding move
+    </h4>
+    <p>
+        To be able to apply the available neighbourhood searches we have to provide at least one neighbourhood for the new
+        <code>TSPSolution</code> type. Here we create a neighbourhood that reverses a subsequence of cities in a given solution,
+        by performing a series of swaps. This is often referred to as a 2-opt move in the context of (symmetric) TSP: all distances
+        except the two at the border of the reversed subsequence are retained, and two new distances contribute to the total travel
+        distance.
+    </p>
+    <p>
+        First, provide the corresponding move by implementing the <code>Move</code> interface with solution type <code>TSPSolution</code>.
+        This interface has two methods: one to apply the move and one to undo it after it has been applied to a solution. This specific
+        move can be undone by again reversing the subsequence with the exact same code as for applying the move.
+    </p>
+<pre class="prettyprint">
+public class TSP2OptMove implements Move&lt;TSPSolution&gt; {
+
+    // city positions i,j between which the path is reversed as follows:
+    // ... - (a) - (c_1) - (c_2)   - ... - (c_n-1) - (c_n) - (b) - ... 
+    //               i                                 j
+    //  =>
+    // ... - (a) - (c_n) - (c_n-1) - ... - (c_2)   - (c_1) - (b) - ...
+    //               i                                 j
+    private final int i, j;
+
+    public TSP2OptMove(int i, int j) {
+        // check
+        if(i == j){
+            throw new IllegalArgumentException("Error: i and j should be distinct positions.");
+        }
+        // store
+        this.i = i;
+        this.j = j;
+    }
+    
+    public int getI(){
+        return i;
+    }
+    
+    public int getJ(){
+        return j;
+    }
+    
+    @Override
+    public void apply(TSPSolution solution) {
+        // reverse subsequence of cities
+        int start = i;
+        int stop = j;
+        int n = solution.getCities().size();
+        int reversedLength;
+        if(i &lt; j){
+            reversedLength = j-i+1;
+        } else {
+            reversedLength = n - (i-j-1);
+        }
+        int numSwaps = reversedLength/2;
+        for(int k=0; k&lt;numSwaps; k++){
+            solution.swapCities(start, stop);
+            start = (start+1) % n;
+            stop = (stop-1+n) % n;
+        }
+    }
+
+    @Override
+    public void undo(TSPSolution solution) {
+        // undo by reversing again
+        apply(solution);
+    }
+
+}
+</pre>
+    <p>
+        Then, create the neighbourhood itself by implementing the <code>Neighbourhood</code> interface, again with solution type <code>TSPSolution</code>.
+        A neighbourhood has two methods: one to create a random move and one to obtain a list of all possible moves. Here, both methods create moves
+        of type <code>TSP2OptMove</code>.
+    </p>
+<pre class="prettyprint">
+public class TSP2OptNeighbourhood implements Neighbourhood&lt;TSPSolution&gt;{
+    
+    public TSP2OptMove getRandomMove(TSPSolution solution) {
+        // pick two distinct random positions i,j in the round trip
+        int n = solution.getCities().size();
+        Random rg = ThreadLocalRandom.current();
+        int i = rg.nextInt(n);
+        int j = rg.nextInt(n-1);
+        if(j >= i){
+            j++;
+        }
+        // return 2-opt TSP move that reverses path from position i to j
+        return new TSP2OptMove(i, j);
+    }
+
+    public List&lt;TSP2OptMove&gt; getAllMoves(TSPSolution solution) {
+        // generate a 2-opt TSP move for every pair of positions i,j
+        int n = solution.getCities().size();
+        List&lt;TSP2OptMove&gt; moves = new ArrayList&lt;&gt;();
+        for(int i=0; i&lt;n; i++){
+            for(int j=0; j&lt;n; j++){
+                if(i != j){
+                    moves.add(new TSP2OptMove(i, j));
+                }
+            }
+        }
+        return moves;
+    }
+
+}
+</pre>
+    
+    <h4 class="page-header">
+        Efficient delta evaluation
+    </h4>
+    <p>
+        It is possible to also provide an efficient delta evaluation in the problem definition that exploits the knowledge
+        that a new solution is obtained by reversing a subsequence in the previous solution. This can be done by overriding the method
+        <code>evaluate(Move, TSPSolution, Evaluation)</code> in our <code>TSPProblem</code>. Without this custom delta evaluation, a
+        default apply-undo behaviour is used which is of course not as efficient.
+    </p>
+<pre class="prettyprint">
+public class TSPProblem implements Problem&lt;TSPSolution&gt;{
+
+    // same as before ...
+    
+    @Override
+    public Evaluation evaluate(Move move, TSPSolution curSolution, Evaluation curEvaluation){
+        
+        // check move type
+        if(!(move instanceof TSP2OptMove)){
+            throw new IncompatibleDeltaEvaluationException("Delta evaluation in TSP problem expects move of type TSP2OptMove.");
+        }
+        // cast move
+        TSP2OptMove move2opt = (TSP2OptMove) move;
+        // get bounds of reversed subsequence
+        int i = move2opt.getI();
+        int j = move2opt.getJ();
+        // get number of cities
+        int n = getNumCities();
+        
+        if((j+1)%n == i){
+            // special case: entire sequence reversed
+            return curEvaluation;
+        } else {
+            // get current total travel distance
+            double totalDistance = curEvaluation.getValue();
+            // get current order of cities
+            List&lt;Integer&gt; cities = curSolution.getCities();
+
+            // get crucial cities (at boundary of reversed subsequence)
+            int beforeReversed = cities.get((i-1+n)%n);
+            int firstReversed = cities.get(i);
+            int lastReversed = cities.get(j);
+            int afterReversed = cities.get((j+1)%n);
+
+            // account for dropped distances
+            totalDistance -= dist[beforeReversed][firstReversed];
+            totalDistance -= dist[lastReversed][afterReversed];
+
+            // account for new distances
+            totalDistance += dist[beforeReversed][lastReversed];
+            totalDistance += dist[firstReversed][afterReversed];
+
+            // return updated travel distance
+            return new SimpleEvaluation(totalDistance);
+        }
+        
+    }
+    
+    // same as before ...
+
+}
+</pre>
+    
+    <h4 class="page-header">
+        Optimizing the round trip
+    </h4>
+    <p>
+        Applying an optimization algorithm is now done in exactly the same way as for subset selection problems
+        (see <a href="/examples/#subset-selection">subset selection examples</a>).
+        After the problem has been created, it is passed to a search that attempts to find a round trip with minimum
+        total travel distance using the provided 2-opt neighbourhood. Example code is shown below for the basic
+        <a href="/docs/#random-descent">random descent</a> as well as the advanced
+        <a href="/docs/#parallel-tempering">parallel tempering</a> algorithms.
+    </p>
+    <p>
+        A random descent search is easily applied and does not have any additional parameters.
+    </p>
+<pre class="prettyprint">
+// define distance matrix
+double[][] dist = ...
+// create TSP problem
+TSPProblem problem = new TSPProblem(dist);
+
+// create random descent search with TSP neighbourhood
+LocalSearch&lt;TSPSolution&gt; randomDescent = new RandomDescent&lt;&gt;(problem, new TSP2OptNeighbourhood());
+// set maximum runtime
+long timeLimit = ...
+randomDescent.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
+// attach listener (see example 1)
+randomDescent.addSearchListener(new ProgressSearchListener());
+
+// start search
+randomDescent.start();
+
+// print results
+if(randomDescent.getBestSolution() != null){
+    System.out.println("Best round trip: " + randomDescent.getBestSolution().getCities());
+    System.out.println("Best round trip travel distance: " + randomDescent.getBestSolutionEvaluation());
+} else {
+    System.out.println("No valid solution found...");
+}
+
+// dispose
+randomDescent.dispose();
+</pre>
+    <p>
+        When using the parallel tempering algorithm it is important to set an appropriate temperature range
+        (see examples <a href="/examples/coresubset3/#parallel-tempering">1C</a> and <a href="/examples/knapsack/#parallel-tempering">2</a>)
+        taking into account the scale of the evaluations. Here, this scale heavily depends on the precise travel distances between cities.
+        Therefore, temperatures are scaled accordingly by setting a scale factor equal to the average travel distance between each
+        pair of cities.
+    </p>
+<pre class="prettyprint">
+double minTemp = 0.001;
+double maxTemp = 0.1;
+int numReplicas = 10;
+ParallelTempering&lt;TSPSolution&gt; parallelTempering = new ParallelTempering&lt;&gt;(
+                                                        problem,
+                                                        new TSP2OptNeighbourhood(),
+                                                        numReplicas, minTemp, maxTemp
+                                                   );
+// scale temperatures according to average travel distance between cities
+double scale = computeAverageTravelDistance(problem);
+parallelTempering.setTemperatureScaleFactor(scale);
+</pre>
+    <p>
+        The average travel distance is easily computed.
+    </p>
+<pre class="prettyprint">
+double computeAverageTravelDistance(TSPProblem problem){
+    int n = problem.getNumCities();
+    double[][] d = problem.getDistanceMatrix();
+    double sum = 0.0;
+    for(int i=0; i&lt;n; i++){
+        for(int j=0; j&lt;n; j++) {
+            if(i != j){
+                sum += d[i][j];
+            }
+        }
+    }
+    int numDistances = n*(n-1);
+    return sum/numDistances;
+}
+</pre>
+    <p>
+        Running the parallel tempering search is now done in exactly the same way as for the random descent search. However,
+        it is able to find better solutions, i.e. round trips with a lower total travel distance.
+    </p>
+
+    <h4 class="page-header">
+        Full source code
+    </h4>
+    <p>
+        The complete source code of this example is available on
+        <a href="https://github.com/hdbeukel/james/tree/v{{site.examples-latest-stable}}/james/james-examples/src/main/java/org/jamesframework/examples/tsp">GitHub</a>,
+        including some additional code to read the input from a text file.
+        You can also download a <a href="/getstarted/#releases-examples">ZIP file</a> that contains the Java sources of all examples, a compiled
+        JAR (including all dependencies) as well as some input files for in case you want to run any of the examples. To run this example, execute
+    </p>
+<pre class="prettyprint">
+$ java -cp james-examples.jar org.jamesframework.examples.tsp.TSP &lt;inputfile&gt; &lt;runtime&gt;
+</pre>
+    </p>
+        from the command line.
+        The first line of the input file contains a single integer value (possibly surrounded by whitespace)
+        that indicates the number of cities N. The remainder of the file contains the entries of the
+        lower triangular part of an N &times; N symmetric distance matrix (row-wise without diagonal entries),
+        separated by whitespace and/or newlines.
+        The runtime is given in seconds.
+    </p>
+    <p>
+        <ul class="list-unstyled">
+            <li>
+                <a href="/files/examples/TSP1.txt"><i class="fa fa-file-text-o"></i> Example input file (17 cities)</a>
+            </li>
+            <li>
+                <a href="/files/examples/TSP2.txt"><i class="fa fa-file-text-o"></i> Example input file (48 cities)</a>
+            </li>
+            <li>
+                <a href="/files/examples/TSP3.txt"><i class="fa fa-file-text-o"></i> Example input file (120 cities)</a>
+            </li>
+            <li>
+                <a href="/files/examples/TSP4.txt"><i class="fa fa-file-text-o"></i> Example input file (561 cities)</a>
+            </li>
+        </ul>
+    </p>
+    <p>
+        The example input files correspond to instances gr17, gr48, gr120 and pa561, respectively, from the
+        <a href="http://www.iwr.uni-heidelberg.de/groups/comopt/software/TSPLIB95/" target="_blank">TSPLIB benchmark set</a>.
+    </p>
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -328,7 +328,7 @@ RandomDescent&lt;SubsetSolution&gt; randomDescent = new RandomDescent&lt;&gt;(pr
 // set maximum runtime
 long timeLimit = ...
 randomDescent.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
-// attach listener
+// attach listener (see example 1)
 randomDescent.addSearchListener(new ProgressSearchListener());
 </pre>
     <p>

@@ -206,7 +206,7 @@ search.setTemperatureScaleFactor(scale);
 // set maximum runtime
 long timeLimit = ...
 search.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
-// attach listener
+// attach listener (see example 1)
 search.addSearchListener(new ProgressSearchListener());
 // NOTE: not required to set an initial solution within the constraint (&lt;-&gt; mandatory constraint)
 

@@ -334,7 +334,7 @@ search.dispose();
         the search gets stuck in different local optima so that it would be appropriate to apply a more advanced algorithm, as this objective
         function seems to be harder to optimize than the average pairwise distance objective from <a href="/examples/coresubset/#objective">example 1</a>.
     </p>
-    <p>
+    <p id="parallel-tempering">
         An example of such advanced method is the <a href="/docs/#parallel-tempering">parallel tempering</a> algorithm,
         which concurrently runs several <a href="/docs/#metropolis-search">Metropolis searches</a>
         with different temperatures where higher temperatures yield higher probabilities to accept inferior moves.

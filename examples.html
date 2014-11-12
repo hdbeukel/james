@@ -252,17 +252,96 @@ layout: default
                 Beyond subset selection
             </h2>
             <p>
-                These examples show how to implement and solve other types of problems.
+                These examples show how to implement and solve other types of problems besides subset selection.
             </p>
             
-            <div class="bs-callout bs-callout-info">
-                <h4>
-                    <i class="fa fa-info-circle"></i>
-                    Info
-                </h4>
-                Examples coming soon.
-            </div>
+            <h4 class="page-header example-header">
+                Example 4: The travelling salesman problem
+                <span class="hidden-xs">
+                    <span class="pull-right label label-warning">
+                        Difficulty:
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </span>
+                </span>
+            </h4>
+            <p class="lead">
+                Basic custom problem specification.
+                <span class="algo">
+                    Algorithms: random descent and parallel tempering.
+                </span>
+            </p>
+            <p>
+                The travelling salesman problem consists of finding the shortest
+                round trip through a list of given cities. Each city is to be visited
+                exactly once and the trip has to end in the same city where the tour started.
+                This example considers the <em>symmetric</em> TSP where the travel distance
+                from <var>a</var> to <var>b</var> is always the same as that from <var>b</var>
+                to <var>a</var>. The goal is to create a permutation (ordered list) of all cities
+                so that visiting the cities in this specific order yields the lowest possible
+                total travel distance.
+            </p>
+            <p>
+                The <a href="/docs/#random-descent">random descent</a> and
+                <a href="/docs/#parallel-tempering">parallel tempering</a>
+                algorithms are applied to optimize the round trip using a custom
+                neighbourhood that reverses subseries of cities
+                in given TSP solutions. This type of move is often referred to as a 2-opt move
+                in the context of TSP.
+            </p>
+            <p>
+                <a class="btn btn-default" href="/examples/tsp"><i class="fa fa-chevron-right"></i> View example</a>
+            </p>
+            
+            <h4 class="page-header example-header">
+                Example 4B: The travelling salesman problem (2)
+                <span class="hidden-xs">
+                    <span class="pull-right label label-warning">
+                        Difficulty:
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                    </span>
+                </span>
+            </h4>
+            <p class="lead">
+                Design of reusable components for permutation problems.
+                <span class="algo">
+                    Algorithms: random descent and parallel tempering.
+                </span>
+            </p>
+            <p>
+                This example reconsiders the travelling salesman problem. As this is actually a permutation
+                problem, generic components are designed that can be reused for any permuation problem, similar
+                to the subset selection components already available in the core module. The necessary TSP data
+                and objective are then plugged in.
+            </p>
+            <p>
+                All generic permutation problem components designed in this example have been made available in the
+                <a href="/getstarted/#modules">James extensions module</a>.
+            </p>
+            <p>
+                The <a href="/docs/#random-descent">random descent</a> and
+                <a href="/docs/#parallel-tempering">parallel tempering</a>
+                algorithms are applied to optimize the round trip with a generic
+                neighbourhood that reverses subsequences in given permutations,
+                one of the permutation neighbourhoods provided in the extensions module.
+            </p>
+            <p>
+                <a class="btn btn-default" href="/examples/tsp2"><i class="fa fa-chevron-right"></i> View example</a>
+            </p>
             
         </div><!-- end of content -->      
     
 </div>
+
+
+
+
+
+
