@@ -6,7 +6,8 @@ Version 0.2 (under development)
 ---------------------------------
 
  - Compatible with core module v0.2.
- - Provided additional examples (1B, 1C, 2B, 4 and 4B).
+ - Provided additional example: travelling salesman problem (TSP).
+ - Extended core subset selection and knapsack examples.
  - Updated examples to use delta evaluations and delta validations.
  - Renamed ProgressionSearchListener to ProgressSearchListener.
  - Simplified code using functional operations.

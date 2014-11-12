@@ -6,11 +6,11 @@
     <parent>
         <groupId>org.jamesframework</groupId>
         <artifactId>james</artifactId>
-        <version>0.2-SNAPSHOT</version>
+        <version>0.2</version>
     </parent>
     <!-- james core specifications -->
     <artifactId>james-core</artifactId>
-    <version>0.2-SNAPSHOT</version>
+    <version>0.2</version>
     <packaging>jar</packaging>
     <name>james-core</name>
     <description>
