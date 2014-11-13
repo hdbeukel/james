@@ -5,15 +5,15 @@ permalink: pretty
 # Custom variables
 
 # used for links to latest snapshot JARs (core, extensions) and ZIP (examples) at Sonatype OSSRH
-core-snapshot: 0.2-SNAPSHOT
-extensions-snapshot: 0.2-SNAPSHOT
-examples-snapshot: 0.2-SNAPSHOT
+core-snapshot: 1.0-SNAPSHOT
+extensions-snapshot: 0.2.1-SNAPSHOT
+examples-snapshot: 0.2.1-SNAPSHOT
 
 # used for links to latest stable releases and corresponding APIs
-core-latest-stable: 0.1
-extensions-latest-stable: 0.1
-examples-latest-stable: 0.1
+core-latest-stable: 0.2
+extensions-latest-stable: 0.2
+examples-latest-stable: 0.2
 
 # used for links to all versions of APIs
-core-all-stable: [0.1]
-extensions-all-stable: [0.1]
+core-all-stable: [0.2, 0.1]
+extensions-all-stable: [0.2, 0.1]
