@@ -1,6 +1,8 @@
 James
 =====
 
+![Travis CI Badge](https://travis-ci.org/hdbeukel/james.svg)
+
 James is a modern Java framework for discrete optimization using local search metaheuristics.
 A wide range of generic optimization algorithms are provided that can be applied to any user-defined
 problem by plugging in a custom solution type and corresponding neighbourhood. Predefined components
