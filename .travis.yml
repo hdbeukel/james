@@ -1,10 +1,10 @@
 language: java
 
 jdk:
-	- oraclejdk8
+    - oraclejdk8
 	
 branches:
-	only:
-		- master
+    only:
+        - master
 		
 before_install: cd james
