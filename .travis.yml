@@ -9,4 +9,4 @@ branches:
 
 before_install: cd james
 
-script: mvn test coveralls:report
+after_success: mvn coveralls:report
