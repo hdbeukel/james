@@ -2,6 +2,7 @@ James
 =====
 
 [![Build Status](https://img.shields.io/travis/hdbeukel/james.svg?style=flat)](https://travis-ci.org/hdbeukel/james)
+[![Coverage Status](http://img.shields.io/coveralls/hdbeukel/james.svg?style=flat)](https://coveralls.io/r/hdbeukel/james)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.jamesframework/james/badge.svg?style=flat)](http://search.maven.org/#search%7Cga%7C1%7Corg.jamesframework)
 
 James is a modern Java framework for discrete optimization using local search metaheuristics.
