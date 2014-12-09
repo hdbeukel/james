@@ -1,6 +1,10 @@
 James Extensions Module Changes
 ===============================
 
+Version 0.2.1 (under development)
+---------------------------------
+
+ - Fixed some issues in tests.
 
 Version 0.2 (12/11/2014)
 ------------------------
