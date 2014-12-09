@@ -99,6 +99,36 @@
                     </compilerArguments>
                 </configuration>
             </plugin>
+            <!-- JaCoCo test coverage -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.7.2.201409121644</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!-- no coverage reporting for examples module -->
+                    <excludes>org.jamesframework.examples.*</excludes>
+                </configuration>
+            </plugin>
+            <!-- Coveralls reporting plugin -->
+            <plugin>
+                <groupId>org.eluder.coveralls</groupId>
+                <artifactId>coveralls-maven-plugin</artifactId>
+                <version>3.0.1</version>
+            </plugin>
             <!-- create test jars -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -8,3 +8,5 @@ branches:
         - master
 
 before_install: cd james
+
+script: mvn test coveralls:report
