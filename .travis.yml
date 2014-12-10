@@ -9,6 +9,7 @@ branches:
   
 env:
   global:
+    - GH_REF=github.com/hdbeukel/james.git
     - SONATYPE_USERNAME=hdbeukel
     - secure: "POA/QLNaBtGklSMHFLXx/fUwSowUc1n+umNREcDFoFGm7k3K4dwAVJ5UNLLC/omG9g7QFCQ4p7wZ0DY/uzUGit66XQ2JElnEz+D2Q3NiohEUCdqwNrF9Gl4l4SWaRWZ5/f8GoREJTePms/Z7Cuv3QA9iazywBE+AsP80i9EqITE="
     - secure: "Ca5ffX/dnkm1tSCTy2Q+Tn8s6M0OgZFewlMEjm6WtAOLx3Fpt9mWGPtoRxYLw7HkteycySTSJwp9pf6DwEM1bGme+SMMYoEiQeues3xldf9eAws/ffTFPF0ZZM8wFDY3Ks+MjHXg/JFWgnLfW7PqtkNGdmahGsh35ad1Puv78x0="
@@ -21,12 +22,12 @@ after_success:
   - mvn clean deploy -DskipTests=true --settings ~/.m2/mySettings.xml
   - git clone --branch=gh-pages git://github.com/hdbeukel/james.git site
   - cd site
-  - cp -R ../james/james-core/target/apidocs/* api/core/snapshot/
-  - cp -R ../james/james-extensions/target/apidocs/* api/ext/snapshot/
+  - cp -R ../james-core/target/apidocs/* api/core/snapshot/
+  - cp -R ../james-extensions/target/apidocs/* api/ext/snapshot/
+  - git config user.name "Travis-CI"
+  - git config user.email "travis@jamesframework.org"
   - git add api
   - git commit -m "updated snapshot APIs"
-  - git config user.name "${GH_TOKEN}"
-  - git config user.email "herman.debeukelaer@ugent.be"
-  - git push origin gh-pages
+  - git push "https://${GH_TOKEN}@${GH_REF}" gh-pages
 
 
