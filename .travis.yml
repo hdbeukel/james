@@ -11,6 +11,7 @@ env:
   global:
     - SONATYPE_USERNAME=hdbeukel
     - secure: "POA/QLNaBtGklSMHFLXx/fUwSowUc1n+umNREcDFoFGm7k3K4dwAVJ5UNLLC/omG9g7QFCQ4p7wZ0DY/uzUGit66XQ2JElnEz+D2Q3NiohEUCdqwNrF9Gl4l4SWaRWZ5/f8GoREJTePms/Z7Cuv3QA9iazywBE+AsP80i9EqITE="
+    - secure: "Ca5ffX/dnkm1tSCTy2Q+Tn8s6M0OgZFewlMEjm6WtAOLx3Fpt9mWGPtoRxYLw7HkteycySTSJwp9pf6DwEM1bGme+SMMYoEiQeues3xldf9eAws/ffTFPF0ZZM8wFDY3Ks+MjHXg/JFWgnLfW7PqtkNGdmahGsh35ad1Puv78x0="
   
 before_install: cd james
 
@@ -18,5 +19,9 @@ after_success:
   - mvn coveralls:report
   - python ../.travis/add-sonatype-server.py
   - mvn clean deploy -DskipTests=true --settings ~/.m2/mySettings.xml
+  - cd ..
+  - git config user.name "${GH_TOKEN}"
+  - git config user.email "herman.debeukelaer@ugent.be"
+  - ./update-snapshot-api.sh > /dev/null 2>&1
 
 

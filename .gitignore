@@ -3,7 +3,6 @@
 **/dist/*
 !**/dist/resources/
 *.log
-update-snapshot-api.sh
 _site/
 *.jar
 *.zip
