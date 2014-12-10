@@ -1,6 +1,10 @@
 James Core Module Changes
 =========================
 
+Version 1.0 (under development)
+-------------------------------
+
+ - Improved test coverage.
 
 Version 0.2 (12/11/2014)
 ------------------------
