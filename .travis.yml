@@ -19,9 +19,14 @@ after_success:
   - mvn coveralls:report
   - python ../.travis/add-sonatype-server.py
   - mvn clean deploy -DskipTests=true --settings ~/.m2/mySettings.xml
-  - cd ..
+  - git clone --branch=gh-pages git://github.com/hdbeukel/james.git site
+  - cd site
+  - cp -R ../james/james-core/target/apidocs/* api/core/snapshot/
+  - cp -R ../james/james-extensions/target/apidocs/* api/ext/snapshot/
+  - git add api
+  - git commit -m "updated snapshot APIs"
   - git config user.name "${GH_TOKEN}"
   - git config user.email "herman.debeukelaer@ugent.be"
-  - ./update-snapshot-api.sh
+  - git push origin gh-pages
 
 

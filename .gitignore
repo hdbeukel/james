@@ -8,3 +8,4 @@ _site/
 *.zip
 _bootstrap
 node_modules
+/update-snapshot-api.sh
