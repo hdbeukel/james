@@ -16,6 +16,7 @@
 
 package org.jamesframework.test.fakes;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import org.jamesframework.core.problems.datatypes.IntegerIdentifiedData;
@@ -29,6 +30,8 @@ public class ScoredFakeSubsetData implements IntegerIdentifiedData {
 
     // array of scores
     private final double[] scores;
+    // IDs (automatically inferred, unmodifiable)
+    private final Set<Integer> IDs;
     
     /**
      * Create a new fake subset data with given scores array. IDs of entities are indices in the array,
@@ -38,20 +41,21 @@ public class ScoredFakeSubsetData implements IntegerIdentifiedData {
      */
     public ScoredFakeSubsetData(double[] scores){
         this.scores = scores;
+        Set<Integer> ids = new HashSet<>();
+        for(int i=0; i<scores.length; i++){
+            ids.add(i);
+        }
+        IDs = Collections.unmodifiableSet(ids);
     }
     
     /**
-     * Create and return set with IDs corresponding to indices in scores array.
+     * Return unmodifiable set with IDs corresponding to indices in scores array.
      * 
      * @return set of IDs
      */
     @Override
     public Set<Integer> getIDs() {
-        Set<Integer> ids = new HashSet<>();
-        for(int i=0; i<scores.length; i++){
-            ids.add(i);
-        }
-        return ids;
+        return IDs;
     }
     
     /**

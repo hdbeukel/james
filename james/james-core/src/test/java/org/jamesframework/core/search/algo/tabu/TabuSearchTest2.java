@@ -80,7 +80,7 @@ public class TabuSearchTest2 extends SearchTestTemplate {
     public void testWithAllMovesTabu() {
         System.out.println(" - test with all moves tabu (~ steepest descent)");
         // single run
-        singleRunWithMaxRuntime(search, problem, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        singleRunWithMaxRuntime(search, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
     }
     
     /**
@@ -92,7 +92,7 @@ public class TabuSearchTest2 extends SearchTestTemplate {
         // set minimizing
         obj.setMinimizing();
         // single run
-        singleRunWithMaxRuntime(search, problem, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        singleRunWithMaxRuntime(search, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
     }
 
 }

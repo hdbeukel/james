@@ -19,6 +19,7 @@ package org.jamesframework.core.search.algo.vns;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import org.jamesframework.core.problems.objectives.evaluations.PenalizedEvaluation;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.NeighbourhoodSearch;
 import org.jamesframework.core.search.Search;
@@ -27,6 +28,8 @@ import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.subset.neigh.adv.DisjointMultiSwapNeighbourhood;
 import org.jamesframework.test.stubs.NeverSatisfiedConstraintStub;
+import org.jamesframework.test.stubs.NeverSatisfiedPenalizingConstraintStub;
+import org.jamesframework.test.util.TestConstants;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -109,7 +112,7 @@ public class ReducedVariableNeighbourhoodSearchTest extends SearchTestTemplate {
     public void testSingleRun() {
         System.out.println(" - test single run");
         // single run
-        singleRunWithMaxRuntime(search, problem, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        singleRunWithMaxRuntime(search, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
     }
     
     /**
@@ -121,7 +124,7 @@ public class ReducedVariableNeighbourhoodSearchTest extends SearchTestTemplate {
         // disable cycling
         search.setCycleNeighbourhoods(false);
         // single run (no time limit)
-        singleRunWithMaxRuntime(search, problem, 0, null);
+        singleRunWithMaxRuntime(search, 0, null);
     }
     
     /**
@@ -133,9 +136,25 @@ public class ReducedVariableNeighbourhoodSearchTest extends SearchTestTemplate {
         // add constraint
         problem.addMandatoryConstraint(new NeverSatisfiedConstraintStub());
         // single run
-        singleRunWithMaxRuntime(search, problem, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        singleRunWithMaxRuntime(search, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
         // verify
         assertNull(search.getBestSolution());
+    }
+    
+    /**
+     * Test single run with unsatisfiable penalizing constraint.
+     */
+    @Test
+    public void testSingleRunWithUnsatisfiablePenalizingConstraint() {
+        System.out.println(" - test single run with unsatisfiable penalizing constraint");
+        // set constraint
+        final double penalty = 7.8;
+        problem.addPenalizingConstraint(new NeverSatisfiedPenalizingConstraintStub(penalty));
+        // single run
+        singleRunWithMaxRuntime(search, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        // verify
+        PenalizedEvaluation penEval = (PenalizedEvaluation) search.getBestSolutionEvaluation();
+        assertEquals(penalty, penEval.getEvaluation().getValue() - penEval.getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
     }
     
     /**
@@ -172,6 +191,22 @@ public class ReducedVariableNeighbourhoodSearchTest extends SearchTestTemplate {
         multiRunWithMaximumRuntime(search, MULTI_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT, NUM_RUNS, true, true);
         // verify
         assertNull(search.getBestSolution());
+    }
+    
+    /**
+     * Test subsequent runs with unsatisfiable penalizing constraint.
+     */
+    @Test
+    public void testSubsequentRunsWithUnsatisfiablePenalizingConstraint() {
+        System.out.println(" - test subsequent runs with unsatisfiable penalizing constraint");
+        // set constraint
+        final double penalty = 7.8;
+        problem.addPenalizingConstraint(new NeverSatisfiedPenalizingConstraintStub(penalty));
+        // perform multiple runs (maximizing objective)
+        multiRunWithMaximumRuntime(search, MULTI_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT, NUM_RUNS, true, true);
+        // verify
+        PenalizedEvaluation penEval = (PenalizedEvaluation) search.getBestSolutionEvaluation();
+        assertEquals(penalty, penEval.getEvaluation().getValue() - penEval.getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
     }
     
     /**

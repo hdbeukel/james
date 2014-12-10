@@ -19,12 +19,15 @@ package org.jamesframework.core.search.algo.exh;
 import org.jamesframework.core.subset.algo.exh.SubsetSolutionIterator;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
+import org.jamesframework.core.problems.objectives.evaluations.PenalizedEvaluation;
 import org.jamesframework.core.subset.SubsetProblem;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.SearchTestTemplate;
 import org.jamesframework.test.fakes.ScoredFakeSubsetData;
 import org.jamesframework.test.fakes.SumOfScoresFakeSubsetObjective;
 import org.jamesframework.test.stubs.NeverSatisfiedConstraintStub;
+import org.jamesframework.test.stubs.NeverSatisfiedPenalizingConstraintStub;
+import org.jamesframework.test.util.TestConstants;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -134,7 +137,7 @@ public class ExhaustiveSearchTest extends SearchTestTemplate {
     public void testSingleRunSmall() {
         System.out.println(" - test single run (small problem)");
         // single run
-        singleRunWithMaxRuntime(searchSmall, problemSmall, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        singleRunWithMaxRuntime(searchSmall, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
         // done ?
         if(!solutionIteratorSmall.hasNext()){
             System.out.print("   >>> evaluated all solutions! ");
@@ -151,7 +154,7 @@ public class ExhaustiveSearchTest extends SearchTestTemplate {
     public void testSingleRunLarge() {
         System.out.println(" - test single run (large problem)");
         // single run
-        singleRunWithMaxRuntime(search, problem, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        singleRunWithMaxRuntime(search, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
         // done ?
         if(!solutionIterator.hasNext()){
             System.out.print("   >>> evaluated all solutions! ");
@@ -170,7 +173,7 @@ public class ExhaustiveSearchTest extends SearchTestTemplate {
         // add constraint
         problemSmall.addMandatoryConstraint(new NeverSatisfiedConstraintStub());
         // single run
-        singleRunWithMaxRuntime(searchSmall, problemSmall, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        singleRunWithMaxRuntime(searchSmall, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
         // done ?
         if(!solutionIteratorSmall.hasNext()){
             System.out.print("   >>> evaluated all solutions! ");
@@ -191,7 +194,7 @@ public class ExhaustiveSearchTest extends SearchTestTemplate {
         // add constraint
         problem.addMandatoryConstraint(new NeverSatisfiedConstraintStub());
         // single run
-        singleRunWithMaxRuntime(search, problem, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        singleRunWithMaxRuntime(search, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
         // done ?
         if(!solutionIterator.hasNext()){
             System.out.print("   >>> evaluated all solutions! ");
@@ -201,6 +204,52 @@ public class ExhaustiveSearchTest extends SearchTestTemplate {
         System.out.format(" (runtime = %d ms)\n", search.getRuntime());
         // verify
         assertNull(search.getBestSolution());
+    }
+    
+    /**
+     * Test single run with unsatisfiable penalizing constraint (small problem).
+     */
+    @Test
+    public void testSingleRunWithUnsatisfiablePenalizingConstraintSmall() {
+        System.out.println(" - test single run with unsatisfiable penalizing constraint (small problem)");
+        // set constraint
+        final double penalty = 7.8;
+        problemSmall.addPenalizingConstraint(new NeverSatisfiedPenalizingConstraintStub(penalty));
+        // single run
+        singleRunWithMaxRuntime(searchSmall, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        // done ?
+        if(!solutionIteratorSmall.hasNext()){
+            System.out.print("   >>> evaluated all solutions! ");
+        } else {
+            System.out.print("   >>> did not evaluate all solutions ");
+        }
+        System.out.format(" (runtime = %d ms)\n", searchSmall.getRuntime());
+        // verify
+        PenalizedEvaluation penEval = (PenalizedEvaluation) searchSmall.getBestSolutionEvaluation();
+        assertEquals(penalty, penEval.getEvaluation().getValue() - penEval.getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
+    }
+    
+    /**
+     * Test single run with unsatisfiable penalizing constraint (large problem).
+     */
+    @Test
+    public void testSingleRunWithUnsatisfiablePenalizingConstraintLarge() {
+        System.out.println(" - test single run with unsatisfiable penalizing constraint (large problem)");
+        // set constraint
+        final double penalty = 7.8;
+        problem.addPenalizingConstraint(new NeverSatisfiedPenalizingConstraintStub(penalty));
+        // single run
+        singleRunWithMaxRuntime(search, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        // done ?
+        if(!solutionIterator.hasNext()){
+            System.out.print("   >>> evaluated all solutions! ");
+        } else {
+            System.out.print("   >>> did not evaluate all solutions ");
+        }
+        System.out.format(" (runtime = %d ms)\n", search.getRuntime());
+        // verify
+        PenalizedEvaluation penEval = (PenalizedEvaluation) search.getBestSolutionEvaluation();
+        assertEquals(penalty, penEval.getEvaluation().getValue() - penEval.getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
     }
     
     /**
@@ -309,6 +358,50 @@ public class ExhaustiveSearchTest extends SearchTestTemplate {
         } else {
             System.out.println("   >>> did not evaluate all solutions ");
         }
+    }
+    
+    /**
+     * Test subsequent runs with unsatisfiable penalizing constraint (small problem).
+     */
+    @Test
+    public void testSubsequentRunsWithUnsatisfiablePenalizingConstraintSmall() {
+        System.out.println(" - test subsequent runs with unsatisfiable penalizing constraint (small problem)");
+        // set constraint
+        final double penalty = 7.8;
+        problemSmall.addPenalizingConstraint(new NeverSatisfiedPenalizingConstraintStub(penalty));
+        // perform multiple runs (maximizing objective)
+        multiRunWithMaximumRuntime(searchSmall, MULTI_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT, NUM_RUNS, true, true);
+        // done ?
+        if(!solutionIteratorSmall.hasNext()){
+            System.out.println("   >>> evaluated all solutions! ");
+        } else {
+            System.out.println("   >>> did not evaluate all solutions ");
+        }
+        // verify
+        PenalizedEvaluation penEval = (PenalizedEvaluation) searchSmall.getBestSolutionEvaluation();
+        assertEquals(penalty, penEval.getEvaluation().getValue() - penEval.getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
+    }
+    
+    /**
+     * Test subsequent runs with unsatisfiable penalizing constraint (large problem).
+     */
+    @Test
+    public void testSubsequentRunsWithUnsatisfiablePenalizingConstraintLarge() {
+        System.out.println(" - test subsequent runs with unsatisfiable penalizing constraint (large problem)");
+        // set constraint
+        final double penalty = 7.8;
+        problem.addPenalizingConstraint(new NeverSatisfiedPenalizingConstraintStub(penalty));
+        // perform multiple runs (maximizing objective)
+        multiRunWithMaximumRuntime(search, MULTI_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT, NUM_RUNS, true, true);
+        // done ?
+        if(!solutionIterator.hasNext()){
+            System.out.println("   >>> evaluated all solutions! ");
+        } else {
+            System.out.println("   >>> did not evaluate all solutions ");
+        }
+        // verify
+        PenalizedEvaluation penEval = (PenalizedEvaluation) search.getBestSolutionEvaluation();
+        assertEquals(penalty, penEval.getEvaluation().getValue() - penEval.getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
     }
     
     /**

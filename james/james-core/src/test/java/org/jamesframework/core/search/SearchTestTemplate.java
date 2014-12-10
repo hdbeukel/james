@@ -111,7 +111,7 @@ public class SearchTestTemplate {
     /**
      * Perform a single run of a search, with maximum runtime. It is verified that the best solution is valid, if any.
      */
-    protected void singleRunWithMaxRuntime(Search<SubsetSolution> search, Problem<SubsetSolution> problem, long maxRuntime, TimeUnit maxRuntimeTimeUnit){
+    protected void singleRunWithMaxRuntime(Search<SubsetSolution> search, long maxRuntime, TimeUnit maxRuntimeTimeUnit){
         if(maxRuntimeTimeUnit != null){
             // set maximum runtime
             search.addStopCriterion(new MaxRuntime(maxRuntime, maxRuntimeTimeUnit));
@@ -133,7 +133,7 @@ public class SearchTestTemplate {
             System.out.println("   >>> best solution: " + search.getBestSolutionEvaluation());
             // verify
             if(search.getBestSolution() != null){
-                assertTrue(problem.validate(search.getBestSolution()).passed());
+                assertTrue(search.getBestSolutionValidation().passed());
             }
         }
         // check best solution listener

@@ -22,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.exceptions.SearchException;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.AbstractProblem;
+import org.jamesframework.core.problems.objectives.evaluations.PenalizedEvaluation;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.status.SearchStatus;
@@ -31,6 +32,8 @@ import org.jamesframework.core.subset.algo.exh.SubsetSolutionIterator;
 import org.jamesframework.test.util.DoubleComparatorWithPrecision;
 import org.jamesframework.test.fakes.ScoredFakeSubsetData;
 import org.jamesframework.test.stubs.NeverSatisfiedConstraintStub;
+import org.jamesframework.test.stubs.NeverSatisfiedPenalizingConstraintStub;
+import org.jamesframework.test.util.TestConstants;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -87,9 +90,9 @@ public class BasicParallelSearchTest extends SearchTestTemplate {
         subsearches.add(new RandomSearch<>(problem));                       // random search
         subsearches.add(new MetropolisSearch<>(problem, neigh, 0.001));     // Metropolis search
         subsearches.add(new ExhaustiveSearch<>(problem,
-                new SubsetSolutionIterator(data.getIDs(), DATASET_SIZE)));  // exhaustive search
+                new SubsetSolutionIterator(data.getIDs(), SUBSET_SIZE)));   // exhaustive search
         subsearches.add(new ParallelTempering<>(problem, neigh,
-                                                    5, 0.00001, 10.0));     // parallel tempering (parallel inside parallel)
+                                                5, 0.00001, 10.0));         // parallel tempering (parallel inside parallel)
         // create parallel search
         parallelSearch = new BasicParallelSearch<>(problem);
         // add subsearches
@@ -128,6 +131,8 @@ public class BasicParallelSearchTest extends SearchTestTemplate {
         System.out.println(" - test addSearch 2");
         Search<SubsetSolution> s = new RandomSearch<>(problem);
         parallelSearch.addSearch(s);
+        // verify
+        assertTrue(parallelSearch.getSearches().contains(s));
     }
     
     /**
@@ -139,6 +144,8 @@ public class BasicParallelSearchTest extends SearchTestTemplate {
         for(Search<SubsetSolution> s : subsearches){
             parallelSearch.removeSearch(s);
         }
+        // verify
+        assertTrue(parallelSearch.getSearches().isEmpty());
     }
     
     /**
@@ -162,16 +169,14 @@ public class BasicParallelSearchTest extends SearchTestTemplate {
     public void testSingleRun() {
         System.out.println(" - test single run");
         // single run
-        singleRunWithMaxRuntime(parallelSearch, problem, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        singleRunWithMaxRuntime(parallelSearch, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
         // verify
         for(Search<SubsetSolution> s : subsearches){
-            if(s.getBestSolution() != null){
-                assertTrue(DoubleComparatorWithPrecision.smallerThanOrEqual(
-                        s.getBestSolutionEvaluation().getValue(), 
-                        parallelSearch.getBestSolutionEvaluation().getValue(), 
-                        1e-10)
-                );
-            }
+            assertTrue(DoubleComparatorWithPrecision.smallerThanOrEqual(
+                    s.getBestSolutionEvaluation().getValue(), 
+                    parallelSearch.getBestSolutionEvaluation().getValue(), 
+                    TestConstants.DOUBLE_COMPARISON_PRECISION)
+            );
         }
     }
     
@@ -184,12 +189,28 @@ public class BasicParallelSearchTest extends SearchTestTemplate {
         // add constraint
         problem.addMandatoryConstraint(new NeverSatisfiedConstraintStub());
         // single run
-        singleRunWithMaxRuntime(parallelSearch, problem, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        singleRunWithMaxRuntime(parallelSearch, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
         // verify
         assertNull(parallelSearch.getBestSolution());
         for(Search<SubsetSolution> s : subsearches){
             assertNull(s.getBestSolution());
         }
+    }
+    
+    /**
+     * Test single run with unsatisfiable penalizing constraint.
+     */
+    @Test
+    public void testSingleRunWithUnsatisfiablePenalizingConstraint() {
+        System.out.println(" - test single run with unsatisfiable penalizing constraint");
+        // set constraint
+        final double penalty = 7.8;
+        problem.addPenalizingConstraint(new NeverSatisfiedPenalizingConstraintStub(penalty));
+        // single run
+        singleRunWithMaxRuntime(parallelSearch, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        // verify
+        PenalizedEvaluation penEval = (PenalizedEvaluation) parallelSearch.getBestSolutionEvaluation();
+        assertEquals(penalty, penEval.getEvaluation().getValue() - penEval.getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
     }
     
     /**
@@ -202,13 +223,11 @@ public class BasicParallelSearchTest extends SearchTestTemplate {
         multiRunWithMaximumRuntime(parallelSearch, MULTI_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT, NUM_RUNS, true, true);
         // verify
         for(Search<SubsetSolution> s : subsearches){
-            if(s.getBestSolution() != null){
-                assertTrue(DoubleComparatorWithPrecision.smallerThanOrEqual(
-                        s.getBestSolutionEvaluation().getValue(), 
-                        parallelSearch.getBestSolutionEvaluation().getValue(), 
-                        1e-10)
-                );
-            }
+            assertTrue(DoubleComparatorWithPrecision.smallerThanOrEqual(
+                    s.getBestSolutionEvaluation().getValue(), 
+                    parallelSearch.getBestSolutionEvaluation().getValue(), 
+                    TestConstants.DOUBLE_COMPARISON_PRECISION)
+            );
         }
     }
     
@@ -224,13 +243,11 @@ public class BasicParallelSearchTest extends SearchTestTemplate {
         multiRunWithMaximumRuntime(parallelSearch, MULTI_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT, NUM_RUNS, false, true);
         // verify
         for(Search<SubsetSolution> s : subsearches){
-            if(s.getBestSolution() != null){
-                assertTrue(DoubleComparatorWithPrecision.greaterThanOrEqual(
-                        s.getBestSolutionEvaluation().getValue(), 
-                        parallelSearch.getBestSolutionEvaluation().getValue(), 
-                        1e-10)
-                );
-            }
+            assertTrue(DoubleComparatorWithPrecision.greaterThanOrEqual(
+                    s.getBestSolutionEvaluation().getValue(), 
+                    parallelSearch.getBestSolutionEvaluation().getValue(), 
+                    TestConstants.DOUBLE_COMPARISON_PRECISION)
+            );
         }
     }
     
@@ -249,6 +266,26 @@ public class BasicParallelSearchTest extends SearchTestTemplate {
         // verify
         for(Search<SubsetSolution> s : subsearches){
             assertNull(s.getBestSolution());
+        }
+    }
+    
+    /**
+     * Test subsequent runs with unsatisfiable penalizing constraint.
+     */
+    @Test
+    public void testSubsequentRunsWithUnsatisfiablePenalizingConstraint() {
+        System.out.println(" - test subsequent runs with unsatisfiable penalizing constraint");
+        // set constraint
+        final double penalty = 7.8;
+        problem.addPenalizingConstraint(new NeverSatisfiedPenalizingConstraintStub(penalty));
+        // perform multiple runs (maximizing objective)
+        multiRunWithMaximumRuntime(parallelSearch, MULTI_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT, NUM_RUNS, true, true);
+        // verify
+        PenalizedEvaluation penEval = (PenalizedEvaluation) parallelSearch.getBestSolutionEvaluation();
+        assertEquals(penalty, penEval.getEvaluation().getValue() - penEval.getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
+        for(Search<SubsetSolution> s : subsearches){
+            penEval = (PenalizedEvaluation) s.getBestSolutionEvaluation();
+            assertEquals(penalty, penEval.getEvaluation().getValue() - penEval.getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
         }
     }
     
@@ -272,13 +309,11 @@ public class BasicParallelSearchTest extends SearchTestTemplate {
         }
         // verify
         for(Search<SubsetSolution> s : subsearches){
-            if(s.getBestSolution() != null){
-                assertTrue(DoubleComparatorWithPrecision.smallerThanOrEqual(
-                        s.getBestSolutionEvaluation().getValue(), 
-                        parallelSearch.getBestSolutionEvaluation().getValue(), 
-                        1e-10)
-                );
-            }
+            assertTrue(DoubleComparatorWithPrecision.smallerThanOrEqual(
+                    s.getBestSolutionEvaluation().getValue(), 
+                    parallelSearch.getBestSolutionEvaluation().getValue(), 
+                    TestConstants.DOUBLE_COMPARISON_PRECISION)
+            );
         }
     }
 

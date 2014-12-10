@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.problems.Problem;
+import org.jamesframework.core.problems.objectives.evaluations.PenalizedEvaluation;
 import org.jamesframework.core.subset.SubsetProblem;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.LocalSearch;
@@ -30,6 +31,8 @@ import org.jamesframework.core.subset.neigh.adv.MultiSwapNeighbourhood;
 import org.jamesframework.test.fakes.ScoredFakeSubsetData;
 import org.jamesframework.test.stubs.FixedEvaluationObjectiveStub;
 import org.jamesframework.test.stubs.NeverSatisfiedConstraintStub;
+import org.jamesframework.test.stubs.NeverSatisfiedPenalizingConstraintStub;
+import org.jamesframework.test.util.TestConstants;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -155,7 +158,7 @@ public class PipedLocalSearchTest extends SearchTestTemplate {
     public void testSingleRun() {
         System.out.println(" - test single run");
         // single run
-        singleRunWithMaxRuntime(pipedLocalSearch, problem, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        singleRunWithMaxRuntime(pipedLocalSearch, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
     }
     
     /**
@@ -167,7 +170,7 @@ public class PipedLocalSearchTest extends SearchTestTemplate {
         // set minimizing
         obj.setMinimizing();
         // single run
-        singleRunWithMaxRuntime(pipedLocalSearch, problem, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        singleRunWithMaxRuntime(pipedLocalSearch, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
     }
     
     /**
@@ -179,9 +182,25 @@ public class PipedLocalSearchTest extends SearchTestTemplate {
         // add constraint
         problem.addMandatoryConstraint(new NeverSatisfiedConstraintStub());
         // single run
-        singleRunWithMaxRuntime(pipedLocalSearch, problem, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        singleRunWithMaxRuntime(pipedLocalSearch, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
         // verify
         assertNull(pipedLocalSearch.getBestSolution());
+    }
+    
+    /**
+     * Test single run with unsatisfiable penalizing constraint.
+     */
+    @Test
+    public void testSingleRunWithUnsatisfiablePenalizingConstraint() {
+        System.out.println(" - test single run with unsatisfiable penalizing constraint");
+        // set constraint
+        final double penalty = 7.8;
+        problem.addPenalizingConstraint(new NeverSatisfiedPenalizingConstraintStub(penalty));
+        // single run
+        singleRunWithMaxRuntime(pipedLocalSearch, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        // verify
+        PenalizedEvaluation penEval = (PenalizedEvaluation) pipedLocalSearch.getBestSolutionEvaluation();
+        assertEquals(penalty, penEval.getEvaluation().getValue() - penEval.getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
     }
     
     /**
@@ -198,7 +217,7 @@ public class PipedLocalSearchTest extends SearchTestTemplate {
         pipeline.add(sd);
         pipedLocalSearch = new PipedLocalSearch<>(problem, pipeline);
         // single run
-        singleRunWithMaxRuntime(pipedLocalSearch, problem, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        singleRunWithMaxRuntime(pipedLocalSearch, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
     }
     
     /**
@@ -214,7 +233,7 @@ public class PipedLocalSearchTest extends SearchTestTemplate {
         }
         pipedLocalSearch = new PipedLocalSearch<>(problem, pipeline);
         // single run
-        singleRunWithMaxRuntime(pipedLocalSearch, problem, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        singleRunWithMaxRuntime(pipedLocalSearch, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
     }
     
     

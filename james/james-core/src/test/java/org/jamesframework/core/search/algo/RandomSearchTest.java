@@ -17,9 +17,12 @@
 package org.jamesframework.core.search.algo;
 
 import java.util.concurrent.TimeUnit;
+import org.jamesframework.core.problems.objectives.evaluations.PenalizedEvaluation;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.SearchTestTemplate;
 import org.jamesframework.test.stubs.NeverSatisfiedConstraintStub;
+import org.jamesframework.test.stubs.NeverSatisfiedPenalizingConstraintStub;
+import org.jamesframework.test.util.TestConstants;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -28,14 +31,14 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 
 /**
- * Test random descent algorithm.
+ * Test random search.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class RandomDescentTest extends SearchTestTemplate {
+public class RandomSearchTest extends SearchTestTemplate {
 
-    // random descent algorithm
-    private RandomDescent<SubsetSolution> search;
+    // random search
+    private RandomSearch<SubsetSolution> search;
     
     // maximum runtime
     private final long SINGLE_RUN_RUNTIME = 500;
@@ -50,7 +53,7 @@ public class RandomDescentTest extends SearchTestTemplate {
      */
     @BeforeClass
     public static void setUpClass() {
-        System.out.println("# Testing RandomDescent ...");
+        System.out.println("# Testing RandomSearch ...");
         SearchTestTemplate.setUpClass();
     }
 
@@ -59,7 +62,7 @@ public class RandomDescentTest extends SearchTestTemplate {
      */
     @AfterClass
     public static void tearDownClass() {
-        System.out.println("# Done testing RandomDescent!");
+        System.out.println("# Done testing RandomSearch!");
     }
     
     @Override
@@ -67,8 +70,8 @@ public class RandomDescentTest extends SearchTestTemplate {
     public void setUp(){
         // call super
         super.setUp();
-        // create random descent
-        search = new RandomDescent<>(problem, neigh);
+        // create random search
+        search = new RandomSearch<>(problem);
     }
     
     @After
@@ -84,7 +87,7 @@ public class RandomDescentTest extends SearchTestTemplate {
     public void testSingleRun() {
         System.out.println(" - test single run");
         // single run
-        singleRunWithMaxRuntime(search, problem, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        singleRunWithMaxRuntime(search, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
     }
     
     /**
@@ -96,9 +99,25 @@ public class RandomDescentTest extends SearchTestTemplate {
         // add constraint
         problem.addMandatoryConstraint(new NeverSatisfiedConstraintStub());
         // single run
-        singleRunWithMaxRuntime(search, problem, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        singleRunWithMaxRuntime(search, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
         // verify
         assertNull(search.getBestSolution());
+    }
+    
+    /**
+     * Test single run with unsatisfiable penalizing constraint.
+     */
+    @Test
+    public void testSingleRunWithUnsatisfiablePenalizingConstraint() {
+        System.out.println(" - test single run with unsatisfiable penalizing constraint");
+        // set constraint
+        final double penalty = 7.8;
+        problem.addPenalizingConstraint(new NeverSatisfiedPenalizingConstraintStub(penalty));
+        // single run
+        singleRunWithMaxRuntime(search, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+        // verify
+        PenalizedEvaluation penEval = (PenalizedEvaluation) search.getBestSolutionEvaluation();
+        assertEquals(penalty, penEval.getEvaluation().getValue() - penEval.getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
     }
     
     /**
@@ -135,6 +154,22 @@ public class RandomDescentTest extends SearchTestTemplate {
         multiRunWithMaximumRuntime(search, MULTI_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT, NUM_RUNS, true, true);
         // verify
         assertNull(search.getBestSolution());
+    }
+    
+    /**
+     * Test subsequent runs with unsatisfiable penalizing constraint.
+     */
+    @Test
+    public void testSubsequentRunsWithUnsatisfiablePenalizingConstraint() {
+        System.out.println(" - test subsequent runs with unsatisfiable penalizing constraint");
+        // set constraint
+        final double penalty = 7.8;
+        problem.addPenalizingConstraint(new NeverSatisfiedPenalizingConstraintStub(penalty));
+        // perform multiple runs (maximizing objective)
+        multiRunWithMaximumRuntime(search, MULTI_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT, NUM_RUNS, true, true);
+        // verify
+        PenalizedEvaluation penEval = (PenalizedEvaluation) search.getBestSolutionEvaluation();
+        assertEquals(penalty, penEval.getEvaluation().getValue() - penEval.getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
     }
     
     /**
