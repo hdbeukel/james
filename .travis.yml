@@ -1,12 +1,22 @@
 language: java
 
 jdk:
-    - oraclejdk8
+  - oraclejdk8
 
 branches:
-    only:
-        - master
-
+  only:
+    - master
+  
+env:
+  global:
+    - SONATYPE_USERNAME=hdbeukel
+    - secure: "POA/QLNaBtGklSMHFLXx/fUwSowUc1n+umNREcDFoFGm7k3K4dwAVJ5UNLLC/omG9g7QFCQ4p7wZ0DY/uzUGit66XQ2JElnEz+D2Q3NiohEUCdqwNrF9Gl4l4SWaRWZ5/f8GoREJTePms/Z7Cuv3QA9iazywBE+AsP80i9EqITE="
+  
 before_install: cd james
 
-after_success: mvn coveralls:report
+after_success:
+  - mvn coveralls:report
+  - python ../.travis/add-sonatype-server.py
+  - mvn clean deploy -DskipTests=true --settings ~/.m2/mySettings.xml
+
+
