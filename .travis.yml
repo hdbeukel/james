@@ -25,7 +25,7 @@ after_success:
   - cp -R ../james-core/target/apidocs/* api/core/snapshot/
   - cp -R ../james-extensions/target/apidocs/* api/ext/snapshot/
   - git config user.name "Travis-CI"
-  - git config user.email "travis@jamesframework.org"
+  - git config user.email "herman.debeukelaer@ugent.be"
   - git add api
   - git commit -m "updated snapshot APIs"
   - git push "https://${GH_TOKEN}@${GH_REF}" gh-pages
