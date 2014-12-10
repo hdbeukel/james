@@ -22,6 +22,6 @@ after_success:
   - cd ..
   - git config user.name "${GH_TOKEN}"
   - git config user.email "herman.debeukelaer@ugent.be"
-  - ./update-snapshot-api.sh > /dev/null 2>&1
+  - ./update-snapshot-api.sh
 
 
