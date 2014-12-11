@@ -5,6 +5,7 @@ Version 1.0 (under development)
 -------------------------------
 
  - Improved test coverage.
+ - Minor bugfixed and improvements.
 
 Version 0.2 (12/11/2014)
 ------------------------
