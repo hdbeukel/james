@@ -4,7 +4,8 @@ James Extensions Module Changes
 Version 0.2.1 (under development)
 ---------------------------------
 
- - Fixed some issues in tests.
+ - Improved test coverage.
+ - Minor bugfixed and improvements.
 
 Version 0.2 (12/11/2014)
 ------------------------
