@@ -33,6 +33,7 @@ import org.jamesframework.core.subset.neigh.SingleDeletionNeighbourhood;
 import org.jamesframework.core.subset.neigh.moves.AdditionMove;
 import org.jamesframework.core.subset.neigh.moves.DeletionMove;
 import org.jamesframework.core.subset.neigh.moves.SwapMove;
+import org.jamesframework.core.util.JamesConstants;
 import org.jamesframework.core.util.SetUtilities;
 import org.jamesframework.test.util.DoubleComparatorWithPrecision;
 import org.jamesframework.test.stubs.NeverSatisfiedConstraintStub;
@@ -175,6 +176,16 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
         // verify
         assertEquals(20, neighSearch.getNumAcceptedMoves());
         
+        // create search that checks number of accepted moves during initialization
+        neighSearch = new NeighbourhoodSearchStub<SubsetSolution>(problem) {
+            @Override
+            protected void searchStarted(){
+                assertEquals(JamesConstants.INVALID_MOVE_COUNT, getNumAcceptedMoves());
+                stop();
+            }
+        };
+        neighSearch.start();
+        
     }
 
     /**
@@ -201,6 +212,16 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
         
         // verify
         assertEquals(10, neighSearch.getNumRejectedMoves());
+        
+        // create search that checks number of accepted moves during initialization
+        neighSearch = new NeighbourhoodSearchStub<SubsetSolution>(problem) {
+            @Override
+            protected void searchStarted(){
+                assertEquals(JamesConstants.INVALID_MOVE_COUNT, getNumRejectedMoves());
+                stop();
+            }
+        };
+        neighSearch.start();
         
     }
 

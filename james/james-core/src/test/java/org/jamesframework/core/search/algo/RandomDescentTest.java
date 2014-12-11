@@ -90,6 +90,19 @@ public class RandomDescentTest extends SearchTestTemplate {
         singleRunWithMaxRuntime(search, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
     }
     
+        
+    /**
+     * Test single run without evaluated move cache.
+     */
+    @Test
+    public void testSingleRunWithoutMoveCache() {
+        System.out.println(" - test single run (no caching of evaluated moves)");
+        // disable cache
+        search.setEvaluatedMoveCache(null);
+        // single run
+        singleRunWithMaxRuntime(search, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+    }
+    
     /**
      * Test single run with unsatisfiable constraint.
      */
