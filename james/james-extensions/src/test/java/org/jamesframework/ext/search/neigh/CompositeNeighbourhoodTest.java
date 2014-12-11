@@ -23,6 +23,7 @@ import org.jamesframework.core.subset.neigh.moves.AdditionMove;
 import org.jamesframework.core.subset.neigh.SinglePerturbationNeighbourhood;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -88,6 +89,94 @@ public class CompositeNeighbourhoodTest {
         System.out.println("# Done testing CompositeNeighbourhood!");
     }
 
+    @Test
+    public void testConstructor(){
+        
+        System.out.println(" - test constructor");
+        
+        List<Double> weights = new ArrayList<>();
+        weights.add(1.0);
+        weights.add(1.0);
+        boolean thrown;
+        
+        thrown = false;
+        try {
+            new CompositeNeighbourhood(null, weights);
+        } catch (NullPointerException ex){
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            new CompositeNeighbourhood(neighs, null);
+        } catch (NullPointerException ex){
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        neighs.add(null);
+        weights.add(1.0);
+        try {
+            new CompositeNeighbourhood(neighs, weights);
+        } catch (NullPointerException ex){
+            thrown = true;
+        }
+        assertTrue(thrown);
+        neighs.remove(neighs.size()-1);
+        weights.remove(weights.size()-1);
+        
+        thrown = false;
+        neighs.add(neighs.get(0));
+        weights.add(null);
+        try {
+            new CompositeNeighbourhood(neighs, weights);
+        } catch (NullPointerException ex){
+            thrown = true;
+        }
+        assertTrue(thrown);
+        neighs.remove(neighs.size()-1);
+        weights.remove(weights.size()-1);
+        
+        thrown = false;
+        neighs.add(neighs.get(0));
+        try {
+            new CompositeNeighbourhood(neighs, weights);
+        } catch (IllegalArgumentException ex){
+            thrown = true;
+        }
+        assertTrue(thrown);
+        neighs.remove(neighs.size()-1);
+        
+        thrown = false;
+        try {
+            new CompositeNeighbourhood(Collections.emptyList(), Collections.emptyList());
+        } catch (IllegalArgumentException ex){
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        weights.set(1, 0.0);
+        try {
+            new CompositeNeighbourhood(neighs, weights);
+        } catch (IllegalArgumentException ex){
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        weights.set(1, -1.0);
+        try {
+            new CompositeNeighbourhood(neighs, weights);
+        } catch (IllegalArgumentException ex){
+            thrown = true;
+        }
+        assertTrue(thrown);
+
+    }
+    
     /**
      * Test of getRandomMove method, of class CompositeNeighbourhood.
      */
@@ -156,6 +245,22 @@ public class CompositeNeighbourhoodTest {
         System.out.println("    >>> Swap moves: " + numSwap);
         System.out.println("    >>> Deletion moves: " + numDel);
         System.out.println("    >>> Addition moves: " + numAdd);
+        
+        // test case 2: none of the neighbourhoods return any moves
+        Neighbourhood<SubsetSolution> emptyNeigh = new Neighbourhood<SubsetSolution>() {
+            @Override
+            public Move<? super SubsetSolution> getRandomMove(SubsetSolution solution) {
+                return null;
+            }
+            @Override
+            public List<? extends Move<? super SubsetSolution>> getAllMoves(SubsetSolution solution) {
+                return Collections.emptyList();
+            }
+        };
+        neighs = Arrays.asList(emptyNeigh, emptyNeigh);
+        compositeNeigh = new CompositeNeighbourhood<>(neighs, Arrays.asList(10.0, 40.0));
+        
+        assertNull(compositeNeigh.getRandomMove(sol));
         
     }
     
