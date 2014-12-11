@@ -98,6 +98,15 @@ public class TabuSearch<SolutionType extends Solution> extends SingleNeighbourho
     }
     
     /**
+     * Get the tabu memory.
+     * 
+     * @return tabu memory used by this search
+     */
+    public TabuMemory<SolutionType> getTabuMemory(){
+        return tabuMemory;
+    }
+    
+    /**
      * Set the tabu memory. Can not be <code>null</code>.
      * 
      * @param tabuMemory new tabu memory
@@ -126,8 +135,9 @@ public class TabuSearch<SolutionType extends Solution> extends SingleNeighbourho
             tabuMemory.registerVisitedSolution(getCurrentSolution(), move);
             // update successful
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
     
     /**
@@ -144,6 +154,19 @@ public class TabuSearch<SolutionType extends Solution> extends SingleNeighbourho
         super.setCurrentSolution(solution);
         // update tabu memory (no move has been applied to obtain this solution, pass null as move)
         tabuMemory.registerVisitedSolution(solution, null);
+    }
+    
+    /**
+     * Updates the tabu memory when a random initial solution is set.
+     * 
+     * @throws SearchException if a current solution is already set when calling this method
+     */
+    @Override
+    public void setRandomInitialSolution(){
+        // call super
+        super.setRandomInitialSolution();
+        // update tabu memory (no move has been applied to obtain this solution, pass null as move)
+        tabuMemory.registerVisitedSolution(getCurrentSolution(), null);
     }
     
     /**

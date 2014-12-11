@@ -20,9 +20,14 @@ import org.jamesframework.core.subset.algo.tabu.IDBasedSubsetTabuMemory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import org.jamesframework.core.problems.Solution;
+import org.jamesframework.core.problems.objectives.Objective;
+import org.jamesframework.core.problems.objectives.evaluations.Evaluation;
 import org.jamesframework.core.problems.objectives.evaluations.PenalizedEvaluation;
+import org.jamesframework.core.problems.objectives.evaluations.SimpleEvaluation;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.SearchTestTemplate;
+import org.jamesframework.core.search.stopcriteria.MaxRuntime;
 import org.jamesframework.test.stubs.NeverSatisfiedConstraintStub;
 import org.jamesframework.test.stubs.NeverSatisfiedPenalizingConstraintStub;
 import org.jamesframework.test.util.TestConstants;
@@ -119,6 +124,90 @@ public class TabuSearchTest extends SearchTestTemplate {
         search.dispose();
     }
 
+    @Test
+    public void testConstructor(){
+        System.out.println(" - test constructor");
+        
+        boolean thrown = false;
+        try {
+            new TabuSearch<>(problem, neigh, null);
+        } catch (NullPointerException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+    }
+    
+    @Test
+    public void testClearTabuMemory(){
+        System.out.println(" - test clearTabuMemory");
+        
+        // set initial solution
+        SubsetSolution sol = problem.createRandomSolution();
+        search.setCurrentSolution(sol);
+        
+        // set objective so that initial solution is better than all others
+        // (to eliminate the effect of the aspiration criterion)
+        problem.setObjective(new Objective<SubsetSolution, Object>(){
+            SubsetSolution best = Solution.checkedCopy(sol);
+            @Override
+            public Evaluation evaluate(SubsetSolution solution, Object data) {
+                return new SimpleEvaluation(solution.equals(best) ? 1.0 : 0.0);
+            }
+            @Override
+            public boolean isMinimizing() {
+                return false;
+            }
+        });
+        
+        // make all moves from initial solution tabu
+        neigh.getAllMoves(sol).forEach(m -> {
+            m.apply(sol);
+            search.getTabuMemory().registerVisitedSolution(sol, m);
+            m.undo(sol);
+        });
+        
+        // run search (should immediately terminate as all neighbours are tabu, no aspiration effect)
+        search.start();
+        
+        // verify: single step
+        assertEquals(1, search.getSteps());
+        
+        // clear tabu memory through search
+        search.clearTabuMemory();
+        
+        // verify
+        neigh.getAllMoves(sol).forEach(m -> {
+            assertFalse(search.getTabuMemory().isTabu(m, sol));
+        });
+        
+        // run again for a second
+        search.addStopCriterion(new MaxRuntime(1, TimeUnit.SECONDS));
+        search.start();
+        
+        // verify
+        assertTrue(search.getSteps() > 1);
+        
+    }
+    
+    @Test
+    public void testSetTabuMemory(){
+        System.out.println(" - test setTabuMemory");
+        
+        boolean thrown = false;
+        try {
+            search.setTabuMemory(null);
+        } catch (NullPointerException ex){
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        TabuMemory<SubsetSolution> newMem = new FullTabuMemory<>(100);
+        search.setTabuMemory(newMem);
+        // verify
+        assertEquals(newMem, search.getTabuMemory());
+        
+    }
+    
     /**
      * Test single run.
      */
