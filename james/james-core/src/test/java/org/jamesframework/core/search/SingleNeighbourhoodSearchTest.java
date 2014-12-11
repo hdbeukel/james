@@ -16,9 +16,6 @@
 
 package org.jamesframework.core.search;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.subset.SubsetSolution;
@@ -40,8 +37,6 @@ public class SingleNeighbourhoodSearchTest extends SearchTestTemplate {
 
     // dummy search
     private SingleNeighbourhoodSearch<SubsetSolution> search;
-    // neighbourhood
-    private Neighbourhood<SubsetSolution> neigh;
     
     /**
      * Print message when starting tests.
