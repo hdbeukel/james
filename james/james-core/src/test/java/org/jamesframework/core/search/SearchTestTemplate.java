@@ -19,7 +19,6 @@ package org.jamesframework.core.search;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.constraints.validations.Validation;
 import org.jamesframework.core.problems.objectives.evaluations.Evaluation;
 import org.jamesframework.core.search.listeners.SearchListener;
@@ -130,7 +129,8 @@ public class SearchTestTemplate {
         if(search.getBestSolution() == null){
             System.out.println("   >>> no valid solution found ...");
         } else {
-            System.out.println("   >>> best solution: " + search.getBestSolutionEvaluation());
+            System.out.println("   >>> best solution evaluation: " + search.getBestSolutionEvaluation());
+            System.out.println("   >>> best solution validation: " + search.getBestSolutionValidation());
             // verify
             if(search.getBestSolution() != null){
                 assertTrue(search.getBestSolutionValidation().passed());
