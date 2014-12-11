@@ -30,6 +30,7 @@ import org.jamesframework.core.search.status.SearchStatus;
 import org.jamesframework.core.subset.neigh.SingleSwapNeighbourhood;
 import org.jamesframework.test.stubs.NeverSatisfiedConstraintStub;
 import org.jamesframework.test.stubs.NeverSatisfiedPenalizingConstraintStub;
+import org.jamesframework.test.util.DelayedExecution;
 import org.jamesframework.test.util.TestConstants;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -228,13 +229,7 @@ public class ParallelTemperingTest extends SearchTestTemplate {
         // schedule task to interrupt the thread that runs the main search
         // while it is waiting for the replicas to complete their current run
         final Thread thr = Thread.currentThread();
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                thr.interrupt();
-            }
-        }, 500);
+        DelayedExecution.schedule(() -> thr.interrupt(), 500);
         
         boolean thrown = false;
         try{

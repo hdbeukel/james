@@ -16,14 +16,21 @@
 
 package org.jamesframework.core.search;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import org.jamesframework.core.exceptions.SearchException;
 import org.jamesframework.core.problems.constraints.validations.Validation;
 import org.jamesframework.core.problems.objectives.evaluations.Evaluation;
 import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.search.status.SearchStatus;
+import org.jamesframework.core.search.stopcriteria.MaxSteps;
+import org.jamesframework.core.search.stopcriteria.MinDelta;
+import org.jamesframework.core.search.stopcriteria.StopCriterion;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.util.JamesConstants;
 import org.jamesframework.test.util.DoubleComparatorWithPrecision;
 import org.jamesframework.test.search.RandomSearchWithInternalMaxSteps;
+import org.jamesframework.test.util.DelayedExecution;
 import org.jamesframework.test.util.TestConstants;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -75,6 +82,40 @@ public class SearchTest extends SearchTestTemplate {
         // dispose search
         search.dispose();
     }
+    
+    @Test
+    public void testDefaultName(){
+        System.out.println(" - test default name");
+        
+        search = new Search<SubsetSolution>(problem) {
+            @Override
+            protected void searchStep() {
+                // do nothing;
+            }
+        };
+        assertEquals("Search", search.getName());
+    }
+    
+    @Test
+    public void testUniqueIDs(){
+        System.out.println(" - test unique IDs");
+        
+        Collection<Search> searches = new ArrayList<>();
+        int n = 100;
+        
+        for(int i=0; i<n; i++){
+            searches.add(new Search<SubsetSolution>(problem) {
+                @Override
+                protected void searchStep() {
+                    // do nothing;
+                }
+            });
+        }
+        
+        assertEquals(n, searches.stream().map(Search::getID).distinct().count());
+        
+        searches.forEach(Search::dispose);
+    }
 
     /**
      * Test of start method, of class Search.
@@ -102,6 +143,36 @@ public class SearchTest extends SearchTestTemplate {
         
         // assert that status is still idle
         assertEquals(SearchStatus.IDLE, search.getStatus());
+        
+    }
+    
+    @Test
+    public void testAssertIdle(){
+        System.out.println(" - test assertIdle");
+        
+        // create never ending search
+        search = new Search<SubsetSolution>(problem) {
+            @Override
+            protected void searchStep() {
+                // do nothing;
+            }
+        };
+        search.assertIdle("should pass");
+        
+        // schedule task to assert search status while running
+        DelayedExecution.schedule(() -> {
+            boolean thrown = false;
+            try {
+                search.assertIdle("should throw error");
+            } catch (SearchException ex){
+                thrown = true;
+            } finally {
+                search.stop();
+                assertTrue(thrown);
+            }
+        }, 500);
+        
+        search.start();
         
     }
     
@@ -151,6 +222,40 @@ public class SearchTest extends SearchTestTemplate {
         search.addSearchListener(l);
         
         // run search (checks asserts inside listener)
+        search.start();
+        
+    }
+    
+    @Test
+    public void testAddRemoveStopCriterion(){
+        
+        System.out.println(" - test search with stop criterion");
+        
+        // use dummy search
+        search = new Search<SubsetSolution>(problem) {
+            @Override
+            protected void searchStep() {
+                // do nothing;
+            }
+        };
+        
+        // add stop criterion
+        StopCriterion sc = new MaxSteps(1000);
+        search.addStopCriterion(sc);
+        
+        // create second stop criterion
+        StopCriterion sc2 = new MinDelta(0.0001);
+        
+        // try to remove second
+        assertFalse(search.removeStopCriterion(sc2));
+        
+        // remove first
+        assertTrue(search.removeStopCriterion(sc));
+        
+        // re-add first
+        search.addStopCriterion(sc);
+        
+        // run search (should stop)
         search.start();
         
     }
@@ -306,6 +411,30 @@ public class SearchTest extends SearchTestTemplate {
         assertTrue(search.getStepsWithoutImprovement() >= 0);
         // check: cannot be larger than total steps
         assertTrue(search.getStepsWithoutImprovement() <= search.getSteps());
+        
+    }
+    
+    @Test
+    public void testGetMinDelta(){
+        
+        System.out.println(" - test getMinDelta");
+        
+        // override searchStarted to check min delta during initialization
+        search = new RandomSearchWithInternalMaxSteps<SubsetSolution>(problem, NUM_STEPS){
+            @Override
+            protected void searchStarted(){
+                assertTrue(search.getMinDelta() == JamesConstants.INVALID_DELTA);
+            }
+        };
+        
+        // check value before first run
+        assertTrue(search.getMinDelta() == JamesConstants.INVALID_DELTA);
+        
+        // run search
+        search.start();
+        
+        // check: should return positive value or invalid constant
+        assertTrue(search.getMinDelta() == JamesConstants.INVALID_DELTA || search.getMinDelta() > 0);
         
     }
 
