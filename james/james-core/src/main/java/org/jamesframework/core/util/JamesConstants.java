@@ -21,7 +21,7 @@ package org.jamesframework.core.util;
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class JamesConstants {
+public interface JamesConstants {
 
     /**
      * Used to indicate an invalid timestamp, for example belonging to an event which has not yet occurred.
