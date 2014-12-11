@@ -115,7 +115,7 @@ public class SingleSwapNeighbourhoodTest {
         SingleSwapNeighbourhood neigh = new SingleSwapNeighbourhood();
         
         // test
-        for(int i=0; i<50; i++){
+        for(int i=0; i<10; i++){
             int n = RG.nextInt(99)+2;
             List<Integer> order = new ArrayList<>();
             for(int j=0; j<n; j++){

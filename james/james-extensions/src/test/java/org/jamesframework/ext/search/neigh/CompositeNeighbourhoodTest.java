@@ -101,7 +101,7 @@ public class CompositeNeighbourhoodTest {
         
         thrown = false;
         try {
-            new CompositeNeighbourhood(null, weights);
+            new CompositeNeighbourhood<>(null, weights);
         } catch (NullPointerException ex){
             thrown = true;
         }
@@ -109,7 +109,7 @@ public class CompositeNeighbourhoodTest {
         
         thrown = false;
         try {
-            new CompositeNeighbourhood(neighs, null);
+            new CompositeNeighbourhood<>(neighs, null);
         } catch (NullPointerException ex){
             thrown = true;
         }
@@ -119,7 +119,7 @@ public class CompositeNeighbourhoodTest {
         neighs.add(null);
         weights.add(1.0);
         try {
-            new CompositeNeighbourhood(neighs, weights);
+            new CompositeNeighbourhood<>(neighs, weights);
         } catch (NullPointerException ex){
             thrown = true;
         }
@@ -131,7 +131,7 @@ public class CompositeNeighbourhoodTest {
         neighs.add(neighs.get(0));
         weights.add(null);
         try {
-            new CompositeNeighbourhood(neighs, weights);
+            new CompositeNeighbourhood<>(neighs, weights);
         } catch (NullPointerException ex){
             thrown = true;
         }
@@ -142,7 +142,7 @@ public class CompositeNeighbourhoodTest {
         thrown = false;
         neighs.add(neighs.get(0));
         try {
-            new CompositeNeighbourhood(neighs, weights);
+            new CompositeNeighbourhood<>(neighs, weights);
         } catch (IllegalArgumentException ex){
             thrown = true;
         }
@@ -151,7 +151,7 @@ public class CompositeNeighbourhoodTest {
         
         thrown = false;
         try {
-            new CompositeNeighbourhood(Collections.emptyList(), Collections.emptyList());
+            new CompositeNeighbourhood<>(Collections.emptyList(), Collections.emptyList());
         } catch (IllegalArgumentException ex){
             thrown = true;
         }
@@ -160,7 +160,7 @@ public class CompositeNeighbourhoodTest {
         thrown = false;
         weights.set(1, 0.0);
         try {
-            new CompositeNeighbourhood(neighs, weights);
+            new CompositeNeighbourhood<>(neighs, weights);
         } catch (IllegalArgumentException ex){
             thrown = true;
         }
@@ -169,7 +169,7 @@ public class CompositeNeighbourhoodTest {
         thrown = false;
         weights.set(1, -1.0);
         try {
-            new CompositeNeighbourhood(neighs, weights);
+            new CompositeNeighbourhood<>(neighs, weights);
         } catch (IllegalArgumentException ex){
             thrown = true;
         }
@@ -257,8 +257,8 @@ public class CompositeNeighbourhoodTest {
                 return Collections.emptyList();
             }
         };
-        neighs = Arrays.asList(emptyNeigh, emptyNeigh);
-        compositeNeigh = new CompositeNeighbourhood<>(neighs, Arrays.asList(10.0, 40.0));
+        List<Neighbourhood<SubsetSolution>> newNeighs = Arrays.asList(emptyNeigh, emptyNeigh);
+        compositeNeigh = new CompositeNeighbourhood<>(newNeighs, Arrays.asList(10.0, 40.0));
         
         assertNull(compositeNeigh.getRandomMove(sol));
         

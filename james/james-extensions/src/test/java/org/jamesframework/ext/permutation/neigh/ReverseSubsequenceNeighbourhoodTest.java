@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Random;
 import org.jamesframework.ext.permutation.PermutationSolution;
 import org.jamesframework.ext.permutation.neigh.moves.ReverseSubsequenceMove;
-import org.jamesframework.ext.permutation.neigh.moves.SingleSwapMove;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -111,7 +110,7 @@ public class ReverseSubsequenceNeighbourhoodTest {
         ReverseSubsequenceNeighbourhood neigh = new ReverseSubsequenceNeighbourhood();
         
         // test
-        for(int i=0; i<50; i++){
+        for(int i=0; i<10; i++){
             int n = RG.nextInt(99)+2;
             List<Integer> order = new ArrayList<>();
             for(int j=0; j<n; j++){
