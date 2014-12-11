@@ -167,7 +167,7 @@ implements <a href="../../../../../../org/jamesframework/core/util/LocalSearchFa
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VNDFactory.html" title="type parameter in VNDFactory">SolutionType</a>&gt;</code></td>
+<td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodDescent.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodDescent</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VNDFactory.html" title="type parameter in VNDFactory">SolutionType</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/vns/VNDFactory.html#create-org.jamesframework.core.problems.Problem-">create</a></span>(<a href="../../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VNDFactory.html" title="type parameter in VNDFactory">SolutionType</a>&gt;&nbsp;problem)</code>
 <div class="block">Create a VND search to solve the given problem, using the list of neighbourhoods
  set at construction of the factory.</div>
@@ -229,7 +229,7 @@ implements <a href="../../../../../../org/jamesframework/core/util/LocalSearchFa
 <ul class="blockListLast">
 <li class="blockList">
 <h4>create</h4>
-<pre>public&nbsp;<a href="../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VNDFactory.html" title="type parameter in VNDFactory">SolutionType</a>&gt;&nbsp;create(<a href="../../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VNDFactory.html" title="type parameter in VNDFactory">SolutionType</a>&gt;&nbsp;problem)</pre>
+<pre>public&nbsp;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VariableNeighbourhoodDescent.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodDescent</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VNDFactory.html" title="type parameter in VNDFactory">SolutionType</a>&gt;&nbsp;create(<a href="../../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/vns/VNDFactory.html" title="type parameter in VNDFactory">SolutionType</a>&gt;&nbsp;problem)</pre>
 <div class="block">Create a VND search to solve the given problem, using the list of neighbourhoods
  set at construction of the factory.</div>
 <dl>
@@ -239,6 +239,8 @@ implements <a href="../../../../../../org/jamesframework/core/util/LocalSearchFa
 <dd><code>problem</code> - problem to solve</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>VND search</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if the given problem is <code>null</code></dd>
 </dl>
 </li>
 </ul>
