@@ -70,10 +70,11 @@ public class VNDFactory<SolutionType extends Solution> implements LocalSearchFac
      * set at construction of the factory.
      * 
      * @param problem problem to solve
+     * @throws NullPointerException if the given problem is <code>null</code>
      * @return VND search
      */
     @Override
-    public NeighbourhoodSearch<SolutionType> create(Problem<SolutionType> problem){
+    public VariableNeighbourhoodDescent<SolutionType> create(Problem<SolutionType> problem){
         return new VariableNeighbourhoodDescent<>(problem, neighs);
     }
 
