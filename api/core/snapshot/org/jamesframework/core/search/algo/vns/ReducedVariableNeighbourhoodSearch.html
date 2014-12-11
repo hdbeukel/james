@@ -391,10 +391,11 @@ extends <a href="../../../../../../org/jamesframework/core/search/MultiNeighbour
 <pre>protected&nbsp;void&nbsp;searchStep()</pre>
 <div class="block">Samples a random neighbour of the current solution, using the k-th neighbourhood, and accepts it as the new
  current solution if it is an improvement. If no improvement is found, k is increased. Upon each improvement,
- or when k has reached the number of available neighbourhoods (if cycling is enabled, as is the default), k
- is reset to 0.
+ k is reset to 0. If cycling is enabled (which is the default setting), k is also reset to 0 when all neighbourhoods
+ have been used so that the first neighbourhood will again be applied in the next step. If cycilng is disabled,
+ the search stops if no improvement was found using the last available neighbourhood.
  <p>
- If the k-th neighbourhood is unable to generate any move, k is also increased to try the next neighbourhood
+ If the k-th neighbourhood is unable to generate any move, k is also increased to try the next neighbourhood (if any)
  in the next step.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
