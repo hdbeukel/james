@@ -18,8 +18,6 @@ package org.jamesframework.core.search.algo;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.exceptions.SearchException;
 import org.jamesframework.core.problems.objectives.evaluations.PenalizedEvaluation;

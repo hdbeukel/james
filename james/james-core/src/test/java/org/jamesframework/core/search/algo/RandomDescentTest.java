@@ -16,10 +16,14 @@
 
 package org.jamesframework.core.search.algo;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.problems.objectives.evaluations.PenalizedEvaluation;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.SearchTestTemplate;
+import org.jamesframework.core.search.neigh.Move;
+import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.test.stubs.NeverSatisfiedConstraintStub;
 import org.jamesframework.test.stubs.NeverSatisfiedPenalizingConstraintStub;
 import org.jamesframework.test.util.TestConstants;
@@ -90,6 +94,27 @@ public class RandomDescentTest extends SearchTestTemplate {
         singleRunWithMaxRuntime(search, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
     }
     
+    @Test
+    public void testEmptyNeighbourhood() {
+        System.out.println(" - test with empty neighbourhood");
+        // create empty neighbourhood
+        Neighbourhood<SubsetSolution> emptyNeigh = new Neighbourhood<SubsetSolution>() {
+            @Override
+            public Move<? super SubsetSolution> getRandomMove(SubsetSolution solution) {
+                return null;
+            }
+            @Override
+            public List<? extends Move<? super SubsetSolution>> getAllMoves(SubsetSolution solution) {
+                return Collections.emptyList();
+            }
+        };
+        // set in search
+        search.setNeighbourhood(emptyNeigh);
+        // run search
+        search.start();
+        // verify: stopped after first step
+        assertEquals(1, search.getSteps());
+    }
         
     /**
      * Test single run without evaluated move cache.

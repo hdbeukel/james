@@ -17,6 +17,8 @@
 package org.jamesframework.core.search.algo.vns;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.problems.objectives.evaluations.PenalizedEvaluation;
@@ -25,7 +27,10 @@ import org.jamesframework.core.search.NeighbourhoodSearch;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.SearchTestTemplate;
 import org.jamesframework.core.search.listeners.SearchListener;
+import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.search.neigh.Neighbourhood;
+import org.jamesframework.core.search.stopcriteria.MaxRuntime;
+import org.jamesframework.core.search.stopcriteria.StopCriterion;
 import org.jamesframework.core.subset.neigh.adv.DisjointMultiSwapNeighbourhood;
 import org.jamesframework.test.stubs.NeverSatisfiedConstraintStub;
 import org.jamesframework.test.stubs.NeverSatisfiedPenalizingConstraintStub;
@@ -113,6 +118,42 @@ public class ReducedVariableNeighbourhoodSearchTest extends SearchTestTemplate {
         System.out.println(" - test single run");
         // single run
         singleRunWithMaxRuntime(search, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+    }
+    
+    @Test
+    public void testEmptyNeighbourhood() {
+        
+        System.out.println(" - test with empty neighbourhood");
+        
+        // create empty neighbourhood
+        Neighbourhood<SubsetSolution> emptyNeigh = new Neighbourhood<SubsetSolution>() {
+            @Override
+            public Move<? super SubsetSolution> getRandomMove(SubsetSolution solution) {
+                return null;
+            }
+            @Override
+            public List<? extends Move<? super SubsetSolution>> getAllMoves(SubsetSolution solution) {
+                return Collections.emptyList();
+            }
+        };
+        // set in search
+        search.setNeighbourhoods(Arrays.asList(emptyNeigh));
+        
+        // run search with cycling enabled (default) --> set stop criterion or will never stop
+        StopCriterion sc = new MaxRuntime(1, TimeUnit.SECONDS);
+        search.addStopCriterion(sc);
+        search.start();
+        // verify: stopped because runtime limit exceeded
+        assertTrue(search.getRuntime() >= 1000);
+        // remove stop criterion
+        search.removeStopCriterion(sc);
+        
+        // re-run with cycling disabled --> stops after one step
+        search.setCycleNeighbourhoods(false);
+        search.start();
+        // verify
+        assertEquals(1, search.getSteps());
+        
     }
     
     /**

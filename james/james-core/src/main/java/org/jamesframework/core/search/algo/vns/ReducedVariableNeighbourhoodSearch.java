@@ -127,48 +127,49 @@ public class ReducedVariableNeighbourhoodSearch<SolutionType extends Solution> e
     /**
      * Samples a random neighbour of the current solution, using the k-th neighbourhood, and accepts it as the new
      * current solution if it is an improvement. If no improvement is found, k is increased. Upon each improvement,
-     * or when k has reached the number of available neighbourhoods (if cycling is enabled, as is the default), k
-     * is reset to 0.
+     * k is reset to 0. If cycling is enabled (which is the default setting), k is also reset to 0 when all neighbourhoods
+     * have been used so that the first neighbourhood will again be applied in the next step. If cycilng is disabled,
+     * the search stops if no improvement was found using the last available neighbourhood.
      * <p>
-     * If the k-th neighbourhood is unable to generate any move, k is also increased to try the next neighbourhood
+     * If the k-th neighbourhood is unable to generate any move, k is also increased to try the next neighbourhood (if any)
      * in the next step.
      * 
      * @throws JamesRuntimeException if depending on malfunctioning components (problem, neighbourhood, ...)
      */
     @Override
     protected void searchStep() {
-        boolean skip = false;
-        // cyclically reset k to zero if no more neighbourhoods are available and cycling is enabled
-        if(k >= getNeighbourhoods().size()){
-            if(cycleNeighbourhoods){
+        // use k-th neighbourhood to get a random valid move
+        Move<? super SolutionType> move = getNeighbourhoods().get(k).getRandomMove(getCurrentSolution());
+        // check: got move ?
+        if(move != null){
+            // check: improvement ?
+            if(isImprovement(move)){
+                // improvement: accept move and reset k
+                acceptMove(move);
                 k = 0;
             } else {
-                // skip further execution of this step
-                skip = true;
-                // request search to stop after this step
-                stop();
+                rejectMove();
+                // no improvement: switch to next neighbourhood, if any
+                nextNeighbourhood();
             }
+        } else {
+            // k-th neighbourhood did not produce any random move: switch to next neighbourhood, if any
+            nextNeighbourhood();
         }
-        if(!skip){
-            // use k-th neighbourhood to get a random valid move
-            Neighbourhood<? super SolutionType> neigh = getNeighbourhoods().get(k);
-            Move<? super SolutionType> move = neigh.getRandomMove(getCurrentSolution());
-            // check: got move ?
-            if(move != null){
-                // check: improvement ?
-                if(isImprovement(move)){
-                    // improvement: accept move and reset k
-                    acceptMove(move);
-                    k = 0;
-                } else {
-                    rejectMove();
-                    // switch to next neighbourhood (to be used in next step)
-                    k++;
-                }
-            } else {
-                // k-th neighbourhood did not produce any random move, try again with next neighbourhood in next step
-                k++;
-            }
+    }
+    
+    /**
+     * Switches to the next neighbourhood in the list, if any,
+     * going back to the start if cycling is enabled and all
+     * neighbourhoods have been used.
+     */
+    private void nextNeighbourhood(){
+        if(cycleNeighbourhoods || k < getNeighbourhoods().size()-1){
+            // try again with next neighbourhood in next step
+            k = (k+1) % getNeighbourhoods().size();
+        } else {
+            // no next neighbourhood... stop
+            stop();
         }
     }
     

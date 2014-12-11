@@ -18,6 +18,7 @@ package org.jamesframework.core.search.algo.tabu;
 
 import org.jamesframework.core.subset.algo.tabu.IDBasedSubsetTabuMemory;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.problems.Solution;
@@ -27,6 +28,8 @@ import org.jamesframework.core.problems.objectives.evaluations.PenalizedEvaluati
 import org.jamesframework.core.problems.objectives.evaluations.SimpleEvaluation;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.SearchTestTemplate;
+import org.jamesframework.core.search.neigh.Move;
+import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.search.stopcriteria.MaxRuntime;
 import org.jamesframework.test.stubs.NeverSatisfiedConstraintStub;
 import org.jamesframework.test.stubs.NeverSatisfiedPenalizingConstraintStub;
@@ -216,6 +219,28 @@ public class TabuSearchTest extends SearchTestTemplate {
         System.out.println(" - test single run");
         // single run
         singleRunWithMaxRuntime(search, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+    }
+    
+    @Test
+    public void testEmptyNeighbourhood() {
+        System.out.println(" - test with empty neighbourhood");
+        // create empty neighbourhood
+        Neighbourhood<SubsetSolution> emptyNeigh = new Neighbourhood<SubsetSolution>() {
+            @Override
+            public Move<? super SubsetSolution> getRandomMove(SubsetSolution solution) {
+                return null;
+            }
+            @Override
+            public List<? extends Move<? super SubsetSolution>> getAllMoves(SubsetSolution solution) {
+                return Collections.emptyList();
+            }
+        };
+        // set in search
+        search.setNeighbourhood(emptyNeigh);
+        // run search
+        search.start();
+        // verify: stopped after first step
+        assertEquals(1, search.getSteps());
     }
     
     /**
