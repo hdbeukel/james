@@ -16,6 +16,8 @@
 
 package org.jamesframework.core.search.algo;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.problems.objectives.evaluations.PenalizedEvaluation;
 import org.jamesframework.core.subset.SubsetSolution;
@@ -23,6 +25,8 @@ import org.jamesframework.core.search.NeighbourhoodSearch;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.SearchTestTemplate;
 import org.jamesframework.core.search.listeners.SearchListener;
+import org.jamesframework.core.search.neigh.Move;
+import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.test.stubs.NeverSatisfiedConstraintStub;
 import org.jamesframework.test.stubs.NeverSatisfiedPenalizingConstraintStub;
 import org.jamesframework.test.util.TestConstants;
@@ -94,6 +98,77 @@ public class MetropolisSearchTest extends SearchTestTemplate {
         searchHighTemp.dispose();
     }
 
+    @Test
+    public void testConstructor(){
+        
+        System.out.println(" - test constructor");
+        
+        boolean thrown;
+                
+        thrown = false;
+        try {
+            new MetropolisSearch<>(problem, neigh, 0.0);
+        } catch (IllegalArgumentException ex){
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            new MetropolisSearch<>(problem, neigh, -1.0);
+        } catch (IllegalArgumentException ex){
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+    }
+    
+    @Test
+    public void testSetTemperature(){
+        System.out.println(" - test setTemperature");
+        
+        boolean thrown;
+        
+        thrown = false;
+        try {
+            searchLowTemp.setTemperature(0.0);
+        } catch (IllegalArgumentException ex){
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            searchLowTemp.setTemperature(-1.0);
+        } catch (IllegalArgumentException ex){
+            thrown = true;
+        }
+        assertTrue(thrown);
+    }
+    
+    @Test
+    public void testSetTemperatureScaleFactor(){
+        System.out.println(" - test setTemperatureScaleFactor");
+        
+        boolean thrown;
+        
+        thrown = false;
+        try {
+            searchLowTemp.setTemperatureScaleFactor(0.0);
+        } catch (IllegalArgumentException ex){
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            searchLowTemp.setTemperatureScaleFactor(-1.0);
+        } catch (IllegalArgumentException ex){
+            thrown = true;
+        }
+        assertTrue(thrown);
+    }
+    
     /**
      * Test single run.
      */
@@ -107,6 +182,34 @@ public class MetropolisSearchTest extends SearchTestTemplate {
         singleRunWithMaxRuntime(searchMedTemp, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
         System.out.format("   - high temperature (T = %.7f)\n", HIGH_TEMP);
         singleRunWithMaxRuntime(searchHighTemp, SINGLE_RUN_RUNTIME, MAX_RUNTIME_TIME_UNIT);
+    }
+    
+    @Test
+    public void testEmptyNeighbourhood() {
+        System.out.println(" - test with empty neighbourhood");
+        // create empty neighbourhood
+        Neighbourhood<SubsetSolution> emptyNeigh = new Neighbourhood<SubsetSolution>() {
+            @Override
+            public Move<? super SubsetSolution> getRandomMove(SubsetSolution solution) {
+                return null;
+            }
+            @Override
+            public List<? extends Move<? super SubsetSolution>> getAllMoves(SubsetSolution solution) {
+                return Collections.emptyList();
+            }
+        };
+        // set in searches
+        searchLowTemp.setNeighbourhood(emptyNeigh);
+        searchMedTemp.setNeighbourhood(emptyNeigh);
+        searchHighTemp.setNeighbourhood(emptyNeigh);
+        // run searches
+        searchLowTemp.start();
+        searchMedTemp.start();
+        searchHighTemp.start();
+        // verify: stopped after first step
+        assertEquals(1, searchLowTemp.getSteps());
+        assertEquals(1, searchMedTemp.getSteps());
+        assertEquals(1, searchHighTemp.getSteps());
     }
     
     /**
