@@ -108,7 +108,7 @@ public abstract class MultiNeighbourhoodSearch<SolutionType extends Solution> ex
      * @throws SearchException if the search is currently not idle
      * @param neighs list of neighbourhoods used to modify the current solution
      */
-    public void setNeighbourhoods(List<Neighbourhood<? super SolutionType>> neighs){
+    public void setNeighbourhoods(List<? extends Neighbourhood<? super SolutionType>> neighs){
         // synchronize with status updates
         synchronized(getStatusLock()){
             // assert idle
@@ -126,7 +126,7 @@ public abstract class MultiNeighbourhoodSearch<SolutionType extends Solution> ex
             }
             // check not empty
             if(neighs.isEmpty()){
-                throw new NullPointerException("Can not set neighbourhoods: received empty list.");
+                throw new IllegalArgumentException("Can not set neighbourhoods: received empty list.");
             }
             // go ahead
             this.neighs = neighs;
