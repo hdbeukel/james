@@ -32,23 +32,23 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 
 /**
- * Test abstract multi neighbourhood search.
+ * Test abstract single neighbourhood search.
  * 
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
-public class MultiNeighbourhoodSearchTest extends SearchTestTemplate {
+public class SingleNeighbourhoodSearchTest extends SearchTestTemplate {
 
     // dummy search
-    private MultiNeighbourhoodSearch<SubsetSolution> search;
-    // neighbourhoods
-    private List<Neighbourhood<SubsetSolution>> neighs;
+    private SingleNeighbourhoodSearch<SubsetSolution> search;
+    // neighbourhood
+    private Neighbourhood<SubsetSolution> neigh;
     
     /**
      * Print message when starting tests.
      */
     @BeforeClass
     public static void setUpClass() {
-        System.out.println("# Testing MultiNeighbourhoodSearch ...");
+        System.out.println("# Testing SingleNeighbourhoodSearch ...");
         SearchTestTemplate.setUpClass();
     }
 
@@ -57,7 +57,7 @@ public class MultiNeighbourhoodSearchTest extends SearchTestTemplate {
      */
     @AfterClass
     public static void tearDownClass() {
-        System.out.println("# Done testing MultiNeighbourhoodSearch!");
+        System.out.println("# Done testing SingleNeighbourhoodSearch!");
     }
     
     @Override
@@ -66,8 +66,8 @@ public class MultiNeighbourhoodSearchTest extends SearchTestTemplate {
         // call super
         super.setUp();
         // create random search with internal max steps
-        neighs = Arrays.asList(new SingleSwapNeighbourhood(), new SinglePerturbationNeighbourhood());
-        search = new DummyMultiNeighbourhoodSearch(problem, neighs);
+        neigh = new SingleSwapNeighbourhood();
+        search = new DummySingleNeighbourhoodSearch(problem, neigh);
     }
     
     @After
@@ -81,31 +81,15 @@ public class MultiNeighbourhoodSearchTest extends SearchTestTemplate {
         System.out.println(" - test constructors");
         
         // test default name
-        assertEquals("MultiNeighbourhoodSearch", search.getName());
+        assertEquals("SingleNeighbourhoodSearch", search.getName());
         
         // test exeptions
         boolean thrown;
         
         thrown = false;
         try{
-            search = new DummyMultiNeighbourhoodSearch(problem, null);
+            search = new DummySingleNeighbourhoodSearch(problem, null);
         } catch (NullPointerException ex){
-            thrown = true;
-        }
-        assertTrue(thrown);
-        
-        thrown = false;
-        try{
-            search = new DummyMultiNeighbourhoodSearch(problem, Arrays.asList(neighs.get(0), null));
-        } catch (NullPointerException ex){
-            thrown = true;
-        }
-        assertTrue(thrown);
-        
-        thrown = false;
-        try{
-            search = new DummyMultiNeighbourhoodSearch(problem, Collections.emptyList());
-        } catch (IllegalArgumentException ex){
             thrown = true;
         }
         assertTrue(thrown);
@@ -116,56 +100,31 @@ public class MultiNeighbourhoodSearchTest extends SearchTestTemplate {
      * Test of setNeighbourhoods method, of class MultiNeighbourhoodSearch.
      */
     @Test
-    public void testSetNeighbourhoods() {
+    public void testSetNeighbourhood() {
         
-        System.out.println(" - test setNeighbourhoods");
+        System.out.println(" - test setNeighbourhood");
         
         // test exceptions
         boolean thrown;
         
         thrown = false;
         try{
-            search.setNeighbourhoods(null);
+            search.setNeighbourhood(null);
         } catch (NullPointerException ex){
             thrown = true;
         }
         assertTrue(thrown);
         
-        thrown = false;
-        try{
-            search.setNeighbourhoods(Arrays.asList(neighs.get(0), null));
-        } catch (NullPointerException ex){
-            thrown = true;
-        }
-        assertTrue(thrown);
-        
-        thrown = false;
-        try{
-            search.setNeighbourhoods(Collections.emptyList());
-        } catch (IllegalArgumentException ex){
-            thrown = true;
-        }
-        assertTrue(thrown);
-        
-        // set new neighbourhoods
-        List<Neighbourhood<SubsetSolution>> neighs2 = Arrays.asList(new SinglePerturbationNeighbourhood(10, 20));
-        search.setNeighbourhoods(neighs2);
+        // set new neighbourhood
+        Neighbourhood<SubsetSolution> neigh2 = new SinglePerturbationNeighbourhood(10, 20);
+        search.setNeighbourhood(neigh2);
         // verify
-        assertEquals(neighs2, search.getNeighbourhoods());
-        
-        // test unmodifiable
-        thrown = false;
-        try {
-            search.getNeighbourhoods().clear();
-        } catch (UnsupportedOperationException ex){
-            thrown = true;
-        }
-        assertTrue(thrown);
+        assertEquals(neigh2, search.getNeighbourhood());
         
     }
 
-    private class DummyMultiNeighbourhoodSearch extends MultiNeighbourhoodSearch<SubsetSolution> {
-        public DummyMultiNeighbourhoodSearch(Problem<SubsetSolution> p, List<? extends Neighbourhood<? super SubsetSolution>> n){
+    private class DummySingleNeighbourhoodSearch extends SingleNeighbourhoodSearch<SubsetSolution> {
+        public DummySingleNeighbourhoodSearch(Problem<SubsetSolution> p, Neighbourhood<? super SubsetSolution> n){
             super(p, n);
         }
         @Override
