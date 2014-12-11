@@ -650,7 +650,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/validations/SubsetValidation.html#getConstraintValidation--">getConstraintValidation()</a></span> - Method in class org.jamesframework.core.subset.validations.<a href="org/jamesframework/core/subset/validations/SubsetValidation.html" title="class in org.jamesframework.core.subset.validations">SubsetValidation</a></dt>
 <dd>
-<div class="block">Get the validation object produced when checking the general constraints.</div>
+<div class="block">Get the validation object produced when checking the general constraints (may be <code>null</code>).</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#getCurrentSolution--">getCurrentSolution()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
 <dd>
@@ -1007,6 +1007,10 @@
 <div class="block">
  Get the number of consecutive steps completed during the <i>current</i> (or last) run, without finding
  any further improvement.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html#getTabuMemory--">getTabuMemory()</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="class in org.jamesframework.core.search.algo.tabu">TabuSearch</a></dt>
+<dd>
+<div class="block">Get the tabu memory.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/MetropolisSearch.html#getTemperature--">getTemperature()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a></dt>
 <dd>
@@ -1705,8 +1709,8 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/validations/SubsetValidation.html#passed--">passed()</a></span> - Method in class org.jamesframework.core.subset.validations.<a href="org/jamesframework/core/subset/validations/SubsetValidation.html" title="class in org.jamesframework.core.subset.validations">SubsetValidation</a></dt>
 <dd>
-<div class="block">Check whether the subset solution passed validation, taking into
- account both its size and the general constraint validations.</div>
+<div class="block">Check whether the subset solution passed validation, taking into account both
+ its size and the general constraint validations (if not <code>null</code>).</div>
 </dd>
 <dt><a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html" title="class in org.jamesframework.core.problems.objectives.evaluations"><span class="typeNameLink">PenalizedEvaluation</span></a> - Class in <a href="org/jamesframework/core/problems/objectives/evaluations/package-summary.html">org.jamesframework.core.problems.objectives.evaluations</a></dt>
 <dd>
@@ -2133,6 +2137,14 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#setPeriod-long-java.util.concurrent.TimeUnit-">setPeriod(long, TimeUnit)</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria">StopCriterionChecker</a></dt>
 <dd>
 <div class="block">Set the period between consecutive stop criterion checks.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html#setRandomInitialSolution--">setRandomInitialSolution()</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="class in org.jamesframework.core.search.algo.tabu">TabuSearch</a></dt>
+<dd>
+<div class="block">Updates the tabu memory when a random initial solution is set.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#setRandomInitialSolution--">setRandomInitialSolution()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
+<dd>
+<div class="block">Sets a randomly generated initial solution.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#setReplicaSteps-int-">setReplicaSteps(int)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
