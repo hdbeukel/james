@@ -62,7 +62,7 @@ public class IDBasedSubsetTabuMemory implements TabuMemory<SubsetSolution> {
      * is not used here, because the move itself contains all necessary information, and may be <code>null</code>.
      * 
      * @param move subset move to be applied to the current solution (required to be of type {@link SubsetMove})
-     * @param currentSolution current solution (not used here, may be <code>null</code>)
+     * @param currentSolution current solution (not used here, allowed to be <code>null</code>)
      * @return <code>true</code> if the current memory contains any ID which is added or deleted by the given move
      * @throws IncompatibleTabuMemoryException if the given move is not of type {@link SubsetMove}
      */
@@ -99,7 +99,7 @@ public class IDBasedSubsetTabuMemory implements TabuMemory<SubsetSolution> {
      * may be <code>null</code>. If <code>appliedMove</code> is <code>null</code>, calling this method does not have any
      * effect.
      * 
-     * @param visitedSolution newly visited solution (not used here, may be <code>null</code>)
+     * @param visitedSolution newly visited solution (not used here, allowed be <code>null</code>)
      * @param appliedMove applied move of which all involved IDs are stored in the tabu memory
      * @throws IncompatibleTabuMemoryException if the given move is not of type {@link SubsetMove}
      */

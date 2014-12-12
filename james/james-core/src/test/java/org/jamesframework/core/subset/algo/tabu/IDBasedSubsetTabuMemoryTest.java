@@ -18,7 +18,9 @@ package org.jamesframework.core.subset.algo.tabu;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import org.jamesframework.core.exceptions.IncompatibleTabuMemoryException;
 import org.jamesframework.core.search.algo.tabu.TabuMemory;
+import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.subset.neigh.moves.AdditionMove;
 import org.jamesframework.core.subset.neigh.moves.DeletionMove;
@@ -238,6 +240,48 @@ public class IDBasedSubsetTabuMemoryTest {
         System.out.println(" - test constructor (2)");
         
         TabuMemory<?> dummy = new IDBasedSubsetTabuMemory(0);
+        
+    }
+    
+    @Test(expected = IncompatibleTabuMemoryException.class)
+    public void testIncompatibleMove1(){
+        
+        System.out.println(" - test incompatible move (1)");
+        
+        TabuMemory<SubsetSolution> mem = new IDBasedSubsetTabuMemory(10);
+        Move<SubsetSolution> m = new Move<SubsetSolution>() {
+            @Override
+            public void apply(SubsetSolution solution) {
+                throw new UnsupportedOperationException("Not supported."); 
+            }
+            @Override
+            public void undo(SubsetSolution solution) {
+                throw new UnsupportedOperationException("Not supported."); 
+            }
+        };
+        
+        mem.isTabu(m, null);
+        
+    }
+    
+    @Test(expected = IncompatibleTabuMemoryException.class)
+    public void testIncompatibleMove2(){
+        
+        System.out.println(" - test incompatible move (2)");
+        
+        TabuMemory<SubsetSolution> mem = new IDBasedSubsetTabuMemory(10);
+        Move<SubsetSolution> m = new Move<SubsetSolution>() {
+            @Override
+            public void apply(SubsetSolution solution) {
+                throw new UnsupportedOperationException("Not supported yet."); 
+            }
+            @Override
+            public void undo(SubsetSolution solution) {
+                throw new UnsupportedOperationException("Not supported yet."); 
+            }
+        };
+        
+        mem.registerVisitedSolution(null, m);
         
     }
 

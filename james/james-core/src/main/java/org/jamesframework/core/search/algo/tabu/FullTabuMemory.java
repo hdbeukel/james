@@ -80,7 +80,7 @@ public class FullTabuMemory<SolutionType extends Solution> implements TabuMemory
      * A newly visited solution is registered by storing a deep copy of this solution in the full tabu memory.
      * 
      * @param visitedSolution newly visited solution (copied to memory)
-     * @param appliedMove applied move (not used here, can be <code>null</code>)
+     * @param appliedMove applied move (not used here, allowed to be <code>null</code>)
      */
     @Override
     public void registerVisitedSolution(SolutionType visitedSolution, Move<? super SolutionType> appliedMove) {
