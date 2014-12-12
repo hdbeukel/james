@@ -63,6 +63,54 @@ public class DisjointMultiDeletionNeighbourhoodTest {
     public static void tearDownClass() {
         System.out.println("# Done testing DisjointMultiDeletionNeighbourhood!");
     }
+    
+    @Test
+    public void testConstructor(){
+        System.out.println(" - test constructor");
+        
+        boolean thrown;
+        
+        thrown = false;
+        try {
+            new DisjointMultiDeletionNeighbourhood(0);
+        } catch (IllegalArgumentException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            new DisjointMultiDeletionNeighbourhood(-1);
+        } catch (IllegalArgumentException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            new DisjointMultiDeletionNeighbourhood(1,-1);
+        } catch (IllegalArgumentException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            new DisjointMultiDeletionNeighbourhood(1,0);
+        } catch (IllegalArgumentException ex) {
+            thrown = true;
+        }
+        assertFalse(thrown);
+        
+        for(int i=0; i<100; i++){
+            int numDel = RG.nextInt(499)+1;
+            int minSize = RG.nextInt(500);
+            DisjointMultiDeletionNeighbourhood n = new DisjointMultiDeletionNeighbourhood(numDel, minSize);
+            assertEquals(numDel, n.getNumDeletions());
+            assertEquals(minSize, n.getMinSubsetSize());
+        }
+        
+    }
 
     /**
      * Test of getRandomMove method, of class DisjointMultiDeletionNeighbourhood.

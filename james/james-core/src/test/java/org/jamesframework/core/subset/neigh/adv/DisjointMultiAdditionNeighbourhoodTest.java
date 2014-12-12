@@ -63,6 +63,54 @@ public class DisjointMultiAdditionNeighbourhoodTest {
     public static void tearDownClass() {
         System.out.println("# Done testing DisjointMultiAdditionNeighbourhood!");
     }
+    
+    @Test
+    public void testConstructor(){
+        System.out.println(" - test constructor");
+        
+        boolean thrown;
+        
+        thrown = false;
+        try {
+            new DisjointMultiAdditionNeighbourhood(0);
+        } catch (IllegalArgumentException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            new DisjointMultiAdditionNeighbourhood(-1);
+        } catch (IllegalArgumentException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            new DisjointMultiAdditionNeighbourhood(1,-1);
+        } catch (IllegalArgumentException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            new DisjointMultiAdditionNeighbourhood(1,0);
+        } catch (IllegalArgumentException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        for(int i=0; i<100; i++){
+            int numAdd = RG.nextInt(499)+1;
+            int maxSize = RG.nextInt(499)+1;
+            DisjointMultiAdditionNeighbourhood n = new DisjointMultiAdditionNeighbourhood(numAdd, maxSize);
+            assertEquals(numAdd, n.getNumAdditions());
+            assertEquals(maxSize, n.getMaxSubsetSize());
+        }
+        
+    }
 
     /**
      * Test of getRandomMove method, of class DisjointMultiAdditionNeighbourhood.
