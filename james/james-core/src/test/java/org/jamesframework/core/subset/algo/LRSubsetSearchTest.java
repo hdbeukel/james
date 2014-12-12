@@ -85,6 +85,58 @@ public class LRSubsetSearchTest extends SearchTestTemplate {
         // dispose search
         search.dispose();
     }
+    
+    @Test
+    public void testConstructor(){
+        System.out.println(" - test constructor");
+        
+        boolean thrown;
+        
+        thrown = false;
+        try {
+            new LRSubsetSearch(problem, -1, 1);
+        } catch (IllegalArgumentException e) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            new LRSubsetSearch(problem, 1, -1);
+        } catch (IllegalArgumentException e) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            new LRSubsetSearch(problem, 1, 1);
+        } catch (IllegalArgumentException e) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            new LRSubsetSearch(problem, 0, 0);
+        } catch (IllegalArgumentException e) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        for(int i=0; i<1000; i++){
+            int l = RG.nextInt(500);
+            int r = RG.nextInt(499);
+            if(r >= l){
+                r++;
+            }
+            LRSubsetSearch s = new LRSubsetSearch(problem, l, r);
+            // verify
+            assertEquals(l, s.getL());
+            assertEquals(r, s.getR());
+        }
+        
+    }
 
     /**
      * Test single run.
