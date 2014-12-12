@@ -146,7 +146,7 @@ public class MetropolisSearchTest extends SearchTestTemplate {
         assertTrue(thrown);
         
         searchLowTemp.setTemperature(123.456);
-        assertEquals(123.455, searchLowTemp.getTemperature(), TestConstants.DOUBLE_COMPARISON_PRECISION);
+        assertEquals(123.456, searchLowTemp.getTemperature(), TestConstants.DOUBLE_COMPARISON_PRECISION);
         
     }
     
@@ -173,7 +173,7 @@ public class MetropolisSearchTest extends SearchTestTemplate {
         assertTrue(thrown);
         
         searchLowTemp.setTemperatureScaleFactor(123.456);
-        assertEquals(123.455, searchLowTemp.getTemperatureScaleFactor(), TestConstants.DOUBLE_COMPARISON_PRECISION);
+        assertEquals(123.456, searchLowTemp.getTemperatureScaleFactor(), TestConstants.DOUBLE_COMPARISON_PRECISION);
         
     }
     
