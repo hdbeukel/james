@@ -54,6 +54,7 @@ public class SubsetSolution extends Solution {
      * 
      * @param allIDs set of all IDs from which a subset is to be selected
      * @throws NullPointerException if <code>allIDs</code> is <code>null</code>
+     *                              or contains any <code>null</code> elements
      */
     public SubsetSolution(Set<Integer> allIDs){
         this(allIDs, false);
@@ -66,9 +67,9 @@ public class SubsetSolution extends Solution {
      * 
      * @param allIDs set of all IDs from which a subset is to be selected
      * @param selectedIDs set of currently selected IDs (subset of all IDs)
-     * @throws NullPointerException if <code>allIDs</code> or <code>selectedIDs</code> are <code>null</code>,
-     *                              of <code>selectedIDs</code> contains any <code>null</code> elements
-     * @throws SolutionModificationException if <code>selectedIDs</code> is not a subset of <code>allIDs</code>
+     * @throws NullPointerException if <code>allIDs</code> or <code>selectedIDs</code> are <code>null</code>
+     *                              or contain any <code>null</code> elements
+     * @throws IllegalArgumentException if <code>selectedIDs</code> is not a subset of <code>allIDs</code>
      */
     public SubsetSolution(Set<Integer> allIDs, Set<Integer> selectedIDs){
         this(allIDs, selectedIDs, false);
@@ -85,6 +86,7 @@ public class SubsetSolution extends Solution {
      * @param naturalOrder if <code>naturalOrder</code> is <code>true</code>, IDs will be ordered according to
      *                     their natural ordering; else, no ordering is imposed on the IDs
      * @throws NullPointerException if <code>allIDs</code> is <code>null</code>
+     *                              or contains any <code>null</code> elements
      */
     public SubsetSolution(Set<Integer> allIDs, boolean naturalOrder){
         this(allIDs, naturalOrder ? Comparator.naturalOrder() : null);
@@ -101,9 +103,9 @@ public class SubsetSolution extends Solution {
      * @param selectedIDs set of currently selected IDs (subset of all IDs)
      * @param naturalOrder if <code>naturalOrder</code> is <code>true</code>, IDs will be ordered according to
      *                     their natural ordering; else, no ordering is imposed on the IDs
-     * @throws NullPointerException if <code>allIDs</code> or <code>selectedIDs</code> are <code>null</code>,
-     *                              or <code>selectedIDs</code> contains any <code>null</code> elements
-     * @throws SolutionModificationException if <code>selectedIDs</code> is not a subset of <code>allIDs</code>
+     * @throws NullPointerException if <code>allIDs</code> or <code>selectedIDs</code> are <code>null</code>
+     *                              or contain any <code>null</code> elements
+     * @throws IllegalArgumentException if <code>selectedIDs</code> is not a subset of <code>allIDs</code>
      */
     public SubsetSolution(Set<Integer> allIDs, Set<Integer> selectedIDs, boolean naturalOrder){
         this(allIDs, selectedIDs, naturalOrder ? Comparator.naturalOrder() : null);
@@ -120,8 +122,15 @@ public class SubsetSolution extends Solution {
      * @param orderOfIDs comparator according to which IDs are ordered, allowed to be
      *                   <code>null</code> in which case no order is imposed
      * @throws NullPointerException if <code>allIDs</code> is <code>null</code>
+     *                              or contains any <code>null</code> elements
      */
     public SubsetSolution(Set<Integer> allIDs, Comparator<Integer> orderOfIDs){
+        if(allIDs == null){
+            throw new NullPointerException("Error when creating subset solution: set of all IDs can not be null.");
+        }
+        if(allIDs.contains(null)){
+            throw new NullPointerException("Error when creating subset solution: set of all IDs can not contain any null elements.");
+        }
         this.orderOfIDs = orderOfIDs;
         if(orderOfIDs == null){
             all = new LinkedHashSet<>(allIDs);         // set with all IDs (copy)
@@ -146,21 +155,30 @@ public class SubsetSolution extends Solution {
      * @param selectedIDs set of currently selected IDs (subset of all IDs)
      * @param orderOfIDs comparator according to which IDs are ordered, allowed to be
      *                   <code>null</code> in which case no order is imposed
-     * @throws NullPointerException if <code>allIDs</code> or <code>selectedIDs</code> are <code>null</code>,
-     *                              or <code>selectedIDs</code> contains any <code>null</code> elements
-     * @throws SolutionModificationException if <code>selectedIDs</code> is not a subset of <code>allIDs</code>
+     * @throws NullPointerException if <code>allIDs</code> or <code>selectedIDs</code> are <code>null</code>
+     *                              or contain any <code>null</code> elements
+     * @throws IllegalArgumentException if <code>selectedIDs</code> is not a subset of <code>allIDs</code>
      */
     public SubsetSolution(Set<Integer> allIDs, Set<Integer> selectedIDs, Comparator<Integer> orderOfIDs){
+        
         this(allIDs, orderOfIDs);
+        
+        if(selectedIDs == null){
+            throw new NullPointerException("Error when creating subset solution: set of selected IDs can not be null.");
+        }
+        if(selectedIDs.contains(null)){
+            throw new NullPointerException("Error when creating subset solution: set of selected IDs can not contain any null elements.");
+        }
+        
         for(int ID : selectedIDs){
             if(!allIDs.contains(ID)){
-                throw new SolutionModificationException("Error while creating subset solution: "
-                                + "set of selected IDs should be a subset of set of all IDs. Got: allIDs = "
-                                + allIDs + ", selectedIDs = " + selectedIDs, this);
+                throw new IllegalArgumentException("Error while creating subset solution: "
+                                + "set of selected IDs should be a subset of set of all IDs.");
             }
             selected.add(ID);
             unselected.remove(ID);
         }
+        
     }
     
     /**

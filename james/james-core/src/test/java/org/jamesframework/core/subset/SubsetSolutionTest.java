@@ -16,6 +16,7 @@
 
 package org.jamesframework.core.subset;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -76,6 +77,63 @@ public class SubsetSolutionTest {
         // deselect all IDs so that every test starts with the same clean subset solution
         subsetSolution.deselectAll();
     }
+    
+    @Test
+    public void testConstructor(){
+        
+        System.out.println(" - test constructor");
+        
+        boolean thrown;
+        
+        thrown = false;
+        try {
+            Set<Integer> ids = null;
+            new SubsetSolution(ids);
+        } catch (NullPointerException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            Set<Integer> ids = new HashSet<>(Arrays.asList(1,null,3));
+            new SubsetSolution(ids);
+        } catch (NullPointerException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            Set<Integer> ids = new HashSet<>(Arrays.asList(1,2,3));
+            Set<Integer> sel = null;
+            new SubsetSolution(ids, sel);
+        } catch (NullPointerException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            Set<Integer> ids = new HashSet<>(Arrays.asList(1,2,3));
+            Set<Integer> sel = new HashSet<>(Arrays.asList(2,null));
+            new SubsetSolution(ids, sel);
+        } catch (NullPointerException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            Set<Integer> ids = new HashSet<>(Arrays.asList(1,2,3));
+            Set<Integer> sel = new HashSet<>(Arrays.asList(2,4));
+            new SubsetSolution(ids, sel);
+        } catch (IllegalArgumentException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+    }
 
     /**
      * Test of toString method, of class SubsetSolution.
@@ -93,6 +151,7 @@ public class SubsetSolutionTest {
         System.out.println("    " + subsetSolution);
         
     }
+    
     
     /**
      * Test of select method, of class SubsetSolution.
@@ -602,7 +661,7 @@ public class SubsetSolutionTest {
      * Test of equals method, of class SubsetSolution.
      */
     @Test
-    public void testIsSameSolution() {
+    public void testEquals() {
         
         System.out.println(" - test equals");
         
@@ -624,6 +683,13 @@ public class SubsetSolutionTest {
             // deselect all
             subsetSolution.deselectAll();
         }
+        
+        int num=7;
+        s = SetUtilities.getRandomSubset(subsetSolution.getAllIDs(), num, RG);
+        subsetSolution.selectAll(s);     
+        
+        assertNotEquals(s, null);
+        assertNotEquals(s, "Trudy");
         
     }
 
