@@ -17,6 +17,7 @@
 package org.jamesframework.core.search.algo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -147,12 +148,13 @@ public class BasicParallelSearch<SolutionType extends Solution> extends Search<S
     }
 
     /**
-     * Get a list of all searches that have been added to this parallel search for concurrent execution.
+     * Get an unmodifiable view of the list of all searches that
+     * have been added to this parallel search for concurrent execution.
      *
-     * @return list of all contained searches
+     * @return list of all contained searches (unmodifiable view)
      */
     public List<Search<SolutionType>> getSearches() {
-        return searches;
+        return Collections.unmodifiableList(searches);
     }
 
     /**

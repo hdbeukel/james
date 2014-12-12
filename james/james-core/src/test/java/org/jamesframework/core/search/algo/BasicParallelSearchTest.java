@@ -22,17 +22,20 @@ import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.exceptions.SearchException;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.problems.AbstractProblem;
+import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.problems.objectives.evaluations.PenalizedEvaluation;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.status.SearchStatus;
 import org.jamesframework.core.search.SearchTestTemplate;
 import org.jamesframework.core.search.algo.exh.ExhaustiveSearch;
+import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.subset.algo.exh.SubsetSolutionIterator;
 import org.jamesframework.test.util.DoubleComparatorWithPrecision;
 import org.jamesframework.test.fakes.ScoredFakeSubsetData;
 import org.jamesframework.test.stubs.NeverSatisfiedConstraintStub;
 import org.jamesframework.test.stubs.NeverSatisfiedPenalizingConstraintStub;
+import org.jamesframework.test.util.DelayedExecution;
 import org.jamesframework.test.util.TestConstants;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -104,7 +107,7 @@ public class BasicParallelSearchTest extends SearchTestTemplate {
     @After
     public void tearDown(){
         // dispose search
-        if(parallelSearch.getStatus() != SearchStatus.DISPOSED){
+        if(parallelSearch.getStatus() == SearchStatus.IDLE){
             parallelSearch.dispose();
         }
     }
@@ -146,6 +149,62 @@ public class BasicParallelSearchTest extends SearchTestTemplate {
         }
         // verify
         assertTrue(parallelSearch.getSearches().isEmpty());
+    }
+    
+    @Test(expected=SearchException.class)
+    public void testNoSearches(){
+        System.out.println(" - test without subsearches (initialization should fail)");
+        subsearches.forEach(parallelSearch::removeSearch);
+        parallelSearch.start();
+    }
+    
+    @Test
+    public void testGetSearches(){
+        System.out.println(" - test getSearches");
+        assertEquals(subsearches, parallelSearch.getSearches());
+        boolean thrown = false;
+        try {
+            parallelSearch.getSearches().clear();
+        } catch (UnsupportedOperationException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+    }
+    
+    @Test
+    public void testInterruptSubsearchExecution(){
+        System.out.println(" - test interrupt subsearch execution");
+        
+        // schedule task to interrupt the thread that runs the main search
+        // while it is waiting for the subsearches to complete
+        final Thread thr = Thread.currentThread();
+        DelayedExecution.schedule(() -> thr.interrupt(), 500);
+        
+        boolean thrown = false;
+        try{
+            parallelSearch.start(); // keeps running (no stop criteria)
+        } catch(SearchException ex){
+            thrown = true;
+        }
+        assertTrue(thrown);
+    }
+    
+    @Test
+    public void stopDuringInitialization(){
+        
+        System.out.println(" - test stop during initialization");
+       
+        SearchListener<Solution> l = new SearchListener<Solution>() {
+            @Override
+            public void searchStarted(Search s){
+                s.stop();
+            }
+        };
+        parallelSearch.addSearchListener(l);
+        
+        // run without stop criteria: should still stop as subsearches should never start running
+        parallelSearch.start();
+                
     }
     
     /**
