@@ -64,6 +64,53 @@ public class MultiAdditionNeighbourhoodTest {
     public static void tearDownClass() {
         System.out.println("# Done testing MultiAdditionNeighbourhood!");
     }
+    
+    @Test
+    public void testConstructor(){
+        System.out.println(" - test constructor");
+        
+        boolean thrown;
+        
+        thrown = false;
+        try {
+            new MultiAdditionNeighbourhood(0);
+        } catch (IllegalArgumentException ex){
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            new MultiAdditionNeighbourhood(-1);
+        } catch (IllegalArgumentException ex){
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            new MultiAdditionNeighbourhood(10, 0);
+        } catch (IllegalArgumentException ex){
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            new MultiAdditionNeighbourhood(10, -1);
+        } catch (IllegalArgumentException ex){
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        int maxAdd = 4;
+        int maxSize = 7;
+        MultiAdditionNeighbourhood neigh = new  MultiAdditionNeighbourhood(maxAdd, maxSize);
+        
+        assertEquals(maxAdd, neigh.getMaxAdditions());
+        assertEquals(maxSize, neigh.getMaxSubsetSize());
+        
+    }
 
     /**
      * Test of getRandomMove method, of class MultiAdditionNeighbourhood.
@@ -132,6 +179,36 @@ public class MultiAdditionNeighbourhoodTest {
             assertEquals(limit, sol.getNumSelectedIDs());
             
         }
+        
+        // test without bound on number of additions
+        Neighbourhood<SubsetSolution> neigh = new MultiAdditionNeighbourhood();
+
+        // create full subset solution
+        SubsetSolution sol = new SubsetSolution(IDs);
+        sol.selectAll();
+        // verify: no move generated
+        assertNull(neigh.getRandomMove(sol));
+
+        // deselect all IDs
+        sol.deselectAll();
+
+        // apply moves until all IDs are selected
+        SubsetMove move;
+        while((move = (SubsetMove) neigh.getRandomMove(sol)) != null){
+            // verify
+            assertTrue(sol.getUnselectedIDs().containsAll(move.getAddedIDs()));
+            assertTrue(move.getDeletedIDs().isEmpty());
+            assertTrue(move.getNumDeleted() == 0);
+            assertTrue(move.getNumAdded() >= 1);
+            assertTrue(move.getNumAdded() <= sol.getNumUnselectedIDs());
+            // apply move
+            move.apply(sol);
+        }
+
+        // check: no more moves to be generated
+        assertNull(neigh.getRandomMove(sol));
+        // check: al IDs selected
+        assertEquals(sol.getTotalNumIDs(), sol.getNumSelectedIDs());
         
     }
 
