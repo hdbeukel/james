@@ -51,6 +51,12 @@ public class ReverseSubsequenceMoveTest {
         System.out.println("# Done testing ReverseSubsequenceMove!");
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructor(){
+        System.out.println(" - test constructor");
+        new ReverseSubsequenceMove(2, 2);
+    }
+    
     /**
      * Test of apply and undo.
      */
@@ -91,6 +97,26 @@ public class ReverseSubsequenceMoveTest {
                 move.undo(sol);
             }
         }
+        
+    }
+    
+    @Test
+    public void testEquals(){
+        System.out.println(" - test equals");
+        
+        ReverseSubsequenceMove m1 = new ReverseSubsequenceMove(2, 5);
+        ReverseSubsequenceMove m2 = new ReverseSubsequenceMove(2, 5);
+        ReverseSubsequenceMove m3 = new ReverseSubsequenceMove(3, 5);
+        ReverseSubsequenceMove m4 = new ReverseSubsequenceMove(2, 3);
+        ReverseSubsequenceMove m5 = new ReverseSubsequenceMove(1, 8);
+        
+        assertEquals(m1, m2);
+        assertNotEquals(m1, m3);
+        assertNotEquals(m1, m4);
+        assertNotEquals(m1, m5);
+        
+        assertNotEquals(m1, null);
+        assertNotEquals(m1, "abc");
         
     }
 
