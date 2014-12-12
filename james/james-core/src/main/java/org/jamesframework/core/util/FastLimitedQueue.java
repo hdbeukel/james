@@ -97,6 +97,7 @@ public class FastLimitedQueue<E> {
     
     /**
      * Retrieves and removes the head of the queue, or returns <code>null</code> if the queue is empty.
+     * The head of the queue corresponds to the least recently added item (if any).
      * 
      * @return head of the queue, <code>null</code> if queue is empty
      */
