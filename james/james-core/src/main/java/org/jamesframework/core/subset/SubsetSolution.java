@@ -128,7 +128,7 @@ public class SubsetSolution extends Solution {
         if(allIDs == null){
             throw new NullPointerException("Error when creating subset solution: set of all IDs can not be null.");
         }
-        if(allIDs.contains(null)){
+        if(allIDs.stream().anyMatch(Objects::isNull)){
             throw new NullPointerException("Error when creating subset solution: set of all IDs can not contain any null elements.");
         }
         this.orderOfIDs = orderOfIDs;
@@ -166,7 +166,7 @@ public class SubsetSolution extends Solution {
         if(selectedIDs == null){
             throw new NullPointerException("Error when creating subset solution: set of selected IDs can not be null.");
         }
-        if(selectedIDs.contains(null)){
+        if(selectedIDs.stream().anyMatch(Objects::isNull)){
             throw new NullPointerException("Error when creating subset solution: set of selected IDs can not contain any null elements.");
         }
         
