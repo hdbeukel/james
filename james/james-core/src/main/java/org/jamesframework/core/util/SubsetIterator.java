@@ -33,7 +33,7 @@ import java.util.Set;
  * k-subsets in a specific minimal change ordering called the revolving door ordering.
  * </p>
  * 
- * @param <T> type of elements in set and subsets
+ * @param <T> type of elements in set and generated subsets
  * @author <a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a>
  */
 public class SubsetIterator<T> implements Iterator<Set<T>>{
@@ -56,7 +56,7 @@ public class SubsetIterator<T> implements Iterator<Set<T>>{
      * @param maxSubsetSize maximum subset size
      * @throws NullPointerException if <code>items</code> is <code>null</code>
      * @throws IllegalArgumentException if <code>items</code> is empty,
-     *                                     <code>minSubsetSize &le; 0</code>,
+     *                                     <code>minSubsetSize &lt; 0</code>,
      *                                     <code>minSubsetSize &gt; |IDs|</code>,
      *                                     or <code>minSubsetSize &gt; maxSubsetSize</code>
      */
@@ -70,9 +70,9 @@ public class SubsetIterator<T> implements Iterator<Set<T>>{
         T[] itemArray = (T[]) new Object[items.size()];
         this.items = items.toArray(itemArray);
         // check minimum/maximum size
-        if(minSubsetSize <= 0){
-            throw new IllegalArgumentException("Error while creating subset iterator: minimum subset size should be "
-                                                + "strictly positive.");
+        if(minSubsetSize < 0){
+            throw new IllegalArgumentException("Error while creating subset iterator: minimum subset size should "
+                                                + "not be negative.");
         }
         if(minSubsetSize > items.size()){
             throw new IllegalArgumentException("Error while creating subset iterator: minimum subset size can not be "
@@ -100,7 +100,7 @@ public class SubsetIterator<T> implements Iterator<Set<T>>{
      * @param fixedSubsetSize  fixed subset size
      * @throws NullPointerException if <code>items</code> is <code>null</code>
      * @throws IllegalArgumentException if <code>items</code> is empty,
-     *                                     <code>fixedSubsetSize &le; 0</code>,
+     *                                     <code>fixedSubsetSize &lt; 0</code>,
      *                                     or <code>fixedSubsetSize &gt; |items|</code>
      */
     public SubsetIterator(Set<T> items, int fixedSubsetSize){
@@ -159,8 +159,8 @@ public class SubsetIterator<T> implements Iterator<Set<T>>{
             j++;
         }
         
-        // if j = k-1 and t[j] = |items|-1, or k = |items|, all subsets of the current size have been generated
-        if (j == k-1 && t[j] == items.length-1 || k == items.length){
+        // if j = k-1 and t[j] = |items|-1, or k = |items| or k = 0, all subsets of the current size have been generated
+        if (j == k-1 && t[j] == items.length-1 || k == items.length || k == 0){
             // go to next size, if still within bounds
             int nextSize = k+1;
             if(nextSize <= maxSubsetSize && nextSize <= items.length){

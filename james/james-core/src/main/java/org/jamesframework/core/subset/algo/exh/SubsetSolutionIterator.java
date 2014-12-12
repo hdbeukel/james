@@ -48,7 +48,7 @@ public class SubsetSolutionIterator implements SolutionIterator<SubsetSolution> 
      * @param maxSubsetSize maximum subset size
      * @throws NullPointerException if <code>IDs</code> is <code>null</code>
      * @throws IllegalArgumentException if <code>IDs</code> is empty,
-     *                                     <code>minSubsetSize &le; 0</code>,
+     *                                     <code>minSubsetSize &lt; 0</code>,
      *                                     <code>minSubsetSize &gt; |IDs|</code>,
      *                                     or <code>minSubsetSize &gt; maxSubsetSize</code>
      */
@@ -67,7 +67,7 @@ public class SubsetSolutionIterator implements SolutionIterator<SubsetSolution> 
      * @param fixedSubsetSize  fixed subset size
      * @throws NullPointerException if <code>IDs</code> is <code>null</code>
      * @throws IllegalArgumentException if <code>IDs</code> is empty,
-     *                                     <code>fixedSubsetSize &le; 0</code>,
+     *                                     <code>fixedSubsetSize &lt; 0</code>,
      *                                     or <code>fixedSubsetSize &gt; |IDs|</code>
      */
     public SubsetSolutionIterator(Set<Integer> IDs, int fixedSubsetSize){

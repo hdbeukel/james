@@ -16,7 +16,9 @@
 
 package org.jamesframework.core.subset.algo.exh;
 
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import org.jamesframework.core.search.algo.exh.SolutionIterator;
 import org.jamesframework.core.subset.SubsetSolution;
@@ -67,6 +69,70 @@ public class SubsetSolutionIteratorTest {
         }
     }
     
+    @Test
+    public void testConstructor(){
+        System.out.println(" - test constructor");
+        
+        boolean thrown;
+        
+        thrown = false;
+        try {
+            new SubsetSolutionIterator(null, NUM_IDS/2);
+        } catch (NullPointerException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            new SubsetSolutionIterator(Collections.emptySet(), NUM_IDS/2);
+        } catch (IllegalArgumentException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            new SubsetSolutionIterator(IDs, -1);
+        } catch (IllegalArgumentException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            new SubsetSolutionIterator(IDs, NUM_IDS+1);
+        } catch (IllegalArgumentException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            new SubsetSolutionIterator(IDs, -1, 3);
+        } catch (IllegalArgumentException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            new SubsetSolutionIterator(IDs, NUM_IDS+1, 3);
+        } catch (IllegalArgumentException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            new SubsetSolutionIterator(IDs, 4, 3);
+        } catch (IllegalArgumentException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+    }
+    
     /**
      * Test SubsetSolutionIterator.
      */
@@ -85,6 +151,14 @@ public class SubsetSolutionIteratorTest {
         }
         // verify number of generated solutions
         assertEquals(10, generated);
+        
+        boolean thrown = false;
+        try {
+            it.next();
+        } catch (NoSuchElementException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
         
     }
     
@@ -107,6 +181,43 @@ public class SubsetSolutionIteratorTest {
         // verify number of generated solutions
         assertEquals(NUM_IDS, generated);
         
+        boolean thrown = false;
+        try {
+            it.next();
+        } catch (NoSuchElementException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+    }
+    
+    /**
+     * Test SubsetSolutionIterator.
+     */
+    @Test
+    public void testSizeZero() {
+        
+        System.out.println(" - test fixed subset size = 0");
+        
+        // create iterator
+        SolutionIterator<SubsetSolution> it = new SubsetSolutionIterator(IDs, 0);
+        
+        int generated=0;
+        while(it.hasNext()){
+            System.out.println("   >>> generated: " + it.next());
+            generated++;
+        }
+        // verify number of generated solutions
+        assertEquals(1, generated);
+        
+        boolean thrown = false;
+        try {
+            it.next();
+        } catch (NoSuchElementException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
     }
     
     /**
@@ -115,7 +226,7 @@ public class SubsetSolutionIteratorTest {
     @Test
     public void testFullSize() {
         
-        System.out.println(" - test fixed subset size = all IDs");
+        System.out.println(" - test fixed subset size = |IDs|");
         
         // create iterator
         SolutionIterator<SubsetSolution> it = new SubsetSolutionIterator(IDs, NUM_IDS);
@@ -127,6 +238,14 @@ public class SubsetSolutionIteratorTest {
         }
         // verify number of generated solutions
         assertEquals(1, generated);
+        
+        boolean thrown = false;
+        try {
+            it.next();
+        } catch (NoSuchElementException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
         
     }
     
@@ -149,6 +268,14 @@ public class SubsetSolutionIteratorTest {
         // verify number of generated solutions
         assertEquals(10, generated);
         
+        boolean thrown = false;
+        try {
+            it.next();
+        } catch (NoSuchElementException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
     }
     
     /**
@@ -170,6 +297,14 @@ public class SubsetSolutionIteratorTest {
         // verify number of generated solutions
         assertEquals(5, generated);
         
+        boolean thrown = false;
+        try {
+            it.next();
+        } catch (NoSuchElementException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
     }
     
     /**
@@ -190,6 +325,43 @@ public class SubsetSolutionIteratorTest {
         }
         // verify number of generated solutions
         assertEquals(25, generated);
+        
+        boolean thrown = false;
+        try {
+            it.next();
+        } catch (NoSuchElementException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+    }
+    
+    /**
+     * Test SubsetSolutionIterator.
+     */
+    @Test
+    public void testGenerateAllSizes() {
+        
+        System.out.println(" - test variable subset size = [0,|IDs|]");
+        
+        // create iterator
+        SolutionIterator<SubsetSolution> it = new SubsetSolutionIterator(IDs, 0, NUM_IDS);
+        
+        int generated=0;
+        while(it.hasNext()){
+            System.out.println("   >>> generated: " + it.next());
+            generated++;
+        }
+        // verify number of generated solutions
+        assertEquals(1 << NUM_IDS, generated);
+        
+        boolean thrown = false;
+        try {
+            it.next();
+        } catch (NoSuchElementException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
         
     }
 
