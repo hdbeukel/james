@@ -19,6 +19,7 @@ package org.jamesframework.core.search;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import org.jamesframework.core.exceptions.SearchException;
 import org.jamesframework.core.problems.Problem;
 import org.jamesframework.core.subset.SubsetProblem;
 import org.jamesframework.core.problems.Solution;
@@ -29,6 +30,8 @@ import org.jamesframework.core.problems.objectives.evaluations.Evaluation;
 import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.neigh.Move;
+import org.jamesframework.core.search.stopcriteria.MaxRuntime;
+import org.jamesframework.core.search.stopcriteria.MaxSteps;
 import org.jamesframework.core.subset.neigh.SingleDeletionNeighbourhood;
 import org.jamesframework.core.subset.neigh.moves.AdditionMove;
 import org.jamesframework.core.subset.neigh.moves.DeletionMove;
@@ -88,6 +91,25 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
     public void tearDown(){
         // dispose search
         neighSearch.dispose();
+    }
+    
+    @Test
+    public void testSetRandomInitialSolution(){
+        System.out.println(" - test setRandomInitialSolution");
+        
+        neighSearch.setRandomInitialSolution();
+        
+        boolean thrown = false;
+        try {
+            neighSearch.setRandomInitialSolution();
+        } catch (SearchException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        neighSearch.addStopCriterion(new MaxSteps(1));
+        neighSearch.start();
+        
     }
 
     /**
@@ -239,6 +261,34 @@ public class NeighbourhoodSearchTest extends SearchTestTemplate {
             // verify
             assertEquals(sol, neighSearch.getCurrentSolution());
         }
+        
+        boolean thrown = false;
+        try {
+            neighSearch.setCurrentSolution(null);
+        } catch (NullPointerException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+    }
+    
+    @Test
+    public void testUpdateCurrentSolution(){
+        
+        System.out.println(" - test updateCurrentSolution");
+        
+        // generate random solution
+        SubsetSolution sol = problem.createRandomSolution();
+        
+        neighSearch.updateCurrentSolution(sol);
+        
+        // verify
+        assertEquals(sol, neighSearch.getCurrentSolution());
+        assertEquals(problem.evaluate(sol).getValue(),
+                     neighSearch.getCurrentSolutionEvaluation().getValue(),
+                     TestConstants.DOUBLE_COMPARISON_PRECISION);
+        assertEquals(problem.validate(sol).passed(),
+                     neighSearch.getCurrentSolutionValidation().passed());
         
     }
 
