@@ -17,7 +17,10 @@
 package org.jamesframework.core.subset;
 
 import java.util.Random;
+import org.jamesframework.core.exceptions.IncompatibleDeltaValidationException;
 import org.jamesframework.core.problems.Solution;
+import org.jamesframework.core.problems.constraints.validations.Validation;
+import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.core.util.SetUtilities;
 import org.jamesframework.test.fakes.MinDiffFakeSubsetConstraint;
 import org.jamesframework.test.fakes.ScoredFakeSubsetData;
@@ -511,6 +514,21 @@ public class SubsetProblemTest {
         valid.selectAll(SetUtilities.getRandomSubset(valid.getUnselectedIDs(), (PROBLEM_2_MIN_SIZE+PROBLEM_2_MAX_SIZE)/2, RG));
         // verify
         assertTrue(problem2.validate(valid).passed());
+        
+        // test delta valiation with incompatible move
+        boolean thrown = false;
+        try {
+            Move<Solution> m = new Move<Solution>() {
+                public void apply(Solution solution) {throw new UnsupportedOperationException("Not supported.");}
+                public void undo(Solution solution)  {throw new UnsupportedOperationException("Not supported.");}
+            };
+            SubsetSolution sol =  problem1.createRandomSolution();
+            Validation curVal = problem1.validate(sol);
+            problem1.validate(m, sol, curVal);
+        } catch (IncompatibleDeltaValidationException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
         
     }
     

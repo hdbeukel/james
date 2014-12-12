@@ -16,7 +16,9 @@
 
 package org.jamesframework.core.exceptions;
 
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.junit.AfterClass;
@@ -53,6 +55,7 @@ public class SolutionModificationExceptionTest {
     
     @Test
     public void testConstructor1() {
+        System.out.println(" - test constructor (1)");
         SolutionModificationException ex = new SolutionModificationException(SOL);
         assertNull(ex.getCause());
         assertNull(ex.getMessage());
@@ -61,6 +64,7 @@ public class SolutionModificationExceptionTest {
     
     @Test
     public void testConstructor2() {
+        System.out.println(" - test constructor (2)");
         SolutionModificationException ex = new SolutionModificationException(MSG, SOL);
         assertNull(ex.getCause());
         assertEquals(MSG, ex.getMessage());
@@ -69,6 +73,7 @@ public class SolutionModificationExceptionTest {
     
     @Test
     public void testConstructor3() {
+        System.out.println(" - test constructor (3)");
         SolutionModificationException ex = new SolutionModificationException(CAUSE, SOL);
         assertEquals(CAUSE, ex.getCause());
         assertEquals(CAUSE.toString(), ex.getMessage());
@@ -77,10 +82,21 @@ public class SolutionModificationExceptionTest {
     
     @Test
     public void testConstructor4() {
+        System.out.println(" - test constructor (4)");
         SolutionModificationException ex = new SolutionModificationException(MSG, CAUSE, SOL);
         assertEquals(CAUSE, ex.getCause());
         assertEquals(MSG, ex.getMessage());
         assertEquals(SOL, ex.getSolution());
+    }
+    
+    @Test
+    public void testToString(){
+        System.out.println(" - test toString");
+        Set<Integer> ids = new HashSet<>(Arrays.asList(0,1,2,3,4,5));
+        Set<Integer> sel = new HashSet<>(Arrays.asList(2,4,5));
+        SubsetSolution sol = new SubsetSolution(ids, sel);
+        SolutionModificationException ex = new SolutionModificationException("Aaaaarghhhhh!!!", sol);
+        System.out.println("   >>> " + ex);
     }
 
 }

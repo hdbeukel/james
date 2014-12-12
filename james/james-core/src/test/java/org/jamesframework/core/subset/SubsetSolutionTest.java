@@ -688,8 +688,8 @@ public class SubsetSolutionTest {
         s = SetUtilities.getRandomSubset(subsetSolution.getAllIDs(), num, RG);
         subsetSolution.selectAll(s);     
         
-        assertNotEquals(s, null);
-        assertNotEquals(s, "Trudy");
+        assertNotEquals(null, s);
+        assertNotEquals("Trudy", s);
         
     }
 
