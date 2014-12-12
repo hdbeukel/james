@@ -17,6 +17,7 @@
 package org.jamesframework.ext.permutation.neigh;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -96,6 +97,10 @@ public class ReverseSubsequenceNeighbourhoodTest {
             }
         }
         
+        // test with permuation solution of size 1: no swap possible
+        PermutationSolution sol = new PermutationSolution(Arrays.asList(3));
+        assertNull(neigh.getRandomMove(sol));
+        
     }
 
     /**
@@ -136,6 +141,10 @@ public class ReverseSubsequenceNeighbourhoodTest {
                 }
             }
         }
+        
+        // test with permuation solution of size 1: no swap possible
+        PermutationSolution sol = new PermutationSolution(Arrays.asList(3));
+        assertTrue(neigh.getAllMoves(sol).isEmpty());
         
     }
 

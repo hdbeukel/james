@@ -93,10 +93,6 @@ public class SubsetSolutionIterator implements SolutionIterator<SubsetSolution> 
      */
     @Override
     public SubsetSolution next() {
-        // check if there is a next solution to generate
-        if(!hasNext()){
-            throw new NoSuchElementException("No more subset solutions to be generated.");
-        }
         // get next subset
         Set<Integer> subset = subsetIterator.next();
         // wrap in subset solution

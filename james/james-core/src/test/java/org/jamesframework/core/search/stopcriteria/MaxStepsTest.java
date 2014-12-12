@@ -72,6 +72,18 @@ public class MaxStepsTest extends SearchTestTemplate {
         // create random descent search
         search = new RandomDescent<>(problem, neigh);
     }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructor1(){
+        System.out.println(" - test constructor (1)");
+        new MaxSteps(0);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructor2(){
+        System.out.println(" - test constructor (2)");
+        new MaxSteps(-1);
+    }
 
     /**
      * Test maximum steps stop criterion.
