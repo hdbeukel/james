@@ -18,8 +18,8 @@ package org.jamesframework.core.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
@@ -33,7 +33,7 @@ import org.junit.Test;
 public class RouletteSelectorTest {
     
     // roulette selector
-    private static final RouletteSelector<String> roulette = new RouletteSelector<>(new Random());
+    private static final RouletteSelector<String> roulette = new RouletteSelector<>();
     
     /**
      * Set up test class.
@@ -49,6 +49,69 @@ public class RouletteSelectorTest {
     @AfterClass
     public static void tearDownClass() {
         System.out.println("# Done testing RouletteSelector!");
+    }
+    
+    @Test
+    public void testExceptions(){
+        System.out.println(" - test exceptions");
+        
+        boolean thrown;
+        
+        thrown = false;
+        try {
+            roulette.select(null, Arrays.asList(1.0));
+        } catch (NullPointerException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            roulette.select(Arrays.asList("abc"), null);
+        } catch (NullPointerException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            roulette.select(Arrays.asList("abc", "xyz", "qtl"), Arrays.asList(1.0, null, 5.0));
+        } catch (NullPointerException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            roulette.select(Arrays.asList("a", "b", "c"), Arrays.asList(0.3, 0.7));
+        } catch (IllegalArgumentException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            roulette.select(Arrays.asList("a", "c"), Arrays.asList(0.3, 0.5, 0.2));
+        } catch (IllegalArgumentException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            roulette.select(Arrays.asList("a", "b", "c"), Arrays.asList(0.3, 0.3, -0.4));
+        } catch (IllegalArgumentException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        for(int i=0; i<100; i++){
+            assertNull(roulette.select(Arrays.asList(null, null), Arrays.asList(1.0, 0.6)));
+            assertNull(roulette.select(Arrays.asList("a", "b", "c"), Arrays.asList(0.0, 0.0, 0.0)));
+            assertEquals("b", roulette.select(Arrays.asList("a", "b", "c"), Arrays.asList(0.0, 123.0, 0.0)));
+        }
+        
+        assertNull(roulette.select(Collections.emptyList(), Collections.emptyList()));
     }
 
     /**

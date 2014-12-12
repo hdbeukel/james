@@ -18,6 +18,7 @@ package org.jamesframework.core.util;
 
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * <p>
@@ -46,7 +47,15 @@ public class RouletteSelector<E> {
     private final Random picker;
 
     /**
-     * Create a roulette selector.
+     * Create a roulette selector. The random generator used for selection is set to
+     * <code>ThreadLocalRandom.current()</code>.
+     */
+    public RouletteSelector(){
+        this(ThreadLocalRandom.current());
+    }
+    
+    /**
+     * Create a roulette selector with a given random generator.
      * 
      * @param rnd applied random generator
      */
