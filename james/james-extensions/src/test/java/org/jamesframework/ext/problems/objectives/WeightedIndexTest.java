@@ -264,7 +264,26 @@ public class WeightedIndexTest {
         // full evaluation
         move.apply(sol);
         Evaluation fullEval = weighted.evaluate(sol, null);
+        move.undo(sol);
         
+        // verify
+        assertEquals(eval.getValue(), fullEval.getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
+        
+        // set second objective to minimizing
+        obj1.setMinimizing();
+        expectedEval = 2.0*3.0 - 1.5*(1 + 4);
+        // re-evaluate
+        eval = weighted.evaluate(sol, null);
+        
+        // redo delta evaluation
+        eval = weighted.evaluate(move, sol, eval, null);
+        // verify
+        assertEquals(expectedEval, eval.getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
+        
+        // redo full evaluation
+        move.apply(sol);
+        fullEval = weighted.evaluate(sol, null);
+        move.undo(sol);
         // verify
         assertEquals(eval.getValue(), fullEval.getValue(), TestConstants.DOUBLE_COMPARISON_PRECISION);
 

@@ -18,6 +18,7 @@ package org.jamesframework.core.search.algo.exh;
 
 import org.jamesframework.core.subset.algo.exh.SubsetSolutionIterator;
 import java.util.Arrays;
+import java.util.concurrent.Exchanger;
 import java.util.concurrent.TimeUnit;
 import org.jamesframework.core.problems.objectives.evaluations.PenalizedEvaluation;
 import org.jamesframework.core.subset.SubsetProblem;
@@ -128,6 +129,12 @@ public class ExhaustiveSearchTest extends SearchTestTemplate {
         // dispose searches
         search.dispose();
         searchSmall.dispose();
+    }
+    
+    @Test(expected = NullPointerException.class)
+    public void testConstructor(){
+        System.out.println(" - test constructor");
+        new ExhaustiveSearch<>(problem, null);
     }
 
     /**

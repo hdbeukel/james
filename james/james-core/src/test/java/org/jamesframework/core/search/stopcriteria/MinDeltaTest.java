@@ -71,6 +71,18 @@ public class MinDeltaTest extends SearchTestTemplate {
         // create random descent search
         search = new RandomDescent<>(problem, neigh);
     }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructor1(){
+        System.out.println(" - test constructor (1)");
+        new MinDelta(0.0);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructor2(){
+        System.out.println(" - test constructor (2)");
+        new MinDelta(-0.0000000000001);
+    }
 
     /**
      * Test minimum delta stop criterion.

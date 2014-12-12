@@ -238,16 +238,13 @@ public abstract class AbstractProblem<SolutionType extends Solution, DataType> i
                             .allMatch(c -> {
                                 // retrieve original validation produced by constraint c
                                 Validation curval = curUnanimousVal.getValidation(c);
-                                // validate move against constraint c
-                                Validation newval;
-                                if(curval != null){
-                                    // current validation known: delta validation
-                                    newval = c.validate(move, curSolution, curval, data);
-                                } else {
-                                    // current validation unknown: full validation
+                                if(curval == null){
+                                    // current validation unknown: perform full validation
                                     // (can happen due to short-circuiting behaviour)
-                                    newval = c.validate(curSolution, data);
+                                    curval = c.validate(curSolution, data);
                                 }
+                                // validate move against constraint c
+                                Validation newval = c.validate(move, curSolution, curval, data);
                                 // add to unanimous validation
                                 newUnanimousVal.addValidation(c, newval);
                                 // continue until one constraint is not satisfied

@@ -73,6 +73,18 @@ public class MaxStepsWithoutImprovementTest extends SearchTestTemplate {
         // create random descent search
         search = new RandomDescent<>(problem, neigh);
     }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructor1(){
+        System.out.println(" - test constructor (1)");
+        new MaxStepsWithoutImprovement(0);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructor2(){
+        System.out.println(" - test constructor (2)");
+        new MaxStepsWithoutImprovement(-1);
+    }
 
     /**
      * Test maximum steps without improvement stop criterion.

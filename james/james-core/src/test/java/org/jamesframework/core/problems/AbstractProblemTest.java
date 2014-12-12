@@ -18,11 +18,15 @@ package org.jamesframework.core.problems;
 
 import org.jamesframework.core.problems.constraints.Constraint;
 import org.jamesframework.core.problems.constraints.PenalizingConstraint;
+import org.jamesframework.core.problems.constraints.validations.SimpleValidation;
+import org.jamesframework.core.problems.constraints.validations.Validation;
 import org.jamesframework.core.problems.objectives.Objective;
+import org.jamesframework.core.search.neigh.Move;
 import org.jamesframework.test.stubs.AlwaysSatisfiedConstraintStub;
 import org.jamesframework.test.stubs.AlwaysSatisfiedPenalizingConstraintStub;
 import org.jamesframework.test.stubs.EmptySolutionStub;
 import org.jamesframework.test.stubs.FixedEvaluationObjectiveStub;
+import org.jamesframework.test.fakes.IntegerSolution;
 import org.jamesframework.test.stubs.NeverSatisfiedConstraintStub;
 import org.jamesframework.test.stubs.NeverSatisfiedPenalizingConstraintStub;
 import org.jamesframework.test.util.TestConstants;
@@ -65,7 +69,7 @@ public class AbstractProblemTest {
     @Before
     public void setUp(){
         FixedEvaluationObjectiveStub o = new FixedEvaluationObjectiveStub(10.0);
-        problem = new ProblemStub(o);
+        problem = new ProblemStub<>(o);
     }
 
     /**
@@ -79,7 +83,7 @@ public class AbstractProblemTest {
         // try to create problem without objective, should result in error
         boolean thrown = false;
         try {
-            AbstractProblem p = new ProblemStub(null);
+            AbstractProblem p = new ProblemStub<>(null);
         } catch (NullPointerException ex) {
             thrown = true;
         }
@@ -227,9 +231,9 @@ public class AbstractProblemTest {
      * Test of validate method, of class AbstractProblem.
      */
     @Test
-    public void testValidate() {
+    public void testValidate1() {
     
-        System.out.println(" - test validate");
+        System.out.println(" - test validate (1)");
         
         Solution sol = new EmptySolutionStub();
         
@@ -256,6 +260,49 @@ public class AbstractProblemTest {
         assertTrue(problem.validate(sol).passed());
         // remove the constraint
         problem.removePenalizingConstraint(unsatisfiable2);
+    
+    }
+    
+    @Test
+    public void testValidate2() {
+    
+        System.out.println(" - test validate (2)");
+        
+        // create an integer solution with value 0
+        IntegerSolution sol = new IntegerSolution(0);
+        
+        // create a dummy move that increases the value of an integer solution by one
+        Move<IntegerSolution> m = new Move<IntegerSolution>() {
+            public void apply(IntegerSolution sol) { sol.setI(sol.getI()+1); }
+            public void undo(IntegerSolution sol)  { sol.setI(sol.getI()-1); }
+        };
+        
+        // create a dummy constraint that only accepts integer solutions with strictily positive value
+        Constraint<IntegerSolution, Object> c = (s, data) -> new SimpleValidation(s.getI() > 0);
+        
+        // create problem stub with solution type IntegerSolution and fixed evaluation of 0.0
+        AbstractProblem<IntegerSolution, Object> intprob = new ProblemStub<>(new FixedEvaluationObjectiveStub(0.0));
+        // add constraint to problem
+        intprob.addMandatoryConstraint(c);
+        
+        // validate solution
+        Validation curval = intprob.validate(sol);
+        assertFalse(curval.passed());
+        
+        // validate move
+        assertTrue(intprob.validate(m, sol, curval).passed());
+        
+        // add a second constraint which is always satisfied
+        intprob.addMandatoryConstraint(new AlwaysSatisfiedConstraintStub());
+        
+        // re-validate solution
+        curval = intprob.validate(sol);
+        assertFalse(curval.passed());
+        // NOTE: due to short-circuiting, the second constraint will NOT be checked
+        
+        // re-validate move (for the second constraint, a full validation of
+        // the current solution will first be performed since it is missing!)
+        assertTrue(intprob.validate(m, sol, curval).passed());
     
     }
     
@@ -365,14 +412,14 @@ public class AbstractProblemTest {
      * Problem stub used for testing. Only accepts objectives/constraints that can handle any solution type
      * and that do not use any data.
      */
-    private class ProblemStub extends AbstractProblem<Solution, Object> {
+    private class ProblemStub<SolutionType extends Solution> extends AbstractProblem<SolutionType, Object> {
 
         /**
          * Create problem stub with given objective, without specifying the data.
          * 
          * @param obj objective
          */
-        public ProblemStub(Objective<Solution, Object> obj) {
+        public ProblemStub(Objective<? super SolutionType, Object> obj) {
             super(obj, null);
         }
 
@@ -382,7 +429,7 @@ public class AbstractProblemTest {
          * @return null
          */
         @Override
-        public Solution createRandomSolution() {
+        public SolutionType createRandomSolution() {
             return null;
         }
 

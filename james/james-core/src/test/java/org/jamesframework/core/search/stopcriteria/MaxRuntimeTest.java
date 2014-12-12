@@ -75,6 +75,12 @@ public class MaxRuntimeTest extends SearchTestTemplate {
         search = new RandomDescent<>(problem, neigh);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructor(){
+        System.out.println(" - test constructor");
+        new MaxRuntime(999, TimeUnit.MICROSECONDS);
+    }
+    
     /**
      * Test maximum runtime stop criterion.
      */

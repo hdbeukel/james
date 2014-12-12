@@ -74,6 +74,12 @@ public class MaxTimeWithoutImprovementTest extends SearchTestTemplate {
         // create random descent search
         search = new RandomDescent<>(problem, neigh);
     }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructor(){
+        System.out.println(" - test constructor");
+        new MaxTimeWithoutImprovement(999, TimeUnit.MICROSECONDS);
+    }
 
     /**
      * Test maximum time without improvement stop criterion.
