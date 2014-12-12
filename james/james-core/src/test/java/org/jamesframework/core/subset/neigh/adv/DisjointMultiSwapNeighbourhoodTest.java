@@ -16,7 +16,6 @@
 
 package org.jamesframework.core.subset.neigh.adv;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -25,7 +24,6 @@ import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.subset.neigh.SingleSwapNeighbourhood;
 import org.jamesframework.core.subset.neigh.moves.SubsetMove;
-import org.jamesframework.core.subset.neigh.moves.SwapMove;
 import org.jamesframework.core.util.SetUtilities;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -63,6 +61,18 @@ public class DisjointMultiSwapNeighbourhoodTest {
     public static void tearDownClass() {
         System.out.println("# Done testing DisjointMultiSwapNeighbourhood!");
     }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructor1(){
+        System.out.println(" - test constructor (1)");
+        new DisjointMultiSwapNeighbourhood(0);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructor2(){
+        System.out.println(" - test constructor (2)");
+        new DisjointMultiSwapNeighbourhood(-1);
+    }
 
     /**
      * Test of getRandomMove method, of class DisjointMultiSwapNeighbourhood.
@@ -75,7 +85,8 @@ public class DisjointMultiSwapNeighbourhoodTest {
         // repeat for 1 up to 5 swaps
         for(int s=1; s<=5; s++){
             // create multi swap neighbourhood
-            Neighbourhood<SubsetSolution> neigh = new DisjointMultiSwapNeighbourhood(s);
+            DisjointMultiSwapNeighbourhood neigh = new DisjointMultiSwapNeighbourhood(s);
+            assertEquals(s, neigh.getNumSwaps());
 
             // create empty subset solution
             SubsetSolution sol = new SubsetSolution(IDs);
@@ -122,7 +133,9 @@ public class DisjointMultiSwapNeighbourhoodTest {
         // create empty subset solution
         SubsetSolution sol = new SubsetSolution(IDs);
         // verify: no moves generated
+        assertTrue(ssn.getAllMoves(sol).isEmpty());
         assertTrue(msn.getAllMoves(sol).isEmpty());
+        assertTrue(dmsn.getAllMoves(sol).isEmpty());
 
         // randomly select 10 IDs
         sol.selectAll(SetUtilities.getRandomSubset(sol.getUnselectedIDs(), 10, RG));
