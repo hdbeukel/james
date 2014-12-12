@@ -19,12 +19,15 @@ package org.jamesframework.core.search.algo.vns;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import org.jamesframework.core.problems.Solution;
 import org.jamesframework.core.problems.objectives.evaluations.PenalizedEvaluation;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.search.NeighbourhoodSearch;
 import org.jamesframework.core.search.Search;
 import org.jamesframework.core.search.SearchTestTemplate;
 import org.jamesframework.core.search.algo.RandomDescent;
+import org.jamesframework.core.search.algo.RandomSearch;
+import org.jamesframework.core.search.algo.SteepestDescent;
 import org.jamesframework.core.search.listeners.SearchListener;
 import org.jamesframework.core.search.neigh.Neighbourhood;
 import org.jamesframework.core.subset.neigh.SingleSwapNeighbourhood;
@@ -154,6 +157,40 @@ public class VariableNeighbourhoodSearchTest extends SearchTestTemplate {
         search.dispose();
     }
 
+    @Test
+    public void testConstructor(){
+        System.out.println(" - test constructor");
+        
+        boolean thrown;
+        
+        thrown = false;
+        try {
+            LocalSearchFactory<SubsetSolution> fact = null;
+            new VariableNeighbourhoodSearch<>(problem, search.getNeighbourhoods(), fact);
+        } catch (NullPointerException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+    }
+    
+    @Test
+    public void testSetLocalSearchFactory(){
+        System.out.println(" - test setLocalSearchFactory");
+        
+        LocalSearchFactory<SubsetSolution> fact = p -> new SteepestDescent<>(p, search.getNeighbourhoods().get(0));
+        search.setLocalSearchFactory(fact);
+        // verify
+        assertSame(fact, search.getLocalSearchFactory());
+        
+        boolean thrown = false;
+        try {
+            search.setLocalSearchFactory(null);
+        } catch (NullPointerException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+    }
+    
     /**
      * Test single run.
      */
