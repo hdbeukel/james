@@ -92,5 +92,29 @@ public class SingleSwapMoveTest {
         }
         
     }
+    
+    @Test
+    public void testEquals(){
+        System.out.println(" - test equals");
+        
+        // create some moves
+        SingleSwapMove m1 = new SingleSwapMove(3, 7);
+        SingleSwapMove m2 = new SingleSwapMove(3, 7);
+        SingleSwapMove m3 = new SingleSwapMove(7, 3);
+        SingleSwapMove m4 = new SingleSwapMove(3, 8);
+        SingleSwapMove m5 = new SingleSwapMove(2, 7);
+        SingleSwapMove m6 = new SingleSwapMove(1, 6);
+        
+        // verify
+        assertEquals(m1, m2);
+        assertEquals(m1, m3);
+        assertNotEquals(m1, m4);
+        assertNotEquals(m1, m5);
+        assertNotEquals(m1, m6);
+        
+        assertNotEquals(m1, null);
+        assertNotEquals(m1, "Trudy");
+        
+    }
 
 }

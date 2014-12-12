@@ -21,6 +21,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
+import org.jamesframework.core.exceptions.SolutionModificationException;
 import org.jamesframework.core.subset.SubsetSolution;
 import org.jamesframework.core.util.SetUtilities;
 import org.junit.Test;
@@ -163,6 +164,37 @@ public class GeneralSubsetMoveTest {
             assertTrue(sol.getUnselectedIDs().containsAll(delete));
         }
         
+        // test exceptions
+        boolean thrown;
+        
+        thrown = false;
+        try {
+            sol.deselectAll();
+            sol.select(0);
+            sol.select(1);
+            Set<Integer> add = new HashSet<>(Arrays.asList(2,1));
+            Set<Integer> del = new HashSet<>(Arrays.asList(0));
+            GeneralSubsetMove m = new GeneralSubsetMove(add, del);
+            m.apply(sol);
+        } catch (SolutionModificationException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
+        thrown = false;
+        try {
+            sol.deselectAll();
+            sol.select(0);
+            sol.select(1);
+            Set<Integer> add = new HashSet<>(Arrays.asList(2,3));
+            Set<Integer> del = new HashSet<>(Arrays.asList(1,4));
+            GeneralSubsetMove m = new GeneralSubsetMove(add, del);
+            m.apply(sol);
+        } catch (SolutionModificationException ex) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+        
     }
 
     /**
@@ -222,6 +254,10 @@ public class GeneralSubsetMoveTest {
         SubsetMove move2 = new GeneralSubsetMove(set1, set2);   // equal
         SubsetMove move2b = new GeneralSubsetMove(set1b, set2); // equal
         SubsetMove move3 = new GeneralSubsetMove(set2, set1);   // different
+        
+        // check nonsense
+        assertNotEquals(move1, null);
+        assertNotEquals(move1, "Trudy");
         
         // verify
         assertEquals(move1, move2);

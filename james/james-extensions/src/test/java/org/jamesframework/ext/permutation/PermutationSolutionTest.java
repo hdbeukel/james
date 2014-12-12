@@ -247,6 +247,8 @@ public class PermutationSolutionTest {
             // verify
             assertEquals(copy, sol);
             assertEquals(copy.hashCode(), sol.hashCode());
+            assertNotEquals(copy, null);
+            assertNotEquals(copy, "Trudy");
         }
         
     }
