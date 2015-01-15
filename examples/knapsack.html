@@ -263,7 +263,8 @@ public class KnapsackConstraint implements Constraint&lt;SubsetSolution, Knapsac
         respectively. The data and objective are passed to the problem upon construction and the constraint is
         added afterwards with <code>addMandatoryConstraint(...)</code>. By adding a <i>mandatory</i> constraint,
         applied neighbourhood searches discard all neighbours that violate this constraint.
-        The returned best found solution (if any) is then always guaranteed to satisfy the constraint.
+        The returned best found solution (if any) is then always guaranteed to satisfy the constraint, but we
+        should also make sure to start with a valid solution (see <a href="#custom-initial-solution">below</a>).
     </p>
     <div class="bs-callout bs-callout-info">
         <h4>
@@ -331,10 +332,10 @@ randomDescent.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
 // attach listener (see example 1)
 randomDescent.addSearchListener(new ProgressSearchListener());
 </pre>
-    <p>
-        By default, a local search starts from a randomly generated initial solution. However, it may happen that such random
+    <p id="custom-initial-solution">
+        By default, a local search starts from a randomly generated initial solution. However, it may of course happen that such random
         solution exceeds the knapsack capacity and does not have any valid neighbours so that the search immediately gets stuck.
-        To avoid this we specify a custom initial solution. We could simply always start from an empty solution
+        To avoid this we need to specify a custom initial solution. We could simply always start from an empty solution
         but a different approach is taken here to increase the variability of initial solutions.
     </p>
     <div class="bs-callout bs-callout-info">
