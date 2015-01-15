@@ -163,7 +163,7 @@ public class KnapsackConstraint implements Constraint&lt;SubsetSolution, Knapsac
         // compute sum of weights of selected items
         double weight = solution.getSelectedIDs().stream().mapToDouble(data::getWeight).sum();
         // check that maximum weight is not exceeded
-        return new SimpleValidation(weight &lt;= maxWeigth);
+        return new SimpleValidation(weight &lt;= maxWeight);
     }
     
 }
