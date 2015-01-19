@@ -109,7 +109,7 @@ public class KnapSack {
             // attach listener
             randomDescent.addSearchListener(new ProgressSearchListener());
             // IMPORTANT: set valid initial solution
-            SubsetSolution initialSolution = createInitalSolution(problem, data, capacity);
+            SubsetSolution initialSolution = createInitialSolution(problem, data, capacity);
             System.out.println("Initial solution size: " + initialSolution.getNumSelectedIDs());
             randomDescent.setCurrentSolution(initialSolution);
 
@@ -157,7 +157,7 @@ public class KnapSack {
             // attach listener
             parallelTempering.addSearchListener(new ProgressSearchListener());
             // IMPORTANT: set valid initial solution
-            initialSolution = createInitalSolution(problem, data, capacity);
+            initialSolution = createInitialSolution(problem, data, capacity);
             System.out.println("Initial solution size: " + initialSolution.getNumSelectedIDs());
             parallelTempering.setCurrentSolution(initialSolution);
             
@@ -214,7 +214,7 @@ public class KnapSack {
     }
     
     // create a custom initial solution that does not exceed the knapsack capacity
-    private static SubsetSolution createInitalSolution(Problem<SubsetSolution> problem, KnapsackData data, double capacity){
+    private static SubsetSolution createInitialSolution(Problem<SubsetSolution> problem, KnapsackData data, double capacity){
         // 1: create random initial solution
         SubsetSolution initialSolution = problem.createRandomSolution();
         // 2: compute current total weight
