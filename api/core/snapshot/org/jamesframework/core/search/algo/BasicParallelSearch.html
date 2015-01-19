@@ -197,7 +197,8 @@ extends <a href="../../../../../org/jamesframework/core/search/Search.html" titl
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html#getSearches--">getSearches</a></span>()</code>
-<div class="block">Get a list of all searches that have been added to this parallel search for concurrent execution.</div>
+<div class="block">Get an unmodifiable view of the list of all searches that
+ have been added to this parallel search for concurrent execution.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
@@ -358,10 +359,11 @@ extends <a href="../../../../../org/jamesframework/core/search/Search.html" titl
 <li class="blockList">
 <h4>getSearches</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/BasicParallelSearch.html" title="type parameter in BasicParallelSearch">SolutionType</a>&gt;&gt;&nbsp;getSearches()</pre>
-<div class="block">Get a list of all searches that have been added to this parallel search for concurrent execution.</div>
+<div class="block">Get an unmodifiable view of the list of all searches that
+ have been added to this parallel search for concurrent execution.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>list of all contained searches</dd>
+<dd>list of all contained searches (unmodifiable view)</dd>
 </dl>
 </li>
 </ul>
@@ -498,6 +500,6 @@ extends <a href="../../../../../org/jamesframework/core/search/Search.html" titl
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &#169; 2014. All rights reserved.</small></p>
+<p class="legalCopy"><small>Copyright &#169; 2015. All rights reserved.</small></p>
 </body>
 </html>

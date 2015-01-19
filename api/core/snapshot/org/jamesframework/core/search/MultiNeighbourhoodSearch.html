@@ -200,7 +200,7 @@ extends <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/MultiNeighbourhoodSearch.html#setNeighbourhoods-java.util.List-">setNeighbourhoods</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../org/jamesframework/core/search/MultiNeighbourhoodSearch.html" title="type parameter in MultiNeighbourhoodSearch">SolutionType</a>&gt;&gt;&nbsp;neighs)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/MultiNeighbourhoodSearch.html#setNeighbourhoods-java.util.List-">setNeighbourhoods</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;? extends <a href="../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../org/jamesframework/core/search/MultiNeighbourhoodSearch.html" title="type parameter in MultiNeighbourhoodSearch">SolutionType</a>&gt;&gt;&nbsp;neighs)</code>
 <div class="block">Sets the list of neighbourhoods used to modify the current solution.</div>
 </td>
 </tr>
@@ -217,7 +217,7 @@ extends <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.jamesframework.core.search.<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></h3>
-<code><a href="../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolution--">getCurrentSolution</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionEvaluation--">getCurrentSolutionEvaluation</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionValidation--">getCurrentSolutionValidation</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html#setCurrentSolution-SolutionType-">setCurrentSolution</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-">updateCurrentAndBestSolution</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">updateCurrentAndBestSolution</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentSolution-SolutionType-">updateCurrentSolution</a></code></li>
+<code><a href="../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolution--">getCurrentSolution</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionEvaluation--">getCurrentSolutionEvaluation</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionValidation--">getCurrentSolutionValidation</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html#setCurrentSolution-SolutionType-">setCurrentSolution</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html#setRandomInitialSolution--">setRandomInitialSolution</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-">updateCurrentAndBestSolution</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">updateCurrentAndBestSolution</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentSolution-SolutionType-">updateCurrentSolution</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.org.jamesframework.core.search.Search">
@@ -324,7 +324,7 @@ extends <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.
 <ul class="blockListLast">
 <li class="blockList">
 <h4>setNeighbourhoods</h4>
-<pre>public&nbsp;void&nbsp;setNeighbourhoods(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../org/jamesframework/core/search/MultiNeighbourhoodSearch.html" title="type parameter in MultiNeighbourhoodSearch">SolutionType</a>&gt;&gt;&nbsp;neighs)</pre>
+<pre>public&nbsp;void&nbsp;setNeighbourhoods(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;? extends <a href="../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../org/jamesframework/core/search/MultiNeighbourhoodSearch.html" title="type parameter in MultiNeighbourhoodSearch">SolutionType</a>&gt;&gt;&nbsp;neighs)</pre>
 <div class="block">Sets the list of neighbourhoods used to modify the current solution. Note that <code>neighs</code>
  can not be <code>null</code> nor empty and can not contain any <code>null</code> elements. This method
  may only be called when the search is idle. It should be used with care for searches that have already
@@ -410,6 +410,6 @@ extends <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &#169; 2014. All rights reserved.</small></p>
+<p class="legalCopy"><small>Copyright &#169; 2015. All rights reserved.</small></p>
 </body>
 </html>

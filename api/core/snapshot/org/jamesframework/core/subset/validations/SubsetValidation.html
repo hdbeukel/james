@@ -165,14 +165,14 @@ implements <a href="../../../../../org/jamesframework/core/problems/constraints/
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/subset/validations/SubsetValidation.html#getConstraintValidation--">getConstraintValidation</a></span>()</code>
-<div class="block">Get the validation object produced when checking the general constraints.</div>
+<div class="block">Get the validation object produced when checking the general constraints (may be <code>null</code>).</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/subset/validations/SubsetValidation.html#passed--">passed</a></span>()</code>
-<div class="block">Check whether the subset solution passed validation, taking into
- account both its size and the general constraint validations.</div>
+<div class="block">Check whether the subset solution passed validation, taking into account both
+ its size and the general constraint validations (if not <code>null</code>).</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
@@ -227,7 +227,8 @@ implements <a href="../../../../../org/jamesframework/core/problems/constraints/
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>validSize</code> - indicates whether the subset has a valid size</dd>
-<dd><code>constraintValidation</code> - validation object produced when checking the general constraints</dd>
+<dd><code>constraintValidation</code> - validation object produced when checking the general constraints
+                             (may be <code>null</code>)</dd>
 </dl>
 </li>
 </ul>
@@ -260,7 +261,7 @@ implements <a href="../../../../../org/jamesframework/core/problems/constraints/
 <li class="blockList">
 <h4>getConstraintValidation</h4>
 <pre>public&nbsp;<a href="../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;getConstraintValidation()</pre>
-<div class="block">Get the validation object produced when checking the general constraints.</div>
+<div class="block">Get the validation object produced when checking the general constraints (may be <code>null</code>).</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>constraint validation object</dd>
@@ -276,7 +277,7 @@ implements <a href="../../../../../org/jamesframework/core/problems/constraints/
 <pre>public&nbsp;boolean&nbsp;passed(boolean&nbsp;checkSize)</pre>
 <div class="block">Check whether the subset solution passed validation. If <code>checkSize</code>
  is <code>false</code> the size of the subset is ignored and only the general
- constraints are checked.</div>
+ constraints are checked (if not <code>null</code>).</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>checkSize</code> - indicates whether the size should be validated</dd>
@@ -292,13 +293,13 @@ implements <a href="../../../../../org/jamesframework/core/problems/constraints/
 <li class="blockList">
 <h4>passed</h4>
 <pre>public&nbsp;boolean&nbsp;passed()</pre>
-<div class="block">Check whether the subset solution passed validation, taking into
- account both its size and the general constraint validations.</div>
+<div class="block">Check whether the subset solution passed validation, taking into account both
+ its size and the general constraint validations (if not <code>null</code>).</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html#passed--">passed</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd><code>true</code> if the subset has a valid size and satisfies all constraints</dd>
+<dd><code>true</code> if the subset has a valid size and satisfies all constraints (if any)</dd>
 </dl>
 </li>
 </ul>
@@ -309,8 +310,8 @@ implements <a href="../../../../../org/jamesframework/core/problems/constraints/
 <li class="blockList">
 <h4>toString</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;toString()</pre>
-<div class="block">Get a string representation of the validation object. Indicates whether
- the general constraints are satisfied and if the subset has a valid size.</div>
+<div class="block">Get a string representation of the validation object. Indicates whether the
+ general constraints are satisfied (if any) and if the subset has a valid size.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
@@ -389,6 +390,6 @@ implements <a href="../../../../../org/jamesframework/core/problems/constraints/
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &#169; 2014. All rights reserved.</small></p>
+<p class="legalCopy"><small>Copyright &#169; 2015. All rights reserved.</small></p>
 </body>
 </html>

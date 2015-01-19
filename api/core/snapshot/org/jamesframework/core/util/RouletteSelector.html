@@ -154,8 +154,13 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/util/RouletteSelector.html#RouletteSelector-java.util.Random-">RouletteSelector</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</code>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/util/RouletteSelector.html#RouletteSelector--">RouletteSelector</a></span>()</code>
 <div class="block">Create a roulette selector.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/util/RouletteSelector.html#RouletteSelector-java.util.Random-">RouletteSelector</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</code>
+<div class="block">Create a roulette selector with a given random generator.</div>
 </td>
 </tr>
 </table>
@@ -203,6 +208,17 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
+<a name="RouletteSelector--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>RouletteSelector</h4>
+<pre>public&nbsp;RouletteSelector()</pre>
+<div class="block">Create a roulette selector. The random generator used for selection is set to
+ <code>ThreadLocalRandom.current()</code>.</div>
+</li>
+</ul>
 <a name="RouletteSelector-java.util.Random-">
 <!--   -->
 </a>
@@ -210,7 +226,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>RouletteSelector</h4>
 <pre>public&nbsp;RouletteSelector(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</pre>
-<div class="block">Create a roulette selector.</div>
+<div class="block">Create a roulette selector with a given random generator.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>rnd</code> - applied random generator</dd>
@@ -324,6 +340,6 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &#169; 2014. All rights reserved.</small></p>
+<p class="legalCopy"><small>Copyright &#169; 2015. All rights reserved.</small></p>
 </body>
 </html>
