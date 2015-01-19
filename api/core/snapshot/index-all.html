@@ -650,7 +650,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/validations/SubsetValidation.html#getConstraintValidation--">getConstraintValidation()</a></span> - Method in class org.jamesframework.core.subset.validations.<a href="org/jamesframework/core/subset/validations/SubsetValidation.html" title="class in org.jamesframework.core.subset.validations">SubsetValidation</a></dt>
 <dd>
-<div class="block">Get the validation object produced when checking the general constraints.</div>
+<div class="block">Get the validation object produced when checking the general constraints (may be <code>null</code>).</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#getCurrentSolution--">getCurrentSolution()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
 <dd>
@@ -979,7 +979,8 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/BasicParallelSearch.html#getSearches--">getSearches()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a></dt>
 <dd>
-<div class="block">Get a list of all searches that have been added to this parallel search for concurrent execution.</div>
+<div class="block">Get an unmodifiable view of the list of all searches that
+ have been added to this parallel search for concurrent execution.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetSolution.html#getSelectedIDs--">getSelectedIDs()</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a></dt>
 <dd>
@@ -1007,6 +1008,10 @@
 <div class="block">
  Get the number of consecutive steps completed during the <i>current</i> (or last) run, without finding
  any further improvement.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html#getTabuMemory--">getTabuMemory()</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="class in org.jamesframework.core.search.algo.tabu">TabuSearch</a></dt>
+<dd>
+<div class="block">Get the tabu memory.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/MetropolisSearch.html#getTemperature--">getTemperature()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a></dt>
 <dd>
@@ -1212,23 +1217,23 @@
 <dd>
 <div class="block">Interface of a data set in which each item is identified using a unique integer ID.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/JamesConstants.html#INVALID_DELTA">INVALID_DELTA</a></span> - Static variable in class org.jamesframework.core.util.<a href="org/jamesframework/core/util/JamesConstants.html" title="class in org.jamesframework.core.util">JamesConstants</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/JamesConstants.html#INVALID_DELTA">INVALID_DELTA</a></span> - Static variable in interface org.jamesframework.core.util.<a href="org/jamesframework/core/util/JamesConstants.html" title="interface in org.jamesframework.core.util">JamesConstants</a></dt>
 <dd>
 <div class="block">Indicates an invalid delta (amount of improvement).</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/JamesConstants.html#INVALID_MOVE_COUNT">INVALID_MOVE_COUNT</a></span> - Static variable in class org.jamesframework.core.util.<a href="org/jamesframework/core/util/JamesConstants.html" title="class in org.jamesframework.core.util">JamesConstants</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/JamesConstants.html#INVALID_MOVE_COUNT">INVALID_MOVE_COUNT</a></span> - Static variable in interface org.jamesframework.core.util.<a href="org/jamesframework/core/util/JamesConstants.html" title="interface in org.jamesframework.core.util">JamesConstants</a></dt>
 <dd>
 <div class="block">Indicates an invalid number of moves.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/JamesConstants.html#INVALID_STEP_COUNT">INVALID_STEP_COUNT</a></span> - Static variable in class org.jamesframework.core.util.<a href="org/jamesframework/core/util/JamesConstants.html" title="class in org.jamesframework.core.util">JamesConstants</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/JamesConstants.html#INVALID_STEP_COUNT">INVALID_STEP_COUNT</a></span> - Static variable in interface org.jamesframework.core.util.<a href="org/jamesframework/core/util/JamesConstants.html" title="interface in org.jamesframework.core.util">JamesConstants</a></dt>
 <dd>
 <div class="block">Indicates an invalid number of steps.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/JamesConstants.html#INVALID_TIME_SPAN">INVALID_TIME_SPAN</a></span> - Static variable in class org.jamesframework.core.util.<a href="org/jamesframework/core/util/JamesConstants.html" title="class in org.jamesframework.core.util">JamesConstants</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/JamesConstants.html#INVALID_TIME_SPAN">INVALID_TIME_SPAN</a></span> - Static variable in interface org.jamesframework.core.util.<a href="org/jamesframework/core/util/JamesConstants.html" title="interface in org.jamesframework.core.util">JamesConstants</a></dt>
 <dd>
 <div class="block">Used to indicate an invalid time span.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/JamesConstants.html#INVALID_TIMESTAMP">INVALID_TIMESTAMP</a></span> - Static variable in class org.jamesframework.core.util.<a href="org/jamesframework/core/util/JamesConstants.html" title="class in org.jamesframework.core.util">JamesConstants</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/JamesConstants.html#INVALID_TIMESTAMP">INVALID_TIMESTAMP</a></span> - Static variable in interface org.jamesframework.core.util.<a href="org/jamesframework/core/util/JamesConstants.html" title="interface in org.jamesframework.core.util">JamesConstants</a></dt>
 <dd>
 <div class="block">Used to indicate an invalid timestamp, for example belonging to an event which has not yet occurred.</div>
 </dd>
@@ -1269,12 +1274,10 @@
 </a>
 <h2 class="title">J</h2>
 <dl>
-<dt><a href="org/jamesframework/core/util/JamesConstants.html" title="class in org.jamesframework.core.util"><span class="typeNameLink">JamesConstants</span></a> - Class in <a href="org/jamesframework/core/util/package-summary.html">org.jamesframework.core.util</a></dt>
+<dt><a href="org/jamesframework/core/util/JamesConstants.html" title="interface in org.jamesframework.core.util"><span class="typeNameLink">JamesConstants</span></a> - Interface in <a href="org/jamesframework/core/util/package-summary.html">org.jamesframework.core.util</a></dt>
 <dd>
 <div class="block">Global container defining constants used across the framework.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/JamesConstants.html#JamesConstants--">JamesConstants()</a></span> - Constructor for class org.jamesframework.core.util.<a href="org/jamesframework/core/util/JamesConstants.html" title="class in org.jamesframework.core.util">JamesConstants</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="org/jamesframework/core/exceptions/JamesRuntimeException.html" title="class in org.jamesframework.core.exceptions"><span class="typeNameLink">JamesRuntimeException</span></a> - Exception in <a href="org/jamesframework/core/exceptions/package-summary.html">org.jamesframework.core.exceptions</a></dt>
 <dd>
 <div class="block">Common super class of all runtime exceptions thrown by the James framework.</div>
@@ -1705,8 +1708,8 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/validations/SubsetValidation.html#passed--">passed()</a></span> - Method in class org.jamesframework.core.subset.validations.<a href="org/jamesframework/core/subset/validations/SubsetValidation.html" title="class in org.jamesframework.core.subset.validations">SubsetValidation</a></dt>
 <dd>
-<div class="block">Check whether the subset solution passed validation, taking into
- account both its size and the general constraint validations.</div>
+<div class="block">Check whether the subset solution passed validation, taking into account both
+ its size and the general constraint validations (if not <code>null</code>).</div>
 </dd>
 <dt><a href="org/jamesframework/core/problems/objectives/evaluations/PenalizedEvaluation.html" title="class in org.jamesframework.core.problems.objectives.evaluations"><span class="typeNameLink">PenalizedEvaluation</span></a> - Class in <a href="org/jamesframework/core/problems/objectives/evaluations/package-summary.html">org.jamesframework.core.problems.objectives.evaluations</a></dt>
 <dd>
@@ -1850,9 +1853,13 @@
  A selection object which simulates a roulette wheel where all items have a weight expressing the
  size of their section of the wheel.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/RouletteSelector.html#RouletteSelector-java.util.Random-">RouletteSelector(Random)</a></span> - Constructor for class org.jamesframework.core.util.<a href="org/jamesframework/core/util/RouletteSelector.html" title="class in org.jamesframework.core.util">RouletteSelector</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/RouletteSelector.html#RouletteSelector--">RouletteSelector()</a></span> - Constructor for class org.jamesframework.core.util.<a href="org/jamesframework/core/util/RouletteSelector.html" title="class in org.jamesframework.core.util">RouletteSelector</a></dt>
 <dd>
 <div class="block">Create a roulette selector.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/RouletteSelector.html#RouletteSelector-java.util.Random-">RouletteSelector(Random)</a></span> - Constructor for class org.jamesframework.core.util.<a href="org/jamesframework/core/util/RouletteSelector.html" title="class in org.jamesframework.core.util">RouletteSelector</a></dt>
+<dd>
+<div class="block">Create a roulette selector with a given random generator.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#run--">run()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
@@ -2122,7 +2129,7 @@
 <dd>
 <div class="block">Sets the neighbourhood used to modify the current solution.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/MultiNeighbourhoodSearch.html#setNeighbourhoods-java.util.List-">setNeighbourhoods(List&lt;Neighbourhood&lt;? super SolutionType&gt;&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/MultiNeighbourhoodSearch.html" title="class in org.jamesframework.core.search">MultiNeighbourhoodSearch</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/MultiNeighbourhoodSearch.html#setNeighbourhoods-java.util.List-">setNeighbourhoods(List&lt;? extends Neighbourhood&lt;? super SolutionType&gt;&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/MultiNeighbourhoodSearch.html" title="class in org.jamesframework.core.search">MultiNeighbourhoodSearch</a></dt>
 <dd>
 <div class="block">Sets the list of neighbourhoods used to modify the current solution.</div>
 </dd>
@@ -2133,6 +2140,14 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#setPeriod-long-java.util.concurrent.TimeUnit-">setPeriod(long, TimeUnit)</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria">StopCriterionChecker</a></dt>
 <dd>
 <div class="block">Set the period between consecutive stop criterion checks.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html#setRandomInitialSolution--">setRandomInitialSolution()</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="class in org.jamesframework.core.search.algo.tabu">TabuSearch</a></dt>
+<dd>
+<div class="block">Updates the tabu memory when a random initial solution is set.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#setRandomInitialSolution--">setRandomInitialSolution()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
+<dd>
+<div class="block">Sets a randomly generated initial solution.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#setReplicaSteps-int-">setReplicaSteps(int)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
@@ -2841,6 +2856,6 @@ the order they are declared.</div>
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &#169; 2014. All rights reserved.</small></p>
+<p class="legalCopy"><small>Copyright &#169; 2015. All rights reserved.</small></p>
 </body>
 </html>

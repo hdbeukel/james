@@ -348,7 +348,8 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>allIDs</code> - set of all IDs from which a subset is to be selected</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> is <code>null</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> is <code>null</code>
+                              or contains any <code>null</code> elements</dd>
 </dl>
 </li>
 </ul>
@@ -368,9 +369,9 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <dd><code>allIDs</code> - set of all IDs from which a subset is to be selected</dd>
 <dd><code>selectedIDs</code> - set of currently selected IDs (subset of all IDs)</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> or <code>selectedIDs</code> are <code>null</code>,
-                              of <code>selectedIDs</code> contains any <code>null</code> elements</dd>
-<dd><code><a href="../../../../org/jamesframework/core/exceptions/SolutionModificationException.html" title="class in org.jamesframework.core.exceptions">SolutionModificationException</a></code> - if <code>selectedIDs</code> is not a subset of <code>allIDs</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> or <code>selectedIDs</code> are <code>null</code>
+                              or contain any <code>null</code> elements</dd>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>selectedIDs</code> is not a subset of <code>allIDs</code></dd>
 </dl>
 </li>
 </ul>
@@ -393,7 +394,8 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <dd><code>naturalOrder</code> - if <code>naturalOrder</code> is <code>true</code>, IDs will be ordered according to
                      their natural ordering; else, no ordering is imposed on the IDs</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> is <code>null</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> is <code>null</code>
+                              or contains any <code>null</code> elements</dd>
 </dl>
 </li>
 </ul>
@@ -418,9 +420,9 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <dd><code>naturalOrder</code> - if <code>naturalOrder</code> is <code>true</code>, IDs will be ordered according to
                      their natural ordering; else, no ordering is imposed on the IDs</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> or <code>selectedIDs</code> are <code>null</code>,
-                              or <code>selectedIDs</code> contains any <code>null</code> elements</dd>
-<dd><code><a href="../../../../org/jamesframework/core/exceptions/SolutionModificationException.html" title="class in org.jamesframework.core.exceptions">SolutionModificationException</a></code> - if <code>selectedIDs</code> is not a subset of <code>allIDs</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> or <code>selectedIDs</code> are <code>null</code>
+                              or contain any <code>null</code> elements</dd>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>selectedIDs</code> is not a subset of <code>allIDs</code></dd>
 </dl>
 </li>
 </ul>
@@ -443,7 +445,8 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <dd><code>orderOfIDs</code> - comparator according to which IDs are ordered, allowed to be
                    <code>null</code> in which case no order is imposed</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> is <code>null</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> is <code>null</code>
+                              or contains any <code>null</code> elements</dd>
 </dl>
 </li>
 </ul>
@@ -467,9 +470,9 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <dd><code>orderOfIDs</code> - comparator according to which IDs are ordered, allowed to be
                    <code>null</code> in which case no order is imposed</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> or <code>selectedIDs</code> are <code>null</code>,
-                              or <code>selectedIDs</code> contains any <code>null</code> elements</dd>
-<dd><code><a href="../../../../org/jamesframework/core/exceptions/SolutionModificationException.html" title="class in org.jamesframework.core.exceptions">SolutionModificationException</a></code> - if <code>selectedIDs</code> is not a subset of <code>allIDs</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> or <code>selectedIDs</code> are <code>null</code>
+                              or contain any <code>null</code> elements</dd>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>selectedIDs</code> is not a subset of <code>allIDs</code></dd>
 </dl>
 </li>
 </ul>
@@ -844,6 +847,6 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &#169; 2014. All rights reserved.</small></p>
+<p class="legalCopy"><small>Copyright &#169; 2015. All rights reserved.</small></p>
 </body>
 </html>

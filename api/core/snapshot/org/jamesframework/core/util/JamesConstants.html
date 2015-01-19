@@ -71,13 +71,13 @@
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
 <li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
-<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
-<li><a href="#methods.inherited.from.class.java.lang.Object">Method</a></li>
+<li>Constr&nbsp;|&nbsp;</li>
+<li>Method</li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
 <li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
-<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li>Method</li>
 </ul>
 </div>
@@ -88,24 +88,15 @@
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">org.jamesframework.core.util</div>
-<h2 title="Class JamesConstants" class="title">Class JamesConstants</h2>
+<h2 title="Interface JamesConstants" class="title">Interface JamesConstants</h2>
 </div>
 <div class="contentContainer">
-<ul class="inheritance">
-<li><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
-<li>
-<ul class="inheritance">
-<li>org.jamesframework.core.util.JamesConstants</li>
-</ul>
-</li>
-</ul>
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
 <hr>
 <br>
-<pre>public class <span class="typeNameLabel">JamesConstants</span>
-extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
+<pre>public interface <span class="typeNameLabel">JamesConstants</span></pre>
 <div class="block">Global container defining constants used across the framework.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
@@ -162,38 +153,6 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </table>
 </li>
 </ul>
-<!-- ======== CONSTRUCTOR SUMMARY ======== -->
-<ul class="blockList">
-<li class="blockList"><a name="constructor.summary">
-<!--   -->
-</a>
-<h3>Constructor Summary</h3>
-<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Constructor Summary table, listing constructors, and an explanation">
-<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colOne" scope="col">Constructor and Description</th>
-</tr>
-<tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/util/JamesConstants.html#JamesConstants--">JamesConstants</a></span>()</code>&nbsp;</td>
-</tr>
-</table>
-</li>
-</ul>
-<!-- ========== METHOD SUMMARY =========== -->
-<ul class="blockList">
-<li class="blockList"><a name="method.summary">
-<!--   -->
-</a>
-<h3>Method Summary</h3>
-<ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
-<!--   -->
-</a>
-<h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
-<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#clone--" title="class or interface in java.lang">clone</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#finalize--" title="class or interface in java.lang">finalize</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
-</ul>
-</li>
-</ul>
 </li>
 </ul>
 </div>
@@ -212,7 +171,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>INVALID_TIMESTAMP</h4>
-<pre>public static final&nbsp;long INVALID_TIMESTAMP</pre>
+<pre>static final&nbsp;long INVALID_TIMESTAMP</pre>
 <div class="block">Used to indicate an invalid timestamp, for example belonging to an event which has not yet occurred.</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
@@ -226,7 +185,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>INVALID_TIME_SPAN</h4>
-<pre>public static final&nbsp;long INVALID_TIME_SPAN</pre>
+<pre>static final&nbsp;long INVALID_TIME_SPAN</pre>
 <div class="block">Used to indicate an invalid time span.</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
@@ -240,7 +199,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>INVALID_STEP_COUNT</h4>
-<pre>public static final&nbsp;long INVALID_STEP_COUNT</pre>
+<pre>static final&nbsp;long INVALID_STEP_COUNT</pre>
 <div class="block">Indicates an invalid number of steps.</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
@@ -254,7 +213,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>INVALID_MOVE_COUNT</h4>
-<pre>public static final&nbsp;long INVALID_MOVE_COUNT</pre>
+<pre>static final&nbsp;long INVALID_MOVE_COUNT</pre>
 <div class="block">Indicates an invalid number of moves.</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
@@ -268,29 +227,12 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockListLast">
 <li class="blockList">
 <h4>INVALID_DELTA</h4>
-<pre>public static final&nbsp;double INVALID_DELTA</pre>
+<pre>static final&nbsp;double INVALID_DELTA</pre>
 <div class="block">Indicates an invalid delta (amount of improvement).</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../../constant-values.html#org.jamesframework.core.util.JamesConstants.INVALID_DELTA">Constant Field Values</a></dd>
 </dl>
-</li>
-</ul>
-</li>
-</ul>
-<!-- ========= CONSTRUCTOR DETAIL ======== -->
-<ul class="blockList">
-<li class="blockList"><a name="constructor.detail">
-<!--   -->
-</a>
-<h3>Constructor Detail</h3>
-<a name="JamesConstants--">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>JamesConstants</h4>
-<pre>public&nbsp;JamesConstants()</pre>
 </li>
 </ul>
 </li>
@@ -349,13 +291,13 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
 <li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
-<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
-<li><a href="#methods.inherited.from.class.java.lang.Object">Method</a></li>
+<li>Constr&nbsp;|&nbsp;</li>
+<li>Method</li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
 <li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
-<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li>Method</li>
 </ul>
 </div>
@@ -363,6 +305,6 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &#169; 2014. All rights reserved.</small></p>
+<p class="legalCopy"><small>Copyright &#169; 2015. All rights reserved.</small></p>
 </body>
 </html>
