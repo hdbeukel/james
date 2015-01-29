@@ -1,0 +1,9 @@
+[submodule "james/james-core"]
+	path = james/james-core
+	url = https://github.com/hdbeukel/james-core.git
+[submodule "james/james-extensions"]
+	path = james/james-extensions
+	url = https://github.com/hdbeukel/james-extensions.git
+[submodule "james/james-examples"]
+	path = james/james-examples
+	url = https://github.com/hdbeukel/james-examples.git
