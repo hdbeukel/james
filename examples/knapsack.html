@@ -353,7 +353,7 @@ randomDescent.addSearchListener(new ProgressSearchListener());
 private static final Random RG = new Random();
 
 // creates a custom initial solution that does not exceed the knapsack capacity
-SubsetSolution createInitalSolution(Problem&lt;SubsetSolution&gt; problem, KnapsackData data, double capacity){
+SubsetSolution createInitialSolution(Problem&lt;SubsetSolution&gt; problem, KnapsackData data, double capacity){
     // 1: create random initial solution
     SubsetSolution initialSolution = problem.createRandomSolution();
     // 2: compute current total weight
@@ -391,7 +391,7 @@ double computeSelectionWeight(SubsetSolution solution, KnapsackData data){
     </p>
 <pre class="prettyprint">
 // set custom initial solution that satisfies the constraint
-randomDescent.setCurrentSolution(createInitalSolution(problem, data, capacity));
+randomDescent.setCurrentSolution(createInitialSolution(problem, data, capacity));
 </pre>
     <p>
         Then start the search, get the best found solution when it completes and eventually dispose it to release all resources.
