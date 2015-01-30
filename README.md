@@ -64,6 +64,7 @@ git clone --recursive https://github.com/hdbeukel/james.git
 Alternatively, perform a regular non-recursive clone followed by
 
 ```
+cd james
 git submodule init
 git submodule update
 ```
@@ -71,8 +72,19 @@ git submodule update
 to fetch the submodules. JAMES is built using [Maven][maven], so compiling the source code should be as easy as running
 
 ```
-cd james
 mvn install
+```
+
+from inside the `james` subdirectory
+
+```
+|-- ...
+|-- james
+  |-- james-core
+  |-- james-examples
+  |-- james-extensions
+  |-- pom.xml
+|-- ...
 ```
 
 assuming that [Maven][maven] has been installed on your computer. This will compile the code, create jar packages and install them in your local Maven repository so that they can be added as dependencies in any other Maven project. After building JAMES, you can also grab the created jar packages from the `target` directory within each module.
