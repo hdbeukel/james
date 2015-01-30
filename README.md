@@ -116,13 +116,12 @@ The JAMES framework is developed and maintained by
  
  
  
-[core-module]:       https://github.com/hdbeukel/james/tree/master/james/james-core
-[extensions-module]: https://github.com/hdbeukel/james/tree/master/james/james-extensions
-[examples-module]:   https://github.com/hdbeukel/james/tree/master/james/james-examples
+[core-module]:       https://github.com/hdbeukel/james-core
+[extensions-module]: https://github.com/hdbeukel/james-extensions
+[examples-module]:   https://github.com/hdbeukel/james-examples
 [examples-website]:  http://www.jamesframework.org/examples
 [slf4j]:             http://www.slf4j.org
 [slf4j-manual]:      http://www.slf4j.org/manual.html
-[sonatype]:          https://oss.sonatype.org/index.html#welcome
 [maven]:             http://maven.apache.org
 [getstarted]:        http://www.jamesframework.org/getstarted/
 [james-website]:     http://www.jamesframework.org
