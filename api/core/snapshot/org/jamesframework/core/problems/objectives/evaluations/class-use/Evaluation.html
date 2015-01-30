@@ -368,19 +368,19 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><span class="typeNameLabel">LocalSearch.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentSolution-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">updateCurrentSolution</a></span>(<a href="../../../../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution,
-                     <a href="../../../../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;evaluation,
-                     <a href="../../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;validation)</code>
-<div class="block">Update the current solution during search, given that it has already been evaluated and validated.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><span class="typeNameLabel">NeighbourhoodSearch.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#updateCurrentSolution-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">updateCurrentSolution</a></span>(<a href="../../../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&nbsp;solution,
                      <a href="../../../../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;evaluation,
                      <a href="../../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;validation)</code>
 <div class="block">When updating the current solution in a neighbourhood search, the evaluated move cache is
  cleared because it is no longer valid for the new current solution.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><span class="typeNameLabel">LocalSearch.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentSolution-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">updateCurrentSolution</a></span>(<a href="../../../../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution,
+                     <a href="../../../../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;evaluation,
+                     <a href="../../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;validation)</code>
+<div class="block">Update the current solution during search, given that it has already been evaluated and validated.</div>
 </td>
 </tr>
 </tbody>
@@ -399,15 +399,15 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a></code></td>
-<td class="colLast"><span class="typeNameLabel">EvaluatedMoveCache.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/search/cache/EvaluatedMoveCache.html#getCachedMoveEvaluation-org.jamesframework.core.search.neigh.Move-">getCachedMoveEvaluation</a></span>(<a href="../../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move)</code>
-<div class="block">Retrieve the cached evaluation (see <a href="../../../../../../../org/jamesframework/core/problems/Problem.html#evaluate-SolutionType-"><code>Problem.evaluate(Solution)</code></a>) of the neighbouring
- solution which is obtained by applying the given move to the current solution, if available.</div>
+<td class="colLast"><span class="typeNameLabel">SingleEvaluatedMoveCache.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#getCachedMoveEvaluation-org.jamesframework.core.search.neigh.Move-">getCachedMoveEvaluation</a></span>(<a href="../../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move)</code>
+<div class="block">Retrieve a cached evaluation, if still available.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a></code></td>
-<td class="colLast"><span class="typeNameLabel">SingleEvaluatedMoveCache.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#getCachedMoveEvaluation-org.jamesframework.core.search.neigh.Move-">getCachedMoveEvaluation</a></span>(<a href="../../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move)</code>
-<div class="block">Retrieve a cached evaluation, if still available.</div>
+<td class="colLast"><span class="typeNameLabel">EvaluatedMoveCache.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/search/cache/EvaluatedMoveCache.html#getCachedMoveEvaluation-org.jamesframework.core.search.neigh.Move-">getCachedMoveEvaluation</a></span>(<a href="../../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move)</code>
+<div class="block">Retrieve the cached evaluation (see <a href="../../../../../../../org/jamesframework/core/problems/Problem.html#evaluate-SolutionType-"><code>Problem.evaluate(Solution)</code></a>) of the neighbouring
+ solution which is obtained by applying the given move to the current solution, if available.</div>
 </td>
 </tr>
 </tbody>
@@ -421,17 +421,17 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">EvaluatedMoveCache.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/search/cache/EvaluatedMoveCache.html#cacheMoveEvaluation-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">cacheMoveEvaluation</a></span>(<a href="../../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move,
+<td class="colLast"><span class="typeNameLabel">SingleEvaluatedMoveCache.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#cacheMoveEvaluation-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">cacheMoveEvaluation</a></span>(<a href="../../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move,
                    <a href="../../../../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;evaluation)</code>
-<div class="block">Request to cache the evaluation (see <a href="../../../../../../../org/jamesframework/core/problems/Problem.html#evaluate-SolutionType-"><code>Problem.evaluate(Solution)</code></a>) of the neighbouring
- solution which is obtained by applying the given move to the current solution.</div>
+<div class="block">Cache the given evaluation, discarding any previously cached evaluations.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">SingleEvaluatedMoveCache.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html#cacheMoveEvaluation-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">cacheMoveEvaluation</a></span>(<a href="../../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move,
+<td class="colLast"><span class="typeNameLabel">EvaluatedMoveCache.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/search/cache/EvaluatedMoveCache.html#cacheMoveEvaluation-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">cacheMoveEvaluation</a></span>(<a href="../../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;?&gt;&nbsp;move,
                    <a href="../../../../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;evaluation)</code>
-<div class="block">Cache the given evaluation, discarding any previously cached evaluations.</div>
+<div class="block">Request to cache the evaluation (see <a href="../../../../../../../org/jamesframework/core/problems/Problem.html#evaluate-SolutionType-"><code>Problem.evaluate(Solution)</code></a>) of the neighbouring
+ solution which is obtained by applying the given move to the current solution.</div>
 </td>
 </tr>
 </tbody>
