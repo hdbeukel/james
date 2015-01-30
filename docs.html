@@ -65,7 +65,7 @@ layout: default
                 Problem specification
             </h2>
             <p>
-                The James framework strongly separates problem specification from search application so that existing algorithms
+                The JAMES framework strongly separates problem specification from search application so that existing algorithms
                 can easily be applied to obtain solutions for newly implemented problems. Each problem has a specific solution
                 type and a search creates solutions of this type to solve the problem. The search talks to the problem to obtain
                 random solutions (e.g. used as the default initial solution of a local search) and to evaluate and validate
@@ -187,9 +187,9 @@ layout: default
                 Random descent
             </h4>
             <p>
-                Random descent is the most basic local search algorithm. In every step, a random neighbour of the current
-                solution is evaluated and accepted as the new current solution if and only if it is valid and better than the
-                current solution.
+                Random descent is the most basic local search algorithm (also called stochastic hill climbing).
+                In every step, a random neighbour of the current solution is evaluated and accepted as the new
+                current solution if and only if it is valid and better than the current solution.
             </p>
             <p>
                 Random descent does not terminate internally so that a stop criterion should be specified, such
@@ -284,7 +284,7 @@ layout: default
                 of freedom to escape from local optima, while lower temperatures ease convergence towards an optimum.
             </p>
             <p>
-                The basic Metropolis search implementation in James has a fixed temperature. It may therefore not be very useful
+                The basic Metropolis search implementation in JAMES has a fixed temperature. It may therefore not be very useful
                 on its own, but it is for example used by the more advanced <a href="#parallel-tempering">parallel tempering</a>
                 algorithm. Also, it can provide useful insights in the performance of different temperatures for a specific
                 application.
@@ -597,7 +597,7 @@ layout: default
             </h2>
             
             <p>
-                Additional information about the architecture of the James framework is available on the
+                Additional information about the architecture of the JAMES framework is available on the
                 <a href="https://github.com/hdbeukel/james/wiki">GitHub wiki pages</a>. The wiki includes
                 several UML diagrams and gives a detailed description of the lifecycle of a search. You can
                 also browse the source code on GitHub.
