@@ -107,14 +107,19 @@ License and copyright
 
 All modules of the JAMES framework are licensed under the Apache License, Version 2.0, see http://www.apache.org/licenses/LICENSE-2.0 and the LICENSE and NOTICE files included with each module.
 
-Contact
-=======
+User forum
+==========
+
+Users may post questions on the [forum][james-forum]. Instructions for participating without a Google account are available at the [website][james-contact].
+
+Developers
+==========
 
 The JAMES framework is developed and maintained by
 
  - Herman De Beukelaer (Herman.DeBeukelaer@UGent.be)
  
- 
+Please use the forum instead of directly mailing the developers whenever possible, so that others may benefit from or contribute to the discussion as well.
  
 [core-module]:       https://github.com/hdbeukel/james-core
 [extensions-module]: https://github.com/hdbeukel/james-extensions
@@ -126,4 +131,5 @@ The JAMES framework is developed and maintained by
 [getstarted]:        http://www.jamesframework.org/getstarted/
 [james-website]:     http://www.jamesframework.org
 [james-wiki]:        http://github.com/hdbeukel/james/wiki
-
+[james-forum]:       https://groups.google.com/forum/#!forum/james-users
+[james-contact]:     http://www.jamesframework.org/contact/
