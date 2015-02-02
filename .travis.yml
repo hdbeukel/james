@@ -11,8 +11,8 @@ env:
   global:
     - GH_REF=github.com/hdbeukel/james.git
     - SONATYPE_USERNAME=hdbeukel
-    - secure: "POA/QLNaBtGklSMHFLXx/fUwSowUc1n+umNREcDFoFGm7k3K4dwAVJ5UNLLC/omG9g7QFCQ4p7wZ0DY/uzUGit66XQ2JElnEz+D2Q3NiohEUCdqwNrF9Gl4l4SWaRWZ5/f8GoREJTePms/Z7Cuv3QA9iazywBE+AsP80i9EqITE="
-    - secure: "Ca5ffX/dnkm1tSCTy2Q+Tn8s6M0OgZFewlMEjm6WtAOLx3Fpt9mWGPtoRxYLw7HkteycySTSJwp9pf6DwEM1bGme+SMMYoEiQeues3xldf9eAws/ffTFPF0ZZM8wFDY3Ks+MjHXg/JFWgnLfW7PqtkNGdmahGsh35ad1Puv78x0="
+    - secure: "rvXkoy0tElQmFUavN9oMfyctY+ZHKat+U73hs3q3xKl42JF+NEccPWESgsrccmwQ4AwJ9XKLM8Su2J4GbJ8MBcdLsdljl9uvCv9ZjxLBGu3+Fc4ot4SDVDIKHE+45yz13CSH5gm4n4ZmcO1SK6H2pYbRSTuFYBsIQiN+SoeMK0I="
+    - secure: "IOkjlySFtey69gIACF0QqaYlZPwQ+FzRdzXNRwEo0mmCNyflDBKpMoopD+qHdq1eEGFFoWXQ3e747Ff1ZpOTy/A3xtn0399LMgHOpKdgU19x85JPmnn+Nv65iICIcGMlt2KWC/yOq5CMcXfKIjsaPwFWY+UAV395S5lvXZimL1Y="
   
 before_install: cd james
 
