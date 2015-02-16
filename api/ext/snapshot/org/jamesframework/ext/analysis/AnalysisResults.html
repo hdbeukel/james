@@ -171,8 +171,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#getRun-java.lang.String-java.lang.String-int-">getRun</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID,
       <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID,
       int&nbsp;i)</code>
-<div class="block">Get the results of the i-th performed run of the given search when solving the given problem
- (unmodifiable list view).</div>
+<div class="block">Get the results of the i-th performed run of the given search when solving the given
+ problem (unmodifiable list view).</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
@@ -327,7 +327,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>number of different searches applied to solve the problem</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/NoSuchElementException.html?is-external=true" title="class or interface in java.util">NoSuchElementException</a></code> - if an unknown problem ID is given</dd>
+<dd><code><a href="../../../../org/jamesframework/ext/analysis/UnknownIDException.html" title="class in org.jamesframework.ext.analysis">UnknownIDException</a></code> - if an unknown problem ID is given</dd>
 </dl>
 </li>
 </ul>
@@ -346,7 +346,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>IDs of different searches applied to solve the problem</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/NoSuchElementException.html?is-external=true" title="class or interface in java.util">NoSuchElementException</a></code> - if an unknown problem ID is given</dd>
+<dd><code><a href="../../../../org/jamesframework/ext/analysis/UnknownIDException.html" title="class in org.jamesframework.ext.analysis">UnknownIDException</a></code> - if an unknown problem ID is given</dd>
 </dl>
 </li>
 </ul>
@@ -366,7 +366,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>number of performed runs of the given search when solving the given problem</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/NoSuchElementException.html?is-external=true" title="class or interface in java.util">NoSuchElementException</a></code> - if an unknown problem or search ID is given</dd>
+<dd><code><a href="../../../../org/jamesframework/ext/analysis/UnknownIDException.html" title="class in org.jamesframework.ext.analysis">UnknownIDException</a></code> - if an unknown problem or search ID is given</dd>
 </dl>
 </li>
 </ul>
@@ -379,8 +379,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/BestSolutionUpdate.html" title="class in org.jamesframework.ext.analysis">BestSolutionUpdate</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="type parameter in AnalysisResults">SolutionType</a>&gt;&gt;&nbsp;getRun(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID,
                                                      <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID,
                                                      int&nbsp;i)</pre>
-<div class="block">Get the results of the i-th performed run of the given search when solving the given problem
- (unmodifiable list view).</div>
+<div class="block">Get the results of the i-th performed run of the given search when solving the given
+ problem (unmodifiable list view).</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>problemID</code> - ID of the problem</dd>
@@ -389,7 +389,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>results of i-th run of the given search when solving the given problem</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/NoSuchElementException.html?is-external=true" title="class or interface in java.util">NoSuchElementException</a></code> - if an unknown problem or search ID is given</dd>
+<dd><code><a href="../../../../org/jamesframework/ext/analysis/UnknownIDException.html" title="class in org.jamesframework.ext.analysis">UnknownIDException</a></code> - if an unknown problem or search ID is given</dd>
 <dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IndexOutOfBoundsException.html?is-external=true" title="class or interface in java.lang">IndexOutOfBoundsException</a></code> - if there is no i-th run for this search and problem</dd>
 </dl>
 </li>
