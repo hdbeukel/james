@@ -70,7 +70,7 @@
 <!--   -->
 </a></div>
 <!-- ========= END OF TOP NAVBAR ========= -->
-<div class="contentContainer"><a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:W">W</a>&nbsp;<a name="I:A">
+<div class="contentContainer"><a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:J">J</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:W">W</a>&nbsp;<a name="I:A">
 <!--   -->
 </a>
 <h2 class="title">A</h2>
@@ -83,6 +83,32 @@
 <dd>
 <div class="block">Add an objective with corresponding weight.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/Analysis.html#addProblem-java.lang.String-org.jamesframework.core.problems.Problem-">addProblem(String, Problem&lt;SolutionType&gt;)</a></span> - Method in class org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/Analysis.html" title="class in org.jamesframework.ext.analysis">Analysis</a></dt>
+<dd>
+<div class="block">Add a problem to be analyzed.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/Analysis.html#addSearch-java.lang.String-org.jamesframework.ext.analysis.SearchFactory-">addSearch(String, SearchFactory&lt;SolutionType&gt;)</a></span> - Method in class org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/Analysis.html" title="class in org.jamesframework.ext.analysis">Analysis</a></dt>
+<dd>
+<div class="block">Add a search to be applied to solve the analyzed problems.</div>
+</dd>
+<dt><a href="org/jamesframework/ext/analysis/Analysis.html" title="class in org.jamesframework.ext.analysis"><span class="typeNameLink">Analysis</span></a>&lt;<a href="org/jamesframework/ext/analysis/Analysis.html" title="type parameter in Analysis">SolutionType</a> extends org.jamesframework.core.problems.Solution&gt; - Class in <a href="org/jamesframework/ext/analysis/package-summary.html">org.jamesframework.ext.analysis</a></dt>
+<dd>
+<div class="block">
+ This analysis class can be used to set up and run an experiment with different search algorithms applied to
+ several problem instances, for example with different data sets, objectives or problem parameters.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/Analysis.html#Analysis--">Analysis()</a></span> - Constructor for class org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/Analysis.html" title="class in org.jamesframework.ext.analysis">Analysis</a></dt>
+<dd>
+<div class="block">Create an analysis object.</div>
+</dd>
+<dt><a href="org/jamesframework/ext/analysis/AnalysisResults.html" title="class in org.jamesframework.ext.analysis"><span class="typeNameLink">AnalysisResults</span></a>&lt;<a href="org/jamesframework/ext/analysis/AnalysisResults.html" title="type parameter in AnalysisResults">SolutionType</a> extends org.jamesframework.core.problems.Solution&gt; - Class in <a href="org/jamesframework/ext/analysis/package-summary.html">org.jamesframework.ext.analysis</a></dt>
+<dd>
+<div class="block">Groups results of an analysis performed by an <a href="org/jamesframework/ext/analysis/Analysis.html" title="class in org.jamesframework.ext.analysis"><code>Analysis</code></a> object.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/AnalysisResults.html#AnalysisResults--">AnalysisResults()</a></span> - Constructor for class org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/AnalysisResults.html" title="class in org.jamesframework.ext.analysis">AnalysisResults</a></dt>
+<dd>
+<div class="block">Create an empty results object.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/ext/permutation/neigh/moves/ReverseSubsequenceMove.html#apply-org.jamesframework.ext.permutation.PermutationSolution-">apply(PermutationSolution)</a></span> - Method in class org.jamesframework.ext.permutation.neigh.moves.<a href="org/jamesframework/ext/permutation/neigh/moves/ReverseSubsequenceMove.html" title="class in org.jamesframework.ext.permutation.neigh.moves">ReverseSubsequenceMove</a></dt>
 <dd>
 <div class="block">Reverse the subsequence by performing a series of swaps in the given permutation solution.</div>
@@ -90,6 +116,20 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/ext/permutation/neigh/moves/SingleSwapMove.html#apply-org.jamesframework.ext.permutation.PermutationSolution-">apply(PermutationSolution)</a></span> - Method in class org.jamesframework.ext.permutation.neigh.moves.<a href="org/jamesframework/ext/permutation/neigh/moves/SingleSwapMove.html" title="class in org.jamesframework.ext.permutation.neigh.moves">SingleSwapMove</a></dt>
 <dd>
 <div class="block">Apply the move by swapping the items at the positions specified at construction.</div>
+</dd>
+</dl>
+<a name="I:B">
+<!--   -->
+</a>
+<h2 class="title">B</h2>
+<dl>
+<dt><a href="org/jamesframework/ext/analysis/BestSolutionUpdate.html" title="class in org.jamesframework.ext.analysis"><span class="typeNameLink">BestSolutionUpdate</span></a>&lt;<a href="org/jamesframework/ext/analysis/BestSolutionUpdate.html" title="type parameter in BestSolutionUpdate">SolutionType</a> extends org.jamesframework.core.problems.Solution&gt; - Class in <a href="org/jamesframework/ext/analysis/package-summary.html">org.jamesframework.ext.analysis</a></dt>
+<dd>
+<div class="block">Represents the event of finding a new best solution during search, for the problem being solved.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/BestSolutionUpdate.html#BestSolutionUpdate-long-double-SolutionType-">BestSolutionUpdate(long, double, SolutionType)</a></span> - Constructor for class org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/BestSolutionUpdate.html" title="class in org.jamesframework.ext.analysis">BestSolutionUpdate</a></dt>
+<dd>
+<div class="block">Create an event.</div>
 </dd>
 </dl>
 <a name="I:C">
@@ -110,9 +150,31 @@
 <dd>
 <div class="block">Creates a deep copy of this permutation solution with the same order of IDs.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/SearchFactory.html#create-org.jamesframework.core.problems.Problem-">create(Problem&lt;SolutionType&gt;)</a></span> - Method in interface org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/SearchFactory.html" title="interface in org.jamesframework.ext.analysis">SearchFactory</a></dt>
+<dd>
+<div class="block">Create a search given the problem to solve.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/ext/permutation/PermutationProblem.html#createRandomSolution--">createRandomSolution()</a></span> - Method in class org.jamesframework.ext.permutation.<a href="org/jamesframework/ext/permutation/PermutationProblem.html" title="class in org.jamesframework.ext.permutation">PermutationProblem</a></dt>
 <dd>
 <div class="block">Create a random permutation solution.</div>
+</dd>
+</dl>
+<a name="I:D">
+<!--   -->
+</a>
+<h2 class="title">D</h2>
+<dl>
+<dt><a href="org/jamesframework/ext/analysis/DuplicateIDException.html" title="class in org.jamesframework.ext.analysis"><span class="typeNameLink">DuplicateIDException</span></a> - Exception in <a href="org/jamesframework/ext/analysis/package-summary.html">org.jamesframework.ext.analysis</a></dt>
+<dd>
+<div class="block">Exception thrown when duplicate problem or search IDs are encountered in an analysis.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/DuplicateIDException.html#DuplicateIDException--">DuplicateIDException()</a></span> - Constructor for exception org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/DuplicateIDException.html" title="class in org.jamesframework.ext.analysis">DuplicateIDException</a></dt>
+<dd>
+<div class="block">Creates a new instance without detail message.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/DuplicateIDException.html#DuplicateIDException-java.lang.String-">DuplicateIDException(String)</a></span> - Constructor for exception org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/DuplicateIDException.html" title="class in org.jamesframework.ext.analysis">DuplicateIDException</a></dt>
+<dd>
+<div class="block">Constructs an instance with the specified detail message.</div>
 </dd>
 </dl>
 <a name="I:E">
@@ -175,9 +237,22 @@
 <dd>
 <div class="block">Get the position of the second swapped item.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/Analysis.html#getNumRuns--">getNumRuns()</a></span> - Method in class org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/Analysis.html" title="class in org.jamesframework.ext.analysis">Analysis</a></dt>
+<dd>
+<div class="block">Get the global number of runs that will be performed for every applied search
+ for which no search specific number of runs has been set.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/Analysis.html#getNumRuns-java.lang.String-">getNumRuns(String)</a></span> - Method in class org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/Analysis.html" title="class in org.jamesframework.ext.analysis">Analysis</a></dt>
+<dd>
+<div class="block">Get the number of runs that will be performed for the search with the given ID.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/ext/permutation/PermutationSolution.html#getOrder--">getOrder()</a></span> - Method in class org.jamesframework.ext.permutation.<a href="org/jamesframework/ext/permutation/PermutationSolution.html" title="class in org.jamesframework.ext.permutation">PermutationSolution</a></dt>
 <dd>
 <div class="block">Get an unmodifiable view of the current order of IDs.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/AnalysisResults.html#getProblemIDs--">getProblemIDs()</a></span> - Method in class org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/AnalysisResults.html" title="class in org.jamesframework.ext.analysis">AnalysisResults</a></dt>
+<dd>
+<div class="block">Get the IDs of the analyzed problems (unmodifiable view).</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/ext/permutation/neigh/ReverseSubsequenceNeighbourhood.html#getRandomMove-org.jamesframework.ext.permutation.PermutationSolution-">getRandomMove(PermutationSolution)</a></span> - Method in class org.jamesframework.ext.permutation.neigh.<a href="org/jamesframework/ext/permutation/neigh/ReverseSubsequenceNeighbourhood.html" title="class in org.jamesframework.ext.permutation.neigh">ReverseSubsequenceNeighbourhood</a></dt>
 <dd>
@@ -191,9 +266,31 @@
 <dd>
 <div class="block">Produces a random move generated by one of the contained neighbourhoods based on the assigned weights.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/AnalysisResults.html#getRun-java.lang.String-java.lang.String-int-">getRun(String, String, int)</a></span> - Method in class org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/AnalysisResults.html" title="class in org.jamesframework.ext.analysis">AnalysisResults</a></dt>
+<dd>
+<div class="block">Get the results of the i-th performed run of the given search when solving the given problem
+ (unmodifiable list view).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/AnalysisResults.html#getSearchIDs-java.lang.String-">getSearchIDs(String)</a></span> - Method in class org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/AnalysisResults.html" title="class in org.jamesframework.ext.analysis">AnalysisResults</a></dt>
+<dd>
+<div class="block">Get the IDs of the different searches that have been applied to solve the problem with the given ID
+ (unmodifiable view).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/BestSolutionUpdate.html#getSolution--">getSolution()</a></span> - Method in class org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/BestSolutionUpdate.html" title="class in org.jamesframework.ext.analysis">BestSolutionUpdate</a></dt>
+<dd>
+<div class="block">Get the new best solution that was found.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/BestSolutionUpdate.html#getTime--">getTime()</a></span> - Method in class org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/BestSolutionUpdate.html" title="class in org.jamesframework.ext.analysis">BestSolutionUpdate</a></dt>
+<dd>
+<div class="block">Get the time at which the new best solution was found (since starting the search), in milliseconds</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/ext/permutation/neigh/moves/ReverseSubsequenceMove.html#getTo--">getTo()</a></span> - Method in class org.jamesframework.ext.permutation.neigh.moves.<a href="org/jamesframework/ext/permutation/neigh/moves/ReverseSubsequenceMove.html" title="class in org.jamesframework.ext.permutation.neigh.moves">ReverseSubsequenceMove</a></dt>
 <dd>
 <div class="block">Get the last position in the reversed subsequence.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/BestSolutionUpdate.html#getValue--">getValue()</a></span> - Method in class org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/BestSolutionUpdate.html" title="class in org.jamesframework.ext.analysis">BestSolutionUpdate</a></dt>
+<dd>
+<div class="block">Get the evaluation value of the new best solution.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/ext/problems/objectives/evaluations/WeightedIndexEvaluation.html#getValue--">getValue()</a></span> - Method in class org.jamesframework.ext.problems.objectives.evaluations.<a href="org/jamesframework/ext/problems/objectives/evaluations/WeightedIndexEvaluation.html" title="class in org.jamesframework.ext.problems.objectives.evaluations">WeightedIndexEvaluation</a></dt>
 <dd>
@@ -207,7 +304,7 @@
 <dl>
 <dt><span class="memberNameLink"><a href="org/jamesframework/ext/permutation/neigh/moves/ReverseSubsequenceMove.html#hashCode--">hashCode()</a></span> - Method in class org.jamesframework.ext.permutation.neigh.moves.<a href="org/jamesframework/ext/permutation/neigh/moves/ReverseSubsequenceMove.html" title="class in org.jamesframework.ext.permutation.neigh.moves">ReverseSubsequenceMove</a></dt>
 <dd>
-<div class="block">Hash code computation corresponding to implementation of <a href="org/jamesframework/ext/permutation/neigh/moves/ReverseSubsequenceMove.html#equals-java.lang.Object-"><code>equals(Object)</code></a>.</div>
+<div class="block">Hash code computation corresponding to implementation of <a href="org/jamesframework/ext/permutation/neigh/moves/ReverseSubsequenceMove.html#equals-java.lang.Object-"><code>ReverseSubsequenceMove.equals(Object)</code></a>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/ext/permutation/neigh/moves/SingleSwapMove.html#hashCode--">hashCode()</a></span> - Method in class org.jamesframework.ext.permutation.neigh.moves.<a href="org/jamesframework/ext/permutation/neigh/moves/SingleSwapMove.html" title="class in org.jamesframework.ext.permutation.neigh.moves">SingleSwapMove</a></dt>
 <dd>
@@ -228,11 +325,44 @@
 <div class="block">Weighted index is always maximizing, so this method always returns <code>false</code>.</div>
 </dd>
 </dl>
+<a name="I:J">
+<!--   -->
+</a>
+<h2 class="title">J</h2>
+<dl>
+<dt><a href="org/jamesframework/ext/analysis/JsonConverter.html" title="interface in org.jamesframework.ext.analysis"><span class="typeNameLink">JsonConverter</span></a>&lt;<a href="org/jamesframework/ext/analysis/JsonConverter.html" title="type parameter in JsonConverter">T</a>&gt; - Interface in <a href="org/jamesframework/ext/analysis/package-summary.html">org.jamesframework.ext.analysis</a></dt>
+<dd>
+<div class="block">A JSON converter is a functional interface defining a single method to convert objects
+ of a specific type to a JSON representation.</div>
+</dd>
+</dl>
+<a name="I:N">
+<!--   -->
+</a>
+<h2 class="title">N</h2>
+<dl>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/AnalysisResults.html#numProblems--">numProblems()</a></span> - Method in class org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/AnalysisResults.html" title="class in org.jamesframework.ext.analysis">AnalysisResults</a></dt>
+<dd>
+<div class="block">Get the number of analyzed problems.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/AnalysisResults.html#numRuns-java.lang.String-java.lang.String-">numRuns(String, String)</a></span> - Method in class org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/AnalysisResults.html" title="class in org.jamesframework.ext.analysis">AnalysisResults</a></dt>
+<dd>
+<div class="block">Get the number of performed runs of the given search when solving the given problem.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/AnalysisResults.html#numSearches-java.lang.String-">numSearches(String)</a></span> - Method in class org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/AnalysisResults.html" title="class in org.jamesframework.ext.analysis">AnalysisResults</a></dt>
+<dd>
+<div class="block">Get the number of different searches that have been applied to solve the problem with the given ID.</div>
+</dd>
+</dl>
 <a name="I:O">
 <!--   -->
 </a>
 <h2 class="title">O</h2>
 <dl>
+<dt><a href="org/jamesframework/ext/analysis/package-summary.html">org.jamesframework.ext.analysis</a> - package org.jamesframework.ext.analysis</dt>
+<dd>
+<div class="block">Analysis tools to compare algorithm performance and assess parameter value influence.</div>
+</dd>
 <dt><a href="org/jamesframework/ext/permutation/package-summary.html">org.jamesframework.ext.permutation</a> - package org.jamesframework.ext.permutation</dt>
 <dd>
 <div class="block">Predefined permutation problem.</div>
@@ -285,6 +415,10 @@
 </a>
 <h2 class="title">R</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/AnalysisResults.html#registerSearchRun-java.lang.String-java.lang.String-java.util.List-">registerSearchRun(String, String, List&lt;BestSolutionUpdate&lt;SolutionType&gt;&gt;)</a></span> - Method in class org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/AnalysisResults.html" title="class in org.jamesframework.ext.analysis">AnalysisResults</a></dt>
+<dd>
+<div class="block">Register results of a search run, specifying the IDs of the problem being solved and the applied search.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/ext/problems/objectives/WeightedIndex.html#removeObjective-org.jamesframework.core.problems.objectives.Objective-">removeObjective(Objective&lt;? super SolutionType, ? super DataType&gt;)</a></span> - Method in class org.jamesframework.ext.problems.objectives.<a href="org/jamesframework/ext/problems/objectives/WeightedIndex.html" title="class in org.jamesframework.ext.problems.objectives">WeightedIndex</a></dt>
 <dd>
 <div class="block">Remove an objective, if present.</div>
@@ -303,12 +437,29 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/ext/permutation/neigh/ReverseSubsequenceNeighbourhood.html#ReverseSubsequenceNeighbourhood--">ReverseSubsequenceNeighbourhood()</a></span> - Constructor for class org.jamesframework.ext.permutation.neigh.<a href="org/jamesframework/ext/permutation/neigh/ReverseSubsequenceNeighbourhood.html" title="class in org.jamesframework.ext.permutation.neigh">ReverseSubsequenceNeighbourhood</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/Analysis.html#run--">run()</a></span> - Method in class org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/Analysis.html" title="class in org.jamesframework.ext.analysis">Analysis</a></dt>
+<dd>
+<div class="block">Run the analysis.</div>
+</dd>
 </dl>
 <a name="I:S">
 <!--   -->
 </a>
 <h2 class="title">S</h2>
 <dl>
+<dt><a href="org/jamesframework/ext/analysis/SearchFactory.html" title="interface in org.jamesframework.ext.analysis"><span class="typeNameLink">SearchFactory</span></a>&lt;<a href="org/jamesframework/ext/analysis/SearchFactory.html" title="type parameter in SearchFactory">SolutionType</a> extends org.jamesframework.core.problems.Solution&gt; - Interface in <a href="org/jamesframework/ext/analysis/package-summary.html">org.jamesframework.ext.analysis</a></dt>
+<dd>
+<div class="block">Interface of a search factory used to create a search given the problem to be solved.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/Analysis.html#setNumRuns-int-">setNumRuns(int)</a></span> - Method in class org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/Analysis.html" title="class in org.jamesframework.ext.analysis">Analysis</a></dt>
+<dd>
+<div class="block">Set the global number of runs that will be performed for every applied search
+ for which no search specific number of runs is set.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/Analysis.html#setNumRuns-java.lang.String-int-">setNumRuns(String, int)</a></span> - Method in class org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/Analysis.html" title="class in org.jamesframework.ext.analysis">Analysis</a></dt>
+<dd>
+<div class="block">Set the number of runs to be performed for the given search.</div>
+</dd>
 <dt><a href="org/jamesframework/ext/permutation/neigh/moves/SingleSwapMove.html" title="class in org.jamesframework.ext.permutation.neigh.moves"><span class="typeNameLink">SingleSwapMove</span></a> - Class in <a href="org/jamesframework/ext/permutation/neigh/moves/package-summary.html">org.jamesframework.ext.permutation.neigh.moves</a></dt>
 <dd>
 <div class="block">A move that swaps two items at given positions in a permutation solution.</div>
@@ -332,6 +483,16 @@
 <div class="block">Swap the items at position i and j in the permutation.</div>
 </dd>
 </dl>
+<a name="I:T">
+<!--   -->
+</a>
+<h2 class="title">T</h2>
+<dl>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/JsonConverter.html#toJson-T-">toJson(T)</a></span> - Method in interface org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/JsonConverter.html" title="interface in org.jamesframework.ext.analysis">JsonConverter</a></dt>
+<dd>
+<div class="block">Convert an object to a JSON representation.</div>
+</dd>
+</dl>
 <a name="I:U">
 <!--   -->
 </a>
@@ -344,6 +505,18 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/ext/permutation/neigh/moves/SingleSwapMove.html#undo-org.jamesframework.ext.permutation.PermutationSolution-">undo(PermutationSolution)</a></span> - Method in class org.jamesframework.ext.permutation.neigh.moves.<a href="org/jamesframework/ext/permutation/neigh/moves/SingleSwapMove.html" title="class in org.jamesframework.ext.permutation.neigh.moves">SingleSwapMove</a></dt>
 <dd>
 <div class="block">Undo a previously applied swap move.</div>
+</dd>
+<dt><a href="org/jamesframework/ext/analysis/UnknownIDException.html" title="class in org.jamesframework.ext.analysis"><span class="typeNameLink">UnknownIDException</span></a> - Exception in <a href="org/jamesframework/ext/analysis/package-summary.html">org.jamesframework.ext.analysis</a></dt>
+<dd>
+<div class="block">Exception thrown when unknown problem or search IDs are encountered in an analysis.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/UnknownIDException.html#UnknownIDException--">UnknownIDException()</a></span> - Constructor for exception org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/UnknownIDException.html" title="class in org.jamesframework.ext.analysis">UnknownIDException</a></dt>
+<dd>
+<div class="block">Creates a new instance without detail message.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/UnknownIDException.html#UnknownIDException-java.lang.String-">UnknownIDException(String)</a></span> - Constructor for exception org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/UnknownIDException.html" title="class in org.jamesframework.ext.analysis">UnknownIDException</a></dt>
+<dd>
+<div class="block">Constructs an instance with the specified detail message.</div>
 </dd>
 </dl>
 <a name="I:W">
@@ -367,8 +540,18 @@
 <dd>
 <div class="block">Create an empty evaluation.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/AnalysisResults.html#writeJSON-java.lang.String-">writeJSON(String)</a></span> - Method in class org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/AnalysisResults.html" title="class in org.jamesframework.ext.analysis">AnalysisResults</a></dt>
+<dd>
+<div class="block">Write the results to a JSON file that can be loaded into R to be inspected and visualized using
+ the james-analysis R package.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/AnalysisResults.html#writeJSON-java.lang.String-org.jamesframework.ext.analysis.JsonConverter-">writeJSON(String, JsonConverter&lt;SolutionType&gt;)</a></span> - Method in class org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/AnalysisResults.html" title="class in org.jamesframework.ext.analysis">AnalysisResults</a></dt>
+<dd>
+<div class="block">Write the results to a JSON file that can be loaded into R to be inspected and visualized using
+ the james-analysis R package.</div>
+</dd>
 </dl>
-<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:W">W</a>&nbsp;</div>
+<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:J">J</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:W">W</a>&nbsp;</div>
 <!-- ======= START OF BOTTOM NAVBAR ====== -->
 <div class="bottomNav"><a name="navbar.bottom">
 <!--   -->
