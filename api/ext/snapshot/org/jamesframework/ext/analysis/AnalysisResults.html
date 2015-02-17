@@ -161,12 +161,31 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#getNumProblems--">getNumProblems</a></span>()</code>
+<div class="block">Get the number of analyzed problems.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#getNumRuns-java.lang.String-java.lang.String-">getNumRuns</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID,
+          <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID)</code>
+<div class="block">Get the number of performed runs of the given search when solving the given problem.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#getNumSearches-java.lang.String-">getNumSearches</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID)</code>
+<div class="block">Get the number of different searches that have been applied to solve the problem with the given ID.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#getProblemIDs--">getProblemIDs</a></span>()</code>
 <div class="block">Get the IDs of the analyzed problems (unmodifiable view).</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/BestSolutionUpdate.html" title="class in org.jamesframework.ext.analysis">BestSolutionUpdate</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="type parameter in AnalysisResults">SolutionType</a>&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#getRun-java.lang.String-java.lang.String-int-">getRun</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID,
       <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID,
@@ -175,30 +194,11 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
  problem (unmodifiable list view).</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#getSearchIDs-java.lang.String-">getSearchIDs</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID)</code>
 <div class="block">Get the IDs of the different searches that have been applied to solve the problem with the
  given ID (unmodifiable view).</div>
-</td>
-</tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#numProblems--">numProblems</a></span>()</code>
-<div class="block">Get the number of analyzed problems.</div>
-</td>
-</tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#numRuns-java.lang.String-java.lang.String-">numRuns</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID,
-       <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID)</code>
-<div class="block">Get the number of performed runs of the given search when solving the given problem.</div>
-</td>
-</tr>
-<tr id="i5" class="rowColor">
-<td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#numSearches-java.lang.String-">numSearches</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID)</code>
-<div class="block">Get the number of different searches that have been applied to solve the problem with the given ID.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
@@ -285,13 +285,13 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </dl>
 </li>
 </ul>
-<a name="numProblems--">
+<a name="getNumProblems--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>numProblems</h4>
-<pre>public&nbsp;int&nbsp;numProblems()</pre>
+<h4>getNumProblems</h4>
+<pre>public&nbsp;int&nbsp;getNumProblems()</pre>
 <div class="block">Get the number of analyzed problems.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -313,13 +313,13 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </dl>
 </li>
 </ul>
-<a name="numSearches-java.lang.String-">
+<a name="getNumSearches-java.lang.String-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>numSearches</h4>
-<pre>public&nbsp;int&nbsp;numSearches(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID)</pre>
+<h4>getNumSearches</h4>
+<pre>public&nbsp;int&nbsp;getNumSearches(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID)</pre>
 <div class="block">Get the number of different searches that have been applied to solve the problem with the given ID.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -350,14 +350,14 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </dl>
 </li>
 </ul>
-<a name="numRuns-java.lang.String-java.lang.String-">
+<a name="getNumRuns-java.lang.String-java.lang.String-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>numRuns</h4>
-<pre>public&nbsp;int&nbsp;numRuns(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID,
-                   <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID)</pre>
+<h4>getNumRuns</h4>
+<pre>public&nbsp;int&nbsp;getNumRuns(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID,
+                      <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID)</pre>
 <div class="block">Get the number of performed runs of the given search when solving the given problem.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>

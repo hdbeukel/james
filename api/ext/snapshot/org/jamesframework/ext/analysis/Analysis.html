@@ -287,6 +287,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dd><code>n</code> - global number of search runs to be performed</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>reference to the analysis object on which this method was called</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>n</code> is not strictly positive</dd>
 </dl>
 </li>
 </ul>
@@ -329,6 +331,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dd>reference to the analysis object on which this method was called</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../../org/jamesframework/ext/analysis/UnknownIDException.html" title="class in org.jamesframework.ext.analysis">UnknownIDException</a></code> - if no search with this ID has been added</dd>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>n</code> is not strictly positive</dd>
 </dl>
 </li>
 </ul>
@@ -350,6 +353,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dd>reference to the analysis object on which this method was called</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../../org/jamesframework/ext/analysis/DuplicateIDException.html" title="class in org.jamesframework.ext.analysis">DuplicateIDException</a></code> - if a problem has already been added with the specified ID</dd>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> is <code>null</code></dd>
 </dl>
 </li>
 </ul>
@@ -373,6 +377,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dd>reference to the analysis object on which this method was called</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../../org/jamesframework/ext/analysis/DuplicateIDException.html" title="class in org.jamesframework.ext.analysis">DuplicateIDException</a></code> - if a search has already been added with the specified ID</dd>
+<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>searchFactory</code> is <code>null</code></dd>
 </dl>
 </li>
 </ul>
