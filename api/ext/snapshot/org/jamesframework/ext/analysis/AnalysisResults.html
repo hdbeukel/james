@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -202,6 +202,12 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </td>
 </tr>
 <tr id="i6" class="altColor">
+<td class="colFirst"><code><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="class in org.jamesframework.ext.analysis">AnalysisResults</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="type parameter in AnalysisResults">SolutionType</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#merge-org.jamesframework.ext.analysis.AnalysisResults-">merge</a></span>(<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="class in org.jamesframework.ext.analysis">AnalysisResults</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="type parameter in AnalysisResults">SolutionType</a>&gt;&nbsp;otherResults)</code>
+<div class="block">Merge the given results into this results object.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#registerSearchRun-java.lang.String-java.lang.String-java.util.List-">registerSearchRun</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID,
                  <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID,
@@ -209,14 +215,14 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <div class="block">Register results of a search run, specifying the IDs of the problem being solved and the applied search.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#writeJSON-java.lang.String-">writeJSON</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;filePath)</code>
 <div class="block">Write the results to a JSON file that can be loaded into R to be inspected and visualized using
  the james-analysis R package.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#writeJSON-java.lang.String-org.jamesframework.ext.analysis.JsonConverter-">writeJSON</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;filePath,
          <a href="../../../../org/jamesframework/ext/analysis/JsonConverter.html" title="interface in org.jamesframework.ext.analysis">JsonConverter</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="type parameter in AnalysisResults">SolutionType</a>&gt;&nbsp;solutionJsonConverter)</code>
@@ -264,6 +270,24 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="merge-org.jamesframework.ext.analysis.AnalysisResults-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>merge</h4>
+<pre>public&nbsp;<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="class in org.jamesframework.ext.analysis">AnalysisResults</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="type parameter in AnalysisResults">SolutionType</a>&gt;&nbsp;merge(<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="class in org.jamesframework.ext.analysis">AnalysisResults</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="type parameter in AnalysisResults">SolutionType</a>&gt;&nbsp;otherResults)</pre>
+<div class="block">Merge the given results into this results object. A deep copy of the newly added search 
+ runs is made. The contained objects of type <a href="../../../../org/jamesframework/ext/analysis/BestSolutionUpdate.html" title="class in org.jamesframework.ext.analysis"><code>BestSolutionUpdate</code></a> are <b>not</b>
+ copied but reused, as they are immutable.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>otherResults</code> - other results to be merged into this results object</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a reference to the updated results object</dd>
+</dl>
+</li>
+</ul>
 <a name="registerSearchRun-java.lang.String-java.lang.String-java.util.List-">
 <!--   -->
 </a>
