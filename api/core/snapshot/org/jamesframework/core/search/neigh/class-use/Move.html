@@ -160,15 +160,6 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code>default <a href="../../../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a></code></td>
-<td class="colLast"><span class="typeNameLabel">Problem.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/Problem.html#evaluate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">evaluate</a></span>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&gt;&nbsp;move,
-        <a href="../../../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;curSolution,
-        <a href="../../../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;curEvaluation)</code>
-<div class="block">
- Evaluates a move that will be applied to the current solution of a local search (delta evaluation).</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a></code></td>
 <td class="colLast"><span class="typeNameLabel">AbstractProblem.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html#evaluate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">evaluate</a></span>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">SolutionType</a>&gt;&nbsp;move,
         <a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">SolutionType</a>&nbsp;curSolution,
@@ -177,22 +168,31 @@
  the penalizing constraints (if any).</div>
 </td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><code>default <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></code></td>
-<td class="colLast"><span class="typeNameLabel">Problem.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/Problem.html#validate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.constraints.validations.Validation-">validate</a></span>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&gt;&nbsp;move,
+<tr class="rowColor">
+<td class="colFirst"><code>default <a href="../../../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a></code></td>
+<td class="colLast"><span class="typeNameLabel">Problem.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/Problem.html#evaluate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">evaluate</a></span>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&gt;&nbsp;move,
         <a href="../../../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;curSolution,
-        <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;curValidation)</code>
+        <a href="../../../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;curEvaluation)</code>
 <div class="block">
- Validates a move that will be applied to the current solution of a local search (delta validation).</div>
+ Evaluates a move that will be applied to the current solution of a local search (delta evaluation).</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></code></td>
 <td class="colLast"><span class="typeNameLabel">AbstractProblem.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html#validate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.constraints.validations.Validation-">validate</a></span>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">SolutionType</a>&gt;&nbsp;move,
         <a href="../../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="type parameter in AbstractProblem">SolutionType</a>&nbsp;curSolution,
         <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;curValidation)</code>
 <div class="block">
  Validate a move by checking all mandatory constraints.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>default <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></code></td>
+<td class="colLast"><span class="typeNameLabel">Problem.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/Problem.html#validate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.constraints.validations.Validation-">validate</a></span>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&gt;&nbsp;move,
+        <a href="../../../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;curSolution,
+        <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;curValidation)</code>
+<div class="block">
+ Validates a move that will be applied to the current solution of a local search (delta validation).</div>
 </td>
 </tr>
 </tbody>
@@ -210,21 +210,21 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code>default &lt;ActualSolutionType extends <a href="../../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="type parameter in PenalizingConstraint">SolutionType</a>&gt;<br><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints.validations">PenalizingValidation</a></code></td>
-<td class="colLast"><span class="typeNameLabel">PenalizingConstraint.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html#validate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.constraints.validations.Validation-DataType-">validate</a></span>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super ActualSolutionType&gt;&nbsp;move,
-        ActualSolutionType&nbsp;curSolution,
-        <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;curValidation,
-        <a href="../../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="type parameter in PenalizingConstraint">DataType</a>&nbsp;data)</code>
-<div class="block">
- Validates a move that will be applied to the current solution of a local search (delta validation).</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code>default &lt;ActualSolutionType extends <a href="../../../../../../org/jamesframework/core/problems/constraints/Constraint.html" title="type parameter in Constraint">SolutionType</a>&gt;<br><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></code></td>
 <td class="colLast"><span class="typeNameLabel">Constraint.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/constraints/Constraint.html#validate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.constraints.validations.Validation-DataType-">validate</a></span>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super ActualSolutionType&gt;&nbsp;move,
         ActualSolutionType&nbsp;curSolution,
         <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;curValidation,
         <a href="../../../../../../org/jamesframework/core/problems/constraints/Constraint.html" title="type parameter in Constraint">DataType</a>&nbsp;data)</code>
+<div class="block">
+ Validates a move that will be applied to the current solution of a local search (delta validation).</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>default &lt;ActualSolutionType extends <a href="../../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="type parameter in PenalizingConstraint">SolutionType</a>&gt;<br><a href="../../../../../../org/jamesframework/core/problems/constraints/validations/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints.validations">PenalizingValidation</a></code></td>
+<td class="colLast"><span class="typeNameLabel">PenalizingConstraint.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html#validate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.constraints.validations.Validation-DataType-">validate</a></span>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super ActualSolutionType&gt;&nbsp;move,
+        ActualSolutionType&nbsp;curSolution,
+        <a href="../../../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;curValidation,
+        <a href="../../../../../../org/jamesframework/core/problems/constraints/PenalizingConstraint.html" title="type parameter in PenalizingConstraint">DataType</a>&nbsp;data)</code>
 <div class="block">
  Validates a move that will be applied to the current solution of a local search (delta validation).</div>
 </td>
@@ -350,32 +350,32 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><span class="typeNameLabel">FullTabuMemory.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/tabu/FullTabuMemory.html#isTabu-org.jamesframework.core.search.neigh.Move-SolutionType-">isTabu</a></span>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="type parameter in FullTabuMemory">SolutionType</a>&gt;&nbsp;move,
-      <a href="../../../../../../org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="type parameter in FullTabuMemory">SolutionType</a>&nbsp;currentSolution)</code>
-<div class="block">Verifies whether the given move is tabu by applying it to the current solution and checking if the obtained
- neighbour is currently contained in the tabu memory.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><span class="typeNameLabel">TabuMemory.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html#isTabu-org.jamesframework.core.search.neigh.Move-SolutionType-">isTabu</a></span>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html" title="type parameter in TabuMemory">SolutionType</a>&gt;&nbsp;move,
       <a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html" title="type parameter in TabuMemory">SolutionType</a>&nbsp;currentSolution)</code>
 <div class="block">Indicates whether the given move is tabu, considering the current solution to which it will be applied
  and the current state of the tabu memory.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">FullTabuMemory.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/tabu/FullTabuMemory.html#registerVisitedSolution-SolutionType-org.jamesframework.core.search.neigh.Move-">registerVisitedSolution</a></span>(<a href="../../../../../../org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="type parameter in FullTabuMemory">SolutionType</a>&nbsp;visitedSolution,
-                       <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="type parameter in FullTabuMemory">SolutionType</a>&gt;&nbsp;appliedMove)</code>
-<div class="block">A newly visited solution is registered by storing a deep copy of this solution in the full tabu memory.</div>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><span class="typeNameLabel">FullTabuMemory.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/tabu/FullTabuMemory.html#isTabu-org.jamesframework.core.search.neigh.Move-SolutionType-">isTabu</a></span>(<a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="type parameter in FullTabuMemory">SolutionType</a>&gt;&nbsp;move,
+      <a href="../../../../../../org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="type parameter in FullTabuMemory">SolutionType</a>&nbsp;currentSolution)</code>
+<div class="block">Verifies whether the given move is tabu by applying it to the current solution and checking if the obtained
+ neighbour is currently contained in the tabu memory.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">TabuMemory.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html#registerVisitedSolution-SolutionType-org.jamesframework.core.search.neigh.Move-">registerVisitedSolution</a></span>(<a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html" title="type parameter in TabuMemory">SolutionType</a>&nbsp;visitedSolution,
                        <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html" title="type parameter in TabuMemory">SolutionType</a>&gt;&nbsp;appliedMove)</code>
 <div class="block">Register a newly visited solution in the tabu memory.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">FullTabuMemory.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/tabu/FullTabuMemory.html#registerVisitedSolution-SolutionType-org.jamesframework.core.search.neigh.Move-">registerVisitedSolution</a></span>(<a href="../../../../../../org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="type parameter in FullTabuMemory">SolutionType</a>&nbsp;visitedSolution,
+                       <a href="../../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../../org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="type parameter in FullTabuMemory">SolutionType</a>&gt;&nbsp;appliedMove)</code>
+<div class="block">A newly visited solution is registered by storing a deep copy of this solution in the full tabu memory.</div>
 </td>
 </tr>
 </tbody>
