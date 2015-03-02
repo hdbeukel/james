@@ -51,7 +51,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="class in org.jamesframework.ext.analysis"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../org/jamesframework/ext/analysis/BestSolutionUpdate.html" title="class in org.jamesframework.ext.analysis"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../org/jamesframework/ext/analysis/DuplicateIDException.html" title="class in org.jamesframework.ext.analysis"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?org/jamesframework/ext/analysis/AnalysisResults.html" target="_top">Frames</a></li>
@@ -186,12 +186,11 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/BestSolutionUpdate.html" title="class in org.jamesframework.ext.analysis">BestSolutionUpdate</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="type parameter in AnalysisResults">SolutionType</a>&gt;&gt;</code></td>
+<td class="colFirst"><code><a href="../../../../org/jamesframework/ext/analysis/SearchRunResults.html" title="class in org.jamesframework.ext.analysis">SearchRunResults</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="type parameter in AnalysisResults">SolutionType</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#getRun-java.lang.String-java.lang.String-int-">getRun</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID,
       <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID,
       int&nbsp;i)</code>
-<div class="block">Get the results of the i-th performed run of the given search when solving the given
- problem (unmodifiable list view).</div>
+<div class="block">Get the results of the i-th performed run of the given search when solving the given problem.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
@@ -209,9 +208,9 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#registerSearchRun-java.lang.String-java.lang.String-java.util.List-">registerSearchRun</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#registerSearchRun-java.lang.String-java.lang.String-org.jamesframework.ext.analysis.SearchRunResults-">registerSearchRun</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID,
                  <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID,
-                 <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/BestSolutionUpdate.html" title="class in org.jamesframework.ext.analysis">BestSolutionUpdate</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="type parameter in AnalysisResults">SolutionType</a>&gt;&gt;&nbsp;run)</code>
+                 <a href="../../../../org/jamesframework/ext/analysis/SearchRunResults.html" title="class in org.jamesframework.ext.analysis">SearchRunResults</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="type parameter in AnalysisResults">SolutionType</a>&gt;&nbsp;run)</code>
 <div class="block">Register results of a search run, specifying the IDs of the problem being solved and the applied search.</div>
 </td>
 </tr>
@@ -277,9 +276,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>merge</h4>
 <pre>public&nbsp;<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="class in org.jamesframework.ext.analysis">AnalysisResults</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="type parameter in AnalysisResults">SolutionType</a>&gt;&nbsp;merge(<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="class in org.jamesframework.ext.analysis">AnalysisResults</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="type parameter in AnalysisResults">SolutionType</a>&gt;&nbsp;otherResults)</pre>
-<div class="block">Merge the given results into this results object. A deep copy of the newly added search 
- runs is made. The contained objects of type <a href="../../../../org/jamesframework/ext/analysis/BestSolutionUpdate.html" title="class in org.jamesframework.ext.analysis"><code>BestSolutionUpdate</code></a> are <b>not</b>
- copied but reused, as they are immutable.</div>
+<div class="block">Merge the given results into this results object. A copy of the newly added search 
+ runs is made.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>otherResults</code> - other results to be merged into this results object</dd>
@@ -288,7 +286,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </dl>
 </li>
 </ul>
-<a name="registerSearchRun-java.lang.String-java.lang.String-java.util.List-">
+<a name="registerSearchRun-java.lang.String-java.lang.String-org.jamesframework.ext.analysis.SearchRunResults-">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -296,16 +294,15 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <h4>registerSearchRun</h4>
 <pre>public&nbsp;void&nbsp;registerSearchRun(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID,
                               <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID,
-                              <a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/BestSolutionUpdate.html" title="class in org.jamesframework.ext.analysis">BestSolutionUpdate</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="type parameter in AnalysisResults">SolutionType</a>&gt;&gt;&nbsp;run)</pre>
+                              <a href="../../../../org/jamesframework/ext/analysis/SearchRunResults.html" title="class in org.jamesframework.ext.analysis">SearchRunResults</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="type parameter in AnalysisResults">SolutionType</a>&gt;&nbsp;run)</pre>
 <div class="block">Register results of a search run, specifying the IDs of the problem being solved and the applied search.
  If no runs have been registered before for this combination of problem and search, new entries are created.
- Else, this run is appended to the existing runs. A reference to the given list is stored, its contents are
- <b>not</b> copied.</div>
+ Else, this run is appended to the existing runs.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>problemID</code> - ID of the problem being solved</dd>
 <dd><code>searchID</code> - ID of the applied search</dd>
-<dd><code>run</code> - results of the search run, represented as a list of best solution updates</dd>
+<dd><code>run</code> - results of the search run</dd>
 </dl>
 </li>
 </ul>
@@ -400,11 +397,10 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>getRun</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/BestSolutionUpdate.html" title="class in org.jamesframework.ext.analysis">BestSolutionUpdate</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="type parameter in AnalysisResults">SolutionType</a>&gt;&gt;&nbsp;getRun(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID,
-                                                     <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID,
-                                                     int&nbsp;i)</pre>
-<div class="block">Get the results of the i-th performed run of the given search when solving the given
- problem (unmodifiable list view).</div>
+<pre>public&nbsp;<a href="../../../../org/jamesframework/ext/analysis/SearchRunResults.html" title="class in org.jamesframework.ext.analysis">SearchRunResults</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="type parameter in AnalysisResults">SolutionType</a>&gt;&nbsp;getRun(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID,
+                                             <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID,
+                                             int&nbsp;i)</pre>
+<div class="block">Get the results of the i-th performed run of the given search when solving the given problem.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>problemID</code> - ID of the problem</dd>
@@ -491,7 +487,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="class in org.jamesframework.ext.analysis"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../org/jamesframework/ext/analysis/BestSolutionUpdate.html" title="class in org.jamesframework.ext.analysis"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../org/jamesframework/ext/analysis/DuplicateIDException.html" title="class in org.jamesframework.ext.analysis"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?org/jamesframework/ext/analysis/AnalysisResults.html" target="_top">Frames</a></li>

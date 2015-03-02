@@ -125,7 +125,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
  <p>
  By default, each algorithm is executed 10 times because most searches are randomized. The number of repeats can
  be tuned on an overall as well as search specific level. It is advised to perform a sufficient amount of repeats
- so that stable results are obtained.
+ so that stable results are obtained. By default, one additional burn-in run is performed for which no results
+ are tracked. This can also be adjusted on an overall or search specific level.
  </p></div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
@@ -273,7 +274,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>Analysis</h4>
 <pre>public&nbsp;Analysis()</pre>
-<div class="block">Create an analysis object. The number of performed runs of each search defaults to 10.</div>
+<div class="block">Create an analysis object. The number of performed runs of each
+ search defaults to 10, plus one additional burn-in run.</div>
 </li>
 </ul>
 </li>
@@ -516,7 +518,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <pre>public&nbsp;<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="class in org.jamesframework.ext.analysis">AnalysisResults</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="type parameter in Analysis">SolutionType</a>&gt;&nbsp;run()</pre>
 <div class="block">Run the analysis. The returned results can be accessed directly or written to a JSON file to be
  loaded into R for analysis and visualization using the james-analysis R package. The analysis
- progress is logged at INFO level, all log messages being tagged with an "analysis" marker.</div>
+ progress is logged at INFO level, all log messages being tagged with a marker "analysis".</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>results of the analysis</dd>
