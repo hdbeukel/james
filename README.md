@@ -13,7 +13,7 @@ The JAMES framework consists of several modules (managed as separate git submodu
  
  - [JAMES Core Module][core-module]: this module contains the core of the framework. It includes general components for both problem specification and search application. A wide range of generic local search algorithms are provided out-of-the-box, including random descent, steepest descent, tabu search, variable neighbourhood search and parallel tempering. Moreover, the core module contains implementations of specific components for subset selection as well as some specific subset sampling heuristics.
    
- - [JAMES Extensions Module][extensions-module]: this module extends the core with additional tools for advanced problem specification and search customization. It also provides specific components for some other problem types besides subset selection (e.g. permutation problems) and an automated analysis workflow. Analysis results can easily be studied and visualized in R using the [JAMES Analysis R package][analysis-R-package].
+ - [JAMES Extensions Module][extensions-module]: this module extends the core with additional tools for advanced problem specification and search customization. It also provides specific components for some other problem types besides subset selection (e.g. permutation problems) and an automated analysis workflow. Analysis results can be studied and visualized in R using the [JAMES Analysis R package][analysis-R-package].
                  
  - [JAMES Examples Module][examples-module]: this module provides a series of example problem implementations as described at the [website][examples-website].
 
