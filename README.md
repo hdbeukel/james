@@ -5,27 +5,17 @@ JAMES
 [![Coverage Status](http://img.shields.io/coveralls/hdbeukel/james.svg?style=flat)](https://coveralls.io/r/hdbeukel/james)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.jamesframework/james/badge.svg?style=flat)](http://search.maven.org/#search%7Cga%7C1%7Corg.jamesframework)
 
-JAMES is a modern Java framework for discrete optimization using local search metaheuristics.
-A wide range of generic optimization algorithms are provided that can be applied to any user-defined
-problem by plugging in a custom solution type and corresponding neighbourhood. Predefined components
-are included for subset selection.
+JAMES is a modern object-oriented Java framework for discrete optimization using local search metaheuristics. A wide range of generic optimization algorithms are provided that can be applied to any user-defined problem by plugging in a custom solution type and corresponding neighbourhood. Predefined components are included for subset selection.
 
 ### Modules
 
 The JAMES framework consists of several modules (managed as separate git submodules):
  
- - [JAMES Core Module][core-module]: this module contains the core of the framework. It includes general
-     components for both problem specification and search application. A wide range of generic local search
-     algorithms are provided out-of-the-box, including random descent, steepest descent, tabu search, variable
-     neighbourhood search and parallel tempering. Moreover, the core module contains implementations of specific
-     components for subset selection as well as some specific subset sampling heuristics.
+ - [JAMES Core Module][core-module]: this module contains the core of the framework. It includes general components for both problem specification and search application. A wide range of generic local search algorithms are provided out-of-the-box, including random descent, steepest descent, tabu search, variable neighbourhood search and parallel tempering. Moreover, the core module contains implementations of specific components for subset selection as well as some specific subset sampling heuristics.
    
- - [JAMES Extensions Module][extensions-module]: this module extends the core with additional tools
-        for advanced problem specification and search customization. It also provides specific
-        components for some other problem types besides subset selection (e.g. permutation problems).
+ - [JAMES Extensions Module][extensions-module]: this module extends the core with additional tools for advanced problem specification and search customization. It also provides specific components for some other problem types besides subset selection (e.g. permutation problems) and an automated analysis workflow. Analysis results can easily be studied and visualized in R using the [JAMES Analysis R package][analysis-R-package].
                  
- - [JAMES Examples Module][examples-module]: this module provides a series of example problem implementations
- 	 as described at the [website][examples-website].
+ - [JAMES Examples Module][examples-module]: this module provides a series of example problem implementations as described at the [website][examples-website].
 
 Dependencies
 ============
@@ -121,15 +111,16 @@ The JAMES framework is developed and maintained by
  
 Please use the forum instead of directly mailing the developers whenever possible, so that others may benefit from or contribute to the discussion as well.
  
-[core-module]:       https://github.com/hdbeukel/james-core
-[extensions-module]: https://github.com/hdbeukel/james-extensions
-[examples-module]:   https://github.com/hdbeukel/james-examples
-[examples-website]:  http://www.jamesframework.org/examples
-[slf4j]:             http://www.slf4j.org
-[slf4j-manual]:      http://www.slf4j.org/manual.html
-[maven]:             http://maven.apache.org
-[getstarted]:        http://www.jamesframework.org/getstarted/
-[james-website]:     http://www.jamesframework.org
-[james-wiki]:        http://github.com/hdbeukel/james/wiki
-[james-forum]:       https://groups.google.com/forum/#!forum/james-users
-[james-contact]:     http://www.jamesframework.org/contact/
+[core-module]:        https://github.com/hdbeukel/james-core
+[extensions-module]:  https://github.com/hdbeukel/james-extensions
+[examples-module]:    https://github.com/hdbeukel/james-examples
+[analysis-R-package]: https://github.com/hdbeukel/james-analysis-R
+[examples-website]:   http://www.jamesframework.org/examples
+[slf4j]:              http://www.slf4j.org
+[slf4j-manual]:       http://www.slf4j.org/manual.html
+[maven]:              http://maven.apache.org
+[getstarted]:         http://www.jamesframework.org/getstarted/
+[james-website]:      http://www.jamesframework.org
+[james-wiki]:         http://github.com/hdbeukel/james/wiki
+[james-forum]:        https://groups.google.com/forum/#!forum/james-users
+[james-contact]:      http://www.jamesframework.org/contact/
