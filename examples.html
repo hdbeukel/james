@@ -18,7 +18,7 @@ layout: default
             </h1>
             <p>
                 Step-by-step implementation guides are provided here for a series of examples. The full source code
-                of all examples is bundled in the JAMES examples module. You can browse the code on
+                of all examples is bundled in the <a href="/getstarted/#modules">examples module</a>. You can browse the code on
                 <a href="https://github.com/hdbeukel/james-examples/tree/v{{site.examples-latest-stable}}">GitHub</a>
                 or download a <a href="/getstarted/#releases-examples">ZIP file</a> that contains all
                 Java sources, a compiled JAR (including all dependencies) as well as example input files for in
@@ -26,15 +26,15 @@ layout: default
             </p>
             
             <h2 id="subset-selection" class="page-header">
-                Subset selection problems
+                Subset selection
             </h2>
             <p>
                 These examples show how to model a subset selection problem
                 and how to apply a variety of searches to find good solutions.
             </p>
             
-            <h4 class="page-header example-header">
-                Example 1: Core subset selection
+            <h4 class="page-header example-header" id="core-subset">
+                Example 1A: Core subset selection
                 <span class="hidden-xs">
                     <span class="pull-right label label-warning">
                         Difficulty:
@@ -73,7 +73,7 @@ layout: default
                 <a class="btn btn-default" href="/examples/coresubset"><i class="fa fa-chevron-right"></i> View example</a>
             </p>
             
-            <h4 class="page-header example-header">
+            <h4 class="page-header example-header" id="core-subset-2">
                 Example 1B: Core subset selection (2)
                 <span class="hidden-xs">
                     <span class="pull-right label label-warning">
@@ -100,7 +100,7 @@ layout: default
             </p>
             <p>
                 This example demonstrates how to implement such efficient delta evaluation for the same problem
-                and objective from example 1.
+                and objective from <a href="#core-subset">example 1A</a>.
                 The same basic <a href="/docs/#random-descent">random descent</a> algorithm is applied to sample a core subset,
                 using the predefined single swap neighbourhood.
             </p>
@@ -108,7 +108,7 @@ layout: default
                 <a class="btn btn-default" href="/examples/coresubset2"><i class="fa fa-chevron-right"></i> View example</a>
             </p>
             
-            <h4 class="page-header example-header">
+            <h4 class="page-header example-header" id="core-subset-3">
                 Example 1C: Core subset selection (3)
                 <span class="hidden-xs">
                     <span class="pull-right label label-warning">
@@ -145,8 +145,8 @@ layout: default
                 <a class="btn btn-default" href="/examples/coresubset3"><i class="fa fa-chevron-right"></i> View example</a>
             </p>
             
-            <h4 class="page-header example-header">
-                Example 2: The 0/1 knapsack problem
+            <h4 class="page-header example-header" id="knapsack">
+                Example 2A: The 0/1 knapsack problem
                 <span class="hidden-xs">
                     <span class="pull-right label label-warning">
                         Difficulty:
@@ -166,7 +166,7 @@ layout: default
                 </span>
             </p>
             <p>
-                The 0/1 knapsack problem is a contrained variable size subset selection problem. The input consists of a list of items
+                The 0/1 knapsack problem is a constrained variable size subset selection problem. The input consists of a list of items
                 which each have a fixed weight and profit. The goal is to select a subset of these items with maximal total profit where
                 the total weight does not exceed a given knapsack capacity. The latter requirement is imposed using a mandatory constraint
                 so that invalid solutions are discarded during search.
@@ -180,7 +180,7 @@ layout: default
                 <a class="btn btn-default" href="/examples/knapsack"><i class="fa fa-chevron-right"></i> View example</a>
             </p>
             
-            <h4 class="page-header example-header">
+            <h4 class="page-header example-header" id="knapsack-2">
                 Example 2B: The 0/1 knapsack problem (2)
                 <span class="hidden-xs">
                     <span class="pull-right label label-warning">
@@ -214,7 +214,7 @@ layout: default
                 <a class="btn btn-default" href="/examples/knapsack2"><i class="fa fa-chevron-right"></i> View example</a>
             </p>
             
-            <h4 class="page-header example-header">
+            <h4 class="page-header example-header" id="maximum-clique">
                 Example 3: The maximum clique problem
                 <span class="hidden-xs">
                     <span class="pull-right label label-warning">
@@ -255,8 +255,8 @@ layout: default
                 These examples show how to implement and solve other types of problems besides subset selection.
             </p>
             
-            <h4 class="page-header example-header">
-                Example 4: The travelling salesman problem
+            <h4 class="page-header example-header" id="tsp">
+                Example 4A: The travelling salesman problem
                 <span class="hidden-xs">
                     <span class="pull-right label label-warning">
                         Difficulty:
@@ -288,7 +288,7 @@ layout: default
                 The <a href="/docs/#random-descent">random descent</a> and
                 <a href="/docs/#parallel-tempering">parallel tempering</a>
                 algorithms are applied to optimize the round trip using a custom
-                neighbourhood that reverses subseries of cities
+                neighbourhood that reverses sub-series of cities
                 in given TSP solutions. This type of move is often referred to as a 2-opt move
                 in the context of TSP.
             </p>
@@ -296,7 +296,7 @@ layout: default
                 <a class="btn btn-default" href="/examples/tsp"><i class="fa fa-chevron-right"></i> View example</a>
             </p>
             
-            <h4 class="page-header example-header">
+            <h4 class="page-header example-header" id="tsp-2">
                 Example 4B: The travelling salesman problem (2)
                 <span class="hidden-xs">
                     <span class="pull-right label label-warning">
@@ -317,13 +317,13 @@ layout: default
             </p>
             <p>
                 This example reconsiders the travelling salesman problem. As this is actually a permutation
-                problem, generic components are designed that can be reused for any permuation problem, similar
+                problem, generic components are designed that can be reused for any permutation problem, similar
                 to the subset selection components already available in the core module. The necessary TSP data
                 and objective are then plugged in.
             </p>
             <p>
                 All generic permutation problem components designed in this example have been made available in the
-                <a href="/getstarted/#modules">JAMES extensions module</a>.
+                <a href="/getstarted/#modules">extensions module</a>.
             </p>
             <p>
                 The <a href="/docs/#parallel-tempering">parallel tempering</a>
@@ -335,7 +335,117 @@ layout: default
                 <a class="btn btn-default" href="/examples/tsp2"><i class="fa fa-chevron-right"></i> View example</a>
             </p>
             
+            <h2 id="analysis" class="page-header">
+                Analysis workflow
+            </h2>
+            <p>
+                The following examples demonstrate the automated analysis workflow from the
+                <a href="/getstarted/#modules">extensions module</a> and corresponding
+                <a href="/getstarted/#r-package">R package</a>.
+            </p>
+            
+            <h4 class="page-header example-header" id="parameter-sweep">
+                Example 5A: Parameter sweep
+                <span class="hidden-xs">
+                    <span class="pull-right label label-warning">
+                        Difficulty:
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </span>
+                </span>
+            </h4>
+            <p class="lead">
+                Find appropriate temperature range for parallel tempering.
+                <span class="algo">
+                    Algorithms: Metropolis searches with different temperatures.
+                </span>
+            </p>
+            <p>
+                ...
+            </p>
+            <p>
+                Several <a href="/docs/#metropolis-search">Metropolis searches</a>
+                with different temperatures are applied to find an appropriate
+                temperature range for parallel tempering.
+            </p>
+            <p>
+                <a class="btn btn-default" href="/examples/parametersweep"><i class="fa fa-chevron-right"></i> View example</a>
+            </p>
+            
+            <h4 class="page-header example-header" id="algo-comparison">
+                Example 5B: Algorithm comparison
+                <span class="hidden-xs">
+                    <span class="pull-right label label-warning">
+                        Difficulty:
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </span>
+                </span>
+            </h4>
+            <p class="lead">
+                Compare algorithm performance.
+                <span class="algo">
+                    Algorithms: random descent and parallel tempering.
+                </span>
+            </p>
+            <p>
+                ...
+            </p>
+            <p>
+                The performance of the <a href="/docs/#random-descent">random descent</a>
+                and <a href="/docs/#parallel-tempering">parallel tempering</a>
+                algorithms is compared. The temperature range for parallel tempering
+                is set based on the results of <a href="#parameter-sweep">example 5A</a>.
+            </p>
+            <p>
+                <a class="btn btn-default" href="/examples/algocomparison"><i class="fa fa-chevron-right"></i> View example</a>
+            </p>
+            
         </div><!-- end of content -->
+        
+        <!-- sidebar -->
+        <div class="col-md-3 hidden-xs hidden-sm">
+            <div class="bs-docs-sidebar" data-spy="affix" data-offset-top="150" data-offset-bottom="150">
+                <ul class="nav nav-stacked">
+                    <li class="active sidebar-lead">
+                         <a href="#page-header">Examples</a>
+                    </li>
+                    <li>
+                        <a href="#subset-selection">Subset selection</a>
+                        <ul class="nav nav-stacked">
+                            <li><a href="#core-subset">Core subset</a></li>
+                            <li><a href="#core-subset-2">Core subset (2)</a></li>
+                            <li><a href="#core-subset-3">Core subset (3)</a></li>
+                            <li><a href="#knapsack">Knapsack</a></li>
+                            <li><a href="#knapsack-2">Knapsack (2)</a></li>
+                            <li><a href="#maximum-clique">Maximum clique</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#beyond-subset-selection">Beyond subset selection</a>
+                        <ul class="nav nav-stacked">
+                            <li><a href="#tsp">Travelling salesman</a></li>
+                            <li><a href="#tsp-2">Travelling salesman (2)</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#analysis">Analysis workflow</a>
+                        <ul class="nav nav-stacked">
+                            <li><a href="#parameter-sweep">Parameter sweep</a></li>
+                            <li><a href="#algo-comparison">Algorithm comparison</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <a class="back-to-top" href="#">Back to top</a>
+            </div>
+        </div><!-- end of sidebar -->
+        
     </div><!-- end of row -->    
 </div>
 

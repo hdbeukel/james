@@ -23,7 +23,7 @@ layout: default
     </div>
     <p>
         This example demonstrates the implementation of a core subset selection problem
-        (see <a href="/examples/coresubset/">example 1</a> and <a href="/examples/coresubset2/">example 1B</a>) with a different objective: maximize the
+        (see <a href="/examples/coresubset/">example 1A</a> and <a href="/examples/coresubset2/">example 1B</a>) with a different objective: maximize the
         average distance of each selected item to the <em>closest</em> other selected item (instead of the average distance between <em>all</em> pairs).
         To be able to provide an efficient delta evaluation, the objective generates custom evaluation objects that store additional
         metadata. Both a basic random descent as well as an advanced parallel tempering algorithm are applied to optimize the core.
@@ -291,7 +291,7 @@ public class EntryToNearestEntryObjective implements Objective&lt;SubsetSolution
         Selecting a core subset
     </h4>
     <p>
-        As in <a href="/examples/coresubset/#select-core">example 1</a> we can easily apply a basic random descent search to select a core,
+        As in <a href="/examples/coresubset/#select-core">example 1A</a> we can easily apply a basic random descent search to select a core,
         using the predefined <code>SingleSwapNeighbourhood</code>. The only difference is the objective function.
     </p>
 <pre class="prettyprint">
@@ -312,7 +312,7 @@ RandomDescent&lt;SubsetSolution&gt; search = new RandomDescent&lt;&gt;(problem, 
 // set maximum runtime (in seconds)
 long timeLimit = ...
 search.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
-// attach listener (see example 1)
+// attach listener (see example 1A)
 search.addSearchListener(new ProgressSearchListener());
 
 // start search
@@ -332,7 +332,7 @@ search.dispose();
     <p>
         However, you may notice that subsequent runs of this algorithm tend to give different results of varying quality. This means that
         the search gets stuck in different local optima so that it would be appropriate to apply a more advanced algorithm, as this objective
-        function seems to be harder to optimize than the average pairwise distance objective from <a href="/examples/coresubset/#objective">example 1</a>.
+        function seems to be harder to optimize than the average pairwise distance objective from <a href="/examples/coresubset/#objective">example 1A</a>.
     </p>
     <p id="parallel-tempering">
         An example of such advanced method is the <a href="/docs/#parallel-tempering">parallel tempering</a> algorithm,

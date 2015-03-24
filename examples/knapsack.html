@@ -10,7 +10,7 @@ layout: default
     </ol>
     
     <h2 class="page-header">
-        Example 2: The 0/1 knapsack problem
+        Example 2A: The 0/1 knapsack problem
     </h2>
     
     <div class="bs-callout bs-callout-info">
@@ -321,7 +321,7 @@ problem.addMandatoryConstraint(constraint);
         of variable size subsets.
         The solution type of the search is fixed to <code>SubsetSolution</code>. A maximum runtime is specified as stop criterion and a
         <code>ProgressSearchListener</code> is attached to track the progress of the search (see
-        <a href="/examples/coresubset/#search-listener">example 1: core subset selection</a>).
+        <a href="/examples/coresubset/#search-listener">example 1A: core subset selection</a>).
     </p>
 <pre class="prettyprint">
 // create random descent search with single perturbation neighbourhood
@@ -329,7 +329,7 @@ RandomDescent&lt;SubsetSolution&gt; randomDescent = new RandomDescent&lt;&gt;(pr
 // set maximum runtime
 long timeLimit = ...
 randomDescent.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
-// attach listener (see example 1)
+// attach listener (see example 1A)
 randomDescent.addSearchListener(new ProgressSearchListener());
 </pre>
     <p id="custom-initial-solution">

@@ -37,7 +37,7 @@ layout: default
         A permutation problem consists of finding an optimal order of a list of items. Thus, a solution to such problem indicates a specific order.
         We will assume that every item is identified with a unique integer ID. This assumption is imposed later when defining a generic permutation
         problem. A <code>PermutationSolution</code> thus reflects an ordered list of these IDs. It's implementation is very similar to that of
-        the <code>TSPSolution</code> from <a href="/examples/tsp/#solution-type">example 4</a>.
+        the <code>TSPSolution</code> from <a href="/examples/tsp/#solution-type">example 4A</a>.
     </p>
 <pre class="prettyprint">
 public class PermutationSolution extends Solution {
@@ -102,7 +102,7 @@ public class PermutationSolution extends Solution {
     <p>
         <code>AbstractProblem</code> has a single abstract method that is to be implemented in <code>PermutationProblem</code> responsible for
         creating a random solution. It is implemented in the same way as the corresponding method in the <code>TSPProblem</code> from
-        <a href="/examples/tsp/#problem">example 4</a>. The IDs of the items in the data set are retrieved from the data object.
+        <a href="/examples/tsp/#problem">example 4A</a>. The IDs of the items in the data set are retrieved from the data object.
     </p>
 <pre class="prettyprint">
 public class PermutationProblem&lt;DataType extends IntegerIdentifiedData&gt; extends AbstractProblem&lt;PermutationSolution, DataType&gt;{
@@ -130,7 +130,7 @@ public class PermutationProblem&lt;DataType extends IntegerIdentifiedData&gt; ex
         To be able to apply neighbourhood searches to solve permutation problems, we need to provide at least one neighbourhood
         for the newly defined <code>PermutationSolution</code>.
         Here we create a <code>ReverseSubsequenceNeighbourhood</code> and corresponding move, similar to the <code>TSP2OptNeighbourhood</code>
-        and move introduced in <a href="/examples/tsp/#neigh">example 4</a>.
+        and move introduced in <a href="/examples/tsp/#neigh">example 4A</a>.
     </p>
     <div class="bs-callout bs-callout-info">
         <h4>
@@ -266,7 +266,7 @@ public class TSPData implements IntegerIdentifiedData {
     <p>
         The objective evaluates a permutation solution by computing the total travel distance of the round trip that visits cities in the
         order in which they occur in the permutation. The implementation is similar to that of the respective evaluation method in the <code>TSPProblem</code>
-        from <a href="/examples/tsp/#problem">example 4</a> and also includes an efficient delta evaluation for the applied move type. The solution type is
+        from <a href="/examples/tsp/#problem">example 4A</a> and also includes an efficient delta evaluation for the applied move type. The solution type is
         set to <code>PermutationSolution</code> and the data type to <code>TSPDta</code> which contains the distance matrix.
     </p>
 <pre class="prettyprint">
@@ -339,7 +339,7 @@ public class TSPObjective implements Objective&lt;PermutationSolution, TSPData&g
         Optimizing the round trip
     </h4>
     <p>
-        We can apply a parallel tempering algorithm in the same way as in <a href="/examples/tsp/#optimization">example 4</a>.
+        We can apply a parallel tempering algorithm in the same way as in <a href="/examples/tsp/#optimization">example 4A</a>.
         The problem is now a <code>PermutationProblem</code> that contains the TSP data and objective.
         The <code>ReverseSubsequenceNeighbourhood</code> is applied which corresponds to a 2-opt neighbourhood
         in the context of TSP.
@@ -371,7 +371,7 @@ parallelTempering.setTemperatureScaleFactor(scale);
 // set maximum runtime
 long timeLimit = ...
 parallelTempering.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
-// attach listener (see example 1)
+// attach listener (see example 1A)
 parallelTempering.addSearchListener(new ProgressSearchListener());
 
 // start search
@@ -390,7 +390,7 @@ parallelTempering.dispose();
 </pre>
     <p>
         The average travel distance between each pair of cities is easily computed, to be used as scale factor for the temperatures
-        (see <a href="/examples/tsp/#optimization">example 4</a>).
+        (see <a href="/examples/tsp/#optimization">example 4A</a>).
     </p>
 <pre class="prettyprint">
 double computeAverageTravelDistance(TSPData data){
@@ -412,7 +412,7 @@ double computeAverageTravelDistance(TSPData data){
         Other permutation problems
     </h4>
     <p>
-        The advantage of this approach compared to that from <a href="/examples/tsp/">example 4</a> is that
+        The advantage of this approach compared to that from <a href="/examples/tsp/">example 4A</a> is that
         any other permutation problem can now also be defined using the provided generic solution type, problem definition and
         neighbourhood(s). These reusable components have been made available in the <a href="/getstarted/#modules">JAMES extensions module</a>.
         Source code can be found on <a href="https://github.com/hdbeukel/james-extensions/tree/v{{site.extensions-latest-stable}}/src/main/java/org/jamesframework/ext/permutation">GitHub</a>.

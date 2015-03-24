@@ -10,7 +10,7 @@ layout: default
     </ol>
     
     <h2 class="page-header">
-        Example 4: The travelling salesman problem
+        Example 4A: The travelling salesman problem
     </h2>
     
     <div class="bs-callout bs-callout-info">
@@ -381,7 +381,7 @@ LocalSearch&lt;TSPSolution&gt; randomDescent = new RandomDescent&lt;&gt;(problem
 // set maximum runtime
 long timeLimit = ...
 randomDescent.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
-// attach listener (see example 1)
+// attach listener (see example 1A)
 randomDescent.addSearchListener(new ProgressSearchListener());
 
 // start search
