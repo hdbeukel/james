@@ -339,7 +339,7 @@ layout: default
                 Analysis workflow
             </h2>
             <p>
-                The following examples demonstrate the automated analysis workflow from the
+                The following examples show how to use the automated analysis workflow from the
                 <a href="/getstarted/#modules">extensions module</a> and corresponding
                 <a href="/getstarted/#r-package">R package</a>.
             </p>
@@ -364,13 +364,14 @@ layout: default
                 </span>
             </p>
             <p>
-                This example shows how to perform a parameter sweep using the provided tools from the
+                This example demonstrates how to perform a parameter sweep using the provided tools from the
                 <a href="/getstarted/#modules">extensions module</a>.
                 The core subset selection problem from <a href="#core-subset-3">example 1C</a> is used as a case study,
                 where the entry-to-nearest-entry objective is maximized.
                 Different <a href="/docs/#metropolis-search">Metropolis searches</a> with varying fixed temperatures
                 are applied to find an appropriate temperature range to be used for a parallel tempering search
-                (see <a href="#algo-comparison">example 5B</a>).
+                (see <a href="#algo-comparison">example 5B</a>). The results are inspected using the provided
+                <a href="/getstarted/#r-package">R package</a>.
             </p>
             <p class="view-example-btn">
                 <a class="btn btn-default" href="/examples/parametersweep"><i class="fa fa-chevron-right"></i> View example</a>
@@ -396,13 +397,13 @@ layout: default
                 </span>
             </p>
             <p>
-                ...
-            </p>
-            <p>
-                The performance of the <a href="/docs/#random-descent">random descent</a>
-                and <a href="/docs/#parallel-tempering">parallel tempering</a>
-                algorithms is compared. The temperature range for parallel tempering
-                is set based on the results of <a href="#parameter-sweep">example 5A</a>.
+                Compare algorithm performance using the provided tools from the <a href="/getstarted/#modules">extensions module</a>.
+                The core subset selection problem from <a href="#core-subset-3">example 1C</a> is used as a case study,
+                where the entry-to-nearest-entry objective is maximized.
+                Both <a href="/docs/#random-descent">random descent</a> as well as <a href="/docs/#parallel-tempering">parallel tempering</a>
+                are applied to solve the problem for a series of given datasets.
+                The temperature range for parallel tempering is set based on the results of <a href="#parameter-sweep">example 5A</a>.
+                The performance of both algorithms is compared using the provided <a href="/getstarted/#r-package">R package</a>.
             </p>
             <p class="view-example-btn">
                 <a class="btn btn-default" href="/examples/algocomparison"><i class="fa fa-chevron-right"></i> View example</a>
