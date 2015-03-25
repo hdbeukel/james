@@ -345,8 +345,8 @@ search.dispose();
     <p>
         When applying parallel tempering,
         the number of Metropolis replicas and the minimum and maximum temperature are specified. It is important
-        to set appropriate temperatures, taking into account the scale of the objective function. For example, whether a temperature
-        of 0.001 is considered high or low strongly depends on whether evaluations range from e.g. zero to one (as is the case here)
+        to set appropriate temperatures, taking into account the evaluation range. For example, whether a temperature
+        of 0.0001 is considered high or low strongly depends on whether evaluations range from e.g. zero to one (as is the case here)
         or from e.g. ten thousand up to a hundred thousand.
     </p>
     <div class="bs-callout bs-callout-info">
@@ -359,8 +359,8 @@ search.dispose();
     </div>
 <pre class="prettyprint">
 // create parallel tempering search with single swap neighbourhood
-double minTemp = 0.00001;
-double maxTemp = 0.001;
+double minTemp = 1e-8;
+double maxTemp = 1e-4;
 int numReplicas = 10;
 ParallelTempering&lt;SubsetSolution&gt; search = new ParallelTempering&lt;&gt;(problem,
                                                                    new SingleSwapNeighbourhood(),
