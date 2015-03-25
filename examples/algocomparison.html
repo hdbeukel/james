@@ -1,0 +1,82 @@
+---
+layout: default
+---
+
+<div>
+    <ol class="breadcrumb">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/examples">Examples</a></li>
+        <li class="active">Algorithm comparison</li>
+    </ol>
+    
+    <h2 class="page-header">
+        Example 5B: Algorithm comparison
+    </h2>
+    
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-info-circle"></i>
+            Info
+        </h4>
+        The random descent and parallel tempering algorithms are applied to sample a good core subset. Don't know what random descent is?
+        Read <a href="/docs/#random-descent">this</a>. Never heard about parallel tempering? Read <a href="/docs/#parallel-tempering">this</a>.
+    </div>
+    <p>
+        This example compares the performance of the basic random descent algorithm and the advanced parallel tempering
+        search using the automated analysis workflow from the <a href="/getstarted/#modules">extensions module</a>.
+        The core subset selection problem from <a href="/examples/coresubset3/">example 1C</a> is used as a case study.
+        The results are inspected with the provided <a href="/getstarted/#r-package">R package</a>.
+    </p>
+    
+    <h4 class="page-header">
+        Run both algorithms
+    </h4>
+    <p>
+        ...
+    </p>
+    
+    <h4 class="page-header">
+        Full source code
+    </h4>
+    <p>
+        The complete source code of this example is available on
+        <a href="https://github.com/hdbeukel/james-examples/tree/v{{site.examples-latest-stable}}/src/main/java/org/jamesframework/examples/analysis">GitHub</a>.
+        You can also download a <a href="/getstarted/#releases-examples">ZIP file</a> that contains the Java sources of all examples, a compiled
+        JAR (including all dependencies) as well as some input files for in case you want to run any of the examples. To run this example, execute
+    </p>
+<pre class="prettyprint">
+$ java -cp james-examples.jar org.jamesframework.examples.analysis.AlgoComparison &lt;selectionratio&gt; &lt;runs&gt; &lt;runtime&gt; [ &lt;inputfile&gt; ]+
+</pre>
+    </p>
+        from the command line.
+        The selection ratio determines the core size. The following arguments specify the number of runs (repeats)
+        that will be performed for each search and the runtime limit (in seconds) of each run.
+        The input files (at least one) should be CSV files in which the first row contains N
+        item names and the subsequent N rows specify an N &times; N distance matrix.
+        The analysis will be repeated for each dataset loaded from the given files.
+        All output is combined into a single file <code>AlgoComparison.json</code> that
+        can be loaded in R using the provided <a href="/getstarted/#r-package">R package</a>.
+    </p>
+    <p>
+        <a href="/files/examples/coresubset.zip"><i class="fa fa-file-archive-o"></i> Input files (ZIP)</a>
+    </p>
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
