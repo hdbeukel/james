@@ -1,0 +1,85 @@
+---
+layout: default
+---
+
+<div id="examples-coresubset">
+    <ol class="breadcrumb">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/examples">Examples</a></li>
+        <li class="active">Parameter sweep</li>
+    </ol>
+    
+    <h2 class="page-header">
+        Example 5A: Parameter sweep
+    </h2>
+    
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-info-circle"></i>
+            Info
+        </h4>
+        Several Metropolis searches are applied to find an
+        appropriate temperature range for parallel tempering. Don't know what Metropolis search is?
+        Read <a href="/docs/#metropolis-search">this</a>. Never heard about parallel tempering?
+        Read <a href="/docs/#parallel-tempering">this</a>.
+    </div>
+    <p>
+        This example demonstrates how to find an appropriate temperature range for parallel tempering using the
+        automated analysis workflow from the <a href="/getstarted/#modules">extensions module</a>. The core subset selection
+        problem from <a href="/examples/coresubset3/">example 1C</a> is used as a case study. Several Metropolis
+        searches with different fixed temperatures are applied. The results are then inspected using the
+        <a href="/getstarted/#r-package">analysis R package</a>, to infer the temperature range to be used in a
+        parallel tempering algorithm.
+    </p>
+    
+    <h4 class="page-header">
+        Metropolis searches with different temperatures
+    </h4>
+    <p>
+        ...
+    </p>
+    
+    <h4 class="page-header">
+        Full source code
+    </h4>
+    <p>
+        The complete source code of this example is available on
+        <a href="https://github.com/hdbeukel/james-examples/tree/v{{site.examples-latest-stable}}/src/main/java/org/jamesframework/examples/analysis">GitHub</a>.
+        You can also download a <a href="/getstarted/#releases-examples">ZIP file</a> that contains the Java sources of all examples, a compiled
+        JAR (including all dependencies) as well as some input files for in case you want to run any of the examples. To run this example, execute
+    </p>
+<pre class="prettyprint">
+$ java -cp james-examples.jar org.jamesframework.examples.analysis.ParameterSweep &lt;selectionratio&gt; &lt;runs&gt; &lt;runtime&gt; &lt;mintemp&gt; &lt;maxtemp&gt; &lt;numsearches&gt; [ &lt;inputfile&gt; ]+
+</pre>
+    </p>
+        from the command line.
+        The selection ratio determines the core size. The following arguments specify the number of runs (repeats)
+        that will be performed for each search, the runtime limit (in seconds) of each run, the minimum and maximum temperature
+        and the actual number of Metropolis searches (i.e. number of considered temperatures).
+        The input files (at least one) should be CSV files in which the first row contains N
+        item names and the subsequent N rows specify an N &times; N distance matrix.
+        The analysis will be repeated for each dataset loaded from the given files.
+    </p>
+    <p>
+        <a href="https://github.com/hdbeukel/james-examples/blob/v{{site.examples-latest-stable}}/additional-input.zip?raw=true"><i class="fa fa-file-archive-o"></i> Input files (ZIP)</a>
+    </p>
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

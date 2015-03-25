@@ -69,7 +69,7 @@ layout: default
                 using a predefined subset neighbourhood that swaps a single selected and unselected ID to modify the
                 current solution.
             </p>
-            <p>
+            <p class="view-example-btn">
                 <a class="btn btn-default" href="/examples/coresubset"><i class="fa fa-chevron-right"></i> View example</a>
             </p>
             
@@ -104,7 +104,7 @@ layout: default
                 The same basic <a href="/docs/#random-descent">random descent</a> algorithm is applied to sample a core subset,
                 using the predefined single swap neighbourhood.
             </p>
-            <p>
+            <p class="view-example-btn">
                 <a class="btn btn-default" href="/examples/coresubset2"><i class="fa fa-chevron-right"></i> View example</a>
             </p>
             
@@ -141,7 +141,7 @@ layout: default
                 using a predefined subset neighbourhood that swaps a single selected and unselected ID to modify the
                 current solution.
             </p>
-            <p>
+            <p class="view-example-btn">
                 <a class="btn btn-default" href="/examples/coresubset3"><i class="fa fa-chevron-right"></i> View example</a>
             </p>
             
@@ -176,7 +176,7 @@ layout: default
                 algorithms are applied to optimize the selection, using a predefined subset neighbourhood that adds, deletes or
                 swaps a (pair of) ID(s) to modify the current selection.
             </p>
-            <p>
+            <p class="view-example-btn">
                 <a class="btn btn-default" href="/examples/knapsack"><i class="fa fa-chevron-right"></i> View example</a>
             </p>
             
@@ -210,7 +210,7 @@ layout: default
                 algorithm is applied to optimize the selection, using a predefined subset neighbourhood that adds, deletes or
                 swaps a (pair of) ID(s) to modify the current selection.
             </p>
-            <p>
+            <p class="view-example-btn">
                 <a class="btn btn-default" href="/examples/knapsack2"><i class="fa fa-chevron-right"></i> View example</a>
             </p>
             
@@ -244,7 +244,7 @@ layout: default
                 neighbourhood that always adds a single vertex which is connected to all vertices in the current clique. The variable
                 neighbourhood search uses additional shaking neighbourhoods to escape from local optima.
             </p>
-            <p>
+            <p class="view-example-btn">
                 <a class="btn btn-default" href="/examples/clique"><i class="fa fa-chevron-right"></i> View example</a>
             </p>
             
@@ -292,7 +292,7 @@ layout: default
                 in given TSP solutions. This type of move is often referred to as a 2-opt move
                 in the context of TSP.
             </p>
-            <p>
+            <p class="view-example-btn">
                 <a class="btn btn-default" href="/examples/tsp"><i class="fa fa-chevron-right"></i> View example</a>
             </p>
             
@@ -331,7 +331,7 @@ layout: default
                 neighbourhood that reverses subsequences in given permutations,
                 one of the permutation neighbourhoods provided in the extensions module.
             </p>
-            <p>
+            <p class="view-example-btn">
                 <a class="btn btn-default" href="/examples/tsp2"><i class="fa fa-chevron-right"></i> View example</a>
             </p>
             
@@ -364,14 +364,15 @@ layout: default
                 </span>
             </p>
             <p>
-                ...
+                This example shows how to perform a parameter sweep using the provided tools from the
+                <a href="/getstarted/#modules">extensions module</a>.
+                The core subset selection problem from <a href="#core-subset-3">example 1C</a> is used as a case study,
+                where the entry-to-nearest-entry objective is maximized.
+                Different <a href="/docs/#metropolis-search">Metropolis searches</a> with varying fixed temperatures
+                are applied to find an appropriate temperature range to be used for a parallel tempering search
+                (see <a href="#algo-comparison">example 5B</a>).
             </p>
-            <p>
-                Several <a href="/docs/#metropolis-search">Metropolis searches</a>
-                with different temperatures are applied to find an appropriate
-                temperature range for parallel tempering.
-            </p>
-            <p>
+            <p class="view-example-btn">
                 <a class="btn btn-default" href="/examples/parametersweep"><i class="fa fa-chevron-right"></i> View example</a>
             </p>
             
@@ -403,7 +404,7 @@ layout: default
                 algorithms is compared. The temperature range for parallel tempering
                 is set based on the results of <a href="#parameter-sweep">example 5A</a>.
             </p>
-            <p>
+            <p class="view-example-btn">
                 <a class="btn btn-default" href="/examples/algocomparison"><i class="fa fa-chevron-right"></i> View example</a>
             </p>
             
