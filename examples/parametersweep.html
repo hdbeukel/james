@@ -36,8 +36,97 @@ layout: default
         Run Metropolis searches with different temperatures
     </h4>
     <p>
+        To find an appropriate temperature range for a parallel tempering algorithm, we will run several Metropolis
+        searches with different temperatures and assess their performance for a series of datasets. Each dataset
+        consists of a distance matrix based on which the entry-to-nearest-entry score of the selected subset is
+        computed (see <a href="/examples/coresubset3/">example 1C</a>). This score is to be maximized.
+        To execute the algorithms and gather statistics about the obtained solution quality, convergence, etc.
+        we will use the analysis workflow included in the <a href="/getstarted/#modules">extensions module</a>.
+        This requires to add this module as a dependency to your project, in addition to the core module.
+    </p>
+    <p>
+        The first step is to create an analysis object.
+    </p>
+<pre class="prettyprint">
+// initialize analysis object
+Analysis&lt;SubsetSolution&gt; analysis = new Analysis&lt;&gt;();
+</pre>
+    <p>
+        Then, the problems to be analyzed are added. In this example there is one problem for each
+        considered dataset and they all have the same entry-to-nearest-entry objective. Data is read
+        from CSV files using the <code>CoreSubsetFileReader</code> which is included in the full
+        <a href="https://github.com/hdbeukel/james-examples/tree/v{{site.examples-latest-stable}}/src/main/java/org/jamesframework/examples/coresubset">source code</a>
+        of <a href="/examples/coresubset/">example 1A</a> where the corresponding data type
+        <code>CoreSubsetData</code> is also defined. The <code>EntryToNearestEntryObjective</code>
+        is taken from <a href="/examples/coresubset3/">example 1C</a>.
+    </p>
+    <p>
+        The size of the constructed core is determined relative to the size of the full dataset by specifying a fixed
+        selection ratio (e.g. 0.2).
+        Every problem that is added to the analysis needs to be assigned a unique (string) ID.
+        Here, the CSV file name is used as the ID (without directories and without extension).
+    </p>
+<pre class="prettyprint">
+// set input file paths
+List&lt;String&gt; filePaths = Arrays.asList("my/input/file1.csv", "my/input/file2.csv", ...);
+// read datasets
+CoreSubsetFileReader reader = new CoreSubsetFileReader();
+List&lt;CoreSubsetData&gt; datasets = new ArrayList&lt;&gt;();
+for(String filePath : filePaths){
+  datasets.add(reader.read(filePath));
+}
+
+// create objective
+EntryToNearestEntryObjective obj = new EntryToNearestEntryObjective();
+
+// set selection ratio
+double selRatio = 0.2;
+// add problems (one per dataset)
+for(int d=0; d &lt; datasets.size(); d++){
+    // create problem
+    CoreSubsetData data = datasets.get(d);
+    int coreSize = (int) Math.round(selRatio * data.getIDs().size());
+    SubsetProblem&lt;CoreSubsetData&gt; problem = new SubsetProblem&lt;&gt;(obj, data, coreSize);
+    // set problem ID to file name (without directories and without extension)
+    String path = filePaths.get(d);
+    String filename = new File(path).getName();
+    String id = filename.substring(0, filename.lastIndexOf("."));
+    // add problem to analysis
+    analysis.addProblem(id, problem);
+}
+</pre>
+    <p>
         ...
     </p>
+<pre class="prettyprint">
+// create stop criterion
+long timeLimit = 300;
+StopCriterion stopCrit = new MaxRuntime(timeLimit, TimeUnit.SECONDS);
+
+// set temperature range
+double minTemp = 1e-8;
+double maxTemp = 1e-3;
+// set number of Metropolis searches
+int numSearches = 10;
+// create and add searches
+double tempDelta = (maxTemp - minTemp)/(numSearches - 1);
+for(int s=0; s &lt; numSearches; s++){
+    // set temperature
+    double temp = minTemp + s * tempDelta;
+    // add Metropolis search
+    String id = "MS-" + (s+1);
+    analysis.addSearch(id, problem -> {
+        Search&lt;SubsetSolution&gt; ms = new MetropolisSearch&lt;&gt;(problem, new SingleSwapNeighbourhood(), temp);
+        ms.addStopCriterion(stopCrit);
+        return ms;
+    });
+}
+</pre>
+<pre class="prettyprint">
+...
+// set number of runs
+analysis.setNumRuns(runs);
+</pre>
     
     <h4 class="page-header">
         Full source code
