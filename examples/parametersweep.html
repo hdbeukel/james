@@ -33,7 +33,7 @@ layout: default
     </p>
     
     <h4 class="page-header">
-        Run Metropolis searches with different temperatures
+        Analysis setup
     </h4>
     <p>
         To find an appropriate temperature range for a parallel tempering algorithm, we will run several Metropolis
@@ -45,14 +45,14 @@ layout: default
         This requires to add this module as a dependency to your project, in addition to the core module.
     </p>
     <p>
-        The first step is to create an analysis object.
+        The first step is to create an analysis object, specifying the solution type of the problems that will be analyzed.
     </p>
 <pre class="prettyprint">
 // initialize analysis object
 Analysis&lt;SubsetSolution&gt; analysis = new Analysis&lt;&gt;();
 </pre>
     <p>
-        Then, the problems to be analyzed are added. In this example there is one problem for each
+        Then, the problems are added. In this example there is one problem for each
         considered dataset and they all have the same entry-to-nearest-entry objective. Data is read
         from CSV files using the <code>CoreSubsetFileReader</code> which is included in the full
         <a href="https://github.com/hdbeukel/james-examples/tree/v{{site.examples-latest-stable}}/src/main/java/org/jamesframework/examples/coresubset">source code</a>
@@ -63,8 +63,8 @@ Analysis&lt;SubsetSolution&gt; analysis = new Analysis&lt;&gt;();
     <p>
         The size of the constructed core is determined relative to the size of the full dataset by specifying a fixed
         selection ratio (e.g. 0.2).
-        Every problem that is added to the analysis needs to be assigned a unique (string) ID.
-        Here, the CSV file name is used as the ID (without directories and without extension).
+        Every analyzed problem needs to be assigned a unique (string) ID.
+        Here, the file name is used as the ID (without directories and without extension).
     </p>
 <pre class="prettyprint">
 // set input file paths
@@ -82,7 +82,7 @@ EntryToNearestEntryObjective obj = new EntryToNearestEntryObjective();
 // set selection ratio
 double selRatio = 0.2;
 // add problems (one per dataset)
-for(int d=0; d &lt; datasets.size(); d++){
+for(int d = 0; d &lt; datasets.size(); d++){
     // create problem
     CoreSubsetData data = datasets.get(d);
     int coreSize = (int) Math.round(selRatio * data.getIDs().size());
@@ -96,7 +96,14 @@ for(int d=0; d &lt; datasets.size(); d++){
 }
 </pre>
     <p>
-        ...
+        Ten Metropolis searches are then added to the analysis, each with a unique ID and different fixed temperature,
+        equally spread across a given interval <code>[minTemp, maxTemp]</code>. Note that the method
+        <code>addSearch(id, searchFactory)</code> requires to specify a search factory instead of an actual search object.
+        This is because each search will be executed several times and for each such run a new search
+        object is created, using the given factory. The search factory interface is a functional interface
+        with a single method <code>create(problem)</code> to create a search that solves the given problem.
+        A search factory can therefore easily be specified with a Java 8 lambda expression, as in the example
+        code below.
     </p>
 <pre class="prettyprint">
 // create stop criterion
@@ -104,13 +111,13 @@ long timeLimit = 300;
 StopCriterion stopCrit = new MaxRuntime(timeLimit, TimeUnit.SECONDS);
 
 // set temperature range
-double minTemp = 1e-8;
-double maxTemp = 1e-3;
+double minTemp = ...
+double maxTemp = ...
 // set number of Metropolis searches
 int numSearches = 10;
 // create and add searches
 double tempDelta = (maxTemp - minTemp)/(numSearches - 1);
-for(int s=0; s &lt; numSearches; s++){
+for(int s = 0; s &lt; numSearches; s++){
     // set temperature
     double temp = minTemp + s * tempDelta;
     // add Metropolis search
@@ -122,11 +129,89 @@ for(int s=0; s &lt; numSearches; s++){
     });
 }
 </pre>
+    <p>
+        By default, every search is executed 10 times (in addition to a single <em>burn-in</em> run).
+        The number of runs can be changed using the method <code>setNumRuns(n)</code>.
+    </p>
 <pre class="prettyprint">
-...
-// set number of runs
-analysis.setNumRuns(runs);
+// run searches 5 times
+analysis.setNumRuns(5);
 </pre>
+    <p>
+        If desired, the number of burn-in runs can also be customized with <code>setNumBurnIn(n)</code>.
+        Results of these preliminary runs are not registered.
+    </p>
+    
+    <h4 class="page-header">
+        Run analysis
+    </h4>
+    <p>
+        Now that the analysis has been set up, we are ready to run it.
+    </p>
+<pre class="prettyprint">
+AnalysisResults&lt;SubsetSolution&gt; results = analysis.run();
+</pre>
+    <div class="bs-callout bs-callout-warning">
+        <h4>
+            <i class="fa fa-warning"></i> Be patient
+        </h4>
+        Wait a while for the analysis to complete. In the example setup from above, each of the 10 Metropolis searches
+        is executed 6 times (5 actual runs + 1 additional burn-in). Every run takes 5 minutes and the entire analysis is repeated
+        for each considered dataset. This yields an expected runtime of about 5 hours per dataset.
+    </div>
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-info-circle"></i> Track progress
+        </h4>
+        While an analysis is running, log messages are produced to report on the progress. All messages are tagged with a
+        marker <code>"analysis"</code> so that they can be filtered from other messages when using a marker aware logging
+        framework (such as <a href="http://logback.qos.ch">logback</a>). To pick up log messages, follow
+        <a href="/getstarted/#dependencies">these instructions</a>.
+    </div>
+    <p>
+        The results of the analysis are packed into an object of type <code>AnalysisResults</code>.
+        For every combination of an applied search and analyzed problem, the progress of each performed
+        search run and corresponding final best found solution are reported. The results of
+        a specific run can be retrieved with
+    </p>
+<pre class="prettyprint">
+SearchRunResults&lt;SubsetSolution&gt; run = results.getRun("problemID", "searchID", i);
+</pre>
+    <p>
+        using the IDs that have been assigned to the problem and search during setup, where <code>i</code>
+        indicates the search run index (a value in [0, <var>n</var>-1] when <var>n</var> search runs have
+        been performed). From the returned object, the times at which a new best solution
+        was found and the corresponding evaluation values can be retrieved, as well as the final best solution
+        obtained in this search run.
+    </p>
+    <p>
+        Although the results can be directly accessed as described above, the easiest way to inspect them is
+        through the provided <a href="/getstarted/#r-package">R package</a>. To do this, first
+        write the results to a JSON file.
+    </p>
+<pre class="prettyprint">
+results.writeJSON("ParameterSweep.json", JsonConverter.SUBSET_SOLUTION);
+</pre>
+    <p>
+        The second argument specifies how to convert solutions to JSON format. For subset selection problems,
+        the predefined <code>JsonConverter.SUBSET_SOLUTION</code> can be used, defined as
+    </p>
+<pre class="prettyprint">
+sol -> Json.array(sol.getSelectedIDs().toArray())
+</pre>
+    <p>
+        Given a subset solution, the predefined converter creates a JSON array containing the IDs of the selected items.
+        To write your own JSON converters, take a look at the <a target="_blank" href="http://bolerio.github.io/mjson/">mjson</a> library.
+        If no converter is given, the output file will not contain the actual best found solutions but only report
+        the progress in terms of obtained evaluation value over time.
+    </p>
+    
+    <h4 class="page-header">
+        Inspect results
+    </h4>
+    <p>
+        ...
+    </p>
     
     <h4 class="page-header">
         Full source code
