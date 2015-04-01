@@ -29,10 +29,286 @@ layout: default
     </p>
     
     <h4 class="page-header">
-        Run both algorithms
+        Analysis setup
     </h4>
     <p>
-        ...
+        We will use the analysis workflow from the <a href="/getstarted/#modules">extensions module</a> to gather
+        statistics about the performance of both algorithms for a series of datasets.
+        This requires to add this module as a dependency to your project, in addition to the core module.
+        Each dataset consists of a distance matrix based on which the
+        entry-to-nearest-entry score of the selected subset is computed (see <a href="/examples/coresubset3/">example 1C</a>).
+        This score is to be maximized.
+    </p>
+    <p>
+        As in <a href="/examples/parametersweep/">example 5A</a> the first step is to create an analysis object and to add
+        the problems that will be analyzed (one for each considered dataset).
+    </p>
+<pre class="prettyprint">
+// initialize analysis object
+Analysis&lt;SubsetSolution&gt; analysis = new Analysis&lt;&gt;();
+
+// set input file paths
+List&lt;String&gt; filePaths = Arrays.asList("my/input/file1.csv", "my/input/file2.csv", ...);
+// read datasets
+CoreSubsetFileReader reader = new CoreSubsetFileReader();
+List&lt;CoreSubsetData&gt; datasets = new ArrayList&lt;&gt;();
+for(String filePath : filePaths){
+  datasets.add(reader.read(filePath));
+}
+
+// create objective
+EntryToNearestEntryObjective obj = new EntryToNearestEntryObjective();
+
+// set selection ratio
+double selRatio = 0.2;
+// add problems (one per dataset)
+for(int d = 0; d &lt; datasets.size(); d++){
+    // create problem
+    CoreSubsetData data = datasets.get(d);
+    int coreSize = (int) Math.round(selRatio * data.getIDs().size());
+    SubsetProblem&lt;CoreSubsetData&gt; problem = new SubsetProblem&lt;&gt;(obj, data, coreSize);
+    // set problem ID to file name (without directories and without extension)
+    String path = filePaths.get(d);
+    String filename = new File(path).getName();
+    String id = filename.substring(0, filename.lastIndexOf("."));
+    // add problem to analysis
+    analysis.addProblem(id, problem);
+}
+</pre>
+    <p>
+        Next are the searches. In this example we will execute two different algorithms: random descent and parallel tempering.
+        For the latter, the temperature range is set based on the results of <a href="/examples/parametersweep/">example 5A</a>.
+        The same stop criterion is imposed in each run of both searches (a maximum runtime of 15 minutes).
+    </p>
+<pre class="prettyprint">
+// create stop criterion
+long timeLimit = 900;
+StopCriterion stopCrit = new MaxRuntime(timeLimit, TimeUnit.SECONDS);
+
+// add random descent
+analysis.addSearch("Random Descent", problem -> {
+    Search&lt;SubsetSolution&gt; rd = new RandomDescent&lt;&gt;(problem, new SingleSwapNeighbourhood());
+    rd.addStopCriterion(stopCrit);
+    return rd;
+});
+
+// add parallel tempering
+analysis.addSearch("Parallel Tempering", problem -> {
+    double minTemp = 1e-8;
+    double maxTemp = 1e-4;
+    int numReplicas = 10;
+    Search&lt;SubsetSolution&gt; pt = new ParallelTempering&lt;&gt;(problem,
+                                                        new SingleSwapNeighbourhood(),
+                                                        numReplicas, minTemp, maxTemp);
+    pt.addStopCriterion(stopCrit);
+    return pt;
+});
+</pre>
+    <p>
+        Both algorithms are repeated 10 times for every analyzed dataset (in addition to a single burn-in run).
+    </p>
+<pre class="prettyprint">
+// set number of runs
+analysis.setNumRuns(10);
+</pre>
+
+    
+    <h4 class="page-header">
+        Run analysis
+    </h4> 
+    <p>
+        As in <a href="/examples/#parametersweep">example 5A</a> the results obtained from running the analysis
+        are written to a JSON file, to be loaded into R using the provided <a href="/getstarted/#r-package">R package</a>.
+    </p>
+<pre class="prettyprint">
+// run analysis
+AnalysisResults&lt;SubsetSolution&gt; results = analysis.run();
+// write results to JSON
+results.writeJSON("AlgoComparison.json", JsonConverter.SUBSET_SOLUTION);
+</pre>
+    <div class="bs-callout bs-callout-warning">
+        <h4>
+            <i class="fa fa-warning"></i> Be patient
+        </h4>
+        Wait a while for the analysis to complete. In the example setup from above, both algorithms are
+        executed 11 times (10 actual runs + 1 additional burn-in). Every run takes 15 minutes and the entire
+        analysis is repeated for each dataset. This yields an expected runtime of about 6 hours per dataset.
+    </div>
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-info-circle"></i> Track progress
+        </h4>
+        While an analysis is running, log messages are produced to report on the progress. All messages are tagged with a
+        marker <code>"analysis"</code> so that they can be filtered from other messages when using a marker aware logging
+        framework (such as <a href="http://logback.qos.ch">logback</a>). To pick up log messages, follow
+        <a href="/getstarted/#dependencies">these instructions</a>.
+    </div>
+
+    <h4 class="page-header">
+        Inspect results
+    </h4> 
+    <p>
+        The obtained JSON file can be loaded into R using the provided <a href="/getstarted/#r-package">R package</a>. The package can
+        be installed from CRAN with
+    </p>
+<pre class="prettyprint">
+> install.packages("james.analysis")
+</pre>
+    <p>
+        and loaded with
+    </p>
+<pre class="prettyprint">
+> library(james.analysis)
+</pre>
+    <p>
+        Running the analysis on <a href="/files/examples/coresubset.zip"><i class="fa fa-file-archive-o"></i>&nbsp;4 datasets</a>
+        (one coconut, two maize and one pea collection) produced the file
+        <a download href="/files/examples/analysis-output/comparison.json"><i class="fa fa-file-o"></i>&nbsp;comparison.json</a>.
+        It can be loaded into R with the function <code>readJAMES</code>.
+    </p>
+<pre class="prettyprint">
+> comp &lt;- readJAMES("comparison.json")
+</pre>
+    <p>
+        Summarizing the results with
+    </p>
+<pre class="prettyprint">
+> summary(comp)
+</pre>
+    <p>
+        reveals the 4 analyzed datasets and the two applied searches. For each combination of an analyzed problem
+        and applied search, the summary reports the number of executed search runs and the mean and median value obtained
+        in those runs, together with the corresponding standard deviation and interquartile range.
+    </p>
+<pre class="output">
+Problem:         Search:             Runs:  Mean value:  St. dev:   Median:      IQR:
+---------------  ------------------  -----  -----------  --------  --------  --------
+coconut          Parallel Tempering     10        0.571  7.15e-05     0.571  0.000113
+coconut          Random Descent         10         0.57  0.000553      0.57  0.000754
+maize-accession  Parallel Tempering     10        0.579         0     0.579         0
+maize-accession  Random Descent         10        0.576  0.000673     0.576   0.00106
+maize-bulk       Parallel Tempering     10         0.43         0      0.43         0
+maize-bulk       Random Descent         10        0.429  0.000526     0.429  0.000394
+pea-small        Parallel Tempering     10        0.354  0.000274     0.354  0.000375
+pea-small        Random Descent         10        0.351  0.000477     0.351  0.000545
+</pre>
+    <p>
+        It is immediately clear that the parallel tempering algorithm produces slightly better results compared
+        to random descent, with less variance across repeated search runs. To visualize search performance using
+        box plots, run:
+    </p>
+<pre class="prettyprint">
+> boxplot(comp, problem = "coconut")
+> boxplot(comp, problem = "maize-accession")
+> boxplot(comp, problem = "maize-bulk")
+> boxplot(comp, problem = "pea-small")
+</pre>
+    <img class="centered-image narrow" src="/files/examples/analysis-output/comp-boxplots.png" />
+    <p>
+        Besides obtained solution quality, execution time is also an important characteristic of an optimization algorithm.
+        The following box plots show how much time was spent until the search process converged,
+        within the applied time limit of 15 minutes, across subsequent runs:
+    </p>
+<pre class="prettyprint">
+> boxplot(comp, problem = "coconut", type = "time")
+> boxplot(comp, problem = "maize-accession", type = "time")
+> boxplot(comp, problem = "maize-bulk", type = "time")
+> boxplot(comp, problem = "pea-small", type = "time")
+</pre>
+    <img class="centered-image narrow" src="/files/examples/analysis-output/comp-boxplots-time.png" />
+    <p>
+        By default a convergence ratio of 0.99 is used for such visualizations, meaning that the point in time is reported at which
+        99% of the progress from initial to final solution has been made. Setting the convergence ratio to 1 reports the precise
+        time at which the final best solution was found, while reducing the convergence ratio can provide interesting insights in the
+        early stage search behaviour. In this experiment, all search runs converged within at most a few minutes (often seconds) with
+        random descent being generally faster than parallel tempering (which is of course expected for an advanced algorithm).
+    </p>
+    <div class="bs-callout bs-callout-warning">
+        <h4>
+            <i class="fa fa-warning"></i> Check convergence
+        </h4>
+        If for some search the convergence times are close to the imposed runtime limit, this may indicate that more time is needed.
+        In such case it is probably a good idea to rerun the analysis with a higher runtime limit. In particular, advanced methods
+        are slower so their benefit over basic techniques only becomes clear if given enough time.
+    </div>
+    <p>
+        The function <code>plotConvergence</code> provides a different way to visualize convergence. For example, for the pea
+        collection it produces:
+    </p>
+<pre class="prettyprint">
+> plotConvergence(comp, problem = "pea-small")
+</pre>
+    <img class="centered-image extra-narrow" src="/files/examples/analysis-output/comp-conv-pea.png" />
+    <p>
+        The graph again shows that parallel tempering reaches a slightly higher convergence plateau compared to random descent
+        and that convergence occurs quite early for both algorithms. However, it is difficult to see what happens in the early
+        stage of execution. The optional arguments <code>min.time</code> and <code>max.time</code> can be used to zoom in on a
+        particular area of the curve, for example:
+    </p>
+<pre class="prettyprint">
+# combine 4 plots (2 x 2, by rows)
+> par(mfrow = c(2,2))
+# create plots with different zoom
+> for(m in c(1,5,15)){
+    plotConvergence(comp, problem = "pea-small", max.time = m * 1000)
+  }
+> plotConvergence(comp, problem = "pea-small", min.time = 1000, max.time = 10000)
+</pre>
+    <img class="centered-image wide" src="/files/examples/analysis-output/comp-conv-pea-zoom.png" />
+    <p>
+        It is now clear that random descent takes a head start, improving the solution quality more rapidly than
+        parallel tempering. After about 4 seconds parallel tempering catches up and continues to improve the solution
+        a little bit, reaching a slightly higher convergence plateau.
+        If desired, data can easily be extracted from the results for further processing. Take a look a the following functions:
+        <ul>
+            <li><code>getProblems</code></li>
+            <li><code>getSearches</code></li>
+            <li><code>getSearchRuns</code></li>
+            <li><code>getBestSolutions</code></li>
+            <li><code>getBestSolutionValues</code></li>
+            <li><code>getConvergenceTimes</code></li>
+        </ul>
+        Documentation of all functions is available through <code>?&lt;function&gt;</code>, e.g. try <code>?getBestSolutionValues</code>.
+        The R software is a very powerful tool for data analysis, even more so because of the vast amount of third-party packages.
+        For example, we can easily perform some statistical tests to draw a more strongly supported conclusion.
+    </p>
+<pre class="prettyprint">
+# load library for exact Wilcoxon rank sum test
+# if necessary install with 'install.packages("exactRankTests")'
+> library(exactRankTests)
+    
+# extract final solution values obtained by random descent
+> rd.values &lt;- lapply(getProblems(comp), function(p){
+    getBestSolutionValues(comp, problem = p, search = "Random Descent") 
+  })
+# extract final solution values obtained by parallel tempering
+> pt.values &lt;- lapply(getProblems(comp), function(p){
+    getBestSolutionValues(comp, problem = p, search = "Parallel Tempering") 
+  })
+# compute p-value of Wilcoxon rank sum test (for each problem)
+> p.values &lt;- numeric(length(rd.values))
+> for(i in 1:4){
+    p.values[i] &lt;- wilcox.exact(rd.values[[i]], pt.values[[i]])$p.value
+  }
+# adjust p-values for multiple testing (control FWER)
+> p.adjust(p.values)
+</pre>
+    <p>
+        For each analyzed problem, the values of the best found solutions in subsequent runs of both algorithms
+        are extracted. A Wilcoxon rank sum test is then applied to compare the results of the algorithms, which
+        yields one p-value per dataset. The obtained p-values are adjusted for multiple testing to control the
+        family-wise error rate (FWER) which gives the following values:
+    </p>
+<pre class="output">
+[1] 2.598021e-04 4.330035e-05 3.095975e-03 4.330035e-05
+</pre>
+    <p>
+        For each considered dataset, we can confidently reject the null hypothesis that the values obtained by random
+        descent and parallel tempering were sampled from the same distribution, at the &alpha; = 0.05 confidence level.
+        We conclude that parallel tempering tends to produce higher quality solutions than random descent.
+        Yet, the relative differences are small (always less than 1%, see results summary). Therefore, in some practical
+        settings, the basic random descent algorithm might still be preferred because of its faster convergence and near
+        optimal results.
     </p>
     
     <h4 class="page-header">
