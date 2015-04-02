@@ -1,0 +1,390 @@
+---
+layout: default
+---
+
+<div>
+    <ol class="breadcrumb">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/examples">Examples</a></li>
+        <li class="active">Parameter sweep</li>
+    </ol>
+    
+    <h2 class="page-header">
+        Example 5A: Parameter sweep
+    </h2>
+    
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-info-circle"></i>
+            Info
+        </h4>
+        Several Metropolis searches are applied to find an
+        appropriate temperature range for parallel tempering. Don't know what Metropolis search is?
+        Read <a href="/docs/#metropolis-search">this</a>. Never heard about parallel tempering?
+        Read <a href="/docs/#parallel-tempering">this</a>.
+    </div>
+    <p>
+        This example demonstrates how to find an appropriate temperature range for parallel tempering using the
+        automated analysis workflow from the <a href="/getstarted/#modules">extensions module</a>. The core subset selection
+        problem from <a href="/examples/coresubset3/">example 1C</a> is used as a case study. Several Metropolis
+        searches with different fixed temperatures are applied. The results are then inspected using the provided
+        <a href="/getstarted/#r-package">R package</a>, to infer the temperature range to be used in a
+        parallel tempering algorithm.
+    </p>
+    
+    <h4 class="page-header">
+        Analysis setup
+    </h4>
+    <p>
+        To find an appropriate temperature range for a parallel tempering algorithm, we will run several Metropolis
+        searches with different temperatures and assess their performance for a series of datasets. Each dataset
+        consists of a distance matrix based on which the entry-to-nearest-entry score of the selected subset is
+        computed (see <a href="/examples/coresubset3/">example 1C</a>). This score is to be maximized.
+        To execute the algorithms and gather statistics about the obtained solution quality, convergence, etc.
+        we will use the analysis workflow included in the <a href="/getstarted/#modules">extensions module</a>.
+        This requires to add this module as a dependency to your project, in addition to the core module.
+    </p>
+    <p>
+        The first step is to create an analysis object, specifying the solution type of the problems that will be analyzed.
+    </p>
+<pre class="prettyprint">
+// initialize analysis object
+Analysis&lt;SubsetSolution&gt; analysis = new Analysis&lt;&gt;();
+</pre>
+    <p>
+        Then, the problems are added. In this example there is one problem for each
+        considered dataset and they all have the same entry-to-nearest-entry objective. Data is read
+        from CSV files using the <code>CoreSubsetFileReader</code> which is included in the full
+        <a href="https://github.com/hdbeukel/james-examples/tree/v{{site.examples-latest-stable}}/src/main/java/org/jamesframework/examples/coresubset">source code</a>
+        of <a href="/examples/coresubset/">example 1A</a> where the corresponding data type
+        <code>CoreSubsetData</code> is also defined. The <code>EntryToNearestEntryObjective</code>
+        is taken from <a href="/examples/coresubset3/">example 1C</a>.
+    </p>
+    <p>
+        The size of the constructed core is determined relative to the size of the full dataset by specifying a fixed
+        selection ratio (e.g. 0.2).
+        Every analyzed problem needs to be assigned a unique (string) ID.
+        Here, the file name is used as the ID (without directories and without extension).
+    </p>
+<pre class="prettyprint">
+// set input file paths
+List&lt;String&gt; filePaths = Arrays.asList("my/input/file1.csv", "my/input/file2.csv", ...);
+// read datasets
+CoreSubsetFileReader reader = new CoreSubsetFileReader();
+List&lt;CoreSubsetData&gt; datasets = new ArrayList&lt;&gt;();
+for(String filePath : filePaths){
+  datasets.add(reader.read(filePath));
+}
+
+// create objective
+EntryToNearestEntryObjective obj = new EntryToNearestEntryObjective();
+
+// set selection ratio
+double selRatio = 0.2;
+// add problems (one per dataset)
+for(int d = 0; d &lt; datasets.size(); d++){
+    // create problem
+    CoreSubsetData data = datasets.get(d);
+    int coreSize = (int) Math.round(selRatio * data.getIDs().size());
+    SubsetProblem&lt;CoreSubsetData&gt; problem = new SubsetProblem&lt;&gt;(obj, data, coreSize);
+    // set problem ID to file name (without directories and without extension)
+    String path = filePaths.get(d);
+    String filename = new File(path).getName();
+    String id = filename.substring(0, filename.lastIndexOf("."));
+    // add problem to analysis
+    analysis.addProblem(id, problem);
+}
+</pre>
+    <p>
+        Ten Metropolis searches are then added to the analysis, each with a unique ID and different fixed temperature,
+        equally spread across a given interval <code>[minTemp, maxTemp]</code>. Note that the method
+        <code>addSearch(id, searchFactory)</code> requires to specify a search factory instead of an actual search object.
+        This is because each algorithm will be executed several times and for each such run a brand new search
+        is created, using the given factory. The search factory interface is a functional interface
+        with a single method <code>create(problem)</code> to create a search that solves the given problem.
+        A search factory can therefore easily be specified with a Java 8 lambda expression, as in the example
+        code below. The same stop criterion is used here for every generated search (maximum runtime of 5 minutes).
+    </p>
+<pre class="prettyprint">
+// create stop criterion
+long timeLimit = 300;
+StopCriterion stopCrit = new MaxRuntime(timeLimit, TimeUnit.SECONDS);
+
+// set temperature range
+double minTemp = ...
+double maxTemp = ...
+// set number of Metropolis searches
+int numSearches = 10;
+// create and add searches
+double tempDelta = (maxTemp - minTemp)/(numSearches - 1);
+for(int s = 0; s &lt; numSearches; s++){
+    // set temperature
+    double temp = minTemp + s * tempDelta;
+    // add Metropolis search
+    String id = "MS-" + (s+1);
+    analysis.addSearch(id, problem -> {
+        Search&lt;SubsetSolution&gt; ms = new MetropolisSearch&lt;&gt;(problem, new SingleSwapNeighbourhood(), temp);
+        ms.addStopCriterion(stopCrit);
+        return ms;
+    });
+}
+</pre>
+    <p>
+        By default, every search is executed 10 times (in addition to a single <em>burn-in</em> run).
+        The number of runs can be changed using the method <code>setNumRuns(n)</code>.
+    </p>
+<pre class="prettyprint">
+// run searches 5 times
+analysis.setNumRuns(5);
+</pre>
+    <p>
+        If desired, the number of burn-in runs can also be customized with <code>setNumBurnIn(n)</code>.
+        Results of these preliminary runs are not registered. Both settings can also be adjusted at a
+        search specific level using <code>setNumRuns(searchID, n)</code> and
+        <code>setNumBurnIn(searchID, n)</code>.
+    </p>
+    
+    <h4 class="page-header">
+        Run analysis
+    </h4>
+    <p>
+        Now that the analysis has been set up, we are ready to run it.
+    </p>
+<pre class="prettyprint">
+AnalysisResults&lt;SubsetSolution&gt; results = analysis.run();
+</pre>
+    <div class="bs-callout bs-callout-warning">
+        <h4>
+            <i class="fa fa-warning"></i> Be patient
+        </h4>
+        Wait a while for the analysis to complete. In the example setup from above, each of the 10 Metropolis searches
+        is executed 6 times (5 actual runs + 1 additional burn-in). Every run takes 5 minutes and the entire analysis is repeated
+        for each dataset. This yields an expected runtime of about 5 hours per dataset.
+    </div>
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-info-circle"></i> Track progress
+        </h4>
+        While an analysis is running, log messages are produced to report on the progress. All messages are tagged with a
+        marker <code>"analysis"</code> so that they can be filtered from other messages when using a marker aware logging
+        framework (such as <a href="http://logback.qos.ch">logback</a>). To pick up log messages, follow
+        <a href="/getstarted/#dependencies">these instructions</a>.
+    </div>
+    <p>
+        The results of the analysis are packed into an object of type <code>AnalysisResults</code>.
+        For every combination of an applied search and analyzed problem, the progress of each performed
+        search run and corresponding final best found solution are reported. The results of
+        a specific run can be retrieved with
+    </p>
+<pre class="prettyprint">
+SearchRunResults&lt;SubsetSolution&gt; run = results.getRun("problemID", "searchID", i);
+</pre>
+    <p>
+        using the IDs that have been assigned to the problem and search during setup, where <code>i</code>
+        indicates the search run index (a value in [0, <var>n</var>-1] when <var>n</var> search runs have
+        been performed). From the returned object, the times at which a new best solution
+        was found and the corresponding evaluation values can be retrieved, as well as the final best solution
+        obtained in this search run.
+    </p>
+    <p>
+        Although the results can be directly accessed as described above, the easiest way to inspect them is
+        through the provided <a href="/getstarted/#r-package">R package</a>. To do this, first
+        write the results to a JSON file.
+    </p>
+<pre class="prettyprint">
+results.writeJSON("ParameterSweep.json", JsonConverter.SUBSET_SOLUTION);
+</pre>
+    <p>
+        The second argument specifies how to convert solutions to JSON format. For subset selection problems,
+        the predefined <code>JsonConverter.SUBSET_SOLUTION</code> can be used, defined as
+    </p>
+<pre class="prettyprint">
+sol -> Json.array(sol.getSelectedIDs().toArray())
+</pre>
+    <p>
+        Given a subset solution, the predefined converter creates a JSON array containing the IDs of the selected items.
+        To write your own JSON converters, take a look at the <a target="_blank" href="http://bolerio.github.io/mjson/">mjson</a> library.
+        If no converter is given, the output file will not contain the actual best found solutions but only report
+        the progress in terms of obtained evaluation value over time.
+    </p>
+    
+    <h4 class="page-header">
+        Inspect results
+    </h4>
+    <p>
+        The obtained JSON file can be loaded into R using the provided <a href="/getstarted/#r-package">R package</a>. The package can
+        be installed from CRAN with
+    </p>
+<pre class="prettyprint">
+> install.packages("james.analysis")
+</pre>
+    <p>
+        and loaded with
+    </p>
+<pre class="prettyprint">
+> library(james.analysis)
+</pre>
+    <p>
+        Running the analysis with a minimum and maximum temperature of 10<sup>&#8209;8</sup> and 10<sup>&#8209;3</sup>, respectively, on
+        <a href="/files/examples/coresubset.zip"><i class="fa fa-file-archive-o"></i>&nbsp;4 datasets</a>
+        (one coconut, two maize and one pea collection)
+        produced the file
+        <a download href="/files/examples/analysis-output/sweep-0.001.json"><i class="fa fa-file-o"></i>&nbsp;sweep-0.001.json</a>.
+        It can be loaded into R with the function <code>readJAMES</code>.
+    </p>
+<pre class="prettyprint">
+> sweep &lt;- readJAMES("sweep-0.001.json")
+</pre>
+    <p>
+        Printing a summary with
+    </p>
+<pre class="prettyprint">
+> summary(sweep)
+</pre>
+    <p>
+        reveals the 4 analyzed datasets and the 10 applied Metropolis searches. For each combination of an analyzed problem
+        and applied search, the summary reports the number of executed search runs and the mean and median value obtained
+        in those runs, together with the corresponding standard deviation and interquartile range.
+    </p>
+<pre class="output">
+Problem:         Search:  Runs:  Mean value:  St. dev:   Median:      IQR:
+---------------  -------  -----  -----------  --------  --------  --------
+coconut          MS-1         5         0.57  0.000474      0.57  0.000521
+coconut          MS-2         5        0.564   0.00019     0.564   0.00034
+coconut          MS-3         5        0.545  0.000813     0.545  0.000706
+coconut          MS-4         5         0.53  0.000772      0.53  0.000979
+coconut          MS-5         5        0.522  0.000752     0.522   0.00117
+coconut          MS-6         5        0.515  0.000861     0.515   0.00109
+coconut          MS-7         5        0.512  0.000811     0.512  0.000549
+coconut          MS-8         5        0.509  0.000498     0.509  0.000855
+coconut          MS-9         5        0.506  0.000657     0.505  0.000862
+coconut          MS-10        5        0.504   0.00131     0.505   0.00148
+maize-accession  MS-1         5        0.576  0.000397     0.576  0.000271
+maize-accession  MS-2         5        0.578    0.0001     0.578  8.32e-05
+maize-accession  MS-3         5        0.571  0.000268     0.571  0.000137
+maize-accession  MS-4         5        0.564    0.0012     0.564   0.00139
+maize-accession  MS-5         5        0.556   0.00113     0.556   0.00059
+maize-accession  MS-6         5         0.55  0.000902      0.55   0.00131
+maize-accession  MS-7         5        0.545  0.000872     0.545  0.000276
+maize-accession  MS-8         5        0.542  0.000581     0.542  0.000705
+maize-accession  MS-9         5        0.537  0.000535     0.537  0.000958
+maize-accession  MS-10        5        0.535   0.00135     0.534   0.00226
+maize-bulk       MS-1         5         0.43  0.000101      0.43  4.02e-05
+maize-bulk       MS-2         5         0.43  8.94e-16      0.43  9.99e-16
+maize-bulk       MS-3         5         0.43  8.36e-16      0.43  9.99e-16
+maize-bulk       MS-4         5         0.43  0.000104      0.43  7.05e-15
+maize-bulk       MS-5         5        0.429  0.000276     0.429  0.000265
+maize-bulk       MS-6         5        0.428  0.000721     0.428  0.000548
+maize-bulk       MS-7         5        0.426  0.000617     0.426  0.000857
+maize-bulk       MS-8         5        0.422  0.000492     0.422  0.000383
+maize-bulk       MS-9         5        0.418  0.000931     0.418   0.00143
+maize-bulk       MS-10        5        0.415   0.00188     0.414   0.00204
+pea-small        MS-1         5        0.353  0.000761     0.353   0.00135
+pea-small        MS-2         5        0.346  0.000301     0.346  0.000285
+pea-small        MS-3         5        0.322   0.00106     0.322   0.00123
+pea-small        MS-4         5        0.303   0.00112     0.302  0.000566
+pea-small        MS-5         5        0.291   0.00107     0.291   0.00189
+pea-small        MS-6         5        0.281    0.0016     0.281  0.000265
+pea-small        MS-7         5        0.274   0.00062     0.274  0.000846
+pea-small        MS-8         5        0.268   0.00113     0.268   0.00129
+pea-small        MS-9         5        0.263  0.000811     0.263  0.000542
+pea-small        MS-10        5         0.26   0.00182      0.26   0.00128
+</pre>
+    <p>
+        To get a better overview of how the temperature influences the solution quality, we can draw box plots with the function <code>boxplot</code>.
+    </p>
+<pre class="prettyprint">
+> temp.range &lt;- seq(1e-8, 1e-3, length.out = 10)
+> x &lt;- "Temperature"
+> boxplot(sweep, problem = "coconut", names = temp.range, xlab = x)
+> boxplot(sweep, problem = "maize-accession", names = temp.range, xlab = x)
+> boxplot(sweep, problem = "maize-bulk", names = temp.range, xlab = x)
+> boxplot(sweep, problem = "pea-small", names = temp.range, xlab = x)
+</pre>
+    <p>
+        This produces the following visualizations:
+    </p>
+    <img class="centered-image wide" src="/files/examples/analysis-output/sweep-0.001-boxplots.png" />
+    <p>
+        For three of the analyzed datasets, the solution quality consistently drops when increasing the temperature.
+        Only for one of both maize collections (maize-accession) there is a slight increase in performance
+        at a temperature of about 10<sup>&#8209;4</sup>, followed by a large drop.
+        These results suggest that we might have set the maximum
+        temperature too high. So let's try again with a lower maximum temperature of 10<sup>&#8209;4</sup> (and
+        the same minimum of 10<sup>&#8209;8</sup>). This produces the output file
+        <a download href="/files/examples/analysis-output/sweep-0.0001.json"><i class="fa fa-file-o"></i>&nbsp;sweep-0.0001.json</a>.
+    </p>
+<pre class="prettyprint">
+> sweep2 &lt;- readJAMES("sweep-0.0001.json")
+> temp.range &lt;- seq(1e-8, 1e-4, length.out = 10)
+> x &lt;- "Temperature"
+> boxplot(sweep2, problem = "coconut", names = temp.range, xlab = x)
+> boxplot(sweep2, problem = "maize-accession", names = temp.range, xlab = x)
+> boxplot(sweep2, problem = "maize-bulk", names = temp.range, xlab = x)
+> boxplot(sweep2, problem = "pea-small", names = temp.range, xlab = x)
+</pre>
+    <p>
+        The box plots now look like this:
+    </p>
+    <img class="centered-image wide" src="/files/examples/analysis-output/sweep-0.0001-boxplots.png" />
+    <p>
+        When increasing the temperature there is now clearly an initial rise in solution quality, and a reduction
+        of variability across runs, for each analyzed dataset. For all datasets except one maize collection
+        (maize-bulk) this rise is followed by a moderate performance drop, which is not necessarily undesired.
+        In a parallel tempering approach, these warmer replicas increase
+        the power to escape from local optima. Yet the search strategy cannot solely be based on <em>lucky shots</em> so that
+        this range of [10<sup>&#8209;8</sup>, 10<sup>&#8209;4</sup>] is a better choice than the first attempt with a
+        higher maximum temperature of 10<sup>&#8209;3</sup>.
+    </p>
+    <p>
+        <a href="/examples/algocomparison/">Example 5B</a> actually applies parallel tempering with the chosen
+        temperature range of [10<sup>&#8209;8</sup>, 10<sup>&#8209;4</sup>] and compares its performance with that of a
+        basic random descent algorithm.
+    </p>
+    
+    <h4 class="page-header">
+        Full source code
+    </h4>
+    <p>
+        The complete source code of this example is available on
+        <a href="https://github.com/hdbeukel/james-examples/tree/v{{site.examples-latest-stable}}/src/main/java/org/jamesframework/examples/analysis">GitHub</a>.
+        You can also download a <a href="/getstarted/#releases-examples">ZIP file</a> that contains the Java sources of all examples, a compiled
+        JAR (including all dependencies) as well as some input files for in case you want to run any of the examples. To run this example, execute
+    </p>
+<pre class="prettyprint">
+$ java -cp james-examples.jar org.jamesframework.examples.analysis.ParameterSweep &lt;selectionratio&gt; &lt;runs&gt; &lt;runtime&gt; &lt;mintemp&gt; &lt;maxtemp&gt; &lt;numsearches&gt; [ &lt;inputfile&gt; ]+
+</pre>
+    </p>
+        from the command line.
+        The selection ratio determines the core size. The following arguments specify the number of runs (repeats)
+        that will be performed for each search, the runtime limit (in seconds) of each run, the minimum and maximum temperature
+        and the actual number of Metropolis searches (i.e. number of considered temperatures).
+        The input files (at least one) should be CSV files in which the first row contains N
+        item names and the subsequent N rows specify an N &times; N distance matrix.
+        The analysis will be repeated for each dataset loaded from the given files.
+        All output is combined into a single file <code>ParameterSweep.json</code> that
+        can be loaded in R using the provided <a href="/getstarted/#r-package">R package</a>.
+    </p>
+    <p>
+        <a href="/files/examples/coresubset.zip"><i class="fa fa-file-archive-o"></i> Input files (ZIP)</a>
+    </p>
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

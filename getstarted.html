@@ -48,7 +48,9 @@ layout: default
                       <dt id="extensions-module">Extensions Module</dt>
                       <dd>
                         This module extends the core with additional tools for advanced problem specification and search customization.
-                        It also provides specific components for some other problem types besides subset selection (e.g. permutation problems).
+                        It also provides specific components for some other problem types besides subset selection (e.g. permutation problems)
+                        and an automated analysis workflow.
+                        Analysis results can be studied and visualized in R using the <a href="#r-package">Analysis R package</a>.
                         The extensions module is optional and should only be included if any of its components are used.
                         <a href="https://github.com/hdbeukel/james-extensions">
                             <i class="fa fa-github"></i>
@@ -69,6 +71,27 @@ layout: default
                 </p>
             </div><!-- end of modules -->
 
+            <div id="r-package">
+              <h3 class="page-header">Analysis R package</h3>
+              <p>
+                  An R package is provided to inspect and visualize results obtained using the analysis workflow
+                  from the extensions module. The R statistical software is freely available at the
+                  <a target="_blank" href="http://www.r-project.org">R project home page</a>.
+                  The package can be installed from
+                  <a target="_blank" href="http://cran.r-project.org/web/packages/james.analysis/index.html">CRAN</a>
+                  as follows:
+<pre class="prettyprint">
+> install.packages("james.analysis")
+</pre>
+                  Then load it with:
+<pre class="prettyprint">
+> library(james.analysis)
+</pre>
+                  Documentation is included in the package. Type <code>?james.analysis</code> for an overview of
+                  the available functions. Examples demonstrating the use of the analysis tools and R package
+                  are provided <a href="/examples/#analysis">here</a>.
+              </p>
+            </div><!-- end of R package -->
 
             <div id="dependencies">
                 <h3 class="page-header">Dependencies</h3>
@@ -346,6 +369,9 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
                             <li><a href="#extensions-module">Extensions Module</a></li>
                             <li><a href="#examples-module">Examples Module</a></li>
                         </ul>
+                    </li>
+                    <li>
+                        <a href="#r-package">Analysis R package</a>
                     </li>
                     <li>
                         <a href="#dependencies">Dependencies</a>

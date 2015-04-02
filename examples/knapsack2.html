@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<div id="examples-knapsack">
+<div>
     <ol class="breadcrumb">
         <li><a href="/index.html">Home</a></li>
         <li><a href="/examples">Examples</a></li>
@@ -22,7 +22,7 @@ layout: default
         Don't know what parallel tempering is? Read <a href="/docs/#parallel-tempering">this</a>.
     </div>
     <p>
-        This example reconsiders the 0/1 knapsack problem from <a href="/examples/knapsack/">example 2</a>
+        This example reconsiders the 0/1 knapsack problem from <a href="/examples/knapsack/">example 2A</a>
         using a penalizing instead of a mandatory constraint. Please take a look at
         that example before proceeding.
     </p>
@@ -133,14 +133,14 @@ public class PenalizingKnapsackConstraint implements PenalizingConstraint&lt;Sub
 </pre>
     <p>
         It is of course possible to also provide a more efficient delta evaluation, e.g. by dynamically updating the total
-        weight of the selection as in <a href="/examples/knapsack/#delta-validation">example 2</a>. This is not discussed here.
+        weight of the selection as in <a href="/examples/knapsack/#delta-validation">example 2A</a>. This is not discussed here.
     </p>
     
     <h4 class="page-header" id="problem-specification">
         Problem specification
     </h4>
     <p>
-        As in <a href="/examples/knapsack/#problem-specification">example 2</a> we first create the problem from the objective
+        As in <a href="/examples/knapsack/#problem-specification">example 2A</a> we first create the problem from the objective
         and data, and then add the constraint, now using <code>addPenalizingConstraint(c)</code>.
         As indicated above, the constraint implementation requires that
         IDs are ordered based on the weight of the corresponding items (descending). This order can be imposed
@@ -186,7 +186,7 @@ double computeHighestProfit(KnapsackData data){
     </h4>
     <p>
         We can now apply a <a href="/docs/#parallel-tempering">parallel tempering</a> search as in
-        <a href="/examples/knapsack/#parallel-tempering">example 2</a>. It should give similar results
+        <a href="/examples/knapsack/#parallel-tempering">example 2A</a>. It should give similar results
         as compared to the approach with a mandatory constraint. Note that it is <strong>not</strong>
         required now to provide an initial solution within the constraint, the search will find its
         way to a valid solution anyway because of the way in which the penalties have been designed.
@@ -206,7 +206,7 @@ search.setTemperatureScaleFactor(scale);
 // set maximum runtime
 long timeLimit = ...
 search.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
-// attach listener (see example 1)
+// attach listener (see example 1A)
 search.addSearchListener(new ProgressSearchListener());
 // NOTE: not required to set an initial solution within the constraint (&lt;-&gt; mandatory constraint)
 
