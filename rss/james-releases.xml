@@ -2,27 +2,36 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <atom:link href="http://www.jamesframework.org/rss/james-releases.xml" rel="self" type="application/rss+xml" />
-    <title>James Framework Releases</title>
+    <title>JAMES Framework Releases</title>
     <link>http://www.jamesframework.org</link>
     <description>
-      Notification of new releases of the James framework for optimization using local search metaheuristics in Java.
+      Notification of new releases of the JAMES framework for discrete optimization using local search metaheuristics in Java.
     </description>
     <item>
-      <title>James version 0.1</title>
+      <title>JAMES Extensions and examples version 0.2.1</title>
       <link>http://www.jamesframework.org</link>
-      <guid isPermaLink="false">v0.1</guid>
-      <pubDate>25 Jun 2014</pubDate>
+      <guid isPermaLink="false">v0.2.1</guid>
+      <pubDate>02 Apr 2015</pubDate>
       <description>
-          Version 0.1 of the James framework has been released (core, extensions and examples modules).
+          Version 0.2.1 of the extensions and examples modules have been released.
       </description>
     </item>
     <item>
-      <title>James version 0.2</title>
+      <title>JAMES Version 0.2</title>
       <link>http://www.jamesframework.org</link>
       <guid isPermaLink="false">v0.2</guid>
       <pubDate>13 Nov 2014</pubDate>
       <description>
-          Version 0.2 of the James framework has been released (core, extensions and examples modules).
+          Version 0.2 of the JAMES framework has been released (core, extensions and examples modules).
+      </description>
+    </item>
+    <item>
+      <title>JAMES Version 0.1</title>
+      <link>http://www.jamesframework.org</link>
+      <guid isPermaLink="false">v0.1</guid>
+      <pubDate>25 Jun 2014</pubDate>
+      <description>
+          Version 0.1 of the JAMES framework has been released (core, extensions and examples modules).
       </description>
     </item>
   </channel>

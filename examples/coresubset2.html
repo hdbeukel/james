@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<div id="examples-coresubset">
+<div>
     <ol class="breadcrumb">
         <li><a href="/index.html">Home</a></li>
         <li><a href="/examples">Examples</a></li>
@@ -24,7 +24,7 @@ layout: default
     <p>
         This example demonstrates how to implement an objective function that includes an efficient delta evaluation used to evaluate
         a neighbour of the current solution, based on this current solution, its evaluation and the applied move.
-        The same core subset selection problem from <a href="/examples/coresubset">example 1</a>
+        The same core subset selection problem from <a href="/examples/coresubset">example 1A</a>
         is addressed using the same basic random descent algorithm. Please take a look at that example before proceeding.
     </p>
     
@@ -32,7 +32,7 @@ layout: default
         Basic objective implementation
     </h4>
     <p>
-        In <a href="/examples/coresubset/#objective">example 1</a> we provided a basic implementation of the objective
+        In <a href="/examples/coresubset/#objective">example 1A</a> we provided a basic implementation of the objective
         to maximize the average pairwise distance between all selected items.
         This implementation simply sums all pairwise distances and divides by the amount of distances.
     </p>
@@ -241,7 +241,7 @@ $ java -cp james-examples.jar org.jamesframework.examples.coresubset2.CoreSubset
         specify an N &times; N distance matrix. The runtime is given in seconds.
     </p>
     <p>
-        <a href="/files/examples/coresubset.csv"><i class="fa fa-file-text-o"></i> Example input file (100 items)</a>
+        <a href="/files/examples/coresubset.csv"><i class="fa fa-file-text-o"></i> Example input file (275 items)</a>
     </p>
     
 </div>
