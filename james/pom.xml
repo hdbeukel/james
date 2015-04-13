@@ -100,7 +100,7 @@
                 <version>2.18.1</version>
                 <configuration>
                     <!-- seat heap size to work around http://github.com/travis-ci/travis-ci/issues/3396 -->
-                    <argLine>-Xmx1024m</argLine>
+                    <argLine>${argLine} -Xmx1024m</argLine>
                 </configuration>
             </plugin>
             <!-- JaCoCo test coverage -->
@@ -134,7 +134,7 @@
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>3.1.0</version>
             </plugin>
             <!-- create test jars -->
             <plugin>
