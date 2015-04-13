@@ -197,20 +197,20 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/exceptions/SolutionModificationException.html#SolutionModificationException-java.lang.String-org.jamesframework.core.problems.Solution-">SolutionModificationException</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;msg,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/exceptions/SolutionModificationException.html#SolutionModificationException-java.lang.String-org.jamesframework.core.problems.Solution-">SolutionModificationException</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;msg,
                              <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&nbsp;solution)</code>
 <div class="block">Constructs an instance with the specified detail message.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/exceptions/SolutionModificationException.html#SolutionModificationException-java.lang.String-java.lang.Throwable-org.jamesframework.core.problems.Solution-">SolutionModificationException</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;msg,
-                             <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&nbsp;cause,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/exceptions/SolutionModificationException.html#SolutionModificationException-java.lang.String-java.lang.Throwable-org.jamesframework.core.problems.Solution-">SolutionModificationException</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;msg,
+                             <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&nbsp;cause,
                              <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&nbsp;solution)</code>
 <div class="block">Constructs an instance with the specified detail message and cause.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/exceptions/SolutionModificationException.html#SolutionModificationException-java.lang.Throwable-org.jamesframework.core.problems.Solution-">SolutionModificationException</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&nbsp;cause,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/exceptions/SolutionModificationException.html#SolutionModificationException-java.lang.Throwable-org.jamesframework.core.problems.Solution-">SolutionModificationException</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&nbsp;cause,
                              <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&nbsp;solution)</code>
 <div class="block">Constructs an instance with the specified cause.</div>
 </td>
@@ -620,7 +620,13 @@
 <tr class="altColor">
 <td class="colFirst"><code>interface&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/util/LocalSearchFactory.html" title="interface in org.jamesframework.core.util">LocalSearchFactory</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
-<div class="block">Interface of a local search factory used to create any local search.</div>
+<div class="block">Interface of a <em>local</em> search factory used to create a <em>local</em> search given the problem to be solved.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>interface&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/util/SearchFactory.html" title="interface in org.jamesframework.core.util">SearchFactory</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
+<div class="block">Interface of a search factory used to create a search given the problem to be solved.</div>
 </td>
 </tr>
 </tbody>
