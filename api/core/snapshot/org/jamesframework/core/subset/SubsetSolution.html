@@ -117,8 +117,12 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">SubsetSolution</span>
 extends <a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a></pre>
-<div class="block">High-level subset solution modeled in terms of IDs of selected items. The subset is sampled from a data set
- of items which are each assumed to be identified using a unique integer ID.</div>
+<div class="block">High-level subset solution modeled in terms of IDs of selected items. The subset is sampled from a
+ data set of items which are each required to be identified with a unique integer ID. By default, the
+ IDs are unordered. If desired, they can be ordered according to the natural ordering of integers
+ (ascending) or a custom comparator, by using an appropriate constructor. In the latter case, it is
+ safe to cast the views returned by <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getSelectedIDs--"><code>getSelectedIDs()</code></a>, <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getUnselectedIDs--"><code>getUnselectedIDs()</code></a> and
+ <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getAllIDs--"><code>getAllIDs()</code></a> to the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/NavigableSet.html?is-external=true" title="class or interface in java.util"><code>NavigableSet</code></a> subtype.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a></dd>
@@ -203,8 +207,7 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#copy--">copy</a></span>()</code>
-<div class="block">Create a deep copy of this subset solution, obtained through the copy constructor,
- passing <code>this</code> as argument.</div>
+<div class="block">Create a deep copy of this subset solution, obtained through the copy constructor.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -252,7 +255,7 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getOrderOfIDs--">getOrderOfIDs</a></span>()</code>
-<div class="block">Get the comparator used to impose an order on the set of selected, unselected and all IDs.</div>
+<div class="block">Get the comparator according to which the IDs are ordered, as specified at construction.</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
@@ -343,7 +346,7 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <div class="block">Creates a new subset solution given the set of all IDs, each corresponding to an underlying entity,
  from which a subset is to be selected. Initially, no IDs are selected. Note: IDs are copied to the
  internal data structures of the subset solution; no reference is stored to the set given at construction.
- IDs are stored in sets that do not impose any order.</div>
+ IDs are stored in general unordered sets.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>allIDs</code> - set of all IDs from which a subset is to be selected</dd>
@@ -363,7 +366,7 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
                       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;selectedIDs)</pre>
 <div class="block">Creates a new subset solution given the set of all IDs, and the set of currently selected IDs. Note: IDs
  are copied to the internal data structures of the subset solution; no reference is stored to the sets given
- at construction. IDs are stored in sets that do not impose any ordering.</div>
+ at construction. IDs are stored in general unordered sets.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>allIDs</code> - set of all IDs from which a subset is to be selected</dd>
@@ -386,8 +389,9 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <div class="block">Creates a new subset solution given the set of all IDs, each corresponding to an underlying entity,
  from which a subset is to be selected. Initially, no IDs are selected. Note: IDs are copied to the
  internal data structures of the subset solution; no reference is stored to the set given at construction.
- If <code>naturalOrder</code> is <code>true</code>, the set of selected, unselected and all IDs will be
- ordered according to the natural ordering of integers (ascending); else, no ordering is imposed on the IDs.</div>
+ If <code>naturalOrder</code> is <code>true</code>, the sets of selected, unselected and all IDs are represented
+ as navigable sorted sets ordered according to the natural ordering of integers (ascending); else, no ordering
+ is imposed.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>allIDs</code> - set of all IDs from which a subset is to be selected</dd>
@@ -410,9 +414,9 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
                       boolean&nbsp;naturalOrder)</pre>
 <div class="block">Creates a new subset solution given the set of all IDs, and the set of currently selected IDs. Note: IDs
  are copied to the internal data structures of the subset solution; no reference is stored to the sets given
- at construction. If <code>naturalOrder</code> is <code>true</code>, the set of selected, unselected and all
- IDs will be ordered according to the natural ordering of integers (ascending); else, no ordering is imposed
- on the IDs.</div>
+ at construction. If <code>naturalOrder</code> is <code>true</code>, the sets of selected, unselected and all
+ IDs are represented as navigable sorted sets ordered according to the natural ordering of integers (ascending);
+ else, no ordering is imposed.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>allIDs</code> - set of all IDs from which a subset is to be selected</dd>
@@ -437,8 +441,8 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <div class="block">Creates a new subset solution given the set of all IDs, each corresponding to an underlying entity,
  from which a subset is to be selected. Initially, no IDs are selected. Note: IDs are copied to the
  internal data structures of the subset solution; no reference is stored to the set given at construction.
- The order defined by the given <code>comparator</code> is imposed on the set of selected, unselected and
- all IDs; if this argument is <code>null</code> no order is imposed.</div>
+ If <code>orderOfIDs</code> is not <code>null</code>, the sets of selected, unselected and all IDs are
+ represented as navigable sorted sets ordered according to this comparator; else, no ordering is imposed.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>allIDs</code> - set of all IDs from which a subset is to be selected</dd>
@@ -461,8 +465,9 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
                       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;orderOfIDs)</pre>
 <div class="block">Creates a new subset solution given the set of all IDs, and the set of currently selected IDs. Note: IDs
  are copied to the internal data structures of the subset solution; no reference is stored to the sets given
- at construction. The order defined by the given <code>comparator</code> is imposed on the set of selected,
- unselected and all IDs; if this argument is <code>null</code> no order is imposed.</div>
+ at construction. If <code>orderOfIDs</code> is not <code>null</code>, the sets of selected, unselected and
+ all IDs are represented as navigable sorted sets ordered according to this comparator; else, no ordering is
+ imposed.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>allIDs</code> - set of all IDs from which a subset is to be selected</dd>
@@ -489,7 +494,7 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
  same ordering on the IDs (if any).</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>sol</code> - solution to copy</dd>
+<dd><code>sol</code> - solution to copy (deep copy)</dd>
 </dl>
 </li>
 </ul>
@@ -508,8 +513,7 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <li class="blockList">
 <h4>copy</h4>
 <pre>public&nbsp;<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;copy()</pre>
-<div class="block">Create a deep copy of this subset solution, obtained through the copy constructor,
- passing <code>this</code> as argument.</div>
+<div class="block">Create a deep copy of this subset solution, obtained through the copy constructor.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../../org/jamesframework/core/problems/Solution.html#copy--">copy</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a></code></dd>
@@ -525,7 +529,7 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <li class="blockList">
 <h4>getOrderOfIDs</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;getOrderOfIDs()</pre>
-<div class="block">Get the comparator used to impose an order on the set of selected, unselected and all IDs.
+<div class="block">Get the comparator according to which the IDs are ordered, as specified at construction.
  May return <code>null</code> which means that no order has been imposed.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -640,8 +644,10 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <li class="blockList">
 <h4>getSelectedIDs</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;getSelectedIDs()</pre>
-<div class="block">Returns an unmodifiable view of the set of currently selected IDs. Any attempt to modify the returned set
- will result in an <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/UnsupportedOperationException.html?is-external=true" title="class or interface in java.lang"><code>UnsupportedOperationException</code></a>.</div>
+<div class="block">Returns an unmodifiable view of the set of currently selected IDs.  Any attempt to
+ modify the returned set will result in an <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/UnsupportedOperationException.html?is-external=true" title="class or interface in java.lang"><code>UnsupportedOperationException</code></a>. If
+ the IDs are orderd (see <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getOrderOfIDs--"><code>getOrderOfIDs()</code></a>), it is safe to cast the returned
+ view to the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/NavigableSet.html?is-external=true" title="class or interface in java.util"><code>NavigableSet</code></a> subtype.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>unmodifiable view of currently selected IDs</dd>
@@ -655,8 +661,10 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <li class="blockList">
 <h4>getUnselectedIDs</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;getUnselectedIDs()</pre>
-<div class="block">Returns an unmodifiable view of the set of currently non selected IDs. Any attempt to modify the returned set
- will result in an <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/UnsupportedOperationException.html?is-external=true" title="class or interface in java.lang"><code>UnsupportedOperationException</code></a>.</div>
+<div class="block">Returns an unmodifiable view of the set of currently non selected IDs. Any attempt to
+ modify the returned set will result in an <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/UnsupportedOperationException.html?is-external=true" title="class or interface in java.lang"><code>UnsupportedOperationException</code></a>. If
+ the IDs are orderd (see <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getOrderOfIDs--"><code>getOrderOfIDs()</code></a>), it is safe to cast the returned
+ view to the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/NavigableSet.html?is-external=true" title="class or interface in java.util"><code>NavigableSet</code></a> subtype.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>unmodifiable view of currently non selected IDs</dd>
@@ -670,9 +678,11 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <li class="blockList">
 <h4>getAllIDs</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;getAllIDs()</pre>
-<div class="block">Returns an unmodifiable view of the set of all IDs. Any attempt to modify the returned set
- will result in an <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/UnsupportedOperationException.html?is-external=true" title="class or interface in java.lang"><code>UnsupportedOperationException</code></a>. This set will always be equal to
- the union of <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getSelectedIDs--"><code>getSelectedIDs()</code></a> and <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getUnselectedIDs--"><code>getUnselectedIDs()</code></a>.</div>
+<div class="block">Returns an unmodifiable view of the set of all IDs. Any attempt to modify the returned
+ set will result in an <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/UnsupportedOperationException.html?is-external=true" title="class or interface in java.lang"><code>UnsupportedOperationException</code></a>. If the IDs are orderd (see
+ <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getOrderOfIDs--"><code>getOrderOfIDs()</code></a>), it is safe to cast the returned view to the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/NavigableSet.html?is-external=true" title="class or interface in java.util"><code>NavigableSet</code></a>
+ subtype. This set will always be equal to the union of <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getSelectedIDs--"><code>getSelectedIDs()</code></a> and
+ <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getUnselectedIDs--"><code>getUnselectedIDs()</code></a>.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>unmodifiable view of all IDs</dd>
