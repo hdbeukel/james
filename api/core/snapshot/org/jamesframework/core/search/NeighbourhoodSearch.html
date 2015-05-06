@@ -242,8 +242,8 @@ extends <a href="../../../../org/jamesframework/core/search/LocalSearch.html" ti
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#rejectMove--">rejectMove</a></span>()</code>
-<div class="block">Indicate that a move was rejected.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#rejectMove-org.jamesframework.core.search.neigh.Move-">rejectMove</a></span>(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</code>
+<div class="block">Reject the given move.</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
@@ -596,7 +596,8 @@ protected final&nbsp;<a href="../../../../org/jamesframework/core/search/neigh/M
 <dd><code>move</code> - accepted move to be applied to the current solution</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd><code>true</code> if the update has been successfully performed,
-         <code>false</code> if the update was cancelled because the obtained neighbour is invalid</dd>
+         <code>false</code> if the update was cancelled because the obtained
+         neighbour is invalid</dd>
 </dl>
 </li>
 </ul>
@@ -614,15 +615,19 @@ protected final&nbsp;<a href="../../../../org/jamesframework/core/search/neigh/M
 </dl>
 </li>
 </ul>
-<a name="rejectMove--">
+<a name="rejectMove-org.jamesframework.core.search.neigh.Move-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>rejectMove</h4>
-<pre>protected&nbsp;void&nbsp;rejectMove()</pre>
-<div class="block">Indicate that a move was rejected. This method only updates the rejected move counter. If this method
- is called for every rejected move, the number of rejected moves will be correctly reported.</div>
+<pre>protected&nbsp;void&nbsp;rejectMove(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</pre>
+<div class="block">Reject the given move. The default implementation ignores the specified move and simply updates
+ the <em>number</em> of rejected moves. Specific searches can override this behaviour if desired.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>move</code> - rejected move (ignored)</dd>
+</dl>
 </li>
 </ul>
 <a name="incNumRejectedMoves-long-">
