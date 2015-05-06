@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="13.0">
+<diagram program="umlet" version="13.2">
   <zoom_level>10</zoom_level>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>30</x>
+      <x>0</x>
       <y>0</y>
       <w>1220</w>
-      <h>1550</h>
+      <h>1570</h>
     </coordinates>
     <panel_attributes>search
 --</panel_attributes>
@@ -16,7 +16,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>140</x>
+      <x>110</x>
       <y>190</y>
       <w>530</w>
       <h>140</h>
@@ -35,10 +35,10 @@ SearchListener&lt;SolutionType&gt;
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>740</x>
+      <x>710</x>
       <y>270</y>
       <w>470</w>
-      <h>680</h>
+      <h>710</h>
     </coordinates>
     <panel_attributes>/Search&lt;SolutionType&gt;/
 --
@@ -84,6 +84,8 @@ SearchListener&lt;SolutionType&gt;
 #updateBestSolution(SolutionType) : boolean
 #updateBestSolution(SolutionType,Evaluation,Validation) : boolean
 #fireListenerCallback(Consumer) : void
+#getStatusLock() : Object
+#assertIdle(String) : void
 
 
 
@@ -96,7 +98,7 @@ SearchListener&lt;SolutionType&gt;
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>660</x>
+      <x>630</x>
       <y>290</y>
       <w>100</w>
       <h>30</h>
@@ -107,7 +109,7 @@ SearchListener&lt;SolutionType&gt;
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>920</x>
+      <x>890</x>
       <y>90</y>
       <w>120</w>
       <h>130</h>
@@ -125,7 +127,7 @@ DISPOSED</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>270</x>
+      <x>240</x>
       <y>610</y>
       <w>300</w>
       <h>70</h>
@@ -139,7 +141,7 @@ StopCriterion
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>560</x>
+      <x>530</x>
       <y>620</y>
       <w>200</w>
       <h>30</h>
@@ -150,7 +152,7 @@ StopCriterion
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>970</x>
+      <x>940</x>
       <y>210</y>
       <w>30</w>
       <h>80</h>
@@ -161,10 +163,10 @@ StopCriterion
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>660</x>
-      <y>1000</y>
+      <x>630</x>
+      <y>1020</y>
       <w>550</w>
-      <h>220</h>
+      <h>230</h>
     </coordinates>
     <panel_attributes>/LocalSearch&lt;SolutionType&gt;/
 --
@@ -177,6 +179,7 @@ getCurrentSolutionEvaluation() : Evaluation
 getCurrentSolutionValidation() : Validation
 setCurrentSolution(SolutionType) : void
 --
+#generateRandomInitialSolution() : void
 #updateCurrentSolution(SolutionType) : void
 #updateCurrentSolution(SolutionType,Evaluation,Validation) : void
 #updateCurrentAndBestSolution(SolutionType) : boolean
@@ -188,19 +191,19 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>970</x>
-      <y>940</y>
+      <x>940</x>
+      <y>970</y>
       <w>30</w>
-      <h>80</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>540</x>
-      <y>1270</y>
+      <x>510</x>
+      <y>1290</y>
       <w>370</w>
       <h>250</h>
     </coordinates>
@@ -213,12 +216,12 @@ setCurrentSolution(SolutionType) : void
 +getNumAcceptedMoves() : long
 +getNumRejectedMoves() : long
 --
-#evaluateMove(Move) : Evaluation
-#validateMove(Move) : Validation
+#evaluate(Move) : Evaluation
+#validate(Move) : Validation
 #getBestMove(Collection,boolean,Predicate...) : Move
 #isImprovement(Move) : boolean
-#acceptMove(Move) : boolean
-#rejectMove() : void
+#accept(Move) : boolean
+#reject(Move) : void
 #incNumAcceptedMoves(long) : void
 #incNumRejectedMoves(long) : void</panel_attributes>
     <additional_attributes/>
@@ -226,19 +229,19 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>760</x>
-      <y>1210</y>
+      <x>730</x>
+      <y>1240</y>
       <w>30</w>
-      <h>80</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>130</x>
-      <y>1300</y>
+      <x>100</x>
+      <y>1320</y>
       <w>310</w>
       <h>90</h>
     </coordinates>
@@ -253,8 +256,8 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>130</x>
-      <y>1410</y>
+      <x>100</x>
+      <y>1430</y>
       <w>310</w>
       <h>90</h>
     </coordinates>
@@ -269,8 +272,8 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
-      <y>1320</y>
+      <x>400</x>
+      <y>1340</y>
       <w>130</w>
       <h>30</h>
     </coordinates>
@@ -280,8 +283,8 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
-      <y>1430</y>
+      <x>400</x>
+      <y>1450</y>
       <w>130</w>
       <h>30</h>
     </coordinates>
@@ -291,7 +294,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>70</x>
+      <x>40</x>
       <y>390</y>
       <w>630</w>
       <h>430</h>
@@ -303,7 +306,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>120</x>
+      <x>90</x>
       <y>720</y>
       <w>220</w>
       <h>70</h>
@@ -318,7 +321,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>370</x>
+      <x>340</x>
       <y>720</y>
       <w>130</w>
       <h>70</h>
@@ -333,7 +336,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>100</x>
+      <x>70</x>
       <y>610</y>
       <w>130</w>
       <h>70</h>
@@ -348,7 +351,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>530</x>
+      <x>500</x>
       <y>720</y>
       <w>130</w>
       <h>70</h>
@@ -363,7 +366,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>150</x>
+      <x>120</x>
       <y>500</y>
       <w>220</w>
       <h>70</h>
@@ -378,7 +381,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>410</x>
+      <x>380</x>
       <y>440</y>
       <w>240</w>
       <h>130</h>
@@ -397,7 +400,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>640</x>
+      <x>610</x>
       <y>440</y>
       <w>120</w>
       <h>30</h>
@@ -408,7 +411,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>310</x>
+      <x>280</x>
       <y>560</y>
       <w>30</w>
       <h>70</h>
@@ -419,7 +422,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>220</x>
+      <x>190</x>
       <y>630</y>
       <w>70</w>
       <h>30</h>
@@ -430,7 +433,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>290</x>
+      <x>260</x>
       <y>670</y>
       <w>30</w>
       <h>70</h>
@@ -441,7 +444,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
+      <x>400</x>
       <y>670</y>
       <w>30</w>
       <h>70</h>
@@ -452,7 +455,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>540</x>
+      <x>510</x>
       <y>670</y>
       <w>30</w>
       <h>70</h>
@@ -463,7 +466,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>110</x>
+      <x>80</x>
       <y>140</y>
       <w>590</w>
       <h>220</h>
@@ -475,7 +478,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>900</x>
+      <x>870</x>
       <y>50</y>
       <w>160</w>
       <h>190</h>
@@ -487,30 +490,30 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>950</x>
-      <y>1370</y>
+      <x>920</x>
+      <y>1390</y>
       <w>270</w>
       <h>80</h>
     </coordinates>
-    <panel_attributes>acceptMove(Move) accepts a move by applying it to the current solution; also checks whether a new best solution has been found</panel_attributes>
+    <panel_attributes>accept(Move) accepts a move by applying it to the current solution; also checks whether a new best solution has been found</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>950</x>
-      <y>1460</y>
+      <x>920</x>
+      <y>1480</y>
       <w>270</w>
       <h>60</h>
     </coordinates>
-    <panel_attributes>rejectMove() indicates that a move has been rejected, to keep track of the number of rejected moves</panel_attributes>
+    <panel_attributes>reject(Move) indicates that a move has been rejected, to keep track of the number of rejected moves</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>900</x>
-      <y>1430</y>
+      <x>870</x>
+      <y>1450</y>
       <w>70</w>
       <h>30</h>
     </coordinates>
@@ -520,8 +523,8 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>900</x>
-      <y>1460</y>
+      <x>870</x>
+      <y>1480</y>
       <w>70</w>
       <h>30</h>
     </coordinates>
