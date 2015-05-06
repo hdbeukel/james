@@ -181,39 +181,39 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/LocalSearch.html#generateRandomInitialSolution--">generateRandomInitialSolution</a></span>()</code>
-<div class="block">Generates a random initial solution.</div>
-</td>
-</tr>
-<tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolution--">getCurrentSolution</a></span>()</code>
 <div class="block">Get the current solution.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionEvaluation--">getCurrentSolutionEvaluation</a></span>()</code>
 <div class="block">Get the evaluation of the current solution.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionValidation--">getCurrentSolutionValidation</a></span>()</code>
 <div class="block">Get the validation of the current solution.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/LocalSearch.html#searchStarted--">searchStarted</a></span>()</code>
 <div class="block">When the search is started, a random initial solution is generated if none has been specified.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/LocalSearch.html#setCurrentSolution-SolutionType-">setCurrentSolution</a></span>(<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a>&nbsp;solution)</code>
 <div class="block">Sets the current solution prior to execution or in between search runs.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>protected void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/LocalSearch.html#setRandomInitialSolution--">setRandomInitialSolution</a></span>()</code>
+<div class="block">Sets a randomly generated initial solution.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
@@ -331,14 +331,14 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 </dl>
 </li>
 </ul>
-<a name="generateRandomInitialSolution--">
+<a name="setRandomInitialSolution--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>generateRandomInitialSolution</h4>
-<pre>protected&nbsp;void&nbsp;generateRandomInitialSolution()</pre>
-<div class="block">Generates a random initial solution. Called from <a href="../../../../org/jamesframework/core/search/LocalSearch.html#searchStarted--"><code>searchStarted()</code></a>.</div>
+<h4>setRandomInitialSolution</h4>
+<pre>protected&nbsp;void&nbsp;setRandomInitialSolution()</pre>
+<div class="block">Sets a randomly generated initial solution. Method is called from <a href="../../../../org/jamesframework/core/search/LocalSearch.html#searchStarted--"><code>searchStarted()</code></a>.</div>
 <dl>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions">SearchException</a></code> - if a current solution is already set when calling this method</dd>

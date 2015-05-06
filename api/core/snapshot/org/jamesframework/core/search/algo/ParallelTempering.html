@@ -130,8 +130,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
-<dd><code>SolutionType</code> - solution type of the problems that may be solved using this search,
-                       required to extend <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems"><code>Solution</code></a></dd>
+<dd><code>SolutionType</code> - solution type of the problems that may be solved using this search, required to extend <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems"><code>Solution</code></a></dd>
 </dl>
 <dl>
 <dt>All Implemented Interfaces:</dt>
@@ -142,60 +141,52 @@ var activeTableTab = "activeTableTab";
 <pre>public class <span class="typeNameLabel">ParallelTempering&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span>
 extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourhoodSearch.html" title="class in org.jamesframework.core.search">SingleNeighbourhoodSearch</a>&lt;SolutionType&gt;</pre>
 <div class="block"><p>
- Parallel tempering algorithm which uses several Metropolis search replicas with different
- temperatures in a given range, where good solutions are pushed towards cool replicas for
- the sake of convergence, while bad solutions are pushed towards hot replicas in an attempt
- to find further improvements. Each step of parallel tempering consists of the following
- two actions:
+ Parallel tempering algorithm which uses several Metropolis search replicas with different temperatures in a given range,
+ where good solutions are pushed towards cool replicas for the sake of convergence, while bad solutions are pushed towards
+ hot replicas in an attempt to find further improvements. Each step of parallel tempering consists of the following two actions:
  </p>
  <ol>
   <li>
-      Every replica performs a fixed number of steps (defaults to 500) in an attempt to
-      improve its own solution.
+      Every replica performs a fixed number of steps (defaults to 500) in an attempt to improve its own solution.
   </li>
   <li>
-      Solutions of adjacent replica (ordered by temperature) are considered to be swapped.
-      Solutions of replicas \(R_1\) and \(R_2\) with temperatures \(T_1\) and \(T_2\) (\(T_1 &lt; T_2\))
-      and current solution evaluation \(E_1\) and \(E_2\), respectively, are always swapped if
-      \(\Delta E \ge 0\), where \(\Delta E = computeDelta(E_2,E_1)\)
-      (see <a href="../../../../../org/jamesframework/core/search/Search.html#computeDelta-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.objectives.evaluations.Evaluation-"><code>Search.computeDelta(Evaluation, Evaluation)</code></a>).
-      If \(\Delta E &lt; 0\), solutions are swapped with probability
+      Solutions of adjacent replica (ordered by temperature) are considered to be swapped. Solutions of replicas
+      \(R_1\) and \(R_2\) with temperatures \(T_1\) and \(T_2\) (\(T_1 &lt; T_2\)) and current solution evaluation
+      \(E_1\) and \(E_2\), respectively, are always swapped if \(\Delta E \ge 0\), where \(\Delta E = computeDelta(E_2,E_1)\)
+      (see <a href="../../../../../org/jamesframework/core/search/Search.html#computeDelta-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.objectives.evaluations.Evaluation-"><code>Search.computeDelta(Evaluation, Evaluation)</code></a>). If \(\Delta E &lt; 0\), solutions are swapped with probability
       \[
           e^{(\frac{1}{k_1T_1}-\frac{1}{k_2T_2})\Delta E},
       \]
-      where \(k_1\) and \(k_2\) are the temperature scale factors of replica \(R_1\) and \(R_2\),
-      respectively (scale factors default to 1, see <a href="../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo"><code>MetropolisSearch</code></a>).
+      where \(k_1\) and \(k_2\) are the temperature scale factors of replica \(R_1\) and \(R_2\), respectively
+      (scale factors default to 1, see <a href="../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo"><code>MetropolisSearch</code></a>).
   </li>
  </ol>
  <p>
- All replicas use the same neighbourhood which is specified when creating the parallel tempering
- search. If an initial solution is set, a copy of this solution is set as initial solution in each
- replica. Else, each replica starts with a distinct randomly generated solution. If desired, a
- separate initial solution can be set for each replica through <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#getReplicas--"><code>getReplicas()</code></a>.
+ All replicas use the same neighbourhood which is specified when creating the parallel tempering search. If an initial
+ solution is set, a copy of this solution is set as initial solution in each replica. Else, each replica starts with a
+ distinct randomly generated solution.
  </p>
  <p>
- The overall best solution found by all replicas is tracked and eventually returned by the parallel
- tempering algorithm. The main algorithm does not actively generate nor apply any moves to its current
- solution, but simply updates it when a replica has found a new global improvement, in which case the
- best solution is also updated.
+ The overall best solution found by all replicas is tracked and eventually returned by the parallel tempering algorithm.
+ The main algorithm does not actively generate nor apply any moves to its current solution, but simply updates it when a
+ replica has found a new global improvement, in which case the best solution is also updated.
  </p>
  <p>
- The reported number of accepted and rejected moves (see <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumAcceptedMoves--"><code>NeighbourhoodSearch.getNumAcceptedMoves()</code></a> and
- <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumRejectedMoves--"><code>NeighbourhoodSearch.getNumRejectedMoves()</code></a>) correspond to the sum of the number of accepted and rejected
- moves in all replicas, during the current run of the parallel tempering search. These values
- are updated with some delay, whenever a Metropolis replica has completed its current run.
+ The reported number of accepted and rejected moves (see <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumAcceptedMoves--"><code>NeighbourhoodSearch.getNumAcceptedMoves()</code></a> and <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumRejectedMoves--"><code>NeighbourhoodSearch.getNumRejectedMoves()</code></a>)
+ correspond to the sum of the number of accepted and rejected moves in all replicas, during the current run of the
+ parallel tempering search. These values are updated with some delay, whenever a Metropolis replica has completed
+ its current run.
  </p>
  <p>
- When creating the parallel tempering algorithm, the number of replicas and a minimum and maximum
- temperature have to be specified. Temperatures assigned to the replicas are unique and equally
- spaced in the desired interval. The number of replica steps defaults to 500 but it is strongly
- advised to fine tune this parameter for a specific problem, e.g. in case of a computationally
- expensive objective function, a lower number of steps may be more appropriate.
+ When creating the parallel tempering algorithm, the number of replicas and a minimum and maximum temperature have to be
+ specified. Temperatures assigned to the replicas are unique and equally spaced in the desired interval. The number of
+ replica steps defaults to 500 but it is strongly advised to tune this parameter for every specific problem, e.g. in case
+ of a computationally expensive objective function, a lower number of steps may be more appropriate.
  </p>
  <p>
- Note that every replica runs in a separate thread so that they will be executed in parallel on
- multi core machines. Therefore, it is important that the problem (including all of its components
- such as the objective, constraints, etc.) and neighbourhood specified at construction are thread-safe.
+ Note that every replica runs in a separate thread so that they will be executed in parallel on multi core machines.
+ Therefore, it is important that the problem (including all of its components such as the objective, constraints, etc.)
+ and neighbourhood specified at construction are thread-safe.
  </p></div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
@@ -225,9 +216,8 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
                  double&nbsp;minTemperature,
                  double&nbsp;maxTemperature)</code>
 <div class="block">
- Creates a new parallel tempering algorithm, specifying the problem to solve,
- the neighbourhood used in each replica, the number of replicas, and the minimum
- and maximum temperature.</div>
+ Creates a new parallel tempering algorithm, specifying the problem to solve, the neighbourhood used in each replica, the number
+ of replicas, and the minimum and maximum temperature.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -238,9 +228,8 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
                  double&nbsp;minTemperature,
                  double&nbsp;maxTemperature)</code>
 <div class="block">
- Creates a new parallel tempering algorithm, specifying the problem to solve,
- the neighbourhood used in each replica, the number of replicas, the minimum
- and maximum temperature, and a custom search name.</div>
+ Creates a new parallel tempering algorithm, specifying the problem to solve, the neighbourhood used in each replica, the number
+ of replicas, the minimum and maximum temperature, and a custom search name.</div>
 </td>
 </tr>
 </table>
@@ -261,14 +250,14 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#getReplicas--">getReplicas</a></span>()</code>
-<div class="block">Get (unmodifiable) list of Metropolis replicas used by this parallel tempering algorithm.</div>
+<div class="block">Get the list of Metropolis replicas used by this parallel tempering algorithm.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#getReplicaSteps--">getReplicaSteps</a></span>()</code>
-<div class="block">Get the number of steps performed by each replica in every iteration of the global parallel
- tempering algorithm, before considering solution swaps.</div>
+<div class="block">Get the number of steps performed by each replica in every iteration of the global parallel tempering
+ algorithm, before considering solution swaps.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
@@ -281,8 +270,7 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#searchStep--">searchStep</a></span>()</code>
-<div class="block">Perform a search step, in which every replica performs several steps and solutions
- of adjacent replicas may be swapped.</div>
+<div class="block">Perform a search step, in which every replica performs several steps and solutions of adjacent replicas may be swapped.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
@@ -323,14 +311,14 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.jamesframework.core.search.<a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></h3>
-<code><a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#accept-org.jamesframework.core.search.neigh.Move-">accept</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#evaluate-org.jamesframework.core.search.neigh.Move-">evaluate</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getBestMove-java.util.Collection-boolean-java.util.function.Predicate...-">getBestMove</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumAcceptedMoves--">getNumAcceptedMoves</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumRejectedMoves--">getNumRejectedMoves</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#incNumAcceptedMoves-long-">incNumAcceptedMoves</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#incNumRejectedMoves-long-">incNumRejectedMoves</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#isImprovement-org.jamesframework.core.search.neigh.Move-">isImprovement</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#reject-org.jamesframework.core.search.neigh.Move-">reject</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#searchStarted--">searchStarted</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#setEvaluatedMoveCache-org.jamesframework.core.search.cache.EvaluatedMoveCache-">setEvaluatedMoveCache</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#updateCurrentSolution-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">updateCurrentSolution</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#validate-org.jamesframework.core.search.neigh.Move-">validate</a></code></li>
+<code><a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#acceptMove-org.jamesframework.core.search.neigh.Move-">acceptMove</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#evaluateMove-org.jamesframework.core.search.neigh.Move-">evaluateMove</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getBestMove-java.util.Collection-boolean-java.util.function.Predicate...-">getBestMove</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumAcceptedMoves--">getNumAcceptedMoves</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getNumRejectedMoves--">getNumRejectedMoves</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#incNumAcceptedMoves-long-">incNumAcceptedMoves</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#incNumRejectedMoves-long-">incNumRejectedMoves</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#isImprovement-org.jamesframework.core.search.neigh.Move-">isImprovement</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#rejectMove--">rejectMove</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#searchStarted--">searchStarted</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#setEvaluatedMoveCache-org.jamesframework.core.search.cache.EvaluatedMoveCache-">setEvaluatedMoveCache</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#updateCurrentSolution-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">updateCurrentSolution</a>, <a href="../../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#validateMove-org.jamesframework.core.search.neigh.Move-">validateMove</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.org.jamesframework.core.search.LocalSearch">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.jamesframework.core.search.<a href="../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></h3>
-<code><a href="../../../../../org/jamesframework/core/search/LocalSearch.html#generateRandomInitialSolution--">generateRandomInitialSolution</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolution--">getCurrentSolution</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionEvaluation--">getCurrentSolutionEvaluation</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionValidation--">getCurrentSolutionValidation</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-">updateCurrentAndBestSolution</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">updateCurrentAndBestSolution</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentSolution-SolutionType-">updateCurrentSolution</a></code></li>
+<code><a href="../../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolution--">getCurrentSolution</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionEvaluation--">getCurrentSolutionEvaluation</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionValidation--">getCurrentSolutionValidation</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#setRandomInitialSolution--">setRandomInitialSolution</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-">updateCurrentAndBestSolution</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">updateCurrentAndBestSolution</a>, <a href="../../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentSolution-SolutionType-">updateCurrentSolution</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.org.jamesframework.core.search.Search">
@@ -372,17 +360,14 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
                          double&nbsp;minTemperature,
                          double&nbsp;maxTemperature)</pre>
 <div class="block"><p>
- Creates a new parallel tempering algorithm, specifying the problem to solve,
- the neighbourhood used in each replica, the number of replicas, and the minimum
- and maximum temperature. The problem and neighbourhood can not be <code>null</code>,
- the number of replicas and both temperature bounds should be strictly positive, and
- the minimum temperature should be smaller than the maximum temperature. The default
- name "ParallelTempering" is assigned to the search.
+ Creates a new parallel tempering algorithm, specifying the problem to solve, the neighbourhood used in each replica, the number
+ of replicas, and the minimum and maximum temperature. The problem and neighbourhood can not be <code>null</code>, the number of
+ replicas and both temperature bounds should be strictly positive, and the minimum temperature should be smaller than the maximum
+ temperature. The default name "ParallelTempering" is assigned to the search.
  </p>
  <p>
- Note that it is important that the given problem (including all of its components
- such as the objective, constraints, etc.) and neighbourhood are thread-safe, because
- they will be accessed concurrently from several Metropolis searches running in separate
+ Note that it is important that the given problem (including all of its components such as the objective, constraints, etc.) and
+ neighbourhood are thread-safe, because they will be accessed concurrently from several Metropolis searches running in separate
  threads.
  </p></div>
 <dl>
@@ -393,11 +378,9 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <dd><code>minTemperature</code> - minimum temperature of Metropolis replica</dd>
 <dd><code>maxTemperature</code> - maximum temperature of Metropolis replica</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> or <code>neighbourhood</code> are
-                              <code>null</code></dd>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>numReplicas</code>, <code>minTemperature</code>
-                                  or <code>maxTemperature</code> are not strictly positive,
-                                  or if <code>minTemperature &ge; maxTemperature</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> or <code>neighbourhood</code> are <code>null</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>numReplicas</code>, <code>minTemperature</code> or <code>maxTemperature</code>
+                                  are not strictly positive, or if <code>minTemperature &ge; maxTemperature</code></dd>
 </dl>
 </li>
 </ul>
@@ -414,18 +397,15 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
                          double&nbsp;minTemperature,
                          double&nbsp;maxTemperature)</pre>
 <div class="block"><p>
- Creates a new parallel tempering algorithm, specifying the problem to solve,
- the neighbourhood used in each replica, the number of replicas, the minimum
- and maximum temperature, and a custom search name. The problem and neighbourhood
- can not be <code>null</code>, the number of replicas and both temperature bounds
- should be strictly positive, and the minimum temperature should be smaller than the
- maximum temperature. The search name can be <code>null</code> in which case the default
- name "ParallelTempering" is assigned.
+ Creates a new parallel tempering algorithm, specifying the problem to solve, the neighbourhood used in each replica, the number
+ of replicas, the minimum and maximum temperature, and a custom search name. The problem and neighbourhood can not be <code>null</code>,
+ the number of replicas and both temperature bounds should be strictly positive, and the minimum temperature should be smaller than the
+ maximum temperature. The search name can be <code>null</code> in which case the default name "ParallelTempering" is assigned.
  </p>
  <p>
- Note that it is important that the given problem (including all of its components such
- as the objective, constraints, etc.) and neighbourhood are thread-safe, because they
- will be accessed concurrently from several Metropolis searches running in separate threads.
+ Note that it is important that the given problem (including all of its components such as the objective, constraints, etc.) and
+ neighbourhood are thread-safe, because they will be accessed concurrently from several Metropolis searches running in separate
+ threads.
  </p></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -436,11 +416,9 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <dd><code>minTemperature</code> - minimum temperature of Metropolis replica</dd>
 <dd><code>maxTemperature</code> - maximum temperature of Metropolis replica</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> or <code>neighbourhood</code> are
-                              <code>null</code></dd>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>numReplicas</code>, <code>minTemperature</code>
-                                  or <code>maxTemperature</code> are not strictly positive,
-                                  or if <code>minTemperature &ge; maxTemperature</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> or <code>neighbourhood</code> are <code>null</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>numReplicas</code>, <code>minTemperature</code> or <code>maxTemperature</code>
+                                  are not strictly positive, or if <code>minTemperature &ge; maxTemperature</code></dd>
 </dl>
 </li>
 </ul>
@@ -477,9 +455,8 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <li class="blockList">
 <h4>getReplicaSteps</h4>
 <pre>public&nbsp;int&nbsp;getReplicaSteps()</pre>
-<div class="block">Get the number of steps performed by each replica in every iteration of the global parallel
- tempering algorithm, before considering solution swaps. Defaults to 500 and can be changed
- using <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#setReplicaSteps-int-"><code>setReplicaSteps(int)</code></a>.</div>
+<div class="block">Get the number of steps performed by each replica in every iteration of the global parallel tempering
+ algorithm, before considering solution swaps. Defaults to 500 and can be changed using <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#setReplicaSteps-int-"><code>setReplicaSteps(int)</code></a>.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>number of steps performed by replicas in each iteration</dd>
@@ -493,13 +470,12 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <li class="blockList">
 <h4>getReplicas</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&gt;&nbsp;getReplicas()</pre>
-<div class="block">Get (unmodifiable) list of Metropolis replicas used by this parallel tempering algorithm.
- Replicas are ordered by temperature (ascending). This method should be used with care; in
- particular the temperatures (and respective scales) should not be altered as this will
- likely break the execution of the parallel tempering search.</div>
+<div class="block">Get the list of Metropolis replicas used by this parallel tempering algorithm. Replicas are ordered by temperature
+ (ascending). This method should be used with care, as modifying the parameters or order of replicas might break
+ the execution of the parallel tempering search.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>Metropolis replicas (unmodifiable list view)</dd>
+<dd>Metropolis replicas</dd>
 </dl>
 </li>
 </ul>
@@ -510,11 +486,10 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <li class="blockList">
 <h4>setTemperatureScaleFactor</h4>
 <pre>public&nbsp;void&nbsp;setTemperatureScaleFactor(double&nbsp;scale)</pre>
-<div class="block">Set the same temperature scale factor \(k &gt; 0\) for each replica. Temperatures are multiplied
- with this factor in all computations. By default, the scale factor is set to 1 for every replica,
- see <a href="../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo"><code>MetropolisSearch</code></a>. This method should be used with care when called while the search
- is running, as the scale factor update is not guaranteed to happen atomically for all replicas
- and this might break the execution of the parallel tempering algorithm.</div>
+<div class="block">Set the same temperature scale factor \(k &gt; 0\) for each replica. Temperatures are multiplied with this factor
+ in all computations. By default, the scale factor is set to 1 for every replica, see <a href="../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo"><code>MetropolisSearch</code></a>.
+ This method should be used with care when called while the search is running, as the scale factor update is
+ not guaranteed to happen atomically for all replicas.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>scale</code> - temperature scale factor to be set for each replica</dd>
@@ -552,9 +527,8 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <li class="blockList">
 <h4>setCurrentSolution</h4>
 <pre>public&nbsp;void&nbsp;setCurrentSolution(<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&nbsp;solution)</pre>
-<div class="block">Set a custom current solution, of which a copy is passed to each replica. Note that
- <code>solution</code> can not be <code>null</code> and that this method may only be
- called when the search is idle.</div>
+<div class="block">Set a custom current solution, of which a copy is passed to each replica. Note that <code>solution</code>
+ can not be <code>null</code> and that this method may only be called when the search is idle.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../../../../org/jamesframework/core/search/LocalSearch.html#setCurrentSolution-SolutionType-">setCurrentSolution</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</code></dd>
@@ -573,17 +547,14 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <li class="blockList">
 <h4>searchStep</h4>
 <pre>protected&nbsp;void&nbsp;searchStep()</pre>
-<div class="block">Perform a search step, in which every replica performs several steps and solutions
- of adjacent replicas may be swapped.</div>
+<div class="block">Perform a search step, in which every replica performs several steps and solutions of adjacent replicas may be swapped.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../../../org/jamesframework/core/search/Search.html#searchStep--">searchStep</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</code></dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions">SearchException</a></code> - if an error occurs during concurrent execution of the Metropolis
-                         replicas, or if it is detected that replicas are not correctly
-                         ordered by temperature (ascending)</dd>
-<dd><code><a href="../../../../../org/jamesframework/core/exceptions/JamesRuntimeException.html" title="class in org.jamesframework.core.exceptions">JamesRuntimeException</a></code> - if depending on malfunctioning components (problem,
-                               neighbourhood, replicas, ...)</dd>
+<dd><code><a href="../../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions">SearchException</a></code> - if an error occurs during concurrent execution of the Metropolis replicas, or if
+                          it is detected that replicas are not correctly ordered by temperature (ascending)</dd>
+<dd><code><a href="../../../../../org/jamesframework/core/exceptions/JamesRuntimeException.html" title="class in org.jamesframework.core.exceptions">JamesRuntimeException</a></code> - if depending on malfunctioning components (problem, neighbourhood, replicas, ...)</dd>
 </dl>
 </li>
 </ul>
