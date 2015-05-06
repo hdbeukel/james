@@ -518,6 +518,14 @@
 <div class="block">Creates a general subset move, indicating which IDs are to be added to and removed from
  the current selection when being applied to a given subset solution.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html#generateRandomInitialSolution--">generateRandomInitialSolution()</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="class in org.jamesframework.core.search.algo.tabu">TabuSearch</a></dt>
+<dd>
+<div class="block">Updates the tabu memory if a random initial solution is generated.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#generateRandomInitialSolution--">generateRandomInitialSolution()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
+<dd>
+<div class="block">Generates a random initial solution.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SubsetNeighbourhood.html#getAddCandidates-org.jamesframework.core.subset.SubsetSolution-">getAddCandidates(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SubsetNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SubsetNeighbourhood</a></dt>
 <dd>
 <div class="block">Infer the set of IDs that may be added to the selection in the given subset solution.</div>
@@ -968,12 +976,12 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#getReplicas--">getReplicas()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
-<div class="block">Get the list of Metropolis replicas used by this parallel tempering algorithm.</div>
+<div class="block">Get (unmodifiable) list of Metropolis replicas used by this parallel tempering algorithm.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#getReplicaSteps--">getReplicaSteps()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
-<div class="block">Get the number of steps performed by each replica in every iteration of the global parallel tempering
- algorithm, before considering solution swaps.</div>
+<div class="block">Get the number of steps performed by each replica in every iteration of the global parallel
+ tempering algorithm, before considering solution swaps.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#getRuntime--">getRuntime()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
@@ -1661,21 +1669,24 @@
 <dt><a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo"><span class="typeNameLink">ParallelTempering</span></a>&lt;<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/algo/package-summary.html">org.jamesframework.core.search.algo</a></dt>
 <dd>
 <div class="block">
- Parallel tempering algorithm which uses several Metropolis search replicas with different temperatures in a given range,
- where good solutions are pushed towards cool replicas for the sake of convergence, while bad solutions are pushed towards
- hot replicas in an attempt to find further improvements.</div>
+ Parallel tempering algorithm which uses several Metropolis search replicas with different
+ temperatures in a given range, where good solutions are pushed towards cool replicas for
+ the sake of convergence, while bad solutions are pushed towards hot replicas in an attempt
+ to find further improvements.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#ParallelTempering-org.jamesframework.core.problems.Problem-org.jamesframework.core.search.neigh.Neighbourhood-int-double-double-">ParallelTempering(Problem&lt;SolutionType&gt;, Neighbourhood&lt;? super SolutionType&gt;, int, double, double)</a></span> - Constructor for class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
 <div class="block">
- Creates a new parallel tempering algorithm, specifying the problem to solve, the neighbourhood used in each replica, the number
- of replicas, and the minimum and maximum temperature.</div>
+ Creates a new parallel tempering algorithm, specifying the problem to solve,
+ the neighbourhood used in each replica, the number of replicas, and the minimum
+ and maximum temperature.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#ParallelTempering-java.lang.String-org.jamesframework.core.problems.Problem-org.jamesframework.core.search.neigh.Neighbourhood-int-double-double-">ParallelTempering(String, Problem&lt;SolutionType&gt;, Neighbourhood&lt;? super SolutionType&gt;, int, double, double)</a></span> - Constructor for class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
 <div class="block">
- Creates a new parallel tempering algorithm, specifying the problem to solve, the neighbourhood used in each replica, the number
- of replicas, the minimum and maximum temperature, and a custom search name.</div>
+ Creates a new parallel tempering algorithm, specifying the problem to solve,
+ the neighbourhood used in each replica, the number of replicas, the minimum
+ and maximum temperature, and a custom search name.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html#PASSED">PASSED</a></span> - Static variable in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimplePenalizingValidation</a></dt>
 <dd>
@@ -2012,7 +2023,8 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#searchStep--">searchStep()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
-<div class="block">Perform a search step, in which every replica performs several steps and solutions of adjacent replicas may be swapped.</div>
+<div class="block">Perform a search step, in which every replica performs several steps and solutions
+ of adjacent replicas may be swapped.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/PipedLocalSearch.html#searchStep--">searchStep()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/PipedLocalSearch.html" title="class in org.jamesframework.core.search.algo">PipedLocalSearch</a></dt>
 <dd>
@@ -2147,14 +2159,6 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#setPeriod-long-java.util.concurrent.TimeUnit-">setPeriod(long, TimeUnit)</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria">StopCriterionChecker</a></dt>
 <dd>
 <div class="block">Set the period between consecutive stop criterion checks.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html#setRandomInitialSolution--">setRandomInitialSolution()</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="class in org.jamesframework.core.search.algo.tabu">TabuSearch</a></dt>
-<dd>
-<div class="block">Updates the tabu memory when a random initial solution is set.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#setRandomInitialSolution--">setRandomInitialSolution()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
-<dd>
-<div class="block">Sets a randomly generated initial solution.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#setReplicaSteps-int-">setReplicaSteps(int)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
