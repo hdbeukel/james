@@ -8,11 +8,11 @@ layout: default
         <li><a href="/examples">Examples</a></li>
         <li class="active">Core subset selection (3)</li>
     </ol>
-    
+
     <h2 class="page-header">
         Example 1C: Core subset selection (3)
     </h2>
-    
+
     <div class="bs-callout bs-callout-info">
         <h4>
             <i class="fa fa-info-circle"></i>
@@ -28,7 +28,7 @@ layout: default
         To be able to provide an efficient delta evaluation, the objective generates custom evaluation objects that store additional
         metadata. Both a basic random descent as well as an advanced parallel tempering algorithm are applied to optimize the core.
     </p>
-    
+
     <h4 class="page-header">
         Defining the objective
     </h4>
@@ -55,9 +55,9 @@ public class EntryToNearestEntryObjective implements Objective&lt;SubsetSolution
             // divide by number of distances
             value = sumDist/numDist;
         }
-        return new SimpleEvaluation(value);
+        return SimpleEvaluation.WITH_VALUE(value);
     }
-    
+
     // finds the item in the given collection that is closest to the given item;
     // null if the collection does not contain any items different from the given item
     private Integer findClosest(int item, Collection&lt;Integer&gt; group, CoreSubsetData data){
@@ -104,7 +104,7 @@ public Evaluation evaluate(Move move, SubsetSolution curSolution, Evaluation cur
     </p>
     <p>
         With this approach in mind we create a custom evaluation object that implements the <code>Evaluation</code> interface.
-        It keeps track of the closest neighbour of each item in the selection. The only required method <code>getValue()</code> 
+        It keeps track of the closest neighbour of each item in the selection. The only required method <code>getValue()</code>
         returns the average <em>entry-to-nearest-entry</em> distance which is updated whenever the metadata changes.
     </p>
 <pre class="prettyprint">
@@ -114,7 +114,7 @@ public class EntryToNearestEntryEvaluation implements Evaluation {
     private Map&lt;Integer, Integer&gt; closestItemMap;
     // maps items to distance to respective closest item
     private Map&lt;Integer, Double&gt; minDistMap;
-    
+
     // sum of distances from items to respective closest items
     private double minDistSum;
 
@@ -123,14 +123,14 @@ public class EntryToNearestEntryEvaluation implements Evaluation {
         minDistMap = new HashMap&lt;&gt;();
         minDistSum = 0.0;
     }
-    
+
     // deep copy constructor
     public EntryToNearestEntryEvaluation(EntryToNearestEntryEvaluation toCopy){
         closestItemMap = new HashMap&lt;&gt;(toCopy.closestItemMap);
         minDistMap = new HashMap&lt;&gt;(toCopy.minDistMap);
         minDistSum = toCopy.minDistSum;
     }
-    
+
     // add item
     public void add(int itemID, int closestOtherItemID, double distance){
         // update minimum distance sum
@@ -139,7 +139,7 @@ public class EntryToNearestEntryEvaluation implements Evaluation {
         closestItemMap.put(itemID, closestOtherItemID);
         minDistMap.put(itemID, distance);
     }
-    
+
     // remove item
     public boolean remove(int itemID){
         if(closestItemMap.containsKey(itemID)){
@@ -152,17 +152,21 @@ public class EntryToNearestEntryEvaluation implements Evaluation {
         }
         return false;
     }
-    
+
     // update closest item
-    public void update(int itemID, int closestOtherItemID, double distance){
-        // update minimum distance sum
-        minDistSum -= minDistMap.get(itemID);
-        minDistSum += distance;
-        // update metadata
-        closestItemMap.put(itemID, closestOtherItemID);
-        minDistMap.put(itemID, distance);
+    public boolean update(int itemID, int closestOtherItemID, double distance){
+        if(closestItemMap.containsKey(itemID)){
+            // update minimum distance sum
+            minDistSum -= minDistMap.get(itemID);
+            minDistSum += distance;
+            // update metadata
+            closestItemMap.put(itemID, closestOtherItemID);
+            minDistMap.put(itemID, distance);
+            return true;
+        }
+        return false;
     }
-    
+
     // get closest item (null of no closest item registered)
     public Integer getClosest(int itemID){
         return closestItemMap.get(itemID);
@@ -177,7 +181,7 @@ public class EntryToNearestEntryEvaluation implements Evaluation {
             return 0.0;
         }
     }
-    
+
 }
 </pre>
     <p>
@@ -205,13 +209,13 @@ public class EntryToNearestEntryObjective implements Objective&lt;SubsetSolution
         }
         return eval;
     }
-    
+
     // finds the item in the given collection that is closest to the given item;
     // null if the collection does not contain any items different from the given item
     private Integer findClosest(int item, Collection&lt;Integer&gt; group, CoreSubsetData data){
         // same as before ...
     }
-    
+
     public Evaluation evaluate(Move move, SubsetSolution curSolution, Evaluation curEvaluation, CoreSubsetData data){
         // check move type
         if(!(move instanceof SubsetMove)){
@@ -220,12 +224,12 @@ public class EntryToNearestEntryObjective implements Objective&lt;SubsetSolution
         }
         // cast move
         SubsetMove subsetMove = (SubsetMove) move;
-        
+
         // cast evaluation (cannot fail as both evaluate methods return such evaluation object)
         EntryToNearestEntryEvaluation eval = (EntryToNearestEntryEvaluation) curEvaluation;
         // copy to initialize new evaluation
         EntryToNearestEntryEvaluation newEval = new EntryToNearestEntryEvaluation(eval);
-        
+
         // get added and deleted IDs from move
         Set&lt;Integer&gt; added = subsetMove.getAddedIDs();
         Set&lt;Integer&gt; deleted = subsetMove.getDeletedIDs();
@@ -240,7 +244,7 @@ public class EntryToNearestEntryObjective implements Objective&lt;SubsetSolution
         for(int item : deleted){
             newEval.remove(item);
         }
-        
+
         // update closest items in new selection
         for(int item : newSelection){
             Integer curClosest = newEval.getClosest(item);
@@ -276,7 +280,7 @@ public class EntryToNearestEntryObjective implements Objective&lt;SubsetSolution
                 }
             }
         }
-        
+
         return newEval;
     }
 
@@ -286,7 +290,7 @@ public class EntryToNearestEntryObjective implements Objective&lt;SubsetSolution
 
 }
 </pre>
-        
+
     <h4 class="page-header">
         Selecting a core subset
     </h4>
@@ -369,9 +373,9 @@ ParallelTempering&lt;SubsetSolution&gt; search = new ParallelTempering&lt;&gt;(p
 </pre>
     <p>
         If you run this example you will notice that applying parallel tempering gives better (and stable) results as compared to the basic random descent
-        algorithm when optimizing this specific objective function. 
+        algorithm when optimizing this specific objective function.
     </p>
-    
+
     <h4 class="page-header">
         Full source code
     </h4>
@@ -392,23 +396,5 @@ $ java -cp james-examples.jar org.jamesframework.examples.coresubset3.CoreSubset
     <p>
         <a href="/files/examples/coresubset.csv"><i class="fa fa-file-text-o"></i> Example input file (275 items)</a>
     </p>
-    
+
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -8,11 +8,11 @@ layout: default
         <li><a href="/examples">Examples</a></li>
         <li class="active">Maximum clique problem</li>
     </ol>
-    
+
     <h2 class="page-header">
         Example 3: The maximum clique problem
     </h2>
-    
+
     <div class="bs-callout bs-callout-info">
         <h4>
             <i class="fa fa-info-circle"></i>
@@ -27,12 +27,12 @@ layout: default
         is created by plugging in a custom greedy neighbourhood in the random descent algorithm. A variable neighbourhood search
         is also applied based on the greedy heuristic where custom shaking neighbourhoods are used to escape from local optima.
     </p>
-    
+
     <h4 class="page-header">
         Providing the data
     </h4>
     <p>
-        First provide the graph data by implementing the <code>IntegerIdentiefiedData</code> interface in <code>CliqueData</code>.
+        First provide the graph data by implementing the <code>IntegerIdentifiedData</code> interface in <code>CliqueData</code>.
         Each vertex in the graph is represented by a unique integer ID. Edges are modeled using an adjacency map in which
         every vertex is mapped onto the set of adjacent vertices. The data provides some utility methods to get the neighbours
         or degree of a given vertex, to check whether two vertices are connected, etc. The method
@@ -40,7 +40,7 @@ layout: default
         in a specific subgraph, in which case edges to vertices outside this subgraph are not counted.
     </p>
 <pre class="prettyprint">
-public class CliqueData implements IntegerIdentiefiedData {
+public class CliqueData implements IntegerIdentifiedData {
 
     // maps each vertex to set of adjacent vertices
     private Map&lt;Integer, Set&lt;Integer&gt;&gt; adjacencyMap;
@@ -50,29 +50,29 @@ public class CliqueData implements IntegerIdentiefiedData {
     public CliqueData(Map&lt;Integer, Set&lt;Integer&gt;&gt; adjacencyMap) {
         this.adjacencyMap = adjacencyMap;
         // count number of edges
-        numEdges = adjacencyMap.values()                
+        numEdges = adjacencyMap.values()
                                .stream()              // stream of neighbour sets
                                .mapToInt(Set::size)   // map to number of neighbours
                                .sum()                 // sum neighbour counts of all vertices
                                /2;                    // all edges have been counted twice
     }
-    
+
     public Set&lt;Integer&gt; getIDs() {
         return adjacencyMap.keySet();
     }
-    
+
     public Set&lt;Integer&gt; getNeighbours(int vertex){
         return adjacencyMap.get(vertex);
     }
-    
+
     public boolean connected(int v1, int v2){
         return adjacencyMap.get(v1).contains(v2);
     }
-    
+
     public int degree(int v){
         return adjacencyMap.get(v).size();
     }
-    
+
     // computes the degree of a vertex in a specific subgraph
     // (edges to vertices outside the subgraph are not counted)
     public int degree(int v, Set&lt;Integer&gt; subGraph){
@@ -81,11 +81,11 @@ public class CliqueData implements IntegerIdentiefiedData {
         // count and return degree within subgraph
         return neighbours.stream().filter(n -> subGraph.contains(n)).count();
     }
-    
+
     public int numVertices(){
         return adjacencyMap.size();
     }
-    
+
     public int numEdges(){
         return numEdges;
     }
@@ -105,7 +105,7 @@ public class CliqueData implements IntegerIdentiefiedData {
 public class CliqueObjective implements Objective&lt;SubsetSolution, Object&gt;{
 
     public Evaluation evaluate(SubsetSolution solution, Object data) {
-        return new SimpleEvaluation(solution.getNumSelectedIDs());
+        return SimpleEvaluation.WITH_VALUE(solution.getNumSelectedIDs());
     }
 
     public boolean isMinimizing() {
@@ -123,13 +123,13 @@ public class CliqueObjective implements Objective&lt;SubsetSolution, Object&gt;{
         all vertices in the current clique. This is a greedy approach in which the size of the clique inceases with one
         vertex in each search step. To implement this strategy we provide a custom neighbourhood that will be used in a
         random descent search. The <code>GreedyCliqueNeighbourhood</code> implements the <code>Neighbourhood</code> interface
-        with solution type <code>SubsetSolution</code>. It has two methods: one to get a random move and one to get the set
-        of all considered moves to modify the current solution. The greedy neighbourhood generates moves that add a single new
+        with solution type <code>SubsetSolution</code>. It has two methods: one to get a random move and one to get the list
+        of all considered moves for current solution. The greedy neighbourhood generates moves that add a single new
         vertex with maximum degree in the subgraph induced by all vertices that are connected to the entire current clique.
     </p>
     <p>
         To get a random move, all moves are generated and one is randomly selected. If no vertex can be added, <code>null</code>
-        is returned. The set of all considered moves is created as follows:
+        is returned. The list of all considered moves is created as follows:
         <ol>
             <li>
                 Infer the set of possible adds, i.e. unselected vertices that are connected to the entire current clique.
@@ -151,7 +151,7 @@ public class GreedyCliqueNeighbourhood implements Neighbourhood&lt;SubsetSolutio
     public GreedyCliqueNeighbourhood(CliqueData data) {
         this.data = data;
     }
-    
+
     public Move&lt;SubsetSolution&gt; getRandomMove(SubsetSolution solution) {
         List&lt;Move&lt;SubsetSolution&gt;&gt; allMoves = getAllMoves(solution);
         if(allMoves.isEmpty()){
@@ -188,7 +188,7 @@ public class GreedyCliqueNeighbourhood implements Neighbourhood&lt;SubsetSolutio
         }
         return moves;
     }
-    
+
     // check if given vertex is connected to all vertices in the current clique
     private boolean isPossibleAdd(int vertex, Set&lt;Integer&gt; clique){
         return clique.stream().allMatch(vc -> data.connected(vertex, vc));
@@ -300,14 +300,14 @@ vns.dispose();
         This full VNS strategy can easily be implemented in JAMES by plugging in some additional neighbourhoods
         and chaining several local searches using a <a href="/docs/#piped-local-search">piped local search</a>.
     </p>
-    
+
     <h4 class="page-header">
         Optimization: a new solution type
     </h4>
     <p>
         The current implementation of <code>GreedyCliqueNeighbourhood</code> first constructs the set of possible adds
         by scanning all unselected vertices and verifying whether they are connected to the entire current clique.
-        These computations are repeated whenever a random move is generated. Here we describe an opimization that
+        These computations are repeated whenever a random move is generated. Here we describe an optimization that
         dynamically updates the set of possible adds whenever a vertex is added to or
         removed from the clique. This reduces the overall time complexity of the optimization process so that more
         steps can be taken in the same time.
@@ -335,10 +335,10 @@ public class CliqueSolution extends SubsetSolution {
     private Set&lt;Integer&gt; possibleAdds;
     // impossible adds (not connected to at least one vertex in current clique)
     private Set&lt;Integer&gt; impossibleAdds;
-    
+
     // reference to clique data
     private CliqueData data;
-    
+
     // single constructor (empty clique)
     public CliqueSolution(CliqueData data){
         super(data.getIDs());
@@ -349,14 +349,14 @@ public class CliqueSolution extends SubsetSolution {
         // store data reference
         this.data = data;
     }
-    
+
     @Override
     public CliqueSolution copy() {
         CliqueSolution copy = new CliqueSolution(data);
         copy.selectAll(getSelectedIDs());
         return copy;
     }
-    
+
     @Override
     public boolean select(int vertex){
         if(possibleAdds.contains(vertex) &amp;&amp; super.select(vertex)){
@@ -391,16 +391,16 @@ public class CliqueSolution extends SubsetSolution {
             return false;
         }
     }
-    
+
     // checks whether a given vertex is conected to the entire current clique
     private boolean connectedToClique(int vertex){
         return getSelectedIDs().stream().allMatch(v -> data.connected(vertex, v));
     }
-    
+
     public Set&lt;Integer&gt; getPossibleAdds(){
         return possibleAdds;
     }
-    
+
 }
 </pre>
     <p>
@@ -436,23 +436,23 @@ public class CliqueProblem extends AbstractProblem&lt;CliqueSolution, CliqueData
     </p>
 <pre class="prettyprint">
 public class GreedyCliqueNeighbourhood2 implements Neighbourhood&lt;CliqueSolution&gt; {
-    
+
     // ...
-    
+
     public Move&lt;SubsetSolution&gt; getRandomMove(CliqueSolution clique) {
         // ... (same as before)
     }
 
     public List&lt;Move&lt;SubsetSolution&gt;&gt; getAllMoves(CliqueSolution clique) {
-        
+
         // get possible adds (constant time!)
         Set&lt;Integer&gt; possibleAdds = clique.getPossibleAdds();
-        
+
         // retain only additions of candidate vertices
         // with maximum degree within induced subgraph
-        
+
         // ... (same as before)
-        
+
     }
 
 }
@@ -525,23 +525,5 @@ $ java -cp james-examples.jar org.jamesframework.examples.clique.MaximumClique &
         The example input files correspond to instances C125.9, C500.9 and p_hat700-2, respectively, from the
         <a href="http://iridia.ulb.ac.be/~fmascia/maximum_clique/DIMACS-benchmark" target="_blank">DIMACS benchmark set</a>.
     </p>
-    
+
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

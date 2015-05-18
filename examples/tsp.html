@@ -8,11 +8,11 @@ layout: default
         <li><a href="/examples">Examples</a></li>
         <li class="active">Travelling salesman problem</li>
     </ol>
-    
+
     <h2 class="page-header">
         Example 4A: The travelling salesman problem
     </h2>
-    
+
     <div class="bs-callout bs-callout-info">
         <h4>
             <i class="fa fa-info-circle"></i>
@@ -28,7 +28,7 @@ layout: default
         (symmetric TSP). The input consists of a symmetric distance matrix. The goal is to find the optimal order (permutation) of cities
         yielding the lowest possible total travel distance.
     </p>
-    
+
     <h4 class="page-header" id="solution-type">
         Designing a solution type
     </h4>
@@ -64,22 +64,22 @@ public class TSPSolution extends Solution {
 
     // list of cities in the order in which they are visited
     private List&lt;Integer&gt; cities;
-    
+
     public TSPSolution(List&lt;Integer&gt; cities){
         this.cities = cities;
     }
-    
+
     public List&lt;Integer&gt; getCities(){
         return cities;
     }
-    
+
     // swap the i-th and j-th city in the round trip
     public void swapCities(int i, int j){
         int tmp = cities.get(i);
         cities.set(i, cities.get(j));
         cities.set(j, tmp);
     }
-    
+
     @Override
     public TSPSolution copy() {
         return new TSPSolution(new ArrayList&lt;&gt;(cities));
@@ -106,7 +106,7 @@ public class TSPSolution extends Solution {
 
 }
 </pre>
-    
+
     <h4 class="page-header" id="problem">
         Implementing the problem
     </h4>
@@ -131,15 +131,15 @@ public class TSPProblem implements Problem&lt;TSPSolution&gt;{
     public TSPProblem(double[][] dist) {
         this.dist = dist;
     }
-    
+
     public double[][] getDistanceMatrix(){
         return dist;
     }
-    
+
     public int getNumCities(){
         return dist.length;
     }
-    
+
     @Override
     public Evaluation evaluate(TSPSolution solution) {
         // compute sum of travel distances
@@ -152,7 +152,7 @@ public class TSPProblem implements Problem&lt;TSPSolution&gt;{
             totalDistance += dist[fromCity][toCity];
         }
         // wrap in simple evaluation
-        return new SimpleEvaluation(totalDistance);
+        return SimpleEvaluation.WITH_VALUE(totalDistance);
     }
 
     @Override
@@ -182,7 +182,7 @@ public class TSPProblem implements Problem&lt;TSPSolution&gt;{
 
 }
 </pre>
-    
+
     <h4 class="page-header" id="neigh">
         Providing a neighbourhood and corresponding move
     </h4>
@@ -202,7 +202,7 @@ public class TSPProblem implements Problem&lt;TSPSolution&gt;{
 public class TSP2OptMove implements Move&lt;TSPSolution&gt; {
 
     // city positions i,j between which the path is reversed as follows:
-    // ... - (a) - (c_1) - (c_2)   - ... - (c_n-1) - (c_n) - (b) - ... 
+    // ... - (a) - (c_1) - (c_2)   - ... - (c_n-1) - (c_n) - (b) - ...
     //               i                                 j
     //  =>
     // ... - (a) - (c_n) - (c_n-1) - ... - (c_2)   - (c_1) - (b) - ...
@@ -218,15 +218,15 @@ public class TSP2OptMove implements Move&lt;TSPSolution&gt; {
         this.i = i;
         this.j = j;
     }
-    
+
     public int getI(){
         return i;
     }
-    
+
     public int getJ(){
         return j;
     }
-    
+
     @Override
     public void apply(TSPSolution solution) {
         // reverse subsequence of cities
@@ -262,7 +262,7 @@ public class TSP2OptMove implements Move&lt;TSPSolution&gt; {
     </p>
 <pre class="prettyprint">
 public class TSP2OptNeighbourhood implements Neighbourhood&lt;TSPSolution&gt;{
-    
+
     public TSP2OptMove getRandomMove(TSPSolution solution) {
         // pick two distinct random positions i,j in the round trip
         int n = solution.getCities().size();
@@ -292,7 +292,7 @@ public class TSP2OptNeighbourhood implements Neighbourhood&lt;TSPSolution&gt;{
 
 }
 </pre>
-    
+
     <h4 class="page-header">
         Efficient delta evaluation
     </h4>
@@ -306,10 +306,10 @@ public class TSP2OptNeighbourhood implements Neighbourhood&lt;TSPSolution&gt;{
 public class TSPProblem implements Problem&lt;TSPSolution&gt;{
 
     // same as before ...
-    
+
     @Override
     public Evaluation evaluate(Move move, TSPSolution curSolution, Evaluation curEvaluation){
-        
+
         // check move type
         if(!(move instanceof TSP2OptMove)){
             throw new IncompatibleDeltaEvaluationException("Delta evaluation in TSP problem expects move of type TSP2OptMove.");
@@ -321,9 +321,9 @@ public class TSPProblem implements Problem&lt;TSPSolution&gt;{
         int j = move2opt.getJ();
         // get number of cities
         int n = getNumCities();
-        
+
         if((j+1)%n == i){
-            // special case: entire sequence reversed
+            // special case: entire round trip reversed
             return curEvaluation;
         } else {
             // get current total travel distance
@@ -346,16 +346,16 @@ public class TSPProblem implements Problem&lt;TSPSolution&gt;{
             totalDistance += dist[firstReversed][afterReversed];
 
             // return updated travel distance
-            return new SimpleEvaluation(totalDistance);
+            return SimpleEvaluation.WITH_VALUE(totalDistance);
         }
-        
+
     }
-    
+
     // same as before ...
 
 }
 </pre>
-    
+
     <h4 class="page-header" id="optimization">
         Optimizing the round trip
     </h4>
@@ -427,13 +427,11 @@ double computeAverageTravelDistance(TSPProblem problem){
     double[][] d = problem.getDistanceMatrix();
     double sum = 0.0;
     for(int i=0; i&lt;n; i++){
-        for(int j=0; j&lt;n; j++) {
-            if(i != j){
-                sum += d[i][j];
-            }
+        for(int j=i+1; j&lt;n; j++) {
+            sum += d[i][j];
         }
     }
-    int numDistances = n*(n-1);
+    int numDistances = n*(n-1)/2;
     return sum/numDistances;
 }
 </pre>
@@ -483,23 +481,5 @@ $ java -cp james-examples.jar org.jamesframework.examples.tsp.TSP &lt;inputfile&
         The example input files correspond to instances gr17, gr48, gr120 and pa561, respectively, from the
         <a href="http://www.iwr.uni-heidelberg.de/groups/comopt/software/TSPLIB95/" target="_blank">TSPLIB benchmark set</a>.
     </p>
-    
+
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

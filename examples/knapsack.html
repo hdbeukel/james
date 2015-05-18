@@ -8,11 +8,11 @@ layout: default
         <li><a href="/examples">Examples</a></li>
         <li class="active">0/1 Knapsack problem</li>
     </ol>
-    
+
     <h2 class="page-header">
         Example 2A: The 0/1 knapsack problem
     </h2>
-    
+
     <div class="bs-callout bs-callout-info">
         <h4>
             <i class="fa fa-info-circle"></i>
@@ -29,7 +29,7 @@ layout: default
         the capacity of the knapsack, i.e. the total weight of all selected items should be
         smaller than or equal to a constant W.
     </p>
-    
+
     <h4 class="page-header">
         Providing the data
     </h4>
@@ -51,7 +51,7 @@ public class KnapsackData implements IntegerIdentifiedData {
     private double[] profits;
     // IDs (indices in weight and profit arrays)
     private Set&lt;Integer&gt; ids;
-    
+
     public KnapsackData(double[] weights, double[] profits){
         // store data
         this.weights = weights;
@@ -63,15 +63,15 @@ public class KnapsackData implements IntegerIdentifiedData {
             ids.add(id);
         }
     }
-    
+
     public Set&lt;Integer&gt; getIDs() {
         return ids;
     }
-    
+
     public double getWeight(int id){
         return weights[id];
     }
-    
+
     public double getProfit(int id){
         return profits[id];
     }
@@ -95,7 +95,7 @@ public class KnapsackObjective implements Objective&lt;SubsetSolution, KnapsackD
         // compute sum of profits of selected items
         double totalProfit = solution.getSelectedIDs().stream().mapToDouble(data::getProfit).sum();
         // wrap value in simple evaluation object
-        return new SimpleEvaluation(totalProfit);
+        return SimpleEvaluation.WITH_VALUE(totalProfit);
     }
 
     public boolean isMinimizing() {
@@ -127,7 +127,7 @@ public Evaluation evaluate(Move move, SubsetSolution curSolution, Evaluation cur
     // account for removed items
     value -= subsetMove.getDeletedIDs().stream().mapToDouble(data::getProfit).sum();
     // return updated evaluation
-    return new SimpleEvaluation(value);
+    return SimpleEvaluation.WITH_VALUE(value);
 }
 </pre>
 
@@ -154,7 +154,7 @@ public class KnapsackConstraint implements Constraint&lt;SubsetSolution, Knapsac
 
     // maximum total weight
     private double maxWeight;
-    
+
     public KnapsackConstraint(double maxWeight){
         this.maxWeight = maxWeight;
     }
@@ -163,9 +163,13 @@ public class KnapsackConstraint implements Constraint&lt;SubsetSolution, Knapsac
         // compute sum of weights of selected items
         double weight = solution.getSelectedIDs().stream().mapToDouble(data::getWeight).sum();
         // check that maximum weight is not exceeded
-        return new SimpleValidation(weight &lt;= maxWeight);
+        if(weight &lt;= maxWeight){
+          return SimpleValidation.PASSED;
+        } else {
+          return SimpleValidation.FAILED;
+        }
     }
-    
+
 }
 </pre>
 
@@ -185,7 +189,7 @@ public Validation validate(Move move, SubsetSolution curSolution, Validation cur
 </pre>
     <p>
         The <code>SimpleValidation</code> type used above only indicates whether the solution passed validation or not.
-        Based on this information only, it is not possible to perform an efficient delta evaluation. Therefore, we create
+        Based on this information only, it is not possible to perform an efficient delta validation. Therefore, we create
         our own <code>KnapsackValidation</code> that tracks the total weight of a solution, as this is what determines validity.
         It implements the <code>Validation</code> interface with a single required method
         <code>passed()</code> that checks whether the total weight does not exceed the knapsack capacity.
@@ -200,15 +204,15 @@ public class KnapsackValidation implements Validation {
         this.curWeight = curWeight;
         this.maxWeight = maxWeight;
     }
-    
+
     public double getCurWeight() {
         return curWeight;
     }
-    
+
     public boolean passed() {
         return curWeight &lt;= maxWeight;
     }
-    
+
 }
 </pre>
     <p>
@@ -216,10 +220,10 @@ public class KnapsackValidation implements Validation {
     </p>
 <pre class="prettyprint">
 public class KnapsackConstraint implements Constraint&lt;SubsetSolution, KnapsackData&gt; {
-    
+
     // maximum total weight
     private double maxWeight;
-    
+
     public KnapsackConstraint(double maxWeight){
         this.maxWeight = maxWeight;
     }
@@ -228,9 +232,9 @@ public class KnapsackConstraint implements Constraint&lt;SubsetSolution, Knapsac
         // compute sum of weights of selected items
         double weight = solution.getSelectedIDs().stream().mapToDouble(data::getWeight).sum();
         // return custom validation object
-        return new KnapsackValidation(weight);
+        return new KnapsackValidation(weight, maxWeight);
     }
-    
+
     public Validation validate(Move move, SubsetSolution curSolution, Validation curValidation, KnapsackData data) {
         // check move type
         if(!(move instanceof SubsetMove)){
@@ -248,12 +252,12 @@ public class KnapsackConstraint implements Constraint&lt;SubsetSolution, Knapsac
         // account for removed items
         weight -= subsetMove.getDeletedIDs().stream().mapToDouble(data::getWeight).sum();
         // return updated validation
-        return new KnapsackValidation(weight);
+        return new KnapsackValidation(weight, maxWeight);
     }
-    
+
 }
 </pre>
-        
+
     <h4 class="page-header" id="problem-specification">
         Finalizing the problem specification
     </h4>
@@ -289,7 +293,7 @@ double capacity = ...
 // create data object
 KnapsackData data = new KnapsackData(weights, profits);
 // create objective
-KnapsackObjective obj = new KnapsackObjective();       
+KnapsackObjective obj = new KnapsackObjective();
 // create constraint
 KnapsackConstraint constraint = new KnapsackConstraint(capacity);
 
@@ -299,7 +303,7 @@ SubsetProblem&lt;KnapsackData&gt; problem = new SubsetProblem&lt;&gt;(obj, data,
 // add mandatory constraint
 problem.addMandatoryConstraint(constraint);
 </pre>
-    
+
     <h4 class="page-header">
         Optimizing the knapsack
     </h4>
@@ -311,7 +315,7 @@ problem.addMandatoryConstraint(constraint);
         it can easily get stuck in a local optimum. Parallel tempering also
         accepts inferior moves in a controlled way to be able to escape from such local optima.
     </p>
-    
+
     <h5 class="page-header">
         Random descent
     </h5>
@@ -487,23 +491,5 @@ $ java -cp james-examples.jar org.jamesframework.examples.knapsack.KnapSack &lt;
             <li><a href="/files/examples/knapsack-1000.txt"><i class="fa fa-file-text-o"></i> Example input file 2 (1000 items)</a></li>
         </ul>
     </p>
-    
+
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

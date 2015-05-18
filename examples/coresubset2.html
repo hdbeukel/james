@@ -8,11 +8,11 @@ layout: default
         <li><a href="/examples">Examples</a></li>
         <li class="active">Core subset selection (2)</li>
     </ol>
-    
+
     <h2 class="page-header">
         Example 1B: Core subset selection (2)
     </h2>
-    
+
     <div class="bs-callout bs-callout-info">
         <h4>
             <i class="fa fa-info-circle"></i>
@@ -27,7 +27,7 @@ layout: default
         The same core subset selection problem from <a href="/examples/coresubset">example 1A</a>
         is addressed using the same basic random descent algorithm. Please take a look at that example before proceeding.
     </p>
-    
+
     <h4 class="page-header">
         Basic objective implementation
     </h4>
@@ -38,7 +38,7 @@ layout: default
     </p>
 <pre class="prettyprint">
 public class CoreSubsetObjective implements Objective&lt;SubsetSolution, CoreSubsetData&gt;{
-    
+
     public Evaluation evaluate(SubsetSolution solution, CoreSubsetData data) {
         double value = 0.0;
         if(solution.getNumSelectedIDs() &gt;= 2){
@@ -55,7 +55,7 @@ public class CoreSubsetObjective implements Objective&lt;SubsetSolution, CoreSub
             }
             value = sumDist/numDist;
         }
-        return new SimpleEvaluation(value);
+        return SimpleEvaluation.WITH_VALUE(value);
     }
 
     public boolean isMinimizing() {
@@ -138,7 +138,7 @@ public Evaluation evaluate(Move move, SolutionType curSolution, Evaluation curEv
         The double value of the current solution's evaluation can be obtained by calling <code>curEvaluation.getValue()</code>.
         For this objective function, it is sufficient to know this value, the current solution and the applied move to be able
         to compute the new evaluation. This is not always the case: it might be necessary to track some metadata as well by using
-        a custom evaluation object (see <a href="/examples/coresubset3">example 1C</a>). Here we can still use the basic 
+        a custom evaluation object (see <a href="/examples/coresubset3">example 1C</a>). Here we can still use the basic
         <code>SimpleEvaluation</code> that just wraps a double value.
 <pre class="prettyprint">
 public class CoreSubsetObjectiveWithDelta extends CoreSubsetObjective {
@@ -151,21 +151,21 @@ public class CoreSubsetObjectiveWithDelta extends CoreSubsetObjective {
         }
         // cast move
         SubsetMove subsetMove = (SubsetMove) move;
-        
+
         // get current evaluation
         double curEval = curEvaluation.getValue();
         // undo average to get sum of distances
         int numSelected = curSolution.getNumSelectedIDs();
         int numDistances = numSelected * (numSelected-1) / 2;
         double sumDist = curEval * numDistances;
-        
+
         // get set of added and removed IDs
         Set&lt;Integer&gt; added = subsetMove.getAddedIDs();
         Set&lt;Integer&gt; removed = subsetMove.getDeletedIDs();
         // infer list of retained IDs
         List&lt;Integer&gt; retained = new ArrayList&lt;&gt;(curSolution.getSelectedIDs());
         retained.removeAll(removed);
-        
+
         // subtract distances from removed items to retained items
         for(int rem : removed){
             for(int ret : retained){
@@ -173,7 +173,7 @@ public class CoreSubsetObjectiveWithDelta extends CoreSubsetObjective {
                 numDistances--;
             }
         }
-        
+
         // subtract distances from removed to other removed items
         for(int rem1 : removed){
             for(int rem2 : removed){
@@ -184,7 +184,7 @@ public class CoreSubsetObjectiveWithDelta extends CoreSubsetObjective {
                 }
             }
         }
-        
+
         // add distances from new items to retained items
         for(int add : added){
             for(int ret : retained){
@@ -192,7 +192,7 @@ public class CoreSubsetObjectiveWithDelta extends CoreSubsetObjective {
                 numDistances++;
             }
         }
-        
+
         // add distances from new items to other new items
         for(int add1 : added){
             for(int add2 : added){
@@ -203,7 +203,7 @@ public class CoreSubsetObjectiveWithDelta extends CoreSubsetObjective {
                 }
             }
         }
-        
+
         double newEval;
         if(numDistances > 0){
             // take average based on updated number of distances
@@ -212,17 +212,17 @@ public class CoreSubsetObjectiveWithDelta extends CoreSubsetObjective {
             // no distances (less than two items remain selected)
             newEval = 0.0;
         }
-        
+
         // return new evaluation
-        return new SimpleEvaluation(newEval);
-        
+        return SimpleEvaluation.WITH_VALUE(newEval);
+
     }
-    
+
 }
 </pre>
 
     </p>
-        
+
     <h4 class="page-header">
         Full source code
     </h4>
@@ -243,23 +243,5 @@ $ java -cp james-examples.jar org.jamesframework.examples.coresubset2.CoreSubset
     <p>
         <a href="/files/examples/coresubset.csv"><i class="fa fa-file-text-o"></i> Example input file (275 items)</a>
     </p>
-    
+
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

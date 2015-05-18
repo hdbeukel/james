@@ -8,11 +8,11 @@ layout: default
         <li><a href="/examples">Examples</a></li>
         <li class="active">0/1 Knapsack problem (2)</li>
     </ol>
-    
+
     <h2 class="page-header">
         Example 2B: The 0/1 knapsack problem (2)
     </h2>
-    
+
     <div class="bs-callout bs-callout-info">
         <h4>
             <i class="fa fa-info-circle"></i>
@@ -26,7 +26,7 @@ layout: default
         using a penalizing instead of a mandatory constraint. Please take a look at
         that example before proceeding.
     </p>
-    
+
     <h4 class="page-header">
         Penalizing constraints
     </h4>
@@ -53,7 +53,7 @@ layout: default
         moves, such as the single perturbation neighbourhood applied below. This ensures that the best found solution will
         satisfy the constraint, which would not necessarily be the case if the penalty had been poorly designed.
     </p>
-    
+
     <h4 class="page-header">
         Implementing the constraint
     </h4>
@@ -89,12 +89,12 @@ layout: default
     </div>
 <pre class="prettyprint">
 public class PenalizingKnapsackConstraint implements PenalizingConstraint&lt;SubsetSolution, KnapsackData&gt; {
-    
+
     // maximum total weight
     private double maxWeight;
     // highest profit (of all items in the data set)
     private double highestProfitPerItem;
-    
+
     public PenalizingKnapsackConstraint(double maxWeight, double highestProfitPerItem){
         this.maxWeight = maxWeight;
         this.highestProfitPerItem = highestProfitPerItem;
@@ -102,7 +102,7 @@ public class PenalizingKnapsackConstraint implements PenalizingConstraint&lt;Sub
 
     // WARNING: only works if IDs are ordered based on weight of corresponding items (descending)
     public PenalizingValidation validate(SubsetSolution solution, KnapsackData data) {
-        
+
         // step 1: compute total weight of selected items
         double curWeight = solution.getSelectedIDs().stream().mapToDouble(data::getWeight).sum();
 
@@ -126,16 +126,16 @@ public class PenalizingKnapsackConstraint implements PenalizingConstraint&lt;Sub
             // constraint satisfied
             return SimplePenalizingValidation.PASSED;
         }
-        
+
     }
-    
+
 }
 </pre>
     <p>
-        It is of course possible to also provide a more efficient delta evaluation, e.g. by dynamically updating the total
+        It is of course possible to also provide a more efficient delta validation, e.g. by dynamically updating the total
         weight of the selection as in <a href="/examples/knapsack/#delta-validation">example 2A</a>. This is not discussed here.
     </p>
-    
+
     <h4 class="page-header" id="problem-specification">
         Problem specification
     </h4>
@@ -156,7 +156,7 @@ double capacity = ...
 // create data object
 KnapsackData data = new KnapsackData(weights, profits);
 // create objective
-KnapsackObjective obj = new KnapsackObjective();       
+KnapsackObjective obj = new KnapsackObjective();
 // create penalizing constraint
 double highestProfitPerItem = computeHighestProfit(data);
 PenalizingKnapsackConstraint constraint = new PenalizingKnapsackConstraint(capacity, highestProfitPerItem);
@@ -180,7 +180,7 @@ double computeHighestProfit(KnapsackData data){
     return data.getIDs().stream().mapToDouble(data::getProfit).max().getAsDouble();
 }
 </pre>
-    
+
     <h4 class="page-header">
         Optimizing the knapsack
     </h4>
@@ -188,8 +188,8 @@ double computeHighestProfit(KnapsackData data){
         We can now apply a <a href="/docs/#parallel-tempering">parallel tempering</a> search as in
         <a href="/examples/knapsack/#parallel-tempering">example 2A</a>. It should give similar results
         as compared to the approach with a mandatory constraint. Note that it is <strong>not</strong>
-        required now to provide an initial solution within the constraint, the search will find its
-        way to a valid solution anyway because of the way in which the penalties have been designed.
+        required now to provide an initial solution within the constraint, the search is able to find its
+        way to a valid solution anyway because of how the penalties have been designed.
     </p>
 <pre class="prettyprint">
 // create parallel tempering with single perturbation neighbourhood
@@ -224,7 +224,7 @@ if(search.getBestSolution() != null){
 // dispose search
 search.dispose();
 </pre>
-    
+
     <h4 class="page-header">
         Full source code
     </h4>
@@ -249,23 +249,5 @@ $ java -cp james-examples.jar org.jamesframework.examples.knapsack2.KnapSack2 &l
             <li><a href="/files/examples/knapsack-1000.txt"><i class="fa fa-file-text-o"></i> Example input file 2 (1000 items)</a></li>
         </ul>
     </p>
-    
+
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -8,11 +8,11 @@ layout: default
         <li><a href="/examples">Examples</a></li>
         <li class="active">Travelling salesman problem (2)</li>
     </ol>
-    
+
     <h2 class="page-header">
         Example 4B: The travelling salesman problem (2)
     </h2>
-    
+
     <div class="bs-callout bs-callout-info">
         <h4>
             <i class="fa fa-info-circle"></i>
@@ -29,7 +29,7 @@ layout: default
     <p>
         All reusable permutation problem components defined here have been made available in the <a href="/getstarted/#modules">JAMES extensions module</a>.
     </p>
-    
+
     <h4 class="page-header">
         A solution type for permutation problems
     </h4>
@@ -67,7 +67,7 @@ public class PermutationSolution extends Solution {
     public PermutationSolution copy() {
         return new PermutationSolution(new ArrayList&lt;&gt;(order));
     }
-    
+
     @Override
     public boolean equals(Object other) {
         if (other == null) {
@@ -154,7 +154,7 @@ public class ReverseSubsequenceMove implements Move&lt;PermutationSolution&gt;{
     public int getFrom(){
         return from;
     }
-    
+
     public int getTo(){
         return to;
     }
@@ -237,7 +237,7 @@ public class TSPData implements IntegerIdentifiedData {
 
     // travel distance matrix
     private final double[][] dist;
-    
+
     // set of IDs
     private final Set&lt;Integer&gt; ids;
 
@@ -255,12 +255,12 @@ public class TSPData implements IntegerIdentifiedData {
     public Set&lt;Integer&gt; getIDs() {
         return ids;
     }
-    
+
     // get travel distance from the given city to the given other city
     public double getDistance(int from, int to){
         return dist[from][to];
     }
-    
+
 }
 </pre>
     <p>
@@ -283,11 +283,11 @@ public class TSPObjective implements Objective&lt;PermutationSolution, TSPData&g
             totalDistance += data.getDistance(fromCity, toCity);
         }
         // wrap in simple evaluation
-        return new SimpleEvaluation(totalDistance);
+        return SimpleEvaluation.WITH_VALUE(totalDistance);
     }
 
     public Evaluation evaluate(Move move, PermutationSolution curSolution, Evaluation curEvaluation, TSPData data){
-        
+
         // check move type
         if(!(move instanceof ReverseSubsequenceMove)){
             throw new IncompatibleDeltaEvaluationException("Delta evaluation in TSP objective expects move of type ReverseSubsequenceMove.");
@@ -299,9 +299,9 @@ public class TSPObjective implements Objective&lt;PermutationSolution, TSPData&g
         int to = move2opt.getTo();
         // get number of cities
         int n = curSolution.size();
-        
+
         if((to+1)%n == from){
-            // special case: entire sequence reversed
+            // special case: entire round trip reversed
             return curEvaluation;
         } else {
             // get current total travel distance
@@ -324,11 +324,11 @@ public class TSPObjective implements Objective&lt;PermutationSolution, TSPData&g
             totalDistance += data.getDistance(firstReversed, afterReversed);
 
             // return updated travel distance
-            return new SimpleEvaluation(totalDistance);
+            return SimpleEvaluation.WITH_VALUE(totalDistance);
         }
-        
+
     }
-    
+
     public boolean isMinimizing() {
         return true;
     }
@@ -398,13 +398,13 @@ double computeAverageTravelDistance(TSPData data){
     double sum = 0.0;
     for(int id1 : ids){
         for(int id2 : ids) {
-            if(id1 != id2){
+            if(id1 &lt; id2){
                 sum += data.getDistance(id1, id2);
             }
         }
     }
     int n = ids.size();
-    int numDistances = n*(n-1);
+    int numDistances = n*(n-1)/2;
     return sum/numDistances;
 }
 </pre>
@@ -459,23 +459,5 @@ $ java -cp james-examples.jar org.jamesframework.examples.tsp2.TSP2 &lt;inputfil
         The example input files correspond to instances gr17, gr48, gr120 and pa561, respectively, from the
         <a href="http://www.iwr.uni-heidelberg.de/groups/comopt/software/TSPLIB95/" target="_blank">TSPLIB benchmark set</a>.
     </p>
-    
+
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
