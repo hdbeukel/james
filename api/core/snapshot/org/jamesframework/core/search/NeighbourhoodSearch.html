@@ -98,7 +98,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
-<li><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
+<li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
 <li><a href="../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">org.jamesframework.core.search.Search</a>&lt;SolutionType&gt;</li>
@@ -124,7 +124,7 @@ var activeTableTab = "activeTableTab";
 </dl>
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</a></dd>
+<dd><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</a></dd>
 </dl>
 <dl>
 <dt>Direct Known Subclasses:</dt>
@@ -166,7 +166,7 @@ extends <a href="../../../../org/jamesframework/core/search/LocalSearch.html" ti
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#NeighbourhoodSearch-java.lang.String-org.jamesframework.core.problems.Problem-">NeighbourhoodSearch</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#NeighbourhoodSearch-java.lang.String-org.jamesframework.core.problems.Problem-">NeighbourhoodSearch</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
                    <a href="../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;problem)</code>
 <div class="block">Create a new neighbourhood search to solve the given problem, with a custom name.</div>
 </td>
@@ -188,21 +188,21 @@ extends <a href="../../../../org/jamesframework/core/search/LocalSearch.html" ti
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>protected boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#acceptMove-org.jamesframework.core.search.neigh.Move-">acceptMove</a></span>(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#accept-org.jamesframework.core.search.neigh.Move-">accept</a></span>(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</code>
 <div class="block">Accept the given move by applying it to the current solution.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>protected <a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#evaluateMove-org.jamesframework.core.search.neigh.Move-">evaluateMove</a></span>(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#evaluate-org.jamesframework.core.search.neigh.Move-">evaluate</a></span>(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</code>
 <div class="block">Evaluates a move to be applied to the current solution.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>protected <a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getBestMove-java.util.Collection-boolean-java.util.function.Predicate...-">getBestMove</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&gt;&nbsp;moves,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#getBestMove-java.util.Collection-boolean-java.util.function.Predicate...-">getBestMove</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&gt;&nbsp;moves,
            boolean&nbsp;requireImprovement,
-           <a href="http://docs.oracle.com/javase/7/docs/api/java/util/function.Predicate.html?is-external=true" title="class or interface in java.util">java.util.function.Predicate</a>&lt;? super <a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&gt;...&nbsp;filters)</code>
+           <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html?is-external=true" title="class or interface in java.util.function">Predicate</a>&lt;? super <a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&gt;...&nbsp;filters)</code>
 <div class="block">
  Get the best valid move among a collection of possible moves.</div>
 </td>
@@ -242,8 +242,8 @@ extends <a href="../../../../org/jamesframework/core/search/LocalSearch.html" ti
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#rejectMove--">rejectMove</a></span>()</code>
-<div class="block">Indicate that a move was rejected.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#reject-org.jamesframework.core.search.neigh.Move-">reject</a></span>(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</code>
+<div class="block">Reject the given move.</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
@@ -270,7 +270,7 @@ extends <a href="../../../../org/jamesframework/core/search/LocalSearch.html" ti
 </tr>
 <tr id="i12" class="altColor">
 <td class="colFirst"><code>protected <a href="../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#validateMove-org.jamesframework.core.search.neigh.Move-">validateMove</a></span>(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html#validate-org.jamesframework.core.search.neigh.Move-">validate</a></span>(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</code>
 <div class="block">Validates a move to be applied to the current solution.</div>
 </td>
 </tr>
@@ -280,7 +280,7 @@ extends <a href="../../../../org/jamesframework/core/search/LocalSearch.html" ti
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;org.jamesframework.core.search.<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></h3>
-<code><a href="../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolution--">getCurrentSolution</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionEvaluation--">getCurrentSolutionEvaluation</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionValidation--">getCurrentSolutionValidation</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html#setCurrentSolution-SolutionType-">setCurrentSolution</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html#setRandomInitialSolution--">setRandomInitialSolution</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-">updateCurrentAndBestSolution</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">updateCurrentAndBestSolution</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentSolution-SolutionType-">updateCurrentSolution</a></code></li>
+<code><a href="../../../../org/jamesframework/core/search/LocalSearch.html#generateRandomInitialSolution--">generateRandomInitialSolution</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolution--">getCurrentSolution</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionEvaluation--">getCurrentSolutionEvaluation</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html#getCurrentSolutionValidation--">getCurrentSolutionValidation</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html#setCurrentSolution-SolutionType-">setCurrentSolution</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-">updateCurrentAndBestSolution</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentAndBestSolution-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">updateCurrentAndBestSolution</a>, <a href="../../../../org/jamesframework/core/search/LocalSearch.html#updateCurrentSolution-SolutionType-">updateCurrentSolution</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.org.jamesframework.core.search.Search">
@@ -293,8 +293,8 @@ extends <a href="../../../../org/jamesframework/core/search/LocalSearch.html" ti
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
-<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#clone--" title="class or interface in java.lang">clone</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#finalize--" title="class or interface in java.lang">finalize</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
+<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#clone--" title="class or interface in java.lang">clone</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#finalize--" title="class or interface in java.lang">finalize</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
 </ul>
 </li>
 </ul>
@@ -322,7 +322,7 @@ extends <a href="../../../../org/jamesframework/core/search/LocalSearch.html" ti
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>problem</code> - problem to solve</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> is <code>null</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> is <code>null</code></dd>
 </dl>
 </li>
 </ul>
@@ -332,7 +332,7 @@ extends <a href="../../../../org/jamesframework/core/search/LocalSearch.html" ti
 <ul class="blockListLast">
 <li class="blockList">
 <h4>NeighbourhoodSearch</h4>
-<pre>public&nbsp;NeighbourhoodSearch(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+<pre>public&nbsp;NeighbourhoodSearch(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
                            <a href="../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;problem)</pre>
 <div class="block">Create a new neighbourhood search to solve the given problem, with a custom name. If <code>name</code> is
  <code>null</code>, the default name "NeighbourhoodSearch" will be assigned.</div>
@@ -341,7 +341,7 @@ extends <a href="../../../../org/jamesframework/core/search/LocalSearch.html" ti
 <dd><code>problem</code> - problem to solve</dd>
 <dd><code>name</code> - custom search name</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> is <code>null</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> is <code>null</code></dd>
 </dl>
 </li>
 </ul>
@@ -476,16 +476,16 @@ extends <a href="../../../../org/jamesframework/core/search/LocalSearch.html" ti
 </dl>
 </li>
 </ul>
-<a name="evaluateMove-org.jamesframework.core.search.neigh.Move-">
+<a name="evaluate-org.jamesframework.core.search.neigh.Move-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>evaluateMove</h4>
-<pre>protected&nbsp;<a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;evaluateMove(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</pre>
+<h4>evaluate</h4>
+<pre>protected&nbsp;<a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;evaluate(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</pre>
 <div class="block">Evaluates a move to be applied to the current solution. If this move has been evaluated
- before and the obtained evaluation is still available in the cache, the cached object will
- be returned. Else, the evaluation will be computed and offered to the cache.</div>
+ before and the obtained evaluation is still available in the cache, the cached evaluation
+ will be returned. Else, the evaluation will be computed and offered to the cache.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>move</code> - move to be applied to the current solution</dd>
@@ -494,16 +494,16 @@ extends <a href="../../../../org/jamesframework/core/search/LocalSearch.html" ti
 </dl>
 </li>
 </ul>
-<a name="validateMove-org.jamesframework.core.search.neigh.Move-">
+<a name="validate-org.jamesframework.core.search.neigh.Move-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>validateMove</h4>
-<pre>protected&nbsp;<a href="../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;validateMove(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</pre>
+<h4>validate</h4>
+<pre>protected&nbsp;<a href="../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>&nbsp;validate(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</pre>
 <div class="block">Validates a move to be applied to the current solution. If this move has been validated
- before and the obtained validation is still available in the cache, the cached object will
- be returned. Else, the validation will be computed and offered to the cache.</div>
+ before and the obtained validation is still available in the cache, the cached validation
+ will be returned. Else, the validation will be computed and offered to the cache.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>move</code> - move to be applied to the current solution</dd>
@@ -542,10 +542,10 @@ extends <a href="../../../../org/jamesframework/core/search/LocalSearch.html" ti
 <ul class="blockList">
 <li class="blockList">
 <h4>getBestMove</h4>
-<pre><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/SafeVarargs.html?is-external=true" title="class or interface in java.lang">@SafeVarargs</a>
-protected final&nbsp;<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;getBestMove(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&gt;&nbsp;moves,
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/SafeVarargs.html?is-external=true" title="class or interface in java.lang">@SafeVarargs</a>
+protected final&nbsp;<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;getBestMove(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&gt;&nbsp;moves,
                                                                     boolean&nbsp;requireImprovement,
-                                                                    <a href="http://docs.oracle.com/javase/7/docs/api/java/util/function.Predicate.html?is-external=true" title="class or interface in java.util">java.util.function.Predicate</a>&lt;? super <a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&gt;...&nbsp;filters)</pre>
+                                                                    <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html?is-external=true" title="class or interface in java.util.function">Predicate</a>&lt;? super <a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&gt;...&nbsp;filters)</pre>
 <div class="block"><p>
  Get the best valid move among a collection of possible moves. The best valid move is the one yielding the
  largest delta (see <a href="../../../../org/jamesframework/core/search/Search.html#computeDelta-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.objectives.evaluations.Evaluation-"><code>Search.computeDelta(Evaluation, Evaluation)</code></a>) when being applied to the current solution.
@@ -576,13 +576,13 @@ protected final&nbsp;<a href="../../../../org/jamesframework/core/search/neigh/M
 </dl>
 </li>
 </ul>
-<a name="acceptMove-org.jamesframework.core.search.neigh.Move-">
+<a name="accept-org.jamesframework.core.search.neigh.Move-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>acceptMove</h4>
-<pre>protected&nbsp;boolean&nbsp;acceptMove(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</pre>
+<h4>accept</h4>
+<pre>protected&nbsp;boolean&nbsp;accept(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</pre>
 <div class="block">Accept the given move by applying it to the current solution. Updates the evaluation and validation of
  the current solution and checks whether a new best solution has been found. The updates only take place
  if the applied move yields a valid neighbour, else calling this method does not have any effect and
@@ -596,7 +596,8 @@ protected final&nbsp;<a href="../../../../org/jamesframework/core/search/neigh/M
 <dd><code>move</code> - accepted move to be applied to the current solution</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd><code>true</code> if the update has been successfully performed,
-         <code>false</code> if the update was cancelled because the obtained neighbour is invalid</dd>
+         <code>false</code> if the update was cancelled because the obtained
+         neighbour is invalid</dd>
 </dl>
 </li>
 </ul>
@@ -614,15 +615,19 @@ protected final&nbsp;<a href="../../../../org/jamesframework/core/search/neigh/M
 </dl>
 </li>
 </ul>
-<a name="rejectMove--">
+<a name="reject-org.jamesframework.core.search.neigh.Move-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>rejectMove</h4>
-<pre>protected&nbsp;void&nbsp;rejectMove()</pre>
-<div class="block">Indicate that a move was rejected. This method only updates the rejected move counter. If this method
- is called for every rejected move, the number of rejected moves will be correctly reported.</div>
+<h4>reject</h4>
+<pre>protected&nbsp;void&nbsp;reject(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/search/NeighbourhoodSearch.html" title="type parameter in NeighbourhoodSearch">SolutionType</a>&gt;&nbsp;move)</pre>
+<div class="block">Reject the given move. The default implementation ignores the specified move and simply updates
+ the <em>number</em> of rejected moves. Specific searches can override this behaviour if desired.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>move</code> - rejected move (ignored)</dd>
+</dl>
 </li>
 </ul>
 <a name="incNumRejectedMoves-long-">

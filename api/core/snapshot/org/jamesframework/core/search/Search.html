@@ -98,7 +98,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
-<li><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
+<li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
 <li>org.jamesframework.core.search.Search&lt;SolutionType&gt;</li>
@@ -114,7 +114,7 @@ var activeTableTab = "activeTableTab";
 </dl>
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</a></dd>
+<dd><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</a></dd>
 </dl>
 <dl>
 <dt>Direct Known Subclasses:</dt>
@@ -123,8 +123,8 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public abstract class <span class="typeNameLabel">Search&lt;SolutionType extends <a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span>
-extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
-implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</a></pre>
+extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
+implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</a></pre>
 <div class="block"><p>
  General abstract search used to solve a problem with the specified solution type. It provides general methods to
  start and stop the search, and to access state information and metadata such as the best solution found so far and the
@@ -191,7 +191,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#Search-java.lang.String-org.jamesframework.core.problems.Problem-">Search</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#Search-java.lang.String-org.jamesframework.core.problems.Problem-">Search</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
       <a href="../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&nbsp;problem)</code>
 <div class="block">Creates a search to solve the given problem, with a custom search name.</div>
 </td>
@@ -225,7 +225,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#assertIdle-java.lang.String-">assertIdle</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;errorMessage)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#assertIdle-java.lang.String-">assertIdle</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;errorMessage)</code>
 <div class="block">Asserts that the search is currently idle, more precisely that its status is equal to <a href="../../../../org/jamesframework/core/search/status/SearchStatus.html#IDLE"><code>SearchStatus.IDLE</code></a>.</div>
 </td>
 </tr>
@@ -245,7 +245,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#fireListenerCallback-java.util.function.Consumer-">fireListenerCallback</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/function.Consumer.html?is-external=true" title="class or interface in java.util">java.util.function.Consumer</a>&lt;? super <a href="../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;? super <a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&gt;&nbsp;callback)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#fireListenerCallback-java.util.function.Consumer-">fireListenerCallback</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;? super <a href="../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;? super <a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&gt;&nbsp;callback)</code>
 <div class="block">Fire the given callback on all attached listeners.</div>
 </td>
 </tr>
@@ -282,7 +282,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 </td>
 </tr>
 <tr id="i11" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getName--">getName</a></span>()</code>
 <div class="block">Get the name that has been assigned to this search.</div>
 </td>
@@ -307,7 +307,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 </td>
 </tr>
 <tr id="i15" class="rowColor">
-<td class="colFirst"><code>protected <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></td>
+<td class="colFirst"><code>protected <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getStatusLock--">getStatusLock</a></span>()</code>
 <div class="block">Returns a lock to be acquired when executing blocks of code that can not be interrupted by a status update.</div>
 </td>
@@ -382,7 +382,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 <tr id="i26" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#setStopCriterionCheckPeriod-long-java.util.concurrent.TimeUnit-">setStopCriterionCheckPeriod</a></span>(long&nbsp;period,
-                           <a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/TimeUnit.html?is-external=true" title="class or interface in java.util.concurrent">TimeUnit</a>&nbsp;timeUnit)</code>
+                           <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/TimeUnit.html?is-external=true" title="class or interface in java.util.concurrent">TimeUnit</a>&nbsp;timeUnit)</code>
 <div class="block">Instructs the search to check its stop criteria at regular intervals separated by the given period.</div>
 </td>
 </tr>
@@ -401,7 +401,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 </td>
 </tr>
 <tr id="i29" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#toString--">toString</a></span>()</code>
 <div class="block">Returns a string representation of the search, formatted as "%name(%id)".</div>
 </td>
@@ -428,8 +428,8 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
-<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#clone--" title="class or interface in java.lang">clone</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#finalize--" title="class or interface in java.lang">finalize</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
+<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#clone--" title="class or interface in java.lang">clone</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#finalize--" title="class or interface in java.lang">finalize</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
 </ul>
 </li>
 </ul>
@@ -457,7 +457,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>problem</code> - problem to solve</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> is <code>null</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> is <code>null</code></dd>
 </dl>
 </li>
 </ul>
@@ -467,7 +467,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 <ul class="blockListLast">
 <li class="blockList">
 <h4>Search</h4>
-<pre>public&nbsp;Search(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+<pre>public&nbsp;Search(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
               <a href="../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&nbsp;problem)</pre>
 <div class="block">Creates a search to solve the given problem, with a custom search name. If
  <code>name</code> is <code>null</code>, a default search name "Search" will
@@ -477,7 +477,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 <dd><code>problem</code> - problem to solve</dd>
 <dd><code>name</code> - custom search name</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> is <code>null</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> is <code>null</code></dd>
 </dl>
 </li>
 </ul>
@@ -509,7 +509,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 <ul class="blockList">
 <li class="blockList">
 <h4>getName</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;getName()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;getName()</pre>
 <div class="block">Get the name that has been assigned to this search.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -537,11 +537,11 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 <ul class="blockList">
 <li class="blockList">
 <h4>toString</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;toString()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;toString()</pre>
 <div class="block">Returns a string representation of the search, formatted as "%name(%id)".</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>string representation containing name and id</dd>
 </dl>
@@ -621,11 +621,11 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 <li class="blockList">
 <h4>run</h4>
 <pre>public&nbsp;void&nbsp;run()</pre>
-<div class="block">Equivalent to calling <a href="../../../../org/jamesframework/core/search/Search.html#start--"><code>start()</code></a>. Through this method searches implement the <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang"><code>Runnable</code></a> interface
+<div class="block">Equivalent to calling <a href="../../../../org/jamesframework/core/search/Search.html#start--"><code>start()</code></a>. Through this method searches implement the <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang"><code>Runnable</code></a> interface
  so that they can easily be executed in a separate thread.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.html?is-external=true#run--" title="class or interface in java.lang">run</a></code>&nbsp;in interface&nbsp;<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</a></code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html?is-external=true#run--" title="class or interface in java.lang">run</a></code>&nbsp;in interface&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -674,7 +674,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 <li class="blockList">
 <h4>setStopCriterionCheckPeriod</h4>
 <pre>public&nbsp;void&nbsp;setStopCriterionCheckPeriod(long&nbsp;period,
-                                        <a href="http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/TimeUnit.html?is-external=true" title="class or interface in java.util.concurrent">TimeUnit</a>&nbsp;timeUnit)</pre>
+                                        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/TimeUnit.html?is-external=true" title="class or interface in java.util.concurrent">TimeUnit</a>&nbsp;timeUnit)</pre>
 <div class="block">Instructs the search to check its stop criteria at regular intervals separated by the given period.
  For the default period, see <a href="../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria"><code>StopCriterionChecker</code></a>, which is used internally for this purpose.
  The period should be at least 1 millisecond, else the stop criterion checker may thrown an exception
@@ -687,7 +687,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 <dd><code>timeUnit</code> - corresponding time unit</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions">SearchException</a></code> - if the search is not idle</dd>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if the given period is not strictly positive</dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if the given period is not strictly positive</dd>
 </dl>
 </li>
 </ul>
@@ -733,7 +733,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 <ul class="blockList">
 <li class="blockList">
 <h4>fireListenerCallback</h4>
-<pre>protected&nbsp;void&nbsp;fireListenerCallback(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/function.Consumer.html?is-external=true" title="class or interface in java.util">java.util.function.Consumer</a>&lt;? super <a href="../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;? super <a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&gt;&nbsp;callback)</pre>
+<pre>protected&nbsp;void&nbsp;fireListenerCallback(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;? super <a href="../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;? super <a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&gt;&nbsp;callback)</pre>
 <div class="block">Fire the given callback on all attached listeners. The easiest way
  to use this method is to specify the callback as a lambda expression.</div>
 <dl>
@@ -762,7 +762,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 <ul class="blockList">
 <li class="blockList">
 <h4>getStatusLock</h4>
-<pre>protected&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;getStatusLock()</pre>
+<pre>protected&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;getStatusLock()</pre>
 <div class="block">Returns a lock to be acquired when executing blocks of code that can not be interrupted by a status update.
  All status updates are synchronized using this lock. Whenever a fixed status is required during execution of
  a code block, this can be obtained by synchronizing the block using this status lock.</div>
@@ -778,7 +778,7 @@ implements <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Runnable.
 <ul class="blockList">
 <li class="blockList">
 <h4>assertIdle</h4>
-<pre>protected&nbsp;void&nbsp;assertIdle(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;errorMessage)</pre>
+<pre>protected&nbsp;void&nbsp;assertIdle(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;errorMessage)</pre>
 <div class="block">Asserts that the search is currently idle, more precisely that its status is equal to <a href="../../../../org/jamesframework/core/search/status/SearchStatus.html#IDLE"><code>SearchStatus.IDLE</code></a>.
  If not, a <a href="../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions"><code>SearchException</code></a> is thrown, which includes the given <code>errorMessage</code> and the current
  search status (different from IDLE).</div>

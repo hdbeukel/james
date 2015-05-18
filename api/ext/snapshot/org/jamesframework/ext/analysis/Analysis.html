@@ -94,11 +94,11 @@ var activeTableTab = "activeTableTab";
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">org.jamesframework.ext.analysis</div>
-<h2 title="Class Analysis" class="title">Class Analysis&lt;SolutionType extends <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/Solution.html?is-external=true" title="class or interface in org.jamesframework.core.problems">Solution</a>&gt;</h2>
+<h2 title="Class Analysis" class="title">Class Analysis&lt;SolutionType extends org.jamesframework.core.problems.Solution&gt;</h2>
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
-<li><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
+<li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
 <li>org.jamesframework.ext.analysis.Analysis&lt;SolutionType&gt;</li>
@@ -114,8 +114,8 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public class <span class="typeNameLabel">Analysis&lt;SolutionType extends <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/Solution.html?is-external=true" title="class or interface in org.jamesframework.core.problems">Solution</a>&gt;</span>
-extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
+<pre>public class <span class="typeNameLabel">Analysis&lt;SolutionType extends org.jamesframework.core.problems.Solution&gt;</span>
+extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
 <div class="block"><p>
  This analysis class can be used to set up and run an experiment with different search algorithms applied to
  several problem instances, for example with different data sets, objectives or problem parameters. It can also
@@ -171,15 +171,15 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="class in org.jamesframework.ext.analysis">Analysis</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="type parameter in Analysis">SolutionType</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/Analysis.html#addProblem-java.lang.String-org.jamesframework.core.problems.Problem-">addProblem</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;ID,
-          <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/Problem.html?is-external=true" title="class or interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="type parameter in Analysis">SolutionType</a>&gt;&nbsp;problem)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/Analysis.html#addProblem-java.lang.String-org.jamesframework.core.problems.Problem-">addProblem</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;ID,
+          org.jamesframework.core.problems.Problem&lt;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="type parameter in Analysis">SolutionType</a>&gt;&nbsp;problem)</code>
 <div class="block">Add a problem to be analyzed.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="class in org.jamesframework.ext.analysis">Analysis</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="type parameter in Analysis">SolutionType</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/Analysis.html#addSearch-java.lang.String-org.jamesframework.ext.analysis.SearchFactory-">addSearch</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;ID,
-         <a href="../../../../org/jamesframework/ext/analysis/SearchFactory.html" title="interface in org.jamesframework.ext.analysis">SearchFactory</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="type parameter in Analysis">SolutionType</a>&gt;&nbsp;searchFactory)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/Analysis.html#addSearch-java.lang.String-org.jamesframework.core.util.SearchFactory-">addSearch</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;ID,
+         org.jamesframework.core.util.SearchFactory&lt;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="type parameter in Analysis">SolutionType</a>&gt;&nbsp;searchFactory)</code>
 <div class="block">Add a search to be applied to solve the analyzed problems.</div>
 </td>
 </tr>
@@ -193,7 +193,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/Analysis.html#getNumBurnIn-java.lang.String-">getNumBurnIn</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/Analysis.html#getNumBurnIn-java.lang.String-">getNumBurnIn</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID)</code>
 <div class="block">Get the number of additional burn-in runs that will be performed for the search with the given ID.</div>
 </td>
 </tr>
@@ -206,7 +206,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/Analysis.html#getNumRuns-java.lang.String-">getNumRuns</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/Analysis.html#getNumRuns-java.lang.String-">getNumRuns</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID)</code>
 <div class="block">Get the number of runs that will be performed for the search with the given ID.</div>
 </td>
 </tr>
@@ -226,7 +226,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="class in org.jamesframework.ext.analysis">Analysis</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="type parameter in Analysis">SolutionType</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/Analysis.html#setNumBurnIn-java.lang.String-int-">setNumBurnIn</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/Analysis.html#setNumBurnIn-java.lang.String-int-">setNumBurnIn</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID,
             int&nbsp;n)</code>
 <div class="block">Set the number of additional burn-in runs to be performed for the given search.</div>
 </td>
@@ -240,7 +240,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </tr>
 <tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="class in org.jamesframework.ext.analysis">Analysis</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="type parameter in Analysis">SolutionType</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/Analysis.html#setNumRuns-java.lang.String-int-">setNumRuns</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/Analysis.html#setNumRuns-java.lang.String-int-">setNumRuns</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID,
           int&nbsp;n)</code>
 <div class="block">Set the number of runs to be performed for the given search.</div>
 </td>
@@ -250,8 +250,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
-<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#clone--" title="class or interface in java.lang">clone</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#finalize--" title="class or interface in java.lang">finalize</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
+<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#clone--" title="class or interface in java.lang">clone</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#finalize--" title="class or interface in java.lang">finalize</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
 </ul>
 </li>
 </ul>
@@ -319,7 +319,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>reference to the analysis object on which this method was called</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>n</code> is not strictly positive</dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>n</code> is not strictly positive</dd>
 </dl>
 </li>
 </ul>
@@ -371,7 +371,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>reference to the analysis object on which this method was called</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>n</code> is not strictly positive</dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>n</code> is not strictly positive</dd>
 </dl>
 </li>
 </ul>
@@ -381,7 +381,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>getNumRuns</h4>
-<pre>public&nbsp;int&nbsp;getNumRuns(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID)</pre>
+<pre>public&nbsp;int&nbsp;getNumRuns(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID)</pre>
 <div class="block">Get the number of runs that will be performed for the search with the given ID. If no specific
  number of runs has been set for this search using <a href="../../../../org/jamesframework/ext/analysis/Analysis.html#setNumRuns-java.lang.String-int-"><code>setNumRuns(String, int)</code></a>, the global
  value obtained from <a href="../../../../org/jamesframework/ext/analysis/Analysis.html#getNumRuns--"><code>getNumRuns()</code></a> is returned.</div>
@@ -401,7 +401,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>setNumRuns</h4>
-<pre>public&nbsp;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="class in org.jamesframework.ext.analysis">Analysis</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="type parameter in Analysis">SolutionType</a>&gt;&nbsp;setNumRuns(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID,
+<pre>public&nbsp;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="class in org.jamesframework.ext.analysis">Analysis</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="type parameter in Analysis">SolutionType</a>&gt;&nbsp;setNumRuns(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID,
                                          int&nbsp;n)</pre>
 <div class="block">Set the number of runs to be performed for the given search. This does not affect the number
  of runs of the other searches. Returns a reference to the analysis object on which this method
@@ -414,7 +414,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dd>reference to the analysis object on which this method was called</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../../org/jamesframework/ext/analysis/UnknownIDException.html" title="class in org.jamesframework.ext.analysis">UnknownIDException</a></code> - if no search with this ID has been added</dd>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>n</code> is not strictly positive</dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>n</code> is not strictly positive</dd>
 </dl>
 </li>
 </ul>
@@ -424,7 +424,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>getNumBurnIn</h4>
-<pre>public&nbsp;int&nbsp;getNumBurnIn(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID)</pre>
+<pre>public&nbsp;int&nbsp;getNumBurnIn(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID)</pre>
 <div class="block">Get the number of additional burn-in runs that will be performed for the search with the given ID.
  If no specific number of burn-in runs has been set for this search using <a href="../../../../org/jamesframework/ext/analysis/Analysis.html#setNumBurnIn-java.lang.String-int-"><code>setNumBurnIn(String, int)</code></a>,
  the global value obtained from <a href="../../../../org/jamesframework/ext/analysis/Analysis.html#getNumBurnIn--"><code>getNumBurnIn()</code></a> is returned. Burn-in runs are executed before the
@@ -446,7 +446,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>setNumBurnIn</h4>
-<pre>public&nbsp;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="class in org.jamesframework.ext.analysis">Analysis</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="type parameter in Analysis">SolutionType</a>&gt;&nbsp;setNumBurnIn(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID,
+<pre>public&nbsp;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="class in org.jamesframework.ext.analysis">Analysis</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="type parameter in Analysis">SolutionType</a>&gt;&nbsp;setNumBurnIn(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID,
                                            int&nbsp;n)</pre>
 <div class="block">Set the number of additional burn-in runs to be performed for the given search. This does not affect
  the number of burn-in runs of the other searches. Returns a reference to the analysis object on which
@@ -459,7 +459,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dd>reference to the analysis object on which this method was called</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../../org/jamesframework/ext/analysis/UnknownIDException.html" title="class in org.jamesframework.ext.analysis">UnknownIDException</a></code> - if no search with this ID has been added</dd>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>n</code> is not strictly positive</dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>n</code> is not strictly positive</dd>
 </dl>
 </li>
 </ul>
@@ -469,8 +469,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>addProblem</h4>
-<pre>public&nbsp;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="class in org.jamesframework.ext.analysis">Analysis</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="type parameter in Analysis">SolutionType</a>&gt;&nbsp;addProblem(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;ID,
-                                         <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/Problem.html?is-external=true" title="class or interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="type parameter in Analysis">SolutionType</a>&gt;&nbsp;problem)</pre>
+<pre>public&nbsp;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="class in org.jamesframework.ext.analysis">Analysis</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="type parameter in Analysis">SolutionType</a>&gt;&nbsp;addProblem(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;ID,
+                                         org.jamesframework.core.problems.Problem&lt;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="type parameter in Analysis">SolutionType</a>&gt;&nbsp;problem)</pre>
 <div class="block">Add a problem to be analyzed. Returns a reference to the analysis object on which this
  method was called so that methods can be chained.</div>
 <dl>
@@ -481,18 +481,18 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dd>reference to the analysis object on which this method was called</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../../org/jamesframework/ext/analysis/DuplicateIDException.html" title="class in org.jamesframework.ext.analysis">DuplicateIDException</a></code> - if a problem has already been added with the specified ID</dd>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> is <code>null</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> is <code>null</code></dd>
 </dl>
 </li>
 </ul>
-<a name="addSearch-java.lang.String-org.jamesframework.ext.analysis.SearchFactory-">
+<a name="addSearch-java.lang.String-org.jamesframework.core.util.SearchFactory-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>addSearch</h4>
-<pre>public&nbsp;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="class in org.jamesframework.ext.analysis">Analysis</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="type parameter in Analysis">SolutionType</a>&gt;&nbsp;addSearch(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;ID,
-                                        <a href="../../../../org/jamesframework/ext/analysis/SearchFactory.html" title="interface in org.jamesframework.ext.analysis">SearchFactory</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="type parameter in Analysis">SolutionType</a>&gt;&nbsp;searchFactory)</pre>
+<pre>public&nbsp;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="class in org.jamesframework.ext.analysis">Analysis</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="type parameter in Analysis">SolutionType</a>&gt;&nbsp;addSearch(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;ID,
+                                        org.jamesframework.core.util.SearchFactory&lt;<a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="type parameter in Analysis">SolutionType</a>&gt;&nbsp;searchFactory)</pre>
 <div class="block">Add a search to be applied to solve the analyzed problems. Requires a search factory instead of a
  plain search as a new instance of the search will be created for every run and for every analyzed
  problem. Returns a reference to the analysis object on which this method was called so that methods
@@ -505,7 +505,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dd>reference to the analysis object on which this method was called</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../../org/jamesframework/ext/analysis/DuplicateIDException.html" title="class in org.jamesframework.ext.analysis">DuplicateIDException</a></code> - if a search has already been added with the specified ID</dd>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>searchFactory</code> is <code>null</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>searchFactory</code> is <code>null</code></dd>
 </dl>
 </li>
 </ul>
@@ -523,7 +523,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>results of the analysis</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/exceptions/JamesRuntimeException.html?is-external=true" title="class or interface in org.jamesframework.core.exceptions">JamesRuntimeException</a></code> - if anything goes wrong during any of the searches due to misconfiguration</dd>
+<dd><code>org.jamesframework.core.exceptions.JamesRuntimeException</code> - if anything goes wrong during any of the searches due to misconfiguration</dd>
 </dl>
 </li>
 </ul>

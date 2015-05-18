@@ -94,11 +94,11 @@ var activeTableTab = "activeTableTab";
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">org.jamesframework.ext.analysis</div>
-<h2 title="Class AnalysisResults" class="title">Class AnalysisResults&lt;SolutionType extends <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/Solution.html?is-external=true" title="class or interface in org.jamesframework.core.problems">Solution</a>&gt;</h2>
+<h2 title="Class AnalysisResults" class="title">Class AnalysisResults&lt;SolutionType extends org.jamesframework.core.problems.Solution&gt;</h2>
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
-<li><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
+<li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
 <li>org.jamesframework.ext.analysis.AnalysisResults&lt;SolutionType&gt;</li>
@@ -114,8 +114,8 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public class <span class="typeNameLabel">AnalysisResults&lt;SolutionType extends <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/Solution.html?is-external=true" title="class or interface in org.jamesframework.core.problems">Solution</a>&gt;</span>
-extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
+<pre>public class <span class="typeNameLabel">AnalysisResults&lt;SolutionType extends org.jamesframework.core.problems.Solution&gt;</span>
+extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
 <div class="block">Groups results of an analysis performed by an <a href="../../../../org/jamesframework/ext/analysis/Analysis.html" title="class in org.jamesframework.ext.analysis"><code>Analysis</code></a> object. The results can be accessed directly or
  written to a JSON file (see <a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#writeJSON-java.lang.String-"><code>writeJSON(String)</code></a> and <a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#writeJSON-java.lang.String-org.jamesframework.ext.analysis.JsonConverter-"><code>writeJSON(String, JsonConverter)</code></a>) that can
  then be loaded into R to be inspected and visualized using the james-analysis R package.</div>
@@ -168,34 +168,34 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#getNumRuns-java.lang.String-java.lang.String-">getNumRuns</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID,
-          <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#getNumRuns-java.lang.String-java.lang.String-">getNumRuns</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID,
+          <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID)</code>
 <div class="block">Get the number of performed runs of the given search when solving the given problem.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#getNumSearches-java.lang.String-">getNumSearches</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#getNumSearches-java.lang.String-">getNumSearches</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID)</code>
 <div class="block">Get the number of different searches that have been applied to solve the problem with the given ID.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#getProblemIDs--">getProblemIDs</a></span>()</code>
 <div class="block">Get the IDs of the analyzed problems (unmodifiable view).</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="../../../../org/jamesframework/ext/analysis/SearchRunResults.html" title="class in org.jamesframework.ext.analysis">SearchRunResults</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="type parameter in AnalysisResults">SolutionType</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#getRun-java.lang.String-java.lang.String-int-">getRun</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID,
-      <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#getRun-java.lang.String-java.lang.String-int-">getRun</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID,
+      <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID,
       int&nbsp;i)</code>
 <div class="block">Get the results of the i-th performed run of the given search when solving the given problem.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#getSearchIDs-java.lang.String-">getSearchIDs</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID)</code>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#getSearchIDs-java.lang.String-">getSearchIDs</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID)</code>
 <div class="block">Get the IDs of the different searches that have been applied to solve the problem with the
  given ID (unmodifiable view).</div>
 </td>
@@ -208,22 +208,22 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#registerSearchRun-java.lang.String-java.lang.String-org.jamesframework.ext.analysis.SearchRunResults-">registerSearchRun</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID,
-                 <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#registerSearchRun-java.lang.String-java.lang.String-org.jamesframework.ext.analysis.SearchRunResults-">registerSearchRun</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID,
+                 <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID,
                  <a href="../../../../org/jamesframework/ext/analysis/SearchRunResults.html" title="class in org.jamesframework.ext.analysis">SearchRunResults</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="type parameter in AnalysisResults">SolutionType</a>&gt;&nbsp;run)</code>
 <div class="block">Register results of a search run, specifying the IDs of the problem being solved and the applied search.</div>
 </td>
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#writeJSON-java.lang.String-">writeJSON</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;filePath)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#writeJSON-java.lang.String-">writeJSON</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;filePath)</code>
 <div class="block">Write the results to a JSON file that can be loaded into R to be inspected and visualized using
  the james-analysis R package.</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#writeJSON-java.lang.String-org.jamesframework.ext.analysis.JsonConverter-">writeJSON</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;filePath,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html#writeJSON-java.lang.String-org.jamesframework.ext.analysis.JsonConverter-">writeJSON</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;filePath,
          <a href="../../../../org/jamesframework/ext/analysis/JsonConverter.html" title="interface in org.jamesframework.ext.analysis">JsonConverter</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="type parameter in AnalysisResults">SolutionType</a>&gt;&nbsp;solutionJsonConverter)</code>
 <div class="block">Write the results to a JSON file that can be loaded into R to be inspected and visualized using
  the james-analysis R package.</div>
@@ -234,8 +234,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
-<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#clone--" title="class or interface in java.lang">clone</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#finalize--" title="class or interface in java.lang">finalize</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
+<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#clone--" title="class or interface in java.lang">clone</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#finalize--" title="class or interface in java.lang">finalize</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
 </ul>
 </li>
 </ul>
@@ -292,8 +292,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>registerSearchRun</h4>
-<pre>public&nbsp;void&nbsp;registerSearchRun(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID,
-                              <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID,
+<pre>public&nbsp;void&nbsp;registerSearchRun(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID,
+                              <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID,
                               <a href="../../../../org/jamesframework/ext/analysis/SearchRunResults.html" title="class in org.jamesframework.ext.analysis">SearchRunResults</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="type parameter in AnalysisResults">SolutionType</a>&gt;&nbsp;run)</pre>
 <div class="block">Register results of a search run, specifying the IDs of the problem being solved and the applied search.
  If no runs have been registered before for this combination of problem and search, new entries are created.
@@ -326,7 +326,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>getProblemIDs</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;getProblemIDs()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;getProblemIDs()</pre>
 <div class="block">Get the IDs of the analyzed problems (unmodifiable view).</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -340,7 +340,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>getNumSearches</h4>
-<pre>public&nbsp;int&nbsp;getNumSearches(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID)</pre>
+<pre>public&nbsp;int&nbsp;getNumSearches(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID)</pre>
 <div class="block">Get the number of different searches that have been applied to solve the problem with the given ID.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -358,7 +358,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>getSearchIDs</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;getSearchIDs(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID)</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;getSearchIDs(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID)</pre>
 <div class="block">Get the IDs of the different searches that have been applied to solve the problem with the
  given ID (unmodifiable view).</div>
 <dl>
@@ -377,8 +377,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>getNumRuns</h4>
-<pre>public&nbsp;int&nbsp;getNumRuns(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID,
-                      <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID)</pre>
+<pre>public&nbsp;int&nbsp;getNumRuns(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID,
+                      <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID)</pre>
 <div class="block">Get the number of performed runs of the given search when solving the given problem.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -397,8 +397,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>getRun</h4>
-<pre>public&nbsp;<a href="../../../../org/jamesframework/ext/analysis/SearchRunResults.html" title="class in org.jamesframework.ext.analysis">SearchRunResults</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="type parameter in AnalysisResults">SolutionType</a>&gt;&nbsp;getRun(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID,
-                                             <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID,
+<pre>public&nbsp;<a href="../../../../org/jamesframework/ext/analysis/SearchRunResults.html" title="class in org.jamesframework.ext.analysis">SearchRunResults</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="type parameter in AnalysisResults">SolutionType</a>&gt;&nbsp;getRun(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;problemID,
+                                             <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;searchID,
                                              int&nbsp;i)</pre>
 <div class="block">Get the results of the i-th performed run of the given search when solving the given problem.</div>
 <dl>
@@ -410,7 +410,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dd>results of i-th run of the given search when solving the given problem</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../../org/jamesframework/ext/analysis/UnknownIDException.html" title="class in org.jamesframework.ext.analysis">UnknownIDException</a></code> - if an unknown problem or search ID is given</dd>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IndexOutOfBoundsException.html?is-external=true" title="class or interface in java.lang">IndexOutOfBoundsException</a></code> - if there is no i-th run for this search and problem</dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IndexOutOfBoundsException.html?is-external=true" title="class or interface in java.lang">IndexOutOfBoundsException</a></code> - if there is no i-th run for this search and problem</dd>
 </dl>
 </li>
 </ul>
@@ -420,8 +420,8 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>writeJSON</h4>
-<pre>public&nbsp;void&nbsp;writeJSON(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;filePath)
-               throws <a href="http://docs.oracle.com/javase/7/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+<pre>public&nbsp;void&nbsp;writeJSON(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;filePath)
+               throws <a href="http://docs.oracle.com/javase/8/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
 <div class="block">Write the results to a JSON file that can be loaded into R to be inspected and visualized using
  the james-analysis R package. If the specified file already exists, it is overwritten. This method
  only stores the evaluation values and update times for each search run, skipping the actual best
@@ -430,7 +430,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>filePath</code> - path of the file to which the JSON output is written</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - if an I/O error occurs when writing to the file</dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - if an I/O error occurs when writing to the file</dd>
 </dl>
 </li>
 </ul>
@@ -440,9 +440,9 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <ul class="blockListLast">
 <li class="blockList">
 <h4>writeJSON</h4>
-<pre>public&nbsp;void&nbsp;writeJSON(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;filePath,
+<pre>public&nbsp;void&nbsp;writeJSON(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;filePath,
                       <a href="../../../../org/jamesframework/ext/analysis/JsonConverter.html" title="interface in org.jamesframework.ext.analysis">JsonConverter</a>&lt;<a href="../../../../org/jamesframework/ext/analysis/AnalysisResults.html" title="type parameter in AnalysisResults">SolutionType</a>&gt;&nbsp;solutionJsonConverter)
-               throws <a href="http://docs.oracle.com/javase/7/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
+               throws <a href="http://docs.oracle.com/javase/8/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></pre>
 <div class="block">Write the results to a JSON file that can be loaded into R to be inspected and visualized using
  the james-analysis R package. If the specified file already exists, it is overwritten. This method
  stores the evaluation values, the update times and the actual best found solution for each search
@@ -453,7 +453,7 @@ extends <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?
 <dd><code>filePath</code> - path of the file to which the JSON output is written</dd>
 <dd><code>solutionJsonConverter</code> - converts solutions to a JSON representation</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - if an I/O error occurs when writing to the file</dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/io/IOException.html?is-external=true" title="class or interface in java.io">IOException</a></code> - if an I/O error occurs when writing to the file</dd>
 </dl>
 </li>
 </ul>

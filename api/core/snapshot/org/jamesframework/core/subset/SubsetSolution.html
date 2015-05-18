@@ -98,7 +98,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
-<li><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
+<li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
 <li><a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">org.jamesframework.core.problems.Solution</a></li>
@@ -117,8 +117,12 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">SubsetSolution</span>
 extends <a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a></pre>
-<div class="block">High-level subset solution modeled in terms of IDs of selected items. The subset is sampled from a data set
- of items which are each assumed to be identified using a unique integer ID.</div>
+<div class="block">High-level subset solution modeled in terms of IDs of selected items. The subset is sampled from a
+ data set of items which are each required to be identified with a unique integer ID. By default, the
+ IDs are unordered. If desired, they can be ordered according to the natural ordering of integers
+ (ascending) or a custom comparator, by using an appropriate constructor. In the latter case, it is
+ safe to cast the views returned by <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getSelectedIDs--"><code>getSelectedIDs()</code></a>, <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getUnselectedIDs--"><code>getUnselectedIDs()</code></a> and
+ <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getAllIDs--"><code>getAllIDs()</code></a> to the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/NavigableSet.html?is-external=true" title="class or interface in java.util"><code>NavigableSet</code></a> subtype.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a></dd>
@@ -141,42 +145,42 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#SubsetSolution-java.util.Set-">SubsetSolution</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;allIDs)</code>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#SubsetSolution-java.util.Set-">SubsetSolution</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;allIDs)</code>
 <div class="block">Creates a new subset solution given the set of all IDs, each corresponding to an underlying entity,
  from which a subset is to be selected.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#SubsetSolution-java.util.Set-boolean-">SubsetSolution</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;allIDs,
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#SubsetSolution-java.util.Set-boolean-">SubsetSolution</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;allIDs,
               boolean&nbsp;naturalOrder)</code>
 <div class="block">Creates a new subset solution given the set of all IDs, each corresponding to an underlying entity,
  from which a subset is to be selected.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#SubsetSolution-java.util.Set-java.util.Comparator-">SubsetSolution</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;allIDs,
-              <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;orderOfIDs)</code>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#SubsetSolution-java.util.Set-java.util.Comparator-">SubsetSolution</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;allIDs,
+              <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;orderOfIDs)</code>
 <div class="block">Creates a new subset solution given the set of all IDs, each corresponding to an underlying entity,
  from which a subset is to be selected.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#SubsetSolution-java.util.Set-java.util.Set-">SubsetSolution</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;allIDs,
-              <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;selectedIDs)</code>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#SubsetSolution-java.util.Set-java.util.Set-">SubsetSolution</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;allIDs,
+              <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;selectedIDs)</code>
 <div class="block">Creates a new subset solution given the set of all IDs, and the set of currently selected IDs.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#SubsetSolution-java.util.Set-java.util.Set-boolean-">SubsetSolution</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;allIDs,
-              <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;selectedIDs,
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#SubsetSolution-java.util.Set-java.util.Set-boolean-">SubsetSolution</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;allIDs,
+              <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;selectedIDs,
               boolean&nbsp;naturalOrder)</code>
 <div class="block">Creates a new subset solution given the set of all IDs, and the set of currently selected IDs.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#SubsetSolution-java.util.Set-java.util.Set-java.util.Comparator-">SubsetSolution</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;allIDs,
-              <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;selectedIDs,
-              <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;orderOfIDs)</code>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#SubsetSolution-java.util.Set-java.util.Set-java.util.Comparator-">SubsetSolution</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;allIDs,
+              <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;selectedIDs,
+              <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;orderOfIDs)</code>
 <div class="block">Creates a new subset solution given the set of all IDs, and the set of currently selected IDs.</div>
 </td>
 </tr>
@@ -203,8 +207,7 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#copy--">copy</a></span>()</code>
-<div class="block">Create a deep copy of this subset solution, obtained through the copy constructor,
- passing <code>this</code> as argument.</div>
+<div class="block">Create a deep copy of this subset solution, obtained through the copy constructor.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -221,18 +224,18 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#deselectAll-java.util.Collection-">deselectAll</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;IDs)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#deselectAll-java.util.Collection-">deselectAll</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;IDs)</code>
 <div class="block">Deselect all IDs contained in the given collection.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#equals-java.lang.Object-">equals</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;other)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#equals-java.lang.Object-">equals</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;other)</code>
 <div class="block">Checks whether the given other object represents the same subset solution.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getAllIDs--">getAllIDs</a></span>()</code>
 <div class="block">Returns an unmodifiable view of the set of all IDs.</div>
 </td>
@@ -250,13 +253,13 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 </td>
 </tr>
 <tr id="i8" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getOrderOfIDs--">getOrderOfIDs</a></span>()</code>
-<div class="block">Get the comparator used to impose an order on the set of selected, unselected and all IDs.</div>
+<div class="block">Get the comparator according to which the IDs are ordered, as specified at construction.</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getSelectedIDs--">getSelectedIDs</a></span>()</code>
 <div class="block">Returns an unmodifiable view of the set of currently selected IDs.</div>
 </td>
@@ -268,7 +271,7 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 </td>
 </tr>
 <tr id="i11" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getUnselectedIDs--">getUnselectedIDs</a></span>()</code>
 <div class="block">Returns an unmodifiable view of the set of currently non selected IDs.</div>
 </td>
@@ -294,12 +297,12 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 </tr>
 <tr id="i15" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#selectAll-java.util.Collection-">selectAll</a></span>(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;IDs)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#selectAll-java.util.Collection-">selectAll</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;IDs)</code>
 <div class="block">Select all IDs contained in the given collection.</div>
 </td>
 </tr>
 <tr id="i16" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#toString--">toString</a></span>()</code>
 <div class="block">Creates a formatted string containing the selected IDs.</div>
 </td>
@@ -316,8 +319,8 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
-<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#clone--" title="class or interface in java.lang">clone</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#finalize--" title="class or interface in java.lang">finalize</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
+<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#clone--" title="class or interface in java.lang">clone</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#finalize--" title="class or interface in java.lang">finalize</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
 </ul>
 </li>
 </ul>
@@ -339,16 +342,16 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <ul class="blockList">
 <li class="blockList">
 <h4>SubsetSolution</h4>
-<pre>public&nbsp;SubsetSolution(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;allIDs)</pre>
+<pre>public&nbsp;SubsetSolution(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;allIDs)</pre>
 <div class="block">Creates a new subset solution given the set of all IDs, each corresponding to an underlying entity,
  from which a subset is to be selected. Initially, no IDs are selected. Note: IDs are copied to the
  internal data structures of the subset solution; no reference is stored to the set given at construction.
- IDs are stored in sets that do not impose any order.</div>
+ IDs are stored in general unordered sets.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>allIDs</code> - set of all IDs from which a subset is to be selected</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> is <code>null</code>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> is <code>null</code>
                               or contains any <code>null</code> elements</dd>
 </dl>
 </li>
@@ -359,19 +362,19 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <ul class="blockList">
 <li class="blockList">
 <h4>SubsetSolution</h4>
-<pre>public&nbsp;SubsetSolution(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;allIDs,
-                      <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;selectedIDs)</pre>
+<pre>public&nbsp;SubsetSolution(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;allIDs,
+                      <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;selectedIDs)</pre>
 <div class="block">Creates a new subset solution given the set of all IDs, and the set of currently selected IDs. Note: IDs
  are copied to the internal data structures of the subset solution; no reference is stored to the sets given
- at construction. IDs are stored in sets that do not impose any ordering.</div>
+ at construction. IDs are stored in general unordered sets.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>allIDs</code> - set of all IDs from which a subset is to be selected</dd>
 <dd><code>selectedIDs</code> - set of currently selected IDs (subset of all IDs)</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> or <code>selectedIDs</code> are <code>null</code>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> or <code>selectedIDs</code> are <code>null</code>
                               or contain any <code>null</code> elements</dd>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>selectedIDs</code> is not a subset of <code>allIDs</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>selectedIDs</code> is not a subset of <code>allIDs</code></dd>
 </dl>
 </li>
 </ul>
@@ -381,20 +384,21 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <ul class="blockList">
 <li class="blockList">
 <h4>SubsetSolution</h4>
-<pre>public&nbsp;SubsetSolution(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;allIDs,
+<pre>public&nbsp;SubsetSolution(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;allIDs,
                       boolean&nbsp;naturalOrder)</pre>
 <div class="block">Creates a new subset solution given the set of all IDs, each corresponding to an underlying entity,
  from which a subset is to be selected. Initially, no IDs are selected. Note: IDs are copied to the
  internal data structures of the subset solution; no reference is stored to the set given at construction.
- If <code>naturalOrder</code> is <code>true</code>, the set of selected, unselected and all IDs will be
- ordered according to the natural ordering of integers (ascending); else, no ordering is imposed on the IDs.</div>
+ If <code>naturalOrder</code> is <code>true</code>, the sets of selected, unselected and all IDs are represented
+ as navigable sorted sets ordered according to the natural ordering of integers (ascending); else, no ordering
+ is imposed.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>allIDs</code> - set of all IDs from which a subset is to be selected</dd>
 <dd><code>naturalOrder</code> - if <code>naturalOrder</code> is <code>true</code>, IDs will be ordered according to
                      their natural ordering; else, no ordering is imposed on the IDs</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> is <code>null</code>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> is <code>null</code>
                               or contains any <code>null</code> elements</dd>
 </dl>
 </li>
@@ -405,14 +409,14 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <ul class="blockList">
 <li class="blockList">
 <h4>SubsetSolution</h4>
-<pre>public&nbsp;SubsetSolution(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;allIDs,
-                      <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;selectedIDs,
+<pre>public&nbsp;SubsetSolution(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;allIDs,
+                      <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;selectedIDs,
                       boolean&nbsp;naturalOrder)</pre>
 <div class="block">Creates a new subset solution given the set of all IDs, and the set of currently selected IDs. Note: IDs
  are copied to the internal data structures of the subset solution; no reference is stored to the sets given
- at construction. If <code>naturalOrder</code> is <code>true</code>, the set of selected, unselected and all
- IDs will be ordered according to the natural ordering of integers (ascending); else, no ordering is imposed
- on the IDs.</div>
+ at construction. If <code>naturalOrder</code> is <code>true</code>, the sets of selected, unselected and all
+ IDs are represented as navigable sorted sets ordered according to the natural ordering of integers (ascending);
+ else, no ordering is imposed.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>allIDs</code> - set of all IDs from which a subset is to be selected</dd>
@@ -420,9 +424,9 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <dd><code>naturalOrder</code> - if <code>naturalOrder</code> is <code>true</code>, IDs will be ordered according to
                      their natural ordering; else, no ordering is imposed on the IDs</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> or <code>selectedIDs</code> are <code>null</code>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> or <code>selectedIDs</code> are <code>null</code>
                               or contain any <code>null</code> elements</dd>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>selectedIDs</code> is not a subset of <code>allIDs</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>selectedIDs</code> is not a subset of <code>allIDs</code></dd>
 </dl>
 </li>
 </ul>
@@ -432,20 +436,20 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <ul class="blockList">
 <li class="blockList">
 <h4>SubsetSolution</h4>
-<pre>public&nbsp;SubsetSolution(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;allIDs,
-                      <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;orderOfIDs)</pre>
+<pre>public&nbsp;SubsetSolution(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;allIDs,
+                      <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;orderOfIDs)</pre>
 <div class="block">Creates a new subset solution given the set of all IDs, each corresponding to an underlying entity,
  from which a subset is to be selected. Initially, no IDs are selected. Note: IDs are copied to the
  internal data structures of the subset solution; no reference is stored to the set given at construction.
- The order defined by the given <code>comparator</code> is imposed on the set of selected, unselected and
- all IDs; if this argument is <code>null</code> no order is imposed.</div>
+ If <code>orderOfIDs</code> is not <code>null</code>, the sets of selected, unselected and all IDs are
+ represented as navigable sorted sets ordered according to this comparator; else, no ordering is imposed.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>allIDs</code> - set of all IDs from which a subset is to be selected</dd>
 <dd><code>orderOfIDs</code> - comparator according to which IDs are ordered, allowed to be
                    <code>null</code> in which case no order is imposed</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> is <code>null</code>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> is <code>null</code>
                               or contains any <code>null</code> elements</dd>
 </dl>
 </li>
@@ -456,13 +460,14 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <ul class="blockList">
 <li class="blockList">
 <h4>SubsetSolution</h4>
-<pre>public&nbsp;SubsetSolution(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;allIDs,
-                      <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;selectedIDs,
-                      <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;orderOfIDs)</pre>
+<pre>public&nbsp;SubsetSolution(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;allIDs,
+                      <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;selectedIDs,
+                      <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;orderOfIDs)</pre>
 <div class="block">Creates a new subset solution given the set of all IDs, and the set of currently selected IDs. Note: IDs
  are copied to the internal data structures of the subset solution; no reference is stored to the sets given
- at construction. The order defined by the given <code>comparator</code> is imposed on the set of selected,
- unselected and all IDs; if this argument is <code>null</code> no order is imposed.</div>
+ at construction. If <code>orderOfIDs</code> is not <code>null</code>, the sets of selected, unselected and
+ all IDs are represented as navigable sorted sets ordered according to this comparator; else, no ordering is
+ imposed.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>allIDs</code> - set of all IDs from which a subset is to be selected</dd>
@@ -470,9 +475,9 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <dd><code>orderOfIDs</code> - comparator according to which IDs are ordered, allowed to be
                    <code>null</code> in which case no order is imposed</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> or <code>selectedIDs</code> are <code>null</code>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> or <code>selectedIDs</code> are <code>null</code>
                               or contain any <code>null</code> elements</dd>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>selectedIDs</code> is not a subset of <code>allIDs</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>selectedIDs</code> is not a subset of <code>allIDs</code></dd>
 </dl>
 </li>
 </ul>
@@ -489,7 +494,7 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
  same ordering on the IDs (if any).</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>sol</code> - solution to copy</dd>
+<dd><code>sol</code> - solution to copy (deep copy)</dd>
 </dl>
 </li>
 </ul>
@@ -508,8 +513,7 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <li class="blockList">
 <h4>copy</h4>
 <pre>public&nbsp;<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;copy()</pre>
-<div class="block">Create a deep copy of this subset solution, obtained through the copy constructor,
- passing <code>this</code> as argument.</div>
+<div class="block">Create a deep copy of this subset solution, obtained through the copy constructor.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../../org/jamesframework/core/problems/Solution.html#copy--">copy</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a></code></dd>
@@ -524,8 +528,8 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <ul class="blockList">
 <li class="blockList">
 <h4>getOrderOfIDs</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;getOrderOfIDs()</pre>
-<div class="block">Get the comparator used to impose an order on the set of selected, unselected and all IDs.
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html?is-external=true" title="class or interface in java.util">Comparator</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;getOrderOfIDs()</pre>
+<div class="block">Get the comparator according to which the IDs are ordered, as specified at construction.
  May return <code>null</code> which means that no order has been imposed.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -579,7 +583,7 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <ul class="blockList">
 <li class="blockList">
 <h4>selectAll</h4>
-<pre>public&nbsp;boolean&nbsp;selectAll(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;IDs)</pre>
+<pre>public&nbsp;boolean&nbsp;selectAll(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;IDs)</pre>
 <div class="block">Select all IDs contained in the given collection. Returns true if the subset solution was modified by this
  operation, i.e. if at least one previously unselected ID has been selected.</div>
 <dl>
@@ -589,7 +593,7 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <dd>true if the subset solution was modified</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../../org/jamesframework/core/exceptions/SolutionModificationException.html" title="class in org.jamesframework.core.exceptions">SolutionModificationException</a></code> - if the given collection contains at least one ID which does not correspond to an entity</dd>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>null</code> is passed or the given collection contains at least one <code>null</code> element</dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>null</code> is passed or the given collection contains at least one <code>null</code> element</dd>
 </dl>
 </li>
 </ul>
@@ -599,7 +603,7 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <ul class="blockList">
 <li class="blockList">
 <h4>deselectAll</h4>
-<pre>public&nbsp;boolean&nbsp;deselectAll(<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;IDs)</pre>
+<pre>public&nbsp;boolean&nbsp;deselectAll(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;IDs)</pre>
 <div class="block">Deselect all IDs contained in the given collection. Returns true if the subset solution was modified by this
  operation, i.e. if at least one previously selected ID has been deselected.</div>
 <dl>
@@ -609,7 +613,7 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <dd>true if the subset solution was modified</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../../org/jamesframework/core/exceptions/SolutionModificationException.html" title="class in org.jamesframework.core.exceptions">SolutionModificationException</a></code> - if the given collection contains at least one ID which does not correspond to an entity</dd>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>null</code> is passed or the given collection contains at least one <code>null</code> element</dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>null</code> is passed or the given collection contains at least one <code>null</code> element</dd>
 </dl>
 </li>
 </ul>
@@ -639,9 +643,11 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <ul class="blockList">
 <li class="blockList">
 <h4>getSelectedIDs</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;getSelectedIDs()</pre>
-<div class="block">Returns an unmodifiable view of the set of currently selected IDs. Any attempt to modify the returned set
- will result in an <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/UnsupportedOperationException.html?is-external=true" title="class or interface in java.lang"><code>UnsupportedOperationException</code></a>.</div>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;getSelectedIDs()</pre>
+<div class="block">Returns an unmodifiable view of the set of currently selected IDs.  Any attempt to
+ modify the returned set will result in an <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/UnsupportedOperationException.html?is-external=true" title="class or interface in java.lang"><code>UnsupportedOperationException</code></a>. If
+ the IDs are orderd (see <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getOrderOfIDs--"><code>getOrderOfIDs()</code></a>), it is safe to cast the returned
+ view to the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/NavigableSet.html?is-external=true" title="class or interface in java.util"><code>NavigableSet</code></a> subtype.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>unmodifiable view of currently selected IDs</dd>
@@ -654,9 +660,11 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <ul class="blockList">
 <li class="blockList">
 <h4>getUnselectedIDs</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;getUnselectedIDs()</pre>
-<div class="block">Returns an unmodifiable view of the set of currently non selected IDs. Any attempt to modify the returned set
- will result in an <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/UnsupportedOperationException.html?is-external=true" title="class or interface in java.lang"><code>UnsupportedOperationException</code></a>.</div>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;getUnselectedIDs()</pre>
+<div class="block">Returns an unmodifiable view of the set of currently non selected IDs. Any attempt to
+ modify the returned set will result in an <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/UnsupportedOperationException.html?is-external=true" title="class or interface in java.lang"><code>UnsupportedOperationException</code></a>. If
+ the IDs are orderd (see <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getOrderOfIDs--"><code>getOrderOfIDs()</code></a>), it is safe to cast the returned
+ view to the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/NavigableSet.html?is-external=true" title="class or interface in java.util"><code>NavigableSet</code></a> subtype.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>unmodifiable view of currently non selected IDs</dd>
@@ -669,10 +677,12 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <ul class="blockList">
 <li class="blockList">
 <h4>getAllIDs</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;getAllIDs()</pre>
-<div class="block">Returns an unmodifiable view of the set of all IDs. Any attempt to modify the returned set
- will result in an <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/UnsupportedOperationException.html?is-external=true" title="class or interface in java.lang"><code>UnsupportedOperationException</code></a>. This set will always be equal to
- the union of <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getSelectedIDs--"><code>getSelectedIDs()</code></a> and <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getUnselectedIDs--"><code>getUnselectedIDs()</code></a>.</div>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;getAllIDs()</pre>
+<div class="block">Returns an unmodifiable view of the set of all IDs. Any attempt to modify the returned
+ set will result in an <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/UnsupportedOperationException.html?is-external=true" title="class or interface in java.lang"><code>UnsupportedOperationException</code></a>. If the IDs are orderd (see
+ <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getOrderOfIDs--"><code>getOrderOfIDs()</code></a>), it is safe to cast the returned view to the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/NavigableSet.html?is-external=true" title="class or interface in java.util"><code>NavigableSet</code></a>
+ subtype. This set will always be equal to the union of <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getSelectedIDs--"><code>getSelectedIDs()</code></a> and
+ <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getUnselectedIDs--"><code>getUnselectedIDs()</code></a>.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>unmodifiable view of all IDs</dd>
@@ -728,7 +738,7 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <ul class="blockList">
 <li class="blockList">
 <h4>equals</h4>
-<pre>public&nbsp;boolean&nbsp;equals(<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;other)</pre>
+<pre>public&nbsp;boolean&nbsp;equals(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;other)</pre>
 <div class="block">Checks whether the given other object represents the same subset solution.
  Subset solutions are considered equal if and only if they contain exactly
  the same selected and unselected IDs.</div>
@@ -767,11 +777,11 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <ul class="blockListLast">
 <li class="blockList">
 <h4>toString</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;toString()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;toString()</pre>
 <div class="block">Creates a formatted string containing the selected IDs.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>formatted string</dd>
 </dl>
