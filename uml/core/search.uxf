@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="13.0">
-  <zoom_level>10</zoom_level>
+<diagram program="umlet" version="13.2">
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>310</x>
-      <y>60</y>
-      <w>820</w>
-      <h>990</h>
+      <x>104</x>
+      <y>0</y>
+      <w>656</w>
+      <h>816</h>
     </coordinates>
     <panel_attributes>search
 --</panel_attributes>
@@ -16,10 +16,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>570</x>
-      <y>110</y>
-      <w>530</w>
-      <h>140</h>
+      <x>312</x>
+      <y>40</y>
+      <w>424</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 SearchListener&lt;SolutionType&gt;
@@ -35,10 +35,10 @@ newCurrentSolution(LocalSearch,SolutionType,Evaluation,Validation) : void</panel
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>740</x>
-      <y>300</y>
-      <w>360</w>
-      <h>370</h>
+      <x>448</x>
+      <y>192</y>
+      <w>288</w>
+      <h>320</h>
     </coordinates>
     <panel_attributes>/Search&lt;SolutionType&gt;/
 --
@@ -63,16 +63,18 @@ getBestSolutionEvaluation() : Evaluation
 getBestSolutionValidation() : Validation
 getName() : String
 getID() : int
-getProblem() : Problem</panel_attributes>
+getProblem() : Problem
+getRandom() : Random
+setRandom(Random) : void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>900</x>
-      <y>240</y>
-      <w>30</w>
-      <h>80</h>
+      <x>576</x>
+      <y>144</y>
+      <w>24</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
@@ -80,10 +82,10 @@ getProblem() : Problem</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>540</x>
-      <y>470</y>
-      <w>120</w>
-      <h>130</h>
+      <x>288</x>
+      <y>328</y>
+      <w>96</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>&lt;&lt;enumeration&gt;&gt;
 SearchStatus
@@ -98,10 +100,10 @@ DISPOSED</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>430</x>
-      <y>370</y>
-      <w>250</w>
-      <h>60</h>
+      <x>200</x>
+      <y>248</y>
+      <w>200</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 StopCriterion
@@ -112,10 +114,10 @@ searchShouldStop(Search) : boolean</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>670</x>
-      <y>380</y>
-      <w>90</w>
-      <h>30</h>
+      <x>392</x>
+      <y>256</y>
+      <w>72</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;70.0;10.0</additional_attributes>
@@ -123,10 +125,10 @@ searchShouldStop(Search) : boolean</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>650</x>
-      <y>480</y>
-      <w>110</w>
-      <h>30</h>
+      <x>376</x>
+      <y>336</y>
+      <w>88</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
@@ -134,10 +136,10 @@ searchShouldStop(Search) : boolean</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>740</x>
-      <y>720</y>
-      <w>360</w>
-      <h>120</h>
+      <x>448</x>
+      <y>552</y>
+      <w>288</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>/LocalSearch&lt;SolutionType&gt;/
 --
@@ -152,10 +154,10 @@ setCurrentSolution(SolutionType) : void</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>900</x>
-      <y>660</y>
-      <w>30</w>
-      <h>80</h>
+      <x>576</x>
+      <y>504</y>
+      <w>24</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
@@ -163,10 +165,10 @@ setCurrentSolution(SolutionType) : void</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>740</x>
-      <y>890</y>
-      <w>360</w>
-      <h>90</h>
+      <x>448</x>
+      <y>688</y>
+      <w>288</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>/NeighbourhoodSearch&lt;SolutionType&gt;/
 --
@@ -179,10 +181,10 @@ getNumRejectedMoves() : long</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>900</x>
-      <y>830</y>
-      <w>30</w>
-      <h>80</h>
+      <x>576</x>
+      <y>640</y>
+      <w>24</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
@@ -190,10 +192,10 @@ getNumRejectedMoves() : long</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>340</x>
-      <y>840</y>
-      <w>320</w>
-      <h>90</h>
+      <x>128</x>
+      <y>648</y>
+      <w>256</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>/SingleNeighbourhoodSearch&lt;SolutionType&gt;/
 --
@@ -206,10 +208,10 @@ getNeighbourhood() : Neighbourhood</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>370</x>
-      <y>940</y>
-      <w>310</w>
-      <h>90</h>
+      <x>152</x>
+      <y>728</y>
+      <w>248</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>/MultiNeighbourhoodSearch&lt;SolutionType&gt;/
 --
@@ -222,10 +224,10 @@ getNeighbourhoods() : List</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>650</x>
-      <y>890</y>
-      <w>110</w>
-      <h>30</h>
+      <x>376</x>
+      <y>688</y>
+      <w>88</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
@@ -233,10 +235,10 @@ getNeighbourhoods() : List</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>670</x>
-      <y>950</y>
-      <w>90</w>
-      <h>30</h>
+      <x>392</x>
+      <y>736</y>
+      <w>72</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>

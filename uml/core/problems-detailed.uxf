@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="13.0">
-  <zoom_level>10</zoom_level>
+<diagram program="umlet" version="13.2">
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>70</x>
+      <x>0</x>
       <y>0</y>
-      <w>1220</w>
-      <h>650</h>
+      <w>976</w>
+      <h>520</h>
     </coordinates>
     <panel_attributes>problems
 --</panel_attributes>
@@ -16,10 +16,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>800</x>
-      <y>40</y>
-      <w>470</w>
-      <h>240</h>
+      <x>584</x>
+      <y>32</y>
+      <w>376</w>
+      <h>192</h>
     </coordinates>
     <panel_attributes>objectives
 --</panel_attributes>
@@ -28,10 +28,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>90</x>
-      <y>40</y>
-      <w>670</w>
-      <h>240</h>
+      <x>16</x>
+      <y>32</y>
+      <w>536</w>
+      <h>192</h>
     </coordinates>
     <panel_attributes>constraints
 --</panel_attributes>
@@ -40,10 +40,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>110</x>
-      <y>90</y>
-      <w>140</w>
-      <h>60</h>
+      <x>32</x>
+      <y>72</y>
+      <w>112</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 Validation
@@ -54,10 +54,10 @@ passed() : boolean</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>110</x>
-      <y>200</y>
-      <w>150</w>
-      <h>60</h>
+      <x>32</x>
+      <y>160</y>
+      <w>120</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 PenalizingValidation
@@ -68,10 +68,10 @@ getPenalty() : double</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>310</x>
-      <y>80</y>
-      <w>430</w>
-      <h>80</h>
+      <x>192</x>
+      <y>64</y>
+      <w>344</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 Constraint&lt;SolutionType,DataType&gt;
@@ -83,10 +83,10 @@ validate(Move,SolutionType,Validation,DataType) : Validation</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>310</x>
-      <y>200</y>
-      <w>330</w>
-      <h>60</h>
+      <x>192</x>
+      <y>160</y>
+      <w>264</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 PenalizingConstraint&lt;SolutionType,DataType&gt;
@@ -96,10 +96,10 @@ PenalizingConstraint&lt;SolutionType,DataType&gt;
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>460</x>
-      <y>150</y>
-      <w>30</w>
-      <h>70</h>
+      <x>312</x>
+      <y>120</y>
+      <w>24</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
@@ -107,10 +107,10 @@ PenalizingConstraint&lt;SolutionType,DataType&gt;
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>170</x>
-      <y>140</y>
-      <w>30</w>
-      <h>80</h>
+      <x>80</x>
+      <y>112</y>
+      <w>24</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
@@ -118,10 +118,10 @@ PenalizingConstraint&lt;SolutionType,DataType&gt;
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>240</x>
-      <y>100</y>
-      <w>90</w>
-      <h>30</h>
+      <x>136</x>
+      <y>80</y>
+      <w>72</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;70.0;10.0</additional_attributes>
@@ -129,10 +129,10 @@ PenalizingConstraint&lt;SolutionType,DataType&gt;
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>250</x>
-      <y>210</y>
-      <w>80</w>
-      <h>30</h>
+      <x>144</x>
+      <y>168</y>
+      <w>64</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
@@ -140,10 +140,10 @@ PenalizingConstraint&lt;SolutionType,DataType&gt;
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>820</x>
-      <y>170</y>
-      <w>430</w>
-      <h>90</h>
+      <x>600</x>
+      <y>136</y>
+      <w>344</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 Objective&lt;SolutionType,DataType&gt;
@@ -156,10 +156,10 @@ isMinimizing() : boolean</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>970</x>
-      <y>80</y>
-      <w>140</w>
-      <h>60</h>
+      <x>720</x>
+      <y>64</y>
+      <w>112</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 Evaluation
@@ -170,10 +170,10 @@ getValue() : double</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1030</x>
-      <y>130</y>
-      <w>30</w>
-      <h>60</h>
+      <x>768</x>
+      <y>104</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
@@ -181,10 +181,10 @@ getValue() : double</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>420</x>
-      <y>330</y>
-      <w>440</w>
-      <h>290</h>
+      <x>280</x>
+      <y>264</y>
+      <w>352</w>
+      <h>232</h>
     </coordinates>
     <panel_attributes>/AbstractProblem&lt;SolutionType,DataType&gt;/
 --
@@ -209,10 +209,10 @@ getViolatedConstraints(SolutionType) : Collection</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>460</x>
-      <y>250</y>
-      <w>30</w>
-      <h>100</h>
+      <x>312</x>
+      <y>200</y>
+      <w>24</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
@@ -220,10 +220,10 @@ getViolatedConstraints(SolutionType) : Collection</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>670</x>
-      <y>150</y>
-      <w>30</w>
-      <h>200</h>
+      <x>480</x>
+      <y>120</y>
+      <w>24</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;180.0</additional_attributes>
@@ -231,10 +231,10 @@ getViolatedConstraints(SolutionType) : Collection</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>830</x>
-      <y>250</y>
-      <w>30</w>
-      <h>100</h>
+      <x>608</x>
+      <y>200</y>
+      <w>24</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
@@ -242,10 +242,10 @@ getViolatedConstraints(SolutionType) : Collection</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>900</x>
-      <y>330</y>
-      <w>370</w>
-      <h>140</h>
+      <x>664</x>
+      <y>264</y>
+      <w>296</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 Problem&lt;SolutionType&gt;
@@ -255,16 +255,16 @@ evaluate(Move,SolutionType,Evaluation) : Evaluation
 validate(SolutionType) : Validation
 validate(Move,SolutionType,Validation) : Validation
 isMinimizing() : boolean
-createRandomSolution() : SolutionType</panel_attributes>
+createRandomSolution(Random) : SolutionType</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>850</x>
-      <y>380</y>
-      <w>70</w>
-      <h>30</h>
+      <x>624</x>
+      <y>304</y>
+      <w>56</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
@@ -272,10 +272,10 @@ createRandomSolution() : SolutionType</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>900</x>
-      <y>500</y>
-      <w>220</w>
-      <h>120</h>
+      <x>664</x>
+      <y>400</y>
+      <w>176</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>/Solution/
 --
@@ -290,10 +290,10 @@ _checkedCopy(T) : T_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1000</x>
-      <y>460</y>
-      <w>30</w>
-      <h>60</h>
+      <x>744</x>
+      <y>368</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
@@ -301,10 +301,10 @@ _checkedCopy(T) : T_</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>180</x>
-      <y>490</y>
-      <w>200</w>
-      <h>130</h>
+      <x>88</x>
+      <y>392</y>
+      <w>160</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>datatypes
 --</panel_attributes>
@@ -313,10 +313,10 @@ _checkedCopy(T) : T_</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>200</x>
-      <y>530</y>
-      <w>160</w>
-      <h>70</h>
+      <x>104</x>
+      <y>424</y>
+      <w>128</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 IntegerIdentifiedData
@@ -327,10 +327,10 @@ getIDs() : Set</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>240</x>
-      <y>670</y>
-      <w>840</w>
-      <h>510</h>
+      <x>136</x>
+      <y>536</y>
+      <w>672</w>
+      <h>408</h>
     </coordinates>
     <panel_attributes>subset
 --</panel_attributes>
@@ -339,10 +339,10 @@ getIDs() : Set</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>280</x>
-      <y>730</y>
-      <w>420</w>
-      <h>180</h>
+      <x>168</x>
+      <y>584</y>
+      <w>336</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>SubsetProblem&lt;DataType&gt;
 --
@@ -361,10 +361,10 @@ validate(Move,SubsetSolution,Validation) : SubsetValidation</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>440</x>
-      <y>930</y>
-      <w>320</w>
-      <h>60</h>
+      <x>296</x>
+      <y>744</y>
+      <w>256</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>both 'validate'-methods have been overridden to produce a subset validation that (by default) also checks the subset size</panel_attributes>
     <additional_attributes/>
@@ -372,10 +372,10 @@ validate(Move,SubsetSolution,Validation) : SubsetValidation</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>280</x>
-      <y>1030</y>
-      <w>270</w>
-      <h>120</h>
+      <x>168</x>
+      <y>824</y>
+      <w>216</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>SubsetValidation
 --
@@ -390,10 +390,10 @@ getConstraintValidation() : Validation</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>610</x>
-      <y>1090</y>
-      <w>140</w>
-      <h>60</h>
+      <x>432</x>
+      <y>872</y>
+      <w>112</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 Validation
@@ -404,10 +404,10 @@ Validation
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>580</x>
-      <y>1030</y>
-      <w>330</w>
-      <h>40</h>
+      <x>408</x>
+      <y>824</y>
+      <w>264</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>calling 'passed(false)' only checks the general constraints, ignoring the current subset size</panel_attributes>
     <additional_attributes/>
@@ -415,10 +415,10 @@ Validation
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>530</x>
-      <y>900</y>
-      <w>30</w>
-      <h>50</h>
+      <x>368</x>
+      <y>720</y>
+      <w>24</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;30.0</additional_attributes>
@@ -426,10 +426,10 @@ Validation
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>310</x>
-      <y>900</y>
-      <w>30</w>
-      <h>150</h>
+      <x>192</x>
+      <y>720</y>
+      <w>24</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
@@ -437,10 +437,10 @@ Validation
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>540</x>
-      <y>1040</y>
-      <w>60</w>
-      <h>30</h>
+      <x>376</x>
+      <y>832</y>
+      <w>48</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>40.0;10.0;10.0;10.0</additional_attributes>
@@ -448,10 +448,10 @@ Validation
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>540</x>
-      <y>1100</y>
-      <w>90</w>
-      <h>30</h>
+      <x>376</x>
+      <y>880</y>
+      <w>72</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>
@@ -459,10 +459,10 @@ Validation
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>310</x>
-      <y>590</y>
-      <w>30</w>
-      <h>160</h>
+      <x>192</x>
+      <y>472</y>
+      <w>24</w>
+      <h>128</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
@@ -470,10 +470,10 @@ Validation
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>480</x>
-      <y>610</y>
-      <w>30</w>
-      <h>140</h>
+      <x>328</x>
+      <y>488</y>
+      <w>24</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
@@ -481,10 +481,10 @@ Validation
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>810</x>
-      <y>730</y>
-      <w>230</w>
-      <h>270</h>
+      <x>592</x>
+      <y>584</y>
+      <w>184</w>
+      <h>216</h>
     </coordinates>
     <panel_attributes>SubsetSolution
 --
@@ -509,10 +509,10 @@ isSorted() : boolean</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>690</x>
-      <y>810</y>
-      <w>140</w>
-      <h>30</h>
+      <x>496</x>
+      <y>648</y>
+      <w>112</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>120.0;10.0;10.0;10.0</additional_attributes>
@@ -520,10 +520,10 @@ isSorted() : boolean</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>940</x>
-      <y>610</y>
-      <w>30</w>
-      <h>140</h>
+      <x>696</x>
+      <y>488</y>
+      <w>24</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
