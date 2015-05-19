@@ -210,7 +210,7 @@ extends <a href="../../../../org/jamesframework/core/problems/AbstractProblem.ht
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetProblem.html#createRandomSolution--">createRandomSolution</a></span>()</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetProblem.html#createRandomSolution-java.util.Random-">createRandomSolution</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</code>
 <div class="block">Create a random solution within the allowed minimum and maximum subset size.</div>
 </td>
 </tr>
@@ -272,6 +272,13 @@ extends <a href="../../../../org/jamesframework/core/problems/AbstractProblem.ht
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
 <code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#clone--" title="class or interface in java.lang">clone</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#finalize--" title="class or interface in java.lang">finalize</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.org.jamesframework.core.problems.Problem">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;org.jamesframework.core.problems.<a href="../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a></h3>
+<code><a href="../../../../org/jamesframework/core/problems/Problem.html#createRandomSolution--">createRandomSolution</a></code></li>
 </ul>
 </li>
 </ul>
@@ -450,16 +457,18 @@ extends <a href="../../../../org/jamesframework/core/problems/AbstractProblem.ht
 </dl>
 </li>
 </ul>
-<a name="createRandomSolution--">
+<a name="createRandomSolution-java.util.Random-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>createRandomSolution</h4>
-<pre>public&nbsp;<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;createRandomSolution()</pre>
+<pre>public&nbsp;<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;createRandomSolution(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</pre>
 <div class="block">Create a random solution within the allowed minimum and maximum subset size. The set of all IDs
  is retrieved from the underlying data and a random subset of these IDs is selected.</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>rnd</code> - source of randomness used to generate random subset solution</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>random subset solution within minimum and maximum size</dd>
 </dl>

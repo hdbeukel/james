@@ -291,11 +291,15 @@
 <dd>
 <div class="block">Creates an empty subset solution in which no IDs are selected.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/Problem.html#createRandomSolution-java.util.Random-">createRandomSolution(Random)</a></span> - Method in interface org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a></dt>
+<dd>
+<div class="block">Creates a random solution using the given source of randomness.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/Problem.html#createRandomSolution--">createRandomSolution()</a></span> - Method in interface org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a></dt>
 <dd>
-<div class="block">Creates a random solution.</div>
+<div class="block">Creates a random solution, using a default source of randomness.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetProblem.html#createRandomSolution--">createRandomSolution()</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset">SubsetProblem</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetProblem.html#createRandomSolution-java.util.Random-">createRandomSolution(Random)</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset">SubsetProblem</a></dt>
 <dd>
 <div class="block">Create a random solution within the allowed minimum and maximum subset size.</div>
 </dd>
@@ -901,65 +905,69 @@
 <dd>
 <div class="block">Get \(R\): the number of deletions performed in every search step.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/Randomization.html#getRandom--">getRandom()</a></span> - Static method in class org.jamesframework.core.util.<a href="org/jamesframework/core/util/Randomization.html" title="class in org.jamesframework.core.util">Randomization</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#getRandom--">getRandom()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
-<div class="block">Retrieve the random generator set with <a href="org/jamesframework/core/util/Randomization.html#setRandom-java.util.Random-"><code>Randomization.setRandom(Random)</code></a>.</div>
+<div class="block">Get the dedicated random generator used by this search.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/util/SetUtilities.html#getRandomElement-java.util.Set-java.util.Random-">getRandomElement(Set&lt;? extends T&gt;, Random)</a></span> - Static method in class org.jamesframework.core.util.<a href="org/jamesframework/core/util/SetUtilities.html" title="class in org.jamesframework.core.util">SetUtilities</a></dt>
 <dd>
 <div class="block">Select a random element from a given set (uniformly distributed).</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/Neighbourhood.html#getRandomMove-SolutionType-">getRandomMove(SolutionType)</a></span> - Method in interface org.jamesframework.core.search.neigh.<a href="org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/Neighbourhood.html#getRandomMove-SolutionType-java.util.Random-">getRandomMove(SolutionType, Random)</a></span> - Method in interface org.jamesframework.core.search.neigh.<a href="org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a></dt>
 <dd>
 <div class="block">Generates a move that transforms the given solution into a random neighbour
  contained in this specific neighbourhood.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiAdditionNeighbourhood</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/Neighbourhood.html#getRandomMove-SolutionType-">getRandomMove(SolutionType)</a></span> - Method in interface org.jamesframework.core.search.neigh.<a href="org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a></dt>
+<dd>
+<div class="block">Generates a random move, using a default source of randomness.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove(SubsetSolution, Random)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiAdditionNeighbourhood</a></dt>
 <dd>
 <div class="block">Generates a move for the given subset solution that selects a random subset of currently unselected IDs.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiDeletionNeighbourhood</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove(SubsetSolution, Random)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiDeletionNeighbourhood</a></dt>
 <dd>
 <div class="block">Generates a move for the given subset solution that deselects a random subset of currently selected IDs.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiSwapNeighbourhood</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove(SubsetSolution, Random)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiSwapNeighbourhood</a></dt>
 <dd>
 <div class="block">Generates a move for the given subset solution that removes a random subset of \(k\) IDs from the current
  selection and replaces them with an equally large random subset of the currently unselected IDs, where
  \(k\) is the number of swaps specified at construction.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiAdditionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiAdditionNeighbourhood</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiAdditionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove(SubsetSolution, Random)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiAdditionNeighbourhood</a></dt>
 <dd>
 <div class="block">
  Generates a move for the given subset solution that adds a random subset of currently unselected IDs to the
  selection.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiDeletionNeighbourhood</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove(SubsetSolution, Random)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiDeletionNeighbourhood</a></dt>
 <dd>
 <div class="block">
  Generates a move for the given subset solution that deselects a random subset of currently selected IDs.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiSwapNeighbourhood</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove(SubsetSolution, Random)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiSwapNeighbourhood</a></dt>
 <dd>
 <div class="block">
  Generates a move for the given subset solution that removes a random subset of IDs from the current selection
  and replaces them with an equally large random subset of the currently unselected IDs.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SingleAdditionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SingleAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleAdditionNeighbourhood</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SingleAdditionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove(SubsetSolution, Random)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SingleAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleAdditionNeighbourhood</a></dt>
 <dd>
 <div class="block">Generates a random addition move for the given subset solution that adds a single ID to the selection.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleDeletionNeighbourhood</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove(SubsetSolution, Random)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleDeletionNeighbourhood</a></dt>
 <dd>
 <div class="block">Generates a random deletion move for the given subset solution that removes a single ID from the selection.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SinglePerturbationNeighbourhood</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove(SubsetSolution, Random)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SinglePerturbationNeighbourhood</a></dt>
 <dd>
 <div class="block">
  Generates a random swap, deletion or addition move that transforms the given subset solution into
  a neighbour within the minimum and maximum allowed subset size.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SingleSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SingleSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleSwapNeighbourhood</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SingleSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove(SubsetSolution, Random)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SingleSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleSwapNeighbourhood</a></dt>
 <dd>
 <div class="block">Generates a random swap move for the given subset solution that removes a single ID from the set of currently selected IDs,
  and replaces it with a random ID taken from the set of currently unselected IDs.</div>
@@ -1787,12 +1795,6 @@
 <div class="block">Creates a new random descent search, specifying the problem to solve, the neighbourhood used to
  modify the current solution, and a custom search name.</div>
 </dd>
-<dt><a href="org/jamesframework/core/util/Randomization.html" title="class in org.jamesframework.core.util"><span class="typeNameLink">Randomization</span></a> - Class in <a href="org/jamesframework/core/util/package-summary.html">org.jamesframework.core.util</a></dt>
-<dd>
-<div class="block">Randomization tools.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/Randomization.html#Randomization--">Randomization()</a></span> - Constructor for class org.jamesframework.core.util.<a href="org/jamesframework/core/util/Randomization.html" title="class in org.jamesframework.core.util">Randomization</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="org/jamesframework/core/search/algo/RandomSearch.html" title="class in org.jamesframework.core.search.algo"><span class="typeNameLink">RandomSearch</span></a>&lt;<a href="org/jamesframework/core/search/algo/RandomSearch.html" title="type parameter in RandomSearch">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/algo/package-summary.html">org.jamesframework.core.search.algo</a></dt>
 <dd>
 <div class="block">The random search algorithm iteratively samples a random solution and checks
@@ -1870,10 +1872,6 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#removeStopCriterion-org.jamesframework.core.search.stopcriteria.StopCriterion-">removeStopCriterion(StopCriterion)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
 <div class="block">Removes a stop criterion.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/Randomization.html#resetDefault--">resetDefault()</a></span> - Static method in class org.jamesframework.core.util.<a href="org/jamesframework/core/util/Randomization.html" title="class in org.jamesframework.core.util">Randomization</a></dt>
-<dd>
-<div class="block">Reset the default behaviour so that <a href="org/jamesframework/core/util/Randomization.html#getRandom--"><code>Randomization.getRandom()</code></a> returns a thread local random generator.</div>
 </dd>
 <dt><a href="org/jamesframework/core/util/RouletteSelector.html" title="class in org.jamesframework.core.util"><span class="typeNameLink">RouletteSelector</span></a> - Class in <a href="org/jamesframework/core/util/package-summary.html">org.jamesframework.core.util</a></dt>
 <dd>
@@ -2168,9 +2166,9 @@
 <dd>
 <div class="block">Set the period between consecutive stop criterion checks.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/Randomization.html#setRandom-java.util.Random-">setRandom(Random)</a></span> - Static method in class org.jamesframework.core.util.<a href="org/jamesframework/core/util/Randomization.html" title="class in org.jamesframework.core.util">Randomization</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#setRandom-java.util.Random-">setRandom(Random)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
-<div class="block">Set a custom random generator to be used by all randomized components in the framework.</div>
+<div class="block">Set custom random generator.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#setReplicaSteps-int-">setReplicaSteps(int)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
