@@ -274,16 +274,11 @@
 <dd>
 <div class="block">Create a deep copy of this subset solution, obtained through the copy constructor.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VNDFactory.html#create-org.jamesframework.core.problems.Problem-">create(Problem&lt;SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VNDFactory.html" title="class in org.jamesframework.core.search.algo.vns">VNDFactory</a></dt>
-<dd>
-<div class="block">Create a VND search to solve the given problem, using the list of neighbourhoods
- set at construction of the factory.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/LocalSearchFactory.html#create-org.jamesframework.core.problems.Problem-">create(Problem&lt;SolutionType&gt;)</a></span> - Method in interface org.jamesframework.core.util.<a href="org/jamesframework/core/util/LocalSearchFactory.html" title="interface in org.jamesframework.core.util">LocalSearchFactory</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/factory/LocalSearchFactory.html#create-org.jamesframework.core.problems.Problem-">create(Problem&lt;SolutionType&gt;)</a></span> - Method in interface org.jamesframework.core.factory.<a href="org/jamesframework/core/factory/LocalSearchFactory.html" title="interface in org.jamesframework.core.factory">LocalSearchFactory</a></dt>
 <dd>
 <div class="block">Create a local search, given the problem to solve.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/SearchFactory.html#create-org.jamesframework.core.problems.Problem-">create(Problem&lt;SolutionType&gt;)</a></span> - Method in interface org.jamesframework.core.util.<a href="org/jamesframework/core/util/SearchFactory.html" title="interface in org.jamesframework.core.util">SearchFactory</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/factory/SearchFactory.html#create-org.jamesframework.core.problems.Problem-">create(Problem&lt;SolutionType&gt;)</a></span> - Method in interface org.jamesframework.core.factory.<a href="org/jamesframework/core/factory/SearchFactory.html" title="interface in org.jamesframework.core.factory">SearchFactory</a></dt>
 <dd>
 <div class="block">Create a search, given the problem to solve.</div>
 </dd>
@@ -1339,9 +1334,9 @@
 <dd>
 <div class="block">Create a new local search to solve the given problem, with a custom name.</div>
 </dd>
-<dt><a href="org/jamesframework/core/util/LocalSearchFactory.html" title="interface in org.jamesframework.core.util"><span class="typeNameLink">LocalSearchFactory</span></a>&lt;<a href="org/jamesframework/core/util/LocalSearchFactory.html" title="type parameter in LocalSearchFactory">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Interface in <a href="org/jamesframework/core/util/package-summary.html">org.jamesframework.core.util</a></dt>
+<dt><a href="org/jamesframework/core/factory/LocalSearchFactory.html" title="interface in org.jamesframework.core.factory"><span class="typeNameLink">LocalSearchFactory</span></a>&lt;<a href="org/jamesframework/core/factory/LocalSearchFactory.html" title="type parameter in LocalSearchFactory">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Interface in <a href="org/jamesframework/core/factory/package-summary.html">org.jamesframework.core.factory</a></dt>
 <dd>
-<div class="block">Interface of a <em>local</em> search factory used to create a <em>local</em> search given the problem to be solved.</div>
+<div class="block">Factory used to create a <em>local</em> search given the problem to be solved.</div>
 </dd>
 <dt><a href="org/jamesframework/core/subset/algo/LRSubsetSearch.html" title="class in org.jamesframework.core.subset.algo"><span class="typeNameLink">LRSubsetSearch</span></a> - Class in <a href="org/jamesframework/core/subset/algo/package-summary.html">org.jamesframework.core.subset.algo</a></dt>
 <dd>
@@ -1571,6 +1566,10 @@
 <dt><a href="org/jamesframework/core/exceptions/package-summary.html">org.jamesframework.core.exceptions</a> - package org.jamesframework.core.exceptions</dt>
 <dd>
 <div class="block">Custom James runtime exceptions.</div>
+</dd>
+<dt><a href="org/jamesframework/core/factory/package-summary.html">org.jamesframework.core.factory</a> - package org.jamesframework.core.factory</dt>
+<dd>
+<div class="block">Miscellaneous factory interfaces.</div>
 </dd>
 <dt><a href="org/jamesframework/core/problems/package-summary.html">org.jamesframework.core.problems</a> - package org.jamesframework.core.problems</dt>
 <dd>
@@ -1942,9 +1941,9 @@
 <dd>
 <div class="block">Constructs an instance with the specified detail message and cause.</div>
 </dd>
-<dt><a href="org/jamesframework/core/util/SearchFactory.html" title="interface in org.jamesframework.core.util"><span class="typeNameLink">SearchFactory</span></a>&lt;<a href="org/jamesframework/core/util/SearchFactory.html" title="type parameter in SearchFactory">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Interface in <a href="org/jamesframework/core/util/package-summary.html">org.jamesframework.core.util</a></dt>
+<dt><a href="org/jamesframework/core/factory/SearchFactory.html" title="interface in org.jamesframework.core.factory"><span class="typeNameLink">SearchFactory</span></a>&lt;<a href="org/jamesframework/core/factory/SearchFactory.html" title="type parameter in SearchFactory">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Interface in <a href="org/jamesframework/core/factory/package-summary.html">org.jamesframework.core.factory</a></dt>
 <dd>
-<div class="block">Interface of a search factory used to create a search given the problem to be solved.</div>
+<div class="block">Factory used to create a search given the problem to be solved.</div>
 </dd>
 <dt><a href="org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners"><span class="typeNameLink">SearchListener</span></a>&lt;<a href="org/jamesframework/core/search/listeners/SearchListener.html" title="type parameter in SearchListener">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Interface in <a href="org/jamesframework/core/search/listeners/package-summary.html">org.jamesframework.core.search.listeners</a></dt>
 <dd>
@@ -2133,7 +2132,7 @@
 <div class="block">Sets a custom evaluated move cache, which is used to avoid repeated evaluation or validation of the same move
  from the same current solution.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#setLocalSearchFactory-org.jamesframework.core.util.LocalSearchFactory-">setLocalSearchFactory(LocalSearchFactory&lt;SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodSearch</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#setLocalSearchFactory-org.jamesframework.core.factory.LocalSearchFactory-">setLocalSearchFactory(LocalSearchFactory&lt;SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodSearch</a></dt>
 <dd>
 <div class="block">Set a custom factory to create instances of the local search algorithm to be applied to modify solutions
  obtained after shaking.</div>
@@ -2804,28 +2803,19 @@ the order they are declared.</div>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#VariableNeighbourhoodSearch-org.jamesframework.core.problems.Problem-java.util.List-java.util.List-">VariableNeighbourhoodSearch(Problem&lt;SolutionType&gt;, List&lt;? extends Neighbourhood&lt;? super SolutionType&gt;&gt;, List&lt;? extends Neighbourhood&lt;? super SolutionType&gt;&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodSearch</a></dt>
 <dd>
 <div class="block">Creates a new variable neighbourhood search, specifying the problem to solve, the neighbourhoods used for shaking
- and the neighbourhoods used by the default VND local search algorithm.</div>
+ and the neighbourhoods used by the default variable neighbourhood descent algorithm applied after shaking.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#VariableNeighbourhoodSearch-org.jamesframework.core.problems.Problem-java.util.List-org.jamesframework.core.util.LocalSearchFactory-">VariableNeighbourhoodSearch(Problem&lt;SolutionType&gt;, List&lt;? extends Neighbourhood&lt;? super SolutionType&gt;&gt;, LocalSearchFactory&lt;SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodSearch</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#VariableNeighbourhoodSearch-org.jamesframework.core.problems.Problem-java.util.List-org.jamesframework.core.factory.LocalSearchFactory-">VariableNeighbourhoodSearch(Problem&lt;SolutionType&gt;, List&lt;? extends Neighbourhood&lt;? super SolutionType&gt;&gt;, LocalSearchFactory&lt;SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodSearch</a></dt>
 <dd>
 <div class="block">Creates a new variable neighbourhood search, specifying the problem to solve, the neighbourhoods used for
- shaking in VNS, and a factory to create instances of a custom local search algorithm \(L\) to be applied to
- modify solutions obtained after shaking.</div>
+ shaking, and a factory to create instances of a custom local search algorithm \(L\) to be applied after
+ shaking.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#VariableNeighbourhoodSearch-java.lang.String-org.jamesframework.core.problems.Problem-java.util.List-org.jamesframework.core.util.LocalSearchFactory-">VariableNeighbourhoodSearch(String, Problem&lt;SolutionType&gt;, List&lt;? extends Neighbourhood&lt;? super SolutionType&gt;&gt;, LocalSearchFactory&lt;SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodSearch</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#VariableNeighbourhoodSearch-java.lang.String-org.jamesframework.core.problems.Problem-java.util.List-org.jamesframework.core.factory.LocalSearchFactory-">VariableNeighbourhoodSearch(String, Problem&lt;SolutionType&gt;, List&lt;? extends Neighbourhood&lt;? super SolutionType&gt;&gt;, LocalSearchFactory&lt;SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodSearch</a></dt>
 <dd>
 <div class="block">Creates a new variable neighbourhood search, specifying the problem to solve, the neighbourhoods used for
  shaking in VNS, a factory to create instances of a custom local search algorithm \(L\) to be applied to
  modify solutions obtained after shaking, and a custom search name.</div>
-</dd>
-<dt><a href="org/jamesframework/core/search/algo/vns/VNDFactory.html" title="class in org.jamesframework.core.search.algo.vns"><span class="typeNameLink">VNDFactory</span></a>&lt;<a href="org/jamesframework/core/search/algo/vns/VNDFactory.html" title="type parameter in VNDFactory">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/algo/vns/package-summary.html">org.jamesframework.core.search.algo.vns</a></dt>
-<dd>
-<div class="block">A VND factory creates a variable neighbourhood descent search, where the list of neighbourhoods to apply are
- set upon construction of the factory.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VNDFactory.html#VNDFactory-java.util.List-">VNDFactory(List&lt;? extends Neighbourhood&lt;? super SolutionType&gt;&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VNDFactory.html" title="class in org.jamesframework.core.search.algo.vns">VNDFactory</a></dt>
-<dd>
-<div class="block">Create a new VND factory, given the list of neighbourhoods to apply.</div>
 </dd>
 </dl>
 <a name="I:W">

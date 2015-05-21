@@ -84,57 +84,57 @@
 </tr>
 <tbody>
 <tr class="altColor">
+<td class="colFirst"><a href="#org.jamesframework.core.factory">org.jamesframework.core.factory</a></td>
+<td class="colLast">
+<div class="block">Miscellaneous factory interfaces.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search">org.jamesframework.core.search</a></td>
 <td class="colLast">
 <div class="block">High-level search templates.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo">org.jamesframework.core.search.algo</a></td>
 <td class="colLast">
 <div class="block">Algorithm implementations.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo.exh">org.jamesframework.core.search.algo.exh</a></td>
 <td class="colLast">
 <div class="block">Exhaustive search and components.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo.tabu">org.jamesframework.core.search.algo.tabu</a></td>
 <td class="colLast">
 <div class="block">Tabu search and components (including tabu memory specification).</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo.vns">org.jamesframework.core.search.algo.vns</a></td>
 <td class="colLast">
 <div class="block">Variable neighbourhood searches and components.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.listeners">org.jamesframework.core.search.listeners</a></td>
 <td class="colLast">
 <div class="block">Search listeners.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.stopcriteria">org.jamesframework.core.search.stopcriteria</a></td>
 <td class="colLast">
 <div class="block">Stop criteria.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.subset.algo">org.jamesframework.core.subset.algo</a></td>
 <td class="colLast">
 <div class="block">Specific subset sampling algorithms.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="#org.jamesframework.core.util">org.jamesframework.core.util</a></td>
-<td class="colLast">
-<div class="block">General utilities.</div>
 </td>
 </tr>
 </tbody>
@@ -142,6 +142,26 @@
 </li>
 <li class="blockList">
 <ul class="blockList">
+<li class="blockList"><a name="org.jamesframework.core.factory">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a> in <a href="../../../../../org/jamesframework/core/factory/package-summary.html">org.jamesframework.core.factory</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../org/jamesframework/core/factory/package-summary.html">org.jamesframework.core.factory</a> that return <a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/factory/SearchFactory.html" title="type parameter in SearchFactory">SolutionType</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">SearchFactory.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/factory/SearchFactory.html#create-org.jamesframework.core.problems.Problem-">create</a></span>(<a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/factory/SearchFactory.html" title="type parameter in SearchFactory">SolutionType</a>&gt;&nbsp;problem)</code>
+<div class="block">Create a search, given the problem to solve.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
 <li class="blockList"><a name="org.jamesframework.core.search">
 <!--   -->
 </a>
@@ -421,39 +441,39 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><span class="typeNameLabel">MaxRuntime.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/MaxRuntime.html#searchShouldStop-org.jamesframework.core.search.Search-">searchShouldStop</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;?&gt;&nbsp;search)</code>
-<div class="block">Checks whether the maximum runtime has been reached for the given search.</div>
+<td class="colLast"><span class="typeNameLabel">StopCriterion.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterion.html#searchShouldStop-org.jamesframework.core.search.Search-">searchShouldStop</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;?&gt;&nbsp;search)</code>
+<div class="block">Checks the stop condition for a given search.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><span class="typeNameLabel">MaxSteps.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/MaxSteps.html#searchShouldStop-org.jamesframework.core.search.Search-">searchShouldStop</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;?&gt;&nbsp;search)</code>
-<div class="block">Checks whether the maximum number of steps has been reached for the given search.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><span class="typeNameLabel">MaxStepsWithoutImprovement.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/MaxStepsWithoutImprovement.html#searchShouldStop-org.jamesframework.core.search.Search-">searchShouldStop</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;?&gt;&nbsp;search)</code>
-<div class="block">Checks whether the maximum number of steps without finding improvement has been reached for the given search.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><span class="typeNameLabel">MaxTimeWithoutImprovement.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/MaxTimeWithoutImprovement.html#searchShouldStop-org.jamesframework.core.search.Search-">searchShouldStop</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;?&gt;&nbsp;search)</code>
-<div class="block">Checks whether the maximum time without finding improvements has been reached for the given search.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><span class="typeNameLabel">MinDelta.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/MinDelta.html#searchShouldStop-org.jamesframework.core.search.Search-">searchShouldStop</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;?&gt;&nbsp;search)</code>
 <div class="block">Checks whether the minimum delta observed during the current run of the given
  search is still above the required minimum.</div>
 </td>
 </tr>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><span class="typeNameLabel">MaxTimeWithoutImprovement.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/MaxTimeWithoutImprovement.html#searchShouldStop-org.jamesframework.core.search.Search-">searchShouldStop</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;?&gt;&nbsp;search)</code>
+<div class="block">Checks whether the maximum time without finding improvements has been reached for the given search.</div>
+</td>
+</tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><span class="typeNameLabel">StopCriterion.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterion.html#searchShouldStop-org.jamesframework.core.search.Search-">searchShouldStop</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;?&gt;&nbsp;search)</code>
-<div class="block">Checks the stop condition for a given search.</div>
+<td class="colLast"><span class="typeNameLabel">MaxStepsWithoutImprovement.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/MaxStepsWithoutImprovement.html#searchShouldStop-org.jamesframework.core.search.Search-">searchShouldStop</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;?&gt;&nbsp;search)</code>
+<div class="block">Checks whether the maximum number of steps without finding improvement has been reached for the given search.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><span class="typeNameLabel">MaxSteps.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/MaxSteps.html#searchShouldStop-org.jamesframework.core.search.Search-">searchShouldStop</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;?&gt;&nbsp;search)</code>
+<div class="block">Checks whether the maximum number of steps has been reached for the given search.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><span class="typeNameLabel">MaxRuntime.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/MaxRuntime.html#searchShouldStop-org.jamesframework.core.search.Search-">searchShouldStop</a></span>(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;?&gt;&nbsp;search)</code>
+<div class="block">Checks whether the maximum runtime has been reached for the given search.</div>
 </td>
 </tr>
 </tbody>
@@ -487,26 +507,6 @@
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/subset/algo/LRSubsetSearch.html" title="class in org.jamesframework.core.subset.algo">LRSubsetSearch</a></span></code>
 <div class="block">LR subset search is a greedy local search heuristic for subset selection.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="org.jamesframework.core.util">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a> in <a href="../../../../../org/jamesframework/core/util/package-summary.html">org.jamesframework.core.util</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../org/jamesframework/core/util/package-summary.html">org.jamesframework.core.util</a> that return <a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/util/SearchFactory.html" title="type parameter in SearchFactory">SolutionType</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">SearchFactory.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/util/SearchFactory.html#create-org.jamesframework.core.problems.Problem-">create</a></span>(<a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/util/SearchFactory.html" title="type parameter in SearchFactory">SolutionType</a>&gt;&nbsp;problem)</code>
-<div class="block">Create a search, given the problem to solve.</div>
 </td>
 </tr>
 </tbody>
