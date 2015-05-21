@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
+var methods = {"i0":10,"i1":10,"i2":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -140,16 +140,16 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">MetropolisSearch&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span>
 extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourhoodSearch.html" title="class in org.jamesframework.core.search">SingleNeighbourhoodSearch</a>&lt;SolutionType&gt;</pre>
-<div class="block">Metropolis search with fixed temperature. Iteratively samples a random neighbour and accepts it based on a
- criterion that depends on the difference in evaluation (\(\Delta E\)) and the temperature of the system (\(T\)).
- When a valid neighbour is obtained with \(\Delta E &gt; 0\), which indicates improvement, it is always accepted
+<div class="block">Metropolis search (fixed temperature). Iteratively samples a random neighbour and accepts it based on a criterion
+ that depends on both the improvement in evaluation (\(\Delta E\)) and the temperature of the system (\(T\)).
+ When a valid neighbour is obtained with \(\Delta E \ge 0\), which indicates improvement, it is always accepted
  as the new current solution. Else, it is accepted with
  probability
  \[
-      e^{\frac{\Delta E}{kT}}
+      e^{\frac{\Delta E}{T}}
  \]
- where \(k\) is a constant temperature scale factor (by default, \(k = 1\)). The probability of acceptance
- increases when the temperature \(T\) is higher or when (the negative) \(\Delta E\) is closer to zero.
+ The probability of acceptance increases when the temperature \(T\) is higher or when (the negative) \(\Delta E\)
+ is closer to zero.
  <p>
  Note that it is important to carefully choose the temperature, depending on the scale of the evaluations
  and expected deltas, as well as the landscape of the objective function. Setting a high temperature decreases
@@ -219,34 +219,22 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html#getTemperatureScaleFactor--">getTemperatureScaleFactor</a></span>()</code>
-<div class="block">Get the temperature scale factor \(k\).</div>
-</td>
-</tr>
-<tr id="i2" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html#searchStep--">searchStep</a></span>()</code>
 <div class="block">Creates a random neighbour of the current solution and accepts it as the new current solution
- if it is valid and either improves over the current solution or
+ if it is valid and either improves the current solution or
  \[
-      e^{\frac{\Delta E}{kT}} &gt; R(0,1)
+      e^{\frac{\Delta E}{T}} &gt; R(0,1)
  \]
  where \(\Delta E\) is the difference between the evaluation of the neighbour and that of the
- current solution, \(T\) is the temperature, \(k\) is a constant scale factor, and \(R(0,1)\)
- is a random number sampled from a uniform distribution in the interval \([0,1]\).</div>
+ current solution, \(T\) is the temperature, and \(R(0,1)\) is a random number in the interval
+ \([0,1]\) sampled using the search's dedicated random generator.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html#setTemperature-double-">setTemperature</a></span>(double&nbsp;temperature)</code>
 <div class="block">Set the temperature (\(T &gt; 0\)).</div>
-</td>
-</tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html#setTemperatureScaleFactor-double-">setTemperatureScaleFactor</a></span>(double&nbsp;scale)</code>
-<div class="block">Set the temperature scale factor \(k &gt; 0\).</div>
 </td>
 </tr>
 </table>
@@ -386,37 +374,6 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 </dl>
 </li>
 </ul>
-<a name="setTemperatureScaleFactor-double-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setTemperatureScaleFactor</h4>
-<pre>public&nbsp;void&nbsp;setTemperatureScaleFactor(double&nbsp;scale)</pre>
-<div class="block">Set the temperature scale factor \(k &gt; 0\). All temperatures are multiplied with this factor.
- By default, the scale factor is set to 1.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>scale</code> - temperature scale factor</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>scale</code> is not strictly positive</dd>
-</dl>
-</li>
-</ul>
-<a name="getTemperatureScaleFactor--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getTemperatureScaleFactor</h4>
-<pre>public&nbsp;double&nbsp;getTemperatureScaleFactor()</pre>
-<div class="block">Get the temperature scale factor \(k\).</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>temperature scale factor</dd>
-</dl>
-</li>
-</ul>
 <a name="searchStep--">
 <!--   -->
 </a>
@@ -425,13 +382,13 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <h4>searchStep</h4>
 <pre>protected&nbsp;void&nbsp;searchStep()</pre>
 <div class="block">Creates a random neighbour of the current solution and accepts it as the new current solution
- if it is valid and either improves over the current solution or
+ if it is valid and either improves the current solution or
  \[
-      e^{\frac{\Delta E}{kT}} &gt; R(0,1)
+      e^{\frac{\Delta E}{T}} &gt; R(0,1)
  \]
  where \(\Delta E\) is the difference between the evaluation of the neighbour and that of the
- current solution, \(T\) is the temperature, \(k\) is a constant scale factor, and \(R(0,1)\)
- is a random number sampled from a uniform distribution in the interval \([0,1]\).</div>
+ current solution, \(T\) is the temperature, and \(R(0,1)\) is a random number in the interval
+ \([0,1]\) sampled using the search's dedicated random generator.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../../../org/jamesframework/core/search/Search.html#searchStep--">searchStep</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html" title="type parameter in MetropolisSearch">SolutionType</a> extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</code></dd>
