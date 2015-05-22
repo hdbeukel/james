@@ -290,7 +290,8 @@ public class TSPObjective implements Objective&lt;PermutationSolution, TSPData&g
 
         // check move type
         if(!(move instanceof ReverseSubsequenceMove)){
-            throw new IncompatibleDeltaEvaluationException("Delta evaluation in TSP objective expects move of type ReverseSubsequenceMove.");
+            throw new IncompatibleDeltaEvaluationException("Delta evaluation in "
+                   + "TSP objective expects move of type ReverseSubsequenceMove.");
         }
         // cast move
         ReverseSubsequenceMove move2opt = (ReverseSubsequenceMove) move;
