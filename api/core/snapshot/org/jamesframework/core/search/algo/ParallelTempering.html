@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -157,7 +157,7 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
       Solutions of adjacent replica (ordered by temperature) are considered to be swapped.
       Solutions of replicas \(R_1\) and \(R_2\) with temperatures \(T_1\) and \(T_2\) (\(T_1 \lt T_2\))
       and current solution evaluation \(E_1\) and \(E_2\), respectively, are always swapped if
-      \(\Delta E \ge 0\), where \(\Delta E\) is defined as the improvement of \(E_1\) over \(E_2\)
+      \(\Delta E \ge 0\), where \(\Delta E\) is defined as the improvement of \(E_2\) over \(E_1\)
       (see <a href="../../../../../org/jamesframework/core/search/Search.html#computeDelta-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.objectives.evaluations.Evaluation-"><code>Search.computeDelta(Evaluation, Evaluation)</code></a>).
       If \(\Delta E \lt 0\), solutions are swapped with probability
       \[
@@ -166,10 +166,13 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
   </li>
  </ol>
  <p>
- All replicas use the same neighbourhood which is specified when creating the parallel tempering
- search. If an initial solution is set, a copy of this solution is set as initial solution in each
- replica. Else, each replica starts with a distinct randomly generated solution. If desired, a
- separate initial solution can be set for each replica through <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#getReplicas--"><code>getReplicas()</code></a>.
+ All replicas use the same neighbourhood, which is specified when creating the parallel tempering
+ search. By default, each replica starts from an independently generated random solution. A custom
+ initial solution can be set by calling <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#setCurrentSolution-SolutionType-"><code>setCurrentSolution(Solution)</code></a> on the parallel tempering
+ algorithm before starting the search; in this case, a copy of this solution is set as initial solution
+ in each replica. Note that this cancels the built-in multi-start of the parallel tempering algorithm.
+ Setting an independent custom initial solution in each replica can be achieved by providing a custom
+ Metropolis search factory at construction.
  </p>
  <p>
  The overall best solution found by all replicas is tracked and eventually returned by the parallel
@@ -230,16 +233,31 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#ParallelTempering-java.lang.String-org.jamesframework.core.problems.Problem-org.jamesframework.core.search.neigh.Neighbourhood-int-double-double-">ParallelTempering</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#ParallelTempering-org.jamesframework.core.problems.Problem-org.jamesframework.core.search.neigh.Neighbourhood-int-double-double-org.jamesframework.core.factory.MetropolisSearchFactory-">ParallelTempering</a></span>(<a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&nbsp;problem,
+                 <a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&nbsp;neighbourhood,
+                 int&nbsp;numReplicas,
+                 double&nbsp;minTemperature,
+                 double&nbsp;maxTemperature,
+                 <a href="../../../../../org/jamesframework/core/factory/MetropolisSearchFactory.html" title="interface in org.jamesframework.core.factory">MetropolisSearchFactory</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&nbsp;metropolisFactory)</code>
+<div class="block">
+ Creates a new parallel tempering algorithm, specifying the problem to solve,
+ the neighbourhood used in each replica, the number of replicas, the minimum
+ and maximum temperature, and a custom Metropolis search factory.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#ParallelTempering-java.lang.String-org.jamesframework.core.problems.Problem-org.jamesframework.core.search.neigh.Neighbourhood-int-double-double-org.jamesframework.core.factory.MetropolisSearchFactory-">ParallelTempering</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
                  <a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&nbsp;problem,
                  <a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&nbsp;neighbourhood,
                  int&nbsp;numReplicas,
                  double&nbsp;minTemperature,
-                 double&nbsp;maxTemperature)</code>
+                 double&nbsp;maxTemperature,
+                 <a href="../../../../../org/jamesframework/core/factory/MetropolisSearchFactory.html" title="interface in org.jamesframework.core.factory">MetropolisSearchFactory</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&nbsp;metropolisFactory)</code>
 <div class="block">
  Creates a new parallel tempering algorithm, specifying the problem to solve,
  the neighbourhood used in each replica, the number of replicas, the minimum
- and maximum temperature, and a custom search name.</div>
+ and maximum temperature, a custom search name, and a custom Metropolis search
+ factory.</div>
 </td>
 </tr>
 </table>
@@ -258,47 +276,41 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#getReplicas--">getReplicas</a></span>()</code>
-<div class="block">Get (unmodifiable) list of Metropolis replicas used by this parallel tempering algorithm.</div>
-</td>
-</tr>
-<tr id="i1" class="rowColor">
-<td class="colFirst"><code>int</code></td>
+<td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#getReplicaSteps--">getReplicaSteps</a></span>()</code>
 <div class="block">Get the number of steps performed by each replica in every iteration of the global parallel
  tempering algorithm, before considering solution swaps.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#searchDisposed--">searchDisposed</a></span>()</code>
 <div class="block">When disposing a parallel tempering search, it will dispose each contained Metropolis replica and will
  shut down the thread pool used for concurrent execution of replicas.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#searchStep--">searchStep</a></span>()</code>
 <div class="block">In each search step, every replica performs several steps after which solutions of adjacent
  replicas may be swapped.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#setCurrentSolution-SolutionType-">setCurrentSolution</a></span>(<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&nbsp;solution)</code>
-<div class="block">Set a custom current solution, of which a copy is passed to each replica.</div>
+<div class="block">Set a custom current solution, of which a copy is set as the current solution in each replica.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#setNeighbourhood-org.jamesframework.core.search.neigh.Neighbourhood-">setNeighbourhood</a></span>(<a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&nbsp;neighbourhood)</code>
 <div class="block">Set the same neighbourhood for each replica.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#setReplicaSteps-int-">setReplicaSteps</a></span>(int&nbsp;steps)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#setReplicaSteps-long-">setReplicaSteps</a></span>(long&nbsp;steps)</code>
 <div class="block">Sets the number of steps performed by each replica in every iteration of the global parallel tempering
  algorithm, before considering solution swaps.</div>
 </td>
@@ -383,8 +395,8 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <dd><code>problem</code> - problem to solve</dd>
 <dd><code>neighbourhood</code> - neighbourhood used inside Metropolis search replicas</dd>
 <dd><code>numReplicas</code> - number of Metropolis replicas</dd>
-<dd><code>minTemperature</code> - minimum temperature of Metropolis replica</dd>
-<dd><code>maxTemperature</code> - maximum temperature of Metropolis replica</dd>
+<dd><code>minTemperature</code> - minimum temperature of Metropolis replicas</dd>
+<dd><code>maxTemperature</code> - maximum temperature of Metropolis replicas</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> or <code>neighbourhood</code> are
                               <code>null</code></dd>
@@ -394,7 +406,55 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 </dl>
 </li>
 </ul>
-<a name="ParallelTempering-java.lang.String-org.jamesframework.core.problems.Problem-org.jamesframework.core.search.neigh.Neighbourhood-int-double-double-">
+<a name="ParallelTempering-org.jamesframework.core.problems.Problem-org.jamesframework.core.search.neigh.Neighbourhood-int-double-double-org.jamesframework.core.factory.MetropolisSearchFactory-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>ParallelTempering</h4>
+<pre>public&nbsp;ParallelTempering(<a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&nbsp;problem,
+                         <a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&nbsp;neighbourhood,
+                         int&nbsp;numReplicas,
+                         double&nbsp;minTemperature,
+                         double&nbsp;maxTemperature,
+                         <a href="../../../../../org/jamesframework/core/factory/MetropolisSearchFactory.html" title="interface in org.jamesframework.core.factory">MetropolisSearchFactory</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&nbsp;metropolisFactory)</pre>
+<div class="block"><p>
+ Creates a new parallel tempering algorithm, specifying the problem to solve,
+ the neighbourhood used in each replica, the number of replicas, the minimum
+ and maximum temperature, and a custom Metropolis search factory. The Metropolis
+ search factory can be used to customize the replicas, e.g. to set a custom initial
+ solution per replica. The factory should always respect the contract as defined in
+ the interface <a href="../../../../../org/jamesframework/core/factory/MetropolisSearchFactory.html" title="interface in org.jamesframework.core.factory"><code>MetropolisSearchFactory</code></a>. Else, the algorithm may not function
+ correctly and exceptions might be thrown during search.
+ </p>
+ <p>
+ The problem, neighbourhood and Metropolis factory can not be <code>null</code>,
+ the number of replicas and both temperature bounds should be strictly positive,
+ and the minimum temperature should be smaller than the maximum temperature.
+ </p>
+ <p>
+ Note that it is important that the given problem (including all of its components such
+ as the objective, constraints, etc.) and neighbourhood are thread-safe, because they
+ will be accessed concurrently from several Metropolis searches running in separate threads.
+ </p></div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>problem</code> - problem to solve</dd>
+<dd><code>neighbourhood</code> - neighbourhood used inside Metropolis search replicas</dd>
+<dd><code>numReplicas</code> - number of Metropolis replicas</dd>
+<dd><code>minTemperature</code> - minimum temperature of Metropolis replicas</dd>
+<dd><code>maxTemperature</code> - maximum temperature of Metropolis replicas</dd>
+<dd><code>metropolisFactory</code> - custom factory used to create Metropolis searches</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> or <code>neighbourhood</code> are
+                              <code>null</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>numReplicas</code>, <code>minTemperature</code>
+                                  or <code>maxTemperature</code> are not strictly positive,
+                                  or if <code>minTemperature &ge; maxTemperature</code></dd>
+</dl>
+</li>
+</ul>
+<a name="ParallelTempering-java.lang.String-org.jamesframework.core.problems.Problem-org.jamesframework.core.search.neigh.Neighbourhood-int-double-double-org.jamesframework.core.factory.MetropolisSearchFactory-">
 <!--   -->
 </a>
 <ul class="blockListLast">
@@ -405,15 +465,24 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
                          <a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&nbsp;neighbourhood,
                          int&nbsp;numReplicas,
                          double&nbsp;minTemperature,
-                         double&nbsp;maxTemperature)</pre>
+                         double&nbsp;maxTemperature,
+                         <a href="../../../../../org/jamesframework/core/factory/MetropolisSearchFactory.html" title="interface in org.jamesframework.core.factory">MetropolisSearchFactory</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&nbsp;metropolisFactory)</pre>
 <div class="block"><p>
  Creates a new parallel tempering algorithm, specifying the problem to solve,
  the neighbourhood used in each replica, the number of replicas, the minimum
- and maximum temperature, and a custom search name. The problem and neighbourhood
- can not be <code>null</code>, the number of replicas and both temperature bounds
- should be strictly positive, and the minimum temperature should be smaller than the
- maximum temperature. The search name can be <code>null</code> in which case the default
- name "ParallelTempering" is assigned.
+ and maximum temperature, a custom search name, and a custom Metropolis search
+ factory. The Metropolis search factory can be used to customize the replicas,
+ e.g. to set a custom initial solution per replica. The factory should always
+ respect the contract as defined in the interface <a href="../../../../../org/jamesframework/core/factory/MetropolisSearchFactory.html" title="interface in org.jamesframework.core.factory"><code>MetropolisSearchFactory</code></a>.
+ Else, the algorithm may not function correctly and exceptions might be thrown
+ during search.
+ </p>
+ <p>
+ The problem, neighbourhood and Metropolis factory can not be <code>null</code>,
+ the number of replicas and both temperature bounds should be strictly positive,
+ and the minimum temperature should be smaller than the maximum temperature. The
+ search name can be <code>null</code> in which case the default name "ParallelTempering"
+ is assigned.
  </p>
  <p>
  Note that it is important that the given problem (including all of its components such
@@ -426,8 +495,9 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <dd><code>problem</code> - problem to solve</dd>
 <dd><code>neighbourhood</code> - neighbourhood used inside Metropolis search replicas</dd>
 <dd><code>numReplicas</code> - number of Metropolis replicas</dd>
-<dd><code>minTemperature</code> - minimum temperature of Metropolis replica</dd>
-<dd><code>maxTemperature</code> - maximum temperature of Metropolis replica</dd>
+<dd><code>minTemperature</code> - minimum temperature of Metropolis replicas</dd>
+<dd><code>maxTemperature</code> - maximum temperature of Metropolis replicas</dd>
+<dd><code>metropolisFactory</code> - custom factory used to create Metropolis searches</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>problem</code> or <code>neighbourhood</code> are
                               <code>null</code></dd>
@@ -445,13 +515,13 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="setReplicaSteps-int-">
+<a name="setReplicaSteps-long-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setReplicaSteps</h4>
-<pre>public&nbsp;void&nbsp;setReplicaSteps(int&nbsp;steps)</pre>
+<pre>public&nbsp;void&nbsp;setReplicaSteps(long&nbsp;steps)</pre>
 <div class="block">Sets the number of steps performed by each replica in every iteration of the global parallel tempering
  algorithm, before considering solution swaps. Defaults to 500. The specified number of steps should
  be strictly positive.</div>
@@ -469,30 +539,13 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <ul class="blockList">
 <li class="blockList">
 <h4>getReplicaSteps</h4>
-<pre>public&nbsp;int&nbsp;getReplicaSteps()</pre>
+<pre>public&nbsp;long&nbsp;getReplicaSteps()</pre>
 <div class="block">Get the number of steps performed by each replica in every iteration of the global parallel
  tempering algorithm, before considering solution swaps. Defaults to 500 and can be changed
- using <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#setReplicaSteps-int-"><code>setReplicaSteps(int)</code></a>.</div>
+ using <a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#setReplicaSteps-long-"><code>setReplicaSteps(long)</code></a>.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>number of steps performed by replicas in each iteration</dd>
-</dl>
-</li>
-</ul>
-<a name="getReplicas--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getReplicas</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a>&lt;<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&gt;&nbsp;getReplicas()</pre>
-<div class="block">Get (unmodifiable) list of Metropolis replicas used by this parallel tempering algorithm.
- Replicas are ordered by temperature (ascending). This method should be used with care; in
- particular the temperatures (and respective scales) should not be altered as this will
- likely break the execution of the parallel tempering search.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>Metropolis replicas (unmodifiable list view)</dd>
 </dl>
 </li>
 </ul>
@@ -525,8 +578,8 @@ extends <a href="../../../../../org/jamesframework/core/search/SingleNeighbourho
 <li class="blockList">
 <h4>setCurrentSolution</h4>
 <pre>public&nbsp;void&nbsp;setCurrentSolution(<a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&nbsp;solution)</pre>
-<div class="block">Set a custom current solution, of which a copy is passed to each replica. Note that
- <code>solution</code> can not be <code>null</code> and that this method may only be
+<div class="block">Set a custom current solution, of which a copy is set as the current solution in each replica.
+ Note that <code>solution</code> can not be <code>null</code> and that this method may only be
  called when the search is idle.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
