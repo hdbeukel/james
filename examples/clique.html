@@ -124,7 +124,7 @@ public class CliqueObjective implements Objective&lt;SubsetSolution, Object&gt;{
         vertex in each search step. To implement this strategy we provide a custom neighbourhood that will be used in a
         random descent search. The <code>GreedyCliqueNeighbourhood</code> implements the <code>Neighbourhood</code> interface
         with solution type <code>SubsetSolution</code>. It has two methods: one to get a random move and one to get the list
-        of all considered moves for current solution. The greedy neighbourhood generates moves that add a single new
+        of all considered moves for the current solution. The greedy neighbourhood generates moves that add a single new
         vertex with maximum degree in the subgraph induced by all vertices that are connected to the entire current clique.
     </p>
     <p>
@@ -142,6 +142,16 @@ public class CliqueObjective implements Objective&lt;SubsetSolution, Object&gt;{
         For every retained candidate vertex an <code>AdditionMove</code> is generated. If desired, a custom move
         type could be created as well but this is not necessary here.
     </p>
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-info-circle"></i>
+            Info
+        </h4>
+        The method <code>getRandomMove(solution, rnd)</code> takes a random generator as its second argument, which should
+        be used as the source of randomness. Each search has a dedicated random generator, which is passed to the neighbourhood
+        when requesting a random move. If desired, a search's random generator can be customized with
+        <code>search.setRandom(rnd)</code>.
+    </div>
 <pre class="prettyprint">
 public class GreedyCliqueNeighbourhood implements Neighbourhood&lt;SubsetSolution&gt; {
 
@@ -152,13 +162,12 @@ public class GreedyCliqueNeighbourhood implements Neighbourhood&lt;SubsetSolutio
         this.data = data;
     }
 
-    public Move&lt;SubsetSolution&gt; getRandomMove(SubsetSolution solution) {
+    public Move&lt;SubsetSolution&gt; getRandomMove(SubsetSolution solution, Random rnd) {
         List&lt;Move&lt;SubsetSolution&gt;&gt; allMoves = getAllMoves(solution);
         if(allMoves.isEmpty()){
             return null;
         } else {
-            Random rg = ThreadLocalRandom.current();
-            return allMoves.get(rg.nextInt(allMoves.size()));
+            return allMoves.get(rnd.nextInt(allMoves.size()));
         }
     }
 
@@ -302,13 +311,13 @@ vns.dispose();
     </p>
 
     <h4 class="page-header">
-        Optimization: a new solution type
+        Adapting the solution type to speed up the search
     </h4>
     <p>
         The current implementation of <code>GreedyCliqueNeighbourhood</code> first constructs the set of possible adds
         by scanning all unselected vertices and verifying whether they are connected to the entire current clique.
         These computations are repeated whenever a random move is generated. Here we describe an optimization that
-        dynamically updates the set of possible adds whenever a vertex is added to or
+        dynamically updates the set of possible adds when a vertex is added to or
         removed from the clique. This reduces the overall time complexity of the optimization process so that more
         steps can be taken in the same time.
     </p>
@@ -404,14 +413,25 @@ public class CliqueSolution extends SubsetSolution {
 }
 </pre>
     <p>
-        Now we can not use the predefined <code>SubsetProblem</code> as its solution type is fixed to <code>SubsetSolution</code>
-        instead of our new <code>CliqueSolution</code>. Therefore we extend
-        <code>AbstractProblem</code> to create a <code>CliqueProblem</code> with solution and data type <code>CliqueSolution</code> and
-        <code>CliqueData</code>, respectively. An <code>AbstractProblem</code> has a single abstract method <code>createRandomSolution()</code>.
-        As creating a random clique is not supported, we throw an error here. Alternatively we could also return an empty instead of a random clique.
-        Throwing an error has the advantage that we are notified if a search attempts to create a random solution, which should never happen anyway if
-        we manually set an empty initial solution and indicates a programming mistake.
+        Now we can not use the predefined <code>SubsetProblem</code> as its solution type is fixed to
+        <code>SubsetSolution</code> instead of our new <code>CliqueSolution</code>. Therefore we extend
+        <code>AbstractProblem</code> to create a <code>CliqueProblem</code> with solution and data type
+        <code>CliqueSolution</code> and <code>CliqueData</code>, respectively. An <code>AbstractProblem</code>
+        has a single abstract method <code>createRandomSolution(rnd)</code>. As creating a random clique is not
+        supported, we throw an error here. Alternatively we could also return an empty instead of a random clique.
+        Throwing an error has the advantage that we are notified if a search attempts to create a random solution,
+        which should never happen anyway if we manually set an empty initial solution and indicates a programming mistake.
     </p>
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-info-circle"></i>
+            Info
+        </h4>
+        The method <code>createRandomSolution(rnd)</code> takes a random generator as its argument, which should
+        be used as the source of randomness. Each search has a dedicated random generator, which is passed to the
+        problem when requesting a random solutionn. If desired, a search's random generator can be customized with
+        <code>search.setRandom(rnd)</code>.
+    </div>
 <pre class="prettyprint">
 public class CliqueProblem extends AbstractProblem&lt;CliqueSolution, CliqueData&gt;{
 
@@ -419,7 +439,7 @@ public class CliqueProblem extends AbstractProblem&lt;CliqueSolution, CliqueData
         super(objective, data);
     }
 
-    public CliqueSolution createRandomSolution() {
+    public CliqueSolution createRandomSolution(Random rnd) {
         throw new UnsupportedOperationException("Creating a random clique is not supported.");
     }
 
@@ -439,7 +459,7 @@ public class GreedyCliqueNeighbourhood2 implements Neighbourhood&lt;CliqueSoluti
 
     // ...
 
-    public Move&lt;SubsetSolution&gt; getRandomMove(CliqueSolution clique) {
+    public Move&lt;SubsetSolution&gt; getRandomMove(CliqueSolution clique, Random rnd) {
         // ... (same as before)
     }
 

@@ -104,6 +104,16 @@ public class PermutationSolution extends Solution {
         creating a random solution. It is implemented in the same way as the corresponding method in the <code>TSPProblem</code> from
         <a href="/examples/tsp/#problem">example 4A</a>. The IDs of the items in the data set are retrieved from the data object.
     </p>
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-info-circle"></i>
+            Info
+        </h4>
+        The method <code>createRandomSolution(rnd)</code> takes a random generator as its argument, which should
+        be used as the source of randomness. Each search has a dedicated random generator, which is passed to the
+        problem when requesting a random solutionn. If desired, a search's random generator can be customized with
+        <code>search.setRandom(rnd)</code>.
+    </div>
 <pre class="prettyprint">
 public class PermutationProblem&lt;DataType extends IntegerIdentifiedData&gt; extends AbstractProblem&lt;PermutationSolution, DataType&gt;{
 
@@ -111,11 +121,11 @@ public class PermutationProblem&lt;DataType extends IntegerIdentifiedData&gt; ex
         super(objective, data);
     }
 
-    public PermutationSolution createRandomSolution() {
+    public PermutationSolution createRandomSolution(Random rnd) {
         // create list with all IDs
         List&lt;Integer&gt; ids = new ArrayList&lt;&gt;(getData().getIDs());
         // shuffle IDs
-        Collections.shuffle(ids);
+        Collections.shuffle(ids, rnd);
         // create and return permutation solution
         return new PermutationSolution(ids);
     }
@@ -138,7 +148,7 @@ public class PermutationProblem&lt;DataType extends IntegerIdentifiedData&gt; ex
             Info
         </h4>
         The extensions module contains several permutation neighbourhoods among which this <code>ReverseSubsequenceNeighbourhood</code>.
-        Of course, custom neighbourhoods can also be defined for specific permutation problems.
+        Of course, custom neighbourhoods can also be defined when needed for specific permutation problems.
     </div>
 <pre class="prettyprint">
 public class ReverseSubsequenceMove implements Move&lt;PermutationSolution&gt;{
@@ -187,19 +197,29 @@ public class ReverseSubsequenceMove implements Move&lt;PermutationSolution&gt;{
     }
 
 }
-
+</pre>
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-info-circle"></i>
+            Info
+        </h4>
+        The method <code>getRandomMove(solution, rnd)</code> takes a random generator as its second argument, which should
+        be used as the source of randomness. Each search has a dedicated random generator, which is passed to the neighbourhood
+        when requesting a random move. If desired, a search's random generator can be customized with
+        <code>search.setRandom(rnd)</code>.
+    </div>
+<pre class="prettyprint">
 public class ReverseSubsequenceNeighbourhood implements Neighbourhood&lt;PermutationSolution&gt;{
 
-    public ReverseSubsequenceMove getRandomMove(PermutationSolution solution) {
+    public ReverseSubsequenceMove getRandomMove(PermutationSolution solution, Random rnd) {
         int n = solution.size();
         // check: move possible
         if(n &lt; 2){
             return null;
         }
         // pick two random, distinct positions
-        Random rg = ThreadLocalRandom.current();
-        int i = rg.nextInt(n);
-        int j = rg.nextInt(n-1);
+        int i = rnd.nextInt(n);
+        int j = rnd.nextInt(n-1);
         if(j >= i){
             j++;
         }

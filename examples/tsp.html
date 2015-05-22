@@ -122,6 +122,16 @@ public class TSPSolution extends Solution {
         that indicates that the solution passed validation. The total travel distance is to be minimized so <code>isMinimizing()</code> returns
         <code>true</code>. To create a random solution, a list with all cities is constructed, shuffled and wrapped in a <code>TSPSolution</code>.
     </p>
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-info-circle"></i>
+            Info
+        </h4>
+        The method <code>createRandomSolution(rnd)</code> takes a random generator as its argument, which should
+        be used as the source of randomness. Each search has a dedicated random generator, which is passed to the
+        problem when requesting a random solutionn. If desired, a search's random generator can be customized with
+        <code>search.setRandom(rnd)</code>.
+    </div>
 <pre class="prettyprint">
 public class TSPProblem implements Problem&lt;TSPSolution&gt;{
 
@@ -168,14 +178,14 @@ public class TSPProblem implements Problem&lt;TSPSolution&gt;{
     }
 
     @Override
-    public TSPSolution createRandomSolution() {
+    public TSPSolution createRandomSolution(Random rnd) {
         // create random permutation of cities
         List&lt;Integer&gt; cities = new ArrayList&lt;&gt;();
         int n = dist.length;
         for(int i=0; i&lt;n; i++){
             cities.add(i);
         }
-        Collections.shuffle(cities);
+        Collections.shuffle(cities, rnd);
         // create and return TSP solution
         return new TSPSolution(cities);
     }
@@ -260,15 +270,24 @@ public class TSP2OptMove implements Move&lt;TSPSolution&gt; {
         A neighbourhood has two methods: one to create a random move and one to obtain a list of all possible moves. Here, both methods create moves
         of type <code>TSP2OptMove</code>.
     </p>
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-info-circle"></i>
+            Info
+        </h4>
+        The method <code>getRandomMove(solution, rnd)</code> takes a random generator as its second argument, which should
+        be used as the source of randomness. Each search has a dedicated random generator, which is passed to the neighbourhood
+        when requesting a random move. If desired, a search's random generator can be customized with
+        <code>search.setRandom(rnd)</code>.
+    </div>
 <pre class="prettyprint">
 public class TSP2OptNeighbourhood implements Neighbourhood&lt;TSPSolution&gt;{
 
-    public TSP2OptMove getRandomMove(TSPSolution solution) {
+    public TSP2OptMove getRandomMove(TSPSolution solution, Random rnd) {
         // pick two distinct random positions i,j in the round trip
         int n = solution.getCities().size();
-        Random rg = ThreadLocalRandom.current();
-        int i = rg.nextInt(n);
-        int j = rg.nextInt(n-1);
+        int i = rnd.nextInt(n);
+        int j = rnd.nextInt(n-1);
         if(j >= i){
             j++;
         }
