@@ -423,7 +423,7 @@ randomDescent.dispose();
         Advanced searches, such as the <a href="/docs/#parallel-tempering">parallel tempering</a> algorithm,
         provide ways to escape from such local optima so that they can find better solutions. Parallel tempering
         has three parameters: the number of concurrently executed
-        <a href="/docs/#metropolis-search">Metropolis searches</a> and the minimum and maximum temperature.
+        <a href="/docs/#metropolis-search">Metropolis searches</a> (replicas) and the minimum and maximum temperature.
         The temperature bounds should be carefully chosen, taking into account the scale of the objective function,
         as the probability to accept an inferior move depends on the ratio of the difference in evaluation (delta) and temperature.
         If large deltas are expected, the temperatures should be higher. Else, almost no inferior moves will ever be accepted.
@@ -439,13 +439,6 @@ randomDescent.dispose();
 double scale = computeAverageProfit(data);
 double minTemp = scale * 0.001;
 double maxTemp = scale * 0.1;
-// create parallel tempering with single perturbation neighbourhood
-int numReplicas = 10;
-ParallelTempering&lt;SubsetSolution&gt; parallelTempering = new ParallelTempering&lt;&gt;(
-                                                                    problem,
-                                                                    new SinglePerturbationNeighbourhood(),
-                                                                    numReplicas, minTemp, maxTemp
-                                                                );
 </pre>
     <p>
         The average profit of all knapsack items is easily computed.
@@ -456,8 +449,52 @@ double computeAverageProfit(KnapsackData data){
 }
 </pre>
     <p>
-        Running the search is now done in exactly the same way as for the random descent algorithm. If you experiment
-        with some example input, you will see that the advanced parallel tempering algorithm finds much better solutions
+        By default, each Metropolis replica starts from an independently generated random solution. As motivated before,
+        this will not work here because of the mandatory constraint.
+        Simply calling <code>setCurrentSolution(solution)</code> on
+        the parallel tempering algorithm before starting the search will work, but this sets the same initial solution
+        in all replicas. As the built-in multi-start is one of the advantages of parallel tempering over basic
+        algorithms, it is advised to set an individual valid initial solution for each replica. This can be obtained
+        by specifying a custom Metropolis search factory when creating the parallel tempering search. All replicas
+        are then created using this factory. Note that such custom Metropolis search factory can also be used for
+        other purposes, e.g. to attach listeners to the replicas, to assign custom random generators, etc.
+    </p>
+    <p>
+        A <code>MetropolisSearchFactory</code> is parameterized on the solution type of the generated searches
+        and has a single method to create a Metropolis search, given the problem to solve, the applied neighbourhood
+        and the desired temperature. It can be compactly defined as a Java 8 lambda expression, as demonstrated
+        in the example code below.
+    </p>
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-info-circle"></i>
+            Alternative approach
+        </h4>
+        An different approach is to extend <code>SubsetProblem</code> and to override the method
+        <code>createRandomSolution(rnd)</code> so that it returns a random subset within the knapsack
+        constraint. This is the most general approach, ensuring that any requested random solution is
+        always valid. Custom problem classes are discussed in examples <a href="/examples/clique/">3</a>,
+        <a href="/examples/tsp/">4A</a> and <a href="/examples/tsp2/">4B</a>.
+    </div>
+<pre class="prettyprint">
+// define custom Metropolis search factory
+MetropolisSearchFactory&lt;SubsetSolution&gt; replicaFactory = (prob, neigh, temp) -> {
+    // create Metropolis search with requested parameters
+    MetropolisSearch&lt;SubsetSolution&gt; metropolis = new MetropolisSearch&lt;&gt;(prob, neigh, temp);
+    // set valid initial solution (separate per created replica!)
+    metropolis.setCurrentSolution(createInitialSolution(prob, data, capacity));
+    return metropolis;
+};
+// create parallel tempering with custom factory
+int numReplicas = 10;
+ParallelTempering&lt;SubsetSolution&gt; parallelTempering = new ParallelTempering&lt;&gt;(problem,
+                                                            new SinglePerturbationNeighbourhood(),
+                                                            numReplicas, minTemp, maxTemp,
+                                                            replicaFactory);
+</pre>
+    <p>
+        Running the search is now done in exactly the same way as for the random descent algorithm. Experimenting
+        with some example input will show that the advanced parallel tempering algorithm finds much better solutions
         for the 0/1 knapsack problem as compared to the basic random descent algorithm.
     </p>
 
