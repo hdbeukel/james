@@ -368,7 +368,7 @@ public class TSPProblem implements Problem&lt;TSPSolution&gt;{
         <a href="/docs/#parallel-tempering">parallel tempering</a> algorithms.
     </p>
     <p>
-        A random descent search is easily applied and does not have any additional parameters.
+        A random descent search is simple, fast and does not have any additional parameters.
     </p>
 <pre class="prettyprint">
 // define distance matrix
@@ -399,24 +399,24 @@ if(randomDescent.getBestSolution() != null){
 randomDescent.dispose();
 </pre>
     <p>
-        When using the parallel tempering algorithm it is important to set an appropriate temperature range
+        However, to be able to escape from local optima, more advanced techniques such as parallel tempering are required.
+        When using the parallel tempering algorithm, it is important to set an appropriate temperature range
         (see examples <a href="/examples/coresubset3/#parallel-tempering">1C</a> and <a href="/examples/knapsack/#parallel-tempering">2</a>)
         taking into account the scale of the evaluations. Here, this scale heavily depends on the precise travel distances between cities.
-        Therefore, temperatures are scaled accordingly by setting a scale factor equal to the average travel distance between each
-        pair of cities.
+        Therefore, temperatures are scaled according to the average travel distance between each pair of cities.
     </p>
 <pre class="prettyprint">
-double minTemp = 0.001;
-double maxTemp = 0.1;
+// set temperature range, scaled according to average travel disctance between cities
+double scale = computeAverageTravelDistance(problem);
+double minTemp = scale * 0.001;
+double maxTemp = scale * 0.1;
+// create parallel tempering search with TSP neighbourhood
 int numReplicas = 10;
 ParallelTempering&lt;TSPSolution&gt; parallelTempering = new ParallelTempering&lt;&gt;(
                                                         problem,
                                                         new TSP2OptNeighbourhood(),
                                                         numReplicas, minTemp, maxTemp
                                                    );
-// scale temperatures according to average travel distance between cities
-double scale = computeAverageTravelDistance(problem);
-parallelTempering.setTemperatureScaleFactor(scale);
 </pre>
     <p>
         The average travel distance is easily computed.
@@ -437,7 +437,7 @@ double computeAverageTravelDistance(TSPProblem problem){
 </pre>
     <p>
         Running the parallel tempering search is now done in exactly the same way as for the random descent search. However,
-        it is able to find better solutions, i.e. round trips with a lower total travel distance.
+        it is able to find much better solutions, i.e. round trips with a much lower total travel distance.
     </p>
 
     <h4 class="page-header">

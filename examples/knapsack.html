@@ -424,34 +424,28 @@ randomDescent.dispose();
         provide ways to escape from such local optima so that they can find better solutions. Parallel tempering
         has three parameters: the number of concurrently executed
         <a href="/docs/#metropolis-search">Metropolis searches</a> and the minimum and maximum temperature.
-        Especially the temperature bounds should be carefully chosen.
+        The temperature bounds should be carefully chosen, taking into account the scale of the objective function,
+        as the probability to accept an inferior move depends on the ratio of the difference in evaluation (delta) and temperature.
+        If large deltas are expected, the temperatures should be higher. Else, almost no inferior moves will ever be accepted.
+        Conversely, if small deltas are expected, the temperatures should be lower to accept inferior moves in a controlled way.
+    </p>
+    <p>
+        In this example, the expected difference in evaluations between neighbouring solutions highly depends on the scale of the profits
+        assigned to the items. Therefore the temperatures are scaled accordingly by multiplying them with the average profit
+        of all knapsack items. Alternatively, we could have normalized all profits to values in [0,1].
     </p>
 <pre class="prettyprint">
+// set temperature range, scaled according to average profit of knapsack items
+double scale = computeAverageProfit(data);
+double minTemp = scale * 0.001;
+double maxTemp = scale * 0.1;
 // create parallel tempering with single perturbation neighbourhood
-double minTemp = 0.001;
-double maxTemp = 0.1;
 int numReplicas = 10;
 ParallelTempering&lt;SubsetSolution&gt; parallelTempering = new ParallelTempering&lt;&gt;(
                                                                     problem,
                                                                     new SinglePerturbationNeighbourhood(),
                                                                     numReplicas, minTemp, maxTemp
                                                                 );
-</pre>
-    <p>
-        For parallel tempering it is important to take into account the scale of the objective function
-        when setting the minimum and maximum temperature, as the probability to accept an inferior move
-        depends on the temperature and the difference in evaluation (delta). If large deltas are common,
-        the temperatures should be increased. Else, almost no inferior moves will ever be accepted.
-    </p>
-    <p>
-        In this example, the scale of the evaluations highly depends on the scale of the profits assigned to the items.
-        Therefore all temperatures are scaled accordingly by multiplying them with the average profit of all knapsack items.
-        Alternatively, we could have normalized all profits to values in [0,1].
-    </p>
-<pre class="prettyprint">
-// scale temperatures according to average profit of knapsack items
-double scale = computeAverageProfit(data);
-parallelTempering.setTemperatureScaleFactor(scale);
 </pre>
     <p>
         The average profit of all knapsack items is easily computed.

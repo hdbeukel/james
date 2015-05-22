@@ -192,16 +192,15 @@ double computeHighestProfit(KnapsackData data){
         way to a valid solution anyway because of how the penalties have been designed.
     </p>
 <pre class="prettyprint">
-// create parallel tempering with single perturbation neighbourhood
-double minTemp = 0.001;
-double maxTemp = 0.1;
+// set temperature range, scaled according to average profit of knapsack items
+double scale = computeAverageProfit(data);
+double minTemp = scale * 0.001;
+double maxTemp = scale * 0.1;
+// create parallel tempering with single perturbation neighbourhood (10 replicas)
 int numReplicas = 10;
 ParallelTempering&lt;SubsetSolution&gt; search = new ParallelTempering&lt;&gt;(problem,
                                                             new SinglePerturbationNeighbourhood(),
                                                             numReplicas, minTemp, maxTemp);
-// scale temperatures according to average profit of knapsack items
-double scale = computeAverageProfit(data);
-search.setTemperatureScaleFactor(scale);
 
 // set maximum runtime
 long timeLimit = ...
@@ -224,6 +223,9 @@ if(search.getBestSolution() != null){
 // dispose search
 search.dispose();
 </pre>
+    <p>
+        
+    </p>
 
     <h4 class="page-header">
         Full source code

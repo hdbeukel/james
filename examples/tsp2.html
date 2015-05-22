@@ -341,7 +341,7 @@ public class TSPObjective implements Objective&lt;PermutationSolution, TSPData&g
     <p>
         We can apply a parallel tempering algorithm in the same way as in <a href="/examples/tsp/#optimization">example 4A</a>.
         The problem is now a <code>PermutationProblem</code> that contains the TSP data and objective.
-        The <code>ReverseSubsequenceNeighbourhood</code> is applied which corresponds to a 2-opt neighbourhood
+        The generic <code>ReverseSubsequenceNeighbourhood</code> is applied which corresponds to a 2-opt neighbourhood
         in the context of TSP.
     </p>
 <pre class="prettyprint">
@@ -355,18 +355,17 @@ TSPObjective obj = new TSPObjective();
 // wrap data and objective in a permutation problem
 PermutationProblem&lt;TSPData&gt; problem = new PermutationProblem&lt;&gt;(obj, data);
 
-// create parallel tempering search with with neighbourhood that reverses a subsequence (2-opt move)
-double minTemp = 0.001;
-double maxTemp = 0.1;
+// set temperature range, scaled according to average travel disctance between cities
+double scale = computeAverageTravelDistance(data);
+double minTemp = scale * 0.001;
+double maxTemp = scale * 0.1;
+// create parallel tempering search with neighbourhood that reverses a subsequence (2-opt move)
 int numReplicas = 10;
 ParallelTempering&lt;PermutationSolution&gt; parallelTempering = new ParallelTempering&lt;&gt;(
                                                             problem,
                                                             new ReverseSubsequenceNeighbourhood(),
                                                             numReplicas, minTemp, maxTemp
                                                            );
-// scale temperatures according to average travel distance between cities
-double scale = computeAverageTravelDistance(data);
-parallelTempering.setTemperatureScaleFactor(scale);
 
 // set maximum runtime
 long timeLimit = ...
@@ -389,7 +388,7 @@ if(parallelTempering.getBestSolution() != null){
 parallelTempering.dispose();
 </pre>
     <p>
-        The average travel distance between each pair of cities is easily computed, to be used as scale factor for the temperatures
+        The average travel distance between each pair of cities is easily computed, which is used as scale factor for the temperatures
         (see <a href="/examples/tsp/#optimization">example 4A</a>).
     </p>
 <pre class="prettyprint">
