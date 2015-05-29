@@ -12,33 +12,34 @@ Search --> StopCriterionChecker : startChecking()
 note right of StopCriterionChecker
  as no stop criteria have been added,
  calling startChecking() does not have
- any effect (no timer is started)
+ any effect
 end note
 
 note over Search : status = RUNNING
 
 Search -> Search : continueSearch()
 Search -> Search : searchStep()
-Search -> StopCriterionChecker : checkNow()
+Search -> StopCriterionChecker : stopCriterionSatisfied()
 note right of StopCriterionChecker
- has no effect here
+ no stop criteria
 end note
+StopCriterionChecker -> Search : returns false
 
 Search -> Search : continueSearch()
 Search -> Search : searchStep()
-Search -> StopCriterionChecker : checkNow()
+Search -> StopCriterionChecker : stopCriterionSatisfied()
 note right of StopCriterionChecker
- has no effect here
+ no stop criteria
 end note
+StopCriterionChecker -> Search : returns false
 
+Search -> Search : continueSearch()
+Search ->+ Search : searchStep()
 note right of Search
  at some point, the search calls
  stop() inside searchStep() and
  goes to status TERMINATING
 end note
-
-Search -> Search : continueSearch()
-Search ->+ Search : searchStep()
 Search ->- Search : stop()
 
 note over Search : status = TERMINATING
@@ -57,7 +58,8 @@ note right of StopCriterionChecker
  terminated internally; in the current
  example scenario, this has no effect
  because the checker was not active
- (but in general it might be)
+ (but it would have been if at least
+ one stop criterion were added)
 end note
 
 note over Search : status = IDLE
