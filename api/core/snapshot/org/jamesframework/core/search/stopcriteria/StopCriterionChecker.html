@@ -121,7 +121,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
  criteria in the background, by default with a period of 1 second, while the search is running.
  These tasks are executed by a dedicated thread which is shared among all stop criterion checker
  instances, as checking stop criteria is not an intensive task. A manual request to immediately
- check all stop criteria can also be made by calling <a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#checkNow--"><code>checkNow()</code></a>.
+ check all stop criteria can also be made by calling <code>#checkNow()</code>.
  <p>
  As soon as some stop criterion is satisfied, the checker will request the search to stop and will
  also cancel the scheduled task for further execution.</div>
@@ -173,34 +173,34 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#checkNow--">checkNow</a></span>()</code>
-<div class="block">Force the checker to check all stop criteria now.</div>
-</td>
-</tr>
-<tr id="i2" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#remove-org.jamesframework.core.search.stopcriteria.StopCriterion-">remove</a></span>(<a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterion.html" title="interface in org.jamesframework.core.search.stopcriteria">StopCriterion</a>&nbsp;stopCriterion)</code>
 <div class="block">Remove a stop criterion.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#setPeriod-long-java.util.concurrent.TimeUnit-">setPeriod</a></span>(long&nbsp;period,
          <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/TimeUnit.html?is-external=true" title="class or interface in java.util.concurrent">TimeUnit</a>&nbsp;timeUnit)</code>
 <div class="block">Set the period between consecutive stop criterion checks.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#startChecking--">startChecking</a></span>()</code>
 <div class="block">Start checking the stop criteria, in a separate background thread.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#stopChecking--">stopChecking</a></span>()</code>
 <div class="block">Instructs the stop criterion checker to stop checking.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#stopCriterionSatisfied--">stopCriterionSatisfied</a></span>()</code>
+<div class="block">Check whether at least one stop criterion is satisfied.</div>
 </td>
 </tr>
 </table>
@@ -259,6 +259,9 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>stopCriterion</code> - stop criterion to add</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="../../../../../org/jamesframework/core/exceptions/IncompatibleStopCriterionException.html" title="class in org.jamesframework.core.exceptions">IncompatibleStopCriterionException</a></code> - if the given stop criterion is not compatible with the search
+                                            to which this checker belongs</dd>
 </dl>
 </li>
 </ul>
@@ -317,14 +320,18 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
  calling this method does not have any effect.</div>
 </li>
 </ul>
-<a name="checkNow--">
+<a name="stopCriterionSatisfied--">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>checkNow</h4>
-<pre>public&nbsp;void&nbsp;checkNow()</pre>
-<div class="block">Force the checker to check all stop criteria now.</div>
+<h4>stopCriterionSatisfied</h4>
+<pre>public&nbsp;boolean&nbsp;stopCriterionSatisfied()</pre>
+<div class="block">Check whether at least one stop criterion is satisfied.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> if a stop condition is satisfied</dd>
+</dl>
 </li>
 </ul>
 </li>
