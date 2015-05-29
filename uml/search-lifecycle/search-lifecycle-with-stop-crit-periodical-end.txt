@@ -1,0 +1,150 @@
+Actor -> Search : new
+note over Search : status = IDLE
+Search -> StopCriterionChecker : new(Search)
+note right of StopCriterionChecker
+ search is passed to stop criterion
+ checker when checker is created
+end note
+
+Actor -> Search : addStopCriterion(sc)
+note right of Search:
+ stop criteria added to search are passed
+ on to its stop criterion checker
+end note
+Search -> StopCriterionChecker : addStopCriterion(sc)
+
+Actor ->+ Search : start()
+note over Search : status = INITIALIZING
+Search -> Search : searchStarted()
+note right of Search
+ searchStarted() takes care
+ of initialization and checks
+ any requirements, e.g. valid
+ search configuration; may throw
+ an exception
+end note
+
+Search --> StopCriterionChecker : startChecking()
+note right of StopCriterionChecker
+ startChecking() immediately returns
+ and fires a timer thread to check
+ the stop criteria in the background
+ (if there are any, else it does nothing)
+end note
+
+note over Search : status = RUNNING
+
+note over StopCriterionChecker
+ periodical check
+end note
+StopCriterionChecker ->+ StopCriterion : searchShouldStop(Search)
+StopCriterion ->- StopCriterionChecker : returns false
+
+note right of Search
+ once the search started running,
+ it will iteratively call searchStep() as
+ long as continueSeach() returns true
+end note
+
+Search -> Search : continueSearch()
+Search -> Search : searchStep()
+Search -> StopCriterionChecker: stopCriterionSatisfied()
+note over StopCriterionChecker
+ manual check
+end note
+StopCriterionChecker ->+ StopCriterion : searchShouldStop(Search)
+StopCriterion ->- StopCriterionChecker : returns false
+StopCriterionChecker ->- Search : returns false
+
+Search -> Search : continueSearch()
+
+note over StopCriterionChecker
+ periodical check
+end note
+StopCriterionChecker ->+ StopCriterion : searchShouldStop(Search)
+StopCriterion ->- StopCriterionChecker : returns  false
+
+Search -> Search : searchStep()
+Search -> StopCriterionChecker: stopCriterionSatisfied()
+note over StopCriterionChecker
+ manual check
+end note
+StopCriterionChecker ->+ StopCriterion : searchShouldStop(Search)
+StopCriterion ->- StopCriterionChecker : returns false
+StopCriterionChecker ->- Search : returns false
+
+note over StopCriterionChecker
+ periodical check
+end note
+StopCriterionChecker ->+ StopCriterion : searchShouldStop(Search)
+StopCriterion ->- StopCriterionChecker : returns true
+
+StopCriterionChecker -> Search : stop()
+note over Search : status = TERMINATING
+
+note right of StopCriterionChecker
+ after calling stop() on the search,
+ the checker also stops checking
+end note
+StopCriterionChecker -> StopCriterionChecker: stopChecking()
+
+Search -> Search : continueSearch()
+note right of Search
+ continueSearch() now returns
+ false as the search is terminating,
+ so the search loop stops
+end note
+
+Search -> Search : searchStopped()
+Search -> StopCriterionChecker : stopChecking()
+note right of StopCriterionChecker
+ instruct active checker to stop;
+ in this particular scenario this
+ call has no effect as the checker
+ already stopped itself
+end note
+
+note over Search : status = IDLE
+
+Search ->- Actor : returns void
+
+Actor -> Search : getBestSolution()
+
+note right of Search
+ getBestSolution() returns the best
+ solution found during search
+end note
+
+Actor ->+ Search : start()
+
+note right of Search
+ an idle search may be restarted;
+ the search state is retained across
+ multiple runs, including the best
+ solution found so far, as well as
+ the current solution (in case of
+ a neighbourhood search), in addition
+ to any search specific state elements
+end note
+
+note right of Search
+ however, the following metadata applies
+ to the current run only:
+  - runtime
+  - number of steps
+  - time/steps since last improvement
+  - minimum delta
+  - number of accepted/rejected moves
+ therefore, the corresponding stop criteria
+ also operate on a per-run basis
+end note
+
+Search ->- Actor : returns void
+
+Actor -> Search : dispose()
+note over Search : status = DISPOSED
+note right of Search
+ when a search is disposed, it releases
+ all of its resources and can never be
+ restarted
+end note
