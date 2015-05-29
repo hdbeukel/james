@@ -646,7 +646,7 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;getSelectedIDs()</pre>
 <div class="block">Returns an unmodifiable view of the set of currently selected IDs.  Any attempt to
  modify the returned set will result in an <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/UnsupportedOperationException.html?is-external=true" title="class or interface in java.lang"><code>UnsupportedOperationException</code></a>. If
- the IDs are orderd (see <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getOrderOfIDs--"><code>getOrderOfIDs()</code></a>), it is safe to cast the returned
+ the IDs are ordered (see <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getOrderOfIDs--"><code>getOrderOfIDs()</code></a>), it is safe to cast the returned
  view to the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/NavigableSet.html?is-external=true" title="class or interface in java.util"><code>NavigableSet</code></a> subtype.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -663,7 +663,7 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;getUnselectedIDs()</pre>
 <div class="block">Returns an unmodifiable view of the set of currently non selected IDs. Any attempt to
  modify the returned set will result in an <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/UnsupportedOperationException.html?is-external=true" title="class or interface in java.lang"><code>UnsupportedOperationException</code></a>. If
- the IDs are orderd (see <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getOrderOfIDs--"><code>getOrderOfIDs()</code></a>), it is safe to cast the returned
+ the IDs are ordered (see <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getOrderOfIDs--"><code>getOrderOfIDs()</code></a>), it is safe to cast the returned
  view to the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/NavigableSet.html?is-external=true" title="class or interface in java.util"><code>NavigableSet</code></a> subtype.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -679,7 +679,7 @@ extends <a href="../../../../org/jamesframework/core/problems/Solution.html" tit
 <h4>getAllIDs</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;getAllIDs()</pre>
 <div class="block">Returns an unmodifiable view of the set of all IDs. Any attempt to modify the returned
- set will result in an <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/UnsupportedOperationException.html?is-external=true" title="class or interface in java.lang"><code>UnsupportedOperationException</code></a>. If the IDs are orderd (see
+ set will result in an <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/UnsupportedOperationException.html?is-external=true" title="class or interface in java.lang"><code>UnsupportedOperationException</code></a>. If the IDs are ordered (see
  <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getOrderOfIDs--"><code>getOrderOfIDs()</code></a>), it is safe to cast the returned view to the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/NavigableSet.html?is-external=true" title="class or interface in java.util"><code>NavigableSet</code></a>
  subtype. This set will always be equal to the union of <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getSelectedIDs--"><code>getSelectedIDs()</code></a> and
  <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html#getUnselectedIDs--"><code>getUnselectedIDs()</code></a>.</div>
