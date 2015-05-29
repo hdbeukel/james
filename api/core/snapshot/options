@@ -4,7 +4,7 @@
 'UTF-8'
 -protected
 -sourcepath
-'/home/travis/build/hdbeukel/james-core/src/main/java:/home/travis/build/hdbeukel/james-core/target/generated-sources/annotations'
+'/home/travis/build/hdbeukel/james/james/james-core/src/main/java:/home/travis/build/hdbeukel/james/james/james-core/target/generated-sources/annotations'
 -header '<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">MathJax.Hub.Config({displayAlign:"left"});MathJax.Hub.Config({displayIndent:"2em"});</script>'
 -author
 -bottom
@@ -12,13 +12,13 @@
 -charset
 'UTF-8'
 -d
-'/home/travis/build/hdbeukel/james-core/target/apidocs'
+'/home/travis/build/hdbeukel/james/james/james-core/target/apidocs'
 -docencoding
 'UTF-8'
 -doctitle
 'james-core 1.0-SNAPSHOT API'
 -linkoffline
-'http://docs.oracle.com/javase/8/docs/api' '/home/travis/build/hdbeukel/james-core/target/javadoc-bundle-options'
+'http://docs.oracle.com/javase/8/docs/api' '/home/travis/build/hdbeukel/james/james/james-core/target/javadoc-bundle-options'
 -notimestamp
 -use
 -version
