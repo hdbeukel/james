@@ -79,14 +79,10 @@ end note
 StopCriterionChecker ->+ StopCriterion : searchShouldStop(Search)
 StopCriterion ->- StopCriterionChecker : returns true
 
+StopCriterionChecker -> StopCriterionChecker: stopChecking()
+
 StopCriterionChecker -> Search : stop()
 note over Search : status = TERMINATING
-
-note right of StopCriterionChecker
- after calling stop() on the search,
- the checker also stops checking
-end note
-StopCriterionChecker -> StopCriterionChecker: stopChecking()
 
 Search -> Search : continueSearch()
 note right of Search
