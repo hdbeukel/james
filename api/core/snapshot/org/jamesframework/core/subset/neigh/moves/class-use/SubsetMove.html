@@ -119,20 +119,6 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a></code></td>
-<td class="colLast"><span class="typeNameLabel">SingleAdditionNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/SingleAdditionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution,
-             <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</code>
-<div class="block">Generates a random addition move for the given subset solution that adds a single ID to the selection.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a></code></td>
-<td class="colLast"><span class="typeNameLabel">SingleDeletionNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution,
-             <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</code>
-<div class="block">Generates a random deletion move for the given subset solution that removes a single ID from the selection.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a></code></td>
 <td class="colLast"><span class="typeNameLabel">SingleSwapNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/SingleSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution,
              <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</code>
 <div class="block">Generates a random swap move for the given subset solution that removes a single ID from the set of currently selected IDs,
@@ -148,6 +134,20 @@
  a neighbour within the minimum and maximum allowed subset size.</div>
 </td>
 </tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a></code></td>
+<td class="colLast"><span class="typeNameLabel">SingleDeletionNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution,
+             <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</code>
+<div class="block">Generates a random deletion move for the given subset solution that removes a single ID from the selection.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a></code></td>
+<td class="colLast"><span class="typeNameLabel">SingleAdditionNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/SingleAdditionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution,
+             <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</code>
+<div class="block">Generates a random addition move for the given subset solution that adds a single ID to the selection.</div>
+</td>
+</tr>
 </tbody>
 </table>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
@@ -157,20 +157,6 @@
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">SingleAdditionNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/SingleAdditionNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
-<div class="block">Generates a list of all possible addition moves that add a single ID to the selection of a given
- subset solution.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">SingleDeletionNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
-<div class="block">Generates a list of all possible deletion moves that remove a single ID from the selection of a given
- subset solution.</div>
-</td>
-</tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">SingleSwapNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/SingleSwapNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
@@ -183,6 +169,20 @@
 <td class="colLast"><span class="typeNameLabel">SinglePerturbationNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
 <div class="block">Generate all valid swap, deletion and addition moves that transform the given subset solution into
  a neighbour within the minimum and maximum allowed subset size.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">SingleDeletionNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
+<div class="block">Generates a list of all possible deletion moves that remove a single ID from the selection of a given
+ subset solution.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">SingleAdditionNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/SingleAdditionNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
+<div class="block">Generates a list of all possible addition moves that add a single ID to the selection of a given
+ subset solution.</div>
 </td>
 </tr>
 </tbody>
@@ -201,33 +201,19 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DisjointMultiSwapNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/adv/DisjointMultiSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution,
+<td class="colLast"><span class="typeNameLabel">MultiSwapNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/adv/MultiSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution,
              <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</code>
-<div class="block">Generates a move for the given subset solution that removes a random subset of \(k\) IDs from the current
- selection and replaces them with an equally large random subset of the currently unselected IDs, where
- \(k\) is the number of swaps specified at construction.</div>
+<div class="block">
+ Generates a move for the given subset solution that removes a random subset of IDs from the current selection
+ and replaces them with an equally large random subset of the currently unselected IDs.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DisjointMultiDeletionNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution,
-             <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</code>
-<div class="block">Generates a move for the given subset solution that deselects a random subset of currently selected IDs.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a></code></td>
 <td class="colLast"><span class="typeNameLabel">MultiDeletionNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution,
              <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</code>
 <div class="block">
  Generates a move for the given subset solution that deselects a random subset of currently selected IDs.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DisjointMultiAdditionNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution,
-             <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</code>
-<div class="block">Generates a move for the given subset solution that selects a random subset of currently unselected IDs.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -241,11 +227,25 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a></code></td>
-<td class="colLast"><span class="typeNameLabel">MultiSwapNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/adv/MultiSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution,
+<td class="colLast"><span class="typeNameLabel">DisjointMultiSwapNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/adv/DisjointMultiSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution,
              <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</code>
-<div class="block">
- Generates a move for the given subset solution that removes a random subset of IDs from the current selection
- and replaces them with an equally large random subset of the currently unselected IDs.</div>
+<div class="block">Generates a move for the given subset solution that removes a random subset of \(k\) IDs from the current
+ selection and replaces them with an equally large random subset of the currently unselected IDs, where
+ \(k\) is the number of swaps specified at construction.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DisjointMultiDeletionNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution,
+             <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</code>
+<div class="block">Generates a move for the given subset solution that deselects a random subset of currently selected IDs.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DisjointMultiAdditionNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution,
+             <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</code>
+<div class="block">Generates a move for the given subset solution that selects a random subset of currently unselected IDs.</div>
 </td>
 </tr>
 </tbody>
@@ -259,34 +259,18 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DisjointMultiSwapNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/adv/DisjointMultiSwapNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
+<td class="colLast"><span class="typeNameLabel">MultiSwapNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/adv/MultiSwapNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
 <div class="block">
- Generates the list of all possible moves that perform exactly \(k\) swaps, where \(k\) is the desired number
+ Generates the list of all possible moves that perform 1 up to \(k\) swaps, where \(k\) is the maximum number
  of swaps specified at construction.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DisjointMultiDeletionNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
-<div class="block">
- Generates the list of all possible moves that perform \(k\) deletions, where \(k\) is the fixed number
- specified at construction.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">MultiDeletionNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
 <div class="block">
  Generates the list of all possible moves that perform 1 up to \(k\) deletions, where \(k\) is the maximum number
  of deletions specified at construction.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DisjointMultiAdditionNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
-<div class="block">
- Generates the list of all possible moves that perform \(k\) additions, where \(k\) is the fixed number
- specified at construction.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -299,10 +283,26 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">MultiSwapNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/adv/MultiSwapNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
+<td class="colLast"><span class="typeNameLabel">DisjointMultiSwapNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/adv/DisjointMultiSwapNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
 <div class="block">
- Generates the list of all possible moves that perform 1 up to \(k\) swaps, where \(k\) is the maximum number
+ Generates the list of all possible moves that perform exactly \(k\) swaps, where \(k\) is the desired number
  of swaps specified at construction.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">DisjointMultiDeletionNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
+<div class="block">
+ Generates the list of all possible moves that perform \(k\) deletions, where \(k\) is the fixed number
+ specified at construction.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">DisjointMultiAdditionNeighbourhood.</span><code><span class="memberNameLink"><a href="../../../../../../../org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html#getAllMoves-org.jamesframework.core.subset.SubsetSolution-">getAllMoves</a></span>(<a href="../../../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
+<div class="block">
+ Generates the list of all possible moves that perform \(k\) additions, where \(k\) is the fixed number
+ specified at construction.</div>
 </td>
 </tr>
 </tbody>
