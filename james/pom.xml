@@ -252,7 +252,4 @@
             </build>
         </profile>
     </profiles>
-    <properties>
-        <argLine></argLine>
-    </properties>
 </project>
