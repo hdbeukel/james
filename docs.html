@@ -192,7 +192,7 @@ layout: default
                 current solution if and only if it is valid and better than the current solution.
             </p>
             <p>
-                Random descent does not terminate internally so that a stop criterion should be specified, such
+                Random descent does not terminate internally. Therefore, a stop criterion should be specified, such
                 as a maximum number of steps or a maximum runtime.
                 By default, the search starts with a random initial solution. Alternatively, a custom initial solution can
                 be specified. Any neighbourhood that is compatible with the solution type of the considered problem can be
@@ -248,9 +248,8 @@ layout: default
                 tabu and are removed from the neighbourhood to favour unvisited regions which may contain new improvements.
             </p>
             <p>
-                The search terminates if it happens that all valid neighbours of the current solution are tabu. However, it
-                is possible that this is never the case, so that a stop criterion should preferably be specified to guarantee
-                termination.
+                The search terminates internally if all valid neighbours of the current solution are tabu. However, as
+                this may never happen, a stop criterion should preferably be specified to guarantee termination.
                 By default, the search starts with a random initial solution. Alternatively, a custom initial solution can
                 be specified. Any neighbourhood that is compatible with the solution type of the considered problem can be
                 applied.
@@ -290,7 +289,7 @@ layout: default
                 application.
             </p>
             <p>
-                Metropolis search does not terminate internally so that a stop criterion should be specified, such
+                Metropolis search does not terminate internally. Therefore, a stop criterion should be specified, such
                 as a maximum number of steps or a maximum runtime.
                 By default, the search starts with a random initial solution. Alternatively, a custom initial solution can
                 be specified. Any neighbourhood that is compatible with the solution type of the considered problem can be
@@ -329,12 +328,12 @@ layout: default
                 replicas.
             </p>
             <p>
-                The parallel tempering algorithm does not terminate internally so that a stop criterion
+                The parallel tempering algorithm does not terminate internally. Therefore, a stop criterion
                 should be specified, such as a maximum number of steps or a maximum runtime. Keep in mind that every
                 step of parallel tempering consists of a number of steps performed by each Metropolis search.
                 By default, every replica starts with an independently generated random initial solution.
-                Alternatively, a custom initial solution can be specified in which case (a copy of) the same
-                initial solution is used by all replicas.
+                Alternatively, a custom initial solution can be specified (global, or per replica through
+                a custom Metropolis search factory).
                 Any neighbourhood that is compatible with the solution type of the considered problem can be applied.
             </p>
             <p>
@@ -448,7 +447,7 @@ layout: default
                 for this purpose.
             </p>
             <p>
-                Variable neighbourhood search does not terminate internally so that a stop criterion
+                Variable neighbourhood search does not terminate internally. Therefore, a stop criterion
                 should be specified, such as a maximum number of steps or a maximum runtime. Keep in mind that one
                 step of VNS is composed of shaking and local search and may therefore be quite time consuming, depending
                 on the applied local search algorithm L.
