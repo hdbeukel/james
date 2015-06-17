@@ -313,18 +313,21 @@ public class TSP2OptNeighbourhood implements Neighbourhood&lt;TSPSolution&gt;{
 </pre>
 
     <h4 class="page-header">
-        Efficient delta evaluation
+        Efficient delta evaluation and validation
     </h4>
     <p>
-        It is possible to also provide an efficient delta evaluation in the problem definition that exploits the knowledge
-        that a new solution is obtained by reversing a subsequence in the previous solution. This can be done by overriding the method
-        <code>evaluate(Move, TSPSolution, Evaluation)</code> in our <code>TSPProblem</code>. Without this custom delta evaluation, a
-        default apply-undo behaviour is used which is of course not as efficient.
+        It is strongly advised (although optional) to also provide an efficient delta evaluation
+        in the problem definition, exploiting the knowledge that a new solution is obtained
+        by reversing a subsequence in the previous solution. This can be done by overriding the method
+        <code>evaluate(Move, TSPSolution, Evaluation)</code> in our <code>TSPProblem</code>. Without
+        this custom delta evaluation, moves are evaluated by applying them to the current solution,
+        followed by a full evaluation, and finally undoing the applied move. Of course, this would
+        be much slower.
     </p>
 <pre class="prettyprint">
 public class TSPProblem implements Problem&lt;TSPSolution&gt;{
 
-    // same as before ...
+    // see before ...
 
     @Override
     public Evaluation evaluate(Move move, TSPSolution curSolution, Evaluation curEvaluation){
@@ -370,7 +373,31 @@ public class TSPProblem implements Problem&lt;TSPSolution&gt;{
 
     }
 
-    // same as before ...
+    // see before ...
+
+}
+</pre>
+    <p>
+        Although full solution validation is not a bottleneck for this unconstrained problem,
+        it is still beneficial to also provide a custom delta validation to avoid
+        the cost of applying and undoing each considered move. Here, applying a move
+        involves reversing a subsequence in the permutation, which is a waste of time.
+        We can easily avoid this by including an explicit delta validation that always
+        returns <code>SimpleValidation.PASSED</code>. For this purpose, we override
+        the method <code>validate(Move, TSPSolution, Validation)</code>.
+    </p>
+<pre class="prettyprint">
+public class TSPProblem implements Problem&lt;TSPSolution&gt;{
+
+    // see before ...
+
+    @Override
+    public Validation validate(Move move, TSPSolution curSolution, Validation curValidation) {
+        // no constraints
+        return SimpleValidation.PASSED;
+    }
+
+    // see before ...
 
 }
 </pre>
