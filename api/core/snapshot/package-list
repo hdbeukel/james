@@ -1,4 +1,5 @@
 org.jamesframework.core.exceptions
+org.jamesframework.core.factory
 org.jamesframework.core.problems
 org.jamesframework.core.problems.constraints
 org.jamesframework.core.problems.constraints.validations

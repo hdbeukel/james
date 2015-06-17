@@ -199,7 +199,8 @@ extends <a href="../../../../../org/jamesframework/core/subset/neigh/SubsetNeigh
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove</a></span>(<a href="../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove</a></span>(<a href="../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution,
+             <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</code>
 <div class="block">Generates a random deletion move for the given subset solution that removes a single ID from the selection.</div>
 </td>
 </tr>
@@ -217,6 +218,13 @@ extends <a href="../../../../../org/jamesframework/core/subset/neigh/SubsetNeigh
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
 <code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#clone--" title="class or interface in java.lang">clone</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#finalize--" title="class or interface in java.lang">finalize</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.org.jamesframework.core.search.neigh.Neighbourhood">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;org.jamesframework.core.search.neigh.<a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a></h3>
+<code><a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html#getRandomMove-SolutionType-">getRandomMove</a></code></li>
 </ul>
 </li>
 </ul>
@@ -304,19 +312,21 @@ extends <a href="../../../../../org/jamesframework/core/subset/neigh/SubsetNeigh
 </dl>
 </li>
 </ul>
-<a name="getRandomMove-org.jamesframework.core.subset.SubsetSolution-">
+<a name="getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getRandomMove</h4>
-<pre>public&nbsp;<a href="../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a>&nbsp;getRandomMove(<a href="../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</pre>
+<pre>public&nbsp;<a href="../../../../../org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a>&nbsp;getRandomMove(<a href="../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution,
+                                <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</pre>
 <div class="block">Generates a random deletion move for the given subset solution that removes a single ID from the selection.
  Possible fixed IDs are not considered to be removed and the minimum subset size is taken into account.
  If no deletion move can be generated, <code>null</code> is returned.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>solution</code> - solution for which a random deletion move is generated</dd>
+<dd><code>rnd</code> - source of randomness used to generate random move</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>random deletion move, <code>null</code> if no move can be generated</dd>
 </dl>

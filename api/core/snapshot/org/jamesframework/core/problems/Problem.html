@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":18,"i2":6,"i3":6,"i4":18,"i5":6};
+var methods = {"i0":18,"i1":6,"i2":18,"i3":6,"i4":6,"i5":18,"i6":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -136,12 +136,18 @@ var activeTableTab = "activeTableTab";
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a></code></td>
+<td class="colFirst"><code>default <a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Problem.html#createRandomSolution--">createRandomSolution</a></span>()</code>
-<div class="block">Creates a random solution.</div>
+<div class="block">Creates a random solution, using a default source of randomness.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Problem.html#createRandomSolution-java.util.Random-">createRandomSolution</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</code>
+<div class="block">Creates a random solution using the given source of randomness.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>default <a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Problem.html#evaluate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">evaluate</a></span>(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&gt;&nbsp;move,
         <a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;curSolution,
@@ -150,19 +156,19 @@ var activeTableTab = "activeTableTab";
  Evaluates a move that will be applied to the current solution of a local search (delta evaluation).</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Problem.html#evaluate-SolutionType-">evaluate</a></span>(<a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;solution)</code>
 <div class="block">Evaluates a given solution.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Problem.html#isMinimizing--">isMinimizing</a></span>()</code>
 <div class="block">Indicates whether scores are being minimized or maximized.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>default <a href="../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Problem.html#validate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.constraints.validations.Validation-">validate</a></span>(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&gt;&nbsp;move,
         <a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;curSolution,
@@ -171,7 +177,7 @@ var activeTableTab = "activeTableTab";
  Validates a move that will be applied to the current solution of a local search (delta validation).</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/Problem.html#validate-SolutionType-">validate</a></span>(<a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;solution)</code>
 <div class="block">Validates a solution.</div>
@@ -333,15 +339,33 @@ var activeTableTab = "activeTableTab";
 </dl>
 </li>
 </ul>
+<a name="createRandomSolution-java.util.Random-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>createRandomSolution</h4>
+<pre><a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;createRandomSolution(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</pre>
+<div class="block">Creates a random solution using the given source of randomness. Such random solutions are for
+ example be used as default initial solution in most neighbourhood searches.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>rnd</code> - source of randomness used to generate a random solution</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a random solution</dd>
+</dl>
+</li>
+</ul>
 <a name="createRandomSolution--">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>createRandomSolution</h4>
-<pre><a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;createRandomSolution()</pre>
-<div class="block">Creates a random solution. Such random solutions can for example be used as initial solution
- for neighbourhood searches.</div>
+<pre>default&nbsp;<a href="../../../../org/jamesframework/core/problems/Problem.html" title="type parameter in Problem">SolutionType</a>&nbsp;createRandomSolution()</pre>
+<div class="block">Creates a random solution, using a default source of randomness. The default implementation
+ delegates to <code>createRandomSolution(ThreadLocalRandom.current())</code> where a thread
+ local random generator is used to avoid overhead and contention for parallel calls.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a random solution</dd>

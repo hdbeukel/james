@@ -220,10 +220,6 @@
 <dd>
 <div class="block">Creates a checked deep copy of the given solution with specific type <code>T</code> (a subclass of <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems"><code>Solution</code></a>).</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#checkNow--">checkNow()</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria">StopCriterionChecker</a></dt>
-<dd>
-<div class="block">Force the checker to check all stop criteria now.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html#clear--">clear()</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="class in org.jamesframework.core.search.algo.tabu">FullTabuMemory</a></dt>
 <dd>
 <div class="block">Clear the tabu memory.</div>
@@ -274,16 +270,16 @@
 <dd>
 <div class="block">Create a deep copy of this subset solution, obtained through the copy constructor.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VNDFactory.html#create-org.jamesframework.core.problems.Problem-">create(Problem&lt;SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VNDFactory.html" title="class in org.jamesframework.core.search.algo.vns">VNDFactory</a></dt>
-<dd>
-<div class="block">Create a VND search to solve the given problem, using the list of neighbourhoods
- set at construction of the factory.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/LocalSearchFactory.html#create-org.jamesframework.core.problems.Problem-">create(Problem&lt;SolutionType&gt;)</a></span> - Method in interface org.jamesframework.core.util.<a href="org/jamesframework/core/util/LocalSearchFactory.html" title="interface in org.jamesframework.core.util">LocalSearchFactory</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/factory/LocalSearchFactory.html#create-org.jamesframework.core.problems.Problem-">create(Problem&lt;SolutionType&gt;)</a></span> - Method in interface org.jamesframework.core.factory.<a href="org/jamesframework/core/factory/LocalSearchFactory.html" title="interface in org.jamesframework.core.factory">LocalSearchFactory</a></dt>
 <dd>
 <div class="block">Create a local search, given the problem to solve.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/SearchFactory.html#create-org.jamesframework.core.problems.Problem-">create(Problem&lt;SolutionType&gt;)</a></span> - Method in interface org.jamesframework.core.util.<a href="org/jamesframework/core/util/SearchFactory.html" title="interface in org.jamesframework.core.util">SearchFactory</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/factory/MetropolisSearchFactory.html#create-org.jamesframework.core.problems.Problem-org.jamesframework.core.search.neigh.Neighbourhood-double-">create(Problem&lt;SolutionType&gt;, Neighbourhood&lt;? super SolutionType&gt;, double)</a></span> - Method in interface org.jamesframework.core.factory.<a href="org/jamesframework/core/factory/MetropolisSearchFactory.html" title="interface in org.jamesframework.core.factory">MetropolisSearchFactory</a></dt>
+<dd>
+<div class="block">Create a Metropolis search, given the problem to solve,
+ the applied neighbourhood and the desired temperature.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/factory/SearchFactory.html#create-org.jamesframework.core.problems.Problem-">create(Problem&lt;SolutionType&gt;)</a></span> - Method in interface org.jamesframework.core.factory.<a href="org/jamesframework/core/factory/SearchFactory.html" title="interface in org.jamesframework.core.factory">SearchFactory</a></dt>
 <dd>
 <div class="block">Create a search, given the problem to solve.</div>
 </dd>
@@ -291,11 +287,15 @@
 <dd>
 <div class="block">Creates an empty subset solution in which no IDs are selected.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/Problem.html#createRandomSolution-java.util.Random-">createRandomSolution(Random)</a></span> - Method in interface org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a></dt>
+<dd>
+<div class="block">Creates a random solution using the given source of randomness.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/Problem.html#createRandomSolution--">createRandomSolution()</a></span> - Method in interface org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a></dt>
 <dd>
-<div class="block">Creates a random solution.</div>
+<div class="block">Creates a random solution, using a default source of randomness.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetProblem.html#createRandomSolution--">createRandomSolution()</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset">SubsetProblem</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetProblem.html#createRandomSolution-java.util.Random-">createRandomSolution(Random)</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset">SubsetProblem</a></dt>
 <dd>
 <div class="block">Create a random solution within the allowed minimum and maximum subset size.</div>
 </dd>
@@ -488,10 +488,6 @@
 <dd>
 <div class="block">Creat a new instance with given size limit.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#fireListenerCallback-java.util.function.Consumer-">fireListenerCallback(Consumer&lt;? super SearchListener&lt;? super SolutionType&gt;&gt;)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
-<dd>
-<div class="block">Fire the given callback on all attached listeners.</div>
-</dd>
 <dt><a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="class in org.jamesframework.core.search.algo.tabu"><span class="typeNameLink">FullTabuMemory</span></a>&lt;<a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="type parameter in FullTabuMemory">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/algo/tabu/package-summary.html">org.jamesframework.core.search.algo.tabu</a></dt>
 <dd>
 <div class="block">Full tabu memory that stores deeps copies of recently visited solutions and declares a move tabu if
@@ -515,7 +511,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html#GeneralSubsetMove-java.util.Set-java.util.Set-">GeneralSubsetMove(Set&lt;Integer&gt;, Set&lt;Integer&gt;)</a></span> - Constructor for class org.jamesframework.core.subset.neigh.moves.<a href="org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.moves">GeneralSubsetMove</a></dt>
 <dd>
-<div class="block">Creates a general subset move, indicating which IDs are to be added to and removed from
+<div class="block">Creates a general subset move, indicating which IDs are to be added to and deleted from
  the current selection when being applied to a given subset solution.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html#generateRandomInitialSolution--">generateRandomInitialSolution()</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="class in org.jamesframework.core.search.algo.tabu">TabuSearch</a></dt>
@@ -901,65 +897,69 @@
 <dd>
 <div class="block">Get \(R\): the number of deletions performed in every search step.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/Randomization.html#getRandom--">getRandom()</a></span> - Static method in class org.jamesframework.core.util.<a href="org/jamesframework/core/util/Randomization.html" title="class in org.jamesframework.core.util">Randomization</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#getRandom--">getRandom()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
-<div class="block">Retrieve the random generator set with <a href="org/jamesframework/core/util/Randomization.html#setRandom-java.util.Random-"><code>Randomization.setRandom(Random)</code></a>.</div>
+<div class="block">Get the dedicated random generator used by this search.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/util/SetUtilities.html#getRandomElement-java.util.Set-java.util.Random-">getRandomElement(Set&lt;? extends T&gt;, Random)</a></span> - Static method in class org.jamesframework.core.util.<a href="org/jamesframework/core/util/SetUtilities.html" title="class in org.jamesframework.core.util">SetUtilities</a></dt>
 <dd>
 <div class="block">Select a random element from a given set (uniformly distributed).</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/Neighbourhood.html#getRandomMove-SolutionType-">getRandomMove(SolutionType)</a></span> - Method in interface org.jamesframework.core.search.neigh.<a href="org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/Neighbourhood.html#getRandomMove-SolutionType-java.util.Random-">getRandomMove(SolutionType, Random)</a></span> - Method in interface org.jamesframework.core.search.neigh.<a href="org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a></dt>
 <dd>
 <div class="block">Generates a move that transforms the given solution into a random neighbour
  contained in this specific neighbourhood.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiAdditionNeighbourhood</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/neigh/Neighbourhood.html#getRandomMove-SolutionType-">getRandomMove(SolutionType)</a></span> - Method in interface org.jamesframework.core.search.neigh.<a href="org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a></dt>
+<dd>
+<div class="block">Generates a random move, using a default source of randomness.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove(SubsetSolution, Random)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiAdditionNeighbourhood</a></dt>
 <dd>
 <div class="block">Generates a move for the given subset solution that selects a random subset of currently unselected IDs.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiDeletionNeighbourhood</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove(SubsetSolution, Random)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiDeletionNeighbourhood</a></dt>
 <dd>
 <div class="block">Generates a move for the given subset solution that deselects a random subset of currently selected IDs.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiSwapNeighbourhood</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove(SubsetSolution, Random)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/DisjointMultiSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">DisjointMultiSwapNeighbourhood</a></dt>
 <dd>
 <div class="block">Generates a move for the given subset solution that removes a random subset of \(k\) IDs from the current
  selection and replaces them with an equally large random subset of the currently unselected IDs, where
  \(k\) is the number of swaps specified at construction.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiAdditionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiAdditionNeighbourhood</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiAdditionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove(SubsetSolution, Random)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiAdditionNeighbourhood</a></dt>
 <dd>
 <div class="block">
  Generates a move for the given subset solution that adds a random subset of currently unselected IDs to the
  selection.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiDeletionNeighbourhood</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove(SubsetSolution, Random)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiDeletionNeighbourhood</a></dt>
 <dd>
 <div class="block">
  Generates a move for the given subset solution that deselects a random subset of currently selected IDs.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiSwapNeighbourhood</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/adv/MultiSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove(SubsetSolution, Random)</a></span> - Method in class org.jamesframework.core.subset.neigh.adv.<a href="org/jamesframework/core/subset/neigh/adv/MultiSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh.adv">MultiSwapNeighbourhood</a></dt>
 <dd>
 <div class="block">
  Generates a move for the given subset solution that removes a random subset of IDs from the current selection
  and replaces them with an equally large random subset of the currently unselected IDs.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SingleAdditionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SingleAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleAdditionNeighbourhood</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SingleAdditionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove(SubsetSolution, Random)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SingleAdditionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleAdditionNeighbourhood</a></dt>
 <dd>
 <div class="block">Generates a random addition move for the given subset solution that adds a single ID to the selection.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleDeletionNeighbourhood</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove(SubsetSolution, Random)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SingleDeletionNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleDeletionNeighbourhood</a></dt>
 <dd>
 <div class="block">Generates a random deletion move for the given subset solution that removes a single ID from the selection.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SinglePerturbationNeighbourhood</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove(SubsetSolution, Random)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SinglePerturbationNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SinglePerturbationNeighbourhood</a></dt>
 <dd>
 <div class="block">
  Generates a random swap, deletion or addition move that transforms the given subset solution into
  a neighbour within the minimum and maximum allowed subset size.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SingleSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-">getRandomMove(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SingleSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleSwapNeighbourhood</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SingleSwapNeighbourhood.html#getRandomMove-org.jamesframework.core.subset.SubsetSolution-java.util.Random-">getRandomMove(SubsetSolution, Random)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SingleSwapNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SingleSwapNeighbourhood</a></dt>
 <dd>
 <div class="block">Generates a random swap move for the given subset solution that removes a single ID from the set of currently selected IDs,
  and replaces it with a random ID taken from the set of currently unselected IDs.</div>
@@ -978,10 +978,6 @@
 <dd>
 <div class="block">Infer the set of IDs that may be removed from the selection in the given subset solution.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#getReplicas--">getReplicas()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
-<dd>
-<div class="block">Get (unmodifiable) list of Metropolis replicas used by this parallel tempering algorithm.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#getReplicaSteps--">getReplicaSteps()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
 <div class="block">Get the number of steps performed by each replica in every iteration of the global parallel
@@ -996,6 +992,10 @@
 <dd>
 <div class="block">Get an unmodifiable view of the list of all searches that
  have been added to this parallel search for concurrent execution.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#getSearchListeners--">getSearchListeners()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
+<dd>
+<div class="block">Retrieve search listeners (unmodifiable view).</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetSolution.html#getSelectedIDs--">getSelectedIDs()</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a></dt>
 <dd>
@@ -1031,10 +1031,6 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/MetropolisSearch.html#getTemperature--">getTemperature()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a></dt>
 <dd>
 <div class="block">Get the temperature \(T\) of the system.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/MetropolisSearch.html#getTemperatureScaleFactor--">getTemperatureScaleFactor()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a></dt>
-<dd>
-<div class="block">Get the temperature scale factor \(k\).</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#getTimeWithoutImprovement--">getTimeWithoutImprovement()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
@@ -1331,9 +1327,9 @@
 <dd>
 <div class="block">Create a new local search to solve the given problem, with a custom name.</div>
 </dd>
-<dt><a href="org/jamesframework/core/util/LocalSearchFactory.html" title="interface in org.jamesframework.core.util"><span class="typeNameLink">LocalSearchFactory</span></a>&lt;<a href="org/jamesframework/core/util/LocalSearchFactory.html" title="type parameter in LocalSearchFactory">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Interface in <a href="org/jamesframework/core/util/package-summary.html">org.jamesframework.core.util</a></dt>
+<dt><a href="org/jamesframework/core/factory/LocalSearchFactory.html" title="interface in org.jamesframework.core.factory"><span class="typeNameLink">LocalSearchFactory</span></a>&lt;<a href="org/jamesframework/core/factory/LocalSearchFactory.html" title="type parameter in LocalSearchFactory">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Interface in <a href="org/jamesframework/core/factory/package-summary.html">org.jamesframework.core.factory</a></dt>
 <dd>
-<div class="block">Interface of a <em>local</em> search factory used to create a <em>local</em> search given the problem to be solved.</div>
+<div class="block">Factory used to create a <em>local</em> search given the problem to be solved.</div>
 </dd>
 <dt><a href="org/jamesframework/core/subset/algo/LRSubsetSearch.html" title="class in org.jamesframework.core.subset.algo"><span class="typeNameLink">LRSubsetSearch</span></a> - Class in <a href="org/jamesframework/core/subset/algo/package-summary.html">org.jamesframework.core.subset.algo</a></dt>
 <dd>
@@ -1389,7 +1385,7 @@
 </dd>
 <dt><a href="org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo"><span class="typeNameLink">MetropolisSearch</span></a>&lt;<a href="org/jamesframework/core/search/algo/MetropolisSearch.html" title="type parameter in MetropolisSearch">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/algo/package-summary.html">org.jamesframework.core.search.algo</a></dt>
 <dd>
-<div class="block">Metropolis search with fixed temperature.</div>
+<div class="block">Metropolis search (fixed temperature).</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/MetropolisSearch.html#MetropolisSearch-org.jamesframework.core.problems.Problem-org.jamesframework.core.search.neigh.Neighbourhood-double-">MetropolisSearch(Problem&lt;SolutionType&gt;, Neighbourhood&lt;? super SolutionType&gt;, double)</a></span> - Constructor for class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a></dt>
 <dd>
@@ -1399,6 +1395,11 @@
 <dd>
 <div class="block">Creates a new Metropolis search, specifying the problem to solve, the applied neighbourhood and temperature,
  and a custom search name.</div>
+</dd>
+<dt><a href="org/jamesframework/core/factory/MetropolisSearchFactory.html" title="interface in org.jamesframework.core.factory"><span class="typeNameLink">MetropolisSearchFactory</span></a>&lt;<a href="org/jamesframework/core/factory/MetropolisSearchFactory.html" title="type parameter in MetropolisSearchFactory">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Interface in <a href="org/jamesframework/core/factory/package-summary.html">org.jamesframework.core.factory</a></dt>
+<dd>
+<div class="block">Factory used to create a Metropolis search, given the problem to be solved, the applied
+ neighbourhood and the desired temperature.</div>
 </dd>
 <dt><a href="org/jamesframework/core/search/stopcriteria/MinDelta.html" title="class in org.jamesframework.core.search.stopcriteria"><span class="typeNameLink">MinDelta</span></a> - Class in <a href="org/jamesframework/core/search/stopcriteria/package-summary.html">org.jamesframework.core.search.stopcriteria</a></dt>
 <dd>
@@ -1564,6 +1565,10 @@
 <dd>
 <div class="block">Custom James runtime exceptions.</div>
 </dd>
+<dt><a href="org/jamesframework/core/factory/package-summary.html">org.jamesframework.core.factory</a> - package org.jamesframework.core.factory</dt>
+<dd>
+<div class="block">Miscellaneous factory interfaces.</div>
+</dd>
 <dt><a href="org/jamesframework/core/problems/package-summary.html">org.jamesframework.core.problems</a> - package org.jamesframework.core.problems</dt>
 <dd>
 <div class="block">High-level problem specification.</div>
@@ -1673,7 +1678,7 @@
 <dt><a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo"><span class="typeNameLink">ParallelTempering</span></a>&lt;<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/algo/package-summary.html">org.jamesframework.core.search.algo</a></dt>
 <dd>
 <div class="block">
- Parallel tempering algorithm which uses several Metropolis search replicas with different
+ The parallel tempering algorithm uses several Metropolis search replicas with different
  temperatures in a given range, where good solutions are pushed towards cool replicas for
  the sake of convergence, while bad solutions are pushed towards hot replicas in an attempt
  to find further improvements.</div>
@@ -1685,12 +1690,20 @@
  the neighbourhood used in each replica, the number of replicas, and the minimum
  and maximum temperature.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#ParallelTempering-java.lang.String-org.jamesframework.core.problems.Problem-org.jamesframework.core.search.neigh.Neighbourhood-int-double-double-">ParallelTempering(String, Problem&lt;SolutionType&gt;, Neighbourhood&lt;? super SolutionType&gt;, int, double, double)</a></span> - Constructor for class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#ParallelTempering-org.jamesframework.core.problems.Problem-org.jamesframework.core.search.neigh.Neighbourhood-int-double-double-org.jamesframework.core.factory.MetropolisSearchFactory-">ParallelTempering(Problem&lt;SolutionType&gt;, Neighbourhood&lt;? super SolutionType&gt;, int, double, double, MetropolisSearchFactory&lt;SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
 <div class="block">
  Creates a new parallel tempering algorithm, specifying the problem to solve,
  the neighbourhood used in each replica, the number of replicas, the minimum
- and maximum temperature, and a custom search name.</div>
+ and maximum temperature, and a custom Metropolis search factory.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#ParallelTempering-java.lang.String-org.jamesframework.core.problems.Problem-org.jamesframework.core.search.neigh.Neighbourhood-int-double-double-org.jamesframework.core.factory.MetropolisSearchFactory-">ParallelTempering(String, Problem&lt;SolutionType&gt;, Neighbourhood&lt;? super SolutionType&gt;, int, double, double, MetropolisSearchFactory&lt;SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
+<dd>
+<div class="block">
+ Creates a new parallel tempering algorithm, specifying the problem to solve,
+ the neighbourhood used in each replica, the number of replicas, the minimum
+ and maximum temperature, a custom search name, and a custom Metropolis search
+ factory.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html#PASSED">PASSED</a></span> - Static variable in class org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html" title="class in org.jamesframework.core.problems.constraints.validations">SimplePenalizingValidation</a></dt>
 <dd>
@@ -1787,12 +1800,6 @@
 <div class="block">Creates a new random descent search, specifying the problem to solve, the neighbourhood used to
  modify the current solution, and a custom search name.</div>
 </dd>
-<dt><a href="org/jamesframework/core/util/Randomization.html" title="class in org.jamesframework.core.util"><span class="typeNameLink">Randomization</span></a> - Class in <a href="org/jamesframework/core/util/package-summary.html">org.jamesframework.core.util</a></dt>
-<dd>
-<div class="block">Randomization tools.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/Randomization.html#Randomization--">Randomization()</a></span> - Constructor for class org.jamesframework.core.util.<a href="org/jamesframework/core/util/Randomization.html" title="class in org.jamesframework.core.util">Randomization</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="org/jamesframework/core/search/algo/RandomSearch.html" title="class in org.jamesframework.core.search.algo"><span class="typeNameLink">RandomSearch</span></a>&lt;<a href="org/jamesframework/core/search/algo/RandomSearch.html" title="type parameter in RandomSearch">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/algo/package-summary.html">org.jamesframework.core.search.algo</a></dt>
 <dd>
 <div class="block">The random search algorithm iteratively samples a random solution and checks
@@ -1871,10 +1878,6 @@
 <dd>
 <div class="block">Removes a stop criterion.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/Randomization.html#resetDefault--">resetDefault()</a></span> - Static method in class org.jamesframework.core.util.<a href="org/jamesframework/core/util/Randomization.html" title="class in org.jamesframework.core.util">Randomization</a></dt>
-<dd>
-<div class="block">Reset the default behaviour so that <a href="org/jamesframework/core/util/Randomization.html#getRandom--"><code>Randomization.getRandom()</code></a> returns a thread local random generator.</div>
-</dd>
 <dt><a href="org/jamesframework/core/util/RouletteSelector.html" title="class in org.jamesframework.core.util"><span class="typeNameLink">RouletteSelector</span></a> - Class in <a href="org/jamesframework/core/util/package-summary.html">org.jamesframework.core.util</a></dt>
 <dd>
 <div class="block">
@@ -1944,9 +1947,9 @@
 <dd>
 <div class="block">Constructs an instance with the specified detail message and cause.</div>
 </dd>
-<dt><a href="org/jamesframework/core/util/SearchFactory.html" title="interface in org.jamesframework.core.util"><span class="typeNameLink">SearchFactory</span></a>&lt;<a href="org/jamesframework/core/util/SearchFactory.html" title="type parameter in SearchFactory">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Interface in <a href="org/jamesframework/core/util/package-summary.html">org.jamesframework.core.util</a></dt>
+<dt><a href="org/jamesframework/core/factory/SearchFactory.html" title="interface in org.jamesframework.core.factory"><span class="typeNameLink">SearchFactory</span></a>&lt;<a href="org/jamesframework/core/factory/SearchFactory.html" title="type parameter in SearchFactory">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Interface in <a href="org/jamesframework/core/factory/package-summary.html">org.jamesframework.core.factory</a></dt>
 <dd>
-<div class="block">Interface of a search factory used to create a search given the problem to be solved.</div>
+<div class="block">Factory used to create a search given the problem to be solved.</div>
 </dd>
 <dt><a href="org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners"><span class="typeNameLink">SearchListener</span></a>&lt;<a href="org/jamesframework/core/search/listeners/SearchListener.html" title="type parameter in SearchListener">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Interface in <a href="org/jamesframework/core/search/listeners/package-summary.html">org.jamesframework.core.search.listeners</a></dt>
 <dd>
@@ -2021,18 +2024,18 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/MetropolisSearch.html#searchStep--">searchStep()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a></dt>
 <dd>
 <div class="block">Creates a random neighbour of the current solution and accepts it as the new current solution
- if it is valid and either improves over the current solution or
+ if it is valid and either improves the current solution or
  \[
-      e^{\frac{\Delta E}{kT}} &gt; R(0,1)
+      e^{\frac{\Delta E}{T}} &gt; R(0,1)
  \]
  where \(\Delta E\) is the difference between the evaluation of the neighbour and that of the
- current solution, \(T\) is the temperature, \(k\) is a constant scale factor, and \(R(0,1)\)
- is a random number sampled from a uniform distribution in the interval \([0,1]\).</div>
+ current solution, \(T\) is the temperature, and \(R(0,1)\) is a random number in the interval
+ \([0,1]\) sampled using the search's dedicated random generator.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#searchStep--">searchStep()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
-<div class="block">Perform a search step, in which every replica performs several steps and solutions
- of adjacent replicas may be swapped.</div>
+<div class="block">In each search step, every replica performs several steps after which solutions of adjacent
+ replicas may be swapped.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/PipedLocalSearch.html#searchStep--">searchStep()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/PipedLocalSearch.html" title="class in org.jamesframework.core.search.algo">PipedLocalSearch</a></dt>
 <dd>
@@ -2107,7 +2110,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#setCurrentSolution-SolutionType-">setCurrentSolution(SolutionType)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
-<div class="block">Set a custom current solution, of which a copy is passed to each replica.</div>
+<div class="block">Set a custom current solution, of which a copy is set as the current solution in each replica.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html#setCurrentSolution-SolutionType-">setCurrentSolution(SolutionType)</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="class in org.jamesframework.core.search.algo.tabu">TabuSearch</a></dt>
 <dd>
@@ -2135,7 +2138,7 @@
 <div class="block">Sets a custom evaluated move cache, which is used to avoid repeated evaluation or validation of the same move
  from the same current solution.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#setLocalSearchFactory-org.jamesframework.core.util.LocalSearchFactory-">setLocalSearchFactory(LocalSearchFactory&lt;SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodSearch</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#setLocalSearchFactory-org.jamesframework.core.factory.LocalSearchFactory-">setLocalSearchFactory(LocalSearchFactory&lt;SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodSearch</a></dt>
 <dd>
 <div class="block">Set a custom factory to create instances of the local search algorithm to be applied to modify solutions
  obtained after shaking.</div>
@@ -2168,11 +2171,11 @@
 <dd>
 <div class="block">Set the period between consecutive stop criterion checks.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/util/Randomization.html#setRandom-java.util.Random-">setRandom(Random)</a></span> - Static method in class org.jamesframework.core.util.<a href="org/jamesframework/core/util/Randomization.html" title="class in org.jamesframework.core.util">Randomization</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#setRandom-java.util.Random-">setRandom(Random)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
-<div class="block">Set a custom random generator to be used by all randomized components in the framework.</div>
+<div class="block">Set custom random generator.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#setReplicaSteps-int-">setReplicaSteps(int)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#setReplicaSteps-long-">setReplicaSteps(long)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
 <dd>
 <div class="block">Sets the number of steps performed by each replica in every iteration of the global parallel tempering
  algorithm, before considering solution swaps.</div>
@@ -2188,14 +2191,6 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/MetropolisSearch.html#setTemperature-double-">setTemperature(double)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a></dt>
 <dd>
 <div class="block">Set the temperature (\(T &gt; 0\)).</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/MetropolisSearch.html#setTemperatureScaleFactor-double-">setTemperatureScaleFactor(double)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a></dt>
-<dd>
-<div class="block">Set the temperature scale factor \(k &gt; 0\).</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#setTemperatureScaleFactor-double-">setTemperatureScaleFactor(double)</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
-<dd>
-<div class="block">Set the same temperature scale factor \(k &gt; 0\) for each replica.</div>
 </dd>
 <dt><a href="org/jamesframework/core/util/SetUtilities.html" title="class in org.jamesframework.core.util"><span class="typeNameLink">SetUtilities</span></a> - Class in <a href="org/jamesframework/core/util/package-summary.html">org.jamesframework.core.util</a></dt>
 <dd>
@@ -2447,6 +2442,10 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#StopCriterionChecker-org.jamesframework.core.search.Search-">StopCriterionChecker(Search&lt;?&gt;)</a></span> - Constructor for class org.jamesframework.core.search.stopcriteria.<a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria">StopCriterionChecker</a></dt>
 <dd>
 <div class="block">Create a stop criterion checker dedicated to checking the stop criteria of the given search.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#stopCriterionSatisfied--">stopCriterionSatisfied()</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria">StopCriterionChecker</a></dt>
+<dd>
+<div class="block">Check whether at least one stop criterion is satisfied.</div>
 </dd>
 <dt><a href="org/jamesframework/core/util/SubsetIterator.html" title="class in org.jamesframework.core.util"><span class="typeNameLink">SubsetIterator</span></a>&lt;<a href="org/jamesframework/core/util/SubsetIterator.html" title="type parameter in SubsetIterator">T</a>&gt; - Class in <a href="org/jamesframework/core/util/package-summary.html">org.jamesframework.core.util</a></dt>
 <dd>
@@ -2806,28 +2805,19 @@ the order they are declared.</div>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#VariableNeighbourhoodSearch-org.jamesframework.core.problems.Problem-java.util.List-java.util.List-">VariableNeighbourhoodSearch(Problem&lt;SolutionType&gt;, List&lt;? extends Neighbourhood&lt;? super SolutionType&gt;&gt;, List&lt;? extends Neighbourhood&lt;? super SolutionType&gt;&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodSearch</a></dt>
 <dd>
 <div class="block">Creates a new variable neighbourhood search, specifying the problem to solve, the neighbourhoods used for shaking
- and the neighbourhoods used by the default VND local search algorithm.</div>
+ and the neighbourhoods used by the default variable neighbourhood descent algorithm applied after shaking.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#VariableNeighbourhoodSearch-org.jamesframework.core.problems.Problem-java.util.List-org.jamesframework.core.util.LocalSearchFactory-">VariableNeighbourhoodSearch(Problem&lt;SolutionType&gt;, List&lt;? extends Neighbourhood&lt;? super SolutionType&gt;&gt;, LocalSearchFactory&lt;SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodSearch</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#VariableNeighbourhoodSearch-org.jamesframework.core.problems.Problem-java.util.List-org.jamesframework.core.factory.LocalSearchFactory-">VariableNeighbourhoodSearch(Problem&lt;SolutionType&gt;, List&lt;? extends Neighbourhood&lt;? super SolutionType&gt;&gt;, LocalSearchFactory&lt;SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodSearch</a></dt>
 <dd>
 <div class="block">Creates a new variable neighbourhood search, specifying the problem to solve, the neighbourhoods used for
- shaking in VNS, and a factory to create instances of a custom local search algorithm \(L\) to be applied to
- modify solutions obtained after shaking.</div>
+ shaking, and a factory to create instances of a custom local search algorithm \(L\) to be applied after
+ shaking.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#VariableNeighbourhoodSearch-java.lang.String-org.jamesframework.core.problems.Problem-java.util.List-org.jamesframework.core.util.LocalSearchFactory-">VariableNeighbourhoodSearch(String, Problem&lt;SolutionType&gt;, List&lt;? extends Neighbourhood&lt;? super SolutionType&gt;&gt;, LocalSearchFactory&lt;SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodSearch</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html#VariableNeighbourhoodSearch-java.lang.String-org.jamesframework.core.problems.Problem-java.util.List-org.jamesframework.core.factory.LocalSearchFactory-">VariableNeighbourhoodSearch(String, Problem&lt;SolutionType&gt;, List&lt;? extends Neighbourhood&lt;? super SolutionType&gt;&gt;, LocalSearchFactory&lt;SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">VariableNeighbourhoodSearch</a></dt>
 <dd>
 <div class="block">Creates a new variable neighbourhood search, specifying the problem to solve, the neighbourhoods used for
  shaking in VNS, a factory to create instances of a custom local search algorithm \(L\) to be applied to
  modify solutions obtained after shaking, and a custom search name.</div>
-</dd>
-<dt><a href="org/jamesframework/core/search/algo/vns/VNDFactory.html" title="class in org.jamesframework.core.search.algo.vns"><span class="typeNameLink">VNDFactory</span></a>&lt;<a href="org/jamesframework/core/search/algo/vns/VNDFactory.html" title="type parameter in VNDFactory">SolutionType</a> extends <a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/algo/vns/package-summary.html">org.jamesframework.core.search.algo.vns</a></dt>
-<dd>
-<div class="block">A VND factory creates a variable neighbourhood descent search, where the list of neighbourhoods to apply are
- set upon construction of the factory.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/VNDFactory.html#VNDFactory-java.util.List-">VNDFactory(List&lt;? extends Neighbourhood&lt;? super SolutionType&gt;&gt;)</a></span> - Constructor for class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/VNDFactory.html" title="class in org.jamesframework.core.search.algo.vns">VNDFactory</a></dt>
-<dd>
-<div class="block">Create a new VND factory, given the list of neighbourhoods to apply.</div>
 </dd>
 </dl>
 <a name="I:W">

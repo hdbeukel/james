@@ -90,75 +90,75 @@
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><a href="#org.jamesframework.core.factory">org.jamesframework.core.factory</a></td>
+<td class="colLast">
+<div class="block">Miscellaneous factory interfaces.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.problems">org.jamesframework.core.problems</a></td>
 <td class="colLast">
 <div class="block">High-level problem specification.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.problems.constraints">org.jamesframework.core.problems.constraints</a></td>
 <td class="colLast">
 <div class="block">Constraint interfaces.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.problems.objectives">org.jamesframework.core.problems.objectives</a></td>
 <td class="colLast">
 <div class="block">Interfaces of objectives and produced evaluations.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search">org.jamesframework.core.search</a></td>
 <td class="colLast">
 <div class="block">High-level search templates.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo">org.jamesframework.core.search.algo</a></td>
 <td class="colLast">
 <div class="block">Algorithm implementations.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo.exh">org.jamesframework.core.search.algo.exh</a></td>
 <td class="colLast">
 <div class="block">Exhaustive search and components.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo.tabu">org.jamesframework.core.search.algo.tabu</a></td>
 <td class="colLast">
 <div class="block">Tabu search and components (including tabu memory specification).</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.algo.vns">org.jamesframework.core.search.algo.vns</a></td>
 <td class="colLast">
 <div class="block">Variable neighbourhood searches and components.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.listeners">org.jamesframework.core.search.listeners</a></td>
 <td class="colLast">
 <div class="block">Search listeners.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#org.jamesframework.core.search.neigh">org.jamesframework.core.search.neigh</a></td>
 <td class="colLast">
 <div class="block">Neighbourhoods and components.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#org.jamesframework.core.subset">org.jamesframework.core.subset</a></td>
 <td class="colLast">
 <div class="block">Predefined subset problem.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="#org.jamesframework.core.util">org.jamesframework.core.util</a></td>
-<td class="colLast">
-<div class="block">General utilities.</div>
 </td>
 </tr>
 </tbody>
@@ -213,6 +213,39 @@
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/exceptions/SolutionModificationException.html#SolutionModificationException-java.lang.Throwable-org.jamesframework.core.problems.Solution-">SolutionModificationException</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&nbsp;cause,
                              <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&nbsp;solution)</code>
 <div class="block">Constructs an instance with the specified cause.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="org.jamesframework.core.factory">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a> in <a href="../../../../../org/jamesframework/core/factory/package-summary.html">org.jamesframework.core.factory</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../../org/jamesframework/core/factory/package-summary.html">org.jamesframework.core.factory</a> with type parameters of type <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Interface and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>interface&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/factory/LocalSearchFactory.html" title="interface in org.jamesframework.core.factory">LocalSearchFactory</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
+<div class="block">Factory used to create a <em>local</em> search given the problem to be solved.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>interface&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/factory/MetropolisSearchFactory.html" title="interface in org.jamesframework.core.factory">MetropolisSearchFactory</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
+<div class="block">Factory used to create a Metropolis search, given the problem to be solved, the applied
+ neighbourhood and the desired temperature.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>interface&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/factory/SearchFactory.html" title="interface in org.jamesframework.core.factory">SearchFactory</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
+<div class="block">Factory used to create a search given the problem to be solved.</div>
 </td>
 </tr>
 </tbody>
@@ -394,14 +427,14 @@
 <tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
-<div class="block">Metropolis search with fixed temperature.</div>
+<div class="block">Metropolis search (fixed temperature).</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
 <div class="block">
- Parallel tempering algorithm which uses several Metropolis search replicas with different
+ The parallel tempering algorithm uses several Metropolis search replicas with different
  temperatures in a given range, where good solutions are pushed towards cool replicas for
  the sake of convergence, while bad solutions are pushed towards hot replicas in an attempt
  to find further improvements.</div>
@@ -530,13 +563,6 @@
  Variable neighbourhood search (VNS) algorithm.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/algo/vns/VNDFactory.html" title="class in org.jamesframework.core.search.algo.vns">VNDFactory</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
-<div class="block">A VND factory creates a variable neighbourhood descent search, where the list of neighbourhoods to apply are
- set upon construction of the factory.</div>
-</td>
-</tr>
 </tbody>
 </table>
 </li>
@@ -602,32 +628,6 @@
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a></span></code>
 <div class="block">High-level subset solution modeled in terms of IDs of selected items.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="org.jamesframework.core.util">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a> in <a href="../../../../../org/jamesframework/core/util/package-summary.html">org.jamesframework.core.util</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
-<caption><span>Classes in <a href="../../../../../org/jamesframework/core/util/package-summary.html">org.jamesframework.core.util</a> with type parameters of type <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Interface and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code>interface&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/util/LocalSearchFactory.html" title="interface in org.jamesframework.core.util">LocalSearchFactory</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
-<div class="block">Interface of a <em>local</em> search factory used to create a <em>local</em> search given the problem to be solved.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>interface&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/util/SearchFactory.html" title="interface in org.jamesframework.core.util">SearchFactory</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span></code>
-<div class="block">Interface of a search factory used to create a search given the problem to be solved.</div>
 </td>
 </tr>
 </tbody>

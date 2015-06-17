@@ -146,8 +146,8 @@ extends <a href="../../../../../../org/jamesframework/core/subset/neigh/moves/Ab
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/subset/neigh/moves/GeneralSubsetMove.html#GeneralSubsetMove-java.util.Set-java.util.Set-">GeneralSubsetMove</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;add,
-                 <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;remove)</code>
-<div class="block">Creates a general subset move, indicating which IDs are to be added to and removed from
+                 <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;delete)</code>
+<div class="block">Creates a general subset move, indicating which IDs are to be added to and deleted from
  the current selection when being applied to a given subset solution.</div>
 </td>
 </tr>
@@ -241,16 +241,16 @@ extends <a href="../../../../../../org/jamesframework/core/subset/neigh/moves/Ab
 <li class="blockList">
 <h4>GeneralSubsetMove</h4>
 <pre>public&nbsp;GeneralSubsetMove(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;add,
-                         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;remove)</pre>
-<div class="block">Creates a general subset move, indicating which IDs are to be added to and removed from
+                         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;delete)</pre>
+<div class="block">Creates a general subset move, indicating which IDs are to be added to and deleted from
  the current selection when being applied to a given subset solution. Note that the sets
- <code>add</code> and <code>remove</code> are <b>not</b> copied: a reference to the given
+ <code>add</code> and <code>delete</code> are <b>not</b> copied: a reference to the given
  sets is stored in the subset move. If any of both sets is <code>null</code>, it will be
  replaced with an empty set.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>add</code> - set of IDs to add to the selection</dd>
-<dd><code>remove</code> - set of IDs to remove from the selection</dd>
+<dd><code>delete</code> - set of IDs to delete from the selection</dd>
 </dl>
 </li>
 </ul>

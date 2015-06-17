@@ -84,9 +84,9 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><a href="#org.jamesframework.core.search.algo">org.jamesframework.core.search.algo</a></td>
+<td class="colFirst"><a href="#org.jamesframework.core.factory">org.jamesframework.core.factory</a></td>
 <td class="colLast">
-<div class="block">Algorithm implementations.</div>
+<div class="block">Miscellaneous factory interfaces.</div>
 </td>
 </tr>
 </tbody>
@@ -94,21 +94,24 @@
 </li>
 <li class="blockList">
 <ul class="blockList">
-<li class="blockList"><a name="org.jamesframework.core.search.algo">
+<li class="blockList"><a name="org.jamesframework.core.factory">
 <!--   -->
 </a>
-<h3>Uses of <a href="../../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a> in <a href="../../../../../../org/jamesframework/core/search/algo/package-summary.html">org.jamesframework.core.search.algo</a></h3>
+<h3>Uses of <a href="../../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a> in <a href="../../../../../../org/jamesframework/core/factory/package-summary.html">org.jamesframework.core.factory</a></h3>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../../org/jamesframework/core/search/algo/package-summary.html">org.jamesframework.core.search.algo</a> that return types with arguments of type <a href="../../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a></span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span>Methods in <a href="../../../../../../org/jamesframework/core/factory/package-summary.html">org.jamesframework.core.factory</a> that return <a href="../../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/ParallelTempering.html" title="type parameter in ParallelTempering">SolutionType</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ParallelTempering.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/search/algo/ParallelTempering.html#getReplicas--">getReplicas</a></span>()</code>
-<div class="block">Get (unmodifiable) list of Metropolis replicas used by this parallel tempering algorithm.</div>
+<td class="colFirst"><code><a href="../../../../../../org/jamesframework/core/search/algo/MetropolisSearch.html" title="class in org.jamesframework.core.search.algo">MetropolisSearch</a>&lt;<a href="../../../../../../org/jamesframework/core/factory/MetropolisSearchFactory.html" title="type parameter in MetropolisSearchFactory">SolutionType</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">MetropolisSearchFactory.</span><code><span class="memberNameLink"><a href="../../../../../../org/jamesframework/core/factory/MetropolisSearchFactory.html#create-org.jamesframework.core.problems.Problem-org.jamesframework.core.search.neigh.Neighbourhood-double-">create</a></span>(<a href="../../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../../org/jamesframework/core/factory/MetropolisSearchFactory.html" title="type parameter in MetropolisSearchFactory">SolutionType</a>&gt;&nbsp;problem,
+      <a href="../../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../../org/jamesframework/core/factory/MetropolisSearchFactory.html" title="type parameter in MetropolisSearchFactory">SolutionType</a>&gt;&nbsp;neighbourhood,
+      double&nbsp;temperature)</code>
+<div class="block">Create a Metropolis search, given the problem to solve,
+ the applied neighbourhood and the desired temperature.</div>
 </td>
 </tr>
 </tbody>

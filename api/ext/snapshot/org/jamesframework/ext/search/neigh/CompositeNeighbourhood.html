@@ -94,7 +94,7 @@ var activeTableTab = "activeTableTab";
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">org.jamesframework.ext.search.neigh</div>
-<h2 title="Class CompositeNeighbourhood" class="title">Class CompositeNeighbourhood&lt;SolutionType extends org.jamesframework.core.problems.Solution&gt;</h2>
+<h2 title="Class CompositeNeighbourhood" class="title">Class CompositeNeighbourhood&lt;SolutionType extends <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/Solution.html?is-external=true" title="class or interface in org.jamesframework.core.problems">Solution</a>&gt;</h2>
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
@@ -110,17 +110,17 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
-<dd><code>SolutionType</code> - solution type for which this neighbourhood can be applied, required to extend <code>Solution</code></dd>
+<dd><code>SolutionType</code> - solution type for which this neighbourhood can be applied, required to extend <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/Solution.html?is-external=true" title="class or interface in org.jamesframework.core.problems"><code>Solution</code></a></dd>
 </dl>
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd>org.jamesframework.core.search.neigh.Neighbourhood&lt;SolutionType&gt;</dd>
+<dd><a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/search/neigh/Neighbourhood.html?is-external=true" title="class or interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;SolutionType&gt;</dd>
 </dl>
 <hr>
 <br>
-<pre>public class <span class="typeNameLabel">CompositeNeighbourhood&lt;SolutionType extends org.jamesframework.core.problems.Solution&gt;</span>
+<pre>public class <span class="typeNameLabel">CompositeNeighbourhood&lt;SolutionType extends <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/Solution.html?is-external=true" title="class or interface in org.jamesframework.core.problems">Solution</a>&gt;</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
-implements org.jamesframework.core.search.neigh.Neighbourhood&lt;SolutionType&gt;</pre>
+implements <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/search/neigh/Neighbourhood.html?is-external=true" title="class or interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;SolutionType&gt;</pre>
 <div class="block">A composite neighbourhood combines a collection of other neighbourhoods which each have a weight that determines
  the relative frequency with which random moves are sampled from each contained neighbourhood. When requesting
  a random move to the composite neighbourhood, a random move produced by one of the contained neighbourhoods is
@@ -148,7 +148,7 @@ implements org.jamesframework.core.search.neigh.Neighbourhood&lt;SolutionType&gt
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html#CompositeNeighbourhood-java.util.List-java.util.List-">CompositeNeighbourhood</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;? extends org.jamesframework.core.search.neigh.Neighbourhood&lt;? super <a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="type parameter in CompositeNeighbourhood">SolutionType</a>&gt;&gt;&nbsp;neighbourhoods,
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html#CompositeNeighbourhood-java.util.List-java.util.List-">CompositeNeighbourhood</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;? extends <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/search/neigh/Neighbourhood.html?is-external=true" title="class or interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="type parameter in CompositeNeighbourhood">SolutionType</a>&gt;&gt;&nbsp;neighbourhoods,
                       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html?is-external=true" title="class or interface in java.lang">Double</a>&gt;&nbsp;neighbourhoodWeights)</code>
 <div class="block">Creates a composite neighbourhood consisting of the list of given neighbourhoods and specified weights.</div>
 </td>
@@ -169,14 +169,15 @@ implements org.jamesframework.core.search.neigh.Neighbourhood&lt;SolutionType&gt
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;org.jamesframework.core.search.neigh.Move&lt;? super <a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="type parameter in CompositeNeighbourhood">SolutionType</a>&gt;&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/search/neigh/Move.html?is-external=true" title="class or interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="type parameter in CompositeNeighbourhood">SolutionType</a>&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html#getAllMoves-SolutionType-">getAllMoves</a></span>(<a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="type parameter in CompositeNeighbourhood">SolutionType</a>&nbsp;solution)</code>
 <div class="block">Creates and returns the union of all moves generated by each of the contained neighbourhoods.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>org.jamesframework.core.search.neigh.Move&lt;? super <a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="type parameter in CompositeNeighbourhood">SolutionType</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html#getRandomMove-SolutionType-">getRandomMove</a></span>(<a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="type parameter in CompositeNeighbourhood">SolutionType</a>&nbsp;solution)</code>
+<td class="colFirst"><code><a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/search/neigh/Move.html?is-external=true" title="class or interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="type parameter in CompositeNeighbourhood">SolutionType</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html#getRandomMove-SolutionType-java.util.Random-">getRandomMove</a></span>(<a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="type parameter in CompositeNeighbourhood">SolutionType</a>&nbsp;solution,
+             <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</code>
 <div class="block">Produces a random move generated by one of the contained neighbourhoods based on the assigned weights.</div>
 </td>
 </tr>
@@ -187,6 +188,13 @@ implements org.jamesframework.core.search.neigh.Neighbourhood&lt;SolutionType&gt
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
 <code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#clone--" title="class or interface in java.lang">clone</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#finalize--" title="class or interface in java.lang">finalize</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.org.jamesframework.core.search.neigh.Neighbourhood">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;org.jamesframework.core.search.neigh.<a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/search/neigh/Neighbourhood.html?is-external=true" title="class or interface in org.jamesframework.core.search.neigh">Neighbourhood</a></h3>
+<code><a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/search/neigh/Neighbourhood.html?is-external=true#getRandomMove-SolutionType-" title="class or interface in org.jamesframework.core.search.neigh">getRandomMove</a></code></li>
 </ul>
 </li>
 </ul>
@@ -208,7 +216,7 @@ implements org.jamesframework.core.search.neigh.Neighbourhood&lt;SolutionType&gt
 <ul class="blockListLast">
 <li class="blockList">
 <h4>CompositeNeighbourhood</h4>
-<pre>public&nbsp;CompositeNeighbourhood(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;? extends org.jamesframework.core.search.neigh.Neighbourhood&lt;? super <a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="type parameter in CompositeNeighbourhood">SolutionType</a>&gt;&gt;&nbsp;neighbourhoods,
+<pre>public&nbsp;CompositeNeighbourhood(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;? extends <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/search/neigh/Neighbourhood.html?is-external=true" title="class or interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;? super <a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="type parameter in CompositeNeighbourhood">SolutionType</a>&gt;&gt;&nbsp;neighbourhoods,
                               <a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Double.html?is-external=true" title="class or interface in java.lang">Double</a>&gt;&nbsp;neighbourhoodWeights)</pre>
 <div class="block">Creates a composite neighbourhood consisting of the list of given neighbourhoods and specified weights.
  The list of neighbourhoods and weights can not be <code>null</code>, should be of the same size and can
@@ -235,24 +243,26 @@ implements org.jamesframework.core.search.neigh.Neighbourhood&lt;SolutionType&gt
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="getRandomMove-org.jamesframework.core.problems.Solution-">
+<a name="getRandomMove-org.jamesframework.core.problems.Solution-java.util.Random-">
 <!--   -->
-</a><a name="getRandomMove-SolutionType-">
+</a><a name="getRandomMove-SolutionType-java.util.Random-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getRandomMove</h4>
-<pre>public&nbsp;org.jamesframework.core.search.neigh.Move&lt;? super <a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="type parameter in CompositeNeighbourhood">SolutionType</a>&gt;&nbsp;getRandomMove(<a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="type parameter in CompositeNeighbourhood">SolutionType</a>&nbsp;solution)</pre>
+<pre>public&nbsp;<a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/search/neigh/Move.html?is-external=true" title="class or interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="type parameter in CompositeNeighbourhood">SolutionType</a>&gt;&nbsp;getRandomMove(<a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="type parameter in CompositeNeighbourhood">SolutionType</a>&nbsp;solution,
+                                                <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</pre>
 <div class="block">Produces a random move generated by one of the contained neighbourhoods based on the assigned weights.
  First, a random move is requested from each neighbourhood as it may happen that one or more neighbourhoods
  are unable to produce a random move. If no moves are obtained, this method returns <code>null</code>.
  Else, it selects a move through roulette selection based on the weights assigned at construction.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code>getRandomMove</code>&nbsp;in interface&nbsp;<code>org.jamesframework.core.search.neigh.Neighbourhood&lt;<a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="type parameter in CompositeNeighbourhood">SolutionType</a> extends org.jamesframework.core.problems.Solution&gt;</code></dd>
+<dd><code><a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/search/neigh/Neighbourhood.html?is-external=true#getRandomMove-SolutionType-java.util.Random-" title="class or interface in org.jamesframework.core.search.neigh">getRandomMove</a></code>&nbsp;in interface&nbsp;<code><a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/search/neigh/Neighbourhood.html?is-external=true" title="class or interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;<a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="type parameter in CompositeNeighbourhood">SolutionType</a> extends <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/Solution.html?is-external=true" title="class or interface in org.jamesframework.core.problems">Solution</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>solution</code> - solution for which a move is generated</dd>
+<dd><code>rnd</code> - source of randomness used to generate random move</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>random move generated by one of the contained neighbourhoods, which is selected by
          roulette selection based on the assigned weights; <code>null</code> if none of the
@@ -268,12 +278,12 @@ implements org.jamesframework.core.search.neigh.Neighbourhood&lt;SolutionType&gt
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getAllMoves</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;org.jamesframework.core.search.neigh.Move&lt;? super <a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="type parameter in CompositeNeighbourhood">SolutionType</a>&gt;&gt;&nbsp;getAllMoves(<a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="type parameter in CompositeNeighbourhood">SolutionType</a>&nbsp;solution)</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/search/neigh/Move.html?is-external=true" title="class or interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="type parameter in CompositeNeighbourhood">SolutionType</a>&gt;&gt;&nbsp;getAllMoves(<a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="type parameter in CompositeNeighbourhood">SolutionType</a>&nbsp;solution)</pre>
 <div class="block">Creates and returns the union of all moves generated by each of the contained neighbourhoods.
  The returned list may be empty if none of the contained neighbourhoods can generate any move.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code>getAllMoves</code>&nbsp;in interface&nbsp;<code>org.jamesframework.core.search.neigh.Neighbourhood&lt;<a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="type parameter in CompositeNeighbourhood">SolutionType</a> extends org.jamesframework.core.problems.Solution&gt;</code></dd>
+<dd><code><a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/search/neigh/Neighbourhood.html?is-external=true#getAllMoves-SolutionType-" title="class or interface in org.jamesframework.core.search.neigh">getAllMoves</a></code>&nbsp;in interface&nbsp;<code><a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/search/neigh/Neighbourhood.html?is-external=true" title="class or interface in org.jamesframework.core.search.neigh">Neighbourhood</a>&lt;<a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="type parameter in CompositeNeighbourhood">SolutionType</a> extends <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/Solution.html?is-external=true" title="class or interface in org.jamesframework.core.problems">Solution</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>solution</code> - solution for which all moves are generated</dd>
 <dt><span class="returnLabel">Returns:</span></dt>

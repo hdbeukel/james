@@ -18,8 +18,8 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
+var methods = {"i0":6,"i1":18,"i2":6};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -129,7 +129,7 @@ var activeTableTab = "activeTableTab";
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t5" class="tableTab"><span><a href="javascript:show(16);">Default Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
@@ -142,8 +142,15 @@ var activeTableTab = "activeTableTab";
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="type parameter in Neighbourhood">SolutionType</a>&gt;</code></td>
+<td class="colFirst"><code>default <a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="type parameter in Neighbourhood">SolutionType</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html#getRandomMove-SolutionType-">getRandomMove</a></span>(<a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="type parameter in Neighbourhood">SolutionType</a>&nbsp;solution)</code>
+<div class="block">Generates a random move, using a default source of randomness.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="type parameter in Neighbourhood">SolutionType</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html#getRandomMove-SolutionType-java.util.Random-">getRandomMove</a></span>(<a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="type parameter in Neighbourhood">SolutionType</a>&nbsp;solution,
+             <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</code>
 <div class="block">Generates a move that transforms the given solution into a random neighbour
  contained in this specific neighbourhood.</div>
 </td>
@@ -163,6 +170,29 @@ var activeTableTab = "activeTableTab";
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="getRandomMove-org.jamesframework.core.problems.Solution-java.util.Random-">
+<!--   -->
+</a><a name="getRandomMove-SolutionType-java.util.Random-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getRandomMove</h4>
+<pre><a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="type parameter in Neighbourhood">SolutionType</a>&gt;&nbsp;getRandomMove(<a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="type parameter in Neighbourhood">SolutionType</a>&nbsp;solution,
+                                         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</pre>
+<div class="block">Generates a move that transforms the given solution into a random neighbour
+ contained in this specific neighbourhood. If the neighbourhood does not
+ contain any neighbours for the given solution, <code>null</code> is returned.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>solution</code> - solution to which the move is to be applied</dd>
+<dd><code>rnd</code> - source of randomness used to generate a random move</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>random move transforming the given solution into a random neighbour,
+         <code>null</code> if the given solution does not have any neighbours</dd>
+</dl>
+</li>
+</ul>
 <a name="getRandomMove-org.jamesframework.core.problems.Solution-">
 <!--   -->
 </a><a name="getRandomMove-SolutionType-">
@@ -171,10 +201,10 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>getRandomMove</h4>
-<pre><a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="type parameter in Neighbourhood">SolutionType</a>&gt;&nbsp;getRandomMove(<a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="type parameter in Neighbourhood">SolutionType</a>&nbsp;solution)</pre>
-<div class="block">Generates a move that transforms the given solution into a random neighbour
- contained in this specific neighbourhood. If the neighbourhood does not
- contain any neighbours for the given solution, <code>null</code> is returned.</div>
+<pre>default&nbsp;<a href="../../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="type parameter in Neighbourhood">SolutionType</a>&gt;&nbsp;getRandomMove(<a href="../../../../../org/jamesframework/core/search/neigh/Neighbourhood.html" title="type parameter in Neighbourhood">SolutionType</a>&nbsp;solution)</pre>
+<div class="block">Generates a random move, using a default source of randomness. The default implementation
+ delegates to <code>getRandomMove(solution, ThreadLocalRandom.current())</code> where a thread
+ local random generator is used to avoid overhead and contention for parallel calls.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>solution</code> - solution to which the move is to be applied</dd>

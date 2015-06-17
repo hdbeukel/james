@@ -1,0 +1,28 @@
+-classpath
+'/home/travis/build/hdbeukel/james/james/james-core/target/james-core-1.0-SNAPSHOT.jar:/home/travis/.m2/repository/org/sharegov/mjson/1.3/mjson-1.3.jar:/home/travis/.m2/repository/org/slf4j/slf4j-api/1.7.12/slf4j-api-1.7.12.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'/home/travis/build/hdbeukel/james/james/james-extensions/src/main/java:/home/travis/build/hdbeukel/james/james/james-extensions/target/generated-sources/annotations'
+-header '<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">MathJax.Hub.Config({displayAlign:"left"});MathJax.Hub.Config({displayIndent:"2em"});</script>'
+-author
+-bottom
+'Copyright &#169; 2015. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/home/travis/build/hdbeukel/james/james/james-extensions/target/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'james-extensions 1.0-SNAPSHOT API'
+-linkoffline
+'http://docs.oracle.com/javase/8/docs/api' '/home/travis/build/hdbeukel/james/james/james-extensions/target/javadoc-bundle-options'
+-linkoffline
+'http://www.jamesframework.org/james-core/apidocs' '/home/travis/build/hdbeukel/james/james/james-core/target/apidocs'
+-notimestamp
+-use
+-version
+-windowtitle
+'james-extensions 1.0-SNAPSHOT API'
