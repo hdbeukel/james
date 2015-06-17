@@ -10,10 +10,10 @@ extensions-snapshot: 1.0.1-SNAPSHOT
 examples-snapshot: 1.0.1-SNAPSHOT
 
 # used for links to latest stable releases and corresponding APIs
-core-latest-stable: 0.2
-extensions-latest-stable: 0.2.1
-examples-latest-stable: 0.2.1
+core-latest-stable: 1.0
+extensions-latest-stable: 1.0
+examples-latest-stable: 1.0
 
 # used for links to all versions of APIs
-core-all-stable:       [   '', 0.2, 0.1]
-extensions-all-stable: [0.2.1, 0.2, 0.1]
+core-all-stable:       [1.0,    '', 0.2, 0.1]
+extensions-all-stable: [1.0, 0.2.1, 0.2, 0.1]
