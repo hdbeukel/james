@@ -334,31 +334,32 @@ System.out.println("Best solution evaluation: " + search.getBestSolutionEvaluati
 search.dispose();
 </pre>
     <p>
-        However, you may notice that subsequent runs of this algorithm tend to give different results of varying quality. This means that
-        the search gets stuck in different local optima so that it would be appropriate to apply a more advanced algorithm, as this objective
-        function seems to be harder to optimize than the average pairwise distance objective from <a href="/examples/coresubset/#objective">example 1A</a>.
+        However, you may notice a slight variation in solution quality across repeated runs of this algorithm. This means that
+        the search gets stuck in local optima of varying quality, i.e. this objective seems harder to optimize than
+        the average pairwise distance objective from <a href="/examples/coresubset/#objective">example 1A</a>. More advanced
+        algorithms can be applied to escape from such local optima.
     </p>
     <p id="parallel-tempering">
-        An example of such advanced method is the <a href="/docs/#parallel-tempering">parallel tempering</a> algorithm,
+        An example of an advanced method is the <a href="/docs/#parallel-tempering">parallel tempering</a> algorithm,
         which concurrently runs several <a href="/docs/#metropolis-search">Metropolis searches</a>
-        with different temperatures where higher temperatures yield higher probabilities to accept inferior moves.
-        Solutions are shifted between subsearches, based on their quality, to obtain a balance between convergence and freedom to
-        escape from local optima.
-        The parallel tempering algorithm is somewhat similar to simulated annealing but takes advantage of multi-core CPUs.
+        with different temperatures. Higher temperatures correspond to higher probabilities to accept inferior moves.
+        The  subsearches swap solutions so that the best solutions are pushed to the coolest systems, for convergence,
+        and the worst solutions are pushed to the hot systems, which offer a lot of freedom for further modifications.
+        The parallel tempering algorithm is somewhat similar to simulated annealing but takes advantage of multi-core CPUs,
+        as the subsearches can be executed in parallel. Also, it has a built-in multi-start behaviour.
     </p>
     <p>
-        When applying parallel tempering,
-        the number of Metropolis replicas and the minimum and maximum temperature are specified. It is important
-        to set appropriate temperatures, taking into account the evaluation range. For example, whether a temperature
-        of 0.0001 is considered high or low strongly depends on whether evaluations range from e.g. zero to one (as is the case here)
-        or from e.g. ten thousand up to a hundred thousand.
+        When applying parallel tempering, the number of Metropolis replicas and the minimum and maximum temperature are specified.
+        It is important to set appropriate temperatures, taking into account the evaluation range. For example, whether a temperature
+        of 0.0001 is considered high or low strongly depends on whether evaluations range from e.g. zero to one or ten thousand up to
+        a hundred thousand.
     </p>
     <div class="bs-callout bs-callout-info">
         <h4>
             <i class="fa fa-lightbulb-o"></i>
             Temperature range
         </h4>
-        To find an appropriate temperature range to be used for parallel tempering it might help to experiment with individual Metropolis
+        To find an appropriate temperature range to be used for parallel tempering, it might help to experiment with individual Metropolis
         searches with different fixed temperatures.
     </div>
 <pre class="prettyprint">
@@ -372,8 +373,10 @@ ParallelTempering&lt;SubsetSolution&gt; search = new ParallelTempering&lt;&gt;(p
 // same as before ...
 </pre>
     <p>
-        If you run this example you will notice that applying parallel tempering gives better (and stable) results as compared to the basic random descent
-        algorithm when optimizing this specific objective function.
+        If you run this example you will notice that applying parallel tempering reduces variability across repeated search runs and, on average,
+        yields solutions with a slightly higher value. Nevertheless, it is a more complex and therefore somewhat slower algorithm as
+        compared to random descent, which also finds good solutions and has no additional parameters. So both algorithms could be used to solve this
+        problem, depending on the precise user requirements.
     </p>
 
     <h4 class="page-header">
