@@ -210,10 +210,10 @@ pea-small        Random Descent         10        0.351  0.000477     0.351  0.0
         within the applied time limit of 15 minutes, across subsequent runs:
     </p>
 <pre class="prettyprint">
-> boxplot(comp, problem = "coconut", type = "time")
-> boxplot(comp, problem = "maize-accession", type = "time")
-> boxplot(comp, problem = "maize-bulk", type = "time")
-> boxplot(comp, problem = "pea-small", type = "time")
+> boxplot(comp, problem = "coconut", type = "time", time.unit = "sec")
+> boxplot(comp, problem = "maize-accession", type = "time", time.unit = "sec")
+> boxplot(comp, problem = "maize-bulk", type = "time", time.unit = "sec")
+> boxplot(comp, problem = "pea-small", type = "time", time.unit = "sec")
 </pre>
     <img class="centered-image narrow" src="/files/examples/analysis-output/comp-boxplots-time.png" />
     <p>
@@ -236,7 +236,7 @@ pea-small        Random Descent         10        0.351  0.000477     0.351  0.0
         collection it produces:
     </p>
 <pre class="prettyprint">
-> plotConvergence(comp, problem = "pea-small")
+> plotConvergence(comp, problem = "pea-small", time.unit = "sec")
 </pre>
     <img class="centered-image extra-narrow" src="/files/examples/analysis-output/comp-conv-pea.png" />
     <p>
@@ -250,9 +250,9 @@ pea-small        Random Descent         10        0.351  0.000477     0.351  0.0
 > par(mfrow = c(2,2))
 # create plots with different zoom
 > for(m in c(1,5,15)){
-    plotConvergence(comp, problem = "pea-small", max.time = m * 1000)
+    plotConvergence(comp, problem = "pea-small", max.time = m, time.unit = "sec")
   }
-> plotConvergence(comp, problem = "pea-small", min.time = 1000, max.time = 10000)
+> plotConvergence(comp, problem = "pea-small", min.time = 1, max.time = 10, time.unit = "sec")
 </pre>
     <img class="centered-image wide" src="/files/examples/analysis-output/comp-conv-pea-zoom.png" />
     <p>
