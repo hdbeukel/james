@@ -381,11 +381,23 @@ public class TSPProblem implements Problem&lt;TSPSolution&gt;{
         Although full solution validation is not a bottleneck for this unconstrained problem,
         it is still beneficial to also provide a custom delta validation to avoid
         the cost of applying and undoing each considered move. Here, applying a move
-        involves reversing a subsequence in the permutation, which is a waste of time.
-        We can easily avoid this by including an explicit delta validation that always
+        involves reversing a subsequence in the permutation, which is quite time consuming.
+        We can easily avoid this by including an explicit delta validation that immediately
         returns <code>SimpleValidation.PASSED</code>. For this purpose, we override
         the method <code>validate(Move, TSPSolution, Validation)</code>.
     </p>
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-info-circle"></i>
+            Info
+        </h4>
+        <a href="/examples/tsp2/">Example 4B</a> demonstrates an alternative way to
+        implement the TSP problem. Instead of directly implementing the
+        <code>Problem</code> interface, the predefined <code>AbstractProblem</code>
+        class is extended, which separates data from the objective and possible constraints.
+        For unconstrained problems, like the basic TSP discussed here,
+        this yields very fast out-of-the-box validation (both full and delta).
+    </div>
 <pre class="prettyprint">
 public class TSPProblem implements Problem&lt;TSPSolution&gt;{
 
