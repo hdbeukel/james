@@ -6,6 +6,7 @@ org.jamesframework.core.problems.constraints.validations
 org.jamesframework.core.problems.datatypes
 org.jamesframework.core.problems.objectives
 org.jamesframework.core.problems.objectives.evaluations
+org.jamesframework.core.problems.sol
 org.jamesframework.core.search
 org.jamesframework.core.search.algo
 org.jamesframework.core.search.algo.exh
