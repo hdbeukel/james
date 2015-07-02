@@ -6,11 +6,11 @@ layout: default
     <ol class="breadcrumb">
         <li><a href="/index.html">Home</a></li>
         <li><a href="/examples">Examples</a></li>
-        <li class="active">Travelling salesman problem (3)</li>
+        <li class="active">Travelling salesman problem (2)</li>
     </ol>
 
     <h2 class="page-header">
-        Example 4C: The travelling salesman problem (3)
+        Example 4B: The travelling salesman problem (2)
     </h2>
 
     <div class="bs-callout bs-callout-info">
@@ -22,12 +22,13 @@ layout: default
         Read <a href="/docs/#parallel-tempering">this</a>.
     </div>
     <p>
-        This example again reconsiders the travelling salesman problem
-        from examples <a href="/examples/tsp/">4A</a> and <a href="/examples/tsp2/">4B</a>.
-        A TSP is actually a permutation problem: the goal is to find the best permutation
+        This example reconsiders the travelling salesman problem
+        from <a href="/examples/tsp/">example 4A</a>.
+        TSP is actually a permutation problem: the goal is to find the best permutation
         of cities so that visiting them in this order yields the lowest possible total travel distance.
+        Part of the implementation for TSP will likely be the same for various other permutation problems.
         Thus, generic components are first designed that can be reused for any permutation problem.
-        Then, the TSP is implemented by plugging in the necessary data and objective.
+        Then, TSP is implemented by plugging in the necessary data and objective.
     </p>
     <p>
         All reusable permutation problem components defined here have been made available in the
@@ -42,7 +43,8 @@ layout: default
         Thus, a solution to such problem indicates a specific order.
         We will assume that every item is identified with a unique integer ID.
         This assumption is imposed later when defining a generic permutation
-        problem. A <code>PermutationSolution</code> thus reflects an ordered list of these IDs.
+        problem, by restricting the allowed data type (see below).
+        A <code>PermutationSolution</code> reflects an ordered list of these IDs.
         Its implementation is very similar to that of the <code>TSPSolution</code> from
         <a href="/examples/tsp/#solution-type">example 4A</a>.
     </p>
@@ -113,8 +115,8 @@ public class PermutationSolution extends Solution {
         <code>AbstractProblem</code> has a single abstract method that is to be
         implemented in <code>PermutationProblem</code> responsible for creating
         a random solution. Its implementation is very similar to that of the
-        corresponding method in the <code>TSPProblem</code> from examples
-        <a href="/examples/tsp/#problem">4A</a> and <a href="/examples/tsp2/#problem">4B</a>.
+        corresponding method in the <code>TSPProblem</code> from
+        <a href="/examples/tsp/#problem">example 4A</a>.
         The IDs of the items in the data set are retrieved from the data object.
     </p>
     <div class="bs-callout bs-callout-info">
@@ -303,9 +305,8 @@ public class TSPData implements IntegerIdentifiedData {
         The objective evaluates a permutation solution by computing the total travel
         distance of the round trip that visits cities in the order in which they occur
         in the permutation. The implementation is similar to that of the respective
-        evaluation method in the <code>TSPProblem</code> from
-        <a href="/examples/tsp/#problem">example 4A</a> and the
-        <code>TSPObjective</code> from <a href="/examples/tsp2/#objective">example 4B</a>.
+        evaluation method in the <code>TSPObjective</code> from
+        <a href="/examples/tsp/#objective">example 4A</a>.
         It also includes an efficient delta evaluation for the applied move type.
         The solution type is set to <code>PermutationSolution</code> and the data
         type to <code>TSPData</code> which contains the distance matrix.
@@ -382,8 +383,7 @@ public class TSPObjective implements Objective&lt;PermutationSolution, TSPData&g
     </h4>
     <p>
         We can apply a parallel tempering algorithm in the same way as in
-        examples <a href="/examples/tsp/#optimization">4A</a> and
-        <a href="/examples/tsp2/#optimization">4B</a>.
+        <a href="/examples/tsp/#optimization">example 4A</a>.
         The problem is now a <code>PermutationProblem</code> that contains the TSP data and objective.
         The generic <code>ReverseSubsequenceNeighbourhood</code> is applied which corresponds to a 2-opt neighbourhood
         in the context of TSP.
@@ -456,10 +456,11 @@ double computeAverageTravelDistance(TSPData data){
         Other permutation problems
     </h4>
     <p>
-        The advantage of this approach compared to that from examples
-        <a href="/examples/tsp/">4A</a> and <a href="/examples/tsp2/">4B</a> is that
-        any other permutation problem can now also be defined and solved using the provided generic
-        solution type, problem definition and neighbourhood(s). These reusable components
+        The advantage of this approach compared to that from
+        <a href="/examples/tsp/">example 4A</a> is that
+        other permutation problems can now also be defined and solved using the provided generic
+        solution type, problem class and neighbourhood(s), by only plugging in
+        the respective data, objective and constraints (if any). These reusable components
         have been made available in the <a href="/getstarted/#modules">JAMES extensions module</a>.
         Source code is found on <a href="https://github.com/hdbeukel/james-extensions/tree/v{{site.extensions-latest-stable}}/src/main/java/org/jamesframework/ext/permutation">GitHub</a>.
     </p>
@@ -469,13 +470,13 @@ double computeAverageTravelDistance(TSPData data){
     </h4>
     <p>
         The complete source code of this example is available on
-        <a href="https://github.com/hdbeukel/james-examples/tree/v{{site.examples-latest-stable}}/src/main/java/org/jamesframework/examples/tsp3">GitHub</a>,
+        <a href="https://github.com/hdbeukel/james-examples/tree/v{{site.examples-latest-stable}}/src/main/java/org/jamesframework/examples/tsp2">GitHub</a>,
         including some additional code to read the input from a text file.
         You can also download a <a href="/getstarted/#releases-examples">ZIP file</a> that contains the Java sources of all examples, a compiled
         JAR (including all dependencies) as well as some input files for in case you want to run any of the examples. To run this example, execute
     </p>
 <pre class="prettyprint">
-$ java -cp james-examples.jar org.jamesframework.examples.tsp3.TSP3 &lt;inputfile&gt; &lt;runtime&gt;
+$ java -cp james-examples.jar org.jamesframework.examples.tsp2.TSP2 &lt;inputfile&gt; &lt;runtime&gt;
 </pre>
     </p>
         from the command line.
