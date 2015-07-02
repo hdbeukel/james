@@ -18,12 +18,6 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
-var altColor = "altColor";
-var rowColor = "rowColor";
-var tableTab = "tableTab";
-var activeTableTab = "activeTableTab";
 </script>
 <noscript>
 <div>JavaScript is disabled on your browser.</div>
@@ -78,13 +72,13 @@ var activeTableTab = "activeTableTab";
 <li>Nested&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
-<li><a href="#method.summary">Method</a></li>
+<li><a href="#methods.inherited.from.class.org.jamesframework.core.problems.GenericProblem">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
-<li><a href="#method.detail">Method</a></li>
+<li>Method</li>
 </ul>
 </div>
 <a name="skip.navbar.top">
@@ -101,7 +95,7 @@ var activeTableTab = "activeTableTab";
 <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li>org.jamesframework.core.problems.AbstractProblem&lt;<a href="../../../../org/jamesframework/ext/permutation/PermutationSolution.html" title="class in org.jamesframework.ext.permutation">PermutationSolution</a>,DataType&gt;</li>
+<li>org.jamesframework.core.problems.GenericProblem&lt;<a href="../../../../org/jamesframework/ext/permutation/PermutationSolution.html" title="class in org.jamesframework.ext.permutation">PermutationSolution</a>,DataType&gt;</li>
 <li>
 <ul class="inheritance">
 <li>org.jamesframework.ext.permutation.PermutationProblem&lt;DataType&gt;</li>
@@ -124,11 +118,12 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">PermutationProblem&lt;DataType extends org.jamesframework.core.problems.datatypes.IntegerIdentifiedData&gt;</span>
-extends org.jamesframework.core.problems.AbstractProblem&lt;<a href="../../../../org/jamesframework/ext/permutation/PermutationSolution.html" title="class in org.jamesframework.ext.permutation">PermutationSolution</a>,DataType&gt;</pre>
+extends org.jamesframework.core.problems.GenericProblem&lt;<a href="../../../../org/jamesframework/ext/permutation/PermutationSolution.html" title="class in org.jamesframework.ext.permutation">PermutationSolution</a>,DataType&gt;</pre>
 <div class="block">Generic permutation problem. Requires that every item in the data set is identified with a unique integer ID.
- The solution type is fixed to <a href="../../../../org/jamesframework/ext/permutation/PermutationSolution.html" title="class in org.jamesframework.ext.permutation"><code>PermutationSolution</code></a> so that a permutation is coded as an ordered sequence
- of these IDs. The data type can be any class or interface that implements/extends the <code>IntegerIdentifiedData</code>
- interface which imposes the assignment of IDs to items in the data set.</div>
+ The solution type is fixed to <a href="../../../../org/jamesframework/ext/permutation/PermutationSolution.html" title="class in org.jamesframework.ext.permutation"><code>PermutationSolution</code></a>, which models a solution as an ordered sequence
+ of these IDs. The data type can be any class or interface that implements the <code>IntegerIdentifiedData</code>
+ interface, which imposes the assignment of IDs to items in the data set. A default random solution generator
+ is used, which creates random permutations by shuffling the list of IDs as retrieved from the data.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a></dd>
@@ -165,25 +160,12 @@ extends org.jamesframework.core.problems.AbstractProblem&lt;<a href="../../../..
 <!--   -->
 </a>
 <h3>Method Summary</h3>
-<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="../../../../org/jamesframework/ext/permutation/PermutationSolution.html" title="class in org.jamesframework.ext.permutation">PermutationSolution</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/permutation/PermutationProblem.html#createRandomSolution-java.util.Random-">createRandomSolution</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</code>
-<div class="block">Create a random permutation solution.</div>
-</td>
-</tr>
-</table>
 <ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.org.jamesframework.core.problems.AbstractProblem">
+<li class="blockList"><a name="methods.inherited.from.class.org.jamesframework.core.problems.GenericProblem">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;org.jamesframework.core.problems.AbstractProblem</h3>
-<code>addMandatoryConstraint, addPenalizingConstraint, evaluate, evaluate, getData, getMandatoryConstraints, getObjective, getPenalizingConstraints, getViolatedConstraints, isMinimizing, removeMandatoryConstraint, removePenalizingConstraint, setData, setObjective, validate, validate</code></li>
+<h3>Methods inherited from class&nbsp;org.jamesframework.core.problems.GenericProblem</h3>
+<code>addMandatoryConstraint, addPenalizingConstraint, createRandomSolution, evaluate, evaluate, getData, getMandatoryConstraints, getObjective, getPenalizingConstraints, getRandomSolutionGenerator, getViolatedConstraints, isMinimizing, removeMandatoryConstraint, removePenalizingConstraint, setData, setObjective, setRandomSolutionGenerator, validate, validate</code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -223,38 +205,13 @@ extends org.jamesframework.core.problems.AbstractProblem&lt;<a href="../../../..
 <h4>PermutationProblem</h4>
 <pre>public&nbsp;PermutationProblem(org.jamesframework.core.problems.objectives.Objective&lt;? super <a href="../../../../org/jamesframework/ext/permutation/PermutationSolution.html" title="class in org.jamesframework.ext.permutation">PermutationSolution</a>,? super <a href="../../../../org/jamesframework/ext/permutation/PermutationProblem.html" title="type parameter in PermutationProblem">DataType</a>&gt;&nbsp;objective,
                           <a href="../../../../org/jamesframework/ext/permutation/PermutationProblem.html" title="type parameter in PermutationProblem">DataType</a>&nbsp;data)</pre>
-<div class="block">Create a permutation problem with given objective and data.</div>
+<div class="block">Create a permutation problem with given objective and data. None of the arguments can be <code>null</code>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>objective</code> - objective of the problem</dd>
 <dd><code>data</code> - underlying data</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>objective</code> is <code>null</code></dd>
-</dl>
-</li>
-</ul>
-</li>
-</ul>
-<!-- ============ METHOD DETAIL ========== -->
-<ul class="blockList">
-<li class="blockList"><a name="method.detail">
-<!--   -->
-</a>
-<h3>Method Detail</h3>
-<a name="createRandomSolution-java.util.Random-">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>createRandomSolution</h4>
-<pre>public&nbsp;<a href="../../../../org/jamesframework/ext/permutation/PermutationSolution.html" title="class in org.jamesframework.ext.permutation">PermutationSolution</a>&nbsp;createRandomSolution(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</pre>
-<div class="block">Create a random permutation solution. The IDs of all items are retrieved from the underlying data
- specified at construction and shuffled to create a random permutation.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>rnd</code> - source of randomness used to generate a random permutation</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>randomly generated permutation solution</dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>objective</code> or <code>data</code> are <code>null</code></dd>
 </dl>
 </li>
 </ul>
@@ -315,13 +272,13 @@ extends org.jamesframework.core.problems.AbstractProblem&lt;<a href="../../../..
 <li>Nested&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
-<li><a href="#method.summary">Method</a></li>
+<li><a href="#methods.inherited.from.class.org.jamesframework.core.problems.GenericProblem">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
-<li><a href="#method.detail">Method</a></li>
+<li>Method</li>
 </ul>
 </div>
 <a name="skip.navbar.bottom">

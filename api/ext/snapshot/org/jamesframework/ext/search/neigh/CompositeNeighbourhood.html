@@ -94,7 +94,7 @@ var activeTableTab = "activeTableTab";
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">org.jamesframework.ext.search.neigh</div>
-<h2 title="Class CompositeNeighbourhood" class="title">Class CompositeNeighbourhood&lt;SolutionType extends org.jamesframework.core.problems.Solution&gt;</h2>
+<h2 title="Class CompositeNeighbourhood" class="title">Class CompositeNeighbourhood&lt;SolutionType extends org.jamesframework.core.problems.sol.Solution&gt;</h2>
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
@@ -118,7 +118,7 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public class <span class="typeNameLabel">CompositeNeighbourhood&lt;SolutionType extends org.jamesframework.core.problems.Solution&gt;</span>
+<pre>public class <span class="typeNameLabel">CompositeNeighbourhood&lt;SolutionType extends org.jamesframework.core.problems.sol.Solution&gt;</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements org.jamesframework.core.search.neigh.Neighbourhood&lt;SolutionType&gt;</pre>
 <div class="block">A composite neighbourhood combines a collection of other neighbourhoods which each have a weight that determines
@@ -243,7 +243,7 @@ implements org.jamesframework.core.search.neigh.Neighbourhood&lt;SolutionType&gt
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="getRandomMove-org.jamesframework.core.problems.Solution-java.util.Random-">
+<a name="getRandomMove-org.jamesframework.core.problems.sol.Solution-java.util.Random-">
 <!--   -->
 </a><a name="getRandomMove-SolutionType-java.util.Random-">
 <!--   -->
@@ -259,7 +259,7 @@ implements org.jamesframework.core.search.neigh.Neighbourhood&lt;SolutionType&gt
  Else, it selects a move through roulette selection based on the weights assigned at construction.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code>getRandomMove</code>&nbsp;in interface&nbsp;<code>org.jamesframework.core.search.neigh.Neighbourhood&lt;<a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="type parameter in CompositeNeighbourhood">SolutionType</a> extends org.jamesframework.core.problems.Solution&gt;</code></dd>
+<dd><code>getRandomMove</code>&nbsp;in interface&nbsp;<code>org.jamesframework.core.search.neigh.Neighbourhood&lt;<a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="type parameter in CompositeNeighbourhood">SolutionType</a> extends org.jamesframework.core.problems.sol.Solution&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>solution</code> - solution for which a move is generated</dd>
 <dd><code>rnd</code> - source of randomness used to generate random move</dd>
@@ -270,7 +270,7 @@ implements org.jamesframework.core.search.neigh.Neighbourhood&lt;SolutionType&gt
 </dl>
 </li>
 </ul>
-<a name="getAllMoves-org.jamesframework.core.problems.Solution-">
+<a name="getAllMoves-org.jamesframework.core.problems.sol.Solution-">
 <!--   -->
 </a><a name="getAllMoves-SolutionType-">
 <!--   -->
@@ -283,7 +283,7 @@ implements org.jamesframework.core.search.neigh.Neighbourhood&lt;SolutionType&gt
  The returned list may be empty if none of the contained neighbourhoods can generate any move.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code>getAllMoves</code>&nbsp;in interface&nbsp;<code>org.jamesframework.core.search.neigh.Neighbourhood&lt;<a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="type parameter in CompositeNeighbourhood">SolutionType</a> extends org.jamesframework.core.problems.Solution&gt;</code></dd>
+<dd><code>getAllMoves</code>&nbsp;in interface&nbsp;<code>org.jamesframework.core.search.neigh.Neighbourhood&lt;<a href="../../../../../org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="type parameter in CompositeNeighbourhood">SolutionType</a> extends org.jamesframework.core.problems.sol.Solution&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>solution</code> - solution for which all moves are generated</dd>
 <dt><span class="returnLabel">Returns:</span></dt>

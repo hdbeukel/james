@@ -94,7 +94,7 @@ var activeTableTab = "activeTableTab";
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">org.jamesframework.ext.problems.objectives</div>
-<h2 title="Class WeightedIndex" class="title">Class WeightedIndex&lt;SolutionType extends org.jamesframework.core.problems.Solution,DataType&gt;</h2>
+<h2 title="Class WeightedIndex" class="title">Class WeightedIndex&lt;SolutionType extends org.jamesframework.core.problems.sol.Solution,DataType&gt;</h2>
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
@@ -119,7 +119,7 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public class <span class="typeNameLabel">WeightedIndex&lt;SolutionType extends org.jamesframework.core.problems.Solution,DataType&gt;</span>
+<pre>public class <span class="typeNameLabel">WeightedIndex&lt;SolutionType extends org.jamesframework.core.problems.sol.Solution,DataType&gt;</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements org.jamesframework.core.problems.objectives.Objective&lt;SolutionType,DataType&gt;</pre>
 <div class="block">An index that is composed as a weighted sum of several objectives. A weighted index
@@ -289,13 +289,13 @@ implements org.jamesframework.core.problems.objectives.Objective&lt;SolutionType
  Scores for contained minimizing objectives are negated, i.e. their sign is flipped.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code>isMinimizing</code>&nbsp;in interface&nbsp;<code>org.jamesframework.core.problems.objectives.Objective&lt;<a href="../../../../../org/jamesframework/ext/problems/objectives/WeightedIndex.html" title="type parameter in WeightedIndex">SolutionType</a> extends org.jamesframework.core.problems.Solution,<a href="../../../../../org/jamesframework/ext/problems/objectives/WeightedIndex.html" title="type parameter in WeightedIndex">DataType</a>&gt;</code></dd>
+<dd><code>isMinimizing</code>&nbsp;in interface&nbsp;<code>org.jamesframework.core.problems.objectives.Objective&lt;<a href="../../../../../org/jamesframework/ext/problems/objectives/WeightedIndex.html" title="type parameter in WeightedIndex">SolutionType</a> extends org.jamesframework.core.problems.sol.Solution,<a href="../../../../../org/jamesframework/ext/problems/objectives/WeightedIndex.html" title="type parameter in WeightedIndex">DataType</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd><code>false</code></dd>
 </dl>
 </li>
 </ul>
-<a name="evaluate-org.jamesframework.core.problems.Solution-java.lang.Object-">
+<a name="evaluate-org.jamesframework.core.problems.sol.Solution-java.lang.Object-">
 <!--   -->
 </a><a name="evaluate-SolutionType-DataType-">
 <!--   -->
@@ -308,7 +308,7 @@ implements org.jamesframework.core.problems.objectives.Objective&lt;SolutionType
 <div class="block">Produces an evaluation object that reflects the weighted sum of evaluations of all underlying objectives.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code>evaluate</code>&nbsp;in interface&nbsp;<code>org.jamesframework.core.problems.objectives.Objective&lt;<a href="../../../../../org/jamesframework/ext/problems/objectives/WeightedIndex.html" title="type parameter in WeightedIndex">SolutionType</a> extends org.jamesframework.core.problems.Solution,<a href="../../../../../org/jamesframework/ext/problems/objectives/WeightedIndex.html" title="type parameter in WeightedIndex">DataType</a>&gt;</code></dd>
+<dd><code>evaluate</code>&nbsp;in interface&nbsp;<code>org.jamesframework.core.problems.objectives.Objective&lt;<a href="../../../../../org/jamesframework/ext/problems/objectives/WeightedIndex.html" title="type parameter in WeightedIndex">SolutionType</a> extends org.jamesframework.core.problems.sol.Solution,<a href="../../../../../org/jamesframework/ext/problems/objectives/WeightedIndex.html" title="type parameter in WeightedIndex">DataType</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>solution</code> - solution to evaluate</dd>
 <dd><code>data</code> - data to be used for evaluation</dd>
@@ -317,7 +317,7 @@ implements org.jamesframework.core.problems.objectives.Objective&lt;SolutionType
 </dl>
 </li>
 </ul>
-<a name="evaluate-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.Solution-org.jamesframework.core.problems.objectives.evaluations.Evaluation-java.lang.Object-">
+<a name="evaluate-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.sol.Solution-org.jamesframework.core.problems.objectives.evaluations.Evaluation-java.lang.Object-">
 <!--   -->
 </a><a name="evaluate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-DataType-">
 <!--   -->
@@ -333,7 +333,7 @@ implements org.jamesframework.core.problems.objectives.Objective&lt;SolutionType
  the obtained modified evaluations in a new weighted index evaluation.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code>evaluate</code>&nbsp;in interface&nbsp;<code>org.jamesframework.core.problems.objectives.Objective&lt;<a href="../../../../../org/jamesframework/ext/problems/objectives/WeightedIndex.html" title="type parameter in WeightedIndex">SolutionType</a> extends org.jamesframework.core.problems.Solution,<a href="../../../../../org/jamesframework/ext/problems/objectives/WeightedIndex.html" title="type parameter in WeightedIndex">DataType</a>&gt;</code></dd>
+<dd><code>evaluate</code>&nbsp;in interface&nbsp;<code>org.jamesframework.core.problems.objectives.Objective&lt;<a href="../../../../../org/jamesframework/ext/problems/objectives/WeightedIndex.html" title="type parameter in WeightedIndex">SolutionType</a> extends org.jamesframework.core.problems.sol.Solution,<a href="../../../../../org/jamesframework/ext/problems/objectives/WeightedIndex.html" title="type parameter in WeightedIndex">DataType</a>&gt;</code></dd>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>ActualSolutionType</code> - the actual solution type of the problem that is being solved;
                              a subtype of the solution types of both the objective and the applied move</dd>
