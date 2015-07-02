@@ -25,7 +25,7 @@ layout: default
     <p>
         This example demonstrates the application of a greedy heuristic to search for a maximum clique in a given graph. The heuristic
         is created by plugging in a custom greedy neighbourhood in the random descent algorithm. A variable neighbourhood search
-        is also applied based on the greedy heuristic where custom shaking neighbourhoods are used to escape from local optima.
+        is also applied based on the greedy heuristic where additional shaking neighbourhoods are used to escape from local optima.
     </p>
 
     <h4 class="page-header">
@@ -232,7 +232,7 @@ CliqueData data = new CliqueData(adjacencyMap);
 // create objective
 CliqueObjective obj = new CliqueObjective();
 // create subset problem (all sizes allowed)
-SubsetProblem&lt;CliqueData&gt; problem = new SubsetProblem&lt;&gt;(obj, data, 0, data.numVertices());
+SubsetProblem&lt;CliqueData&gt; problem = new SubsetProblem&lt;&gt;(obj, data);
 
 // create random descent search with greedy clique neighbourhood
 RandomDescent&lt;SubsetSolution&gt; randomDescent = new RandomDescent&lt;&gt;(problem, new GreedyCliqueNeighbourhood(data));
@@ -316,18 +316,18 @@ vns.dispose();
     <p>
         The current implementation of <code>GreedyCliqueNeighbourhood</code> first constructs the set of possible adds
         by scanning all unselected vertices and verifying whether they are connected to the entire current clique.
-        These computations are repeated whenever a random move is generated. Here we describe an optimization that
+        These computations are repeated whenever a random move is generated. Here, we describe an optimization that
         dynamically updates the set of possible adds when a vertex is added to or
         removed from the clique. This reduces the overall time complexity of the optimization process so that more
         steps can be taken in the same time.
     </p>
     <p>
         To keep track of the set of possible adds we extend <code>SubsetSolution</code> in <code>CliqueSolution</code>.
-        Only a single constructor is provided to create an empty clique. When a vertex is added to the clique all
+        Only a single constructor is provided to create an empty clique. When a vertex is added to the clique, all
         unconnected vertices are removed from the possible adds.
         It is also verified whether the added vertex itself is actually contained in the set of possible adds and if not,
         the vertex is not added. This ensures that the selected subset is always a clique.
-        When removing a vertex from the clique all vertices that are connected to all remaining clique nodes are
+        When removing a vertex from the clique, all vertices that are connected to all remaining clique nodes are
         again marked as possible adds.
         The set of possible adds can be accessed at any time using <code>getPossibleAdds()</code>.
     </p>
@@ -448,7 +448,7 @@ public class CliqueProblem extends AbstractProblem&lt;CliqueSolution, CliqueData
     <p>
         To actually benefit from the new solution type we create an alternative implementation of the greedy clique neighbourhood
         with solution type <code>CliqueSolution</code>. It can simply call
-        <code>clique.getPossibleAdds()</code> to get the set of possible adds in constant time. Note that we still
+        <code>clique.getPossibleAdds()</code> to get the set of possible adds. Note that we still
         return an <code>AdditionMove</code> which is defined for solution type <code>SubsetSolution</code>. This is allowed because the method
         definitions in the <code>Neighbourhood</code> interface allow to return a more general move type (using generics
         with wildcards) and <code>CliqueSolution</code> extends <code>SubsetSolution</code>. After all, a move that can be applied
@@ -478,7 +478,7 @@ public class GreedyCliqueNeighbourhood2 implements Neighbourhood&lt;CliqueSoluti
 }
 </pre>
     <p>
-        Finally we need to modify the searches so that they use the new solution type <code>CliqueSolution</code> and
+        Finally we need to update the optimization process to use the new solution type <code>CliqueSolution</code> and
         corresponding optimized neighbourhood <code>GreedyCliqueNeighbourhood2</code>.
     </p>
 <pre class="prettyprint">

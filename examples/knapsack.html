@@ -263,8 +263,8 @@ public class KnapsackConstraint implements Constraint&lt;SubsetSolution, Knapsac
     </h4>
     <p>
         We are now ready to combine the data, objective and constraint in a <code>SubsetProblem</code>.
-        As all subset sizes are allowed, the minimum and maximum size are set to 0 and the total number of items,
-        respectively. The data and objective are passed to the problem upon construction and the constraint is
+        As all subset sizes are allowed, no size limits are specified.
+        The data and objective are passed to the problem upon construction and the constraint is
         added afterwards with <code>addMandatoryConstraint(...)</code>. By adding a <i>mandatory</i> constraint,
         applied neighbourhood searches discard all neighbours that violate this constraint.
         The returned best found solution (if any) is then always guaranteed to satisfy the constraint, but we
@@ -298,7 +298,7 @@ KnapsackObjective obj = new KnapsackObjective();
 KnapsackConstraint constraint = new KnapsackConstraint(capacity);
 
 // create subset problem (all sizes allowed)
-SubsetProblem&lt;KnapsackData&gt; problem = new SubsetProblem&lt;&gt;(obj, data, 0, data.getIDs().size());
+SubsetProblem&lt;KnapsackData&gt; problem = new SubsetProblem&lt;&gt;(obj, data);
 
 // add mandatory constraint
 problem.addMandatoryConstraint(constraint);
