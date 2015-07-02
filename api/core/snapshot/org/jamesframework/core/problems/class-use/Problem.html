@@ -148,15 +148,15 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a>&lt;<a href="../../../../../org/jamesframework/core/factory/LocalSearchFactory.html" title="type parameter in LocalSearchFactory">SolutionType</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">LocalSearchFactory.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/factory/LocalSearchFactory.html#create-org.jamesframework.core.problems.Problem-">create</a></span>(<a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/factory/LocalSearchFactory.html" title="type parameter in LocalSearchFactory">SolutionType</a>&gt;&nbsp;problem)</code>
-<div class="block">Create a local search, given the problem to solve.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../../org/jamesframework/core/factory/SearchFactory.html" title="type parameter in SearchFactory">SolutionType</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">SearchFactory.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/factory/SearchFactory.html#create-org.jamesframework.core.problems.Problem-">create</a></span>(<a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/factory/SearchFactory.html" title="type parameter in SearchFactory">SolutionType</a>&gt;&nbsp;problem)</code>
 <div class="block">Create a search, given the problem to solve.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a>&lt;<a href="../../../../../org/jamesframework/core/factory/LocalSearchFactory.html" title="type parameter in LocalSearchFactory">SolutionType</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">LocalSearchFactory.</span><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/factory/LocalSearchFactory.html#create-org.jamesframework.core.problems.Problem-">create</a></span>(<a href="../../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../../org/jamesframework/core/factory/LocalSearchFactory.html" title="type parameter in LocalSearchFactory">SolutionType</a>&gt;&nbsp;problem)</code>
+<div class="block">Create a local search, given the problem to solve.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -184,9 +184,10 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>,DataType&gt;</span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/GenericProblem.html" title="class in org.jamesframework.core.problems">GenericProblem</a>&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol">Solution</a>,DataType&gt;</span></code>
 <div class="block">
- Represents an abstract problem that separates data from the objective and constraints (if any).</div>
+ A generic problem is fully based on delegation of its responsabilities, by separating data from the objective,
+ constraints (if any) and random solution generation.</div>
 </td>
 </tr>
 </tbody>
@@ -571,7 +572,7 @@
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset">SubsetProblem</a>&lt;DataType extends <a href="../../../../../org/jamesframework/core/problems/datatypes/IntegerIdentifiedData.html" title="interface in org.jamesframework.core.problems.datatypes">IntegerIdentifiedData</a>&gt;</span></code>
-<div class="block">High-level subset problem consisting of data, an objective and possibly some constraints (see <a href="../../../../../org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems"><code>AbstractProblem</code></a>).</div>
+<div class="block">High-level subset problem consisting of data, an objective and possibly some constraints (see <a href="../../../../../org/jamesframework/core/problems/GenericProblem.html" title="class in org.jamesframework.core.problems"><code>GenericProblem</code></a>).</div>
 </td>
 </tr>
 </tbody>

@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -101,7 +101,7 @@ var activeTableTab = "activeTableTab";
 <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../../org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">org.jamesframework.core.problems.AbstractProblem</a>&lt;<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>,DataType&gt;</li>
+<li><a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="class in org.jamesframework.core.problems">org.jamesframework.core.problems.GenericProblem</a>&lt;<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>,DataType&gt;</li>
 <li>
 <ul class="inheritance">
 <li>org.jamesframework.core.subset.SubsetProblem&lt;DataType&gt;</li>
@@ -124,13 +124,14 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">SubsetProblem&lt;DataType extends <a href="../../../../org/jamesframework/core/problems/datatypes/IntegerIdentifiedData.html" title="interface in org.jamesframework.core.problems.datatypes">IntegerIdentifiedData</a>&gt;</span>
-extends <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a>&lt;<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>,DataType&gt;</pre>
-<div class="block">High-level subset problem consisting of data, an objective and possibly some constraints (see <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems"><code>AbstractProblem</code></a>).
+extends <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="class in org.jamesframework.core.problems">GenericProblem</a>&lt;<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>,DataType&gt;</pre>
+<div class="block">High-level subset problem consisting of data, an objective and possibly some constraints (see <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="class in org.jamesframework.core.problems"><code>GenericProblem</code></a>).
  All items in the data set are identified using a unique integer ID so that any subset selection problem comes down to
  selection of a subset of these IDs. The solution type is fixed to <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset"><code>SubsetSolution</code></a> and the data type can be set
  to any implementation of the <a href="../../../../org/jamesframework/core/problems/datatypes/IntegerIdentifiedData.html" title="interface in org.jamesframework.core.problems.datatypes"><code>IntegerIdentifiedData</code></a> interface. When creating the problem, the minimum and maximum
- allowed subset size are specified. Methods are provided to create random or empty subset solutions, based on the IDs of
- the items that are retrieved from the underlying data.</div>
+ allowed subset size are specified. A default random solution generator is used, which generates random subsets within
+ the imposed size limits, based on the IDs of the items as retrieved from the underlying data. An additional method is
+ provided to generate subset solutions with an empty selection.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a></dd>
@@ -153,13 +154,19 @@ extends <a href="../../../../org/jamesframework/core/problems/AbstractProblem.ht
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetProblem.html#SubsetProblem-org.jamesframework.core.problems.objectives.Objective-DataType-">SubsetProblem</a></span>(<a href="../../../../org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;? super <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>,? super <a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a>&gt;&nbsp;objective,
+             <a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a>&nbsp;data)</code>
+<div class="block">Creates a subset problem without subset size limits.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetProblem.html#SubsetProblem-org.jamesframework.core.problems.objectives.Objective-DataType-int-">SubsetProblem</a></span>(<a href="../../../../org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;? super <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>,? super <a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a>&gt;&nbsp;objective,
              <a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a>&nbsp;data,
              int&nbsp;fixedSubsetSize)</code>
 <div class="block">Creates a subset problem with fixed subset size.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetProblem.html#SubsetProblem-org.jamesframework.core.problems.objectives.Objective-DataType-int-int-">SubsetProblem</a></span>(<a href="../../../../org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;? super <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>,? super <a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a>&gt;&nbsp;objective,
              <a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a>&nbsp;data,
              int&nbsp;minSubsetSize,
@@ -167,7 +174,7 @@ extends <a href="../../../../org/jamesframework/core/problems/AbstractProblem.ht
 <div class="block">Creates a new subset problem with given objective, data and minimum/maximum subset size.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetProblem.html#SubsetProblem-org.jamesframework.core.problems.objectives.Objective-DataType-int-int-boolean-">SubsetProblem</a></span>(<a href="../../../../org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;? super <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>,? super <a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a>&gt;&nbsp;objective,
              <a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a>&nbsp;data,
              int&nbsp;minSubsetSize,
@@ -177,7 +184,7 @@ extends <a href="../../../../org/jamesframework/core/problems/AbstractProblem.ht
  Creates a new subset problem with given objective, data and minimum/maximum subset size.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetProblem.html#SubsetProblem-org.jamesframework.core.problems.objectives.Objective-DataType-int-int-java.util.Comparator-">SubsetProblem</a></span>(<a href="../../../../org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;? super <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>,? super <a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a>&gt;&nbsp;objective,
              <a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a>&nbsp;data,
              int&nbsp;minSubsetSize,
@@ -209,42 +216,36 @@ extends <a href="../../../../org/jamesframework/core/problems/AbstractProblem.ht
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetProblem.html#createRandomSolution-java.util.Random-">createRandomSolution</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</code>
-<div class="block">Create a random solution within the allowed minimum and maximum subset size.</div>
-</td>
-</tr>
-<tr id="i2" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetProblem.html#getMaxSubsetSize--">getMaxSubsetSize</a></span>()</code>
 <div class="block">Get the maximum subset size.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetProblem.html#getMinSubsetSize--">getMinSubsetSize</a></span>()</code>
 <div class="block">Get the minimum subset size.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetProblem.html#setData-DataType-">setData</a></span>(<a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a>&nbsp;data)</code>
 <div class="block">Set new data.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetProblem.html#setMaxSubsetSize-int-">setMaxSubsetSize</a></span>(int&nbsp;maxSubsetSize)</code>
 <div class="block">Set the maximum subset size.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetProblem.html#setMinSubsetSize-int-">setMinSubsetSize</a></span>(int&nbsp;minSubsetSize)</code>
 <div class="block">Set the minimum subset size.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="../../../../org/jamesframework/core/subset/validations/SubsetValidation.html" title="class in org.jamesframework.core.subset.validations">SubsetValidation</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetProblem.html#validate-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.subset.SubsetSolution-org.jamesframework.core.problems.constraints.validations.Validation-">validate</a></span>(<a href="../../../../org/jamesframework/core/search/neigh/Move.html" title="interface in org.jamesframework.core.search.neigh">Move</a>&lt;? super <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&gt;&nbsp;move,
         <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;curSolution,
@@ -252,7 +253,7 @@ extends <a href="../../../../org/jamesframework/core/problems/AbstractProblem.ht
 <div class="block">Validate a move to be applied to the current subset solution of a local search (delta validation).</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="../../../../org/jamesframework/core/subset/validations/SubsetValidation.html" title="class in org.jamesframework.core.subset.validations">SubsetValidation</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/subset/SubsetProblem.html#validate-org.jamesframework.core.subset.SubsetSolution-">validate</a></span>(<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;solution)</code>
 <div class="block">Validate a subset solution.</div>
@@ -260,11 +261,11 @@ extends <a href="../../../../org/jamesframework/core/problems/AbstractProblem.ht
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.org.jamesframework.core.problems.AbstractProblem">
+<li class="blockList"><a name="methods.inherited.from.class.org.jamesframework.core.problems.GenericProblem">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;org.jamesframework.core.problems.<a href="../../../../org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a></h3>
-<code><a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#addMandatoryConstraint-org.jamesframework.core.problems.constraints.Constraint-">addMandatoryConstraint</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#addPenalizingConstraint-org.jamesframework.core.problems.constraints.PenalizingConstraint-">addPenalizingConstraint</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#evaluate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">evaluate</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#evaluate-SolutionType-">evaluate</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#getData--">getData</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#getMandatoryConstraints--">getMandatoryConstraints</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#getObjective--">getObjective</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#getPenalizingConstraints--">getPenalizingConstraints</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#getViolatedConstraints-SolutionType-">getViolatedConstraints</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#isMinimizing--">isMinimizing</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#removeMandatoryConstraint-org.jamesframework.core.problems.constraints.Constraint-">removeMandatoryConstraint</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#removePenalizingConstraint-org.jamesframework.core.problems.constraints.PenalizingConstraint-">removePenalizingConstraint</a>, <a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#setObjective-org.jamesframework.core.problems.objectives.Objective-">setObjective</a></code></li>
+<h3>Methods inherited from class&nbsp;org.jamesframework.core.problems.<a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="class in org.jamesframework.core.problems">GenericProblem</a></h3>
+<code><a href="../../../../org/jamesframework/core/problems/GenericProblem.html#addMandatoryConstraint-org.jamesframework.core.problems.constraints.Constraint-">addMandatoryConstraint</a>, <a href="../../../../org/jamesframework/core/problems/GenericProblem.html#addPenalizingConstraint-org.jamesframework.core.problems.constraints.PenalizingConstraint-">addPenalizingConstraint</a>, <a href="../../../../org/jamesframework/core/problems/GenericProblem.html#createRandomSolution-java.util.Random-">createRandomSolution</a>, <a href="../../../../org/jamesframework/core/problems/GenericProblem.html#evaluate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">evaluate</a>, <a href="../../../../org/jamesframework/core/problems/GenericProblem.html#evaluate-SolutionType-">evaluate</a>, <a href="../../../../org/jamesframework/core/problems/GenericProblem.html#getData--">getData</a>, <a href="../../../../org/jamesframework/core/problems/GenericProblem.html#getMandatoryConstraints--">getMandatoryConstraints</a>, <a href="../../../../org/jamesframework/core/problems/GenericProblem.html#getObjective--">getObjective</a>, <a href="../../../../org/jamesframework/core/problems/GenericProblem.html#getPenalizingConstraints--">getPenalizingConstraints</a>, <a href="../../../../org/jamesframework/core/problems/GenericProblem.html#getRandomSolutionGenerator--">getRandomSolutionGenerator</a>, <a href="../../../../org/jamesframework/core/problems/GenericProblem.html#getViolatedConstraints-SolutionType-">getViolatedConstraints</a>, <a href="../../../../org/jamesframework/core/problems/GenericProblem.html#isMinimizing--">isMinimizing</a>, <a href="../../../../org/jamesframework/core/problems/GenericProblem.html#removeMandatoryConstraint-org.jamesframework.core.problems.constraints.Constraint-">removeMandatoryConstraint</a>, <a href="../../../../org/jamesframework/core/problems/GenericProblem.html#removePenalizingConstraint-org.jamesframework.core.problems.constraints.PenalizingConstraint-">removePenalizingConstraint</a>, <a href="../../../../org/jamesframework/core/problems/GenericProblem.html#setObjective-org.jamesframework.core.problems.objectives.Objective-">setObjective</a>, <a href="../../../../org/jamesframework/core/problems/GenericProblem.html#setRandomSolutionGenerator-org.jamesframework.core.problems.sol.RandomSolutionGenerator-">setRandomSolutionGenerator</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -407,7 +408,7 @@ extends <a href="../../../../org/jamesframework/core/problems/AbstractProblem.ht
 </a><a name="SubsetProblem-org.jamesframework.core.problems.objectives.Objective-DataType-int-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>SubsetProblem</h4>
 <pre>public&nbsp;SubsetProblem(<a href="../../../../org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;? super <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>,? super <a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a>&gt;&nbsp;objective,
@@ -423,6 +424,29 @@ extends <a href="../../../../org/jamesframework/core/problems/AbstractProblem.ht
 <dd><code>objective</code> - objective function, can not be <code>null</code></dd>
 <dd><code>data</code> - underlying data, can not be <code>null</code></dd>
 <dd><code>fixedSubsetSize</code> - fixed subset size</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>objective</code> or <code>data</code> is <code>null</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if an invalid fixed subset size is specified</dd>
+</dl>
+</li>
+</ul>
+<a name="SubsetProblem-org.jamesframework.core.problems.objectives.Objective-org.jamesframework.core.problems.datatypes.IntegerIdentifiedData-">
+<!--   -->
+</a><a name="SubsetProblem-org.jamesframework.core.problems.objectives.Objective-DataType-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>SubsetProblem</h4>
+<pre>public&nbsp;SubsetProblem(<a href="../../../../org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;? super <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>,? super <a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a>&gt;&nbsp;objective,
+                     <a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a>&nbsp;data)</pre>
+<div class="block">Creates a subset problem without subset size limits. Equivalent to calling<pre>
+ SubsetProblem p = new SubsetProblem(objective, data, 0, data.getIDs().size());</pre>
+ Generated subset solutions do not impose any order on the IDs.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>objective</code> - objective function, can not be <code>null</code></dd>
+<dd><code>data</code> - underlying data, can not be <code>null</code></dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>objective</code> or <code>data</code> is <code>null</code></dd>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if an invalid fixed subset size is specified</dd>
@@ -449,28 +473,11 @@ extends <a href="../../../../org/jamesframework/core/problems/AbstractProblem.ht
 <div class="block">Set new data.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#setData-DataType-">setData</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a>&lt;<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>,<a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a> extends <a href="../../../../org/jamesframework/core/problems/datatypes/IntegerIdentifiedData.html" title="interface in org.jamesframework.core.problems.datatypes">IntegerIdentifiedData</a>&gt;</code></dd>
+<dd><code><a href="../../../../org/jamesframework/core/problems/GenericProblem.html#setData-DataType-">setData</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="class in org.jamesframework.core.problems">GenericProblem</a>&lt;<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>,<a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a> extends <a href="../../../../org/jamesframework/core/problems/datatypes/IntegerIdentifiedData.html" title="interface in org.jamesframework.core.problems.datatypes">IntegerIdentifiedData</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>data</code> - new data (can not be <code>null</code>)</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>data</code> is <code>null</code></dd>
-</dl>
-</li>
-</ul>
-<a name="createRandomSolution-java.util.Random-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>createRandomSolution</h4>
-<pre>public&nbsp;<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;createRandomSolution(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</pre>
-<div class="block">Create a random solution within the allowed minimum and maximum subset size. The set of all IDs
- is retrieved from the underlying data and a random subset of these IDs is selected.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>rnd</code> - source of randomness used to generate random subset solution</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>random subset solution within minimum and maximum size</dd>
 </dl>
 </li>
 </ul>
@@ -481,8 +488,9 @@ extends <a href="../../../../org/jamesframework/core/problems/AbstractProblem.ht
 <li class="blockList">
 <h4>createEmptySubsetSolution</h4>
 <pre>public&nbsp;<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&nbsp;createEmptySubsetSolution()</pre>
-<div class="block">Creates an empty subset solution in which no IDs are selected. The set of all IDs is obtained from
- the underlying data and passed to the created empty solution.</div>
+<div class="block">Creates an empty subset solution in which no IDs are selected.
+ The set of all IDs is obtained from the underlying data and passed
+ to the created empty solution.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>empty subset solution with no selected IDs</dd>
@@ -502,7 +510,7 @@ extends <a href="../../../../org/jamesframework/core/problems/AbstractProblem.ht
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../../org/jamesframework/core/problems/Problem.html#validate-SolutionType-">validate</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&gt;</code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#validate-SolutionType-">validate</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a>&lt;<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>,<a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a> extends <a href="../../../../org/jamesframework/core/problems/datatypes/IntegerIdentifiedData.html" title="interface in org.jamesframework.core.problems.datatypes">IntegerIdentifiedData</a>&gt;</code></dd>
+<dd><code><a href="../../../../org/jamesframework/core/problems/GenericProblem.html#validate-SolutionType-">validate</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="class in org.jamesframework.core.problems">GenericProblem</a>&lt;<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>,<a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a> extends <a href="../../../../org/jamesframework/core/problems/datatypes/IntegerIdentifiedData.html" title="interface in org.jamesframework.core.problems.datatypes">IntegerIdentifiedData</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>solution</code> - solution to validate</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -526,7 +534,7 @@ extends <a href="../../../../org/jamesframework/core/problems/AbstractProblem.ht
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../../org/jamesframework/core/problems/Problem.html#validate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.constraints.validations.Validation-">validate</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>&gt;</code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../org/jamesframework/core/problems/AbstractProblem.html#validate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.constraints.validations.Validation-">validate</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems">AbstractProblem</a>&lt;<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>,<a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a> extends <a href="../../../../org/jamesframework/core/problems/datatypes/IntegerIdentifiedData.html" title="interface in org.jamesframework.core.problems.datatypes">IntegerIdentifiedData</a>&gt;</code></dd>
+<dd><code><a href="../../../../org/jamesframework/core/problems/GenericProblem.html#validate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.constraints.validations.Validation-">validate</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="class in org.jamesframework.core.problems">GenericProblem</a>&lt;<a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a>,<a href="../../../../org/jamesframework/core/subset/SubsetProblem.html" title="type parameter in SubsetProblem">DataType</a> extends <a href="../../../../org/jamesframework/core/problems/datatypes/IntegerIdentifiedData.html" title="interface in org.jamesframework.core.problems.datatypes">IntegerIdentifiedData</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>move</code> - subset move to be validated</dd>
 <dd><code>curSolution</code> - current solution</dd>
