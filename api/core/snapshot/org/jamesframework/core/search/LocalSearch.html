@@ -94,7 +94,7 @@ var activeTableTab = "activeTableTab";
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">org.jamesframework.core.search</div>
-<h2 title="Class LocalSearch" class="title">Class LocalSearch&lt;SolutionType extends <a href="../../../../org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol">Solution</a>&gt;</h2>
+<h2 title="Class LocalSearch" class="title">Class LocalSearch&lt;SolutionType extends <a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</h2>
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
@@ -115,7 +115,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
-<dd><code>SolutionType</code> - solution type of the problems that may be solved using this search, required to extend <a href="../../../../org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol"><code>Solution</code></a></dd>
+<dd><code>SolutionType</code> - solution type of the problems that may be solved using this search, required to extend <a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems"><code>Solution</code></a></dd>
 </dl>
 <dl>
 <dt>All Implemented Interfaces:</dt>
@@ -127,7 +127,7 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public abstract class <span class="typeNameLabel">LocalSearch&lt;SolutionType extends <a href="../../../../org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol">Solution</a>&gt;</span>
+<pre>public abstract class <span class="typeNameLabel">LocalSearch&lt;SolutionType extends <a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span>
 extends <a href="../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;SolutionType&gt;</pre>
 <div class="block">Local searches are searches that start from an initial solution and modify this solution in an attempt to improve it.
  The initial solution can be specified using <a href="../../../../org/jamesframework/core/search/LocalSearch.html#setCurrentSolution-SolutionType-"><code>setCurrentSolution(Solution)</code></a> before running the search, else,
@@ -327,7 +327,7 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 <div class="block">When the search is started, a random initial solution is generated if none has been specified.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../org/jamesframework/core/search/Search.html#searchStarted--">searchStarted</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a> extends <a href="../../../../org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol">Solution</a>&gt;</code></dd>
+<dd><code><a href="../../../../org/jamesframework/core/search/Search.html#searchStarted--">searchStarted</a></code>&nbsp;in class&nbsp;<code><a href="../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;<a href="../../../../org/jamesframework/core/search/LocalSearch.html" title="type parameter in LocalSearch">SolutionType</a> extends <a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</code></dd>
 </dl>
 </li>
 </ul>
@@ -393,7 +393,7 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 </dl>
 </li>
 </ul>
-<a name="setCurrentSolution-org.jamesframework.core.problems.sol.Solution-">
+<a name="setCurrentSolution-org.jamesframework.core.problems.Solution-">
 <!--   -->
 </a><a name="setCurrentSolution-SolutionType-">
 <!--   -->
@@ -415,7 +415,7 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 </dl>
 </li>
 </ul>
-<a name="updateCurrentSolution-org.jamesframework.core.problems.sol.Solution-">
+<a name="updateCurrentSolution-org.jamesframework.core.problems.Solution-">
 <!--   -->
 </a><a name="updateCurrentSolution-SolutionType-">
 <!--   -->
@@ -433,7 +433,7 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 </dl>
 </li>
 </ul>
-<a name="updateCurrentSolution-org.jamesframework.core.problems.sol.Solution-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">
+<a name="updateCurrentSolution-org.jamesframework.core.problems.Solution-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">
 <!--   -->
 </a><a name="updateCurrentSolution-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">
 <!--   -->
@@ -456,7 +456,7 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 </dl>
 </li>
 </ul>
-<a name="updateCurrentAndBestSolution-org.jamesframework.core.problems.sol.Solution-">
+<a name="updateCurrentAndBestSolution-org.jamesframework.core.problems.Solution-">
 <!--   -->
 </a><a name="updateCurrentAndBestSolution-SolutionType-">
 <!--   -->
@@ -476,7 +476,7 @@ extends <a href="../../../../org/jamesframework/core/search/Search.html" title="
 </dl>
 </li>
 </ul>
-<a name="updateCurrentAndBestSolution-org.jamesframework.core.problems.sol.Solution-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">
+<a name="updateCurrentAndBestSolution-org.jamesframework.core.problems.Solution-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">
 <!--   -->
 </a><a name="updateCurrentAndBestSolution-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">
 <!--   -->

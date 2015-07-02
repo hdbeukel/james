@@ -94,7 +94,7 @@ var activeTableTab = "activeTableTab";
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">org.jamesframework.core.search.algo.tabu</div>
-<h2 title="Class FullTabuMemory" class="title">Class FullTabuMemory&lt;SolutionType extends <a href="../../../../../../org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol">Solution</a>&gt;</h2>
+<h2 title="Class FullTabuMemory" class="title">Class FullTabuMemory&lt;SolutionType extends <a href="../../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</h2>
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
@@ -111,7 +111,7 @@ var activeTableTab = "activeTableTab";
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>SolutionType</code> - solution type of the tabu memory, required to extend
-                       <a href="../../../../../../org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol"><code>Solution</code></a>; should match with the solution type
+                       <a href="../../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems"><code>Solution</code></a>; should match with the solution type
                        of the tabu search that uses this memory</dd>
 </dl>
 <dl>
@@ -120,7 +120,7 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public class <span class="typeNameLabel">FullTabuMemory&lt;SolutionType extends <a href="../../../../../../org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol">Solution</a>&gt;</span>
+<pre>public class <span class="typeNameLabel">FullTabuMemory&lt;SolutionType extends <a href="../../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html" title="interface in org.jamesframework.core.search.algo.tabu">TabuMemory</a>&lt;SolutionType&gt;</pre>
 <div class="block">Full tabu memory that stores deeps copies of recently visited solutions and declares a move tabu if
@@ -238,7 +238,7 @@ implements <a href="../../../../../../org/jamesframework/core/search/algo/tabu/T
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="isTabu-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.sol.Solution-">
+<a name="isTabu-org.jamesframework.core.search.neigh.Move-org.jamesframework.core.problems.Solution-">
 <!--   -->
 </a><a name="isTabu-org.jamesframework.core.search.neigh.Move-SolutionType-">
 <!--   -->
@@ -253,7 +253,7 @@ implements <a href="../../../../../../org/jamesframework/core/search/algo/tabu/T
  is undone to restore the original state of the current solution.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html#isTabu-org.jamesframework.core.search.neigh.Move-SolutionType-">isTabu</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html" title="interface in org.jamesframework.core.search.algo.tabu">TabuMemory</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="type parameter in FullTabuMemory">SolutionType</a> extends <a href="../../../../../../org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol">Solution</a>&gt;</code></dd>
+<dd><code><a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html#isTabu-org.jamesframework.core.search.neigh.Move-SolutionType-">isTabu</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html" title="interface in org.jamesframework.core.search.algo.tabu">TabuMemory</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="type parameter in FullTabuMemory">SolutionType</a> extends <a href="../../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>move</code> - move to be applied to the current solution</dd>
 <dd><code>currentSolution</code> - current solution</dd>
@@ -263,7 +263,7 @@ implements <a href="../../../../../../org/jamesframework/core/search/algo/tabu/T
 </dl>
 </li>
 </ul>
-<a name="registerVisitedSolution-org.jamesframework.core.problems.sol.Solution-org.jamesframework.core.search.neigh.Move-">
+<a name="registerVisitedSolution-org.jamesframework.core.problems.Solution-org.jamesframework.core.search.neigh.Move-">
 <!--   -->
 </a><a name="registerVisitedSolution-SolutionType-org.jamesframework.core.search.neigh.Move-">
 <!--   -->
@@ -276,7 +276,7 @@ implements <a href="../../../../../../org/jamesframework/core/search/algo/tabu/T
 <div class="block">A newly visited solution is registered by storing a deep copy of this solution in the full tabu memory.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html#registerVisitedSolution-SolutionType-org.jamesframework.core.search.neigh.Move-">registerVisitedSolution</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html" title="interface in org.jamesframework.core.search.algo.tabu">TabuMemory</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="type parameter in FullTabuMemory">SolutionType</a> extends <a href="../../../../../../org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol">Solution</a>&gt;</code></dd>
+<dd><code><a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html#registerVisitedSolution-SolutionType-org.jamesframework.core.search.neigh.Move-">registerVisitedSolution</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html" title="interface in org.jamesframework.core.search.algo.tabu">TabuMemory</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="type parameter in FullTabuMemory">SolutionType</a> extends <a href="../../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>visitedSolution</code> - newly visited solution (copied to memory)</dd>
 <dd><code>appliedMove</code> - applied move (not used here, allowed to be <code>null</code>)</dd>
@@ -293,7 +293,7 @@ implements <a href="../../../../../../org/jamesframework/core/search/algo/tabu/T
 <div class="block">Clear the tabu memory.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html#clear--">clear</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html" title="interface in org.jamesframework.core.search.algo.tabu">TabuMemory</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="type parameter in FullTabuMemory">SolutionType</a> extends <a href="../../../../../../org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol">Solution</a>&gt;</code></dd>
+<dd><code><a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html#clear--">clear</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../org/jamesframework/core/search/algo/tabu/TabuMemory.html" title="interface in org.jamesframework.core.search.algo.tabu">TabuMemory</a>&lt;<a href="../../../../../../org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="type parameter in FullTabuMemory">SolutionType</a> extends <a href="../../../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</code></dd>
 </dl>
 </li>
 </ul>
