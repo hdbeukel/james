@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="13.0">
+<diagram program="umlet" version="13.2">
   <zoom_level>10</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>200</x>
-      <y>260</y>
+      <x>210</x>
+      <y>200</y>
       <w>240</w>
       <h>70</h>
     </coordinates>
@@ -19,8 +19,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>710</x>
-      <y>260</y>
+      <x>720</x>
+      <y>200</y>
       <w>190</w>
       <h>70</h>
     </coordinates>
@@ -35,8 +35,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
-      <y>280</y>
+      <x>440</x>
+      <y>220</y>
       <w>300</w>
       <h>40</h>
     </coordinates>
@@ -47,8 +47,8 @@ solves</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>480</x>
-      <y>170</y>
+      <x>490</x>
+      <y>110</y>
       <w>200</w>
       <h>70</h>
     </coordinates>
@@ -62,8 +62,8 @@ solves</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>370</x>
-      <y>190</y>
+      <x>380</x>
+      <y>130</y>
       <w>130</w>
       <h>90</h>
     </coordinates>
@@ -74,8 +74,8 @@ has</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>670</x>
-      <y>190</y>
+      <x>680</x>
+      <y>130</y>
       <w>130</w>
       <h>90</h>
     </coordinates>
@@ -86,8 +86,8 @@ constructs</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>750</x>
-      <y>100</y>
+      <x>760</x>
+      <y>40</y>
       <w>120</w>
       <h>70</h>
     </coordinates>
@@ -101,8 +101,8 @@ constructs</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>890</x>
-      <y>100</y>
+      <x>900</x>
+      <y>40</y>
       <w>130</w>
       <h>70</h>
     </coordinates>
@@ -116,21 +116,21 @@ constructs</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>800</x>
-      <y>160</y>
-      <w>80</w>
+      <x>840</x>
+      <y>100</y>
+      <w>90</w>
       <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 has &gt;= 0</panel_attributes>
-    <additional_attributes>40.0;10.0;40.0;100.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>890</x>
-      <y>160</y>
-      <w>110</w>
+      <x>900</x>
+      <y>100</y>
+      <w>150</w>
       <h>150</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
@@ -140,12 +140,12 @@ has &gt;= 0</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>160</x>
-      <y>380</y>
+      <x>170</x>
+      <y>310</y>
       <w>320</w>
       <h>70</h>
     </coordinates>
-    <panel_attributes>AbstractProblem&lt;SolutionType, DataType&gt;
+    <panel_attributes>GenericProblem&lt;SolutionType, DataType&gt;
 --
 
 --
@@ -155,19 +155,19 @@ has &gt;= 0</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>310</x>
-      <y>320</y>
+      <x>320</x>
+      <y>260</y>
       <w>30</w>
-      <h>80</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>360</x>
-      <y>530</y>
+      <x>410</x>
+      <y>430</y>
       <w>140</w>
       <h>70</h>
     </coordinates>
@@ -181,8 +181,8 @@ has &gt;= 0</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>250</x>
-      <y>620</y>
+      <x>300</x>
+      <y>520</y>
       <w>260</w>
       <h>70</h>
     </coordinates>
@@ -196,8 +196,8 @@ has &gt;= 0</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>130</x>
-      <y>710</y>
+      <x>230</x>
+      <y>610</y>
       <w>260</w>
       <h>70</h>
     </coordinates>
@@ -211,44 +211,44 @@ has &gt;= 0</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>420</x>
-      <y>440</y>
-      <w>40</w>
-      <h>110</h>
+      <x>460</x>
+      <y>370</y>
+      <w>50</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 has</panel_attributes>
-    <additional_attributes>20.0;90.0;20.0;10.0</additional_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>290</x>
-      <y>440</y>
-      <w>50</w>
-      <h>200</h>
+      <x>340</x>
+      <y>370</y>
+      <w>60</w>
+      <h>170</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 has a</panel_attributes>
-    <additional_attributes>20.0;180.0;20.0;10.0</additional_attributes>
+    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>160</x>
-      <y>440</y>
-      <w>80</w>
-      <h>290</h>
+      <x>260</x>
+      <y>370</y>
+      <w>90</w>
+      <h>260</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 has &gt;= 0</panel_attributes>
-    <additional_attributes>40.0;270.0;40.0;10.0</additional_attributes>
+    <additional_attributes>10.0;240.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>700</x>
-      <y>380</y>
+      <x>710</x>
+      <y>320</y>
       <w>210</w>
       <h>70</h>
     </coordinates>
@@ -263,8 +263,8 @@ has &gt;= 0</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>670</x>
-      <y>490</y>
+      <x>680</x>
+      <y>440</y>
       <w>280</w>
       <h>70</h>
     </coordinates>
@@ -279,8 +279,8 @@ has &gt;= 0</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>690</x>
-      <y>610</y>
+      <x>700</x>
+      <y>570</y>
       <w>240</w>
       <h>70</h>
     </coordinates>
@@ -295,8 +295,8 @@ has &gt;= 0</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>720</x>
-      <y>730</y>
+      <x>730</x>
+      <y>700</y>
       <w>180</w>
       <h>70</h>
     </coordinates>
@@ -311,8 +311,8 @@ has &gt;= 0</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>800</x>
-      <y>320</y>
+      <x>810</x>
+      <y>260</y>
       <w>30</w>
       <h>80</h>
     </coordinates>
@@ -322,36 +322,63 @@ has &gt;= 0</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>800</x>
-      <y>440</y>
+      <x>810</x>
+      <y>380</y>
       <w>30</w>
-      <h>70</h>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>780</x>
-      <y>550</y>
-      <w>80</w>
-      <h>80</h>
+      <x>810</x>
+      <y>500</y>
+      <w>90</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 has &gt;= 1</panel_attributes>
-    <additional_attributes>30.0;60.0;30.0;10.0</additional_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>770</x>
-      <y>670</y>
+      <x>810</x>
+      <y>630</y>
       <w>90</w>
-      <h>80</h>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 generates</panel_attributes>
-    <additional_attributes>40.0;60.0;40.0;10.0</additional_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>700</y>
+      <w>300</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>RandomSolutionGenerator&lt;SolutionType&gt;
+--
+
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>190</x>
+      <y>370</y>
+      <w>60</w>
+      <h>350</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+has a</panel_attributes>
+    <additional_attributes>10.0;330.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

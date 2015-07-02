@@ -4,10 +4,10 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>0</x>
-      <y>32</y>
-      <w>968</w>
-      <h>632</h>
+      <x>96</x>
+      <y>56</y>
+      <w>1008</w>
+      <h>680</h>
     </coordinates>
     <panel_attributes>problems
 --</panel_attributes>
@@ -16,8 +16,8 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>576</x>
-      <y>64</y>
+      <x>672</x>
+      <y>88</y>
       <w>376</w>
       <h>192</h>
     </coordinates>
@@ -28,8 +28,8 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>16</x>
-      <y>64</y>
+      <x>112</x>
+      <y>88</y>
       <w>528</w>
       <h>192</h>
     </coordinates>
@@ -40,8 +40,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>32</x>
-      <y>104</y>
+      <x>128</x>
+      <y>128</y>
       <w>112</w>
       <h>48</h>
     </coordinates>
@@ -54,8 +54,8 @@ passed() : boolean</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>32</x>
-      <y>192</y>
+      <x>128</x>
+      <y>216</y>
       <w>120</w>
       <h>48</h>
     </coordinates>
@@ -68,8 +68,8 @@ getPenalty() : double</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>184</x>
-      <y>96</y>
+      <x>280</x>
+      <y>120</y>
       <w>344</w>
       <h>64</h>
     </coordinates>
@@ -83,8 +83,8 @@ validate(Move,SolutionType,Validation,DataType) : Validation</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>184</x>
-      <y>192</y>
+      <x>280</x>
+      <y>216</y>
       <w>264</w>
       <h>48</h>
     </coordinates>
@@ -96,8 +96,8 @@ PenalizingConstraint&lt;SolutionType,DataType&gt;
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>304</x>
-      <y>152</y>
+      <x>400</x>
+      <y>176</y>
       <w>24</w>
       <h>56</h>
     </coordinates>
@@ -107,8 +107,8 @@ PenalizingConstraint&lt;SolutionType,DataType&gt;
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>80</x>
-      <y>144</y>
+      <x>176</x>
+      <y>168</y>
       <w>24</w>
       <h>64</h>
     </coordinates>
@@ -118,8 +118,8 @@ PenalizingConstraint&lt;SolutionType,DataType&gt;
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>136</x>
-      <y>112</y>
+      <x>232</x>
+      <y>136</y>
       <w>64</w>
       <h>24</h>
     </coordinates>
@@ -129,8 +129,8 @@ PenalizingConstraint&lt;SolutionType,DataType&gt;
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>144</x>
-      <y>200</y>
+      <x>240</x>
+      <y>224</y>
       <w>56</w>
       <h>24</h>
     </coordinates>
@@ -140,8 +140,8 @@ PenalizingConstraint&lt;SolutionType,DataType&gt;
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>592</x>
-      <y>168</y>
+      <x>688</x>
+      <y>192</y>
       <w>344</w>
       <h>72</h>
     </coordinates>
@@ -156,8 +156,8 @@ isMinimizing() : boolean</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>712</x>
-      <y>96</y>
+      <x>808</x>
+      <y>120</y>
       <w>112</w>
       <h>48</h>
     </coordinates>
@@ -170,8 +170,8 @@ getValue() : double</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>760</x>
-      <y>136</y>
+      <x>856</x>
+      <y>160</y>
       <w>24</w>
       <h>48</h>
     </coordinates>
@@ -181,34 +181,37 @@ getValue() : double</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>312</x>
-      <y>296</y>
+      <x>368</x>
+      <y>320</y>
       <w>352</w>
-      <h>200</h>
+      <h>232</h>
     </coordinates>
-    <panel_attributes>/AbstractProblem&lt;SolutionType,DataType&gt;/
+    <panel_attributes>GenericProblem&lt;SolutionType,DataType&gt;
 --
 objective : Objective
 mandatoryConstraints : Collection
 penalizingConstraints : Collection
 data : DataType
+randomSolutionGenerator : RandomSolutionGenerator
 --
 addMandatoryConstraint(Constraint) : void
 removeMandatoryConstraint(Constraint) : boolean
 addPenalizingConstraint(PenalizingConstraint) : void
 removePenalizingConstraint(PenalizingConstraint) : boolean
+getViolatedConstraints(SolutionType) : Collection
 setObjective(Objective) : void
 getObjective() : Objective
 setData(DataType) : void
 getData() : DataType
-getViolatedConstraints(SolutionType) : Collection</panel_attributes>
+setRandomSolutionGenerator(RandomSolutionGenerator) : void
+getRandomSolutionGenerator() : RandomSolutionGenerator</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>352</x>
-      <y>232</y>
+      <x>408</x>
+      <y>256</y>
       <w>24</w>
       <h>80</h>
     </coordinates>
@@ -218,19 +221,19 @@ getViolatedConstraints(SolutionType) : Collection</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>472</x>
-      <y>152</y>
+      <x>568</x>
+      <y>176</y>
       <w>24</w>
-      <h>160</h>
+      <h>168</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;180.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;190.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>616</x>
-      <y>232</y>
+      <x>696</x>
+      <y>256</y>
       <w>24</w>
       <h>80</h>
     </coordinates>
@@ -240,8 +243,8 @@ getViolatedConstraints(SolutionType) : Collection</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>344</x>
-      <y>536</y>
+      <x>400</x>
+      <y>592</y>
       <w>296</w>
       <h>112</h>
     </coordinates>
@@ -259,8 +262,8 @@ createRandomSolution(Random) : SolutionType</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>480</x>
-      <y>488</y>
+      <x>536</x>
+      <y>544</y>
       <w>24</w>
       <h>64</h>
     </coordinates>
@@ -270,8 +273,8 @@ createRandomSolution(Random) : SolutionType</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>696</x>
-      <y>544</y>
+      <x>792</x>
+      <y>600</y>
       <w>176</w>
       <h>96</h>
     </coordinates>
@@ -288,19 +291,19 @@ _checkedCopy(T) : T_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>632</x>
-      <y>584</y>
-      <w>80</w>
+      <x>688</x>
+      <y>640</y>
+      <w>120</w>
       <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>130.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>736</x>
-      <y>456</y>
+      <x>864</x>
+      <y>504</y>
       <w>200</w>
       <h>72</h>
     </coordinates>
@@ -310,12 +313,61 @@ _checkedCopy(T) : T_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>784</x>
-      <y>520</y>
+      <x>912</x>
+      <y>568</y>
       <w>24</w>
-      <h>40</h>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;30.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>760</x>
+      <y>320</y>
+      <w>328</w>
+      <h>400</h>
+    </coordinates>
+    <panel_attributes>sol
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>800</x>
+      <y>368</y>
+      <w>264</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+RandomSolutionGenerator&lt;SolutionType&gt;
+--
+createRandomSolution(Random) : SolutionType</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>712</x>
+      <y>376</y>
+      <w>104</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>110.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>824</x>
+      <y>416</y>
+      <w>24</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;230.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
