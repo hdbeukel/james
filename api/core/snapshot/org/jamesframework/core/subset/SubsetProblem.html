@@ -129,8 +129,9 @@ extends <a href="../../../../org/jamesframework/core/problems/GenericProblem.htm
  All items in the data set are identified using a unique integer ID so that any subset selection problem comes down to
  selection of a subset of these IDs. The solution type is fixed to <a href="../../../../org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset"><code>SubsetSolution</code></a> and the data type can be set
  to any implementation of the <a href="../../../../org/jamesframework/core/problems/datatypes/IntegerIdentifiedData.html" title="interface in org.jamesframework.core.problems.datatypes"><code>IntegerIdentifiedData</code></a> interface. When creating the problem, the minimum and maximum
- allowed subset size are specified. Methods are provided to create random or empty subset solutions, based on the IDs of
- the items that are retrieved from the underlying data.</div>
+ allowed subset size are specified. A default random solution generator is used, which generates random subsets within
+ the imposed size limits, based on the IDs of the items as retrieved from the underlying data. An additional method is
+ provided to generate subset solutions with an empty selection.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a></dd>
