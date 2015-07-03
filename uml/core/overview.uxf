@@ -359,10 +359,10 @@ generates</panel_attributes>
     <coordinates>
       <x>170</x>
       <y>700</y>
-      <w>300</w>
+      <w>370</w>
       <h>70</h>
     </coordinates>
-    <panel_attributes>RandomSolutionGenerator&lt;SolutionType&gt;
+    <panel_attributes>RandomSolutionGenerator&lt;SolutionType,DataType&gt;
 --
 
 --

@@ -6,7 +6,7 @@
     <coordinates>
       <x>96</x>
       <y>56</y>
-      <w>1008</w>
+      <w>1016</w>
       <h>680</h>
     </coordinates>
     <panel_attributes>problems
@@ -324,9 +324,9 @@ _checkedCopy(T) : T_</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>760</x>
+      <x>744</x>
       <y>320</y>
-      <w>328</w>
+      <w>352</w>
       <h>400</h>
     </coordinates>
     <panel_attributes>sol
@@ -337,15 +337,15 @@ _checkedCopy(T) : T_</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>800</x>
+      <x>760</x>
       <y>368</y>
-      <w>264</w>
+      <w>320</w>
       <h>56</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
-RandomSolutionGenerator&lt;SolutionType&gt;
+RandomSolutionGenerator&lt;SolutionType,DataType&gt;
 --
-createRandomSolution(Random) : SolutionType</panel_attributes>
+createRandomSolution(Random,DataType) : SolutionType</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -353,16 +353,16 @@ createRandomSolution(Random) : SolutionType</panel_attributes>
     <coordinates>
       <x>712</x>
       <y>376</y>
-      <w>104</w>
+      <w>64</w>
       <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>110.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>824</x>
+      <x>816</x>
       <y>416</y>
       <w>24</w>
       <h>200</h>
