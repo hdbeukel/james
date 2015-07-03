@@ -3,7 +3,7 @@ layout: default
 ---
 
 <div id="docs">
-            
+
     <ol class="breadcrumb">
         <li><a href="/index.html">Home</a></li>
         <li class="active">Documentation</li>
@@ -12,17 +12,17 @@ layout: default
     <div id="page-header"></div>
 
     <div class="row">
-    
+
         <!-- content -->
         <div class="col-md-9">
-            
+
             <h2 id="api" class="page-header">
                 Javadoc API
             </h2>
             <p>
                 A fully specified Javadoc API is provided for the core and extensions module.
             </p>
-            
+
             <h4 id="latest-stable-api" class="page-header">
                 Latest stable API
             </h4>
@@ -38,7 +38,7 @@ layout: default
                 </ul>
                 Previous versions are found <a href="/docs/api/">here</a>.
             </p>
-            
+
             <h4 id="snapshot-api" class="page-header">
                 Development snapshots
             </h4>
@@ -60,46 +60,46 @@ layout: default
                     Snapshot APIs may change without notice. Use with care until a stable version is released.
                 </div>
             </p>
-            
+
             <h2 id="problems" class="page-header">
                 Problem specification
             </h2>
             <p>
                 The JAMES framework strongly separates problem specification from search application so that existing algorithms
                 can easily be applied to obtain solutions for newly implemented problems. Each problem has a specific solution
-                type and a search creates solutions of this type to solve the problem. The search talks to the problem to obtain
+                type and a search creates solutions of this type to solve the problem. The search communicates with the problem to obtain
                 random solutions (e.g. used as the default initial solution of a local search) and to evaluate and validate
                 constructed solutions.
             </p>
             <img src="/images/diagram.png" class="centered-image" />
             <p>
-                Some utilities are provided to split the problem specification into an objective, data and possibly a number
-                of constraints. The objective and constraints are then responsible for evaluating and validating solutions,
-                using the data. Most available optimization algorithms are local searches that repeatedly modify the current
-                solution in an attempt to improve it. To use these searches it is necessary to provide a neighbourhood which
-                generates moves that are applied to the current solution. This neighbourhood should be compatible with the
+                Some utilities are provided to split the problem specification into data, an objective, any number of constraints
+                and a random solution generator. The objective and constraints are then responsible for evaluating and validating solutions,
+                using the data, respectively. Most available optimization algorithms are local searches that repeatedly modify the current
+                solution in an attempt to improve it. To use these searches it is necessary to provide at least one neighbourhood, which
+                generates moves that are applied to the current solution. The neighbourhood(s) should be compatible with the
                 solution type of the problem that is being solved.
             </p>
             <img src="/images/diagram-detailed.png" class="centered-image" />
             <p>
                 The core module contains predefined components for subset selection problems, including a predefined solution
-                type, a high-level problem specification and several subset neighbourhoods. Similar components can easily be
-                added for other types of problems.
+                type, a high-level problem specification with a built-in random subset generator, and several subset neighbourhoods.
+                Similar components can easily be created for other types of problems. Some are provided in the extensions module.
             </p>
-            
+
             <h4 id="subset-selection" class="page-header">
                 Subset selection
             </h4>
             <p>
                 The provided subset selection components require that a unique integer ID is assigned to each item in
-                the entire data set. Any subset selection problem then comes down to selecting a subset of these IDs.
+                the data set. Any subset selection problem is then translated into selection of a subset of IDs.
                 Follow these steps to implement a subset selection problem:
             </p>
             <ol>
                 <li>
                     Create a custom data class (e.g. <code>MyData</code>) by implementing the <code>IntegerIdentifiedData</code> interface.
-                    This interface defines a single method <code>getIDs()</code> that should return the set of all IDs that are
-                    assigned to an item in the data set. Custom methods may be added as well, for example to access (properties of)
+                    This interface defines a single method <code>getIDs()</code> that returns the set of all IDs
+                    assigned to an item in the data set. Also add the necessary custom methods to access (properties of)
                     items based on their IDs.
                 </li>
                 <li>
@@ -108,12 +108,12 @@ layout: default
                     Set the solution type to <code>SubsetSolution</code> and the data type to <code>MyData</code>.
                     Now implement the necessary methods to evaluate solutions using the underlying data and to inform the
                     search whether evaluations are to be minimized or maximized. If desired, an efficient delta evaluation
-                    can also be provided which evaluates a neighbour of the current solution of a local search based on its
+                    can also be provided, to evaluate a neighbour of the current solution of a local search based on its
                     current evaluation and the applied move.
                 </li>
                 <li>
-                    Specify the constraints (if any) by implementing the <code>Constraint</code> or
-                    <code>PenalizingConstraint</code> interfaces to be added as <emph>mandatory</emph> or <emph>penalizing</emph>
+                    Specify the constraints (if any) by implementing the <code>Constraint</code> and/or
+                    <code>PenalizingConstraint</code> interfaces, to be added as <em>mandatory</em> and/or <em>penalizing</em>
                     constraints to the problem definition. Solutions that do not satisfy all mandatory constraints are discarded.
                     If a penalizing constraint is violated, a penalty is assigned to the solution's evaluation but the solution
                     is still considered as valid.
@@ -122,35 +122,50 @@ layout: default
                     Efficient delta validations can also be provided (optional).
                 </li>
                 <li>
-                    Combine the data, objective and constraints (if any) in a <code>SubsetProblem</code>, specifying
-                    the desired minimum and maximum (or fixed) subset size. The data and objective are required and
+                    Combine the data, objective and constraints (if any) in a <code>SubsetProblem</code>.
+                    The desired minimum and maximum (or fixed) subset size can be specified. The data and objective are required and
                     set at construction while mandatory and penalizing constraints can be added later using
                     <code>addMandatoryConstraint(c)</code> and <code>addPenalizingConstraint(c)</code>, respectively.
                 </li>
             </ol>
             <p>
-                The obtained problem definition can be passed to any search to optimize the selection. Several predefined subset
-                neighbourhoods are available which add and/or remove some IDs to/from the selection to modify the current solution.
-                Details are best explained through some <a href="/examples/#subset-selection">examples</a>.
+                The problem definition can be passed to any local search to optimize the selection.
+                Several predefined subset neighbourhoods are available which add and/or remove some IDs to/from
+                the selection to modify the current solution.
+                Note that some searches may require additional parameters or components to be specified.
+                Details are best explained through some
+                <a href="/examples/#subset-selection">examples</a>.
             </p>
-            
+
             <h4 id="beyond-subset-selection" class="page-header">
                 Beyond subset selection
             </h4>
             <p>
-                Other types of problems can also easily be modelled and solved:
+                Other types of problems can also be easily modeled and solved:
             </p>
             <ol>
                 <li>
                     Define a custom solution type (e.g. <code>MySolution</code>) by extending the abstract <code>Solution</code> class.
                 </li>
                 <li>
-                    Either directly implement the <code>Problem</code> interface or extend <code>AbstractProblem</code>.
-                    The latter option offers the same separation between data, objectives and constraints as for subset
-                    selection problems but requires to specify a data type (any class or interface is allowed).
-                    The solution type of the problem should be set to <code>MySolution</code>. If extending <code>AbstractProblem</code>,
-                    implement the data, objective and constraints (if any) by following the same steps as for a subset selection problem (see above)
-                    but with the appropriate solution and data types.
+                    Create a custom data class (e.g. <code>MyData</code>) containing the data required for evaluation, validation and/or random
+                    solution generation. The data type is not restricted in any way, i.e. it is not required to implement a specific interface
+                    or extend an abstract class. If your problem does not require any data, this step can be skipped.
+                </li>
+                <li>
+                    Implement the objective and constraints (if any) by following the same steps as for a subset selection problem (see above),
+                    but now with solution and data type <code>MySolution</code> and <code>MyData</code>, respectively.
+                    Also provide a random solution generator, implementing the <code>RandomSolutionGenerator</code> interface,
+                    with the same solution and data type. The generated random solutions are for example used to obtain a default
+                    initial solution in most local searches.
+                    If some component does not use the data (or you did not provide any data), set the data
+                    type of the respective class to <code>Object</code> and simply ignore the data argument when implementing
+                    the required methods from the respective interface.
+                </li>
+                <li>
+                    Combine the data, objective, constraints (if any) and random solution generator in a <code>GenericProblem</code>
+                    with solution and data type <code>MySolution</code> and <code>MyData</code>, respectively. If no data is provided,
+                    set the data type to <code>Object</code> and the data argument to <code>null</code> when creating the problem.
                 </li>
                 <li>
                     Provide at least one implementation of the <code>Neighbourhood</code> interface with solution type <code>MySolution</code>.
@@ -159,9 +174,11 @@ layout: default
                 </li>
             </ol>
             <p>
+                The composed problem can now be solved with any of the available local searches, using the defined neighbourhood(s) to modify the solution.
+                Note that some searches may require additional parameters or components to be specified.
                 Examples are provided <a href="/examples/#beyond-subset-selection">here</a>.
             </p>
-            
+
             <h2 id="algorithms" class="page-header clear">
                 Optimization algorithms
             </h2>
@@ -182,7 +199,7 @@ layout: default
                 solution. Such moves are repeatedly applied to the current solution in an attempt to improve it.
                 Therefore, the chosen neighbourhoods strongly influence the behaviour of the search algorithms.
             </p>
-            
+
             <h4 id="random-descent" class="page-header">
                 Random descent
             </h4>
@@ -207,7 +224,7 @@ layout: default
                     (API version: <span>{{ site.core-latest-stable }}</span>)
                 </small>
             </p>
-            
+
             <h4 id="steepest-descent" class="page-header">
                 Steepest descent
             </h4>
@@ -230,7 +247,7 @@ layout: default
                     (API version: <span>{{ site.core-latest-stable }}</span>)
                 </small>
             </p>
-            
+
             <h4 id="tabu-search" class="page-header">
                 Tabu search
             </h4>
@@ -263,7 +280,7 @@ layout: default
                     (API version: <span>{{ site.core-latest-stable }}</span>)
                 </small>
             </p>
-            
+
             <h4 id="metropolis-search" class="page-header">
                 Metropolis search
             </h4>
@@ -304,7 +321,7 @@ layout: default
                     (API version: <span>{{ site.core-latest-stable }}</span>)
                 </small>
             </p>
-            
+
             <h4 id="parallel-tempering" class="page-header">
                 Parallel tempering
             </h4>
@@ -348,7 +365,7 @@ layout: default
                     (API version: <span>{{ site.core-latest-stable }}</span>)
                 </small>
             </p>
-            
+
             <h4 id="vnd" class="page-header">
                 Variable neighbourhood descent
             </h4>
@@ -381,7 +398,7 @@ layout: default
                     (API version: <span>{{ site.core-latest-stable }}</span>)
                 </small>
             </p>
-            
+
             <h4 id="rvns" class="page-header">
                 Reduced variable neighbourhood search
             </h4>
@@ -400,7 +417,7 @@ layout: default
             </p>
             <p>
                 Except when neighbourhood cycling is disabled, reduced variable neighbourhood search never terminates internally.
-                Therefore, a stop criterion should be specified, such as a maximum number of steps or a maximum runtime. 
+                Therefore, a stop criterion should be specified, such as a maximum number of steps or a maximum runtime.
                 By default, the search starts with a random initial solution. Alternatively, a custom initial solution can
                 be specified. Any series of neighbourhoods that are compatible with the solution type of the considered problem
                 can be applied.
@@ -414,7 +431,7 @@ layout: default
                     (API version: <span>{{ site.core-latest-stable }}</span>)
                 </small>
             </p>
-            
+
             <h4 id="vns" class="page-header">
                 Variable neighbourhood search
             </h4>
@@ -436,7 +453,7 @@ layout: default
                     </dd>
                     <dt>Acceptance:</dt>
                     <dd>
-                        If x'' is a valid improvement over x, it is accepted as the new current solution and the search switches back to the 
+                        If x'' is a valid improvement over x, it is accepted as the new current solution and the search switches back to the
                         first shaking neighbourhood N<sub>1</sub>. Else, x remains the current solution and the next shaking neighbourhood
                         N<sub>i+1</sub> is applied in the subsequent step. If there is no neighbourhood N<sub>i+1</sub> (i &ge; s) the search
                         cyclically continues with N<sub>1</sub>.
@@ -464,7 +481,7 @@ layout: default
                     (API version: <span>{{ site.core-latest-stable }}</span>)
                 </small>
             </p>
-            
+
             <h4 id="piped-local-search" class="page-header">
                 Piped local search
             </h4>
@@ -490,7 +507,7 @@ layout: default
                     (API version: <span>{{ site.core-latest-stable }}</span>)
                 </small>
             </p>
-            
+
             <h4 id="random-search" class="page-header">
                 Random search
             </h4>
@@ -511,7 +528,7 @@ layout: default
                     (API version: <span>{{ site.core-latest-stable }}</span>)
                 </small>
             </p>
-            
+
             <h4 id="exhaustive-search" class="page-header">
                 Exhaustive search
             </h4>
@@ -535,7 +552,7 @@ layout: default
                     (API version: <span>{{ site.core-latest-stable }}</span>)
                 </small>
             </p>
-            
+
             <h4 id="lr-search" class="page-header">
                 LR subset search
             </h4>
@@ -571,7 +588,7 @@ layout: default
                     (API version: <span>{{ site.core-latest-stable }}</span>)
                 </small>
             </p>
-            
+
             <h4 id="basic-parallel-search" class="page-header">
                 Basic parallel search
             </h4>
@@ -590,20 +607,20 @@ layout: default
                     (API version: <span>{{ site.core-latest-stable }}</span>)
                 </small>
             </p>
-            
+
             <h2 id="github-wiki" class="page-header">
                 GitHub wiki
             </h2>
-            
+
             <p>
                 Additional information about the architecture of the JAMES framework is available on the
                 <a href="https://github.com/hdbeukel/james/wiki">GitHub wiki pages</a>. The wiki includes
                 several UML diagrams and gives a detailed description of the lifecycle of a search. You can
                 also browse the source code on GitHub.
             </p>
-            
+
         </div><!-- end of content -->
-    
+
         <!-- sidebar -->
         <div class="col-md-3 hidden-xs hidden-sm">
             <div class="bs-docs-sidebar" data-spy="affix" data-offset-top="150" data-offset-bottom="150">
@@ -650,5 +667,5 @@ layout: default
                 <a class="back-to-top" href="#">Back to top</a>
             </div>
         </div><!-- end of sidebar -->
-    
+
 </div>
