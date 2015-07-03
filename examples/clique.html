@@ -413,40 +413,7 @@ public class CliqueSolution extends SubsetSolution {
 }
 </pre>
     <p>
-        Now we can not use the predefined <code>SubsetProblem</code> as its solution type is fixed to
-        <code>SubsetSolution</code> instead of our new <code>CliqueSolution</code>. Therefore we extend
-        <code>AbstractProblem</code> to create a <code>CliqueProblem</code> with solution and data type
-        <code>CliqueSolution</code> and <code>CliqueData</code>, respectively. An <code>AbstractProblem</code>
-        has a single abstract method <code>createRandomSolution(rnd)</code>. As creating a random clique is not
-        supported, we throw an error here. Alternatively we could also return an empty instead of a random clique.
-        Throwing an error has the advantage that we are notified if a search attempts to create a random solution,
-        which should never happen anyway if we manually set an empty initial solution and indicates a programming mistake.
-    </p>
-    <div class="bs-callout bs-callout-info">
-        <h4>
-            <i class="fa fa-info-circle"></i>
-            Info
-        </h4>
-        The method <code>createRandomSolution(rnd)</code> takes a random generator as its argument, which should
-        be used as the source of randomness. Each search has a dedicated random generator, which is passed to the
-        problem when requesting a random solutionn. If desired, a search's random generator can be customized with
-        <code>search.setRandom(rnd)</code>.
-    </div>
-<pre class="prettyprint">
-public class CliqueProblem extends AbstractProblem&lt;CliqueSolution, CliqueData&gt;{
-
-    public CliqueProblem(Objective&lt;? super CliqueSolution, ? super CliqueData&gt; objective, CliqueData data) {
-        super(objective, data);
-    }
-
-    public CliqueSolution createRandomSolution(Random rnd) {
-        throw new UnsupportedOperationException("Creating a random clique is not supported.");
-    }
-
-}
-</pre>
-    <p>
-        To actually benefit from the new solution type we create an alternative implementation of the greedy clique neighbourhood
+        To actually benefit from the new solution type, we create an alternative implementation of the greedy clique neighbourhood
         with solution type <code>CliqueSolution</code>. It can simply call
         <code>clique.getPossibleAdds()</code> to get the set of possible adds. Note that we still
         return an <code>AdditionMove</code> which is defined for solution type <code>SubsetSolution</code>. This is allowed because the method
@@ -478,15 +445,36 @@ public class GreedyCliqueNeighbourhood2 implements Neighbourhood&lt;CliqueSoluti
 }
 </pre>
     <p>
-        Finally we need to update the optimization process to use the new solution type <code>CliqueSolution</code> and
-        corresponding optimized neighbourhood <code>GreedyCliqueNeighbourhood2</code>.
+        Now we can not use the predefined <code>SubsetProblem</code> as its solution type is fixed to
+        <code>SubsetSolution</code>. We can not change it to our new <code>CliqueSolution</code>.
+        Therefore, we use the more general <code>GenericProblem</code> which allows to set a custom
+        solution type. The constructor also requests a random solution generator, but since creating a random
+        clique is not supported, we specify a generator that throws an appropriate exception. Our search strategy
+        starts from an empty clique, so no random solution will ever be requested anyway.
     </p>
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-info-circle"></i>
+            Random solution generator
+        </h4>
+        The <code>RandomSolutionGenerator</code> interface has a single method
+        <code>create(rnd, data)</code> which generates a random solution using
+        the specified source of randomness and data. Each search has a dedicated
+        random generator, which is passed to the problem, and subsequently to the
+        applied random solution generator, when requesting a random solution.
+        If desired, a search's random generator can be customized with
+        <code>search.setRandom(rnd)</code>.
+    </div>
 <pre class="prettyprint">
+// as before
 CliqueData data = ...
 CliqueObjective obj = ...
 
-// create clique problem with optimized clique solution type
-CliqueProblem problem = new CliqueProblem(obj, data);
+// create problem
+GenericProblem&lt;CliqueSolution, CliqueData&gt; cliqueProblem = new GenericProblem&lt;&gt;(data, obj, (r,d) -> {
+    // random solution generator throws exception (not supported for this problem)
+    throw new UnsupportedOperationException("Creating a random clique is not supported.");
+});
 
 // RANDOM DESCENT
 
@@ -502,7 +490,7 @@ randomDescent.setCurrentSolution(new CliqueSolution(data));
 // create shaking neighbourhoods (same as before)
 List&lt;Neighbourhood&lt;SubsetSolution&gt;&gt; shakingNeighs = ...
 
-// create variable neighbourhood search with optimized neighbourhood
+// create variable neighbourhood search with solution type clique solution and optimized neighbourhood
 VariableNeighbourhoodSearch&lt;CliqueSolution&gt; vns = new VariableNeighbourhoodSearch&lt;&gt;(
                                                         problem,
                                                         shakingNeighs,
