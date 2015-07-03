@@ -6,7 +6,7 @@
     <coordinates>
       <x>176</x>
       <y>0</y>
-      <w>1032</w>
+      <w>1008</w>
       <h>640</h>
     </coordinates>
     <panel_attributes>problems
@@ -291,7 +291,7 @@ _checkedCopy(T) : T_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1112</x>
+      <x>1128</x>
       <y>368</y>
       <w>24</w>
       <h>160</h>
@@ -534,13 +534,13 @@ isSorted() : boolean</panel_attributes>
     <coordinates>
       <x>832</x>
       <y>432</y>
-      <w>320</w>
+      <w>296</w>
       <h>56</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 RandomSolutionGenerator&lt;SolutionType,DataType&gt;
 --
-createRandomSolution(Random,DataType) : SolutionType</panel_attributes>
+create(Random,DataType) : SolutionType</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -548,7 +548,7 @@ createRandomSolution(Random,DataType) : SolutionType</panel_attributes>
     <coordinates>
       <x>816</x>
       <y>400</y>
-      <w>352</w>
+      <w>344</w>
       <h>224</h>
     </coordinates>
     <panel_attributes>sol
