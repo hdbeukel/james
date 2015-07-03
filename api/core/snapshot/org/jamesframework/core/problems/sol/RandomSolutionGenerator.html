@@ -94,7 +94,7 @@ var activeTableTab = "activeTableTab";
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">org.jamesframework.core.problems.sol</div>
-<h2 title="Interface RandomSolutionGenerator" class="title">Interface RandomSolutionGenerator&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol">Solution</a>&gt;</h2>
+<h2 title="Interface RandomSolutionGenerator" class="title">Interface RandomSolutionGenerator&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol">Solution</a>,DataType&gt;</h2>
 </div>
 <div class="contentContainer">
 <div class="description">
@@ -103,6 +103,7 @@ var activeTableTab = "activeTableTab";
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>SolutionType</code> - type of the generated solutions, required to extend <a href="../../../../../org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol"><code>Solution</code></a></dd>
+<dd><code>DataType</code> - type of data used to generate solutions</dd>
 </dl>
 <dl>
 <dt>Functional Interface:</dt>
@@ -111,10 +112,10 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/FunctionalInterface.html?is-external=true" title="class or interface in java.lang">@FunctionalInterface</a>
-public interface <span class="typeNameLabel">RandomSolutionGenerator&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol">Solution</a>&gt;</span></pre>
-<div class="block">A random solution generator creates random solutions of a specific type.
- It is required that every request generates a new solution instance which
- is independent of any previously generated solutions.</div>
+public interface <span class="typeNameLabel">RandomSolutionGenerator&lt;SolutionType extends <a href="../../../../../org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol">Solution</a>,DataType&gt;</span></pre>
+<div class="block">A random solution generator creates random solutions of a specific type, given some data.
+ It is required that every request generates a new solution instance which is independent
+ of any previously generated solutions.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="mailto:herman.debeukelaer@ugent.be">Herman De Beukelaer</a></dd>
@@ -139,7 +140,8 @@ public interface <span class="typeNameLabel">RandomSolutionGenerator&lt;Solution
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="../../../../../org/jamesframework/core/problems/sol/RandomSolutionGenerator.html" title="type parameter in RandomSolutionGenerator">SolutionType</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/sol/RandomSolutionGenerator.html#createRandomSolution-java.util.Random-">createRandomSolution</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/problems/sol/RandomSolutionGenerator.html#createRandomSolution-java.util.Random-DataType-">createRandomSolution</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd,
+                    <a href="../../../../../org/jamesframework/core/problems/sol/RandomSolutionGenerator.html" title="type parameter in RandomSolutionGenerator">DataType</a>&nbsp;data)</code>
 <div class="block">Generate a random solution.</div>
 </td>
 </tr>
@@ -158,17 +160,21 @@ public interface <span class="typeNameLabel">RandomSolutionGenerator&lt;Solution
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="createRandomSolution-java.util.Random-">
+<a name="createRandomSolution-java.util.Random-java.lang.Object-">
+<!--   -->
+</a><a name="createRandomSolution-java.util.Random-DataType-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>createRandomSolution</h4>
-<pre><a href="../../../../../org/jamesframework/core/problems/sol/RandomSolutionGenerator.html" title="type parameter in RandomSolutionGenerator">SolutionType</a>&nbsp;createRandomSolution(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</pre>
+<pre><a href="../../../../../org/jamesframework/core/problems/sol/RandomSolutionGenerator.html" title="type parameter in RandomSolutionGenerator">SolutionType</a>&nbsp;createRandomSolution(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd,
+                                  <a href="../../../../../org/jamesframework/core/problems/sol/RandomSolutionGenerator.html" title="type parameter in RandomSolutionGenerator">DataType</a>&nbsp;data)</pre>
 <div class="block">Generate a random solution.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>rnd</code> - source of randomness</dd>
+<dd><code>data</code> - given data</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>random solution</dd>
 </dl>

@@ -290,7 +290,7 @@
 <dd>
 <div class="block">Creates a random solution, using a default source of randomness.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/sol/RandomSolutionGenerator.html#createRandomSolution-java.util.Random-">createRandomSolution(Random)</a></span> - Method in interface org.jamesframework.core.problems.sol.<a href="org/jamesframework/core/problems/sol/RandomSolutionGenerator.html" title="interface in org.jamesframework.core.problems.sol">RandomSolutionGenerator</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/sol/RandomSolutionGenerator.html#createRandomSolution-java.util.Random-DataType-">createRandomSolution(Random, DataType)</a></span> - Method in interface org.jamesframework.core.problems.sol.<a href="org/jamesframework/core/problems/sol/RandomSolutionGenerator.html" title="interface in org.jamesframework.core.problems.sol">RandomSolutionGenerator</a></dt>
 <dd>
 <div class="block">Generate a random solution.</div>
 </dd>
@@ -523,10 +523,10 @@
  A generic problem is fully based on delegation of its responsabilities, by separating data from the objective,
  constraints (if any) and random solution generation.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/GenericProblem.html#GenericProblem-org.jamesframework.core.problems.objectives.Objective-DataType-org.jamesframework.core.problems.sol.RandomSolutionGenerator-">GenericProblem(Objective&lt;? super SolutionType, ? super DataType&gt;, DataType, RandomSolutionGenerator&lt;? extends SolutionType&gt;)</a></span> - Constructor for class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/GenericProblem.html" title="class in org.jamesframework.core.problems">GenericProblem</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/GenericProblem.html#GenericProblem-DataType-org.jamesframework.core.problems.objectives.Objective-org.jamesframework.core.problems.sol.RandomSolutionGenerator-">GenericProblem(DataType, Objective&lt;? super SolutionType, ? super DataType&gt;, RandomSolutionGenerator&lt;? extends SolutionType, ? super DataType&gt;)</a></span> - Constructor for class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/GenericProblem.html" title="class in org.jamesframework.core.problems">GenericProblem</a></dt>
 <dd>
 <div class="block">
- Creates a new generic problem with given objective, data and random solution generator.</div>
+ Creates a new generic problem with given data, objective and random solution generator.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/SubsetNeighbourhood.html#getAddCandidates-org.jamesframework.core.subset.SubsetSolution-">getAddCandidates(SubsetSolution)</a></span> - Method in class org.jamesframework.core.subset.neigh.<a href="org/jamesframework/core/subset/neigh/SubsetNeighbourhood.html" title="class in org.jamesframework.core.subset.neigh">SubsetNeighbourhood</a></dt>
 <dd>
@@ -1835,9 +1835,9 @@
 <dd>
 <div class="block">Create a random search, given the problem to solve and a custom search name.</div>
 </dd>
-<dt><a href="org/jamesframework/core/problems/sol/RandomSolutionGenerator.html" title="interface in org.jamesframework.core.problems.sol"><span class="typeNameLink">RandomSolutionGenerator</span></a>&lt;<a href="org/jamesframework/core/problems/sol/RandomSolutionGenerator.html" title="type parameter in RandomSolutionGenerator">SolutionType</a> extends <a href="org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol">Solution</a>&gt; - Interface in <a href="org/jamesframework/core/problems/sol/package-summary.html">org.jamesframework.core.problems.sol</a></dt>
+<dt><a href="org/jamesframework/core/problems/sol/RandomSolutionGenerator.html" title="interface in org.jamesframework.core.problems.sol"><span class="typeNameLink">RandomSolutionGenerator</span></a>&lt;<a href="org/jamesframework/core/problems/sol/RandomSolutionGenerator.html" title="type parameter in RandomSolutionGenerator">SolutionType</a> extends <a href="org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol">Solution</a>,<a href="org/jamesframework/core/problems/sol/RandomSolutionGenerator.html" title="type parameter in RandomSolutionGenerator">DataType</a>&gt; - Interface in <a href="org/jamesframework/core/problems/sol/package-summary.html">org.jamesframework.core.problems.sol</a></dt>
 <dd>
-<div class="block">A random solution generator creates random solutions of a specific type.</div>
+<div class="block">A random solution generator creates random solutions of a specific type, given some data.</div>
 </dd>
 <dt><a href="org/jamesframework/core/search/algo/vns/ReducedVariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns"><span class="typeNameLink">ReducedVariableNeighbourhoodSearch</span></a>&lt;<a href="org/jamesframework/core/search/algo/vns/ReducedVariableNeighbourhoodSearch.html" title="type parameter in ReducedVariableNeighbourhoodSearch">SolutionType</a> extends <a href="org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol">Solution</a>&gt; - Class in <a href="org/jamesframework/core/search/algo/vns/package-summary.html">org.jamesframework.core.search.algo.vns</a></dt>
 <dd>
@@ -2201,7 +2201,7 @@
 <dd>
 <div class="block">Set custom random generator.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/GenericProblem.html#setRandomSolutionGenerator-org.jamesframework.core.problems.sol.RandomSolutionGenerator-">setRandomSolutionGenerator(RandomSolutionGenerator&lt;? extends SolutionType&gt;)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/GenericProblem.html" title="class in org.jamesframework.core.problems">GenericProblem</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/GenericProblem.html#setRandomSolutionGenerator-org.jamesframework.core.problems.sol.RandomSolutionGenerator-">setRandomSolutionGenerator(RandomSolutionGenerator&lt;? extends SolutionType, ? super DataType&gt;)</a></span> - Method in class org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/GenericProblem.html" title="class in org.jamesframework.core.problems">GenericProblem</a></dt>
 <dd>
 <div class="block">Set random solution generator.</div>
 </dd>
@@ -2508,25 +2508,25 @@
 <dd>
 <div class="block">High-level subset problem consisting of data, an objective and possibly some constraints (see <a href="org/jamesframework/core/problems/GenericProblem.html" title="class in org.jamesframework.core.problems"><code>GenericProblem</code></a>).</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetProblem.html#SubsetProblem-org.jamesframework.core.problems.objectives.Objective-DataType-int-int-java.util.Comparator-">SubsetProblem(Objective&lt;? super SubsetSolution, ? super DataType&gt;, DataType, int, int, Comparator&lt;Integer&gt;)</a></span> - Constructor for class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset">SubsetProblem</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetProblem.html#SubsetProblem-DataType-org.jamesframework.core.problems.objectives.Objective-int-int-java.util.Comparator-">SubsetProblem(DataType, Objective&lt;? super SubsetSolution, ? super DataType&gt;, int, int, Comparator&lt;Integer&gt;)</a></span> - Constructor for class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset">SubsetProblem</a></dt>
 <dd>
 <div class="block">
- Creates a new subset problem with given objective, data and minimum/maximum subset size.</div>
+ Creates a new subset problem with given data, objective and minimum/maximum subset size.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetProblem.html#SubsetProblem-org.jamesframework.core.problems.objectives.Objective-DataType-int-int-boolean-">SubsetProblem(Objective&lt;? super SubsetSolution, ? super DataType&gt;, DataType, int, int, boolean)</a></span> - Constructor for class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset">SubsetProblem</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetProblem.html#SubsetProblem-DataType-org.jamesframework.core.problems.objectives.Objective-int-int-boolean-">SubsetProblem(DataType, Objective&lt;? super SubsetSolution, ? super DataType&gt;, int, int, boolean)</a></span> - Constructor for class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset">SubsetProblem</a></dt>
 <dd>
 <div class="block">
- Creates a new subset problem with given objective, data and minimum/maximum subset size.</div>
+ Creates a new subset problem with given data, objective and minimum/maximum subset size.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetProblem.html#SubsetProblem-org.jamesframework.core.problems.objectives.Objective-DataType-int-int-">SubsetProblem(Objective&lt;? super SubsetSolution, ? super DataType&gt;, DataType, int, int)</a></span> - Constructor for class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset">SubsetProblem</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetProblem.html#SubsetProblem-DataType-org.jamesframework.core.problems.objectives.Objective-int-int-">SubsetProblem(DataType, Objective&lt;? super SubsetSolution, ? super DataType&gt;, int, int)</a></span> - Constructor for class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset">SubsetProblem</a></dt>
 <dd>
-<div class="block">Creates a new subset problem with given objective, data and minimum/maximum subset size.</div>
+<div class="block">Creates a new subset problem with given data, objective and minimum/maximum subset size.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetProblem.html#SubsetProblem-org.jamesframework.core.problems.objectives.Objective-DataType-int-">SubsetProblem(Objective&lt;? super SubsetSolution, ? super DataType&gt;, DataType, int)</a></span> - Constructor for class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset">SubsetProblem</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetProblem.html#SubsetProblem-DataType-org.jamesframework.core.problems.objectives.Objective-int-">SubsetProblem(DataType, Objective&lt;? super SubsetSolution, ? super DataType&gt;, int)</a></span> - Constructor for class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset">SubsetProblem</a></dt>
 <dd>
 <div class="block">Creates a subset problem with fixed subset size.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetProblem.html#SubsetProblem-org.jamesframework.core.problems.objectives.Objective-DataType-">SubsetProblem(Objective&lt;? super SubsetSolution, ? super DataType&gt;, DataType)</a></span> - Constructor for class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset">SubsetProblem</a></dt>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetProblem.html#SubsetProblem-DataType-org.jamesframework.core.problems.objectives.Objective-">SubsetProblem(DataType, Objective&lt;? super SubsetSolution, ? super DataType&gt;)</a></span> - Constructor for class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset">SubsetProblem</a></dt>
 <dd>
 <div class="block">Creates a subset problem without subset size limits.</div>
 </dd>

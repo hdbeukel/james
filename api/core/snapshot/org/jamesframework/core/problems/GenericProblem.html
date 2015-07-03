@@ -177,11 +177,11 @@ implements <a href="../../../../org/jamesframework/core/problems/Problem.html" t
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/GenericProblem.html#GenericProblem-org.jamesframework.core.problems.objectives.Objective-DataType-org.jamesframework.core.problems.sol.RandomSolutionGenerator-">GenericProblem</a></span>(<a href="../../../../org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;? super <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">SolutionType</a>,? super <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">DataType</a>&gt;&nbsp;objective,
-              <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">DataType</a>&nbsp;data,
-              <a href="../../../../org/jamesframework/core/problems/sol/RandomSolutionGenerator.html" title="interface in org.jamesframework.core.problems.sol">RandomSolutionGenerator</a>&lt;? extends <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">SolutionType</a>&gt;&nbsp;randomSolutionGenerator)</code>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/GenericProblem.html#GenericProblem-DataType-org.jamesframework.core.problems.objectives.Objective-org.jamesframework.core.problems.sol.RandomSolutionGenerator-">GenericProblem</a></span>(<a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">DataType</a>&nbsp;data,
+              <a href="../../../../org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;? super <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">SolutionType</a>,? super <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">DataType</a>&gt;&nbsp;objective,
+              <a href="../../../../org/jamesframework/core/problems/sol/RandomSolutionGenerator.html" title="interface in org.jamesframework.core.problems.sol">RandomSolutionGenerator</a>&lt;? extends <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">SolutionType</a>,? super <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">DataType</a>&gt;&nbsp;randomSolutionGenerator)</code>
 <div class="block">
- Creates a new generic problem with given objective, data and random solution generator.</div>
+ Creates a new generic problem with given data, objective and random solution generator.</div>
 </td>
 </tr>
 </table>
@@ -258,7 +258,7 @@ implements <a href="../../../../org/jamesframework/core/problems/Problem.html" t
 </td>
 </tr>
 <tr id="i9" class="rowColor">
-<td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/sol/RandomSolutionGenerator.html" title="interface in org.jamesframework.core.problems.sol">RandomSolutionGenerator</a>&lt;? extends <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">SolutionType</a>&gt;</code></td>
+<td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/sol/RandomSolutionGenerator.html" title="interface in org.jamesframework.core.problems.sol">RandomSolutionGenerator</a>&lt;? extends <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">SolutionType</a>,? super <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">DataType</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/GenericProblem.html#getRandomSolutionGenerator--">getRandomSolutionGenerator</a></span>()</code>
 <div class="block">Get the random solution generator.</div>
 </td>
@@ -301,7 +301,7 @@ implements <a href="../../../../org/jamesframework/core/problems/Problem.html" t
 </tr>
 <tr id="i16" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/GenericProblem.html#setRandomSolutionGenerator-org.jamesframework.core.problems.sol.RandomSolutionGenerator-">setRandomSolutionGenerator</a></span>(<a href="../../../../org/jamesframework/core/problems/sol/RandomSolutionGenerator.html" title="interface in org.jamesframework.core.problems.sol">RandomSolutionGenerator</a>&lt;? extends <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">SolutionType</a>&gt;&nbsp;randomSolutionGenerator)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/problems/GenericProblem.html#setRandomSolutionGenerator-org.jamesframework.core.problems.sol.RandomSolutionGenerator-">setRandomSolutionGenerator</a></span>(<a href="../../../../org/jamesframework/core/problems/sol/RandomSolutionGenerator.html" title="interface in org.jamesframework.core.problems.sol">RandomSolutionGenerator</a>&lt;? extends <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">SolutionType</a>,? super <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">DataType</a>&gt;&nbsp;randomSolutionGenerator)</code>
 <div class="block">Set random solution generator.</div>
 </td>
 </tr>
@@ -350,29 +350,30 @@ implements <a href="../../../../org/jamesframework/core/problems/Problem.html" t
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="GenericProblem-org.jamesframework.core.problems.objectives.Objective-java.lang.Object-org.jamesframework.core.problems.sol.RandomSolutionGenerator-">
+<a name="GenericProblem-java.lang.Object-org.jamesframework.core.problems.objectives.Objective-org.jamesframework.core.problems.sol.RandomSolutionGenerator-">
 <!--   -->
-</a><a name="GenericProblem-org.jamesframework.core.problems.objectives.Objective-DataType-org.jamesframework.core.problems.sol.RandomSolutionGenerator-">
+</a><a name="GenericProblem-DataType-org.jamesframework.core.problems.objectives.Objective-org.jamesframework.core.problems.sol.RandomSolutionGenerator-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>GenericProblem</h4>
-<pre>public&nbsp;GenericProblem(<a href="../../../../org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;? super <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">SolutionType</a>,? super <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">DataType</a>&gt;&nbsp;objective,
-                      <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">DataType</a>&nbsp;data,
-                      <a href="../../../../org/jamesframework/core/problems/sol/RandomSolutionGenerator.html" title="interface in org.jamesframework.core.problems.sol">RandomSolutionGenerator</a>&lt;? extends <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">SolutionType</a>&gt;&nbsp;randomSolutionGenerator)</pre>
+<pre>public&nbsp;GenericProblem(<a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">DataType</a>&nbsp;data,
+                      <a href="../../../../org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;? super <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">SolutionType</a>,? super <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">DataType</a>&gt;&nbsp;objective,
+                      <a href="../../../../org/jamesframework/core/problems/sol/RandomSolutionGenerator.html" title="interface in org.jamesframework.core.problems.sol">RandomSolutionGenerator</a>&lt;? extends <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">SolutionType</a>,? super <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">DataType</a>&gt;&nbsp;randomSolutionGenerator)</pre>
 <div class="block"><p>
- Creates a new generic problem with given objective, data and random solution generator. Any objective
+ Creates a new generic problem with given data, objective and random solution generator. Any objective
  designed for the solution and data types of the problem, or supertypes thereof, is accepted. The random
- solution generator may produce subtypes of the problem's solution type.
+ solution generator may produce subtypes of the problem's solution type, requiring any supertype of the
+ problem's data type.
  </p>
  <p>
  The objective and random solution generator can not be <code>null</code>.
  </p></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>objective</code> - objective function</dd>
 <dd><code>data</code> - underlying data</dd>
+<dd><code>objective</code> - objective function</dd>
 <dd><code>randomSolutionGenerator</code> - random solution generator</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>objective</code> or <code>randomSolutionGenerator</code> are <code>null</code></dd>
@@ -424,7 +425,7 @@ implements <a href="../../../../org/jamesframework/core/problems/Problem.html" t
 <ul class="blockList">
 <li class="blockList">
 <h4>getRandomSolutionGenerator</h4>
-<pre>public&nbsp;<a href="../../../../org/jamesframework/core/problems/sol/RandomSolutionGenerator.html" title="interface in org.jamesframework.core.problems.sol">RandomSolutionGenerator</a>&lt;? extends <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">SolutionType</a>&gt;&nbsp;getRandomSolutionGenerator()</pre>
+<pre>public&nbsp;<a href="../../../../org/jamesframework/core/problems/sol/RandomSolutionGenerator.html" title="interface in org.jamesframework.core.problems.sol">RandomSolutionGenerator</a>&lt;? extends <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">SolutionType</a>,? super <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">DataType</a>&gt;&nbsp;getRandomSolutionGenerator()</pre>
 <div class="block">Get the random solution generator.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -438,9 +439,10 @@ implements <a href="../../../../org/jamesframework/core/problems/Problem.html" t
 <ul class="blockList">
 <li class="blockList">
 <h4>setRandomSolutionGenerator</h4>
-<pre>public&nbsp;void&nbsp;setRandomSolutionGenerator(<a href="../../../../org/jamesframework/core/problems/sol/RandomSolutionGenerator.html" title="interface in org.jamesframework.core.problems.sol">RandomSolutionGenerator</a>&lt;? extends <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">SolutionType</a>&gt;&nbsp;randomSolutionGenerator)</pre>
+<pre>public&nbsp;void&nbsp;setRandomSolutionGenerator(<a href="../../../../org/jamesframework/core/problems/sol/RandomSolutionGenerator.html" title="interface in org.jamesframework.core.problems.sol">RandomSolutionGenerator</a>&lt;? extends <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">SolutionType</a>,? super <a href="../../../../org/jamesframework/core/problems/GenericProblem.html" title="type parameter in GenericProblem">DataType</a>&gt;&nbsp;randomSolutionGenerator)</pre>
 <div class="block">Set random solution generator. It is allowed for the generator to produce subtypes of the
- problem's solution type. The generator can not be <code>null</code>.</div>
+ problem's solution type, requiring any supertype of the problem's data type. The generator
+ can not be <code>null</code>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>randomSolutionGenerator</code> - random solution generator</dd>
