@@ -82,6 +82,7 @@
 <li><a href="org/jamesframework/core/problems/datatypes/package-tree.html">org.jamesframework.core.problems.datatypes</a>, </li>
 <li><a href="org/jamesframework/core/problems/objectives/package-tree.html">org.jamesframework.core.problems.objectives</a>, </li>
 <li><a href="org/jamesframework/core/problems/objectives/evaluations/package-tree.html">org.jamesframework.core.problems.objectives.evaluations</a>, </li>
+<li><a href="org/jamesframework/core/problems/sol/package-tree.html">org.jamesframework.core.problems.sol</a>, </li>
 <li><a href="org/jamesframework/core/search/package-tree.html">org.jamesframework.core.search</a>, </li>
 <li><a href="org/jamesframework/core/search/algo/package-tree.html">org.jamesframework.core.search.algo</a>, </li>
 <li><a href="org/jamesframework/core/search/algo/exh/package-tree.html">org.jamesframework.core.search.algo.exh</a>, </li>
@@ -108,11 +109,6 @@
 <ul>
 <li type="circle">java.lang.<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang"><span class="typeNameLink">Object</span></a>
 <ul>
-<li type="circle">org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/AbstractProblem.html" title="class in org.jamesframework.core.problems"><span class="typeNameLink">AbstractProblem</span></a>&lt;SolutionType,DataType&gt; (implements org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;SolutionType&gt;)
-<ul>
-<li type="circle">org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset"><span class="typeNameLink">SubsetProblem</span></a>&lt;DataType&gt;</li>
-</ul>
-</li>
 <li type="circle">org.jamesframework.core.subset.neigh.moves.<a href="org/jamesframework/core/subset/neigh/moves/AbstractSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.moves"><span class="typeNameLink">AbstractSubsetMove</span></a> (implements org.jamesframework.core.subset.neigh.moves.<a href="org/jamesframework/core/subset/neigh/moves/SubsetMove.html" title="interface in org.jamesframework.core.subset.neigh.moves">SubsetMove</a>)
 <ul>
 <li type="circle">org.jamesframework.core.subset.neigh.moves.<a href="org/jamesframework/core/subset/neigh/moves/AdditionMove.html" title="class in org.jamesframework.core.subset.neigh.moves"><span class="typeNameLink">AdditionMove</span></a></li>
@@ -123,6 +119,11 @@
 </li>
 <li type="circle">org.jamesframework.core.util.<a href="org/jamesframework/core/util/FastLimitedQueue.html" title="class in org.jamesframework.core.util"><span class="typeNameLink">FastLimitedQueue</span></a>&lt;E&gt;</li>
 <li type="circle">org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="class in org.jamesframework.core.search.algo.tabu"><span class="typeNameLink">FullTabuMemory</span></a>&lt;SolutionType&gt; (implements org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/TabuMemory.html" title="interface in org.jamesframework.core.search.algo.tabu">TabuMemory</a>&lt;SolutionType&gt;)</li>
+<li type="circle">org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/GenericProblem.html" title="class in org.jamesframework.core.problems"><span class="typeNameLink">GenericProblem</span></a>&lt;SolutionType,DataType&gt; (implements org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;SolutionType&gt;)
+<ul>
+<li type="circle">org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetProblem.html" title="class in org.jamesframework.core.subset"><span class="typeNameLink">SubsetProblem</span></a>&lt;DataType&gt;</li>
+</ul>
+</li>
 <li type="circle">org.jamesframework.core.subset.algo.tabu.<a href="org/jamesframework/core/subset/algo/tabu/IDBasedSubsetTabuMemory.html" title="class in org.jamesframework.core.subset.algo.tabu"><span class="typeNameLink">IDBasedSubsetTabuMemory</span></a> (implements org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/TabuMemory.html" title="interface in org.jamesframework.core.search.algo.tabu">TabuMemory</a>&lt;SolutionType&gt;)</li>
 <li type="circle">org.jamesframework.core.search.stopcriteria.<a href="org/jamesframework/core/search/stopcriteria/MaxRuntime.html" title="class in org.jamesframework.core.search.stopcriteria"><span class="typeNameLink">MaxRuntime</span></a> (implements org.jamesframework.core.search.stopcriteria.<a href="org/jamesframework/core/search/stopcriteria/StopCriterion.html" title="interface in org.jamesframework.core.search.stopcriteria">StopCriterion</a>)</li>
 <li type="circle">org.jamesframework.core.search.stopcriteria.<a href="org/jamesframework/core/search/stopcriteria/MaxSteps.html" title="class in org.jamesframework.core.search.stopcriteria"><span class="typeNameLink">MaxSteps</span></a> (implements org.jamesframework.core.search.stopcriteria.<a href="org/jamesframework/core/search/stopcriteria/StopCriterion.html" title="interface in org.jamesframework.core.search.stopcriteria">StopCriterion</a>)</li>
@@ -169,7 +170,7 @@
 <li type="circle">org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/SimplePenalizingValidation.html" title="class in org.jamesframework.core.problems.constraints.validations"><span class="typeNameLink">SimplePenalizingValidation</span></a> (implements org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/PenalizingValidation.html" title="interface in org.jamesframework.core.problems.constraints.validations">PenalizingValidation</a>)</li>
 <li type="circle">org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/SimpleValidation.html" title="class in org.jamesframework.core.problems.constraints.validations"><span class="typeNameLink">SimpleValidation</span></a> (implements org.jamesframework.core.problems.constraints.validations.<a href="org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a>)</li>
 <li type="circle">org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/SingleEvaluatedMoveCache.html" title="class in org.jamesframework.core.search.cache"><span class="typeNameLink">SingleEvaluatedMoveCache</span></a> (implements org.jamesframework.core.search.cache.<a href="org/jamesframework/core/search/cache/EvaluatedMoveCache.html" title="interface in org.jamesframework.core.search.cache">EvaluatedMoveCache</a>)</li>
-<li type="circle">org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems"><span class="typeNameLink">Solution</span></a>
+<li type="circle">org.jamesframework.core.problems.sol.<a href="org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol"><span class="typeNameLink">Solution</span></a>
 <ul>
 <li type="circle">org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset"><span class="typeNameLink">SubsetSolution</span></a></li>
 </ul>
@@ -240,6 +241,7 @@
 <li type="circle">org.jamesframework.core.search.neigh.<a href="org/jamesframework/core/search/neigh/Neighbourhood.html" title="interface in org.jamesframework.core.search.neigh"><span class="typeNameLink">Neighbourhood</span></a>&lt;SolutionType&gt;</li>
 <li type="circle">org.jamesframework.core.problems.objectives.<a href="org/jamesframework/core/problems/objectives/Objective.html" title="interface in org.jamesframework.core.problems.objectives"><span class="typeNameLink">Objective</span></a>&lt;SolutionType,DataType&gt;</li>
 <li type="circle">org.jamesframework.core.problems.<a href="org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems"><span class="typeNameLink">Problem</span></a>&lt;SolutionType&gt;</li>
+<li type="circle">org.jamesframework.core.problems.sol.<a href="org/jamesframework/core/problems/sol/RandomSolutionGenerator.html" title="interface in org.jamesframework.core.problems.sol"><span class="typeNameLink">RandomSolutionGenerator</span></a>&lt;SolutionType,DataType&gt;</li>
 <li type="circle">org.jamesframework.core.factory.<a href="org/jamesframework/core/factory/SearchFactory.html" title="interface in org.jamesframework.core.factory"><span class="typeNameLink">SearchFactory</span></a>&lt;SolutionType&gt;
 <ul>
 <li type="circle">org.jamesframework.core.factory.<a href="org/jamesframework/core/factory/LocalSearchFactory.html" title="interface in org.jamesframework.core.factory"><span class="typeNameLink">LocalSearchFactory</span></a>&lt;SolutionType&gt;</li>

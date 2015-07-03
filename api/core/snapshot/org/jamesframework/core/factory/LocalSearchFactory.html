@@ -94,7 +94,7 @@ var activeTableTab = "activeTableTab";
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">org.jamesframework.core.factory</div>
-<h2 title="Interface LocalSearchFactory" class="title">Interface LocalSearchFactory&lt;SolutionType extends <a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</h2>
+<h2 title="Interface LocalSearchFactory" class="title">Interface LocalSearchFactory&lt;SolutionType extends <a href="../../../../org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol">Solution</a>&gt;</h2>
 </div>
 <div class="contentContainer">
 <div class="description">
@@ -102,7 +102,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
-<dd><code>SolutionType</code> - solution type of created local searches, required to extend <a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems"><code>Solution</code></a></dd>
+<dd><code>SolutionType</code> - solution type of created local searches, required to extend <a href="../../../../org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol"><code>Solution</code></a></dd>
 </dl>
 <dl>
 <dt>All Superinterfaces:</dt>
@@ -115,7 +115,7 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/FunctionalInterface.html?is-external=true" title="class or interface in java.lang">@FunctionalInterface</a>
-public interface <span class="typeNameLabel">LocalSearchFactory&lt;SolutionType extends <a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</span>
+public interface <span class="typeNameLabel">LocalSearchFactory&lt;SolutionType extends <a href="../../../../org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol">Solution</a>&gt;</span>
 extends <a href="../../../../org/jamesframework/core/factory/SearchFactory.html" title="interface in org.jamesframework.core.factory">SearchFactory</a>&lt;SolutionType&gt;</pre>
 <div class="block">Factory used to create a <em>local</em> search given the problem to be solved.</div>
 <dl>
@@ -171,7 +171,7 @@ extends <a href="../../../../org/jamesframework/core/factory/SearchFactory.html"
 <div class="block">Create a local search, given the problem to solve.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../org/jamesframework/core/factory/SearchFactory.html#create-org.jamesframework.core.problems.Problem-">create</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../org/jamesframework/core/factory/SearchFactory.html" title="interface in org.jamesframework.core.factory">SearchFactory</a>&lt;<a href="../../../../org/jamesframework/core/factory/LocalSearchFactory.html" title="type parameter in LocalSearchFactory">SolutionType</a> extends <a href="../../../../org/jamesframework/core/problems/Solution.html" title="class in org.jamesframework.core.problems">Solution</a>&gt;</code></dd>
+<dd><code><a href="../../../../org/jamesframework/core/factory/SearchFactory.html#create-org.jamesframework.core.problems.Problem-">create</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../org/jamesframework/core/factory/SearchFactory.html" title="interface in org.jamesframework.core.factory">SearchFactory</a>&lt;<a href="../../../../org/jamesframework/core/factory/LocalSearchFactory.html" title="type parameter in LocalSearchFactory">SolutionType</a> extends <a href="../../../../org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol">Solution</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>problem</code> - problem to solve</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
