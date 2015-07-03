@@ -267,8 +267,7 @@ public class KnapsackConstraint implements Constraint&lt;SubsetSolution, Knapsac
         The data and objective are passed to the problem upon construction and the constraint is
         added afterwards with <code>addMandatoryConstraint(...)</code>. By adding a <i>mandatory</i> constraint,
         applied neighbourhood searches discard all neighbours that violate this constraint.
-        The returned best found solution (if any) is then always guaranteed to satisfy the constraint, but we
-        should also make sure to start with a valid solution (see <a href="#custom-initial-solution">below</a>).
+        The returned best found solution (if any) is then always guaranteed to satisfy the constraint.
     </p>
     <div class="bs-callout bs-callout-info">
         <h4>
@@ -298,10 +297,78 @@ KnapsackObjective obj = new KnapsackObjective();
 KnapsackConstraint constraint = new KnapsackConstraint(capacity);
 
 // create subset problem (all sizes allowed)
-SubsetProblem&lt;KnapsackData&gt; problem = new SubsetProblem&lt;&gt;(obj, data);
+SubsetProblem&lt;KnapsackData&gt; problem = new SubsetProblem&lt;&gt;(data, obj);
 
 // add mandatory constraint
 problem.addMandatoryConstraint(constraint);
+</pre>
+    <p>
+        By default, local searches start from a randomly generated initial solution.
+        In case of a subset problem, any random selection within the size limits (if any)
+        may be generated when requesting a random solution.  However, it may of course happen
+        that such random selection exceeds the knapsack capacity and does not have any valid
+        neighbours, in which case the search immediately stalls. To ensure that only random
+        subsets within the knapsack constraint are generated, we can set a custom random
+        solution generator. First, the default generator is retrieved from the problem.
+        Then, a custom generator is set which calls the default generator to obtain a
+        random selection, from which items are subsequently removed until the capacity
+        is respected. The <code>RandomSolutionGenerator</code> interface has a single
+        method <code>createRandomSolution(rnd, data)</code> to generate a random solution
+        using the specified source of randomness and data. It can therefore compactly be
+        defined as a Java 8 lambda expression, as in the example code below.
+    </p>
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-lightbulb-o"></i>
+            Mandatory versus penalizing constraints (revisited)
+        </h4>
+        When using a penalizing instead of a mandatory constraint it is not required
+        that the initial solution satisfies the constraint. If the penalties are carefully
+        chosen, the search is able to find its way towards solutions within the constraint
+        even if it started in a region of the search space where all solutions violate the
+        constraint, because the latter solutions are not discarded but penalized. Yet, a
+        penalizing constraint is more difficult to design.
+        See <a href="/examples/knapsack2/">example 2B</a>.
+    </div>
+<pre class="prettyprint">
+// retrieve default random solution generator
+RandomSolutionGenerator&lt;? extends SubsetSolution, ? super KnapsackData&gt; defaultRndSolGen = problem.getRandomSolutionGenerator();
+
+// set custom generator
+problem.setRandomSolutionGenerator((r,d) -> {
+    // 1: create default random initial solution
+    SubsetSolution sol = defaultRndSolGen.createRandomSolution(r, d);
+    // 2: compute current total weight
+    double weight = computeSelectionWeight(sol, d);
+    // 3: remove random items as long as total weight is larger than the capacity
+    while(weight > capacity){
+        int id = SetUtilities.getRandomElement(sol.getSelectedIDs(), r);
+        sol.deselect(id);
+        weight -= data.getWeight(id);
+    }
+    // 4: retain random subset to increase initial solution variability
+    int finalSize = r.nextInt(sol.getNumSelectedIDs()+1);
+    sol.deselectAll(SetUtilities.getRandomSubset(sol.getSelectedIDs(),
+                                                 sol.getNumSelectedIDs()-finalSize,
+                                                 r));
+    return sol;
+});
+</pre>
+    <div class="bs-callout bs-callout-info">
+        <h4>
+            <i class="fa fa-lightbulb-o"></i>
+            Good to know
+        </h4>
+        The utility class <code>SetUtilities</code> can be used to sample random items and subsets of any given set.
+    </div>
+    <p>
+        The total weight of a selection is easily computed.
+    </p>
+<pre class="prettyprint">
+// computes the total weight of items selected in the given subset solution
+double computeSelectionWeight(SubsetSolution solution, KnapsackData data){
+    return solution.getSelectedIDs().stream().mapToDouble(data::getWeight).sum();
+}
 </pre>
 
     <h4 class="page-header">
@@ -320,7 +387,7 @@ problem.addMandatoryConstraint(constraint);
         Random descent
     </h5>
     <p>
-        First we create the <code>RandomDescent</code> search with a predefined <code>SinglePerturbationNeighbourhood</code> which
+        First create the <code>RandomDescent</code> search with a predefined <code>SinglePerturbationNeighbourhood</code> which
         generates moves that add, delete or swap a single (pair of) ID(s) in the current selection. This neighbourhood allows selection
         of variable size subsets.
         The solution type of the search is fixed to <code>SubsetSolution</code>. A maximum runtime is specified as stop criterion and a
@@ -335,67 +402,6 @@ long timeLimit = ...
 randomDescent.addStopCriterion(new MaxRuntime(timeLimit, TimeUnit.SECONDS));
 // attach listener (see example 1A)
 randomDescent.addSearchListener(new ProgressSearchListener());
-</pre>
-    <p id="custom-initial-solution">
-        By default, a local search starts from a randomly generated initial solution. However, it may of course happen that such random
-        solution exceeds the knapsack capacity and does not have any valid neighbours so that the search immediately gets stuck.
-        To avoid this we need to specify a custom initial solution. We could simply always start from an empty solution
-        but a different approach is taken here to increase the variability of initial solutions.
-    </p>
-    <div class="bs-callout bs-callout-info">
-        <h4>
-            <i class="fa fa-lightbulb-o"></i>
-            Mandatory versus penalizing constraints (revisited)
-        </h4>
-        When using a penalizing instead of a mandatory constraint it might not be required to set a custom initial solution that satisfies
-        the constraint. If the penalties are carefully chosen, the search may be able to find its way towards solutions within the constraint
-        even if it started in a region of the search space where all solutions violate the constraint, because the latter solutions are not
-        discarded but penalized. Yet, a penalizing constraint is more difficult to design. See <a href="/examples/knapsack2/">example 2B</a>.
-    </div>
-<pre class="prettyprint">
-// random generator
-private static final Random RG = new Random();
-
-// creates a custom initial solution that does not exceed the knapsack capacity
-SubsetSolution createInitialSolution(Problem&lt;SubsetSolution&gt; problem, KnapsackData data, double capacity){
-    // 1: create random initial solution
-    SubsetSolution initialSolution = problem.createRandomSolution();
-    // 2: compute current total weight
-    double weight = computeSelectionWeight(initialSolution, data);
-    // 3: remove random items as long as total weight is larger than the capacity
-    while(weight > capacity){
-        int id = SetUtilities.getRandomElement(initialSolution.getSelectedIDs(), RG);
-        initialSolution.deselect(id);
-        weight -= data.getWeight(id);
-    }
-    // 4: retain random subset to increase variability
-    int finalSize = RG.nextInt(initialSolution.getNumSelectedIDs()+1);
-    initialSolution.deselectAll(SetUtilities.getRandomSubset(
-                                                initialSolution.getSelectedIDs(),
-                                                initialSolution.getNumSelectedIDs()-finalSize,
-                                                RG)
-                                            );
-    return initialSolution;
-}
-
-// computes the total weight of items selected in the given subset solution
-double computeSelectionWeight(SubsetSolution solution, KnapsackData data){
-    return solution.getSelectedIDs().stream().mapToDouble(data::getWeight).sum();
-}
-</pre>
-    <div class="bs-callout bs-callout-info">
-        <h4>
-            <i class="fa fa-lightbulb-o"></i>
-            Good to know
-        </h4>
-        The utility class <code>SetUtilities</code> can be used to sample random items and subsets of any given set.
-    </div>
-    <p>
-        Now we can set a custom initial solution before starting the search.
-    </p>
-<pre class="prettyprint">
-// set custom initial solution that satisfies the constraint
-randomDescent.setCurrentSolution(createInitialSolution(problem, data, capacity));
 </pre>
     <p>
         Then start the search, get the best found solution when it completes and eventually dispose it to release all resources.
@@ -449,51 +455,17 @@ double computeAverageProfit(KnapsackData data){
 }
 </pre>
     <p>
-        By default, each Metropolis replica starts from an independently generated random solution. As motivated before,
-        this will not work here because of the mandatory constraint.
-        Simply calling <code>setCurrentSolution(solution)</code> on
-        the parallel tempering algorithm before starting the search will work, but this sets the same initial solution
-        in all replicas. As the built-in multi-start is one of the advantages of parallel tempering over basic
-        algorithms, it is advised to set an individual valid initial solution for each replica. This can be obtained
-        by specifying a custom Metropolis search factory when creating the parallel tempering search. All replicas
-        are then created using this factory. Note that such custom Metropolis search factory can also be used for
-        other purposes, e.g. to attach listeners to the replicas, to assign custom random generators, etc.
+        Now we can create the parallel tempering search.
     </p>
-    <p>
-        A <code>MetropolisSearchFactory</code> is parameterized on the solution type of the generated searches
-        and has a single method to create a Metropolis search, given the problem to solve, the applied neighbourhood
-        and the desired temperature. It can be compactly defined as a Java 8 lambda expression, as demonstrated
-        in the example code below.
-    </p>
-    <div class="bs-callout bs-callout-info">
-        <h4>
-            <i class="fa fa-info-circle"></i>
-            Alternative approach
-        </h4>
-        An different approach is to extend <code>SubsetProblem</code> and to override the method
-        <code>createRandomSolution(rnd)</code> so that it returns a random subset within the knapsack
-        constraint. This is the most general approach, ensuring that any requested random solution is
-        always valid. Custom problem classes are discussed in examples <a href="/examples/clique/">3</a>,
-        <a href="/examples/tsp/">4A</a>, <a href="/examples/tsp2/">4B</a> and <a href="/examples/tsp3/">4C</a>.
-    </div>
 <pre class="prettyprint">
-// define custom Metropolis search factory
-MetropolisSearchFactory&lt;SubsetSolution&gt; replicaFactory = (prob, neigh, temp) -> {
-    // create Metropolis search with requested parameters
-    MetropolisSearch&lt;SubsetSolution&gt; metropolis = new MetropolisSearch&lt;&gt;(prob, neigh, temp);
-    // set valid initial solution (separate per created replica!)
-    metropolis.setCurrentSolution(createInitialSolution(prob, data, capacity));
-    return metropolis;
-};
-// create parallel tempering with custom factory
+// create parallel tempering
 int numReplicas = 10;
 ParallelTempering&lt;SubsetSolution&gt; parallelTempering = new ParallelTempering&lt;&gt;(problem,
                                                             new SinglePerturbationNeighbourhood(),
-                                                            numReplicas, minTemp, maxTemp,
-                                                            replicaFactory);
+                                                            numReplicas, minTemp, maxTemp);
 </pre>
     <p>
-        Running the search is now done in exactly the same way as for the random descent algorithm. Experimenting
+        Running the search is done in exactly the same way as for the random descent algorithm. Experimenting
         with some example input will show that the advanced parallel tempering algorithm finds much better solutions
         for the 0/1 knapsack problem as compared to the basic random descent algorithm.
     </p>
