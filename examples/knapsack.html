@@ -313,7 +313,7 @@ problem.addMandatoryConstraint(constraint);
         Then, a custom generator is set which calls the default generator to obtain a
         random selection, from which items are subsequently removed until the capacity
         is respected. The <code>RandomSolutionGenerator</code> interface has a single
-        method <code>createRandomSolution(rnd, data)</code> to generate a random solution
+        method <code>create(rnd, data)</code> to generate a random solution
         using the specified source of randomness and data. It can therefore compactly be
         defined as a Java 8 lambda expression, as in the example code below.
     </p>
@@ -337,7 +337,7 @@ RandomSolutionGenerator&lt;? extends SubsetSolution, ? super KnapsackData&gt; de
 // set custom generator
 problem.setRandomSolutionGenerator((r,d) -> {
     // 1: create default random initial solution
-    SubsetSolution sol = defaultRndSolGen.createRandomSolution(r, d);
+    SubsetSolution sol = defaultRndSolGen.create(r, d);
     // 2: compute current total weight
     double weight = computeSelectionWeight(sol, d);
     // 3: remove random items as long as total weight is larger than the capacity
