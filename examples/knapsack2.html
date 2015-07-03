@@ -165,7 +165,7 @@ PenalizingKnapsackConstraint constraint = new PenalizingKnapsackConstraint(capac
 // IMPORTANT: IDs are ordered based on the weight of the corresponding items
 //            (descending), as required by the applied penalizing constraint
 SubsetProblem&lt;KnapsackData&gt; problem = new SubsetProblem&lt;&gt;(
-                                            obj, data,
+                                            data, obj,
                                             0, data.getIDs().size(),
                                             Comparator.comparing(data::getWeight).reversed()
                                       );
@@ -224,7 +224,7 @@ if(search.getBestSolution() != null){
 search.dispose();
 </pre>
     <p>
-        
+
     </p>
 
     <h4 class="page-header">

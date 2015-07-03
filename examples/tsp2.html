@@ -397,7 +397,7 @@ TSPData data = new TSPData(dist);
 TSPObjective obj = new TSPObjective();
 
 // wrap data and objective in a permutation problem
-PermutationProblem&lt;TSPData&gt; problem = new PermutationProblem&lt;&gt;(obj, data);
+PermutationProblem&lt;TSPData&gt; problem = new PermutationProblem&lt;&gt;(data, obj);
 
 // set temperature range, scaled according to average travel disctance between cities
 double scale = computeAverageTravelDistance(data);

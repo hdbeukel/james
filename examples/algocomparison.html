@@ -66,7 +66,7 @@ for(int d = 0; d &lt; datasets.size(); d++){
     // create problem
     CoreSubsetData data = datasets.get(d);
     int coreSize = (int) Math.round(selRatio * data.getIDs().size());
-    SubsetProblem&lt;CoreSubsetData&gt; problem = new SubsetProblem&lt;&gt;(obj, data, coreSize);
+    SubsetProblem&lt;CoreSubsetData&gt; problem = new SubsetProblem&lt;&gt;(data, obj, coreSize);
     // set problem ID to file name (without directories and without extension)
     String path = filePaths.get(d);
     String filename = new File(path).getName();

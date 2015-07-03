@@ -157,7 +157,7 @@ public class CoreSubsetObjective implements Objective&lt;SubsetSolution, CoreSub
     </p>
     <p>
         A maximum runtime is set before starting the search.
-        Alternatively, a diffferent stop criterion could be used such as a maximum number of steps
+        Alternatively, a different stop criterion could be used such as a maximum number of steps
         or a maximum time without finding any improvement. Calling <code>search.start()</code> blocks
         until the search has terminated, after which the best found solution and its evaluation are
         printed to the console. Here, the data is used again to map selected IDs to item names.
@@ -174,7 +174,7 @@ CoreSubsetObjective obj = new CoreSubsetObjective();
 
 // combine data and objective in a subset problem, specify desired subset size
 int subsetSize = ...
-SubsetProblem&lt;CoreSubsetData&gt; problem = new SubsetProblem&lt;&gt;(obj, data, subsetSize);
+SubsetProblem&lt;CoreSubsetData&gt; problem = new SubsetProblem&lt;&gt;(data, obj, subsetSize);
 
 // create random descent search with single swap neighbourhood
 RandomDescent&lt;SubsetSolution&gt; search = new RandomDescent&lt;&gt;(problem, new SingleSwapNeighbourhood());

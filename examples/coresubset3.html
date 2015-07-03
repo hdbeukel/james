@@ -309,7 +309,7 @@ EntryToNearestEntryObjective obj = new EntryToNearestEntryObjective();
 
 // combine data and objective in a subset problem, specify desired subset size
 int subsetSize = ...
-SubsetProblem&lt;CoreSubsetData&gt; problem = new SubsetProblem&lt;&gt;(obj, data, subsetSize);
+SubsetProblem&lt;CoreSubsetData&gt; problem = new SubsetProblem&lt;&gt;(data, obj, subsetSize);
 
 // create random descent search with single swap neighbourhood
 RandomDescent&lt;SubsetSolution&gt; search = new RandomDescent&lt;&gt;(problem, new SingleSwapNeighbourhood());
@@ -375,8 +375,9 @@ ParallelTempering&lt;SubsetSolution&gt; search = new ParallelTempering&lt;&gt;(p
     <p>
         If you run this example you will notice that applying parallel tempering reduces variability across repeated search runs and, on average,
         yields solutions with a slightly higher value. Nevertheless, it is a more complex and therefore somewhat slower algorithm as
-        compared to random descent, which also finds good solutions and has no additional parameters. So both algorithms could be used to solve this
-        problem, depending on the precise user requirements.
+        compared to random descent, which also finds good solutions and has no additional parameters.
+        So, in practice, both algorithms can be useful when dealing with this problem, depending
+        on what is desired in terms of speed and solution quality.
     </p>
 
     <h4 class="page-header">
