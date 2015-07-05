@@ -88,14 +88,14 @@
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">org.jamesframework.ext.permutation</div>
-<h2 title="Class PermutationProblem" class="title">Class PermutationProblem&lt;DataType extends <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/datatypes/IntegerIdentifiedData.html?is-external=true" title="class or interface in org.jamesframework.core.problems.datatypes">IntegerIdentifiedData</a>&gt;</h2>
+<h2 title="Class PermutationProblem" class="title">Class PermutationProblem&lt;DataType extends org.jamesframework.core.problems.datatypes.IntegerIdentifiedData&gt;</h2>
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
 <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li><a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/GenericProblem.html?is-external=true" title="class or interface in org.jamesframework.core.problems">org.jamesframework.core.problems.GenericProblem</a>&lt;<a href="../../../../org/jamesframework/ext/permutation/PermutationSolution.html" title="class in org.jamesframework.ext.permutation">PermutationSolution</a>,DataType&gt;</li>
+<li>org.jamesframework.core.problems.GenericProblem&lt;<a href="../../../../org/jamesframework/ext/permutation/PermutationSolution.html" title="class in org.jamesframework.ext.permutation">PermutationSolution</a>,DataType&gt;</li>
 <li>
 <ul class="inheritance">
 <li>org.jamesframework.ext.permutation.PermutationProblem&lt;DataType&gt;</li>
@@ -109,19 +109,19 @@
 <li class="blockList">
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
-<dd><code>DataType</code> - data type of the permutation problem, required to implement the <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/datatypes/IntegerIdentifiedData.html?is-external=true" title="class or interface in org.jamesframework.core.problems.datatypes"><code>IntegerIdentifiedData</code></a> interface</dd>
+<dd><code>DataType</code> - data type of the permutation problem, required to implement the <code>IntegerIdentifiedData</code> interface</dd>
 </dl>
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/Problem.html?is-external=true" title="class or interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../org/jamesframework/ext/permutation/PermutationSolution.html" title="class in org.jamesframework.ext.permutation">PermutationSolution</a>&gt;</dd>
+<dd>org.jamesframework.core.problems.Problem&lt;<a href="../../../../org/jamesframework/ext/permutation/PermutationSolution.html" title="class in org.jamesframework.ext.permutation">PermutationSolution</a>&gt;</dd>
 </dl>
 <hr>
 <br>
-<pre>public class <span class="typeNameLabel">PermutationProblem&lt;DataType extends <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/datatypes/IntegerIdentifiedData.html?is-external=true" title="class or interface in org.jamesframework.core.problems.datatypes">IntegerIdentifiedData</a>&gt;</span>
-extends <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/GenericProblem.html?is-external=true" title="class or interface in org.jamesframework.core.problems">GenericProblem</a>&lt;<a href="../../../../org/jamesframework/ext/permutation/PermutationSolution.html" title="class in org.jamesframework.ext.permutation">PermutationSolution</a>,DataType&gt;</pre>
+<pre>public class <span class="typeNameLabel">PermutationProblem&lt;DataType extends org.jamesframework.core.problems.datatypes.IntegerIdentifiedData&gt;</span>
+extends org.jamesframework.core.problems.GenericProblem&lt;<a href="../../../../org/jamesframework/ext/permutation/PermutationSolution.html" title="class in org.jamesframework.ext.permutation">PermutationSolution</a>,DataType&gt;</pre>
 <div class="block">Generic permutation problem. Requires that every item in the data set is identified with a unique integer ID.
  The solution type is fixed to <a href="../../../../org/jamesframework/ext/permutation/PermutationSolution.html" title="class in org.jamesframework.ext.permutation"><code>PermutationSolution</code></a>, which models a solution as an ordered sequence
- of these IDs. The data type can be any class or interface that implements the <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/datatypes/IntegerIdentifiedData.html?is-external=true" title="class or interface in org.jamesframework.core.problems.datatypes"><code>IntegerIdentifiedData</code></a>
+ of these IDs. The data type can be any class or interface that implements the <code>IntegerIdentifiedData</code>
  interface, which imposes the assignment of IDs to items in the data set. A default random solution generator
  is used, which creates random permutations by shuffling the list of IDs as retrieved from the data.</div>
 <dl>
@@ -147,7 +147,7 @@ extends <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframe
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/ext/permutation/PermutationProblem.html#PermutationProblem-DataType-org.jamesframework.core.problems.objectives.Objective-">PermutationProblem</a></span>(<a href="../../../../org/jamesframework/ext/permutation/PermutationProblem.html" title="type parameter in PermutationProblem">DataType</a>&nbsp;data,
-                  <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/objectives/Objective.html?is-external=true" title="class or interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;? super <a href="../../../../org/jamesframework/ext/permutation/PermutationSolution.html" title="class in org.jamesframework.ext.permutation">PermutationSolution</a>,? super <a href="../../../../org/jamesframework/ext/permutation/PermutationProblem.html" title="type parameter in PermutationProblem">DataType</a>&gt;&nbsp;objective)</code>
+                  org.jamesframework.core.problems.objectives.Objective&lt;? super <a href="../../../../org/jamesframework/ext/permutation/PermutationSolution.html" title="class in org.jamesframework.ext.permutation">PermutationSolution</a>,? super <a href="../../../../org/jamesframework/ext/permutation/PermutationProblem.html" title="type parameter in PermutationProblem">DataType</a>&gt;&nbsp;objective)</code>
 <div class="block">Create a permutation problem with given objective and data.</div>
 </td>
 </tr>
@@ -164,8 +164,8 @@ extends <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframe
 <li class="blockList"><a name="methods.inherited.from.class.org.jamesframework.core.problems.GenericProblem">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;org.jamesframework.core.problems.<a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/GenericProblem.html?is-external=true" title="class or interface in org.jamesframework.core.problems">GenericProblem</a></h3>
-<code><a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/GenericProblem.html?is-external=true#addMandatoryConstraint-org.jamesframework.core.problems.constraints.Constraint-" title="class or interface in org.jamesframework.core.problems">addMandatoryConstraint</a>, <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/GenericProblem.html?is-external=true#addPenalizingConstraint-org.jamesframework.core.problems.constraints.PenalizingConstraint-" title="class or interface in org.jamesframework.core.problems">addPenalizingConstraint</a>, <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/GenericProblem.html?is-external=true#createRandomSolution-java.util.Random-" title="class or interface in org.jamesframework.core.problems">createRandomSolution</a>, <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/GenericProblem.html?is-external=true#evaluate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-" title="class or interface in org.jamesframework.core.problems">evaluate</a>, <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/GenericProblem.html?is-external=true#evaluate-SolutionType-" title="class or interface in org.jamesframework.core.problems">evaluate</a>, <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/GenericProblem.html?is-external=true#getData--" title="class or interface in org.jamesframework.core.problems">getData</a>, <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/GenericProblem.html?is-external=true#getMandatoryConstraints--" title="class or interface in org.jamesframework.core.problems">getMandatoryConstraints</a>, <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/GenericProblem.html?is-external=true#getObjective--" title="class or interface in org.jamesframework.core.problems">getObjective</a>, <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/GenericProblem.html?is-external=true#getPenalizingConstraints--" title="class or interface in org.jamesframework.core.problems">getPenalizingConstraints</a>, <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/GenericProblem.html?is-external=true#getRandomSolutionGenerator--" title="class or interface in org.jamesframework.core.problems">getRandomSolutionGenerator</a>, <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/GenericProblem.html?is-external=true#getViolatedConstraints-SolutionType-" title="class or interface in org.jamesframework.core.problems">getViolatedConstraints</a>, <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/GenericProblem.html?is-external=true#isMinimizing--" title="class or interface in org.jamesframework.core.problems">isMinimizing</a>, <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/GenericProblem.html?is-external=true#removeMandatoryConstraint-org.jamesframework.core.problems.constraints.Constraint-" title="class or interface in org.jamesframework.core.problems">removeMandatoryConstraint</a>, <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/GenericProblem.html?is-external=true#removePenalizingConstraint-org.jamesframework.core.problems.constraints.PenalizingConstraint-" title="class or interface in org.jamesframework.core.problems">removePenalizingConstraint</a>, <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/GenericProblem.html?is-external=true#setData-DataType-" title="class or interface in org.jamesframework.core.problems">setData</a>, <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/GenericProblem.html?is-external=true#setObjective-org.jamesframework.core.problems.objectives.Objective-" title="class or interface in org.jamesframework.core.problems">setObjective</a>, <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/GenericProblem.html?is-external=true#setRandomSolutionGenerator-org.jamesframework.core.problems.sol.RandomSolutionGenerator-" title="class or interface in org.jamesframework.core.problems">setRandomSolutionGenerator</a>, <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/GenericProblem.html?is-external=true#validate-org.jamesframework.core.search.neigh.Move-SolutionType-org.jamesframework.core.problems.constraints.validations.Validation-" title="class or interface in org.jamesframework.core.problems">validate</a>, <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/GenericProblem.html?is-external=true#validate-SolutionType-" title="class or interface in org.jamesframework.core.problems">validate</a></code></li>
+<h3>Methods inherited from class&nbsp;org.jamesframework.core.problems.GenericProblem</h3>
+<code>addMandatoryConstraint, addPenalizingConstraint, createRandomSolution, evaluate, evaluate, getData, getMandatoryConstraints, getObjective, getPenalizingConstraints, getRandomSolutionGenerator, getViolatedConstraints, isMinimizing, removeMandatoryConstraint, removePenalizingConstraint, setData, setObjective, setRandomSolutionGenerator, validate, validate</code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -178,8 +178,8 @@ extends <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframe
 <li class="blockList"><a name="methods.inherited.from.class.org.jamesframework.core.problems.Problem">
 <!--   -->
 </a>
-<h3>Methods inherited from interface&nbsp;org.jamesframework.core.problems.<a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/Problem.html?is-external=true" title="class or interface in org.jamesframework.core.problems">Problem</a></h3>
-<code><a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/Problem.html?is-external=true#createRandomSolution--" title="class or interface in org.jamesframework.core.problems">createRandomSolution</a></code></li>
+<h3>Methods inherited from interface&nbsp;org.jamesframework.core.problems.Problem</h3>
+<code>createRandomSolution</code></li>
 </ul>
 </li>
 </ul>
@@ -204,7 +204,7 @@ extends <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframe
 <li class="blockList">
 <h4>PermutationProblem</h4>
 <pre>public&nbsp;PermutationProblem(<a href="../../../../org/jamesframework/ext/permutation/PermutationProblem.html" title="type parameter in PermutationProblem">DataType</a>&nbsp;data,
-                          <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/problems/objectives/Objective.html?is-external=true" title="class or interface in org.jamesframework.core.problems.objectives">Objective</a>&lt;? super <a href="../../../../org/jamesframework/ext/permutation/PermutationSolution.html" title="class in org.jamesframework.ext.permutation">PermutationSolution</a>,? super <a href="../../../../org/jamesframework/ext/permutation/PermutationProblem.html" title="type parameter in PermutationProblem">DataType</a>&gt;&nbsp;objective)</pre>
+                          org.jamesframework.core.problems.objectives.Objective&lt;? super <a href="../../../../org/jamesframework/ext/permutation/PermutationSolution.html" title="class in org.jamesframework.ext.permutation">PermutationSolution</a>,? super <a href="../../../../org/jamesframework/ext/permutation/PermutationProblem.html" title="type parameter in PermutationProblem">DataType</a>&gt;&nbsp;objective)</pre>
 <div class="block">Create a permutation problem with given objective and data. None of the arguments can be <code>null</code>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
