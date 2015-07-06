@@ -346,14 +346,13 @@ extends <a href="../../../../org/jamesframework/core/problems/sol/Solution.html"
 <div class="block">Creates a new subset solution given the set of all IDs, each corresponding to an underlying entity,
  from which a subset is to be selected. Initially, no IDs are selected. Note: IDs are copied to the
  internal data structures of the subset solution; no reference is stored to the set given at construction.
- IDs are stored in unordered sets.</div>
+ IDs are stored in general unordered sets.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>allIDs</code> - set of all IDs from which a subset is to be selected</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> is <code>null</code>
                               or contains any <code>null</code> elements</dd>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>allIDs</code> is empty</dd>
 </dl>
 </li>
 </ul>
@@ -367,7 +366,7 @@ extends <a href="../../../../org/jamesframework/core/problems/sol/Solution.html"
                       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;selectedIDs)</pre>
 <div class="block">Creates a new subset solution given the set of all IDs, and the set of currently selected IDs. Note: IDs
  are copied to the internal data structures of the subset solution; no reference is stored to the sets given
- at construction. IDs are stored in unordered sets.</div>
+ at construction. IDs are stored in general unordered sets.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>allIDs</code> - set of all IDs from which a subset is to be selected</dd>
@@ -375,8 +374,7 @@ extends <a href="../../../../org/jamesframework/core/problems/sol/Solution.html"
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> or <code>selectedIDs</code> are <code>null</code>
                               or contain any <code>null</code> elements</dd>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>allIDs</code> is empty or <code>selectedIDs</code>
-                                  is not a subset of <code>allIDs</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>selectedIDs</code> is not a subset of <code>allIDs</code></dd>
 </dl>
 </li>
 </ul>
@@ -402,7 +400,6 @@ extends <a href="../../../../org/jamesframework/core/problems/sol/Solution.html"
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> is <code>null</code>
                               or contains any <code>null</code> elements</dd>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>allIDs</code> is empty</dd>
 </dl>
 </li>
 </ul>
@@ -429,8 +426,7 @@ extends <a href="../../../../org/jamesframework/core/problems/sol/Solution.html"
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> or <code>selectedIDs</code> are <code>null</code>
                               or contain any <code>null</code> elements</dd>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>allIDs</code> is empty or <code>selectedIDs</code>
-                                  is not a subset of <code>allIDs</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>selectedIDs</code> is not a subset of <code>allIDs</code></dd>
 </dl>
 </li>
 </ul>
@@ -455,7 +451,6 @@ extends <a href="../../../../org/jamesframework/core/problems/sol/Solution.html"
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> is <code>null</code>
                               or contains any <code>null</code> elements</dd>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>allIDs</code> is empty</dd>
 </dl>
 </li>
 </ul>
@@ -482,8 +477,7 @@ extends <a href="../../../../org/jamesframework/core/problems/sol/Solution.html"
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>allIDs</code> or <code>selectedIDs</code> are <code>null</code>
                               or contain any <code>null</code> elements</dd>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>allIDs</code> is empty or <code>selectedIDs</code>
-                                  is not a subset of <code>allIDs</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>selectedIDs</code> is not a subset of <code>allIDs</code></dd>
 </dl>
 </li>
 </ul>
