@@ -350,9 +350,8 @@ search.dispose();
     </p>
     <p>
         When applying parallel tempering, the number of Metropolis replicas and the minimum and maximum temperature are specified.
-        It is important to set appropriate temperatures, taking into account the evaluation range. For example, whether a temperature
-        of 0.0001 is considered high or low strongly depends on whether evaluations range from e.g. zero to one or ten thousand up to
-        a hundred thousand.
+        It is important to set appropriate temperatures, taking into account the evaluation range, as the probability to accept an
+        inferior move depends on the ratio of the difference in evaluation (delta) and temperature.
     </p>
     <div class="bs-callout bs-callout-info">
         <h4>
