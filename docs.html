@@ -145,27 +145,26 @@ layout: default
             </p>
             <ol>
                 <li>
-                    Define a custom solution type (e.g. <code>MySolution</code>) by extending the abstract <code>Solution</code> class.
+                    Define a custom solution type, say <code>MySolution</code>, by extending the abstract <code>Solution</code> class.
                 </li>
                 <li>
-                    Create a custom data class (e.g. <code>MyData</code>) containing the data required for evaluation, validation and/or random
+                    Create a custom data class, say <code>MyData</code>, containing the data required for evaluation, validation and/or random
                     solution generation. The data type is not restricted in any way, i.e. it is not required to implement a specific interface
-                    or extend an abstract class. If your problem does not require any data, this step can be skipped.
+                    or extend an (abstract) class. So it is entirely up to you to decide how the data is represented.
                 </li>
                 <li>
                     Implement the objective and constraints (if any) by following the same steps as for a subset selection problem (see above),
                     but now with solution and data type <code>MySolution</code> and <code>MyData</code>, respectively.
-                    Also provide a random solution generator, implementing the <code>RandomSolutionGenerator</code> interface,
-                    with the same solution and data type. The generated random solutions are for example used to obtain a default
-                    initial solution in most local searches.
-                    If some component does not use the data (or you did not provide any data), set the data
-                    type of the respective class to <code>Object</code> and simply ignore the data argument when implementing
-                    the required methods from the respective interface.
+                </li>
+                <li>
+                    Provide a random solution generator, implementing the <code>RandomSolutionGenerator</code> interface,
+                    again with solution and data type <code>MySolution</code> and <code>MyData</code>, respectively.
+                    The generated random solutions are for example used to obtain a default initial solution
+                    when applying a local search.
                 </li>
                 <li>
                     Combine the data, objective, constraints (if any) and random solution generator in a <code>GenericProblem</code>
-                    with solution and data type <code>MySolution</code> and <code>MyData</code>, respectively. If no data is provided,
-                    set the data type to <code>Object</code> and the data argument to <code>null</code> when creating the problem.
+                    with solution and data type <code>MySolution</code> and <code>MyData</code>, respectively.
                 </li>
                 <li>
                     Provide at least one implementation of the <code>Neighbourhood</code> interface with solution type <code>MySolution</code>.
