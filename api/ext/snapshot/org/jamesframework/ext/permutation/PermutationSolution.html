@@ -293,16 +293,15 @@ extends <a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframe
 <pre>public&nbsp;void&nbsp;swap(int&nbsp;i,
                  int&nbsp;j)</pre>
 <div class="block">Swap the items at position i and j in the permutation.
- Both positions should be different, positive (zero included)
- and less than the number of items in the permutation.</div>
+ Both positions should be positive and smaller than the
+ number of items in the permutation.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>i</code> - position of first item to be swapped</dd>
 <dd><code>j</code> - position of second item to be swapped</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/exceptions/SolutionModificationException.html?is-external=true" title="class or interface in org.jamesframework.core.exceptions">SolutionModificationException</a></code> - if <code>i</code> and <code>j</code>
-                                       are equal or one of both arguments is
-                                       negative or larger than or equal to the
+<dd><code><a href="http://www.jamesframework.org/james-core/apidocs/org/jamesframework/core/exceptions/SolutionModificationException.html?is-external=true" title="class or interface in org.jamesframework.core.exceptions">SolutionModificationException</a></code> - if <code>i</code> or <code>j</code> is
+=     *                                      negative, or larger than or equal to the
                                        number of items in the permutation</dd>
 </dl>
 </li>
