@@ -22,22 +22,31 @@ layout: default
         Read <a href="/docs/#parallel-tempering">this</a>.
     </div>
     <p>
-        This example reconsiders the travelling salesman problem. A TSP is actually a permutation problem: the goal is to find the best permutation
-        of cities so that visiting them in this order yields the lowest possible total travel distance. Thus, generic components are first designed
-        that can be reused for any permutation problem. Then, the TSP is implemented by plugging in the necessary data and objective.
+        This example reconsiders the travelling salesman problem
+        from <a href="/examples/tsp/">example 4A</a>.
+        TSP is actually a permutation problem: the goal is to find the best permutation
+        of cities so that visiting them in this order yields the lowest possible total travel distance.
+        Part of the implementation for TSP will likely be the same for various other permutation problems.
+        In that respect, it may be useful to design generic components that can be reused for any permutation
+        problem. TSP can then be implemented by plugging in the necessary data and objective.
     </p>
     <p>
-        All reusable permutation problem components defined here have been made available in the <a href="/getstarted/#modules">JAMES extensions module</a>.
+        All reusable permutation problem components defined here have been made available in the
+        <a href="/getstarted/#modules">JAMES extensions module</a>.
     </p>
 
     <h4 class="page-header">
         A solution type for permutation problems
     </h4>
     <p>
-        A permutation problem consists of finding an optimal order of a list of items. Thus, a solution to such problem indicates a specific order.
-        We will assume that every item is identified with a unique integer ID. This assumption is imposed later when defining a generic permutation
-        problem. A <code>PermutationSolution</code> thus reflects an ordered list of these IDs. Its implementation is very similar to that of
-        the <code>TSPSolution</code> from <a href="/examples/tsp/#solution-type">example 4A</a>.
+        A permutation problem consists of finding an optimal order of a list of items.
+        Thus, a solution indicates a specific order of these items.
+        We will assume that every item is identified with a unique integer ID.
+        This assumption is imposed later when defining a generic permutation
+        problem, by restricting the allowed data type (see below).
+        A <code>PermutationSolution</code> reflects an ordered list of these IDs.
+        Its implementation is very similar to that of the <code>TSPSolution</code> from
+        <a href="/examples/tsp/#solution-type">example 4A</a>.
     </p>
 <pre class="prettyprint">
 public class PermutationSolution extends Solution {
@@ -82,9 +91,7 @@ public class PermutationSolution extends Solution {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.order);
-        return hash;
+        Objects.hashCode(order);
     }
 
 }
@@ -94,40 +101,45 @@ public class PermutationSolution extends Solution {
         A generic permutation problem
     </h4>
     <p>
-        Now we can define a generic reusable permutation problem. It extends <code>AbstractProblem</code> so that the data, objective and
-        constraints (if any) are nicely separated as is the case for subset selection problems. The solution type is fixed to
-        <code>PermutationSolution</code> and it is imposed that the data type should implement the <code>IntegerIdentifiedData</code>
-        interface so that every item in the data set is assigned a unique integer ID.
+        Now we can define a generic, reusable permutation problem. It extends
+        <code>GenericProblem</code>, fixing the solution type to <code>PermutationSolution</code>
+        and the data type to any implementation of the <code>IntegerIdentifiedData</code>
+        interface (also used for subset problems). The latter imposes that every item in
+        the data set is assigned a unique integer ID, as assumed by the solution
+        representation (see before).
     </p>
     <p>
-        <code>AbstractProblem</code> has a single abstract method that is to be implemented in <code>PermutationProblem</code> responsible for
-        creating a random solution. It is implemented in the same way as the corresponding method in the <code>TSPProblem</code> from
-        <a href="/examples/tsp/#problem">example 4A</a>. The IDs of the items in the data set are retrieved from the data object.
+        A default random solution generator is set when creating a permutation problem.
+        Its implementation is very similar to that of the random solution generator
+        from <a href="/examples/tsp/#random-solution-generation">example 4A</a>. The IDs
+        of the items in the data set are retrieved from the data object. Since the
+        <code>RandomSolutionGenerator</code> interface has a single method
+        <code>create(rnd, data)</code> it can be compactly specified as a
+        Java 8 lambda expression, as shown here.
     </p>
     <div class="bs-callout bs-callout-info">
         <h4>
             <i class="fa fa-info-circle"></i>
             Info
         </h4>
-        The method <code>createRandomSolution(rnd)</code> takes a random generator as its argument, which should
-        be used as the source of randomness. Each search has a dedicated random generator, which is passed to the
-        problem when requesting a random solutionn. If desired, a search's random generator can be customized with
-        <code>search.setRandom(rnd)</code>.
+        The method <code>create(rnd, data)</code> of <code>RandomSolutionGenerator</code> takes a random generator as
+        its first argument, which should be used as the source of randomness. Each search has a dedicated random generator,
+        which is passed to the problem when requesting a random solutionn. If desired, a search's random generator can be
+        customized with <code>search.setRandom(rnd)</code>.
     </div>
 <pre class="prettyprint">
-public class PermutationProblem&lt;DataType extends IntegerIdentifiedData&gt; extends AbstractProblem&lt;PermutationSolution, DataType&gt;{
+public class PermutationProblem&lt;DataType extends IntegerIdentifiedData&gt; extends GenericProblem&lt;PermutationSolution, DataType&gt;{
 
-    public PermutationProblem(Objective&lt;? super PermutationSolution, ? super DataType&gt; objective, DataType data) {
-        super(objective, data);
-    }
-
-    public PermutationSolution createRandomSolution(Random rnd) {
-        // create list with all IDs
-        List&lt;Integer&gt; ids = new ArrayList&lt;&gt;(getData().getIDs());
-        // shuffle IDs
-        Collections.shuffle(ids, rnd);
-        // create and return permutation solution
-        return new PermutationSolution(ids);
+    public PermutationProblem(DataType data, Objective&lt;? super PermutationSolution, ? super DataType&gt; objective) {
+        // pass data and objective to super class; specify random solution generator
+        super(data, objective, (r,d) -> {
+            // create list with all IDs
+            List&lt;Integer&gt; ids = new ArrayList&lt;&gt;(d.getIDs());
+            // shuffle IDs
+            Collections.shuffle(ids, r);
+            // create and return permutation solution
+            return new PermutationSolution(ids);
+        });
     }
 
 }
@@ -248,9 +260,12 @@ public class ReverseSubsequenceNeighbourhood implements Neighbourhood&lt;Permuta
         TSP Data and objective
     </h4>
     <p>
-        The defined permutation problem components can now be used to implement TSP. We simply have to define the data and objective and
-        wrap these in a <code>PermutationProblem</code>. The data contains the distance matrix and implements the <code>IntegerIdentifiedData</code> interface.
-        The IDs assigned to each city correspond to the row and column indices in the distance matrix and are automatically inferred.
+        The generic permutation problem components can now be used to implement and solve TSP.
+        We simply define the data and objective and wrap these in a
+        <code>PermutationProblem</code>. As in <a href="/examples/tsp/#data">example 4A</a>,
+        the data contains the distance matrix. It now implements the <code>IntegerIdentifiedData</code>
+        interface, as required by the permutation problem definition. The IDs assigned to each city
+        correspond to the row and column indices in the distance matrix and are automatically inferred.
     </p>
 <pre class="prettyprint">
 public class TSPData implements IntegerIdentifiedData {
@@ -284,10 +299,13 @@ public class TSPData implements IntegerIdentifiedData {
 }
 </pre>
     <p>
-        The objective evaluates a permutation solution by computing the total travel distance of the round trip that visits cities in the
-        order in which they occur in the permutation. The implementation is similar to that of the respective evaluation method in the <code>TSPProblem</code>
-        from <a href="/examples/tsp/#problem">example 4A</a> and also includes an efficient delta evaluation for the applied move type. The solution type is
-        set to <code>PermutationSolution</code> and the data type to <code>TSPDta</code> which contains the distance matrix.
+        The objective evaluates a permutation solution by computing the total travel
+        distance of the round trip that visits cities in the order in which they occur
+        in the permutation. The implementation is almost identical to that of the objective
+        from <a href="/examples/tsp/#objective">example 4A</a>.
+        It also includes an efficient delta evaluation for the applied move type.
+        The solution type is set to <code>PermutationSolution</code> and the data
+        type to <code>TSPData</code>.
     </p>
 <pre class="prettyprint">
 public class TSPObjective implements Objective&lt;PermutationSolution, TSPData&gt;{
@@ -360,9 +378,10 @@ public class TSPObjective implements Objective&lt;PermutationSolution, TSPData&g
         Optimizing the round trip
     </h4>
     <p>
-        We can apply a parallel tempering algorithm in the same way as in <a href="/examples/tsp/#optimization">example 4A</a>.
+        We can apply a parallel tempering algorithm in the same way as in
+        <a href="/examples/tsp/#optimization">example 4A</a>.
         The problem is now a <code>PermutationProblem</code> that contains the TSP data and objective.
-        The generic <code>ReverseSubsequenceNeighbourhood</code> is applied which corresponds to a 2-opt neighbourhood
+        The generic <code>ReverseSubsequenceNeighbourhood</code> is used, which corresponds to a 2-opt neighbourhood
         in the context of TSP.
     </p>
 <pre class="prettyprint">
@@ -374,7 +393,7 @@ TSPData data = new TSPData(dist);
 TSPObjective obj = new TSPObjective();
 
 // wrap data and objective in a permutation problem
-PermutationProblem&lt;TSPData&gt; problem = new PermutationProblem&lt;&gt;(obj, data);
+PermutationProblem&lt;TSPData&gt; problem = new PermutationProblem&lt;&gt;(data, obj);
 
 // set temperature range, scaled according to average travel disctance between cities
 double scale = computeAverageTravelDistance(data);
@@ -409,8 +428,9 @@ if(parallelTempering.getBestSolution() != null){
 parallelTempering.dispose();
 </pre>
     <p>
-        The average travel distance between each pair of cities is easily computed, which is used as scale factor for the temperatures
-        (see <a href="/examples/tsp/#optimization">example 4A</a>).
+        The average travel distance between each pair of cities is easily computed,
+        which is used as scale factor for the temperatures (see
+        <a href="/examples/tsp/#optimization">example 4A</a> to understand why).
     </p>
 <pre class="prettyprint">
 double computeAverageTravelDistance(TSPData data){
@@ -432,10 +452,12 @@ double computeAverageTravelDistance(TSPData data){
         Other permutation problems
     </h4>
     <p>
-        The advantage of this approach compared to that from <a href="/examples/tsp/">example 4A</a> is that
-        any other permutation problem can now also be defined using the provided generic solution type, problem definition and
-        neighbourhood(s). These reusable components have been made available in the <a href="/getstarted/#modules">JAMES extensions module</a>.
-        Source code can be found on <a href="https://github.com/hdbeukel/james-extensions/tree/v{{site.extensions-latest-stable}}/src/main/java/org/jamesframework/ext/permutation">GitHub</a>.
+        The advantage of this approach over that from
+        <a href="/examples/tsp/">example 4A</a> is that, with very little additional effort,
+        other permutation problems can now also be defined and solved using the provided
+        solution type, problem class and neighbourhood(s). These reusable components
+        have been added to the <a href="/getstarted/#modules">JAMES extensions module</a>.
+        Source code is found on <a href="https://github.com/hdbeukel/james-extensions/tree/v{{site.extensions-latest-stable}}/src/main/java/org/jamesframework/ext/permutation">GitHub</a>.
     </p>
 
     <h4 class="page-header">

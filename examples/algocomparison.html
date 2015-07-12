@@ -8,17 +8,17 @@ layout: default
         <li><a href="/examples">Examples</a></li>
         <li class="active">Algorithm comparison</li>
     </ol>
-    
+
     <h2 class="page-header">
         Example 5B: Algorithm comparison
     </h2>
-    
+
     <div class="bs-callout bs-callout-info">
         <h4>
             <i class="fa fa-info-circle"></i>
             Info
         </h4>
-        The random descent and parallel tempering algorithms are applied to sample a good core subset. Don't know what random descent is?
+        The random descent and parallel tempering algorithms are compared. Don't know what random descent is?
         Read <a href="/docs/#random-descent">this</a>. Never heard about parallel tempering? Read <a href="/docs/#parallel-tempering">this</a>.
     </div>
     <p>
@@ -27,7 +27,7 @@ layout: default
         The core subset selection problem from <a href="/examples/coresubset3/">example 1C</a> is used as a case study.
         The results are inspected with the provided <a href="/getstarted/#r-package">R package</a>.
     </p>
-    
+
     <h4 class="page-header">
         Analysis setup
     </h4>
@@ -40,7 +40,7 @@ layout: default
         This score is to be maximized.
     </p>
     <p>
-        As in <a href="/examples/parametersweep/">example 5A</a> the first step is to create an analysis object and to add
+        As in <a href="/examples/parametersweep/">example 5A</a>, the first step is to create an analysis object and to add
         the problems that will be analyzed (one for each considered dataset).
     </p>
 <pre class="prettyprint">
@@ -66,7 +66,7 @@ for(int d = 0; d &lt; datasets.size(); d++){
     // create problem
     CoreSubsetData data = datasets.get(d);
     int coreSize = (int) Math.round(selRatio * data.getIDs().size());
-    SubsetProblem&lt;CoreSubsetData&gt; problem = new SubsetProblem&lt;&gt;(obj, data, coreSize);
+    SubsetProblem&lt;CoreSubsetData&gt; problem = new SubsetProblem&lt;&gt;(data, obj, coreSize);
     // set problem ID to file name (without directories and without extension)
     String path = filePaths.get(d);
     String filename = new File(path).getName();
@@ -105,40 +105,40 @@ analysis.addSearch("Parallel Tempering", problem -> {
 });
 </pre>
     <p>
-        Both algorithms are repeated 10 times for every analyzed dataset (in addition to a single burn-in run).
+        Both algorithms are repeated 10 times for every analyzed dataset (in addition to the default single burn-in run).
     </p>
 <pre class="prettyprint">
 // set number of runs
 analysis.setNumRuns(10);
 </pre>
 
-    
+
     <h4 class="page-header">
         Run analysis
-    </h4> 
+    </h4>
     <p>
-        As in <a href="/examples/#parametersweep">example 5A</a> the results obtained from running the analysis
+        As in <a href="/examples/#parametersweep">example 5A</a>, the results obtained from running the analysis
         are written to a JSON file, to be loaded into R using the provided <a href="/getstarted/#r-package">R package</a>.
     </p>
 <pre class="prettyprint">
 // run analysis
 AnalysisResults&lt;SubsetSolution&gt; results = analysis.run();
 // write results to JSON
-results.writeJSON("AlgoComparison.json", JsonConverter.SUBSET_SOLUTION);
+results.writeJSON("comparison.json", JsonConverter.SUBSET_SOLUTION);
 </pre>
     <div class="bs-callout bs-callout-warning">
         <h4>
             <i class="fa fa-warning"></i> Be patient
         </h4>
         Wait a while for the analysis to complete. In the example setup from above, both algorithms are
-        executed 11 times (10 actual runs + 1 additional burn-in). Every run takes 15 minutes and the entire
+        executed 11 times (10 registered runs + 1 additional burn-in). Every run takes 15 minutes and the entire
         analysis is repeated for each dataset. This yields an expected runtime of about 6 hours per dataset.
     </div>
     <div class="bs-callout bs-callout-info">
         <h4>
             <i class="fa fa-info-circle"></i> Track progress
         </h4>
-        While an analysis is running, log messages are produced to report on the progress. All messages are tagged with a
+        While an analysis is running, log messages are produced to report the progress. All messages are tagged with a
         marker <code>"analysis"</code> so that they can be filtered from other messages when using a marker aware logging
         framework (such as <a href="http://logback.qos.ch">logback</a>). To pick up log messages, follow
         <a href="/getstarted/#dependencies">these instructions</a>.
@@ -146,7 +146,7 @@ results.writeJSON("AlgoComparison.json", JsonConverter.SUBSET_SOLUTION);
 
     <h4 class="page-header">
         Inspect results
-    </h4> 
+    </h4>
     <p>
         The obtained JSON file can be loaded into R using the provided <a href="/getstarted/#r-package">R package</a>. The package can
         be installed from CRAN with
@@ -210,10 +210,10 @@ pea-small        Random Descent         10        0.351  0.000477     0.351  0.0
         within the applied time limit of 15 minutes, across subsequent runs:
     </p>
 <pre class="prettyprint">
-> boxplot(comp, problem = "coconut", type = "time")
-> boxplot(comp, problem = "maize-accession", type = "time")
-> boxplot(comp, problem = "maize-bulk", type = "time")
-> boxplot(comp, problem = "pea-small", type = "time")
+> boxplot(comp, problem = "coconut", type = "time", time.unit = "sec")
+> boxplot(comp, problem = "maize-accession", type = "time", time.unit = "sec")
+> boxplot(comp, problem = "maize-bulk", type = "time", time.unit = "sec")
+> boxplot(comp, problem = "pea-small", type = "time", time.unit = "sec")
 </pre>
     <img class="centered-image narrow" src="/files/examples/analysis-output/comp-boxplots-time.png" />
     <p>
@@ -236,7 +236,7 @@ pea-small        Random Descent         10        0.351  0.000477     0.351  0.0
         collection it produces:
     </p>
 <pre class="prettyprint">
-> plotConvergence(comp, problem = "pea-small")
+> plotConvergence(comp, problem = "pea-small", time.unit = "sec")
 </pre>
     <img class="centered-image extra-narrow" src="/files/examples/analysis-output/comp-conv-pea.png" />
     <p>
@@ -250,14 +250,14 @@ pea-small        Random Descent         10        0.351  0.000477     0.351  0.0
 > par(mfrow = c(2,2))
 # create plots with different zoom
 > for(m in c(1,5,15)){
-    plotConvergence(comp, problem = "pea-small", max.time = m * 1000)
+    plotConvergence(comp, problem = "pea-small", max.time = m, time.unit = "sec")
   }
-> plotConvergence(comp, problem = "pea-small", min.time = 1000, max.time = 10000)
+> plotConvergence(comp, problem = "pea-small", min.time = 1, max.time = 10, time.unit = "sec")
 </pre>
     <img class="centered-image wide" src="/files/examples/analysis-output/comp-conv-pea-zoom.png" />
     <p>
         It is now clear that random descent takes a head start, improving the solution quality more rapidly than
-        parallel tempering. After about 4 seconds parallel tempering catches up and continues to improve the solution
+        parallel tempering. After about 4 seconds, parallel tempering catches up and continues to improve the solution
         a little bit, reaching a slightly higher convergence plateau.
         If desired, data can easily be extracted from the results for further processing. Take a look a the following functions:
         <ul>
@@ -276,14 +276,14 @@ pea-small        Random Descent         10        0.351  0.000477     0.351  0.0
 # load library for exact Wilcoxon rank sum test
 # if necessary install with 'install.packages("exactRankTests")'
 > library(exactRankTests)
-    
+
 # extract final solution values obtained by random descent
 > rd.values &lt;- lapply(getProblems(comp), function(p){
-    getBestSolutionValues(comp, problem = p, search = "Random Descent") 
+    getBestSolutionValues(comp, problem = p, search = "Random Descent")
   })
 # extract final solution values obtained by parallel tempering
 > pt.values &lt;- lapply(getProblems(comp), function(p){
-    getBestSolutionValues(comp, problem = p, search = "Parallel Tempering") 
+    getBestSolutionValues(comp, problem = p, search = "Parallel Tempering")
   })
 # compute p-value of Wilcoxon rank sum test (for each problem)
 > p.values &lt;- numeric(length(rd.values))
@@ -310,7 +310,7 @@ pea-small        Random Descent         10        0.351  0.000477     0.351  0.0
         settings, the basic random descent algorithm might still be preferred because of its faster convergence and near
         optimal results.
     </p>
-    
+
     <h4 class="page-header">
         Full source code
     </h4>
@@ -330,29 +330,11 @@ $ java -cp james-examples.jar org.jamesframework.examples.analysis.AlgoCompariso
         The input files (at least one) should be CSV files in which the first row contains N
         item names and the subsequent N rows specify an N &times; N distance matrix.
         The analysis will be repeated for each dataset loaded from the given files.
-        All output is combined into a single file <code>AlgoComparison.json</code> that
+        All output is combined into a single file <code>comparison.json</code> that
         can be loaded in R using the provided <a href="/getstarted/#r-package">R package</a>.
     </p>
     <p>
         <a href="/files/examples/coresubset.zip"><i class="fa fa-file-archive-o"></i> Input files (ZIP)</a>
     </p>
-    
+
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

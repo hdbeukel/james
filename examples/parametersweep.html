@@ -8,17 +8,17 @@ layout: default
         <li><a href="/examples">Examples</a></li>
         <li class="active">Parameter sweep</li>
     </ol>
-    
+
     <h2 class="page-header">
         Example 5A: Parameter sweep
     </h2>
-    
+
     <div class="bs-callout bs-callout-info">
         <h4>
             <i class="fa fa-info-circle"></i>
             Info
         </h4>
-        Several Metropolis searches are applied to find an
+        Metropolis searches are applied to find an
         appropriate temperature range for parallel tempering. Don't know what Metropolis search is?
         Read <a href="/docs/#metropolis-search">this</a>. Never heard about parallel tempering?
         Read <a href="/docs/#parallel-tempering">this</a>.
@@ -28,17 +28,17 @@ layout: default
         automated analysis workflow from the <a href="/getstarted/#modules">extensions module</a>. The core subset selection
         problem from <a href="/examples/coresubset3/">example 1C</a> is used as a case study. Several Metropolis
         searches with different fixed temperatures are applied. The results are then inspected using the provided
-        <a href="/getstarted/#r-package">R package</a>, to infer the temperature range to be used in a
+        <a href="/getstarted/#r-package">R package</a>, to infer an appropriate temperature range to be used for the
         parallel tempering algorithm.
     </p>
-    
+
     <h4 class="page-header">
         Analysis setup
     </h4>
     <p>
-        To find an appropriate temperature range for a parallel tempering algorithm, we will run several Metropolis
+        To find an appropriate temperature range for the parallel tempering algorithm, we will run several Metropolis
         searches with different temperatures and assess their performance for a series of datasets. Each dataset
-        consists of a distance matrix based on which the entry-to-nearest-entry score of the selected subset is
+        consists of a distance matrix based on which the entry-to-nearest-entry score of any considered subset is
         computed (see <a href="/examples/coresubset3/">example 1C</a>). This score is to be maximized.
         To execute the algorithms and gather statistics about the obtained solution quality, convergence, etc.
         we will use the analysis workflow included in the <a href="/getstarted/#modules">extensions module</a>.
@@ -57,13 +57,13 @@ Analysis&lt;SubsetSolution&gt; analysis = new Analysis&lt;&gt;();
         from CSV files using the <code>CoreSubsetFileReader</code> which is included in the full
         <a href="https://github.com/hdbeukel/james-examples/tree/v{{site.examples-latest-stable}}/src/main/java/org/jamesframework/examples/coresubset">source code</a>
         of <a href="/examples/coresubset/">example 1A</a> where the corresponding data type
-        <code>CoreSubsetData</code> is also defined. The <code>EntryToNearestEntryObjective</code>
-        is taken from <a href="/examples/coresubset3/">example 1C</a>.
+        <code>CoreSubsetData</code> is also defined. The implementation of the
+        <code>EntryToNearestEntryObjective</code> is described in <a href="/examples/coresubset3/">example 1C</a>.
     </p>
     <p>
         The size of the constructed core is determined relative to the size of the full dataset by specifying a fixed
         selection ratio (e.g. 0.2).
-        Every analyzed problem needs to be assigned a unique (string) ID.
+        Every analyzed problem needs to be assigned a unique ID (string).
         Here, the file name is used as the ID (without directories and without extension).
     </p>
 <pre class="prettyprint">
@@ -86,7 +86,7 @@ for(int d = 0; d &lt; datasets.size(); d++){
     // create problem
     CoreSubsetData data = datasets.get(d);
     int coreSize = (int) Math.round(selRatio * data.getIDs().size());
-    SubsetProblem&lt;CoreSubsetData&gt; problem = new SubsetProblem&lt;&gt;(obj, data, coreSize);
+    SubsetProblem&lt;CoreSubsetData&gt; problem = new SubsetProblem&lt;&gt;(data, obj, coreSize);
     // set problem ID to file name (without directories and without extension)
     String path = filePaths.get(d);
     String filename = new File(path).getName();
@@ -98,9 +98,9 @@ for(int d = 0; d &lt; datasets.size(); d++){
     <p>
         Ten Metropolis searches are then added to the analysis, each with a unique ID and different fixed temperature,
         equally spread across a given interval <code>[minTemp, maxTemp]</code>. Note that the method
-        <code>addSearch(id, searchFactory)</code> requires to specify a search factory instead of an actual search object.
-        This is because each algorithm will be executed several times and for each such run a brand new search
-        is created, using the given factory. The search factory interface is a functional interface
+        <code>addSearch(id, searchFactory)</code> requires to specify a search factory.
+        This is because each algorithm will be executed several times and for each such run a new search
+        instance is created, using the given factory. The search factory interface is a functional interface
         with a single method <code>create(problem)</code> to create a search that solves the given problem.
         A search factory can therefore easily be specified with a Java 8 lambda expression, as in the example
         code below. The same stop criterion is used here for every generated search (maximum runtime of 5 minutes).
@@ -139,11 +139,11 @@ analysis.setNumRuns(5);
 </pre>
     <p>
         If desired, the number of burn-in runs can also be customized with <code>setNumBurnIn(n)</code>.
-        Results of these preliminary runs are not registered. Both settings can also be adjusted at a
+        Results of these preliminary runs are discarded. Both settings can also be adjusted at a
         search specific level using <code>setNumRuns(searchID, n)</code> and
         <code>setNumBurnIn(searchID, n)</code>.
     </p>
-    
+
     <h4 class="page-header">
         Run analysis
     </h4>
@@ -158,14 +158,14 @@ AnalysisResults&lt;SubsetSolution&gt; results = analysis.run();
             <i class="fa fa-warning"></i> Be patient
         </h4>
         Wait a while for the analysis to complete. In the example setup from above, each of the 10 Metropolis searches
-        is executed 6 times (5 actual runs + 1 additional burn-in). Every run takes 5 minutes and the entire analysis is repeated
+        is executed 6 times (5 registered runs + 1 additional burn-in). Every run takes 5 minutes and the entire analysis is repeated
         for each dataset. This yields an expected runtime of about 5 hours per dataset.
     </div>
     <div class="bs-callout bs-callout-info">
         <h4>
             <i class="fa fa-info-circle"></i> Track progress
         </h4>
-        While an analysis is running, log messages are produced to report on the progress. All messages are tagged with a
+        While an analysis is running, log messages are produced to report the progress. All messages are tagged with a
         marker <code>"analysis"</code> so that they can be filtered from other messages when using a marker aware logging
         framework (such as <a href="http://logback.qos.ch">logback</a>). To pick up log messages, follow
         <a href="/getstarted/#dependencies">these instructions</a>.
@@ -192,7 +192,7 @@ SearchRunResults&lt;SubsetSolution&gt; run = results.getRun("problemID", "search
         write the results to a JSON file.
     </p>
 <pre class="prettyprint">
-results.writeJSON("ParameterSweep.json", JsonConverter.SUBSET_SOLUTION);
+results.writeJSON("sweep.json", JsonConverter.SUBSET_SOLUTION);
 </pre>
     <p>
         The second argument specifies how to convert solutions to JSON format. For subset selection problems,
@@ -207,7 +207,7 @@ sol -> Json.array(sol.getSelectedIDs().toArray())
         If no converter is given, the output file will not contain the actual best found solutions but only report
         the progress in terms of obtained evaluation value over time.
     </p>
-    
+
     <h4 class="page-header">
         Inspect results
     </h4>
@@ -308,7 +308,7 @@ pea-small        MS-10        5         0.26   0.00182      0.26   0.00128
     <p>
         For three of the analyzed datasets, the solution quality consistently drops when increasing the temperature.
         Only for one of both maize collections (maize-accession) there is a slight increase in performance
-        at a temperature of about 10<sup>&#8209;4</sup>, followed by a large drop.
+        at a temperature of about 10<sup>&#8209;4</sup>, followed by a large decrease.
         These results suggest that we might have set the maximum
         temperature too high. So let's try again with a lower maximum temperature of 10<sup>&#8209;4</sup> (and
         the same minimum of 10<sup>&#8209;8</sup>). This produces the output file
@@ -341,7 +341,7 @@ pea-small        MS-10        5         0.26   0.00182      0.26   0.00128
         temperature range of [10<sup>&#8209;8</sup>, 10<sup>&#8209;4</sup>] and compares its performance with that of a
         basic random descent algorithm.
     </p>
-    
+
     <h4 class="page-header">
         Full source code
     </h4>
@@ -362,29 +362,11 @@ $ java -cp james-examples.jar org.jamesframework.examples.analysis.ParameterSwee
         The input files (at least one) should be CSV files in which the first row contains N
         item names and the subsequent N rows specify an N &times; N distance matrix.
         The analysis will be repeated for each dataset loaded from the given files.
-        All output is combined into a single file <code>ParameterSweep.json</code> that
+        All output is combined into a single file <code>sweep.json</code> that
         can be loaded in R using the provided <a href="/getstarted/#r-package">R package</a>.
     </p>
     <p>
         <a href="/files/examples/coresubset.zip"><i class="fa fa-file-archive-o"></i> Input files (ZIP)</a>
     </p>
-    
+
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

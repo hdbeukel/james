@@ -48,7 +48,7 @@ layout: default
     <p>
         From our penalty definition, it follows that any solution outside the
         constraint can be transformed in a better solution (higher penalized evaluation) by removing e.g. the item with the highest weight.
-        Repeating this action always yields a solution within the constraint.
+        Repeating this action eventually always yields a solution within the constraint.
         Thus, it is not possible that an invalid solution is a local optimum for a neighbourhood that considers single deletion
         moves, such as the single perturbation neighbourhood applied below. This ensures that the best found solution will
         satisfy the constraint, which would not necessarily be the case if the penalty had been poorly designed.
@@ -144,7 +144,7 @@ public class PenalizingKnapsackConstraint implements PenalizingConstraint&lt;Sub
         and data, and then add the constraint, now using <code>addPenalizingConstraint(c)</code>.
         As indicated above, the constraint implementation requires that
         IDs are ordered based on the weight of the corresponding items (descending). This order can be imposed
-        by specifying an appropriate comparator when creating the subset problem. All generated subset solution
+        by specifying an appropriate comparator when creating the subset problem. All generated subset solutions
         will then impose this order on the set of selected, unselected and all IDs.
     </p>
 <pre class="prettyprint">
@@ -165,7 +165,7 @@ PenalizingKnapsackConstraint constraint = new PenalizingKnapsackConstraint(capac
 // IMPORTANT: IDs are ordered based on the weight of the corresponding items
 //            (descending), as required by the applied penalizing constraint
 SubsetProblem&lt;KnapsackData&gt; problem = new SubsetProblem&lt;&gt;(
-                                            obj, data,
+                                            data, obj,
                                             0, data.getIDs().size(),
                                             Comparator.comparing(data::getWeight).reversed()
                                       );
@@ -188,8 +188,8 @@ double computeHighestProfit(KnapsackData data){
         We can now apply a <a href="/docs/#parallel-tempering">parallel tempering</a> search as in
         <a href="/examples/knapsack/#parallel-tempering">example 2A</a>. It should give similar results
         as compared to the approach with a mandatory constraint. Note that it is <strong>not</strong>
-        required now to provide an initial solution within the constraint, the search is able to find its
-        way to a valid solution anyway because of how the penalties have been designed.
+        required now to provide an initial solution within the constraint. Because the penalties have
+        been carefully chosen, the search will automatically find its way to a valid solution.
     </p>
 <pre class="prettyprint">
 // set temperature range, scaled according to average profit of knapsack items
@@ -224,7 +224,7 @@ if(search.getBestSolution() != null){
 search.dispose();
 </pre>
     <p>
-        
+
     </p>
 
     <h4 class="page-header">
