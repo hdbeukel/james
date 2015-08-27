@@ -109,6 +109,11 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>SolutionType</code> - solution type to be evaluated, required to extend <code>Solution</code></dd>
+<dd><code>DataType</code> - underlying data type</dd>
+</dl>
+<dl>
 <dt>All Implemented Interfaces:</dt>
 <dd>org.jamesframework.core.problems.objectives.Objective&lt;SolutionType,DataType&gt;</dd>
 </dl>
@@ -243,9 +248,9 @@ implements org.jamesframework.core.problems.objectives.Objective&lt;SolutionType
  evaluation from [min, max] to [0, 1].</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>obj</code> - </dd>
-<dd><code>min</code> - </dd>
-<dd><code>max</code> - </dd>
+<dd><code>obj</code> - original, unnormalized objective</dd>
+<dd><code>min</code> - lower bound of normalization interval</dd>
+<dd><code>max</code> - upper bound of normalization interval</dd>
 </dl>
 </li>
 </ul>
@@ -352,8 +357,8 @@ implements org.jamesframework.core.problems.objectives.Objective&lt;SolutionType
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>evaluation of modified solution obtained when applying the move to the current solution</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>IncompatibleDeltaEvaluationException</code> - if the provided delta evaluation is not compatible
-                                              with the received move type</dd>
+<dd><code>org.jamesframework.core.exceptions.IncompatibleDeltaEvaluationException</code> - if the delta evaluation of the original objective
+                                              is not compatible with the received move type</dd>
 </dl>
 </li>
 </ul>
