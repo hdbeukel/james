@@ -395,10 +395,11 @@ TSPObjective obj = new TSPObjective();
 // wrap data and objective in a permutation problem
 PermutationProblem&lt;TSPData&gt; problem = new PermutationProblem&lt;&gt;(data, obj);
 
-// set temperature range, scaled according to average travel disctance between cities
-double scale = computeAverageTravelDistance(data);
-double minTemp = scale * 0.001;
-double maxTemp = scale * 0.1;
+// set temperature range, scaled according to average
+// distance between cities and their nearest neighbours
+double scale = computeAvgNearestNeighbourDistance(data);
+double minTemp = scale * 1e-8;
+double maxTemp = scale * 0.6;
 // create parallel tempering search with neighbourhood that reverses a subsequence (2-opt move)
 int numReplicas = 10;
 ParallelTempering&lt;PermutationSolution&gt; parallelTempering = new ParallelTempering&lt;&gt;(
@@ -428,24 +429,25 @@ if(parallelTempering.getBestSolution() != null){
 parallelTempering.dispose();
 </pre>
     <p>
-        The average travel distance between each pair of cities is easily computed,
-        which is used as scale factor for the temperatures (see
-        <a href="/examples/tsp/#optimization">example 4A</a> to understand why).
+        The average travel distance between each city and its closest neighbour is easily computed,
+        which is used as scale factor for the temperatures (see <a href="/examples/tsp/#optimization">example 4A</a> to understand why).
     </p>
 <pre class="prettyprint">
-double computeAverageTravelDistance(TSPData data){
+double computeAvgNearestNeighbourDistance(TSPData data){
     Set&lt;Integer&gt; ids = data.getIDs();
     double sum = 0.0;
     for(int id1 : ids){
+        double min = Double.MAX_VALUE;
         for(int id2 : ids) {
-            if(id1 &lt; id2){
-                sum += data.getDistance(id1, id2);
+            double dist = data.getDistance(id1, id2);
+            if(dist > 0.0 &amp;&amp; dist &lt; min){
+                min = dist;
             }
         }
+        sum += min;
     }
     int n = ids.size();
-    int numDistances = n*(n-1)/2;
-    return sum/numDistances;
+    return sum/n;
 }
 </pre>
     <h4 class="page-header">
