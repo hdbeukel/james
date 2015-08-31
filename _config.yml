@@ -6,14 +6,14 @@ permalink: pretty
 
 # used for links to latest snapshot JARs (core, extensions) and ZIP (examples) at Sonatype OSSRH
 core-snapshot: 1.2-SNAPSHOT
-extensions-snapshot: 1.1.1-SNAPSHOT
-examples-snapshot: 1.1.1-SNAPSHOT
+extensions-snapshot: 1.1.2-SNAPSHOT
+examples-snapshot: 1.1.2-SNAPSHOT
 
 # used for links to latest stable releases and corresponding APIs
 core-latest-stable: 1.1
-extensions-latest-stable: 1.1
-examples-latest-stable: 1.1
+extensions-latest-stable: 1.1.1
+examples-latest-stable: 1.1.1
 
 # used for links to all versions of APIs
-core-all-stable:       [1.1, 1.0,    '', 0.2, 0.1]
-extensions-all-stable: [1.1, 1.0, 0.2.1, 0.2, 0.1]
+core-all-stable:       [   '', 1.1, 1.0,    '', 0.2, 0.1]
+extensions-all-stable: [1.1.1, 1.1, 1.0, 0.2.1, 0.2, 0.1]
