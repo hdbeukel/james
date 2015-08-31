@@ -70,7 +70,7 @@
 <!--   -->
 </a></div>
 <!-- ========= END OF TOP NAVBAR ========= -->
-<div class="contentContainer"><a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:J">J</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:W">W</a>&nbsp;<a name="I:A">
+<div class="contentContainer"><a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:J">J</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:W">W</a>&nbsp;<a name="I:A">
 <!--   -->
 </a>
 <h2 class="title">A</h2>
@@ -173,6 +173,15 @@
 <div class="block">Checks whether the given other object is also a permutation solution consisting
  of the same IDs in exactly the same order.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/problems/objectives/NormalizedObjective.html#evaluate-SolutionType-DataType-">evaluate(SolutionType, DataType)</a></span> - Method in class org.jamesframework.ext.problems.objectives.<a href="org/jamesframework/ext/problems/objectives/NormalizedObjective.html" title="class in org.jamesframework.ext.problems.objectives">NormalizedObjective</a></dt>
+<dd>
+<div class="block">Computes the normalized evaluation of the given solution.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/problems/objectives/NormalizedObjective.html#evaluate-org.jamesframework.core.search.neigh.Move-ActualSolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-DataType-">evaluate(Move&lt;? super ActualSolutionType&gt;, ActualSolutionType, Evaluation, DataType)</a></span> - Method in class org.jamesframework.ext.problems.objectives.<a href="org/jamesframework/ext/problems/objectives/NormalizedObjective.html" title="class in org.jamesframework.ext.problems.objectives">NormalizedObjective</a></dt>
+<dd>
+<div class="block">Computes the normalized evaluation of the solution obtained by applying the given move
+ to the current solution.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/ext/problems/objectives/WeightedIndex.html#evaluate-SolutionType-DataType-">evaluate(SolutionType, DataType)</a></span> - Method in class org.jamesframework.ext.problems.objectives.<a href="org/jamesframework/ext/problems/objectives/WeightedIndex.html" title="class in org.jamesframework.ext.problems.objectives">WeightedIndex</a></dt>
 <dd>
 <div class="block">Produces an evaluation object that reflects the weighted sum of evaluations of all underlying objectives.</div>
@@ -218,6 +227,14 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/ext/permutation/neigh/moves/SingleSwapMove.html#getJ--">getJ()</a></span> - Method in class org.jamesframework.ext.permutation.neigh.moves.<a href="org/jamesframework/ext/permutation/neigh/moves/SingleSwapMove.html" title="class in org.jamesframework.ext.permutation.neigh.moves">SingleSwapMove</a></dt>
 <dd>
 <div class="block">Get the position of the second swapped item.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/problems/objectives/NormalizedObjective.html#getMax--">getMax()</a></span> - Method in class org.jamesframework.ext.problems.objectives.<a href="org/jamesframework/ext/problems/objectives/NormalizedObjective.html" title="class in org.jamesframework.ext.problems.objectives">NormalizedObjective</a></dt>
+<dd>
+<div class="block">Get upper bound of normalization interval</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/problems/objectives/NormalizedObjective.html#getMin--">getMin()</a></span> - Method in class org.jamesframework.ext.problems.objectives.<a href="org/jamesframework/ext/problems/objectives/NormalizedObjective.html" title="class in org.jamesframework.ext.problems.objectives">NormalizedObjective</a></dt>
+<dd>
+<div class="block">Get lower bound of normalization interval.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/Analysis.html#getNumBurnIn--">getNumBurnIn()</a></span> - Method in class org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/Analysis.html" title="class in org.jamesframework.ext.analysis">Analysis</a></dt>
 <dd>
@@ -291,6 +308,18 @@
 <dd>
 <div class="block">Get the last position in the reversed subsequence.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/problems/objectives/evaluations/NormalizedEvaluation.html#getUnnormalizedEvaluation--">getUnnormalizedEvaluation()</a></span> - Method in class org.jamesframework.ext.problems.objectives.evaluations.<a href="org/jamesframework/ext/problems/objectives/evaluations/NormalizedEvaluation.html" title="class in org.jamesframework.ext.problems.objectives.evaluations">NormalizedEvaluation</a></dt>
+<dd>
+<div class="block">Get the original, unnormalized evaluation.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/problems/objectives/NormalizedObjective.html#getUnnormalizedObjective--">getUnnormalizedObjective()</a></span> - Method in class org.jamesframework.ext.problems.objectives.<a href="org/jamesframework/ext/problems/objectives/NormalizedObjective.html" title="class in org.jamesframework.ext.problems.objectives">NormalizedObjective</a></dt>
+<dd>
+<div class="block">Get the original, unnormalized objective.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/problems/objectives/evaluations/NormalizedEvaluation.html#getValue--">getValue()</a></span> - Method in class org.jamesframework.ext.problems.objectives.evaluations.<a href="org/jamesframework/ext/problems/objectives/evaluations/NormalizedEvaluation.html" title="class in org.jamesframework.ext.problems.objectives.evaluations">NormalizedEvaluation</a></dt>
+<dd>
+<div class="block">Calculates normalized evaluation in [0, 1].</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/ext/problems/objectives/evaluations/WeightedIndexEvaluation.html#getValue--">getValue()</a></span> - Method in class org.jamesframework.ext.problems.objectives.evaluations.<a href="org/jamesframework/ext/problems/objectives/evaluations/WeightedIndexEvaluation.html" title="class in org.jamesframework.ext.problems.objectives.evaluations">WeightedIndexEvaluation</a></dt>
 <dd>
 <div class="block">The value consist of the weighted sum of the values of all added evaluations.</div>
@@ -323,6 +352,10 @@
 </a>
 <h2 class="title">I</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/problems/objectives/NormalizedObjective.html#isMinimizing--">isMinimizing()</a></span> - Method in class org.jamesframework.ext.problems.objectives.<a href="org/jamesframework/ext/problems/objectives/NormalizedObjective.html" title="class in org.jamesframework.ext.problems.objectives">NormalizedObjective</a></dt>
+<dd>
+<div class="block">Indicates whether the produced evaluations are to be minimized.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/ext/problems/objectives/WeightedIndex.html#isMinimizing--">isMinimizing()</a></span> - Method in class org.jamesframework.ext.problems.objectives.<a href="org/jamesframework/ext/problems/objectives/WeightedIndex.html" title="class in org.jamesframework.ext.problems.objectives">WeightedIndex</a></dt>
 <dd>
 <div class="block">Weighted index is always maximizing, so this method always returns <code>false</code>.</div>
@@ -347,6 +380,31 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/AnalysisResults.html#merge-org.jamesframework.ext.analysis.AnalysisResults-">merge(AnalysisResults&lt;SolutionType&gt;)</a></span> - Method in class org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/AnalysisResults.html" title="class in org.jamesframework.ext.analysis">AnalysisResults</a></dt>
 <dd>
 <div class="block">Merge the given results into this results object.</div>
+</dd>
+</dl>
+<a name="I:N">
+<!--   -->
+</a>
+<h2 class="title">N</h2>
+<dl>
+<dt><a href="org/jamesframework/ext/problems/objectives/evaluations/NormalizedEvaluation.html" title="class in org.jamesframework.ext.problems.objectives.evaluations"><span class="typeNameLink">NormalizedEvaluation</span></a> - Class in <a href="org/jamesframework/ext/problems/objectives/evaluations/package-summary.html">org.jamesframework.ext.problems.objectives.evaluations</a></dt>
+<dd>
+<div class="block">Normalizes the value of an arbitrary evaluation from a given interval [min, max] to [0, 1].</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/problems/objectives/evaluations/NormalizedEvaluation.html#NormalizedEvaluation-org.jamesframework.core.problems.objectives.evaluations.Evaluation-double-double-">NormalizedEvaluation(Evaluation, double, double)</a></span> - Constructor for class org.jamesframework.ext.problems.objectives.evaluations.<a href="org/jamesframework/ext/problems/objectives/evaluations/NormalizedEvaluation.html" title="class in org.jamesframework.ext.problems.objectives.evaluations">NormalizedEvaluation</a></dt>
+<dd>
+<div class="block">Create a normalized evaluation that wraps the given evaluation
+ and normalizes its values from [min, max] to [0, 1].</div>
+</dd>
+<dt><a href="org/jamesframework/ext/problems/objectives/NormalizedObjective.html" title="class in org.jamesframework.ext.problems.objectives"><span class="typeNameLink">NormalizedObjective</span></a>&lt;<a href="org/jamesframework/ext/problems/objectives/NormalizedObjective.html" title="type parameter in NormalizedObjective">SolutionType</a> extends org.jamesframework.core.problems.sol.Solution,<a href="org/jamesframework/ext/problems/objectives/NormalizedObjective.html" title="type parameter in NormalizedObjective">DataType</a>&gt; - Class in <a href="org/jamesframework/ext/problems/objectives/package-summary.html">org.jamesframework.ext.problems.objectives</a></dt>
+<dd>
+<div class="block">A normalized objective wraps another objective and normalizes all produces evaluations
+ from a given interval [min, max] to [0, 1].</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/problems/objectives/NormalizedObjective.html#NormalizedObjective-org.jamesframework.core.problems.objectives.Objective-double-double-">NormalizedObjective(Objective&lt;? super SolutionType, ? super DataType&gt;, double, double)</a></span> - Constructor for class org.jamesframework.ext.problems.objectives.<a href="org/jamesframework/ext/problems/objectives/NormalizedObjective.html" title="class in org.jamesframework.ext.problems.objectives">NormalizedObjective</a></dt>
+<dd>
+<div class="block">Create a normalized objective that wraps the given objective and normalizes all produced
+ evaluation from [min, max] to [0, 1].</div>
 </dd>
 </dl>
 <a name="I:O">
@@ -483,7 +541,8 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/ext/permutation/neigh/moves/SingleSwapMove.html#SingleSwapMove-int-int-">SingleSwapMove(int, int)</a></span> - Constructor for class org.jamesframework.ext.permutation.neigh.moves.<a href="org/jamesframework/ext/permutation/neigh/moves/SingleSwapMove.html" title="class in org.jamesframework.ext.permutation.neigh.moves">SingleSwapMove</a></dt>
 <dd>
-<div class="block">Create a single swap move given the two positions in the permutation at which items are to be swapped.</div>
+<div class="block">Create a single swap move given the two positions in the permutation
+ at which items are to be swapped.</div>
 </dd>
 <dt><a href="org/jamesframework/ext/permutation/neigh/SingleSwapNeighbourhood.html" title="class in org.jamesframework.ext.permutation.neigh"><span class="typeNameLink">SingleSwapNeighbourhood</span></a> - Class in <a href="org/jamesframework/ext/permutation/neigh/package-summary.html">org.jamesframework.ext.permutation.neigh</a></dt>
 <dd>
@@ -512,6 +571,50 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/ext/analysis/JsonConverter.html#toJson-T-">toJson(T)</a></span> - Method in interface org.jamesframework.ext.analysis.<a href="org/jamesframework/ext/analysis/JsonConverter.html" title="interface in org.jamesframework.ext.analysis">JsonConverter</a></dt>
 <dd>
 <div class="block">Convert an object to a JSON representation.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/permutation/neigh/moves/ReverseSubsequenceMove.html#toString--">toString()</a></span> - Method in class org.jamesframework.ext.permutation.neigh.moves.<a href="org/jamesframework/ext/permutation/neigh/moves/ReverseSubsequenceMove.html" title="class in org.jamesframework.ext.permutation.neigh.moves">ReverseSubsequenceMove</a></dt>
+<dd>
+<div class="block">Get string indicating move type and bounds of reversed subsequence.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/permutation/neigh/moves/SingleSwapMove.html#toString--">toString()</a></span> - Method in class org.jamesframework.ext.permutation.neigh.moves.<a href="org/jamesframework/ext/permutation/neigh/moves/SingleSwapMove.html" title="class in org.jamesframework.ext.permutation.neigh.moves">SingleSwapMove</a></dt>
+<dd>
+<div class="block">Get string indicating move type and positions of swapped items.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/permutation/neigh/ReverseSubsequenceNeighbourhood.html#toString--">toString()</a></span> - Method in class org.jamesframework.ext.permutation.neigh.<a href="org/jamesframework/ext/permutation/neigh/ReverseSubsequenceNeighbourhood.html" title="class in org.jamesframework.ext.permutation.neigh">ReverseSubsequenceNeighbourhood</a></dt>
+<dd>
+<div class="block">Get string indicating neighbourhood type.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/permutation/neigh/SingleSwapNeighbourhood.html#toString--">toString()</a></span> - Method in class org.jamesframework.ext.permutation.neigh.<a href="org/jamesframework/ext/permutation/neigh/SingleSwapNeighbourhood.html" title="class in org.jamesframework.ext.permutation.neigh">SingleSwapNeighbourhood</a></dt>
+<dd>
+<div class="block">Get string indicating neighbourhood type.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/permutation/PermutationSolution.html#toString--">toString()</a></span> - Method in class org.jamesframework.ext.permutation.<a href="org/jamesframework/ext/permutation/PermutationSolution.html" title="class in org.jamesframework.ext.permutation">PermutationSolution</a></dt>
+<dd>
+<div class="block">Create a string representation of the permutation solution,
+ indicating the current order of IDs.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/problems/objectives/evaluations/NormalizedEvaluation.html#toString--">toString()</a></span> - Method in class org.jamesframework.ext.problems.objectives.evaluations.<a href="org/jamesframework/ext/problems/objectives/evaluations/NormalizedEvaluation.html" title="class in org.jamesframework.ext.problems.objectives.evaluations">NormalizedEvaluation</a></dt>
+<dd>
+<div class="block">Format value as string.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/problems/objectives/evaluations/WeightedIndexEvaluation.html#toString--">toString()</a></span> - Method in class org.jamesframework.ext.problems.objectives.evaluations.<a href="org/jamesframework/ext/problems/objectives/evaluations/WeightedIndexEvaluation.html" title="class in org.jamesframework.ext.problems.objectives.evaluations">WeightedIndexEvaluation</a></dt>
+<dd>
+<div class="block">Format value as string.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/problems/objectives/NormalizedObjective.html#toString--">toString()</a></span> - Method in class org.jamesframework.ext.problems.objectives.<a href="org/jamesframework/ext/problems/objectives/NormalizedObjective.html" title="class in org.jamesframework.ext.problems.objectives">NormalizedObjective</a></dt>
+<dd>
+<div class="block">Create string representation of normalized objective, indicating
+ the original, unnormalized objective and normalization interval.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/problems/objectives/WeightedIndex.html#toString--">toString()</a></span> - Method in class org.jamesframework.ext.problems.objectives.<a href="org/jamesframework/ext/problems/objectives/WeightedIndex.html" title="class in org.jamesframework.ext.problems.objectives">WeightedIndex</a></dt>
+<dd>
+<div class="block">Create string representation that points out the
+ included objectives and corresponding weights.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html#toString--">toString()</a></span> - Method in class org.jamesframework.ext.search.neigh.<a href="org/jamesframework/ext/search/neigh/CompositeNeighbourhood.html" title="class in org.jamesframework.ext.search.neigh">CompositeNeighbourhood</a></dt>
+<dd>
+<div class="block">Create string representation that indicates the
+ contained neighbourhoods and respective weights.</div>
 </dd>
 </dl>
 <a name="I:U">
@@ -576,7 +679,7 @@
  the james-analysis R package.</div>
 </dd>
 </dl>
-<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:J">J</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:W">W</a>&nbsp;</div>
+<a href="#I:A">A</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:J">J</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:W">W</a>&nbsp;</div>
 <!-- ======= START OF BOTTOM NAVBAR ====== -->
 <div class="bottomNav"><a name="navbar.bottom">
 <!--   -->
