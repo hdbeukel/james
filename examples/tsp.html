@@ -175,7 +175,7 @@ public class TSPData {
             <i class="fa fa-info-circle"></i>
             Evaluation type
         </h4>
-        For most problems, it is sufficient to wrap the computed value in a <code>SimpleEvaluation</code> as shown in this example.
+        For many problems, it is sufficient to wrap the computed value in a <code>SimpleEvaluation</code> as shown in this example.
         To understand when and why it may be necessary to define a custom evaluation type, see <a href="/examples/coresubset3/">example 1C</a>.
     </div>
 <pre class="prettyprint">
@@ -490,20 +490,29 @@ if(randomDescent.getBestSolution() != null){
 randomDescent.dispose();
 </pre>
     <p>
-        However, to be able to escape from local optima, more advanced techniques such as
-        <a href="/docs/#parallel-tempering">parallel tempering</a> are needed.
+        To be able to escape from local optima, more advanced techniques such as
+        <a href="/docs/#parallel-tempering">parallel tempering</a> might be needed.
         When using the parallel tempering algorithm, it is important to set an appropriate temperature range
-        (see examples <a href="/examples/coresubset3/#parallel-tempering">1C</a> and <a href="/examples/knapsack/#parallel-tempering">2A</a>)
-        taking into account the scale of the evaluations and, in particular, the expected difference in evaluation between
-        neighbouring solutions. Here, this difference depends on the precise travel distances between cities.
-        Therefore, temperatures are scaled according to the average travel distance between each pair of cities.
-        Alternatively, we could have normalized the distances.
+        (also see examples <a href="/examples/coresubset3/#parallel-tempering">1C</a> and <a href="/examples/knapsack/#parallel-tempering">2A</a>)
+        taking into account the scale of the evaluations. In particular, the probability to accept an inferior move is determined based on the ratio
+        of the difference in evaluation (delta) and the temperature of the system.
+        Here, the scale of the expected deltas depends on that of the distances between cities.
+        Therefore, temperatures are scaled according to the average travel distance between each city and the closest other city.
+        Alternatively, we could have rescaled the distances.
+    </p>
+    <p>
+        The (unscaled) temperature range was refined to [10<sup>-8</sup>, 0.6]
+        using the analysis workflow, based on experiments with a number of
+        <a href="http://www.iwr.uni-heidelberg.de/groups/comopt/software/TSPLIB95/" target="_blank">TSPLIB instances</a>.
+        A detailed demonstration of how this can be done, for a different problem (core subset selection),
+        is provided in example <a href="/examples/parametersweep">5A</a>.
     </p>
 <pre class="prettyprint">
-// set temperature range, scaled according to average travel disctance between cities
-double scale = computeAverageTravelDistance(data);
-double minTemp = scale * 0.001;
-double maxTemp = scale * 0.1;
+// set temperature range, scaled according to average
+// distance between cities and their nearest neighbours
+double scale = computeAvgNearestNeighbourDistance(data);
+double minTemp = scale * 1e-8;
+double maxTemp = scale * 0.6;
 // create parallel tempering search with TSP neighbourhood
 int numReplicas = 10;
 ParallelTempering&lt;TSPSolution&gt; parallelTempering = new ParallelTempering&lt;&gt;(
@@ -513,19 +522,23 @@ ParallelTempering&lt;TSPSolution&gt; parallelTempering = new ParallelTempering&l
                                                    );
 </pre>
     <p>
-        The average travel distance is easily computed.
+        The average travel distance between cities and their closest neighbour is easily computed.
     </p>
 <pre class="prettyprint">
-double computeAverageTravelDistance(TSPData problem){
+double computeAvgNearestNeighbourDistance(TSPData data){
     int n = data.getNumCities();
     double sum = 0.0;
     for(int i=0; i&lt;n; i++){
-        for(int j=i+1; j&lt;n; j++) {
-            sum += data.getDistance(i, j);
+        double min = Double.MAX_VALUE;
+        for(int j=0; j&lt;n; j++) {
+            double dist = data.getDistance(i, j);
+            if(dist > 0.0 &amp;&amp; dist &lt; min){
+                min = dist;
+            }
         }
+        sum += min;
     }
-    int numDistances = n*(n-1)/2;
-    return sum/numDistances;
+    return sum/n;
 }
 </pre>
     <p>
