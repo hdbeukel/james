@@ -219,8 +219,8 @@ pea-small        Random Descent         10        0.351  0.000477     0.351  0.0
     <p>
         By default a convergence ratio of 0.99 is used for such visualizations, meaning that the point in time is reported at which
         99% of the progress from initial to final solution has been made. Setting the convergence ratio to 1 reports the precise
-        time at which the final best solution was found, while reducing the convergence ratio can provide interesting insights in the
-        early stage search behaviour. In this experiment, all search runs converged within at most a few minutes (often seconds) with
+        time at which the final best solution was found.
+        In this experiment, all search runs converged within at most a few minutes (often seconds) with
         random descent being generally faster than parallel tempering (which is of course expected for an advanced algorithm).
     </p>
     <div class="bs-callout bs-callout-warning">
@@ -259,7 +259,7 @@ pea-small        Random Descent         10        0.351  0.000477     0.351  0.0
         It is now clear that random descent takes a head start, improving the solution quality more rapidly than
         parallel tempering. After about 4 seconds, parallel tempering catches up and continues to improve the solution
         a little bit, reaching a slightly higher convergence plateau.
-        If desired, data can easily be extracted from the results for further processing. Take a look a the following functions:
+        If desired, data can easily be extracted from the results for further processing. Take a look at the following functions:
         <ul>
             <li><code>getProblems</code></li>
             <li><code>getSearches</code></li>
