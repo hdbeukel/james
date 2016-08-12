@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -173,31 +173,37 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 </td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#clear--">clear</a></span>()</code>
+<div class="block">Remove all stop criteria.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#remove-org.jamesframework.core.search.stopcriteria.StopCriterion-">remove</a></span>(<a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterion.html" title="interface in org.jamesframework.core.search.stopcriteria">StopCriterion</a>&nbsp;stopCriterion)</code>
 <div class="block">Remove a stop criterion.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#setPeriod-long-java.util.concurrent.TimeUnit-">setPeriod</a></span>(long&nbsp;period,
          <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/TimeUnit.html?is-external=true" title="class or interface in java.util.concurrent">TimeUnit</a>&nbsp;timeUnit)</code>
 <div class="block">Set the period between consecutive stop criterion checks.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#startChecking--">startChecking</a></span>()</code>
 <div class="block">Start checking the stop criteria, in a separate background thread.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#stopChecking--">stopChecking</a></span>()</code>
 <div class="block">Instructs the stop criterion checker to stop checking.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#stopCriterionSatisfied--">stopCriterionSatisfied</a></span>()</code>
 <div class="block">Check whether at least one stop criterion is satisfied.</div>
@@ -232,8 +238,9 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>StopCriterionChecker</h4>
 <pre>public&nbsp;StopCriterionChecker(<a href="../../../../../org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a>&lt;?&gt;&nbsp;search)</pre>
-<div class="block">Create a stop criterion checker dedicated to checking the stop criteria of the given search. By default, consecutive checks will be
- separated with a period of 1 second. This can be customized using <a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#setPeriod-long-java.util.concurrent.TimeUnit-"><code>setPeriod(long, TimeUnit)</code></a>.</div>
+<div class="block">Create a stop criterion checker dedicated to checking the stop criteria of the given search.
+ By default, consecutive checks will be separated with a period of 1 second.
+ This can be customized using <a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#setPeriod-long-java.util.concurrent.TimeUnit-"><code>setPeriod(long, TimeUnit)</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>search</code> - search for which the stop criteria should be checked while running</dd>
@@ -281,6 +288,16 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 </dl>
 </li>
 </ul>
+<a name="clear--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>clear</h4>
+<pre>public&nbsp;void&nbsp;clear()</pre>
+<div class="block">Remove all stop criteria.</div>
+</li>
+</ul>
 <a name="setPeriod-long-java.util.concurrent.TimeUnit-">
 <!--   -->
 </a>
@@ -289,8 +306,8 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <h4>setPeriod</h4>
 <pre>public&nbsp;void&nbsp;setPeriod(long&nbsp;period,
                       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/TimeUnit.html?is-external=true" title="class or interface in java.util.concurrent">TimeUnit</a>&nbsp;timeUnit)</pre>
-<div class="block">Set the period between consecutive stop criterion checks. By default, this period is set to 1 second. The new settings will apply as
- from the next call of <a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#startChecking--"><code>startChecking()</code></a>.</div>
+<div class="block">Set the period between consecutive stop criterion checks. By default, this period is set to 1 second.
+ The new settings will apply as from the next call of <a href="../../../../../org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#startChecking--"><code>startChecking()</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>period</code> - period between two checks</dd>
@@ -305,8 +322,8 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>startChecking</h4>
 <pre>public&nbsp;void&nbsp;startChecking()</pre>
-<div class="block">Start checking the stop criteria, in a separate background thread. If the stop criterion checker is already active,
- or if no stop criteria have been added, calling this method does not have any effect.</div>
+<div class="block">Start checking the stop criteria, in a separate background thread. If the stop criterion checker is
+ already active, or if no stop criteria have been added, calling this method does not have any effect.</div>
 </li>
 </ul>
 <a name="stopChecking--">

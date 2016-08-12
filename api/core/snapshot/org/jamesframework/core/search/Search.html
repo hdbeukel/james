@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":6,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":6,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -110,7 +110,8 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
-<dd><code>SolutionType</code> - solution type of the problems that may be solved using this search, required to extend <a href="../../../../org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol"><code>Solution</code></a></dd>
+<dd><code>SolutionType</code> - solution type of the problems that may be solved using this search,
+                       required to extend <a href="../../../../org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol"><code>Solution</code></a></dd>
 </dl>
 <dl>
 <dt>All Implemented Interfaces:</dt>
@@ -127,21 +128,22 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</a></pre>
 <div class="block"><p>
  General abstract search used to solve a problem with the specified solution type. It provides general methods to
- start and stop the search, and to access state information and metadata such as the best solution found so far and the
- runtime of the current run. It also provides methods to add and remove search listeners and stop criteria.
+ start and stop the search, and to access state information and metadata such as the best solution found so far and
+ the runtime of the current run. It also provides methods to add and remove search listeners and stop criteria.
  </p>
  <p>
- A search can have five possible statuses: IDLE, INITIALIZING, RUNNING, TERMINATING or DISPOSED (see <a href="../../../../org/jamesframework/core/search/status/SearchStatus.html" title="enum in org.jamesframework.core.search.status"><code>SearchStatus</code></a>).
- When a search is created, it is IDLE. Upon calling <a href="../../../../org/jamesframework/core/search/Search.html#start--"><code>start()</code></a> it first goes to INITIALIZING and then RUNNING, after
- successful initialization. While the search is running, it iteratively calls <a href="../../../../org/jamesframework/core/search/Search.html#searchStep--"><code>searchStep()</code></a> to perform a search step
- as defined in each specific search implementation.
+ A search can have five possible statuses: IDLE, INITIALIZING, RUNNING, TERMINATING or DISPOSED
+ (see <a href="../../../../org/jamesframework/core/search/status/SearchStatus.html" title="enum in org.jamesframework.core.search.status"><code>SearchStatus</code></a>). When a search is created, it is IDLE. Upon calling <a href="../../../../org/jamesframework/core/search/Search.html#start--"><code>start()</code></a>
+ it first goes to INITIALIZING and then RUNNING, after successful initialization. While the search
+ is running, it iteratively calls <a href="../../../../org/jamesframework/core/search/Search.html#searchStep--"><code>searchStep()</code></a> to perform a search step as defined in each
+ specific search implementation.
  </p>
  <p>
  Whenever a search is requested to stop, by calling <a href="../../../../org/jamesframework/core/search/Search.html#stop--"><code>stop()</code></a>, it goes to status TERMINATING. A terminating
  search will stop after it has completed its current step, and then its status goes back to status IDLE. A search
- may also terminate itself by calling <a href="../../../../org/jamesframework/core/search/Search.html#stop--"><code>stop()</code></a> internally, when it has come to its natural end. In particular,
- a single step algorithm can be implemented by calling <a href="../../../../org/jamesframework/core/search/Search.html#stop--"><code>stop()</code></a> immediately at the end of this first and
- only step, which guarantees that only one single step will be executed.
+ may also terminate itself by calling <a href="../../../../org/jamesframework/core/search/Search.html#stop--"><code>stop()</code></a> internally, when it has come to its natural end.
+ In particular, a single step algorithm can be implemented by calling <a href="../../../../org/jamesframework/core/search/Search.html#stop--"><code>stop()</code></a> immediately at the end of
+ the first and only step, which guarantees that only one single step will be executed.
  </p>
  <p>
  An idle search may be restarted at any time. The search state is retained across subsequent runs, including the best
@@ -160,9 +162,10 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.
  documentation. Note that stop criteria relying on such metadata will operate on a per-run basis.
  </p>
  <p>
- An idle search can also be disposed (see <a href="../../../../org/jamesframework/core/search/Search.html#dispose--"><code>dispose()</code></a>), upon which it will release all of its resources. A disposed
- search can never be restarted. Note that it is important to always dispose a search after its last run so that it does not
- hold on to any of its resources. Not disposing a search may prevent termination of the application.
+ An idle search can also be disposed (see <a href="../../../../org/jamesframework/core/search/Search.html#dispose--"><code>dispose()</code></a>), upon which it will release all of its resources.
+ A disposed search can never be restarted. Note that it is important to always dispose a search after its last
+ run so that it does not hold on to any of its resources. Not disposing a search may prevent termination of the
+ application.
  </p></div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
@@ -230,6 +233,18 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.
 </td>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#clearSearchListeners--">clearSearchListeners</a></span>()</code>
+<div class="block">Remove all search listeners.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#clearStopCriteria--">clearStopCriteria</a></span>()</code>
+<div class="block">Removes all stop criteria.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>protected double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#computeDelta-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.objectives.evaluations.Evaluation-">computeDelta</a></span>(<a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;currentEvaluation,
             <a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;previousEvaluation)</code>
@@ -237,37 +252,37 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.
  taking into account whether evaluations are being maximized or minimized.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#dispose--">dispose</a></span>()</code>
 <div class="block">Dispose this search, upon which all of its resources are released.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getBestSolution--">getBestSolution</a></span>()</code>
 <div class="block">Returns the best solution found so far.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getBestSolutionEvaluation--">getBestSolutionEvaluation</a></span>()</code>
 <div class="block">Get the evaluation of the best solution found so far.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/constraints/validations/Validation.html" title="interface in org.jamesframework.core.problems.constraints.validations">Validation</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getBestSolutionValidation--">getBestSolutionValidation</a></span>()</code>
 <div class="block">Get the validation of the best solution found so far.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getID--">getID</a></span>()</code>
 <div class="block">Get the unique ID that has been assigned to this search.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getMinDelta--">getMinDelta</a></span>()</code>
 <div class="block">
@@ -275,57 +290,57 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.
  found during the <i>current</i> (or last) run.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getName--">getName</a></span>()</code>
 <div class="block">Get the name that has been assigned to this search.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code><a href="../../../../org/jamesframework/core/problems/Problem.html" title="interface in org.jamesframework.core.problems">Problem</a>&lt;<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getProblem--">getProblem</a></span>()</code>
 <div class="block">Get the problem being solved, as specified at construction.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getRandom--">getRandom</a></span>()</code>
 <div class="block">Get the dedicated random generator used by this search.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getRuntime--">getRuntime</a></span>()</code>
 <div class="block">
  Get the runtime of the <i>current</i> (or last) run, in milliseconds.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>protected <a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;? super <a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getSearchListeners--">getSearchListeners</a></span>()</code>
 <div class="block">Retrieve search listeners (unmodifiable view).</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code><a href="../../../../org/jamesframework/core/search/status/SearchStatus.html" title="enum in org.jamesframework.core.search.status">SearchStatus</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getStatus--">getStatus</a></span>()</code>
 <div class="block">Get the current search status.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>protected <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getStatusLock--">getStatusLock</a></span>()</code>
 <div class="block">Returns a lock to be acquired when executing blocks of code that can not be interrupted by a status update.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getSteps--">getSteps</a></span>()</code>
 <div class="block">
  Get the number of completed steps during the <i>current</i> (or last) run.</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getStepsWithoutImprovement--">getStepsWithoutImprovement</a></span>()</code>
 <div class="block">
@@ -333,7 +348,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.
  any further improvement.</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#getTimeWithoutImprovement--">getTimeWithoutImprovement</a></span>()</code>
 <div class="block">
@@ -341,91 +356,100 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.
  (in milliseconds).</div>
 </td>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i22" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#init--">init</a></span>()</code>
+<div class="block">
+ Initializes and/or validates the search.</div>
+</td>
+</tr>
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#removeSearchListener-org.jamesframework.core.search.listeners.SearchListener-">removeSearchListener</a></span>(<a href="../../../../org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a>&lt;? super <a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&gt;&nbsp;listener)</code>
 <div class="block">Remove the given search listener.</div>
 </td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#removeStopCriterion-org.jamesframework.core.search.stopcriteria.StopCriterion-">removeStopCriterion</a></span>(<a href="../../../../org/jamesframework/core/search/stopcriteria/StopCriterion.html" title="interface in org.jamesframework.core.search.stopcriteria">StopCriterion</a>&nbsp;stopCriterion)</code>
 <div class="block">Removes a stop criterion.</div>
 </td>
 </tr>
-<tr id="i22" class="altColor">
+<tr id="i25" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#run--">run</a></span>()</code>
 <div class="block">Equivalent to calling <a href="../../../../org/jamesframework/core/search/Search.html#start--"><code>start()</code></a>.</div>
 </td>
 </tr>
-<tr id="i23" class="rowColor">
+<tr id="i26" class="altColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#searchDisposed--">searchDisposed</a></span>()</code>
-<div class="block">This method is called when a search is disposed, immediately before the search status is updated to DISPOSED.</div>
+<div class="block">
+ This method is called when a search is disposed, immediately before the search status is updated.</div>
 </td>
 </tr>
-<tr id="i24" class="altColor">
+<tr id="i27" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#searchStarted--">searchStarted</a></span>()</code>
-<div class="block">This method is called when a search run is started, to perform initialization and/or validation of the search
- configuration.</div>
+<div class="block">
+ This method is called when a search run is started.</div>
 </td>
 </tr>
-<tr id="i25" class="rowColor">
+<tr id="i28" class="altColor">
 <td class="colFirst"><code>protected abstract void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#searchStep--">searchStep</a></span>()</code>
 <div class="block">This method is iteratively called while the search is running and should be implemented in every specific
  search according to the corresponding search strategy.</div>
 </td>
 </tr>
-<tr id="i26" class="altColor">
+<tr id="i29" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#searchStopped--">searchStopped</a></span>()</code>
-<div class="block">This method is called when a search run has completed and may be used to perform some finalization.</div>
+<div class="block">
+ This method is called when a search run has completed.</div>
 </td>
 </tr>
-<tr id="i27" class="rowColor">
+<tr id="i30" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#setRandom-java.util.Random-">setRandom</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Random.html?is-external=true" title="class or interface in java.util">Random</a>&nbsp;rnd)</code>
 <div class="block">Set custom random generator.</div>
 </td>
 </tr>
-<tr id="i28" class="altColor">
+<tr id="i31" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#setStopCriterionCheckPeriod-long-java.util.concurrent.TimeUnit-">setStopCriterionCheckPeriod</a></span>(long&nbsp;period,
                            <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/TimeUnit.html?is-external=true" title="class or interface in java.util.concurrent">TimeUnit</a>&nbsp;timeUnit)</code>
 <div class="block">Instructs the search to check its stop criteria at regular intervals separated by the given period.</div>
 </td>
 </tr>
-<tr id="i29" class="rowColor">
+<tr id="i32" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#start--">start</a></span>()</code>
 <div class="block">
  Starts a search run and returns when this run has finished.</div>
 </td>
 </tr>
-<tr id="i30" class="altColor">
+<tr id="i33" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#stop--">stop</a></span>()</code>
 <div class="block">
  Requests the search to stop.</div>
 </td>
 </tr>
-<tr id="i31" class="rowColor">
+<tr id="i34" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#toString--">toString</a></span>()</code>
 <div class="block">Returns a string representation of the search, formatted as "%name(%id)".</div>
 </td>
 </tr>
-<tr id="i32" class="altColor">
+<tr id="i35" class="rowColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-">updateBestSolution</a></span>(<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&nbsp;newSolution)</code>
 <div class="block">
  Checks whether a new best solution has been found and updates it accordingly.</div>
 </td>
 </tr>
-<tr id="i33" class="rowColor">
+<tr id="i36" class="altColor">
 <td class="colFirst"><code>protected boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../org/jamesframework/core/search/Search.html#updateBestSolution-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">updateBestSolution</a></span>(<a href="../../../../org/jamesframework/core/search/Search.html" title="type parameter in Search">SolutionType</a>&nbsp;newSolution,
                   <a href="../../../../org/jamesframework/core/problems/objectives/evaluations/Evaluation.html" title="interface in org.jamesframework.core.problems.objectives.evaluations">Evaluation</a>&nbsp;newSolutionEvaluation,
@@ -589,6 +613,37 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.
 </dl>
 </li>
 </ul>
+<a name="init--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>init</h4>
+<pre>public&nbsp;void&nbsp;init()</pre>
+<div class="block"><p>
+ Initializes and/or validates the search.
+ It is not required to manually initialize a search before it is started since <a href="../../../../org/jamesframework/core/search/Search.html#init--"><code>init()</code></a> is called from
+ within <a href="../../../../org/jamesframework/core/search/Search.html#searchStarted--"><code>searchStarted()</code></a>. However, it may also be called prior to starting the search. For example, a
+ search composed of multiple subsearches may choose to initialize these searches prior to execution.
+ </p>
+ <p>
+ A <a href="../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions"><code>SearchException</code></a> may be thrown if initialization fails because the search has not been configured
+ validly. Moreover, any <a href="../../../../org/jamesframework/core/exceptions/JamesRuntimeException.html" title="class in org.jamesframework.core.exceptions"><code>JamesRuntimeException</code></a> could be thrown when initialization depends on
+ malfunctioning components.
+ </p>
+ <p>
+ When overriding this method, always call <code>super.init()</code> and take into account that the
+ method may be called multiple times prior to execution. For example, consider to perform computationally
+ expensive initializations only once, upon the first call. The default implementation is empty.
+ </p></div>
+<dl>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions">SearchException</a></code> - if initialization fails, e.g. because the search has not been configured validly</dd>
+<dd><code><a href="../../../../org/jamesframework/core/exceptions/JamesRuntimeException.html" title="class in org.jamesframework.core.exceptions">JamesRuntimeException</a></code> - in general, any <a href="../../../../org/jamesframework/core/exceptions/JamesRuntimeException.html" title="class in org.jamesframework.core.exceptions"><code>JamesRuntimeException</code></a> may be thrown
+                               in case of a malfunctioning component used during initialization</dd>
+</dl>
+</li>
+</ul>
 <a name="start--">
 <!--   -->
 </a>
@@ -597,10 +652,11 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.
 <h4>start</h4>
 <pre>public&nbsp;void&nbsp;start()</pre>
 <div class="block"><p>
- Starts a search run and returns when this run has finished. The search run may either complete internally,
- i.e. come to its natural end, or be terminated by a stop criterion (see <a href="../../../../org/jamesframework/core/search/Search.html#addStopCriterion-org.jamesframework.core.search.stopcriteria.StopCriterion-"><code>addStopCriterion(StopCriterion)</code></a>).
+ Starts a search run and returns when this run has finished. The search run may either complete internally, i.e.
+ come to its natural end, or be terminated by a stop criterion (see <a href="../../../../org/jamesframework/core/search/Search.html#addStopCriterion-org.jamesframework.core.search.stopcriteria.StopCriterion-"><code>addStopCriterion(StopCriterion)</code></a>).
  This method does not return anything; the best solution found during search can be obtained by calling
- <a href="../../../../org/jamesframework/core/search/Search.html#getBestSolution--"><code>getBestSolution()</code></a> and its corresponding evaluation with <a href="../../../../org/jamesframework/core/search/Search.html#getBestSolutionEvaluation--"><code>getBestSolutionEvaluation()</code></a>.
+ <a href="../../../../org/jamesframework/core/search/Search.html#getBestSolution--"><code>getBestSolution()</code></a> and its corresponding evaluation and validation with
+ <a href="../../../../org/jamesframework/core/search/Search.html#getBestSolutionEvaluation--"><code>getBestSolutionEvaluation()</code></a> and <a href="../../../../org/jamesframework/core/search/Search.html#getBestSolutionValidation--"><code>getBestSolutionValidation()</code></a>, respectively.
  </p>
  <p>
  Note that a search can only be (re)started when it is idle (see <a href="../../../../org/jamesframework/core/search/Search.html#getStatus--"><code>getStatus()</code></a>). When attempting to start
@@ -628,14 +684,16 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.
 <h4>stop</h4>
 <pre>public&nbsp;void&nbsp;stop()</pre>
 <div class="block"><p>
- Requests the search to stop. May be called from outside the search, e.g. by a stop criterion, as well as internally,
- when the search comes to its natural end. In the latter case, it is absolutely guaranteed that the step from which the search
- was requested to stop will be the last step executed during the current run. If the current search status is not INITIALIZING
- or RUNNING, calling this method has no effect. Else, it changes the search status to TERMINATING.
+ Requests the search to stop. May be called from outside the search, e.g. by a stop criterion,
+ as well as internally, when the search comes to its natural end. In the latter case, it is
+ absolutely guaranteed that the step from which the search was requested to stop will be the
+ last step executed during the current run. If the current search status is not
+ <a href="../../../../org/jamesframework/core/search/status/SearchStatus.html#INITIALIZING"><code>SearchStatus.INITIALIZING</code></a> or <a href="../../../../org/jamesframework/core/search/status/SearchStatus.html#RUNNING"><code>SearchStatus.RUNNING</code></a>, calling this method has
+ no effect. Else, it changes the search status to <a href="../../../../org/jamesframework/core/search/status/SearchStatus.html#TERMINATING"><code>SearchStatus.TERMINATING</code></a>.
  </p>
  <p>
- In case the search is already requested to terminate during initialization, it will complete initialization, but is guaranteed
- to stop before executing any search steps.
+ In case the search is already requested to terminate during initialization, it will complete
+ initialization, but is guaranteed to stop before executing any search steps.
  </p></div>
 </li>
 </ul>
@@ -648,8 +706,8 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.
 <pre>public&nbsp;void&nbsp;dispose()</pre>
 <div class="block">Dispose this search, upon which all of its resources are released. Note that only idle
  searches may be disposed and that a disposed search can never be restarted. Sets the search
- status to DISPOSED. When trying to dispose an already disposed search, nothing happens, i.e.
- calling this method on a disposed search has no effect.</div>
+ status to <a href="../../../../org/jamesframework/core/search/status/SearchStatus.html#DISPOSED"><code>SearchStatus.DISPOSED</code></a>. When trying to dispose an already disposed search,
+ nothing happens, i.e. calling this method on a disposed search has no effect.</div>
 <dl>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions">SearchException</a></code> - if the search is currently not idle (and not already disposed)</dd>
@@ -704,6 +762,21 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.
 <dd><code>stopCriterion</code> - stop criterion to be removed</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd><code>true</code> if the stop criterion has been successfully removed</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions">SearchException</a></code> - if the search is not idle</dd>
+</dl>
+</li>
+</ul>
+<a name="clearStopCriteria--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>clearStopCriteria</h4>
+<pre>public&nbsp;void&nbsp;clearStopCriteria()</pre>
+<div class="block">Removes all stop criteria.
+ Note that this method may only be called when the search is idle.</div>
+<dl>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions">SearchException</a></code> - if the search is not idle</dd>
 </dl>
@@ -767,6 +840,17 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions">SearchException</a></code> - if the search is not idle</dd>
 </dl>
+</li>
+</ul>
+<a name="clearSearchListeners--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>clearSearchListeners</h4>
+<pre>public&nbsp;void&nbsp;clearSearchListeners()</pre>
+<div class="block">Remove all search listeners.
+ Note that this method may only be called when the search is idle.</div>
 </li>
 </ul>
 <a name="getSearchListeners--">
@@ -971,7 +1055,8 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.
   </li>
  </ul>
  <p>
- The return value is always positive, except in those cases when <a href="../../../../org/jamesframework/core/util/JamesConstants.html#INVALID_TIME_SPAN"><code>JamesConstants.INVALID_TIME_SPAN</code></a> is returned.
+ The return value is always positive, except in those cases when
+ <a href="../../../../org/jamesframework/core/util/JamesConstants.html#INVALID_TIME_SPAN"><code>JamesConstants.INVALID_TIME_SPAN</code></a> is returned.
  </p></div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -1103,8 +1188,8 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.
    made during the current run is returned.
   </li>
   <li>
-   If the search is IDLE or DISPOSED, but has been run before, the minimum delta observed during the last run is returned.
-   Before the first run, the return value is <a href="../../../../org/jamesframework/core/util/JamesConstants.html#INVALID_DELTA"><code>JamesConstants.INVALID_DELTA</code></a>.
+  If the search is IDLE or DISPOSED, but has been run before, the minimum delta observed during the last
+  run is returned. Before the first run, the return value is <a href="../../../../org/jamesframework/core/util/JamesConstants.html#INVALID_DELTA"><code>JamesConstants.INVALID_DELTA</code></a>.
   </li>
   <li>
    While INITIALIZING the current run, <a href="../../../../org/jamesframework/core/util/JamesConstants.html#INVALID_DELTA"><code>JamesConstants.INVALID_DELTA</code></a> is returned.
@@ -1151,11 +1236,18 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.
 <li class="blockList">
 <h4>searchStarted</h4>
 <pre>protected&nbsp;void&nbsp;searchStarted()</pre>
-<div class="block">This method is called when a search run is started, to perform initialization and/or validation of the search
- configuration. It may throw a <a href="../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions"><code>SearchException</code></a> if initialization fails because the search has not been
- configured validly. Moreover, any <a href="../../../../org/jamesframework/core/exceptions/JamesRuntimeException.html" title="class in org.jamesframework.core.exceptions"><code>JamesRuntimeException</code></a> could be thrown when initialization depends on
- malfunctioning components. The default implementation resets all general per run metadata. Therefore, it is of
- <b>utmost</b> importance to call <code>super.searchStart()</code> in any overriding implementation.</div>
+<div class="block"><p>
+ This method is called when a search run is started.
+ It first initializes and validates the search by calling <a href="../../../../org/jamesframework/core/search/Search.html#init--"><code>init()</code></a>, which may throw a
+ <a href="../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions"><code>SearchException</code></a> if initialization fails because the search has not been configured validly.
+ Moreover, any <a href="../../../../org/jamesframework/core/exceptions/JamesRuntimeException.html" title="class in org.jamesframework.core.exceptions"><code>JamesRuntimeException</code></a> could be thrown in case initialization depends on
+ malfunctioning components.
+ After initialization, all general per run metadata is (re)set, such as the step count and execution time.
+ </p>
+ <p>
+ Always call <code>super.searchStarted()</code> when overriding this method.
+ Note however that it is preferred to override <a href="../../../../org/jamesframework/core/search/Search.html#init--"><code>init()</code></a> instead.
+ </p></div>
 <dl>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../../org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions">SearchException</a></code> - if initialization fails, e.g. because the search has not been configured validly</dd>
@@ -1171,11 +1263,15 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.
 <li class="blockList">
 <h4>searchStopped</h4>
 <pre>protected&nbsp;void&nbsp;searchStopped()</pre>
-<div class="block">This method is called when a search run has completed and may be used to perform some finalization. Any
+<div class="block"><p>
+ This method is called when a search run has completed. It may be used to perform some finalization. Any
  <a href="../../../../org/jamesframework/core/exceptions/JamesRuntimeException.html" title="class in org.jamesframework.core.exceptions"><code>JamesRuntimeException</code></a> may be thrown when finalization depends on malfunctioning search components.
  The default implementation ensures that the total runtime of the last run, if applicable, will be returned
- when calling <a href="../../../../org/jamesframework/core/search/Search.html#getRuntime--"><code>getRuntime()</code></a> on an idle search. Therefore, it is of <b>utmost</b> importance to call
- <code>super.searchStopped()</code> in any overriding implementation.</div>
+ when calling <a href="../../../../org/jamesframework/core/search/Search.html#getRuntime--"><code>getRuntime()</code></a> on an idle search.
+ </p>
+ <p>
+ Always call <code>super.searchStopped()</code> when overriding this method. 
+ </p></div>
 <dl>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../../org/jamesframework/core/exceptions/JamesRuntimeException.html" title="class in org.jamesframework.core.exceptions">JamesRuntimeException</a></code> - in general, any <a href="../../../../org/jamesframework/core/exceptions/JamesRuntimeException.html" title="class in org.jamesframework.core.exceptions"><code>JamesRuntimeException</code></a> may be thrown
@@ -1190,10 +1286,15 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.
 <li class="blockList">
 <h4>searchDisposed</h4>
 <pre>protected&nbsp;void&nbsp;searchDisposed()</pre>
-<div class="block">This method is called when a search is disposed, immediately before the search status is updated to DISPOSED.
+<div class="block"><p>
+ This method is called when a search is disposed, immediately before the search status is updated.
  The default implementation is empty but should be overridden when a specific search uses resources that have to
  be released (e.g. an active thread pool) when the search is no longer used. Any <a href="../../../../org/jamesframework/core/exceptions/JamesRuntimeException.html" title="class in org.jamesframework.core.exceptions"><code>JamesRuntimeException</code></a> may
- be thrown when trying to release malfunctioning resources.</div>
+ be thrown when trying to release malfunctioning resources.
+ </p>
+ <p>
+ Always call <code>super.searchDisposed()</code> when overriding this method. 
+ </p></div>
 <dl>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../../org/jamesframework/core/exceptions/JamesRuntimeException.html" title="class in org.jamesframework.core.exceptions">JamesRuntimeException</a></code> - in general, any <a href="../../../../org/jamesframework/core/exceptions/JamesRuntimeException.html" title="class in org.jamesframework.core.exceptions"><code>JamesRuntimeException</code></a> may be thrown
