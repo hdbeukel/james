@@ -5,9 +5,9 @@ permalink: pretty
 # Custom variables
 
 # used for links to latest snapshot JARs (core, extensions) and ZIP (examples) at Sonatype OSSRH
-core-snapshot: 1.2-SNAPSHOT
-extensions-snapshot: 1.1.2-SNAPSHOT
-examples-snapshot: 1.1.2-SNAPSHOT
+core-snapshot: 1.3-SNAPSHOT
+extensions-snapshot: 1.2.1-SNAPSHOT
+examples-snapshot: 1.2.1-SNAPSHOT
 
 # used for links to latest stable releases and corresponding APIs
 core-latest-stable: 1.1
