@@ -209,7 +209,8 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/sol/Solution.html#checkedCopy-T-">checkedCopy(T)</a></span> - Static method in class org.jamesframework.core.problems.sol.<a href="org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol">Solution</a></dt>
 <dd>
-<div class="block">Creates a checked deep copy of the given solution with specific type <code>T</code> (a subclass of <a href="org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol"><code>Solution</code></a>).</div>
+<div class="block">Creates a checked deep copy of the given solution with specific type <code>T</code>
+ (a subclass of <a href="org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol"><code>Solution</code></a>).</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html#clear--">clear()</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/FullTabuMemory.html" title="class in org.jamesframework.core.search.algo.tabu">FullTabuMemory</a></dt>
 <dd>
@@ -227,6 +228,10 @@
 <dd>
 <div class="block">Clear all cached values.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html#clear--">clear()</a></span> - Method in class org.jamesframework.core.search.stopcriteria.<a href="org/jamesframework/core/search/stopcriteria/StopCriterionChecker.html" title="class in org.jamesframework.core.search.stopcriteria">StopCriterionChecker</a></dt>
+<dd>
+<div class="block">Remove all stop criteria.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/algo/tabu/IDBasedSubsetTabuMemory.html#clear--">clear()</a></span> - Method in class org.jamesframework.core.subset.algo.tabu.<a href="org/jamesframework/core/subset/algo/tabu/IDBasedSubsetTabuMemory.html" title="class in org.jamesframework.core.subset.algo.tabu">IDBasedSubsetTabuMemory</a></dt>
 <dd>
 <div class="block">Clear the tabu memory.</div>
@@ -234,6 +239,14 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/util/FastLimitedQueue.html#clear--">clear()</a></span> - Method in class org.jamesframework.core.util.<a href="org/jamesframework/core/util/FastLimitedQueue.html" title="class in org.jamesframework.core.util">FastLimitedQueue</a></dt>
 <dd>
 <div class="block">Clear the queue.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#clearSearchListeners--">clearSearchListeners()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
+<dd>
+<div class="block">Remove all search listeners.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#clearStopCriteria--">clearStopCriteria()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
+<dd>
+<div class="block">Removes all stop criteria.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html#clearTabuMemory--">clearTabuMemory()</a></span> - Method in class org.jamesframework.core.search.algo.tabu.<a href="org/jamesframework/core/search/algo/tabu/TabuSearch.html" title="class in org.jamesframework.core.search.algo.tabu">TabuSearch</a></dt>
 <dd>
@@ -391,7 +404,7 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/problems/sol/Solution.html#equals-java.lang.Object-">equals(Object)</a></span> - Method in class org.jamesframework.core.problems.sol.<a href="org/jamesframework/core/problems/sol/Solution.html" title="class in org.jamesframework.core.problems.sol">Solution</a></dt>
 <dd>
 <div class="block">Overrides default <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang"><code>Object.equals(Object)</code></a> to be abstract so that all extending solution types are
- required to provide an appropriate implemenation that compares solutions by value instead of by reference.</div>
+ required to provide an appropriate implementation that compares solutions by value instead of by reference.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/neigh/moves/AbstractSubsetMove.html#equals-java.lang.Object-">equals(Object)</a></span> - Method in class org.jamesframework.core.subset.neigh.moves.<a href="org/jamesframework/core/subset/neigh/moves/AbstractSubsetMove.html" title="class in org.jamesframework.core.subset.neigh.moves">AbstractSubsetMove</a></dt>
 <dd>
@@ -1242,6 +1255,35 @@
 <dd>
 <div class="block">Constructs an instance with the specified detail message and cause.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/BasicParallelSearch.html#init--">init()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a></dt>
+<dd>
+<div class="block">When the search is initialized, it is verified whether at least one subsearch
+ has been added and all subsearches are initialized as well (in parallel).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/ParallelTempering.html#init--">init()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/ParallelTempering.html" title="class in org.jamesframework.core.search.algo">ParallelTempering</a></dt>
+<dd>
+<div class="block">When initializing a parallel tempering search, the replicas are initialized as well (in parallel).</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#init--">init()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
+<dd>
+<div class="block">When the search is initialized, a random initial solution is generated if none has been specified
+ or generated before.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#init--">init()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
+<dd>
+<div class="block">When a neighbourhood search is initialized, the number of accepted and rejected moves is (re)set to zero.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#init--">init()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
+<dd>
+<div class="block">
+ Initializes and/or validates the search.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/algo/LRSubsetSearch.html#init--">init()</a></span> - Method in class org.jamesframework.core.subset.algo.<a href="org/jamesframework/core/subset/algo/LRSubsetSearch.html" title="class in org.jamesframework.core.subset.algo">LRSubsetSearch</a></dt>
+<dd>
+<div class="block">When the search is initialized, and no custom initial solution has been set,
+ an empty or full subset solution is created depending on whether \(L \gt R\) 
+ or \(R \gt L\), respectively.</div>
+</dd>
 <dt><a href="org/jamesframework/core/problems/datatypes/IntegerIdentifiedData.html" title="interface in org.jamesframework.core.problems.datatypes"><span class="typeNameLink">IntegerIdentifiedData</span></a> - Interface in <a href="org/jamesframework/core/problems/datatypes/package-summary.html">org.jamesframework.core.problems.datatypes</a></dt>
 <dd>
 <div class="block">Interface of a data set in which each item is identified using a unique integer ID.</div>
@@ -1951,7 +1993,8 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#searchDisposed--">searchDisposed()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
-<div class="block">This method is called when a search is disposed, immediately before the search status is updated to DISPOSED.</div>
+<div class="block">
+ This method is called when a search is disposed, immediately before the search status is updated.</div>
 </dd>
 <dt><a href="org/jamesframework/core/exceptions/SearchException.html" title="class in org.jamesframework.core.exceptions"><span class="typeNameLink">SearchException</span></a> - Exception in <a href="org/jamesframework/core/exceptions/package-summary.html">org.jamesframework.core.exceptions</a></dt>
 <dd>
@@ -2007,32 +2050,14 @@
 <dd>
 <div class="block">Checks the stop condition for a given search.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/BasicParallelSearch.html#searchStarted--">searchStarted()</a></span> - Method in class org.jamesframework.core.search.algo.<a href="org/jamesframework/core/search/algo/BasicParallelSearch.html" title="class in org.jamesframework.core.search.algo">BasicParallelSearch</a></dt>
-<dd>
-<div class="block">When the search is started, it is verified whether at least one subsearch has been added.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/listeners/SearchListener.html#searchStarted-org.jamesframework.core.search.Search-">searchStarted(Search&lt;? extends SolutionType&gt;)</a></span> - Method in interface org.jamesframework.core.search.listeners.<a href="org/jamesframework/core/search/listeners/SearchListener.html" title="interface in org.jamesframework.core.search.listeners">SearchListener</a></dt>
 <dd>
 <div class="block">Fired when the search has started.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#searchStarted--">searchStarted()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
-<dd>
-<div class="block">When the search is started, a random initial solution is generated if none has been specified.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/NeighbourhoodSearch.html#searchStarted--">searchStarted()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/NeighbourhoodSearch.html" title="class in org.jamesframework.core.search">NeighbourhoodSearch</a></dt>
-<dd>
-<div class="block">When a neighbourhood search is started, the number of accepted and rejected moves is reset to zero.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#searchStarted--">searchStarted()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
-<div class="block">This method is called when a search run is started, to perform initialization and/or validation of the search
- configuration.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/algo/LRSubsetSearch.html#searchStarted--">searchStarted()</a></span> - Method in class org.jamesframework.core.subset.algo.<a href="org/jamesframework/core/subset/algo/LRSubsetSearch.html" title="class in org.jamesframework.core.subset.algo">LRSubsetSearch</a></dt>
-<dd>
-<div class="block">When the search is started for the first time, and no custom initial solution has been set,
- an empty or full subset solution is created depending on whether \(L \gt R\) or \(R \gt L\),
- respectively, to be repeatedly modified during search.</div>
+<div class="block">
+ This method is called when a search run is started.</div>
 </dd>
 <dt><a href="org/jamesframework/core/search/status/SearchStatus.html" title="enum in org.jamesframework.core.search.status"><span class="typeNameLink">SearchStatus</span></a> - Enum in <a href="org/jamesframework/core/search/status/package-summary.html">org.jamesframework.core.search.status</a></dt>
 <dd>
@@ -2115,7 +2140,8 @@
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/Search.html#searchStopped--">searchStopped()</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/Search.html" title="class in org.jamesframework.core.search">Search</a></dt>
 <dd>
-<div class="block">This method is called when a search run has completed and may be used to perform some finalization.</div>
+<div class="block">
+ This method is called when a search run has completed.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/subset/SubsetSolution.html#select-int-">select(int)</a></span> - Method in class org.jamesframework.core.subset.<a href="org/jamesframework/core/subset/SubsetSolution.html" title="class in org.jamesframework.core.subset">SubsetSolution</a></dt>
 <dd>
@@ -2145,6 +2171,10 @@
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#setCurrentSolution-SolutionType-">setCurrentSolution(SolutionType)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
 <dd>
 <div class="block">Sets the current solution prior to execution or in between search runs.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="org/jamesframework/core/search/LocalSearch.html#setCurrentSolution-SolutionType-org.jamesframework.core.problems.objectives.evaluations.Evaluation-org.jamesframework.core.problems.constraints.validations.Validation-">setCurrentSolution(SolutionType, Evaluation, Validation)</a></span> - Method in class org.jamesframework.core.search.<a href="org/jamesframework/core/search/LocalSearch.html" title="class in org.jamesframework.core.search">LocalSearch</a></dt>
+<dd>
+<div class="block">Sets the current solution given that it has already been evaluated and validated.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="org/jamesframework/core/search/algo/vns/ReducedVariableNeighbourhoodSearch.html#setCycleNeighbourhoods-boolean-">setCycleNeighbourhoods(boolean)</a></span> - Method in class org.jamesframework.core.search.algo.vns.<a href="org/jamesframework/core/search/algo/vns/ReducedVariableNeighbourhoodSearch.html" title="class in org.jamesframework.core.search.algo.vns">ReducedVariableNeighbourhoodSearch</a></dt>
 <dd>
