@@ -8,6 +8,15 @@
       Notification of new releases of the JAMES framework for discrete optimization using local search metaheuristics in Java.
     </description>
     <item>
+      <title>JAMES Version 1.2</title>
+      <link>http://www.jamesframework.org</link>
+      <guid isPermaLink="false">v1.2</guid>
+      <pubDate>16 Aug 2016</pubDate>
+      <description>
+          Version 1.2 of the JAMES framework has been released (core, extensions and examples modules).
+      </description>
+    </item>
+    <item>
       <title>JAMES Extensions and examples version 1.1.1</title>
       <link>http://www.jamesframework.org</link>
       <guid isPermaLink="false">v1.1.1</guid>
