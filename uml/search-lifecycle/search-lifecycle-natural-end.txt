@@ -5,7 +5,8 @@ Search -> StopCriterionChecker : new(Search)
 
 Actor ->+ Search : start()
 note over Search : status = INITIALIZING
-Search -> Search : searchStarted()
+Search ->+ Search : searchStarted()
+Search ->- Search : init()
 
 Search --> StopCriterionChecker : startChecking()
 
