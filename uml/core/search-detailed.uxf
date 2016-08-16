@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="13.2">
+<diagram program="umlet" version="14.2">
   <zoom_level>6</zoom_level>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>78</x>
+      <x>72</x>
       <y>0</y>
       <w>732</w>
-      <h>978</h>
+      <h>1020</h>
     </coordinates>
     <panel_attributes>search
 --</panel_attributes>
@@ -16,7 +16,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>144</x>
+      <x>138</x>
       <y>114</y>
       <w>318</w>
       <h>84</h>
@@ -35,10 +35,10 @@ SearchListener&lt;SolutionType&gt;
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>504</x>
+      <x>498</x>
       <y>162</y>
       <w>282</w>
-      <h>462</h>
+      <h>492</h>
     </coordinates>
     <panel_attributes>/Search&lt;SolutionType&gt;/
 --
@@ -59,9 +59,12 @@ SearchListener&lt;SolutionType&gt;
 --
 +addStopCriterion(StopCriterion) : void
 +removeStopCriterion(StopCriterion) : boolean
++clearStopCriteria() : void
 +setStopCriterionCheckPeriod(long,TimeUnit) : void
 +addSearchListener(SearchListener) : void
 +removeSearchListener(SearchListener) : boolean
++clearSearchListeners() : void
++init() : void
 +start() : void
 +stop() : void
 +dispose() : void
@@ -102,7 +105,7 @@ SearchListener&lt;SolutionType&gt;
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>456</x>
+      <x>450</x>
       <y>174</y>
       <w>60</w>
       <h>18</h>
@@ -113,7 +116,7 @@ SearchListener&lt;SolutionType&gt;
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>612</x>
+      <x>606</x>
       <y>54</y>
       <w>72</w>
       <h>78</h>
@@ -131,7 +134,7 @@ DISPOSED</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>222</x>
+      <x>216</x>
       <y>366</y>
       <w>180</w>
       <h>42</h>
@@ -145,7 +148,7 @@ StopCriterion
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>396</x>
+      <x>390</x>
       <y>372</y>
       <w>120</w>
       <h>18</h>
@@ -156,7 +159,7 @@ StopCriterion
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>642</x>
+      <x>636</x>
       <y>126</y>
       <w>18</w>
       <h>48</h>
@@ -167,10 +170,10 @@ StopCriterion
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>456</x>
-      <y>648</y>
+      <x>450</x>
+      <y>678</y>
       <w>330</w>
-      <h>138</h>
+      <h>150</h>
     </coordinates>
     <panel_attributes>/LocalSearch&lt;SolutionType&gt;/
 --
@@ -178,10 +181,11 @@ StopCriterion
 -curSolutionEvaluation : Evaluation
 -curSolutionValidation : Validation
 --
-getCurrentSolution() : SolutionType
-getCurrentSolutionEvaluation() : Evaluation
-getCurrentSolutionValidation() : Validation
-setCurrentSolution(SolutionType) : void
++getCurrentSolution() : SolutionType
++getCurrentSolutionEvaluation() : Evaluation
++getCurrentSolutionValidation() : Validation
++setCurrentSolution(SolutionType) : void
++setCurrentSolution(SolutionType,Evaluation,Validation) : void
 --
 #generateRandomInitialSolution() : void
 #updateCurrentSolution(SolutionType) : void
@@ -195,8 +199,8 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>642</x>
-      <y>618</y>
+      <x>636</x>
+      <y>648</y>
       <w>18</w>
       <h>42</h>
     </coordinates>
@@ -206,8 +210,8 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>384</x>
-      <y>810</y>
+      <x>378</x>
+      <y>858</y>
       <w>222</w>
       <h>150</h>
     </coordinates>
@@ -233,19 +237,19 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>516</x>
-      <y>780</y>
+      <x>510</x>
+      <y>822</y>
       <w>18</w>
-      <h>42</h>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>138</x>
-      <y>828</y>
+      <x>132</x>
+      <y>876</y>
       <w>186</w>
       <h>54</h>
     </coordinates>
@@ -260,8 +264,8 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>138</x>
-      <y>894</y>
+      <x>132</x>
+      <y>942</y>
       <w>186</w>
       <h>54</h>
     </coordinates>
@@ -276,8 +280,8 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>318</x>
-      <y>840</y>
+      <x>312</x>
+      <y>888</y>
       <w>78</w>
       <h>18</h>
     </coordinates>
@@ -287,8 +291,8 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>318</x>
-      <y>906</y>
+      <x>312</x>
+      <y>954</y>
       <w>78</w>
       <h>18</h>
     </coordinates>
@@ -298,7 +302,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>102</x>
+      <x>96</x>
       <y>234</y>
       <w>378</w>
       <h>258</h>
@@ -310,7 +314,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>132</x>
+      <x>126</x>
       <y>432</y>
       <w>132</w>
       <h>42</h>
@@ -325,7 +329,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>282</x>
+      <x>276</x>
       <y>432</y>
       <w>78</w>
       <h>42</h>
@@ -340,7 +344,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>120</x>
+      <x>114</x>
       <y>366</y>
       <w>78</w>
       <h>42</h>
@@ -355,7 +359,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>378</x>
+      <x>372</x>
       <y>432</y>
       <w>78</w>
       <h>42</h>
@@ -370,7 +374,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>150</x>
+      <x>144</x>
       <y>300</y>
       <w>132</w>
       <h>42</h>
@@ -385,7 +389,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>306</x>
+      <x>300</x>
       <y>264</y>
       <w>144</w>
       <h>78</h>
@@ -404,7 +408,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>444</x>
+      <x>438</x>
       <y>264</y>
       <w>72</w>
       <h>18</h>
@@ -415,7 +419,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>246</x>
+      <x>240</x>
       <y>336</y>
       <w>18</w>
       <h>42</h>
@@ -426,7 +430,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>192</x>
+      <x>186</x>
       <y>378</y>
       <w>42</w>
       <h>18</h>
@@ -437,7 +441,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>234</x>
+      <x>228</x>
       <y>402</y>
       <w>18</w>
       <h>42</h>
@@ -448,7 +452,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>318</x>
+      <x>312</x>
       <y>402</y>
       <w>18</w>
       <h>42</h>
@@ -459,7 +463,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>384</x>
+      <x>378</x>
       <y>402</y>
       <w>18</w>
       <h>42</h>
@@ -470,7 +474,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>126</x>
+      <x>120</x>
       <y>84</y>
       <w>354</w>
       <h>132</h>
@@ -482,7 +486,7 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>600</x>
+      <x>594</x>
       <y>30</y>
       <w>96</w>
       <h>114</h>
@@ -494,8 +498,8 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>630</x>
-      <y>870</y>
+      <x>624</x>
+      <y>918</y>
       <w>162</w>
       <h>48</h>
     </coordinates>
@@ -505,8 +509,8 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>630</x>
-      <y>924</y>
+      <x>624</x>
+      <y>972</y>
       <w>162</w>
       <h>36</h>
     </coordinates>
@@ -516,8 +520,8 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>600</x>
-      <y>906</y>
+      <x>594</x>
+      <y>954</y>
       <w>42</w>
       <h>18</h>
     </coordinates>
@@ -527,8 +531,8 @@ setCurrentSolution(SolutionType) : void
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>600</x>
-      <y>924</y>
+      <x>594</x>
+      <y>972</y>
       <w>42</w>
       <h>18</h>
     </coordinates>

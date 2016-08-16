@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="13.2">
-  <zoom_level>8</zoom_level>
+<diagram program="umlet" version="14.2">
+  <zoom_level>7</zoom_level>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>104</x>
-      <y>0</y>
-      <w>656</w>
-      <h>816</h>
+      <x>161</x>
+      <y>21</y>
+      <w>623</w>
+      <h>756</h>
     </coordinates>
     <panel_attributes>search
 --</panel_attributes>
@@ -16,10 +16,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>312</x>
-      <y>40</y>
-      <w>424</w>
-      <h>112</h>
+      <x>343</x>
+      <y>56</y>
+      <w>371</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 SearchListener&lt;SolutionType&gt;
@@ -35,10 +35,10 @@ newCurrentSolution(LocalSearch,SolutionType,Evaluation,Validation) : void</panel
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>448</x>
-      <y>192</y>
-      <w>288</w>
-      <h>320</h>
+      <x>462</x>
+      <y>189</y>
+      <w>301</w>
+      <h>315</h>
     </coordinates>
     <panel_attributes>/Search&lt;SolutionType&gt;/
 --
@@ -46,9 +46,12 @@ newCurrentSolution(LocalSearch,SolutionType,Evaluation,Validation) : void</panel
 --
 addStopCriterion(StopCriterion) : void
 removeStopCriterion(StopCriterion) : boolean
+clearStopCriteria() : void
 setStopCriterionCheckPeriod(long,TimeUnit) : void
 addSearchListener(SearchListener) : void
 removeSearchListener(SearchListener) : boolean
+clearSearchListeners() : void
+init() : void
 start() : void
 stop() : void
 dispose() : void
@@ -71,10 +74,10 @@ setRandom(Random) : void</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>576</x>
-      <y>144</y>
-      <w>24</w>
-      <h>64</h>
+      <x>616</x>
+      <y>147</y>
+      <w>21</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
@@ -82,10 +85,10 @@ setRandom(Random) : void</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>288</x>
-      <y>328</y>
-      <w>96</w>
-      <h>104</h>
+      <x>322</x>
+      <y>308</y>
+      <w>84</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>&lt;&lt;enumeration&gt;&gt;
 SearchStatus
@@ -100,10 +103,10 @@ DISPOSED</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>200</x>
-      <y>248</y>
-      <w>200</w>
-      <h>48</h>
+      <x>245</x>
+      <y>238</y>
+      <w>175</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 StopCriterion
@@ -114,10 +117,10 @@ searchShouldStop(Search) : boolean</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>392</x>
-      <y>256</y>
-      <w>72</w>
-      <h>24</h>
+      <x>413</x>
+      <y>245</y>
+      <w>63</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;70.0;10.0</additional_attributes>
@@ -125,10 +128,10 @@ searchShouldStop(Search) : boolean</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>376</x>
-      <y>336</y>
-      <w>88</w>
-      <h>24</h>
+      <x>399</x>
+      <y>315</y>
+      <w>77</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
@@ -136,10 +139,10 @@ searchShouldStop(Search) : boolean</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>448</x>
-      <y>552</y>
-      <w>288</w>
-      <h>96</h>
+      <x>462</x>
+      <y>539</y>
+      <w>301</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>/LocalSearch&lt;SolutionType&gt;/
 --
@@ -148,16 +151,17 @@ searchShouldStop(Search) : boolean</panel_attributes>
 getCurrentSolution() : SolutionType
 getCurrentSolutionEvaluation() : Evaluation
 getCurrentSolutionValidation() : Validation
-setCurrentSolution(SolutionType) : void</panel_attributes>
+setCurrentSolution(SolutionType) : void
+setCurrentSolution(SolutionType,Evaluation,Validation) : void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>576</x>
-      <y>504</y>
-      <w>24</w>
-      <h>64</h>
+      <x>616</x>
+      <y>497</y>
+      <w>21</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
@@ -165,10 +169,10 @@ setCurrentSolution(SolutionType) : void</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>448</x>
-      <y>688</y>
-      <w>288</w>
-      <h>72</h>
+      <x>462</x>
+      <y>665</y>
+      <w>301</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>/NeighbourhoodSearch&lt;SolutionType&gt;/
 --
@@ -181,10 +185,10 @@ getNumRejectedMoves() : long</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>576</x>
-      <y>640</y>
-      <w>24</w>
-      <h>64</h>
+      <x>616</x>
+      <y>623</y>
+      <w>21</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
@@ -192,10 +196,10 @@ getNumRejectedMoves() : long</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>128</x>
-      <y>648</y>
-      <w>256</w>
-      <h>72</h>
+      <x>182</x>
+      <y>630</y>
+      <w>224</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>/SingleNeighbourhoodSearch&lt;SolutionType&gt;/
 --
@@ -208,10 +212,10 @@ getNeighbourhood() : Neighbourhood</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>152</x>
-      <y>728</y>
-      <w>248</w>
-      <h>72</h>
+      <x>203</x>
+      <y>700</y>
+      <w>217</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>/MultiNeighbourhoodSearch&lt;SolutionType&gt;/
 --
@@ -224,10 +228,10 @@ getNeighbourhoods() : List</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>376</x>
-      <y>688</y>
-      <w>88</w>
-      <h>24</h>
+      <x>399</x>
+      <y>665</y>
+      <w>77</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
@@ -235,10 +239,10 @@ getNeighbourhoods() : List</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>392</x>
-      <y>736</y>
-      <w>72</w>
-      <h>24</h>
+      <x>413</x>
+      <y>707</y>
+      <w>63</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>
